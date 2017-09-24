@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body >
+
+<div id="counter-event-example">
+  <p>{{ total }}</p>
+  <button-counter v-on:increment="incrementTotal"></button-counter>
+  <button-counter v-on:increment="incrementTotal"></button-counter>
+</div>
+
+</body>
+<script type="text/javascript" src="../js/vue.min.js"></script>
+<script type="text/javascript">
+    //      使用 v-on 绑定自定义事件
+    //
+    //      每个 Vue 实例都实现了事件接口(Events interface)，即：
+    //      使用 $on(eventName) 监听事件
+    //      使用 $emit(eventName) 触发事件
+    //      Vue的事件系统分离自浏览器的EventTarget API。尽管它们的运行类似，但是$on 和 $emit 不是addEventListener 和 dispatchEvent 的别名。
+    //
+    //      另外，父组件可以在使用子组件的地方直接用 v-on 来监听子组件触发的事件。
+    //      不能用$on侦听子组件抛出的事件，而必须在模板里直接用v-on绑定，就像以下的例子：
+
+      Vue.component('button-counter', {
+          template: '<button v-on:click="increment">{{ counter }}</button>',
+          data: function () {
+              return {
+                  counter: 0
+              }
+          },
+          methods: {
+              increment: function () {
+                  this.counter += 1
+                  this.$emit('increment')
+              }
+          },
+      });
+
+
+    new Vue({
+        el: '#counter-event-example',
+        data: {
+            total: 0
+        },
+        methods: {
+            incrementTotal: function () {
+                this.total += 1
+            }
+        }
+    })
+
+
+//      在本例中，子组件已经和它外部完全解耦了。它所做的只是报告自己的内部事件，至于父组件是否关心则与它无关。留意到这一点很重要。
+//      给组件绑定原生事件
+//
+//      有时候，你可能想在某个组件的根元素上监听一个原生事件。可以使用 .native 修饰 v-on 。例如：
+//      <my-component v-on:click.native="doTheThing"></my-component>
+
+
+</script>
+</html>

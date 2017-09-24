@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body >
+<div id="app">
+  <child :items="items">
+    <!-- 作用域插槽也可以是具名的 -->
+    <template slot="item" scope="props">
+      <li class="my-fancy-item">{{ props.text }}</li>
+    </template>
+  </child>
+
+  <template id="child-template">
+    <ul>
+      <slot name="item"
+            v-for="item in items"
+            :text="item.text">
+        <!-- 这里写入备用内容 -->
+      </slot>
+    </ul>
+  </template>
+
+</div>
+
+
+</body>
+<script type="text/javascript" src="../js/vue.min.js"></script>
+<script type="text/javascript">
+//    作用域插槽是一种特殊类型的插槽，用作使用一个（能够传递数据到）可重用模板替换已渲染元素。
+//    在子组件中，只需将数据传递到插槽，就像你将 prop 传递给组件一样：
+
+    Vue.component('child', {
+        props:['items'],
+        template: '#child-template',
+    });
+
+    new Vue({
+        el: '#app',
+        data:{
+            items:[
+                {text:'这是作用域插槽具有代表性的实例1',content:'4'},
+                {text:'这是作用域插槽具有代表性的实例2',content:'3'},
+                {text:'这是作用域插槽具有代表性的实例3',content:'2'},
+                {text:'这是作用域插槽具有代表性的实例4',content:'1'}
+            ]
+        },
+    });
+
+
+
+
+</script>
+</html>

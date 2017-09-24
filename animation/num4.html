@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" href="reset.css">
+  <style>
+    html{
+      font-size: 50px;
+      line-height:50px;
+    }
+    .wrap{
+      height: 50px;
+      overflow: hidden;
+      float: left;
+      position: relative;
+      width: 400px;
+    }
+    /*thousand, hundred, ten, unit;*/
+    .hundredMillion, .thousand,.hundred, .ten,.unit{
+      font-size: 50px;
+      line-height:50px;
+    }
+    .hundredMillion{
+      margin-right:50px;
+    }
+    ul{
+      float: left;
+    }
+    .million-unit,.hundredMillion-unit{
+      position: absolute;
+
+    }
+    .million-unit{
+      top:0;
+      left:173px;
+    }
+    .hundredMillion-unit{
+      top:0;
+      left:27px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+  <span class="hundredMillion-unit">亿</span>
+  <span class="million-unit">万</span>
+  <ul class="hundredMillion">
+      <li class="">0</li>
+      <li class="">1</li>
+      <li class="">2</li>
+      <li class="">3</li>
+      <li class="">4</li>
+      <li class="">5</li>
+      <li class="">6</li>
+      <li class="">7</li>
+      <li class="">8</li>
+      <li class="">9</li>
+  </ul>
+  <ul class="thousand">
+    <li class="">0</li>
+    <li class="">1</li>
+    <li class="">2</li>
+    <li class="">3</li>
+    <li class="">4</li>
+    <li class="">5</li>
+    <li class="">6</li>
+    <li class="">7</li>
+    <li class="">8</li>
+    <li class="">9</li>
+  </ul>
+  <ul class="hundred">
+  <li class="">0</li>
+  <li class="">1</li>
+  <li class="">2</li>
+  <li class="">3</li>
+  <li class="">4</li>
+  <li class="">5</li>
+  <li class="">6</li>
+  <li class="">7</li>
+  <li class="">8</li>
+  <li class="">9</li>
+</ul>
+  <ul class="ten">
+    <li class="">0</li>
+    <li class="">1</li>
+    <li class="">2</li>
+    <li class="">3</li>
+    <li class="">4</li>
+    <li class="">5</li>
+    <li class="">6</li>
+    <li class="">7</li>
+    <li class="">8</li>
+    <li class="">9</li>
+  </ul>
+  <ul class="unit">
+    <li class="">0</li>
+    <li class="">1</li>
+    <li class="">2</li>
+    <li class="">3</li>
+    <li class="">4</li>
+    <li class="">5</li>
+    <li class="">6</li>
+    <li class="">7</li>
+    <li class="">8</li>
+    <li class="">9</li>
+  </ul>
+</div>
+
+<span style="color:#e63222"></span>
+</div>
+
+</body>
+<script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+  var lottery = '40670'
+  var firstTarget = lottery.slice(0,-4), secondTarget = lottery.slice(-4)
+  var temp ='';
+  var li = '';
+  var res =[]
+
+
+  for (var i = 0; i < 10; i++) {
+    temp +='<div>'+i+'</div>'
+  }
+  console.log(temp);
+  if(lottery.length>5){
+    numArr.unshift('thousandMillion')
+  }
+  numArr =['hundredMillion','thousand','hundred','ten','unit']
+//  function creatWrap(num) {
+//    for (var i = 0; i < num.length; i++) {
+//      res += ("<div　class='"+numArr[i]+"'></div>")
+//    }
+//
+//
+////    console.log(res);
+//    $('.wrap').html(res)
+////    console.log(res.join(' '))
+//  }
+
+//  creatWrap(lottery);
+
+
+  var hundredMillion = 0;
+  var thousand = 0;
+  var hundred = 0;
+  var ten = 0;
+  var unit = 0;
+  var flag = false;
+  var distance = 50*16*1/500;  // 1.7
+
+
+  var timer = setInterval(function () {
+    hundredMillion += 2
+    if(hundredMillion >=  +firstTarget*50){
+      hundredMillion =  +firstTarget*50;
+      clearInterval(timer)
+    }
+    if(hundredMillion >  +firstTarget*50-75 && !flag){
+      flag = 'unit';
+    }
+    $('.hundredMillion').css({ "transform": "translateY("+ -hundredMillion + "px)" });
+  }, 16);
+
+//  unit = secondTarget.split('')[3];
+//  ten = secondTarget.split('')[2];
+//  hundred = secondTarget.split('')[1];
+//  thousand = secondTarget.split('')[0];
+  var unitFlag = false;
+  var tenFlag = false;
+  var hundredFlag = false;
+  var thousandFlag = false;
+var time = 7;
+var _time = time;
+//  1234
+
+//  function (obj,dis) {
+//    $('.unit').css({ "transform": "translateY("+ -(target.split('')[3])*50 + "px)" });
+//  }
+  secondLoop(secondTarget);
+  function secondLoop(target,isLastTime) {
+    setTimeout(function () {
+      if(isLastTime){
+        time--;
+        if( 0 == time){
+          flag = isLastTime;
+          time = _time;
+        }
+      }
+      thousand  += 3;
+      hundred  += 9;
+      ten  += 27;
+      unit  += 54;
+      if (thousand > 500) {
+        thousand = 0
+      }
+      if (hundred > 500) {
+        hundred = 0
+      }
+      if (ten > 500) {
+        ten = 0
+      }
+      if (unit > 500) {
+        unit = 0
+      }
+      if(flag){
+          if(flag == 'unit'){
+            $('.unit').css({ "transform": "translateY("+ -(target.split('')[3])*50 + "px)" });
+            $('.ten').css({ "transform": "translateY("+ -ten + "px)" });
+            $('.hundred').css({ "transform": "translateY("+ -hundred + "px)" });
+            $('.thousand').css({ "transform": "translateY("+ -thousand + "px)" });
+            secondLoop(target,'ten');
+          }else if(flag == 'ten' ) {
+            $('.unit').css({ "transform": "translateY("+ -(target.split('')[3])*50 + "px)" });
+            $('.ten').css({ "transform": "translateY("+ -(target.split('')[2])*50 + "px)" });
+            $('.hundred').css({ "transform": "translateY("+ -hundred + "px)" });
+            $('.thousand').css({ "transform": "translateY("+ -thousand + "px)" });
+            secondLoop(target,'hundred');
+          }else if(flag == 'hundred' ){
+            $('.unit').css({ "transform": "translateY("+ -(target.split('')[3])*50 + "px)" });
+            $('.ten').css({ "transform": "translateY("+ -(target.split('')[2])*50 + "px)" });
+            $('.hundred').css({ "transform": "translateY("+ -(target.split('')[1])*50 + "px)" });
+            $('.thousand').css({ "transform": "translateY("+ -thousand + "px)" });
+            secondLoop(target,'thousand');
+          }else if(flag == 'thousand' ){
+            $('.unit').css({ "transform": "translateY("+ -(target.split('')[3])*50 + "px)" });
+            $('.ten').css({ "transform": "translateY("+ -(target.split('')[2])*50 + "px)" });
+            $('.hundred').css({ "transform": "translateY("+ -(target.split('')[1])*50 + "px)" });
+
+            if(target.split('')[0]==0){
+              $('.thousand').css({ "transform": "translateY("+ -(target.split('')[0])*50 + "px)" });
+            }else{
+              $('.thousand').css({ "transform": "translateY("+ -(target.split('')[0])*50 + "px)" });
+            }
+          }
+      }else{
+        $('.unit').css({ "transform": "translateY("+ -unit + "px)" });
+        $('.ten').css({ "transform": "translateY("+ -ten + "px)" });
+        $('.hundred').css({ "transform": "translateY("+ -hundred + "px)" });
+        $('.thousand').css({ "transform": "translateY("+ -thousand + "px)" });
+        secondLoop(target);
+      }
+    }, 16);
+  }
+
+
+
+
+</script>
+</html>

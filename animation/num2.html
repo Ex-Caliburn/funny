@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<p><span class="hundredMillion"></span>亿<span class='million'></span>万</p>
+</body>
+<script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+  var i = 0;
+  var firstTarget = 9, secondTarget = 1232
+
+  var time = 500;
+  var timer1 = null, timer2 = null, timer3 = null, timer4 = null;
+  //  同时停止,先从各位开始停止
+  var thousand, hundred, ten, unit;
+  var temp =''
+  firstLoop(500,secondTarget)
+  secondLoop('8043', '1232', 1)
+  function firstLoop(time) {
+    setTimeout(function () {
+      i++;
+      $('.hundredMillion').html(i)
+      if (i < 9) {
+        time -= 5 * i;
+        firstLoop(time)
+      } else {
+        clearInterval(timer1);
+        $('.million').html(secondTarget)
+      }
+    }, time)
+  }
+
+  function secondLoop(initNum, target) {
+    thousand = +(initNum.split('')[0]);
+    hundred = +(initNum.split('')[1]);
+    ten = +(initNum.split('')[2]);
+    unit = +(initNum.split('')[3]);
+
+    timer1 = setInterval(function () {
+      thousand++;
+      hundred++;
+      ten++;
+      unit++;
+      if(thousand > 9 ){
+        thousand = 0;
+      }
+      if(hundred>9){
+        hundred= 0;
+      }
+      if(ten>9){
+        ten= 0;
+      }
+      if(unit>9){
+        unit = 0;
+      }
+      temp = "" + thousand + hundred + ten + unit
+        $('.million').html(temp)
+    }, time)
+  }
+
+</script>
+</html>

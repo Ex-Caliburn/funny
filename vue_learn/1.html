@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body id="app">
+<!--　v-text不会闪,想对于{{}}语法-->
+<p v-text="msg"></p>
+
+<div v-if="flag1">word1</div>
+<div v-else="flag2">word2</div>
+<div v-if="flag3">word3</div>
+
+<p >{{msg}}</p>
+</body>
+<script type="text/javascript" src="../js/vue.min.js"></script>
+<script type="text/javascript">
+  var index = new Vue({
+    el:'#app',
+    data:{
+      msg:'hello',
+      flag1:false,
+      flag2:true,
+      flag2:true,
+    },
+    methods:{}
+  })
+</script>
+
+</html>

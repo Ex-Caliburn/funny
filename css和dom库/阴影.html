@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .test1{
+      height: 50px;
+      /*background: #2bc871; !* 一些不支持背景渐变的浏览器 *!*/
+      /*bacnd: -webkit-gradient(linear, 0 0, 0 bottom, from(#2bc871), to(#a3f3c7));*/
+      /*background: -o-linear-gradient(top, #2bc871, #a3f3c7);*/
+      /*background: -moz-linear-gradient(top, #2bc871, #a3f3c7);*!*/
+
+/* 第一个值，默认从下倒上，随值增大，顺时针旋转*/
+/* 后三个，可以设置百分比,相当于颜色开始位置，相对于一个颜色*/
+    /*background:linear-gradient(145deg, blue, green 40%, red);*/
+    /*background:linear-gradient(45deg, #333, #eee );*/
+    background:linear-gradient(0deg, rgba(51, 51, 51, 0.6), rgba(238, 238, 238,  0.6) );
+
+
+
+    }
+
+    /* 圆心四周渐变*/
+    .test2{
+      width: 200px;
+      height: 100px;
+       background:radial-gradient(circle at center, red 0, blue, green 100%);
+    }
+
+    .test3{
+      width: 200px;
+      height: 100px;
+      background-image: radial-gradient(ellipse farthest-corner at 45px 45px , #00FFFF 0%, rgba(0, 0, 255, 0) 50%, #0000FF 95%);
+
+    }
+    .test4{
+      width: 200px;
+      height: 100px;
+      background-image: radial-gradient(ellipse farthest-corner at 470px 47px , #FFFF80 20%, rgba(204, 153, 153, 0.4) 30%, #E6E6FF 60%);
+
+    }
+    .test5{
+      width: 200px;
+      height: 100px;
+      background-image: radial-gradient(farthest-corner at 45px 45px , #FF0000 0%, #0000FF 100%);
+
+    }
+    .test6{
+      width: 200px;
+      height: 100px;
+      background-image: radial-gradient(16px at 60px 50% , #000000 0%, #000000 14px, rgba(0, 0, 0, 0.3) 18px, rgba(0, 0, 0, 0) 19px);
+
+    }
+
+
+
+  </style>
+</head>
+<body>
+  <div class="test1"></div>
+  <div class="test2"></div>
+  <div class="test3"></div>
+  <div class="test4"></div>
+  <div class="test5"></div>
+  <div class="test6"></div>
+
+</body>
+</html>

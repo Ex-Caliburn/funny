@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@2.3.3/dist/vue.js"></script>
+</head>
+
+<body>
+<div id="app">
+  <div>
+    <!-- 单slot -->
+    <v-one>
+      <!-- 这里的所有内容会替换掉slot -->
+      <p>初始化段落一</p>
+      <p>初始化段落二</p>
+    </v-one>
+    <!-- 渲染结果 -->
+    <!-- <div>
+     <h1>组件标题</h1>
+     <p>初始化段落一</p>
+     <p>初始化段落二</p>
+     <p>组件段落内容</p>
+     <p>I am one</p>
+    </div> -->
+
+
+    <!-- 具名slot -->
+
+    <v-two>
+      <p slot="nav">我是导航</p>
+      <p slot="main">我是内容</p>
+      <p slot="footer">我是底部</p>
+    </v-two>
+
+
+
+    <!-- 渲染结果 -->
+    <!-- <div>
+     <nav>
+      <p>我是导航</p>
+     </nav>
+     <main>
+      <p>我是内容</p>
+     </main>
+     <footer>
+      <p>我是底部</p>
+     </footer>
+    </div> -->
+
+
+    <!-- 作用域插槽 -->
+    <v-three>
+      <!-- 父组件默认无法使用子组件数据 -->
+      <template scope="props">
+        <p>{{props.text}}</p>
+      </template>
+    </v-three>
+
+    <!-- 渲染结果 -->
+    <!-- <div><p>I am three</p></div> -->
+  </div>
+</div>
+
+
+<template id="one">
+  <div>
+    <h1>组件标题</h1>
+    <slot></slot>
+    <p>组件段落内容</p>
+    <p>{{one}}</p>
+  </div>
+</template>
+
+
+<!-- 具名slot -->
+<template id="two">
+  <div>
+    <nav>
+      <slot name="nav"></slot>
+    </nav>
+    <main>
+      <slot name="main"></slot>
+    </main>
+    <footer>
+      <slot name="footer"></slot>
+    </footer>
+  </div>
+</template>
+
+<!-- 作用域插槽 -->
+<template id="three">
+  <div>
+    <!-- 把数据传递给slot,这样父组件也可以访问three这个组件的数据 -->
+    <slot :text="three"></slot>
+  </div>
+</template>
+<script>
+    new Vue({
+        el: '#app',
+        components: {
+            'v-one': {
+                template: '#one',
+                data() {
+                    return {
+                        'one': 'I am one'
+                    }
+                }
+            },
+            'v-two': {
+                template: '#two',
+                data() {
+                    return {
+                        'two': 'I am two'
+                    }
+                }
+            },
+            'v-three': {
+                template: '#three',
+                data:function () {
+                    return {
+                        'three': 'I am three'
+                    }
+                }
+            }
+        }
+    });
+</script>
+</body>
+
+</html>

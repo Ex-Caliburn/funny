@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    
+    html, body {
+      margin: 0px;
+      padding: 0px;
+      background: #fff;
+    }
+
+    .marquee {
+      position: relative;
+      padding:5px 10px;
+      box-sizing: border-box;
+      box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.64);
+      margin-top: 26px;
+      width: 100%;
+      /*line-height:20px;  // 动态获取高度，并设置高度*/
+      height: 20px;
+      overflow: hidden;
+      /*overflow:auto*/
+    }
+    .clearfix{
+      display: table;
+      content: '';
+      clear: both;
+    }
+    .voice,.arrow,.marquee-inner{
+      text-align: center;
+    }
+    .voice{
+      float: left;
+      width: 10%;
+    }
+    .arrow{
+      float: right;
+      width: 10%;
+      transform: translateY(4px);
+    }
+    ul,li{
+      margin:0;
+      padding:0;
+      list-style: none;
+    }
+    li{
+      padding:5px 0 10px;
+    }
+    .name,.variety,.money{
+      color: #ff0000;
+    }
+
+    .marquee-inner {
+      position: absolute;
+      top:0;
+      left:0;
+      width: 80%;
+      -webkit-animation: move_marquee 10s linear 0s infinite ;
+      -moz-animation: move_marquee 10s linear 0s infinite ;
+      -o-animation: move_marquee 10s linear 0s infinite ;
+      animation: move_marquee 15s linear 0s infinite
+      /*// 控制时间*/
+    }
+
+    .marquee-item {
+      width:100%;
+      /*opacity: 1;*/
+      /*-webkit-transition: opacity 0.6s ease-out;*/
+      /*transition: opacity 0.6s ease-out;*/
+    }
+
+    @-webkit-keyframes move_marquee {
+      0%   {transform:translateY(0);}
+      5%   {transform:translateY(0);}
+      17%  {transform:translateY(-17%);}
+      23%  {transform:translateY(-17%);}
+      33%  {transform:translateY(-33%);}
+      38%  {transform:translateY(-33%);}
+      50%  {transform:translateY(-50%);}
+      55%  {transform:translateY(-50%);}
+      67%  {transform:translateY(-67%);}
+      72%  {transform:translateY(-67%);}
+      82%  {transform:translateY(-83%);}
+      87%  {transform:translateY(-83%);}
+      100% {transform:translateY(-100%);}
+    }
+    /*@-moz-keyframes move_marquee {*/
+      /*0%   {transform:translateY(0);}*/
+      /*20%  {transform:translateY(-25%);}*/
+      /*25%  {transform:translateY(-25%);}*/
+      /*45%  {transform:translateY(-50%);}*/
+      /*50%  {transform:translateY(-50%);}*/
+      /*75%  {transform:translateY(-75%);}*/
+      /*75%  {transform:translateY(-75%);}*/
+      /*95%  {transform:translateY(-100%);}*/
+      /*100% {transform:translateY(-100%);}*/
+    /*}*/
+    /*@-o-keyframes move_marquee {*/
+      /*0%   {transform:translateY(0);}*/
+      /*20%  {transform:translateY(-25%);}*/
+      /*25%  {transform:translateY(-25%);}*/
+      /*45%  {transform:translateY(-50%);}*/
+      /*50%  {transform:translateY(-50%);}*/
+      /*75%  {transform:translateY(-75%);}*/
+      /*75%  {transform:translateY(-75%);}*/
+      /*95%  {transform:translateY(-100%);}*/
+      /*100% {transform:translateY(-100%);}*/
+    /*}*/
+    /*@keyframes move_marquee {*/
+      /*0%   {transform:translateY(0);}*/
+      /*20%  {transform:translateY(-25%);}*/
+      /*35%  {transform:translateY(-25%);}*/
+      /*45%  {transform:translateY(-50%);}*/
+      /*60%  {transform:translateY(-50%);}*/
+      /*75%  {transform:translateY(-75%);}*/
+      /*85%  {transform:translateY(-75%);}*/
+      /*95%  {transform:translateY(-100%);}*/
+      /*100% {transform:translateY(-100%);}*/
+    /*}*/
+
+  </style>
+</head>
+<body>
+<div class="marquee clearfix">
+  <div class="voice">喇叭</div>
+  <!-- vue 生成list-->
+  <ul class="marquee-inner">
+    <li class="marquee-item">
+      恭喜<span class="name">【名称】</span>
+      投注
+      <span class="variety">彩种</span>
+      中奖
+      <span class="money">多少</span>
+      元
+    </li>
+    <li class="marquee-item">
+      恭喜<span class="name">【名称】</span>
+      投注
+      <span class="variety">彩种</span>
+      中奖
+      <span class="money">多少</span>
+      元
+    </li>
+    <li class="marquee-item">
+      恭喜<span class="name">【名称】</span>
+      投注
+      <span class="variety">彩种</span>
+      中奖
+      <span class="money">多少</span>
+      元
+    </li>
+    <li class="marquee-item">
+      恭喜<span class="name">【名称】</span>
+      投注
+      <span class="variety">彩种</span>
+      中奖
+      <span class="money">多少</span>
+      元
+    </li>
+    <li class="marquee-item">
+      恭喜<span class="name">【名称】</span>
+      投注
+      <span class="variety">彩种</span>
+      中奖
+      <span class="money">多少</span>
+      元
+    </li>
+    <li class="marquee-item">
+      恭喜<span class="name">【名称】</span>
+      投注
+      <span class="variety">彩种</span>
+      中奖
+      <span class="money">多少</span>
+      元
+    </li>
+  </ul>
+  <div class="arrow">></div>
+</div>
+</body>
+<script type="text/javascript">
+
+</script>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body id="app">
+
+<div id="example">
+  <!--<table>-->
+    <!--<my-row></my-row>-->
+  <!--</table>-->
+  <!--不会按照需求放置,而是在包裹器外面-->
+  <!--自定义组件 <my-row> 被认为是无效的内容，因此在渲染的时候会导致错误。变通的方案是使用特殊的 is 属性：-->
+  <table>
+    <tr is="my-row"></tr>
+  </table>
+</div>
+
+</body>
+<script type="text/javascript" src="../js/vue.min.js"></script>
+<script type="text/javascript">
+
+    var Child = {
+        template: '<tr>A custom component!</tr>'
+    }
+    var app = new Vue({
+        el: '#example',
+        components: {
+            // <my-component> 将只在父模板可用
+            'my-row': Child
+        }
+    })
+</script>
+</html>

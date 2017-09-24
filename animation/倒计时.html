@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+  /**
+   *startime 应该是毫秒数
+   *
+   */
+
+  var Alarm = function (startime, endtime, countFunc, endFunc) {
+    this.time = Math.floor((endtime - startime) / 1000); //时间
+    this.countFunc = countFunc; //计时函数
+    this.endFunc = endFunc; //结束函数
+    this.flag = 't' + Date.parse(new Date()); //
+  };
+  Alarm.prototype.start = function () {
+    var self = this;
+
+    self.flag = setInterval(function () {
+      if (self.time < 0) {
+        clearInterval(self.flag);
+        self.endFunc();
+        console.log('计时结束');
+      } else {
+        var minute, hour, day, second;
+        day = Math.floor(self.time / 60 / 60 / 24) < 10 ? '0' + Math.floor(self.time / 60 / 60 / 24) : Math.floor(self.time / 60 / 60 / 24);
+        hour = Math.floor(self.time / 60 / 60 % 24) < 10 ? '0' + Math.floor(self.time / 60 / 60 % 24) : Math.floor(self.time / 60 / 60 % 24);
+        minute = Math.floor(self.time / 60 % 60) < 10 ? '0' + Math.floor(self.time / 60 % 60) : Math.floor(self.time / 60 % 60);
+        second = Math.floor(self.time % 60) < 10 ? '0' + Math.floor(self.time % 60) : Math.floor(self.time % 60);
+        //倒计时执行函数
+        self.countFunc(second, minute, hour, day);
+        self.time--;
+      }
+    }, 1000);
+  }
+//  var time1 = new Alarm(startime, endtime, countFunc, endFunc);
+//  time1.start();
+
+    var time1 = new Alarm( Date.parse(new Date()),  Date.parse(new Date())+100000, function (second, minute, hour, day) {
+        console.log(second, minute, hour, day);
+    });
+    time1.start();
+
+
+
+  /*var countTime = function () {
+    var eles = $('.count_time'),
+      len = eles.length;
+    for (; len > 0; len--) {
+      var ele = eles.eq(len - 1);
+      (function (ele) {
+        startTime = new Date(ele.attr('data-start-time')).getTime(),
+          endTime = new Date(ele.attr('data-end-time')).getTime(),
+          alarm = new Alarm(startTime, endTime, function (second, minute, hour, day) { //计时钟
+            ele.text(hour + ':' + minute + ':' + second);
+          }, function () { //倒计时结束
+            ele.text('00:00:00');
+            window.location.reload();
+          });
+        alarm.start();
+      })(ele);
+    }
+  };
+  countTime();*/
+
+
+</script>
+
+</html>

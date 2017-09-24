@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body >
+
+<div id="app">
+  <h1>我是父组件的标题</h1>
+  <child>
+    <p>这是一些初始内容</p>
+    <p>这是更多的初始内容</p>
+  </child>
+</div>
+
+<template id="child-template">
+  <div>
+    <h2>我是子组件的标题</h2>
+    <slot>
+      只有在没有要分发的内容时才会显示。
+    </slot>
+  </div>
+</template>
+
+
+<!--除非子组件模板包含至少一个 <slot> 插口，否则父组件的内容将会被丢弃。
+当子组件模板只有一个没有属性的 slot 时，父组件整个内容片段将插入到 slot 所在的 DOM 位置，
+并替换掉 slot 标签本身。-->
+  <!--最初在 <slot> 标签中的任何内容都被视为备用内容。
+  备用内容在子组件的作用域内编译，并且只有在宿主元素为空，
+  且没有要插入的内容时才显示备用内容。-->
+
+</body>
+<script type="text/javascript" src="../js/vue.min.js"></script>
+<script type="text/javascript">
+//    初始化父组件实例之前要注册子组件：
+    // 注册子组件
+    Vue.component("child", {
+        template: "#child-template"
+    });
+
+    // 初始化父组件
+    new Vue({
+        el: "#app"
+    });
+
+
+
+</script>
+</html>

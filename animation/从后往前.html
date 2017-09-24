@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<p><span class="hundredMillion"></span><span class='tenThousand'></span></p>
+</body>
+<script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+
+  fun(12, 4013)
+  function fun(firstTarget,secondTarget) {
+    firstTarget =firstTarget.toString();
+    secondTarget =secondTarget.toString();
+    var all =firstTarget+secondTarget;
+    $('.hundredMillion').html('奖池0亿')
+    $('.tenThousand').html('0000万')
+    var thousand, hundred, ten, unit;
+    var temp = '', flag = false, nextFlag = false;
+//    var times = Math.floor(firstInterval / secondInterval / 3)-2;
+//    var _times = times;
+    thousand = +(secondTarget.split('')[0]);
+    hundred = +(secondTarget.split('')[1]);
+    ten = +(secondTarget.split('')[2]);
+    unit = +(secondTarget.split('')[3]);
+    var numArr = all.split('')
+    var length = numArr.length;
+    var i = 0;
+    fun2(numArr[length-1],length-1)
+    function fun2(target,index) {
+      setTimeout(function () {
+        i++;
+        if(target == 0 ){
+          if( i>= 10){
+            i = 0;
+            index--;
+            fun2(numArr[index],index)
+          }
+        }else if(i>= target){
+            i = 0;
+            index--;
+            fun2(numArr[index],index)
+          }
+
+        switch (index) {
+          case length-1:
+            $('.tenThousand').html('000'+ i+'万')
+            break;
+          case length-2:
+            $('.tenThousand').html('00'+ i+unit+'万')
+            break;
+          case length-3:
+            $('.tenThousand').html('0'+ i+ ten+unit+'万')
+            break;
+          case length-4:
+            $('.tenThousand').html(i+ hundred+ ten+unit+'万')
+            break;
+          case length-5:
+            $('.tenThousand').html(i+'亿'+ ten+unit+'万')
+            break;
+          case length-6:
+            $('.tenThousand').html(i+all.slice(-5,-4)+'亿'+ secondTarget+'万')
+            break;
+        }
+        fun2(target,index)
+      },200)
+    }
+
+  }
+
+
+
+
+</script>
+</html>

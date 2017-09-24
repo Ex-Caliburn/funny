@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" href="layout.css">
+  <style>
+    div{
+      height:100px;
+      background-color: yellow;
+    }
+    .test1{
+      background-color:green;
+      margin-top: 50px;
+      width:100px;
+      border:10px solid green;
+    }
+    .test2{
+      /*position: absolute;*/
+      /*top:0px;*/
+      /*left:0px;*/
+    }
+    .btn{
+      height:50px;
+      width:50px;
+      background-color: blue;
+      position: fixed;
+      top:0;
+      z-index: 100;
+    }
+  </style>
+</head>
+<body>
+<button class="btn">
+  点我点我
+</button>
+  <div class="test"></div>
+  <div class="test2">
+    <div class="test1"></div>
+  </div>
+
+</body>
+<script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+<!--offsetTop相对与开启定位元素的父元素偏移,没有的话相对于视口-->
+//bottom:270
+//height 120
+//left 0
+//right 120  包括border
+//top 150
+//width 120
+  $('.btn').click(function () {
+      console.log(document.querySelector('.test1').offsetTop);
+      console.log(document.querySelector('.test1').offsetLeft);
+      console.dir(document.querySelector('.test1').getBoundingClientRect());
+  })
+</script>
+</html>

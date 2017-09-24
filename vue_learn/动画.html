@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Title</title>
+  <style>
+    .expand-transition {
+      transition: all 1s ease;
+      height:120px;
+      width:520px;
+      padding:  10px;
+      background-color: yellow;
+      overflow: hidden;
+    }
+    .expand-enter,.expand-leave{
+      height: 0;
+      padding: 0 10px;
+      opacity: 0;
+    }
+    input
+  </style>
+</head>
+<!--类名的添加和切换取决于 transition 特性的值。比如 transition="fade"，会有三个 CSS 类名：-->
+
+<!--.fade-transition 始终保留在元素上。-->
+
+<!--.fade-enter 定义进入过渡的开始状态。只应用一帧然后立即删除。-->
+
+<!--.fade-leave 定义离开过渡的结束状态。在离开过渡开始时生效，在它结束后删除。-->
+
+<!--如果 transition 特性没有值，类名默认是 .v-transition, .v-enter 和 .v-leave。-->
+<body id="app">
+  <div v-if="show" :transition="transitionName">hello</div>
+  <!--<div v-if="!show" :transition="transitionName">hello</div>-->
+  <div @click="change">button</div>
+</body>
+<script type="text/javascript" src="../js/vue.min.js"></script>
+<script type="text/javascript">
+  var index = new Vue({
+    el:'#app',
+    data:{
+      show:true,
+      transitionName:'expand',
+    },
+    methods:{
+      change:function () {
+        console.log(1);
+          this.show = !this.show;
+      },
+    }
+  })
+  Vue.transition('expand', {
+    beforeEnter: function (el) {
+      el.textContent = 'beforeEnter'
+    },
+    enter: function (el) {
+      el.textContent = 'enter'
+    },
+    afterEnter: function (el) {
+      el.textContent = 'afterEnter'
+    },
+    enterCancelled: function (el) {
+      // handle cancellation
+    },
+    beforeLeave: function (el) {
+      el.textContent = 'beforeLeave'
+    },
+    leave: function (el) {
+      el.textContent = 'leave'
+    },
+    afterLeave: function (el) {
+      el.textContent = 'afterLeave'
+    },
+    leaveCancelled: function (el) {
+      // handle cancellation
+    }
+  })
+</script>
+
+</html>

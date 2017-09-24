@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .hundredMillion, .tenThousand {
+      font-size: 50px;
+    }
+  </style>
+</head>
+<body>
+<p><span class="hundredMillion"></span><span class='tenThousand'></span></p>
+</body>
+<script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+
+  var lottery = '50000';
+  var i = 0;
+  var firstTarget = '5', secondTarget = '1234'
+  var time = 500;
+  var thousand, hundred, ten, unit;
+  var temp = '', flag = false, nextFlag = false;
+  var times = Math.floor(time / (1000 / 60) / 4);
+  var _times = times
+  firstLoop(firstTarget, 500)
+  secondLoop('8057', secondTarget, 16)
+
+  //  有亿,万为0
+  //万为0开头，去掉
+  $('.hundredMillion').html(i + '亿')
+  $('.tenThousand').html('0000万')
+  function firstLoop(num, interval) {
+    setTimeout(function () {
+      i++;
+      $('.hundredMillion').html(i + '亿')
+      if (i < num) {
+//        interval -= 5 * i;
+        firstLoop(firstTarget, 500)
+        if (i == num - 1) {
+          flag = 'unit';
+        }
+      }
+    }, interval)
+  }
+
+  function secondLoop(initNum, target, interval, isLastTime) {
+    thousand = +(initNum.split('')[0]);
+    hundred = +(initNum.split('')[1]);
+    ten = +(initNum.split('')[2]);
+    unit = +(initNum.split('')[3]);
+    setTimeout(function () {
+      thousand++;
+      hundred++;
+      ten++;
+      unit++;
+      if (isLastTime) {
+        times--;
+        if (times < 0) {
+          flag = nextFlag;
+          times = _times;
+        }
+      }
+      if (thousand > 9) {
+        thousand = 0;
+      }
+      if (hundred > 9) {
+        hundred = 0;
+      }
+      if (ten > 9) {
+        ten = 0;
+      }
+      if (unit > 9) {
+        unit = 0;
+      }
+
+      function callback(isLastTime) {
+        if(nextFlag == 'over') {
+          if(target.replace(/^0+/g, '') != 0){
+            $('.tenThousand').html(target.replace(/^0+/g, '')+ '万');
+          }else{
+            $('.tenThousand').html('');
+          }
+          return
+        }
+        temp = "" + thousand + hundred + ten + unit + '万';
+        $('.tenThousand').html(temp);
+        secondLoop(temp, target, interval, isLastTime)
+      }
+
+      function lastTime(Places) {
+        switch (Places) {
+          case 'unit':
+            unit = target.split('')[3];
+            nextFlag = 'ten';
+            break;
+          case 'ten':
+            unit = target.split('')[3];
+            ten = target.split('')[2];
+            nextFlag = 'hundred';
+            break;
+          case 'hundred':
+            unit = target.split('')[3];
+            ten = target.split('')[2];
+            hundred = target.split('')[1];
+            nextFlag = 'thousand';
+            break;
+          case 'thousand':
+            nextFlag = 'over';
+            break;
+        }
+        callback(true)
+      }
+
+      if (flag) {
+        lastTime(flag)
+      } else {
+        callback()
+      }
+    }, interval)
+  }
+
+</script>
+</html>

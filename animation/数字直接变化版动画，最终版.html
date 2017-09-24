@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<p><span class="hundredMillion"></span><span class='tenThousand'></span></p>
+</body>
+<script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+
+
+  numAnimation(12, 4613,500,50);
+
+  /**
+   *数字动画
+   * @param firstTarget 亿位 string
+   * @param secondTarget 万位数值(4个数) string
+   * @param firstInterval 亿位循环的间隔 ms
+   * @param secondInterval 万位循环的间隔, 最好是16ms
+   */
+
+  function numAnimation(firstTarget,secondTarget,firstInterval,secondInterval) {
+    firstTarget =firstTarget.toString();
+    secondTarget =secondTarget.toString();
+    var i = 0;
+    var thousand, hundred, ten, unit;
+    var temp = '', flag = false, nextFlag = false;
+    var times = Math.floor(firstInterval / secondInterval / 3)-2;
+    var _times = times;
+    firstLoop(firstTarget, firstInterval)
+    secondLoop('1439', secondTarget, secondInterval)
+
+    $('.hundredMillion').html('奖池0亿')
+    $('.tenThousand').html('0000万')
+    function firstLoop(num, interval) {
+      setTimeout(function () {
+        i++;
+        $('.hundredMillion').html('奖池' +　i + '亿')
+        if (i < num) {
+          firstLoop(firstTarget, interval)
+          if (i == num - 1) {
+            flag = 'unit';
+          }
+        }
+      }, interval)
+    }
+
+    function secondLoop(initNum, target, interval, isLastTime) {
+      thousand = +(initNum.split('')[0]);
+      hundred = +(initNum.split('')[1]);
+      ten = +(initNum.split('')[2]);
+      unit = +(initNum.split('')[3]);
+      setTimeout(function () {
+        thousand++;
+        hundred++;
+        ten++;
+        unit++;
+        if (isLastTime) {
+          times--;
+          if (times < 0) {
+            flag = nextFlag;
+            times = _times;
+          }
+        }
+        if (thousand > 9) {
+          thousand = 0;
+        }
+        if (hundred > 9) {
+          hundred = 0;
+        }
+        if (ten > 9) {
+          ten = 0;
+        }
+        if (unit > 9) {
+          unit = 0;
+        }
+
+        //　显示到view
+        function callback(isLastTime) {
+          if(nextFlag == 'over') {
+            if(target.replace(/^0+/g, '') != 0){
+              $('.tenThousand').html(target.replace(/^0+/g, '')+ '万');
+            }else{
+              $('.tenThousand').html('');
+            }
+            return
+          }
+          temp = "" + thousand + hundred + ten + unit + '万';
+          $('.tenThousand').html(temp);
+          secondLoop(temp, target, interval, isLastTime)
+        }
+
+        // 判断动画执行到那一位
+        function lastTime(Places) {
+          switch (Places) {
+            case 'unit':
+              unit = target.split('')[3];
+              nextFlag = 'ten';
+              break;
+            case 'ten':
+              unit = target.split('')[3];
+              ten = target.split('')[2];
+              nextFlag = 'hundred';
+              break;
+            case 'hundred':
+              unit = target.split('')[3];
+              ten = target.split('')[2];
+              hundred = target.split('')[1];
+              nextFlag = 'thousand';
+              break;
+            case 'thousand':
+              nextFlag = 'over';
+              break;
+          }
+          callback(true)
+        }
+
+        if (flag) {
+          lastTime(flag)
+        } else {
+          callback()
+        }
+      }, interval)
+    }
+  }
+</script>
+</html>

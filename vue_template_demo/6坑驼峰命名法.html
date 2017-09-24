@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body >
+
+<div id="example-2">
+  <child-style message="hello!"></child-style>
+</div>
+
+</body>
+<script type="text/javascript" src="../js/vue.min.js"></script>
+<script type="text/javascript">
+//    HTML 特性是不区分大小写的。所以，当使用的不是字符串模版，
+// camelCased (驼峰式) 命名的 prop 需要转换为相对应的 kebab-case (短横线隔开式) 命名：
+    Vue.component('childStyle', {
+        // 声明 props
+        props: ['message'],
+        // 就像 data 一样，prop 可以用在模板内
+        // 同样也可以在 vm 实例中像 “this.message” 这样使用
+        template: '<span>{{ message }}</span>'
+    })
+
+    new Vue({
+        el: '#example-2'
+    })
+
+
+
+
+
+</script>
+</html>

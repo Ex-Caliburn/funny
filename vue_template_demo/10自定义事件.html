@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body >
+
+<div id="counter-event-example">
+  <p>{{ total }}</p>
+  <currency-input v-model="price" v-on:input ="incrementTotal"></currency-input>
+</div>
+
+</body>
+<script type="text/javascript" src="../js/vue.min.js"></script>
+<script type="text/javascript">
+
+    Vue.component('currency-input', {
+        template: '\
+    <span>\
+      $\
+      <input\
+        ref="input"\
+        v-bind:value="value"\
+        v-on:input="updateValue($event.target.value)"\
+      >\
+    </span>\
+  ',
+        props: ['value'],
+        methods: {
+            // 不是直接更新值，而是使用此方法来对输入值进行格式化和位数限制
+            updateValue: function (value) {
+                var formattedValue = value.trim().slice(0, value.indexOf('.') + 3)
+//                  .trim()
+                  // 保留 2 小数位
+//                  .slice(0, value.indexOf('.') + 3)
+                // 如果值不统一，手动覆盖以保持一致
+                if (formattedValue !== value) {
+                    this.$refs.input.value = formattedValue
+                }
+                // 通过 input 事件发出数值
+                this.$emit('input', Number(formattedValue))
+            }
+        }
+    })
+
+    new Vue({
+        el: '#counter-event-example',
+        data: {
+            price: 10,
+            total:0
+        },
+        methods: {
+            incrementTotal: function (value) {
+                this.total = value
+            }
+        }
+    })
+
+
+
+</script>
+</html>

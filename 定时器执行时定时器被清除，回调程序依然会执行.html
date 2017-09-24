@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<button id="test1">小小提示层</button>
+<script src="js/jquery-1.9.1.min.js"></script>
+  <script type="text/javascript">
+      window.onload = function () {
+        $('#test1').on('click', function(){
+          console.log(111);
+          var timer1 = setInterval(function () {
+            console.log(1);
+          },5000)
+          var timer2 = setInterval(function () {
+            console.log(2);
+//             未完成就清除掉了
+            clearInterval(timer1)
+          },1000)
+        });
+      }
+  </script>
+</body>
+</html>

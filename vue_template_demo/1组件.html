@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body id="app">
+
+<div id="example">
+  <my-component></my-component>
+</div>
+
+</body>
+<script type="text/javascript" src="../js/vue.min.js"></script>
+<script type="text/javascript">
+
+
+//  <!--el不能挂在body上-->
+      Vue.component('my-component', {
+          template: '<div>A custom component!</div>'
+      })
+    // 创建根实例
+    new Vue({
+        el: '#example'
+    })
+</script>
+</html>

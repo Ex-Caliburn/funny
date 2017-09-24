@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    /*.pure-u-4-14 {*/
+    /*display: inline-block;*/
+    /**display: inline;*/
+    /*zoom: 1;*/
+    /*letter-spacing: normal;*/
+    /*word-spacing: normal;*/
+    /*vertical-align: top;*/
+    /*text-rendering: auto;*/
+    /*width: 28.5714%;*/
+    /**width: 28.5714%;*/
+    /*height: 100%;*/
+    /*float: left;*/
+    /*}*/
+
+    /*.pure-u-7-14 {*/
+    /*display: inline-block;*/
+    /**display: inline;*/
+    /*zoom: 1;*/
+    /*letter-spacing: normal;*/
+    /*word-spacing: normal;*/
+    /*vertical-align: top;*/
+    /*text-rendering: auto;*/
+    /*width: 50%;*/
+    /**width: 50%;*/
+    /*height: 100%;*/
+    /*float: left;*/
+    /*}*/
+
+    /*.pure-u-3-14 {*/
+    /*display: inline-block;*/
+    /**display: inline;*/
+    /*zoom: 1;*/
+    /*letter-spacing: normal;*/
+    /*word-spacing: normal;*/
+    /*vertical-align: top;*/
+    /*text-rendering: auto;*/
+    /*width: 21.4285%;*/
+    /**width: 21.4285%;*/
+    /*height: 100%;*/
+    /*float: left;*/
+    /*}*/
+
+    .flex1 {
+      display: flex;
+      display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+      display: -moz-box; /* 老版本语法: Firefox (buggy) */
+      display: -ms-flexbox; /* 混合版本语法: IE 10 */
+      display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+      border: 1px solid black;
+    }
+
+    .flex2 {
+      display: flex;
+      display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+      display: -moz-box; /* 老版本语法: Firefox (buggy) */
+      display: -ms-flexbox; /* 混合版本语法: IE 10 */
+      display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      border: 1px solid black;
+    }
+
+    .flex3 {
+      /*display: flex;*/
+      /*display: -webkit-box; !* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. *!*/
+      /*display: -moz-box; !* 老版本语法: Firefox (buggy) *!*/
+      /*display: -ms-flexbox; !* 混合版本语法: IE 10 *!*/
+      /*display: -webkit-flex; !* 新版本语法: Chrome 21+ *!*/
+      align-items: center;
+      justify-content: center;
+      /*flex-direction: column;*/
+      border: 1px solid black;
+    }
+
+    .flex4 {
+      display: flex;
+      display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+      display: -moz-box; /* 老版本语法: Firefox (buggy) */
+      display: -ms-flexbox; /* 混合版本语法: IE 10 */
+      display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+    }
+
+    .flex5 {
+      display: flex;
+      display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+      display: -moz-box; /* 老版本语法: Firefox (buggy) */
+      display: -ms-flexbox; /* 混合版本语法: IE 10 */
+      display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+      align-items: center;
+      justify-content: center;
+      /*flex-direction: column;*/
+      border: 1px solid black;
+    }
+
+    /*.fixedFlex {*/
+
+    /*!*display: flex;*!*/
+    /*!*display: -webkit-box; !* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. *!*!*/
+    /*!*display: -moz-box; !* 老版本语法: Firefox (buggy) *!*!*/
+    /*!*display: -ms-flexbox; !* 混合版本语法: IE 10 *!*!*/
+    /*!*display: -webkit-flex; !* 新版本语法: Chrome 21+ *!*!*/
+    /*flex-grow: 1;*/
+    /*display: flex;*/
+    /*height: 100%;*/
+    /*}*/
+    .flex61 {
+      display: flex;
+      display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+      display: -moz-box; /* 老版本语法: Firefox (buggy) */
+      display: -ms-flexbox; /* 混合版本语法: IE 10 */
+      display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+      flex-direction: column;
+      flex-grow: 1;
+      /*align-items: center;*/
+      /*justify-content: center;*/
+      /*height:100%;*/
+    }
+
+    .flex7 {
+      display: flex;
+      display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+      display: -moz-box; /* 老版本语法: Firefox (buggy) */
+      display: -ms-flexbox; /* 混合版本语法: IE 10 */
+      display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+
+      -webkit-align-items: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -webkit-justify-content: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+      flex-direction: column;
+
+      border: 1px solid black;
+    }
+
+    .border {
+      border-bottom: 1px solid black;
+    }
+
+    .border-right {
+      border-right: 1px solid black;
+    }
+
+  </style>
+</head>
+<body>
+<div class="pure-u-14-24 flex1">
+    <div class="flex7    "><p>让分胜负</p>
+      <p>(<span class="cui-color-green">-4.5</span>)</p></div>
+    <div class="flex7    "><p><span
+        class="cui-color-red">让负(1.75)</span></p></div>
+    <div class="flex7   "><span>让负</span></div>
+</div>
+</body>
+</html>

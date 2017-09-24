@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style type="text/css">
+    /*跑马灯*/
+    .paomadeng{
+      width:100%;
+      height:30px;
+      position:relative;
+      display:block;
+      background: #fff;
+      margin-bottom:6px;
+      padding-top:9px;
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+    .paomadeng-logo{
+      position: absolute;
+      left:3%;
+      top:50%;
+      -webkit-transform: translate3d(0, -50%, 0);
+      transform: translate3d(0, -50%, 0);
+      width:15px;
+    }
+    #mq li{
+      font-size:12px;
+      line-height: 12px;
+      padding-left:8%;
+      padding-bottom:15px;
+      text-overflow:ellipsis;
+      overflow:hidden;
+      white-space:nowrap;
+      width:80%;
+      color: #666;
+
+  </style>
+</head>
+<body>
+<!--跑马灯-->
+<div class="paomadeng" id="mq">
+  <img src="https://ojhwh2s98.qnssl.com/voice2x.png" class="paomadeng-logo">
+  <ul id="mq-list">
+    <li>恭喜! 彩球l7p5of获得300元包赔劵!</li>
+  </ul>
+</div>
+</body>
+<script type="text/javascript">
+  /*paomadeng*/
+  function req() {
+    var request = {
+      url:renrequesturl.ren_get_new_index_url,
+      data: {},
+      handler_success: function (data) {
+        if (data.code == 0) {
+          var text = data.resp.reports;
+          var content = "";
+          text.forEach(function (val, idx) {
+            content += '<li>' + val + '</li>'
+          });
+          $("#mq-list").html(content);
+        }
+      },
+      handler_ex: function (xhr) {
+        console.log(xhr);
+        common.toast("网络异常");
+      }
+    };
+    common.ajaxRequest(request)
+  }
+  var lineHeight = 27;
+  function rollOne() {
+    $("#mq-list").stop().animate({"marginTop": -lineHeight + "px"}, "slow", 'linear', function () {
+      $(this).css({"marginTop": "0px"}).find("li:first").appendTo(this)
+    });}
+  req();
+  setInterval(function () {
+    rollOne();
+  }, 2500);
+</script>
+</html>

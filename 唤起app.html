@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+</body>
+  <script type="text/javascript">
+
+    /**
+     * 客户端检测
+     * 注意：
+       由于安卓手机,页面进入后台，定时器setTimeout仍会不断运行，所以这里使用setInterval,较小间隔时间重复多次。来根据累计时间判断。
+       cb为回调函数，根据返回0 or 1来判断是否安装。
+       document.hidden对大于4.4webview支持很好，为页面可见性api。
+     */
+     var  BrowserInfo = function() {
+       var userAgent = navigator.userAgent.toLowerCase();
+      var json = {
+        userAgent:userAgent,
+        isAndroid: Boolean(userAgent.match(/android/ig)),
+        isIphone: Boolean(userAgent.match(/iphone|ipod/ig)),
+        isIpad: Boolean(userAgent.match(/ipad/ig)),
+        isWeixin: Boolean(userAgent.match(/MicroMessenger/ig)),
+      }
+      return json;
+    }
+
+     var openApp = function(openUrl, callback) {
+      //检查app是否打开
+      function checkOpen(cb){
+        var _clickTime = +(new Date());
+        function check(elsTime) {
+          if ( elsTime > 3000 || document.hidden || document.webkitHidden) {
+            // 失败
+            cb(1);
+          } else {
+            // 成功
+            cb(0);
+          }
+        }
+        //启动间隔20ms运行的定时器，并检测累计消耗时间是否超过3000ms，超过则结束
+        var _count = 0, intHandle;
+        intHandle = setInterval(function(){
+          _count++;
+          var elsTime = +(new Date()) - _clickTime;
+          if (_count>=100 || elsTime > 3000 ) {
+            clearInterval(intHandle);
+            check(elsTime);
+          }
+        }, 20);
+      }
+
+      //在iframe 中打开APP
+      var ifr = document.createElement('iframe');
+      ifr.src = openUrl;
+      ifr.style.display = 'none';
+
+      if (callback) {
+        //客户端检测微信直接跳应用宝链接
+        var browser = BrowserInfo();
+        //使用微链接
+        var encodeUri = encodeURIComponent(openUrl);
+
+        if (browser.isWeixin) {
+          window.location.href = '你的微链url&android_schema='+encodeUri;
+        }else{
+          checkOpen(function(opened){
+//            cb(1);或者cb(0)
+            callback && callback(opened);
+          });
+        }
+      }
+
+      document.body.appendChild(ifr);
+      setTimeout(function() {
+        document.body.removeChild(ifr);
+      }, 2000);
+
+    }
+
+//    openApp()
+  </script>
+</html>

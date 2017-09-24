@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body >
+
+<!--父组件模板-->
+<div id="parent-template">
+  <child>
+    <!--此处是待分发的内容-->
+    <p slot="one">one</p>
+    <p slot="two">two</p>
+    <p>default</p>
+  </child>
+</div>
+
+
+
+<!--父组件模板中的内容被分发到子组件中重新组合，请看子组件的模板：-->
+<!--子组件的模板-->
+<!--<div>-->
+  <!--<h1>内容被分发且重新组合</h1>-->
+  <!--<slot>默认分发处</slot>-->
+  <!--<slot name="two"></slot>-->
+  <!--<slot name="one"></slot>-->
+<!--</div>-->
+
+
+</body>
+<script type="text/javascript" src="../js/vue.min.js"></script>
+<script type="text/javascript">
+//    初始化父组件实例之前要注册子组件：
+    // 注册子组件
+    Vue.component("child", {
+        template: '<div>'+
+        '<h1>内容被分发且重新组合</h1>'+
+        '<slot>默认分发处1</slot>'+
+        '<slot name="two"></slot>'+
+        '<slot name="one"></slot>'+
+        '<slot>默认分发处2</slot>'+
+        '</div>'
+    });
+
+    // 初始化父组件
+    new Vue({
+        el: "#parent-template"
+    });
+
+
+
+</script>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .arrow{
+      width: 0;
+      height: 0;
+      border:solid 20px;
+      /* 原理，高宽为0时,就是border渲染是平分图形,按照三角渲染的,想要那个角就让其他角透明*/
+      border-color: rgba(0,0,0,0) rgba(0,0,0,0) #444 ;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-top: -4px;
+      margin-left: -4px;
+    }
+    .div{
+      width: 40px;
+      height: 40px;
+      background-color: #444;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-top: -40px;
+      margin-left: -4px;
+    }
+    .triangle_border_up{
+      width:0;
+      height:0;
+      border-width:0 30px 30px;
+      border-style:solid;
+      border-color:transparent transparent #333;/*透明 透明  灰*/
+      margin:40px auto;
+      position:relative;
+    }
+    .triangle_border_up span{
+      display:block;
+      width:0;
+      height:0;
+      border-width:0 28px 28px;
+      border-style:solid;
+      border-color:transparent transparent #fc0;/*透明 透明  黄*/
+      position:absolute;
+      top:1px;
+      left:-28px;
+    }
+
+    .triangle_border_nw{
+      width:0;
+      height:0;
+      border-width:30px 30px 0  0;
+      border-style:solid;
+      border-color:#6c6 transparent transparent transparent;
+      margin:40px auto;
+      position:relative;
+    }
+    /*.triangle_border_nw{*/
+      /*width:0;*/
+      /*height:0;*/
+      /*border-width:0 0 30px 30px;*/
+      /*border-style:solid;*/
+      /*border-color:transparent transparent transparent #6c6;*/
+      /*margin:40px auto;*/
+      /*position:relative;*/
+    /*}*/
+
+
+  </style>
+</head>
+<body>
+<i class="arrow">111111</i>
+<div class="div"></div>
+<button onclick="copyText('1')">Copy Text</button>
+<div class="triangle_border_up">
+  <span></span>
+</div>
+
+
+<div class="triangle_border_nw"></div>
+
+</body>
+<script type="text/javascript">
+    function copyText(num) {
+        console.log(num);
+    }
+</script>
+</html>

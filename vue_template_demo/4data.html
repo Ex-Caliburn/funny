@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body >
+
+<div id="example">
+  <my-component></my-component>
+</div>
+
+</body>
+<script type="text/javascript" src="../js/vue.min.js"></script>
+<script type="text/javascript">
+//    通过Vue构造器传入的各种选项大多数都可以在组件里用。 data 是一个例外，它必须是函数。 实际上，如果你这么做：
+
+//    Vue.component('my-component', {
+//        template: '<span>{{ message }}</span>',
+//        data: {
+//            message: 'hello'
+//        }
+//    })
+    Vue.component('my-component', {
+        template: '<span>{{ message }}</span>',
+        data: function () {
+            return {
+                message:"good"
+            }
+        }
+    })
+    var app = new Vue({
+        el: '#example'
+    })
+</script>
+</html>

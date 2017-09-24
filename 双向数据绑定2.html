@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<input type="text">
+<div class="content" id="content"></div>
+</body>
+  <script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+  var obj = {
+    _age:'11',
+    get age(){
+      return this._age;
+    },
+    set age(val) {
+      this._age = val;
+        document.getElementById('content').innerHTML = val;
+    }
+  }
+  console.log(obj.age);
+    $('input[type=text]').keyup(function () {
+      obj.age = $(this).val()
+    })
+
+</script>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Title</title>
+  <style>
+
+    div{
+      width: 200px;
+      height: 100px;
+      margin: 50px ;
+    }
+    .test1{
+      /* offset-x | offset-y | color */
+      box-shadow: 60px -16px teal;
+    }
+
+    /* 圆心四周渐变*/
+    .test2{
+
+      /* offset-x | offset-y | blur-radius | color */
+      box-shadow: 10px 5px 5px black;
+    }
+
+    .test3{
+      /* offset-x | offset-y | blur-radius | spread-radius | color */
+      box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    }
+
+    .test5{
+      /* inset | offset-x | offset-y | color */
+      box-shadow: inset 5em 1em gold;
+    }
+    .test6{
+      /* Any number of shadows, separated by commas */
+      box-shadow: 3px 3px red, -1em 0 0.4em olive;
+    }
+
+    .test7{
+      /*可以设置两个色值*/
+      box-shadow: inset 0 0 1em gold, 0 0 1em red;
+    }
+
+    .test8{
+      box-shadow:  3px 3px red, -1em 0 0.4em olive;
+    }
+    .test9{
+      box-shadow: 3px 3px red, -1em 0 0.4em olive;
+    }
+
+    .test10{
+      border-radius: 10px;
+      border: 20px solid red;
+      /* border-image: image-source image-height image-width image-repeat */
+      border-image: -webkit-linear-gradient(45deg, red , blue) 30 30;
+      border-image: -moz-linear-gradient(45deg, red, blue) 30 30;
+      border-image: -o-linear-gradient(45deg, red, blue) 30 30;
+      border-image: linear-gradient(45deg, red , blue) 30 30 ;
+    }
+
+    .test11{
+      border-radius: 10px;
+      border: 20px solid red;
+      border-image: -webkit-linear-gradient(-45deg, #fff , #000) 30 30;
+      border-image: -moz-linear-gradient(-45deg, #fff, #000) 30 30;
+      border-image: -o-linear-gradient(-45deg, #fff, #000) 30 30;
+      border-image: linear-gradient(-135deg, #fff , #000) 30 30 ;
+    }
+
+    .test12{
+      border-radius: 10px;
+      border: 20px solid red;
+      border-image: url('BJK2_04.png') 30  ;
+    }
+
+    #bitmap {
+      font-size: .12rem;
+      border: 30px solid transparent;
+      padding: 20px;
+      border-image: url("https://mdn.mozillademos.org/files/4127/border.png") 30;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="test1"></div>
+  <div class="test2"></div>
+  <div class="test3"></div>
+  <div class="test4"></div>
+  <div class="test5"></div>
+  <div class="test6"></div>
+  <div class="test7"></div>
+  <div class="test8"></div>
+  <div class="test9"></div>
+  <div class="test10"></div>
+  <div class="test11"></div>
+  
+  <div class="test12"></div>
+
+  <div id="bitmap">The image is stretched to fill the area.</div>
+
+
+</body>
+<script type="text/javascript">
+    (function () {
+        function o() {
+            document.documentElement.style.fontSize = (document.documentElement.clientWidth > 640 ? 640 : document.documentElement.clientWidth) / 3.2 + "px"
+        }
+
+        var e = null;
+        window.addEventListener("resize", function () {
+            clearTimeout(e), e = setTimeout(o, 300)
+        }, !1), o()
+    })(window);
+</script>
+</html>

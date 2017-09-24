@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    /*.pure-u-4-14 {*/
+      /*display: inline-block;*/
+      /**display: inline;*/
+      /*zoom: 1;*/
+      /*letter-spacing: normal;*/
+      /*word-spacing: normal;*/
+      /*vertical-align: top;*/
+      /*text-rendering: auto;*/
+      /*width: 28.5714%;*/
+      /**width: 28.5714%;*/
+      /*height: 100%;*/
+      /*float: left;*/
+    /*}*/
+
+    /*.pure-u-7-14 {*/
+      /*display: inline-block;*/
+      /**display: inline;*/
+      /*zoom: 1;*/
+      /*letter-spacing: normal;*/
+      /*word-spacing: normal;*/
+      /*vertical-align: top;*/
+      /*text-rendering: auto;*/
+      /*width: 50%;*/
+      /**width: 50%;*/
+      /*height: 100%;*/
+      /*float: left;*/
+    /*}*/
+
+    /*.pure-u-3-14 {*/
+      /*display: inline-block;*/
+      /**display: inline;*/
+      /*zoom: 1;*/
+      /*letter-spacing: normal;*/
+      /*word-spacing: normal;*/
+      /*vertical-align: top;*/
+      /*text-rendering: auto;*/
+      /*width: 21.4285%;*/
+      /**width: 21.4285%;*/
+      /*height: 100%;*/
+      /*float: left;*/
+    /*}*/
+
+    .parent-flex {
+      display: flex;
+      display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+      display: -moz-box; /* 老版本语法: Firefox (buggy) */
+      display: -ms-flexbox; /* 混合版本语法: IE 10 */
+      display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+    }
+
+    .children-flex {
+      display: flex;
+      display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+      display: -moz-box; /* 老版本语法: Firefox (buggy) */
+      display: -ms-flexbox; /* 混合版本语法: IE 10 */
+      display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+      -webkit-align-items: stretch;
+      -ms-flex-align: stretch;
+      align-items: stretch;
+      -webkit-justify-content: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      border: 1px solid black;
+    }
+
+    .fixed {
+      display: flex;
+      display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+      display: -moz-box; /* 老版本语法: Firefox (buggy) */
+      display: -ms-flexbox; /* 混合版本语法: IE 10 */
+      display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+      -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+      flex-direction: row;
+      -webkit-flex: 1;
+      -ms-flex: 1;
+      flex: 1
+    }
+
+    .flex-1 {
+      /*border: 1px solid black;*/
+      -webkit-flex: 1;
+      -ms-flex: 1;
+      flex: 1
+    }
+
+    .pure-u-4-14 {
+      flex-basis: 28.5714%;
+    }
+
+    .pure-u-7-14 {
+      flex-basis: 50%;
+    }
+
+    .pure-u-3-14 {
+      flex-basis: 21.4285%;
+    }
+
+    .table{
+      display: table;
+    }
+    .table-row{
+      display: table-row;
+      border: 1px solid black;
+      background-color: yellow;
+      height:100%;
+    }
+    .table-cell{
+      display: table-cell;
+      vertical-align: middle;
+      border: 1px solid black;
+    }
+
+  </style>
+</head>
+<body>
+<div class="table">
+  <div class="pure-g cui-text-center cui-font-13 table-row">
+    <div
+        class="table-cell pure-u-3-24 padding-10 cui-box-sizing cui-bet-match-option-border-right cui-bet-match-option-border-bottom chuanguan_blue">
+      <span>周四</span><span>001</span></div>
+    <div
+        class="table-cell pure-u-7-24 padding-10 cui-box-sizing cui-bet-match-option-border-right cui-bet-match-option-border-bottom">
+      <p>叙利亚</p>
+      <p><span style="display: none;">vs</span><span>(0:0)</span><span class="cui-color-red">1:0</span></p>
+      <p>乌兹别克斯坦</p></div>
+    <div
+        class="table-cell pure-u-7-24 padding-10 cui-box-sizing cui-bet-match-option-border-right cui-bet-match-option-border-bottom"
+        style="display: none;"><p>叙利亚</p>
+      <p><span style="display: none;">vs</span><span>(0:0)#1:0</span></p>
+      <p>乌兹别克斯坦</p></div>
+    <div class="pure-u-14-24 table-cell ">
+      <div class="pure-g cui-bet-match-option-border-bottom  table-row ">
+        <div class=" table-cell  pure-u-4-14 padding-10 cui-box-sizing cui-bet-match-option-border-right"><p>
+          总进球</p>
+          <p style="display: none;">(<span></span>)</p></div>
+        <div class=" table-cell pure-u-7-14 padding-10 cui-box-sizing cui-bet-match-option-border-right">
+          <p><span>胜平(13.0)</span></p>
+          <!--<p><span>胜负(32.0)</span></p>-->
+          <!--<p><span>平胜(4.4)</span></p>-->
+          <!--<p><span>平平(4.6)</span></p>-->
+          <p><span
+              class="cui-color-red">1球(3.25)</span></p>
+        </div>
+        <div class=" table-cell pure-u-3-14 padding-10 cui-box-sizing"><span>1球</span></div>
+      </div>
+      <!--<div class="pure-g cui-bet-match-option-border-bottom fixed" >
+    <!--<div class="children-flex flex-1 pure-u-4-14 padding-10 cui-box-sizing cui-bet-match-option-border-right"><p>半全场</p>-->
+      <!--<p style="display: none;">(<span></span>)</p></div>-->
+      <!--<div class="children-flex pure-u-7-14 padding-10 cui-box-sizing cui-bet-match-option-border-right"><p><span>胜平(14.0)</span>-->
+      <!--</p></div>-->
+      <!--<div class="children-flex pure-u-3-14 padding-10 cui-box-sizing"><span>平胜</span></div>-->
+      <!--</div>-->
+      <!--<div class="pure-g cui-bet-match-option-border-bottom fixed" >-->
+      <!--<div class="children-flex flex-1 pure-u-4-14 padding-10 cui-box-sizing cui-bet-match-option-border-right"><p>胜平负</p>-->
+      <!--<p style="display: none;">(<span></span>)</p></div>-->
+      <!--<div class="children-flex pure-u-7-14 padding-10 cui-box-sizing cui-bet-match-option-border-right"><p><span>主负(1.72)</span>-->
+      <!--</p></div>-->
+      <!--<div class="children-flex pure-u-3-14 padding-10 cui-box-sizing"><span>主胜</span></div>-->
+      <!--</div>-->
+      <!--<div class="pure-g cui-bet-match-option-border-bottom fixed" >-->
+      <!--<div class="children-flex flex-1 pure-u-4-14 padding-10 cui-box-sizing cui-bet-match-option-border-right"><p>让球胜平负</p>-->
+      <!--<p>(<span class="cui-color-orange">+1</span>)</p></div>-->
+      <!--<div class="children-flex pure-u-7-14 padding-10 cui-box-sizing cui-bet-match-option-border-right"><p><span-->
+      <!--class="cui-color-red">让胜(1.83)</span></p></div>-->
+      <!--<div class="children-flex pure-u-3-14 padding-10 cui-box-sizing"><span>让胜</span></div>-->
+      <!--</div>-->
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

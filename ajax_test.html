@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript" src="./js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+    function postSimpleData() {
+        $.ajax({
+            type: "POST",
+            url: "https://oapi.dingtalk.com/chat/create?access_token=2fe10508bdc533a1b0aa75df5bdcaa2a",
+            contentType: "application/json", //必须有
+            dataType: "json", //表示返回值类型，不必须
+            data: JSON.stringify({ 'foo': 'foovalue', 'bar': 'barvalue' }),  //相当于 //data: "{'str1':'foovalue', 'str2':'barvalue'}",
+            success: function (jsonResult) {
+                alert(jsonResult);
+            }
+        });
+    }
+</script>
+</html>

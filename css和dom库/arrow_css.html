@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .arrow{
+      width: 0;
+      height: 0;
+      border:solid 20px;
+      /* 原理，高宽为0时,就是border渲染是平分图形,按照三角渲染的,想要那个角就让其他角透明*/
+      border-color: rgba(0,0,0,0) rgba(0,0,0,0) #444 ;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-top: -4px;
+      margin-left: -4px;
+    }
+    .arrow2{
+      width: 0;
+      height: 0;
+      border:solid 20px;
+      /* 原理，高宽为0时,就是border渲染是平分图形,按照三角渲染的,想要那个角就让其他角透明*/
+      border-color: #1565C0 #bfa #444 #999;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-top: -100px;
+      margin-left: -4px;
+    }
+    .div{
+      width: 40px;
+      height: 40px;
+      background-color: #444;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-top: -40px;
+      margin-left: -4px;
+    }
+    /*带边框的三角，两个三角的嵌套*/
+    .triangle_border_up{
+      width:0;
+      height:0;
+      border-width:0 30px 30px;
+      border-style:solid;
+      border-color:transparent transparent #333;/*透明 透明  灰*/
+      margin:40px auto;
+      position:relative;
+    }
+    .triangle_border_up span{
+      display:block;
+      width:0;
+      height:0;
+      border-width:0 28px 28px;
+      border-style:solid;
+      border-color:transparent transparent #fc0;/*透明 透明  黄*/
+      position:absolute;
+      top:1px;
+      left:-28px;
+    }
+
+    /*左上角*/
+    /*1*/
+    .triangle_border_nw{
+      width:0;
+      height:0;
+      border-width:30px 30px 0  0;
+      border-style:solid;
+      border-color:#6c6 transparent transparent transparent;
+      margin:40px auto;
+      position:relative;
+    }
+    /*2*/
+    /*.triangle_border_nw{*/
+      /*width:0;*/
+      /*height:0;*/
+      /*border-width:0 0 30px 30px;*/
+      /*border-style:solid;*/
+      /*border-color:transparent transparent transparent #6c6;*/
+      /*margin:40px auto;*/
+      /*position:relative;*/
+    /*}*/
+
+
+
+
+    .test_triangle_border{
+      width:200px;
+      margin:0 auto 20px;
+      position:relative;
+    }
+    .test_triangle_border a{
+      color:#333;
+      font-weight:bold;
+      text-decoration:none;
+    }
+    .test_triangle_border .popup{
+      width:100px;
+      background:#fc0;
+      padding:10px 20px;
+      color:#333;
+      border-radius:4px;
+      position:absolute;
+      top:30px;
+      left:30px;
+      border:1px solid #333;
+    }
+    .test_triangle_border .popup span{
+      display:block;
+      width:0;
+      height:0;
+      border-width:0 10px 10px;
+      border-style:solid;
+      border-color:transparent transparent #333;
+      position:absolute;
+      top:-10px;
+      left:50%;/* 三角形居中显示 */
+      margin-left:-10px;/* 三角形居中显示 */
+    }
+    .test_triangle_border .popup em{
+      display:block;
+      width:0;
+      height:0;
+      border-width:0 10px 10px;
+      border-style:solid;
+      border-color:transparent transparent #fc0;
+      position:absolute;
+      top:1px;
+      left:-10px;
+    }
+  </style>
+</head>
+<body>
+<i class="arrow"></i>
+<i class="arrow2"></i>
+<div class="div">做比较用</div>
+<div class="triangle_border_up">
+  <span></span>
+</div>
+
+<div class="triangle_border_nw"></div>
+
+<!--带气泡的边框,纯CSS写带边框的三角形-->
+<div class="test_triangle_border">
+  <a href="#">三角形</a>
+  <div class="popup">
+    <span><em></em></span>
+  </div>
+</div>
+
+</body>
+</html>

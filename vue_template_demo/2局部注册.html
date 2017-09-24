@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body id="app">
+
+<div id="example">
+  <my-component></my-component>
+</div>
+
+</body>
+<script type="text/javascript" src="../js/vue.min.js"></script>
+<script type="text/javascript">
+
+//    不必在全局注册每个组件。通过使用组件实例选项注册，可以使组件仅在另一个实例/组件的作用域中可用：
+    var Child = {
+        template: '<div>A custom component!</div>'
+    }
+    var app = new Vue({
+        el: '#example',
+        components: {
+            // <my-component> 将只在父模板可用
+            'my-component': Child
+        }
+    })
+//    这种封装也适用于其它可注册的 Vue 功能，如指令。
+</script>
+</html>
