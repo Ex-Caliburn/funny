@@ -158,9 +158,11 @@ Cookies.prototype = {
         }
     },
     delete: function  (name,domain){
-        if(!domain){
+        if(domain == "auto"){
             //取得当前二级域名
             domain = this.secondDomain;
+        }else{
+            domain = '';
         }
         var expires = new Date();
         expires.setTime(expires.getTime() - 1);
