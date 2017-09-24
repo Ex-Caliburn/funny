@@ -111,15 +111,16 @@ function deepCopy(p, c) {
     return c;
 }
 
-// 应用场景，就是面对不同二级域名下，信息的传递，如果是相同域名下，localstroge，session是你更好的选择
 
-// 存贮的 www.caiqr.com  cookie 域名一致能访问cookie
-// 如果存储的用的二级域名，拥有相同二级域名都能访问，即 fx.caiqr.com 能访问 www.caiqr.com
-// 二级域名操作 将改变cookie的当前状态，影响所有
-// 不同path下可以存储 相同的key-value，取值的时候从当前路径取，往上取到/根目录
-// 读取只能读取的到key-value，日期，域名，path读不到，
-// 删除原理只是让时间过期，所以需要路径一致，不同路径不会删除 ，谷歌cookie过期8个小时自动删除，
-
+/**
+ *    应用场景，就是面对不同二级域名下，信息的传递，如果是相同域名下，localstroge，session是你更好的选择
+ 存贮的 www.caiqr.com  cookie 域名一致能访问cookie
+ 如果存储的用的二级域名，拥有相同二级域名都能访问，即 fx.caiqr.com 能访问 www.caiqr.com
+ 二级域名操作 将改变cookie的当前状态，影响所有
+ 不同path下可以存储 相同的key-value，取值的时候从当前路径取，往上取到/根目录
+ 读取只能读取的到key-value，日期，域名，path读不到，
+ 删除原理只是让时间过期，所以需要路径一致，不同路径不会删除 ，谷歌cookie过期8个小时自动删除，
+ */
 var Cookies = function(){};
 Cookies.prototype = {
     secondDomain:location.hostname.split('.').slice(1).join('.'),
