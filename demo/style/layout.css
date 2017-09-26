@@ -1,0 +1,3125 @@
+body {
+    background: #eaeaea;
+}
+
+[v-cloak] {
+    display: none;
+}
+
+p, li, ul, div, input, button, h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style: none;
+}
+input[type="button"], input[type="submit"], input[type="reset"] {
+    -webkit-appearance: none;
+    border:none;
+}
+a {
+    -webkit-tap-highlight-color:rgba(0, 0, 0, 0);
+    -moz-tap-highlight-color:rgba(0, 0, 0, 0);
+    -ms-tap-highlight-color:rgba(0, 0, 0, 0);
+    -o-tap-highlight-color:rgba(0, 0, 0, 0);
+    tap-highlight-color:rgba(0, 0, 0, 0);
+    outline: none;
+    border:none;
+    background: transparent;
+}
+
+.toast-container {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 100%;
+    top: 100%;
+    z-index: 2999;
+}
+
+.toast {
+    position: absolute;
+    top: -56%;
+    left: -50%;
+    transform: translate(-50%, -50%);
+    padding: 13px 16px;
+    font-size: 14px;
+    border-radius: 2px;
+    width: auto;
+    /*颜色*/
+    color: #ccc;
+    background: rgba(37, 38, 45, 0.9);
+    /*可以输入的字数的宽度*/
+    max-width: 16em;
+}
+
+.special-page-bg {
+    background: #f7f7ee;
+}
+
+.caiqr-introduce {
+    color: #000;
+    font-size: 13px;
+}
+
+
+/*button*/
+
+.cui-button {
+    border: none;
+    outline: none;
+    border-radius: 2px;
+    padding: 6px 15px;
+    line-height: 25px;
+    color: #fff;
+    background: #afafaf;
+}
+
+.cui-button-small {
+    width: 30%;
+}
+
+.cui-button-middle {
+    width: 50%;
+}
+
+.cui-button-large {
+    width: 80%;
+}
+
+.cui-text-left {
+    text-align: left;
+}
+
+.cui-text-center {
+    text-align: center;
+}
+
+.cui-text-right {
+    text-align: right;
+}
+
+.cui-relative {
+    position: relative;
+}
+
+#Betting, #basketballBetting {
+    padding: 46px 0 60px 0;
+}
+
+.cui-nav {
+    background: #df3e36;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+}
+
+
+/*color*/
+
+.cui-color-smallyellow {
+    color: #ffe13b;
+}
+
+.cui-color-666 {
+    color: #666;
+}
+
+.cui-color-recommend {
+    color: #5cc3ff;
+}
+
+.cui-color-blue {
+    color: #007aff;
+}
+
+.cui-color-red-bg {
+    background: #df3832;
+    color: #fff;
+}
+
+.cui-color-grey {
+    color: #999;
+}
+
+.button-enabled {
+    background: #df3832;
+    color: #fff;
+}
+
+
+/*bgcolor*/
+
+.bg-color-red {
+    background: #df3e36;
+}
+
+
+/*icon*/
+
+.cui-more-match-icon {
+    display: block;
+    width: 13px;
+    height: 10px;
+    position: absolute;
+    right: -15px;
+    top: 50%;
+    margin-top: -6px;
+    background: url(../images/BettingBg.png) no-repeat -39px -12px;
+    background-size: 233px;
+}
+
+.cui-single-match-icon {
+    width: 24px;
+    height: 12px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background: url(../images/BettingBg.png) no-repeat -65px -12px;
+    background-size: 233px;
+}
+
+.cui-down-arrow-icon {
+    width: 12px;
+    height: 6px;
+    position: absolute;
+    top: 55px;
+    left: 50%;
+    margin-left: -6px;
+    background: url(../images/BettingBg.png) no-repeat -150px -14px;
+    background-size: 233px;
+}
+
+.cui-blue-more-icon {
+    display: inline-block;
+    width: 5px;
+    height: 8px;
+    background: url(../images/icons.png) no-repeat -200px -6px;
+    background-size: 376px;
+}
+
+.cui-point-more-icon {
+    display: block;
+    width: 22px;
+    height: 22px;
+    position: absolute;
+    top: 50%;
+    margin-top: -3px;
+    right: 0px;
+    background: url(../images/BettingBg.png) no-repeat -5px -48px;
+    background-size: 233px;
+}
+
+.cui-with-no-record-icon {
+    display: block;
+    width: 110px;
+    height: 100px;
+    position: absolute;
+    top: 40%;
+    margin-top: -50px;
+    left: 50%;
+    margin-left: -55px;
+    background: url(../images/BettingBg.png) no-repeat -7px -199px;
+    background-size: 233px;
+}
+
+.cui-app-bar-history-back {
+    border: none;
+    outline: none;
+    width: 17px;
+    height: 18px;
+    position: absolute;
+    top: 50%;
+    margin-top: -9px;
+    left: 11px;
+    background: url(../images/BettingBg.png) no-repeat 0px -8px;
+    background-size: 233px;
+}
+
+.cui-nav p {
+    line-height: 46px;
+    color: #fff;
+}
+
+.cui-bet-title-stuck {
+    margin-top: 46px;
+}
+
+.cui-bet-title {
+    height: 24px;
+    background: #fff;
+    width: 100%;
+    z-index: 998;
+}
+
+.cui-bet-title p {
+    color: #5cc3ff;
+    font-size: 12px;
+    line-height: 24px;
+}
+
+.cui-bet-title p span {
+    margin: 0 3px;
+}
+
+.cui-bet-item-container {
+    padding: 10px 10px;
+}
+
+.cui-bet-match-season p:nth-of-type(1), .cui-bet-nba-match-season p:nth-of-type(1) {
+    font-size: 12px;
+}
+
+.cui-bet-match-season {
+    padding-top: 10px;
+    height: 74px;
+}
+
+.cui-bet-nba-match-season {
+    padding-top: 26px;
+}
+
+.cui-bet-match-option {
+    background: #fff;
+    height: 76px;
+    border: 1px solid #dfdfdf;
+    /*box-sizing: border-box;*/
+    font-size: 14px;
+}
+
+.cui-bet-nba-match-option {
+    background: #fff;
+    /*border: 1px solid #dfdfdf;*/
+    font-size: 14px;
+}
+
+.cui-day-title-bottom-border {
+    border-bottom: 1px solid #efefef;
+}
+
+.spf-choose-container {
+    color: #333;
+}
+
+.cui-bet-match-option .spf-icon p {
+    line-height: 38px;
+    height: 38px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.cui-bet-nba-match-option .nba-icon p {
+    line-height: 38px;
+    height: 38px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.spf-choose-container .spf-choose>div {
+    height: 38px;
+    box-sizing: border-box;
+    line-height: 38px;
+    text-align: center;
+}
+
+.nba-choose-container .nba-choose>div {
+    height: 38px;
+    box-sizing: border-box;
+    line-height: 38px;
+    text-align: center;
+}
+
+.cui-bet-match-time {
+    margin-left: -10px;
+}
+
+.cui-bet-match-info-container {
+    padding: 3px 0;
+}
+
+.cui-bet-match-info-container .match-name {
+    position: relative;
+    font-size: 14px;
+    color: #333;
+}
+
+.cui-bet-match-info-container .match-name-red{
+    color: #f00;
+}
+
+.cui-bet-match-info-container .match-place {
+    color: #999;
+    font-size: 11px;
+}
+
+.cui-bet-match-info-container .match-vs {
+    line-height: 14px;
+    color: #333;
+}
+
+.cui-bet-item-detail {
+    /*height: 72px;*/
+    background: #e0e1d6;
+    padding: 4px 15px 0 9px;
+    font-size: 13px;
+    line-height: 20px;
+    padding-bottom: 4px;
+}
+
+.cui-bet-item-detail p {
+    -webkit-margin: 0;
+    padding: 0;
+}
+
+.cui-bet-item-detail a {
+    /*line-height: 32px;*/
+    text-decoration: none;
+    color: #5cc3ff;
+    vertical-align: middle;
+    font-size: 12px;
+}
+
+.cui-lottery-button-fixed {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 11px 0;
+    background: #fff;
+    border-top: 1px solid #dfdfdf;
+}
+
+.cui-lottery-button-fixed input {
+    width: 100%;
+    font-size: 14px;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+    -webkit-tap-highlight-color: rgba(255, 0, 0, 0);
+    /*兼容移动端点击带有蓝色外框和背景*/
+}
+
+ul, li, p, body {
+    margin: 0;
+    padding: 0;
+}
+
+.hidden {
+    display: none;
+}
+
+
+/* cui-button */
+
+.cui-middle-button {
+    width: 50%;
+}
+
+.cui-large-button {
+    width: 80%;
+}
+
+
+/*Occupying box  */
+
+.cui-div-5 {
+    width: 100%;
+    height: 5px;
+    background: #f7f8ee;
+}
+
+.cui-div-5-bottom {
+    height: 5px;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.cui-div-empty-5 {
+    height: 5px;
+}
+
+.cui-item-text-indent-32 {
+    text-indent: 32px;
+}
+
+.cui-item-text-indent-40 {
+    text-indent: 40px;
+}
+
+.cui-item-text-indent-44 {
+    text-indent: 44px;
+}
+
+
+/*background-color*/
+
+.bg-color-theme-light-grey {
+    background: #f7f8ee;
+}
+
+.bg-color-theme-f2-grey {
+    background: #f2f2f2;
+}
+
+.bg-color-theme-red {
+    background: #e03731;
+}
+
+.bg-color-000 {
+    background: #000;
+}
+
+.bg-color-fff {
+    background: #fff;
+}
+
+.bg-color-grey-f5 {
+    background: #f5f5f5;
+}
+
+.bg-color-blue {
+    background: #3399ff;
+}
+
+
+/* color */
+
+.cui-color-fff {
+    color: #fff;
+}
+
+.cui-color-999 {
+    color: #999;
+}
+
+.cui-color-333 {
+    color: #333;
+}
+
+.cui-color-bbb {
+    color: #bbb;
+}
+
+.cui-color-red {
+    color: #e03731;
+}
+
+.cui-color-orange {
+    color: #ff7200;
+}
+
+.cui-color-green {
+    color: #33bb66;
+}
+
+.cui-color-blue {
+    color: #3399ff;
+}
+
+.cui-color-yellow {
+    color: #ffa42b;
+}
+
+
+/* font */
+
+.cui-font-48 {
+    font-size: 48px;
+}
+
+.cui-font-40 {
+    font-size: 40px;
+}
+
+.cui-font-36 {
+    font-size: 36px;
+}
+
+.cui-font-20 {
+    font-size: 20px;
+}
+.cui-font-17 {
+    font-size: 17px;
+}
+.cui-font-18 {
+    font-size: 18px;
+}
+
+.cui-font-16 {
+    font-size: 16px;
+}
+
+.cui-font-15 {
+    font-size: 15px;
+}
+
+.cui-font-14 {
+    font-size: 14px;
+}
+
+.cui-font-13 {
+    font-size: 13px;
+}
+
+.cui-font-12 {
+    font-size: 12px;
+}
+
+.cui-font-10 {
+    font-size: 10px;
+}
+
+
+/*container*/
+
+.cui-container {
+    padding: 10px 11px;
+}
+
+.cui-container-left-right {
+    padding: 0 11px;
+}
+
+.cui-container-left-right-10 {
+    padding: 0 10px 4px 10px;
+}
+
+
+/*position*/
+
+.cui-vertical-middle {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/*.cui-relative {
+    position: relative;
+}*/
+
+
+/* border color */
+
+.border-ddd {
+    border: 1px solid #ddd;
+}
+
+
+/* cui-icon */
+
+.cui-edit-icon {
+    width: 7px;
+    height: 13px;
+    background: url("../images/BettingBg.png") no-repeat;
+    background-position: -138px -84px;
+    background-size: 233px;
+    position: absolute;
+    top: 50%;
+    margin-top: -6.5px;
+    right: 0;
+}
+
+.cui-payment-icon {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    margin-top: -14px;
+    width: 28px;
+    height: 28px;
+}
+
+.cui-add-payment-icon {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    margin-top: -18px;
+    width: 36px;
+    height: 36px;
+}
+
+.cui-check-grey-icon {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    top: 50%;
+    right: 0;
+    margin-top: -11px;
+    background: url("../images/hui.png") no-repeat center;
+    background-size: 22px;
+}
+
+.cui-check-active-icon {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    top: 50%;
+    right: 0;
+    margin-top: -11px;
+    background: url("../images/active-red.png") no-repeat center;
+    background-size: 22px;
+}
+
+.cui-check-right-icon {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    left: 50%;
+    margin-left: -78px;
+    top: 8px;
+    background: url("../images/BettingBg.png") no-repeat;
+    background-position: -115px -51px;
+    background-size: 233px;
+}
+
+.cui-add-icon {
+    position: absolute;
+    display: inline-block;
+    height: 16px;
+    width: 15px;
+    top: 50%;
+    left: 37%;
+    margin-top: -9px;
+    background: url("../images/BettingBg.png") no-repeat;
+    background-position: -144px -54px;
+    background-size: 233px;
+    vertical-align: middle;
+}
+
+.cui-concat-service-icon {
+    display: inline-block;
+    height: 26px;
+    width: 26px;
+    background: url("../images/BettingBg.png") no-repeat;
+    background-position: -171px -51px;
+    background-size: 233px;
+    vertical-align: middle;
+    margin-top: -6px;
+}
+
+.cui-question-icon {
+    position: absolute;
+    top: 6px;
+    right: -2px;
+    height: 24px;
+    width: 22px;
+    background: url("../images/BettingBg.png") no-repeat;
+    background-position: -36px -53px;
+    background-size: 233px;
+    vertical-align: middle;
+}
+
+.cui-question-active-icon {
+    position: absolute;
+    right: 10px;
+    height: 24px;
+    width: 22px;
+    background: url("../images/BettingBg.png") no-repeat;
+    background-position: -159px -78px;
+    background-size: 233px;
+    top: 50%;
+    margin-top: -12px;
+}
+
+.cui-white-question-icon {
+    position: absolute;
+    right: 10px;
+    height: 21px;
+    width: 22px;
+    background: url("../images/BettingBg.png") no-repeat;
+    background-position: -186px -78px;
+    background-size: 233px;
+    top: 50%;
+    margin-top: -10px;
+}
+
+.cui-more-match-icon {
+    display: block;
+    width: 13px;
+    height: 10px;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    margin-top: -5px;
+    background: url(../images/BettingBg.png) no-repeat -39px -12px;
+    background-size: 233px;
+}
+
+.cui-single-match-icon {
+    width: 24px;
+    height: 12px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background: url(../images/BettingBg.png) no-repeat -65px -12px;
+    background-size: 233px;
+}
+
+.cui-arrow-up-icon {
+    width: 12px;
+    height: 6px;
+    position: absolute;
+    top: 55px;
+    left: 50%;
+    margin-left: -6px;
+    background: url(../images/BettingBg.png) no-repeat -149px -14px;
+    background-size: 233px;
+}
+
+.cui-up-arrow-icon {
+    background: url(../images/BettingBg.png) no-repeat -111px -14px;
+    background-size: 233px;
+}
+
+.cui-nba-arrow-up-icon {
+    width: 12px;
+    height: 6px;
+    position: absolute;
+    top: 75px;
+    left: 50%;
+    margin-left: -6px;
+    background: url(../images/BettingBg.png) no-repeat -149px -14px;
+    background-size: 233px;
+}
+
+.cui-up-nba-arrow-icon {
+    background: url(../images/BettingBg.png) no-repeat -111px -14px;
+    background-size: 233px;
+}
+
+.cui-down-arrow-icon {
+    width: 12px;
+    height: 6px;
+    position: absolute;
+    top: 55px;
+    left: 50%;
+    margin-left: -6px;
+    background: url(../images/BettingBg.png) no-repeat -150px -14px;
+    background-size: 233px;
+}
+
+.cui-up-light-grey-arrow-icon {
+    width: 12px;
+    height: 6px;
+    position: absolute;
+    top: -9px;
+    left: 7.6%;
+    background: url(../images/BettingBg.png) no-repeat -131.5px -14px;
+    background-size: 233px;
+}
+
+.cui-close-icon {
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: 50%;
+    left: 2px;
+    margin-top: 2px;
+    background: url(../images/BettingBg.png) no-repeat -78px -26px;
+    background-size: 233px;
+}
+
+.cui-circle-up-arrow-icon {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    margin-top: -9px;
+    background: url(../images/BettingBg.png) no-repeat -133px -28px;
+    background-size: 233px;
+}
+
+.cui-circle-arrow-up-icon {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    margin-top: -9px;
+    background: url(../images/BettingBg.png) no-repeat -109px -28px;
+    background-size: 233px;
+}
+
+.cui-blue-up-arrow-icon {
+    display: block;
+    position: absolute;
+    width: 8px;
+    height: 5px;
+    top: 10px;
+    right: 0px;
+    margin-top: -3px;
+    background: url(../images/BettingBg.png) no-repeat -174px -129px;
+    background-size: 233px;
+}
+
+.cui-blue-down-arrow-icon {
+    display: block;
+    position: absolute;
+    width: 8px;
+    height: 5px;
+    top: 10px;
+    right: 0px;
+    margin-top: -3px;
+    background: url(../images/BettingBg.png) no-repeat -190px -129px;
+    background-size: 233px;
+}
+
+.cui-nav p {
+    line-height: 46px;
+    color: #fff;
+}
+
+.cui-app-bar-title {
+    margin: 0 auto;
+    line-height: 20px;
+    font-size: 18px;
+}
+
+.cui-app-bar-right-button {
+    position: absolute;
+    right: 11px;
+    top: 50%;
+    line-height: 21px;
+    margin-top: -9px;
+}
+
+
+/*cui-input-text-content-with-label*/
+
+.cui-input-text-content-with-label {
+    width: 100%;
+    height: 46px;
+    line-height: 46px;
+    border-bottom: 1px solid #f1f1f1;
+    text-indent: 11px;
+    background: #fff;
+}
+
+.cui-input-text-content-with-label input {
+// padding: 0 15px;
+    width: 70%;
+    border: none;
+    outline: none;
+    -webkit-appearance: none;
+}
+
+.bindbankcard-len input {
+    width: 67%;
+}
+
+
+/* mask-layer */
+
+.mask-layer {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+
+/*cui-item-avatars*/
+
+.cui-item-avatars-item {
+    border-bottom: 1px solid #f1f1f1;
+}
+
+
+/*realNameInfo */
+
+.cui-warning-status p {
+    line-height: 28px;
+    font-size: 12px;
+}
+
+.cui-warning-status-34 p {
+    line-height: 28px;
+    font-size: 12px;
+}
+
+.realname-ok-btn {
+    margin-top: 25px;
+}
+
+
+/*confirmPayment*/
+
+.check-button-group {
+    padding: 10px 11px;
+}
+
+.check-button-group-single {
+    margin: 6px 0px;
+}
+
+.cui-check-button {
+    width: 95%;
+    line-height: 34px;
+    outline: none;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+}
+
+.cui-input-right-word {
+    position: absolute;
+    right: 15px;
+    line-height: 46px;
+    font-size: 14px;
+    top: 50%;
+    margin-top: -23px;
+}
+
+
+/* balance */
+
+.my-balance {
+    border-top: 1px solid #ededed;
+    border-bottom: 1px solid #ededed;
+    line-height: 40px;
+}
+
+.my-balance-divide {
+    position: absolute;
+    height: 24px;
+    top: 50%;
+    width: 1px;
+    left: 50%;
+    margin-left: -1px;
+    margin-top: -12px;
+    background: #ededed;
+}
+
+.recharge-money {
+    padding-right: 12px;
+}
+
+.recharge-warn {
+    margin-top: 10px;
+}
+
+
+/*mycenter*/
+
+.bg-my-center {
+    height: 140px;
+    background: url("../images/personal_bg.png") no-repeat;
+    background-size: 100%;
+}
+
+.my-account {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.my-account-left, .my-account-center, .my-account-right {
+    line-height: 42px;
+    display: inline-block;
+    height: 42px;
+}
+
+.my-account-right {
+    /*background: url(../images/redPurchase.png) no-repeat center;*/
+    background-size: 75%;
+}
+.center-red{
+    vertical-align: middle;
+    width:70px;
+}
+.my-account-divide {
+    position: absolute;
+    height: 20px;
+    top: 50%;
+    width: 2px;
+    right: 0;
+    margin-left: -1px;
+    margin-top: -10px;
+    background: #fff;
+}
+
+.customer-service-phone-number {
+    position: absolute;
+    right: 0px;
+}
+
+
+/* present-particulars */
+
+.present-particulars {
+    margin: 5px 0px;
+}
+
+.present-particulars-progress {
+    padding: 10px 0 6px 0;
+    margin-bottom: 5px;
+}
+
+.present-particulars-progress-active-icon {
+    background: url(../images/BettingBg.png) no-repeat -95px -77px;
+    background-size: 233px;
+    border-radius: 50%;
+    width: 21px;
+    height: 22px;
+    line-height: 21px;
+    display: inline-block;
+    margin-bottom: 1px;
+    position: relative;
+    z-index: 2;
+}
+
+.present-particulars-progress-grey-icon {
+    background: url(../images/BettingBg.png) no-repeat -63px -78px;
+    background-size: 233px;
+    border-radius: 50%;
+    width: 21px;
+    height: 21px;
+    line-height: 21px;
+    display: inline-block;
+    margin-bottom: 1px;
+    position: relative;
+    z-index: 2;
+}
+
+.progress-active-1-icon {
+    background: url(../images/program-active-1.png) no-repeat;
+    background-size: 20px;
+    width: 20px;
+    height: 20px;
+    margin: 0 auto;
+}
+
+.progress-active-2-icon {
+    background: url(../images/program-active-2.png) no-repeat;
+    background-size: 20px;
+    width: 20px;
+    height: 20px;
+    margin: 0 auto;
+}
+
+.progress-active-3-icon {
+    background: url(../images/program-active-3.png) no-repeat;
+    background-size: 20px;
+    width: 20px;
+    height: 20px;
+    margin: 0 auto;
+}
+
+.program-active-fail {
+    background: url(../images/program-active-fail.png) no-repeat;
+    background-size: 20px;
+    width: 20px;
+    height: 20px;
+    margin: 0 auto;
+}
+
+.program-active-success {
+    background: url(../images/program-active-success.png) no-repeat;
+    background-size: 20px;
+    width: 20px;
+    height: 20px;
+    margin: 0 auto;
+}
+
+.progress-grey-1-icon {
+    background: url(../images/program-grey-1.png) no-repeat;
+    background-size: 20px;
+    width: 20px;
+    height: 20px;
+    margin: 0 auto;
+}
+
+.progress-grey-2-icon {
+    background: url(../images/program-grey-2.png) no-repeat;
+    background-size: 20px;
+    width: 20px;
+    height: 20px;
+    margin: 0 auto;
+}
+
+.progress-grey-3-icon {
+    background: url(../images/program-grey-3.png) no-repeat;
+    background-size: 20px;
+    width: 20px;
+    height: 20px;
+    margin: 0 auto;
+}
+
+.progress-fail-icon {
+    background: url(../images/program-active-fail.png) no-repeat;
+    background-size: 20px;
+    width: 20px;
+    height: 20px;
+    margin: 0 auto;
+}
+
+.award-img {
+    background: url(../images/award-img.png) no-repeat;
+    background-size: 70px;
+    width: 70px;
+    height: 58px;
+    margin: 0 auto;
+}
+
+.continue-img {
+    background: url(../images/continue-img.png) no-repeat;
+    background-size: 70px;
+    width: 70px;
+    height: 58px;
+    margin: 0 auto;
+}
+
+.present-particulars-progress-3-icon {
+    background: url(../images/BettingBg.png) no-repeat -4px -77px;
+    background-size: 233px;
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    line-height: 21px;
+    display: inline-block;
+    margin-bottom: 1px;
+    position: relative;
+    z-index: 2;
+}
+
+.present-particulars-progress-4-icon {
+    background: url(../images/BettingBg.png) no-repeat -33px -77px;
+    background-size: 233px;
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    line-height: 21px;
+    display: inline-block;
+    margin-bottom: 1px;
+    position: relative;
+    z-index: 2;
+}
+
+.present-particulars-progress-active-line {
+    position: absolute;
+    width: 25%;
+    height: 3px;
+    background: #df3832;
+    z-index: 0;
+    top: 19px;
+}
+
+.present-particulars-progress-grey-line {
+    position: absolute;
+    width: 25%;
+    height: 4px;
+    background: url(../images/program-grey-line.png);
+    z-index: 0;
+    top: 18px;
+}
+
+.order-status-progress-active-line {
+    position: absolute;
+    width: 36%;
+    height: 4px;
+    background: url(../images/program-active-line.png);
+    background-size: 3px;
+    z-index: -1;
+    top: 18px;
+}
+
+.order-status-progress-grey-line {
+    position: absolute;
+    width: 36%;
+    height: 3px;
+    background: #ccc;
+    z-index: -1;
+    top: 19px;
+}
+
+.order-status-progress-fail-line {
+    position: absolute;
+    width: 46%;
+    height: 3px;
+    background: url(../images/program-active-line.png);
+    z-index: 0;
+    top: 19px;
+    right: 27%;
+}
+
+.particulars-audit {
+    left: 12%;
+}
+
+.particulars-bank-treatment {
+    left: 38%;
+}
+
+.particulars-aready-count {
+    right: 12%;
+}
+
+.present-particulars-detail {
+    padding: 0 12px;
+    height: 44px;
+    border-bottom: 1px solid #efefef;
+    line-height: 44px;
+}
+
+.present-line-height-padding {
+    line-height: 30px;
+    padding: 0 12px;
+}
+
+.present-concat-service {
+    margin-top: 10px;
+    line-height: 54px;
+}
+
+
+/* running-water-detail */
+
+.detail-running-water {
+    margin-top: 5px;
+    border-bottom: 1px solid #efefef;
+}
+
+.detail-running-water-number {
+    margin-top: 10px;
+}
+
+.detail-running-water-item {
+    margin-top: 10px;
+}
+
+.runwater-item {
+    border-bottom: 1px solid #efefef;
+    line-height: 49px;
+    height: 47px;
+}
+
+.runwater-item-name {
+    /*padding-left: 15px;*/
+    text-align: center;
+}
+
+.runwater-item-result {
+    padding: 0;
+}
+
+.runingWater-card-img {
+    vertical-align: text-top;
+}
+
+
+/* payment-success */
+
+.payment-success {
+    height: 100px;
+    width: 100%;
+}
+
+.payment-success-sure-ok {
+    margin-top: 85px;
+}
+
+.payment-success-word {
+    padding-top: 5px;
+    margin-top: 5px;
+}
+
+.payment-success-prompt-language {
+    margin-top: 20px;
+}
+
+.payment-success-word {
+    position: relative;
+    left: 8px;
+}
+
+
+/* withdrawCrash */
+.cui-search-bank-list {
+    margin: 10px 0 20px 0;
+}
+.cui-add-bank {
+    height: 68px;
+    line-height: 68px;
+}
+
+.with-draw-crash-padding {
+    padding: 14px 15px;
+}
+
+.with-draw-crash-warn {
+    line-height: 34px;
+}
+
+.with-draw-crash-record-warn {
+    line-height: 28px;
+}
+
+.with-draw-crash-list {
+    border-bottom: 1px solid #eaeaea;
+}
+
+.with-draw-crash-line {
+    line-height: 16px;
+}
+
+
+/* withdrawCrashDetail */
+
+.cui-concat-service {
+    height: 47px;
+    line-height: 47px;
+    margin-top: 5px;
+}
+
+
+/* payment setting */
+
+.payment-padding {
+    padding: 14px 15px;
+}
+
+
+/* bank-card */
+
+#bank-card-wap {
+    margin-top: 52px;
+}
+
+.bank-card {
+    border-radius: 5px;
+    margin: 11px 11px 0 11px;
+    border: 1px solid #ddd;
+}
+
+.bank-card-item {
+    height: 52px;
+}
+
+.bank-card-item img {
+    padding-top: 8px;
+}
+
+.bank-card-number {
+    padding-top: 8px;
+    line-height: 18px;
+}
+
+
+/* bank-card-detail */
+
+.bank-card-btn {
+    position: fixed;
+    z-index: 10;
+    height: 45px;
+    line-height: 45px;
+    width: 100%;
+}
+
+.bank-card-bind {
+    bottom: 50px;
+}
+
+.bank-card-bind-cancel {
+    bottom: 0px;
+}
+
+
+/* paymentSettingPassword */
+
+.payment-left-width {
+// width: 85px;
+}
+
+.pament-password {
+    outline: none;
+    border: none;
+    /*padding-left: 15px;*/
+}
+
+
+/* addBankCardBind */
+
+.cui-send-codes {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    width: 82px;
+    height: 30px;
+    margin-top: -15px;
+    border-radius: 2px;
+    outline: none;
+    border: none;
+    line-height: 27px;
+}
+
+
+/* bet */
+
+.cui-bet-item-container {
+    padding: 4px 10px 0 10px;
+}
+
+.cui-bet-match-season p, .cui-bet-nba-match-season p {
+    font-size: 13px;
+    color: #333;
+    text-align: center;
+}
+
+.cui-bet-match-season {
+    padding-top: 10px;
+    height: 74px;
+}
+
+.cui-bet-match-option-border-top {
+    border-top: 1px solid #dfdfdf;
+}
+
+.cui-bet-match-option-border-left {
+    border-left: 1px solid #dfdfdf;
+}
+
+.cui-bet-match-option-border-right {
+    border-right: 1px solid #eee;
+}
+
+.cui-bet-match-option-border-bottom {
+    border-bottom: 1px solid #dfdfdf;
+}
+
+.zhiding{
+    position: relative;
+    border-bottom: 1px solid #f00;
+}
+
+.top-img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20%;
+}
+
+
+.spf-choose-container {
+    color: #333;
+}
+
+.cui-bet-match-info-container {
+    padding: 3px 0;
+}
+
+.cui-lottery-button-fixed {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 11px 0;
+    background: #fff;
+    border-top: 1px solid #dfdfdf;
+}
+
+.cui-lottery-button-fixed input {
+    width: 100%;
+    font-size: 14px;
+}
+
+.clear-button {
+    color: #333;
+
+}
+
+
+/* chuanGuan */
+
+
+/* order-item-title */
+
+.order-item-title {
+    line-height: 40px;
+    text-indent: 40px;
+    background: #fff url(../images/football-icon.png) no-repeat 11px center;
+    background-size: 7%;
+    border-bottom: 1px solid #eee;
+}
+
+.order-item-numcolor-title {
+    line-height: 40px;
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 8px;
+}
+
+.order-item-numcolor-title .icon-index-wh {
+    top: 5px;
+}
+
+.order-status {
+    padding-top: 10px;
+}
+
+.amount-prompt {
+    /*line-height: 24px;*/
+}
+
+.status-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.divide-line {
+    position: absolute;
+    top: 50%;
+    margin-top: -20px;
+    right: 0;
+    width: 1px;
+    background: #eee;
+    height: 40px;
+}
+
+.order-money {
+    padding: 15px 0;
+}
+
+.status_txt {
+    font-size: 12px;
+    text-indent: 11px;
+    padding-bottom: 5px;
+}
+
+
+/* order-detail*/
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+td {
+    border: 1px solid #ddd;
+}
+
+.order-detail-title {
+    line-height: 40px;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+
+.tabel-attribute {
+    vertical-align: middle;
+    display: table-cell;
+}
+
+.display-table {
+    display: table;
+}
+
+th:nth-of-type(1) {
+    width: 15%;
+    line-height: 30px;
+    font-weight: normal;
+}
+
+th:nth-of-type(2) {
+    width: 25%;
+    line-height: 30px;
+    font-weight: normal;
+}
+
+th:nth-of-type(3) {
+    width: 20%;
+    line-height: 30px;
+    font-weight: normal;
+}
+
+th:nth-of-type(4) {
+    width: 25%;
+    line-height: 30px;
+    font-weight: normal;
+}
+
+th:nth-of-type(5) {
+    width: 15%;
+    line-height: 30px;
+    font-weight: normal;
+}
+
+.pay_countdown {
+    width: 60%;
+    border: none;
+    outline: none;
+    border-radius: 2px;
+    height: 24px;
+    line-height: 26px;
+    color: #fff;
+    /*padding: 0;*/
+    background: #e03731;
+    margin-top: 3px;
+}
+
+
+/* one-order */
+
+.one-order {
+    padding: 15px 5px;
+    border-bottom: 1px solid #ddd;
+}
+
+.one-order .identifier {
+    position: absolute;
+    top: 50%;
+    margin-top: -24px;
+    left: 0;
+    line-height: 48px;
+    text-indent: -20px;
+}
+
+.one-order .order-team {
+    position: absolute;
+    top: 50%;
+    margin-top: -20px;
+    left: 32%;
+}
+
+.one-order .lottory-item {
+    margin-left: 64%;
+}
+
+.order-team span {
+    line-height: 21px;
+}
+
+.order-team .host-scode, .order-team .away-scode {
+    float: right;
+    display: block;
+    width: 20px;
+    text-align: center;
+}
+
+.lottory-item p {
+    line-height: 24px;
+}
+
+
+/* lottery-detail */
+
+.lottery-detail {
+    padding: 10px 11px;
+    line-height: 25px;
+    font-size: 13px;
+}
+
+.match-instruction {
+    padding: 0px 30px;
+}
+
+.order-warn {
+    line-height: 20px;
+}
+
+.lottory-shop {
+    text-indent: 11px;
+}
+
+
+/* 串关 */
+
+.select-match-title {
+    line-height: 35px;
+    font-size: 14px;
+    color: #333;
+}
+
+.select-match-right {
+    margin-left: 12%;
+}
+
+.select-match-title p {
+    border-bottom: 1px solid #dfdfdf;
+}
+
+.select-match-item-title {
+    font-size: 15px;
+    line-height: 40px;
+}
+
+.select-match-item-detail {
+    font-size: 14px;
+    line-height: 22px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    padding: 4px 7px;
+    background: #fffdf3;
+    margin-bottom: 10px;
+}
+
+.white-top {
+    height: 12px;
+    background: #fff;
+}
+
+.cui-select-decorative-border {
+    margin-top: -2px;
+    height: 6px;
+    background: url(../images/decorative_border.png) repeat-x;
+}
+
+
+/* 我同意 */
+
+.cui-agree {
+    font-size: 12px;
+    line-height: 20px;
+    height: 20px;
+}
+
+.cui-agree input {
+    margin-left: 12%;
+    display: inline-block;
+    vertical-align: text-top;
+    width: 14px;
+    height: 14px;
+    opacity: 0.5;
+}
+
+.cui-fixed {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.select-warn {
+    border-top: 1px solid #ddd;
+    line-height: 28px;
+}
+
+
+/*select-match-forecast-prize*/
+
+.select-match-forecast-prize {
+    padding: 10px 0;
+}
+
+.select-match-forecast-prize input {
+    width: 100%;
+    font-size: 14px;
+    padding: 0;
+    line-height: 38px;
+}
+
+
+/*select-match-series-pass*/
+
+.select-match-series-pass {
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    font-size: 16px;
+}
+
+.select-match-series-pass p {
+    line-height: 49px;
+    width: 83%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+}
+
+.select-match-series-pass input[type='tel'] {
+    width: 46%;
+    margin: 0 5px;
+    outline: none;
+    -webkit-appearance: none;
+    border: 1px solid #ccc;
+}
+
+.select-match-series-pass-left {
+    border-right: 1px solid #ddd;
+}
+
+.select-match-series-multiple {
+    line-height: 49px;
+}
+
+
+/*select-match-series-pass-item*/
+
+.select-match-series-pass-item {
+    background: #f7f7ee;
+    padding: 3px 0;
+}
+
+.select-match-series-pass-item input {
+    color: #333;
+    font-size: 16px;
+    line-height: 23px;
+    margin: 3px 0;
+    width: 80%;
+    background: #fff;
+    border: 1px solid #bbb;
+}
+
+.select-match-series-pass-item p {
+    font-size: 12px;
+    line-height: 30px;
+    margin-right: 10px;
+}
+
+.select-match-series-pass-item input.active {
+    color: #fff;
+    background: #df3832;
+    border: none;
+}
+
+.cui-box-sizing {
+    box-sizing: border-box;
+}
+
+.select-popup {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+}
+
+#chuanguan {
+    padding-bottom: 400px;
+}
+
+
+/* modifyPaymentPassword */
+
+
+/*div 占位盒子*/
+
+.cui-margin-top-30 {
+    margin-top: 30px;
+}
+
+
+/* modify-password-button*/
+
+.modify-password-button {
+    line-height: 46px;
+    font-size: 16px;
+}
+
+.modify-password-button input {
+    margin: 10px 0;
+}
+
+.button-active-password input {
+    color: #fff;
+}
+
+/*.cui-check-active-icon {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    top: 50%;
+    right: 0px;
+    margin-top: -11px;
+    background: url("../images/BettingBg.png") no-repeat;
+    background-position: -64px -51px;
+    background-size: 233px;
+}*/
+
+.betting-agree-text {
+    display: inline-block;
+}
+
+.a-tel {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    margin-top: -7px;
+    color: #3399ff;
+    text-decoration: underline;
+}
+
+.account_balance {
+    position: absolute;
+    top: 50%;
+    margin-top: -7px;
+    left: 70px;
+}
+
+.order-status a, .lottory-message a {
+    padding: 10px;
+}
+
+.my-center-head-img img {
+    border-radius: 50%;
+}
+
+.order-item {
+    line-height: 50px;
+    background: #fff;
+    border-bottom: 1px solid #efefef;
+}
+
+.order-group-time {
+    line-height: 34px;
+    text-indent: 13px;
+    width: 100%;
+    z-index: 998;
+    background-color: #efefef;
+}
+
+.padding-10 {
+    padding: 10px 0;
+}
+
+
+/*充值list*/
+
+.button-active {
+    color: #fff;
+    background: #df3832;
+}
+
+.cui-check-active-icon {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    top: 50%;
+    right: 0px;
+    margin-top: -11px;
+    background: url("../images/BettingBg.png") no-repeat;
+    background-position: -64px -51px;
+    background-size: 233px;
+}
+
+.a-tel {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    margin-top: -7px;
+    color: #3399ff;
+    text-decoration: underline;
+}
+
+.account-bar-fixed {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 10;
+    width: 100%;
+}
+
+#account {
+    margin-top: 41px;
+}
+
+.cui-orderlist-edit {
+    right: 6px;
+}
+
+.orderlist-bar, .bank-card-bar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+}
+
+
+/* 忘记密码弹框 */
+
+.actionsheet {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #333;
+    opacity: 0.85;
+    z-index: 1001;
+}
+
+.actionchoices {
+    z-index: 1002;
+    border-radius: 2%;
+    position: fixed;
+    width: 100%;
+    bottom: -50%;
+    left: 50%;
+    margin-left: -50%;
+}
+
+div.fieldset div {
+    display: block;
+    font-weight: normal;
+    margin: 0 8px 0 8px;
+    text-align: center;
+    text-decoration: inherit;
+    background-image: none;
+    background-color: rgba(255, 255, 255, 1);
+    color: #777;
+    text-shadow: none;
+    font-size: 1em;
+    line-height: 1.7em;
+    padding: 15px 15px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom: 1px solid #e6e6e6;
+}
+
+div.fieldset a {
+    border-radius: 0;
+    margin: 0 8px 0 8px;
+    font-size: 16px;
+    color: #007aff;
+    line-height: 44px;
+    border: 0 solid transparent;
+    border-bottom: 1px solid #e6e6e6;
+    background-color: rgba(255, 255, 255, 1);
+    font-weight: 400;
+    padding: 0;
+    text-shadow: none;
+    display: block;
+    text-align: center;
+    text-decoration: inherit;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-user-drag: none;
+    cursor: auto;
+}
+
+div.fieldset a.caution {
+    color: #fd472a;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+div.fieldset a.bank-unbind {
+    border-radius: 4px;
+}
+
+div.fieldset+a {
+    margin-bottom: 0;
+    border: none;
+    background-color: #fff;
+    color: #007aff;
+    margin: 8px 8px 0 8px;
+    border-radius: 4px;
+    font-size: 16px;
+    line-height: 44px;
+    padding: 0;
+    text-shadow: none;
+    display: block;
+    text-align: center;
+    text-decoration: inherit;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-user-drag: none;
+}
+
+
+/* aboutCaiqr */
+
+.about-caiqr-item {
+    height: 46px;
+    line-height: 46px;
+    border-bottom: 1px solid #efefef;
+}
+
+
+/* withdrawCashRecord */
+
+.with-no-record-text {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    margin-left: -50%;
+    font-size: 14px;
+}
+
+
+/* arrangment firefox add css */
+
+
+/* Betting */
+
+.cui-bet-match-option-container, .cui-bet-match-season {
+    height: 84px;
+}
+
+.cui-bet-nba-match-option-container {
+    padding-bottom: 10px;
+}
+
+.cui-bet-item-content {
+    height: 132px;
+}
+
+
+/* chuanguan arragment ui*/
+
+.select-match-item {
+    padding-top: 2px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #efefef;
+}
+
+.select-match-item:first-child {
+    padding-top: 0px;
+}
+
+.select-match-item:last-child {
+    margin-bottom: 0px;
+    border-bottom: 0;
+}
+
+.select-match-series-pass-item {
+    padding-left: 15px;
+}
+
+.cui-checked-icon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background: url(../images/icons.png) no-repeat -300px -167px;
+    background-size: 427px;
+    margin-bottom: -4px;
+}
+
+.cui-checkK3-icon {
+    background: url(../images/icons.png) no-repeat -80px -147px;
+    background-size: 376px;
+}
+
+.cui-checkeD11-icon {
+    background-position: -300px -167px;
+    background-size: 427px;
+}
+
+.chuanguan_blue {
+    color: #5cc3ff;
+}
+
+.must_choice_red {
+    color: #e03731;
+}
+
+.chuanguan_submit_grey {
+    background-color: #afafaf;
+    color: #dcdcdc;
+}
+
+.input-chuan_number {
+    height: 26px;
+}
+
+.cui-divide-5 {
+    height: 5px;
+}
+
+.cui-line-33 {
+    line-height: 33px;
+}
+
+.margin-top-down-12 {
+    margin: 12px 0;
+}
+
+.margin-top-12 {
+    margin: 12px 0 0 0;
+}
+
+.pay-go-button {
+    margin-top: 30px;
+}
+
+.disable-button {
+    position: absolute;
+    width: 80%;
+    top: 0;
+    left: 50%;
+    margin-left: -40%;
+    background: #ccc;
+    z-index: 10;
+}
+
+.present-particulars-progress-active-line-three {
+    position: absolute;
+    width: 33.3%;
+    height: 3px;
+    background: #df3832;
+    z-index: 0;
+    top: 19px;
+}
+
+.present-particulars-progress-grey-line-three {
+    position: absolute;
+    width: 33.3%;
+    height: 3px;
+    background: #ccc;
+    z-index: 0;
+    top: 19px;
+}
+
+.particulars-audit-three {
+    left: 16%;
+}
+
+.particulars-aready-count-three {
+    right: 16%;
+}
+
+#YSF-BTN-HOLDER {
+    display: none;
+}
+
+.padding-top-down-16 {
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+
+.mycenter-item {
+    line-height: 47px;
+}
+
+.display-block {
+    display: block;
+}
+
+
+/*accountBalance*/
+
+.account-show-date {
+    width: 100%;
+    z-index: 998;
+    height: 26px;
+    background-color: #efefef;
+    line-height: 26px;
+}
+
+.account-bar-fixed {
+    top: 0px;
+    z-index: 999;
+}
+
+.cui-glob-bean-balance {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    top: 41px;
+    z-index: 999;
+}
+
+#account {
+    padding: 97px 0 0 0;
+}
+
+
+/*bindBankCard*/
+
+.bind-card-item {
+    height: 46px;
+}
+
+.cui-send-codes {
+    width: 85px;
+}
+
+.order-list-item-first {
+    text-indent: -8px;
+}
+
+
+/*realNameInfoEdit*/
+
+.realName-input {
+    width: 66%;
+}
+
+.get_verify_code {
+    border: none;
+    outline: none;
+    width: 100px;
+}
+
+
+/* 购买红包 */
+
+.red-purchase-btn {
+    position: absolute;
+    top: 50%;
+    margin-top: -15px;
+    right: 23px;
+    width: 94px;
+    height: 28px;
+    line-height: 30px;
+    background: #ffe13b;
+    color: #3d2700;
+    border-radius: 3px;
+    text-align: center;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.purchase-list-item {
+    background: url(https://ojhwh2s98.qnssl.com/one-yuan-test-redbugbg.png) no-repeat;
+    background-size: 100%;
+    padding: 25px 20px 36px;
+    margin-bottom: 7px;
+}
+
+.purchase-list-item-input {
+    padding: 40px 20px 28px;
+}
+
+.purchase-list-item span {
+    font-family: 'sans-serif';
+}
+
+.purchase-list-item .purchase-money {
+    margin-top: -5px;
+}
+
+.letter-space {
+    letter-spacing: -2px
+}
+
+.purchase-input {
+    height: 25px;
+    padding: 3px 2px;
+    width: 105px;
+    border-radius: 3px;
+    border: none;
+    outline: none;
+    margin: 6px 0 8px 0;
+    border: 1px solid #fdeb2f;
+    color: #693a11;
+    text-align: center;
+}
+
+
+/* 红包列表 */
+
+
+/*cui-red-status-tab*/
+
+.cui-red-status-tab-nav {
+    background: #fff;
+    line-height: 36px;
+    height:36px;
+}
+
+.cui-red-status-tab-nav a {
+    outline: none;
+}
+
+.join-record-tab-swiper-container {
+    overflow: hidden;
+    width: 100%;
+}
+
+.red-status-tab-swiper-container {
+    overflow: hidden;
+    width: 100%;
+}
+
+.red-status-tab-swiper-container .swiper-slide {
+    width: 100%;
+}
+
+#cui-red-status-tab-nav a.on span {
+    border-bottom: 2px solid #ff4747;
+    padding: 0 15px;
+    line-height: 36px;
+    display: inline-block;
+}
+
+.checkout-wallet .enable {
+    width: 25%;
+    display: inline-block;
+    text-align: center;
+    line-height: 35px;
+    border-bottom: 3px solid #ff4747;
+    margin-right: 25%;
+}
+
+.checkout-wallet .nouse {
+    width: 25%;
+    display: inline-block;
+    text-align: center;
+    line-height: 35px;
+    border-bottom: 3px solid #ff4747;
+}
+
+.checkout-wallet {
+    background: #fff;
+    text-align: center;
+}
+
+.enable-wallet-item {
+    background: url("../images/redEnvelopesuse.png") no-repeat;
+    background-size: 100% 100%;
+    margin-bottom: 10px;
+}
+
+.disenable-wallet-item {
+    background: url("../images/redEnvelopesno.png") no-repeat;
+    background-size: 100% 100%;
+    margin-bottom: 10px;
+}
+
+.enable-wallet>div, .disenable-wallet>div {
+    height: 91.4px;
+}
+
+.available, .invalid {
+    border: 1px solid #ff4747;
+    border-radius: 3px;
+    text-align: center;
+    display: inline-block;
+    font-size: 14px;
+    color: #ff4747;
+    width: 50px;
+    height: 28px;
+    line-height: 30px;
+}
+
+.invalid {
+    color: #ccc;
+    border: none;
+}
+
+.enable-use-btn, .disenable-use-btn {
+    height: 31px;
+    line-height: 31px;
+    position: absolute;
+    top: 50%;
+    margin-top: -15.5px;
+    right: 8px;
+}
+
+.enable-wallet-detail, .disenable-wallet-detail {
+    margin-top: 18px;
+    height: 62px;
+}
+
+.enable-wallet-money, .disenable-wallet-money {
+    height: 68px;
+    margin-top: 26px;
+    margin-left: -2%;
+    width: 100%;
+}
+
+.wallet-red-word {
+    margin-bottom: 5px;
+}
+
+
+/* 红包选择 */
+
+.selectTitle {
+    position: fixed;
+    height: 46px;
+    width: 100%;
+    top: 40px;
+    border-bottom: 1px solid #efefef;
+    line-height: 46px;
+    padding: 0 8px;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    box-sizing: border-box;
+}
+
+.redlist_item_shuju {
+    margin-top: 46px;
+}
+
+.redlist_item_red {
+    line-height: 46px;
+    border-bottom: 1px solid #efefef;
+    padding: 0 10px;
+}
+
+.redlist_item_notuse {
+    line-height: 46px;
+    padding: 0 10px;
+}
+
+
+/* 红包消费页面 */
+
+.red-use-list {
+    height: 50px;
+    font-size: 14px;
+    border-bottom: 1px solid #efefef;
+}
+
+.line-height-40 {
+    line-height: 54px;
+}
+
+.red-use-title {
+    height: 30px;
+    position: fixed;
+    line-height: 30px;
+    font-size: 14px;
+    width: 100%;
+    z-index: 9;
+    background: #fff;
+    border: 1px solid #efefef;
+}
+
+.all-list-use {
+    margin-top: 32px;
+}
+
+.padding-top-5 {
+    padding-top: 11px;
+}
+
+.red-use-list-fixed {
+    position: fixed;
+    width: 100%;
+    z-index: 15;
+    height: 41px;
+    top: 0;
+}
+
+.redDetailtop {
+    background: #fff;
+    margin-bottom: 10px;
+}
+
+.full-red-list {
+    margin-top: 12px;
+}
+
+.full-red-list-text {
+    margin-top: 8px;
+}
+
+.gotoBet {
+    display: block;
+    width: 80%;
+    background: #df3e36;
+    border-radius: 4px;
+    margin: 0 auto;
+    margin-top: 20px;
+    color: #fff;
+    text-align: center;
+    line-height: 40px;
+}
+
+.red-bag-item {
+    line-height: 36px;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.red-bag-item p:nth-of-type(1) {
+    text-indent: 11px;
+}
+
+.gotoPurcharse img {
+    width: 100px;
+    margin-top: 13px;
+}
+
+.redBar {
+    margin-bottom: 8px;
+    height:62px;
+}
+
+.redbalabce {
+    line-height: 60px;
+    text-indent: 11px;
+}
+
+.clear {
+    clear: both;
+}
+
+.betting-head-text-football {
+    border: 1px solid #fff;
+    border-right: none;
+    border-top-left-radius: 3px;
+    width: 63px;
+    border-bottom-left-radius: 3px;
+    height: 28px;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 28px;
+    position: relative;
+    right: -3px;
+}
+
+.betting-head-text-bg {
+    background: #fff;
+    color: #e03731;
+    display: inline-block;
+}
+
+.betting-head-text-basketball {
+    border: 1px solid #fff;
+    border-left: none;
+    border-bottom-right-radius: 3px;
+    width: 63px;
+    border-top-right-radius: 3px;
+    height: 28px;
+    line-height: 28px;
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    left: -3px;
+}
+
+.betting-bqc-notsale {
+    width: 100%;
+    background: #fff;
+    height: 40px;
+    line-height: 40px;
+    border: 1px solid #dfdfdf;
+}
+
+.betting-border-df {
+    border-bottom: 1px solid #dfdfdf;
+}
+
+.betting-bf-div {
+    height: 41px;
+    line-height: 41px;
+    border: 1px solid #dfdfdf;
+    background: #fff;
+    width: 100%;
+}
+
+.betting-zjq-div {
+    height: 40px;
+    line-height: 40px;
+    border: 1px solid #dfdfdf;
+    background: #fff;
+    width: 100%;
+}
+
+.cui-color-sheng {
+    color: #ff4747;
+}
+
+.cui-color-ping {
+    color: #04a500;
+}
+
+.cui-color-fu {
+    color: #5cc3ff;
+}
+
+.cui-bet-nba-item-content {
+    min-height: 160px;
+}
+
+.calculateAward {
+    margin-top: 5px;
+    margin-right: 9px;
+}
+.calculateAward_background{
+    background: url(../images/award_prompt.png) no-repeat left center;
+    background-size: 13px;
+    padding-left: 16px;
+}
+
+/* 继续投注按钮*/
+
+.continue-bet {
+    position: fixed;
+    padding: 5px 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    box-shadow: 0px -1px 10px #ccc;
+}
+
+.continue-bet a {
+    width: 60%;
+    line-height: 34px;
+    border-radius: 2px;
+    margin: 0 auto;
+    display: block;
+}
+
+
+/* 奖金优化详情 */
+
+.optimization-detail-title {
+    line-height: 40px;
+}
+
+.team-name p {
+    line-height: 20px;
+}
+
+.optimization-detail-con {
+    border-bottom: 1px solid #ccc;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.ticket-title {
+    line-height: 26px;
+}
+
+.item-ticket {
+    margin-bottom: 5px;
+}
+
+.item-ticket-detail {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.progress-text {
+    line-height: 25px;
+}
+
+.addmore {
+    line-height: 50px;
+}
+
+.bottom-line {
+    margin-bottom: 12px;
+}
+
+.bottom-number {
+    margin-top: 6px;
+    font-size: 16px;
+}
+
+.status-paddingbottom {
+    padding-bottom: 7px;
+}
+
+.top-ball {
+    padding-top: 3px;
+}
+
+.nav-title {
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+    border-left: 1px solid #fff;
+    display: inline-block;
+    padding: 2px 4px;
+    width: 52px;
+    font-size: 14px;
+}
+
+.nav-title:nth-of-type(2) {
+    border-radius: 2px 0 0 2px;
+}
+
+.nav-title:nth-of-type(4) {
+    border-right: 1px solid #fff;
+    border-radius: 0 2px 2px 0;
+}
+
+.title-nav-active {
+    background: #fff;
+    color: #e03731;
+}
+
+
+/* 玩法技巧 start */
+
+.skill-tab {
+    font-size: 16px;
+    line-height: 42px;
+    border-bottom: 1px solid #e5e5e5;
+    background: #fff;
+}
+
+.skill-tab-on {
+    color: #e03731;
+    border-bottom: 2px solid #e03731;
+}
+.skill-panel img{
+    width: 36px;
+    vertical-align: middle;
+    margin: 0 13px;
+}
+.skill-panel li {
+    font-size: 16px;
+    line-height: 71px;
+    background: #fff;
+    padding: 0 11px;
+    border-bottom: 1px solid #e5e5e5;
+}
+.skill-panel li a{
+    display: block;
+}
+.caiqiu_brand_show{
+    display: none;
+}
+.caiqiu_brand_hide{
+    display: none;
+}
+.elseTel{
+    display: none;
+}
+.ptAndroidTel{
+    display: none;
+}
+
+/*遮罩层*/
+.dark-bj{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background: rgba(0,0,0,.5);
+    z-index: 1000;
+}
+.money-not-enouch {
+    position: absolute;
+    right: 0px;
+    top: 10px;
+    color:#ccc;
+    font-size:12px;
+}
+.max-money{
+    border-bottom:1px solid #f1f1f1;
+}
+.content-box{
+    height:140px;
+    width:80%;
+    position: fixed;
+    top:50%;
+    margin-top: -60px;
+    left:10%;
+    z-index:1003;
+    border-radius: 3px;
+    background: #fff;
+}
+.close-box{
+    position: absolute;
+    right: 0%;
+    top: -25px;
+    width: 15px;
+    height: 15px;
+    background: url(../images/closeBox.png) no-repeat;
+    background-size: 100%;
+}
+.content-box p{
+    height: 85px;
+    line-height: 85px;
+    text-align: center;
+    color:#333;
+}
+.use-else-btn{
+    display: block;
+    height: 40px;
+    line-height: 40px;
+    background: #df3e36;
+    text-align: center;
+    width: 90%;
+    border: none;
+    outline: none;
+    margin: 0% auto 5% auto ;
+    color: #fff;
+    border-radius: 3px;
+}
+.pop-hidden{
+    overflow: hidden;
+    height: 100%;
+}
+@-webkit-keyframes rotate {
+    0%,
+    100% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+.inline {
+    display: inline-block;
+}
+
+/* 无赛事 */
+.no-has-match{
+    display: block;
+    margin: 0 auto;
+    width: 56%;
+    margin-top: 200px;
+}
+.no-has-match p{
+    margin-top: 20px;
+    font-size: 14px;
+    color: #666666;
+    text-align: center;
+}
+.hide{
+    display: none;
+}
+@keyframes rotate {
+    0%,
+    100% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+.indexLoading{
+    width: 120px;
+    position: fixed;
+    height: 90px;
+    top:50%;
+    margin-top:-45px;
+    margin-left:-60px;
+    left:50%;
+    text-align: center;
+    background: #000;
+    opacity: 0.35;
+    z-index: 9999;
+    border-radius: 3px;
+}
+.loading-img{
+    width:40px;
+    margin-top: 18px;
+    -webkit-animation: rotate 0.8s linear infinite;
+    -moz-animation: rotate 0.8s linear infinite;
+    -ms-animation: rotate 0.8s linear infinite;
+    -o-animation: rotate 0.8s linear infinite;
+    animation: rotate 0.8s linear infinite;
+}
+.ballLoading{
+    width:100%;
+    position: fixed;
+    height:46px;
+    top:50%;
+    margin-top:-23px;
+    left:0;
+    text-align: center;
+}
+.loading{
+    width:25px;
+    -webkit-animation: rotate 0.8s linear infinite;
+    -moz-animation: rotate 0.8s linear infinite;
+    -ms-animation: rotate 0.8s linear infinite;
+    -o-animation: rotate 0.8s linear infinite;
+    animation: rotate 0.8s linear infinite;
+}
+.ballLoading p{
+    padding-left:10px;
+}
+/*支付按钮下一步底部固定*/
+.next-bottom{
+    width:100%;
+    position: fixed;
+    left:0;
+    bottom:0px;
+    height:57px;
+    background: #fff;
+    box-shadow: 0 -1px 9px rgba(39,39,39,0.1);
+}
+.next-bottom input{
+    margin:10px 0;
+    width:80%;
+}
+.font-bold{
+    font-weight: bold;
+}
+.clearfix::after {
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden
+}
+/* 弹窗*/
+.confirm-cover{
+    position: absolute;
+    z-index: 9999;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #000;
+    filter: alpha(opacity=50);
+    opacity: 0.5;
+}
+.confirm-wrap{
+    font-size: 14px;
+    position: absolute;
+    z-index: 99999;
+    width: 80%;
+    left: 50%;
+    top: 47%;
+    -webkit-transform: translate3d(-50%, -50%, 0);
+    transform: translate3d(-50%, -50%, 0);
+    background-color: #fff;
+    border-radius: 10px;
+    padding:10px 5px 10px;
+    color: #333;
+    opacity: 1;
+}
+.confirm-tip,.confirm-guide{
+    text-align: center;
+}
+.confirm-tip{
+    margin:10px 0 5px;
+}
+.confirm-title{
+    text-align: center;
+    margin-bottom:15px;
+}
+.confirm-button{
+    text-align: center;
+    padding:0 20px;
+}
+.confirm-stay,.confirm-leave{
+    font-weight: normal;
+    border: 1px solid rgb(236,229,221);
+    width: 42%;
+    line-height: 35px;
+    border-radius: 4px;
+    /*-moz-box-shadow: 5px 5px 5px #eee; !* 老的 Firefox *!*/
+    /*box-shadow: 5px 5px 5px #eee;*/
+    color: white;
+}
+.confirm-stay{
+    float: left;
+    color: black;
+}
+.confirm-leave{
+    float: right;
+    background-color:#e03731;
+}
+.confirm-tag{
+    font-weight: bold;
+    font-size: 18px;
+    color: #333333;
+    margin-bottom: 20px;
+}
+.orderList-header{
+    display: inline-block;
+    border: 1px solid #fff;
+    border-radius: 4px;
+    overflow: hidden;
+    width: 176px;
+    margin:0 auto;
+}
+.orderList-header a{
+    float: left;
+    width:58px;
+    line-height:24px;
+    font-size:14px;
+}
+.border-right-fff{
+    border-right:1px solid #fff;
+}
+.order-list-title{
+    height:46px;
+}
