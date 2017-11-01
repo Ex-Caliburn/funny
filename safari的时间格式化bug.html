@@ -12,5 +12,14 @@
 
   alert( time,   new Date(time).getTime()
   )
+
+//  ios系统支持 /格式
+  var time2 = "2017/11/01 14:00:00 +0800"
+  var time3 = "2017-07-13 16:07:34 +0800"
+//  var value = Date.parse(time2)
+//  var value = Date.parse(time3)
+  alert(Date.parse(time2))
+  alert(Date.parse(time3))
+
 </script>
 </html>
