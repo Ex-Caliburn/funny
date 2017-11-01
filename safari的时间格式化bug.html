@@ -15,11 +15,15 @@
 
 //  ios系统支持 /格式
   var time2 = "2017/11/01 14:00:00 +0800"
-  var time3 = "2017-07-13 16:07:34 +0800"
-//  var value = Date.parse(time2)
-//  var value = Date.parse(time3)
-  alert(Date.parse(time2))
-  alert(Date.parse(time3))
+  var time3 = "2017-11-01 14:00:00 +0800"
+  var value1 = Date.parse(time2)
+  var value2 = Date.parse(time3)
+  alert(value2)
+  alert(value3)
+
+//  装入new Date()
+//  可以变成 时间对象
+  console.log(new Date(value1) && new Date(value2));
 
 </script>
 </html>
