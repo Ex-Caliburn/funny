@@ -11,7 +11,36 @@ try {
 }
 
 
-const publicKey = fs.readFileSync('../rsa/rsa_public_key.pem');
+ // var privatePem = fs.readFileSync('./rsa/server.pem');
+ // var publicPem = fs.readFileSync('./rsa/cert.pem');
+ var key = fs.readFileSync('./rsa/server.pem');
+ var pubkey = fs.readFileSync('./rsa/cert.pem');
+ // var key = privatePem.toString();
+ // var pubkey = publicPem.toString();
+
+ var data = "lijiye"
+  
+ var sign = crypto.createSign('RSA-SHA256');
+ sign.update(data);
+ var sig = sign.sign(key, 'hex');
+
+
+
+ function verify(data) {
+     var verify = crypto.createVerify('RSA-SHA256');
+     verify.update(data);
+     return verify.verify(pubkey, sig, 'hex');
+ }
+
+
+// const sign = crypto.createSign('SHA256');
+//
+// sign.update('some data to sign');
+//
+// const privateKey = getPrivateKeySomehow();
+// console.log(sign.sign(privateKey, 'hex'));
+
+
 
 
 /* GET home page. */
