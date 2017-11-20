@@ -94,6 +94,22 @@ Array.prototype.combine = function (iItems) {
 console.log([ '03', '07', '32', '33' ].combine(2));
 
 
+function getDate() {
+    var dayArr = ['星期天', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+    var dataObj = new Date(Date.now());
+    var year = dataObj.getFullYear();
+    var month = dataObj.getMonth()+1;
+    var day = dataObj.getDate();
+    var weekday = dayArr[dataObj.getDay()];
+
+    if (month < 10) {
+        month = '0' + month;
+    }
+    if (day < 10) {
+        day = '0' + day;
+    }
+    return year + "-" + month + "-" + day + " " + weekday;
+}
 
 /*
 *  深复制

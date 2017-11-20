@@ -88,3 +88,18 @@ console.log(url);
 // var word = url.toLocaleLowerCase().split(/[\s,.]+/)
 // console.log(word);
 // console.log(url);
+
+
+var start = new Date();
+setTimeout(function () {
+    var end = new Date();
+    console.log(end - start);
+},500)
+
+var b = 1
+for (var i = 1; i < 10000; i++) {
+    b *= i;
+    console.log(b);
+}
+
+

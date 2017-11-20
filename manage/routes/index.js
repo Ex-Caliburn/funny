@@ -11,12 +11,14 @@ try {
 }
 
 
- // var privatePem = fs.readFileSync('./rsa/server.pem');
- // var publicPem = fs.readFileSync('./rsa/cert.pem');
- var key = fs.readFileSync('./rsa/server.pem');
- var pubkey = fs.readFileSync('./rsa/cert.pem');
- // var key = privatePem.toString();
- // var pubkey = publicPem.toString();
+ var privatePem = fs.readFileSync('./rsa/server.pem');
+ var publicPem = fs.readFileSync('./rsa/cert.pem');
+ // var key = fs.readFileSync('./rsa/server.pem');
+ // var pubkey = fs.readFileSync('./rsa/cert.pem');
+ var key = privatePem.toString();
+ var pubkey = publicPem.toString();
+// console.log(key);
+// console.log(pubkey);
 
  var data = "lijiye"
   
@@ -25,6 +27,7 @@ try {
  var sig = sign.sign(key, 'hex');
 
 
+ console.log(verify(data));
 
  function verify(data) {
      var verify = crypto.createVerify('RSA-SHA256');
@@ -51,6 +54,9 @@ router.all('/', function(req, res, next) {
         'Access-Control-Allow-Origin': '*',
         'Accept-Language': 'zh-CN'
     })
+    console.log(    req.get('Content-Type'));
+
+    console.log(req.headers);
   next();
 });
 

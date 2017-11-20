@@ -5,6 +5,169 @@
   <title>Title</title>
 </head>
 <body>
+<div>
+  <div>
+
+    <div>1:1</div>
+
+    <ul id="wrap">
+      <li class="item">1</li>
+      <li class="item">2</li>
+      <li class="item">3</li>
+      <li class="item">4</li>
+    </ul>
+
+  </div>
+</div>
+
 
 </body>
+<script type="text/javascript" src="libs/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+//    const app = new Vue({
+//        el: '#app',
+//        data:{
+//            match: ["1:1",]
+//    },
+//        methods:{
+//
+//        }
+//    })
+
+
+//    var start = new Date();
+//    setTimeout(function () {
+//        var end = new Date();
+//        console.log(end - start);
+//    },500)
+//
+//    var b = 1
+//    for (var i = 1; i < 10000; i++) {
+//        for (var j = 0; j < 10000; j++) {
+//            b += i+j
+//        }
+//    }
+//
+//    var start = new Date();
+//    setTimeout(function () {
+//        var end = new Date();
+//        console.log(end - start);
+//    },500)
+//
+//    var b = 1
+//    for (var i = 1; i < 10000; i++) {
+//        for (var j = 0; j < 10000; j++) {
+//            b += i+j
+//        }
+//    }
+
+//     如何给wrap的每个子元素添加事件，并给按顺序给li元素插入值1,2,3,4，并点击，方法越多越好
+//  1.事件委派
+//  2.循环遍历加监听
+//  如何动态给给ul插入一个li值为5，并且绑定点击事件，打印自己的值
+
+
+//每道小题不相互影响
+//1 打印li元素的下标
+var wrap = document.getElementById("wrap");
+var list = document.getElementsByTagName("Li");
+//for (var i = 0; i < list.length; i++) {
+//    var a = list[i];
+//    a.index = i;//给每个className为child的元素添加index属性;
+//    a.onclick = function () {
+//        console.log(this.index);
+//    }
+//}
+//
+
+//for (var i = 0; i < list.length; i++) {
+//    var a = list[i];
+//    a.index = i;//给每个className为child的元素添加index属性;
+//    a.onclick = function () {
+//        console.log(this.index);
+//    }
+//}
+
+
+//for (var i = 0; i < list.length; i++) {
+//    (function (index) {
+//        list[index].onclick = function () {
+//            console.log(index);
+//        }
+//    })(i)
+//}
+
+
+//2 ul新插入一个li，值为5，点击会发生什么
+
+
+
+//3.如何让点击li打印元素的值，如点击<li class="item">4</li> 打印4
+//for (var i = 0; i < list.length; i++) {
+//    list[i].onclick = function () {
+//        console.log(this.innerText);
+//    }
+//}
+
+//4 ul新插入一个10个li，值为5,往上递增,如何新添加的li点击打印元素的值
+//for (var i = 5; i < 15; i++) {
+//    li = document.createElement("li");
+//    li.innerText = i;
+//    li.onclick = function () {
+//        console.log(this.innerText);
+//    }
+//    document.getElementById("wrap").appendChild(li)
+//}
+//
+//  document.getElementById('wrap').addEventListener('click',function (ev) {
+//      console.log(ev.target.innerText);
+//  })
+
+
+//fun();
+//var fun = function(){
+//    console.log(1)
+//}
+//function fun(){
+//    console.log(2)
+//}
+//fun();
+
+function Foo() {
+    getName = function () { console.log(1);}
+    return this;
+}
+Foo.getName = function(){ console.log(2);}
+Foo.prototype.getName = function(){ console.log(3);}
+var getName = function(){ console.log(4);}
+function getName() {console.log(5);}
+
+//Foo.getName();
+//getName();
+//Foo().getName();
+//getName();
+//new Foo.getName();
+//new Foo().getName();
+
+//console.log(Foo)
+var obj = new Foo().getName();
+console.log(new Foo())
+console.log( new Foo().getName() ==  undefined);
+
+//(new Foo()).getName();
+// function Fun() {
+//
+//}
+//var obj = new Fun();
+//console.log( obj instanceof Function);
+//console.log( obj instanceof Object);
+//console.log(new new Foo().getName());
+//console.log( new new Foo().getName() instanceof Function)
+//console.log( new new Foo().getName() instanceof Object)
+
+
+
+
+
+</script>
 </html>
