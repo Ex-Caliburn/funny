@@ -244,3 +244,18 @@ var util = (function(){
         isNumber :isNumber,
     }
 })();
+
+//判断NaN
+// Object.prototype.toString.call(NaN) == "number";
+function myIsNaN(value) {
+    if(typeof value == "number"){
+        if(isNaN(value)){
+            return true;
+        }
+    }
+}
+
+// 伪数组转换伪真数组
+function arrayTransform(arr) {
+    return [].slice.call(arr)
+}

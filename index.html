@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Title</title>
+  <title>面试题</title>
 </head>
 <body>
 <div>
@@ -119,9 +119,10 @@ var list = document.getElementsByTagName("Li");
 //    document.getElementById("wrap").appendChild(li)
 //}
 //
-//  document.getElementById('wrap').addEventListener('click',function (ev) {
-//      console.log(ev.target.innerText);
-//  })
+  document.getElementById('wrap').addEventListener('click',function (ev) {
+      console.log(this);
+      console.log(ev.target.innerText);
+  })
 
 
 //fun();
@@ -142,17 +143,17 @@ Foo.prototype.getName = function(){ console.log(3);}
 var getName = function(){ console.log(4);}
 function getName() {console.log(5);}
 
-//Foo.getName();
-//getName();
-//Foo().getName();
-//getName();
-//new Foo.getName();
-//new Foo().getName();
+Foo.getName();
+getName();
+Foo().getName();
+getName();
+new Foo.getName();
+new Foo().getName();
 
 //console.log(Foo)
-var obj = new Foo().getName();
-console.log(new Foo())
-console.log( new Foo().getName() ==  undefined);
+//var obj = new Foo().getName();
+//console.log(new Foo())
+//console.log( new Foo().getName() ==  undefined);
 
 //(new Foo()).getName();
 // function Fun() {
@@ -162,10 +163,41 @@ console.log( new Foo().getName() ==  undefined);
 //console.log( obj instanceof Function);
 //console.log( obj instanceof Object);
 //console.log(new new Foo().getName());
+
+
 //console.log( new new Foo().getName() instanceof Function)
 //console.log( new new Foo().getName() instanceof Object)
 
 
+var obj = {a:{b:{c:''}}};
+console.log(find(obj,'a.b.c'))   // 1
+console.log(find(obj,'a.d.a.c')) // undefined
+//console.log( obj.a.b.c.e === "undefined");
+
+//null,undefined,NaN
+function find(obj,str){
+    arr = str.split(".");
+    var length = arr.length;
+    var temp = null;
+    for(var i = 0;i<length;i++){
+        temp = obj[arr[i]];
+        if( temp === undefined ){
+            return undefined;
+        }else{
+            obj = temp
+        }
+    }
+    return obj;
+}
+
+//2.如何优雅的输出“今天星期几”？
+//这个题详细对于Date对象稍加了解的人都能答上，但是想要将代码写的真正简明扼要却很考验开发者的功力。
+//
+//如果你要是回答利用Date对象实例的getDay()方法，然后再通过if或switch等流程控制语句来拼接字符串的话，那确实有点low了。
+//
+//优雅的方式是：
+
+'今天星期'+'日一二三四五六'.charAt(new Date().getDay())
 
 
 

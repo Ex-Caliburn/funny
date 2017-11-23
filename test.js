@@ -1,24 +1,57 @@
-console.log((function (arr, num) {
-    //新建一个数组,将传入的数组复制过来,用于运算,而不要直接操作传入的数组;
-    var temp_array = new Array();
-    arr.forEach(function (item) {
-        temp_array.push(item);
-    });
-    //取出的数值项,保存在此数组
-    var return_array = new Array();
-    for (var i = 0; i < num; i++) {
-        //判断如果数组还有可以取出的元素,以防下标越界
-        if (temp_array.length > 0) {
-            //在数组中产生一个随机索引
-            var arrIndex = Math.floor(Math.random() * temp_array.length);
-            //将此随机索引的对应的数组元素值复制出来
-            return_array[i] = temp_array[arrIndex];
-            //然后删掉此索引的数组元素,这时候temp_array变为新的数组
-            temp_array.splice(arrIndex, 1);
-        } else {
-            //数组中数据项取完后,退出循环,比如数组本来只有10项,但要求取出20项.
-            break;
+// function deepCopy(p, c) {
+//     var c = c || {};
+//     for (var i in p) {
+//         if (typeof p[i] === 'object') {
+//             c[i] = (p[i].constructor === Array) ? [] : {};
+//             deepCopy(p[i], c[i]);
+//         } else {
+//             c[i] = p[i];
+//         }
+//     }
+//     return c;
+// }
+
+function clone(obj) {
+    //判断是对象，就进行循环复制
+    if (typeof obj === 'object' && typeof obj !== 'null') {
+        // 区分是数组还是对象，创建空的数组或对象
+        var o = Object.prototype.toString.call(obj).slice(8, -1) === "Array" ? [] : {};
+        for (var k in obj) {
+            console.log(k);
+            // 如果属性对应的值为对象，则递归复制
+            if(typeof obj[k] === 'object' && typeof obj[k] !== 'null'){
+                o[k] = clone(obj[k])
+            }else{
+                console.log(k);
+                o[k] = obj[k];
+            }
         }
+    }else{ //不为对象，直接把值返回
+        return obj;
     }
-    return return_array;
-})([1,2,3],4))
+    return o;
+}
+
+// var arrayLike = {
+//     '0': 'a',
+//     '1': 'b',
+//     '2': 'c',
+//     length: 3
+// };
+// // ES5的写法 
+// var arr = [1,2,3,4]
+// console.log(typeof arrayLike );
+// var arr1 = [].slice.call(arrayLike); // ['a', 'b', 'c']
+// console.log(arr1 );
+// console.log(arr.slice(0,0));
+
+var a = {
+    "c": null,
+    2: {1: 1},
+    3: [
+        {
+            2: 2
+        }
+    ]
+}
+console.log(clone(a));
