@@ -167,7 +167,7 @@ Cookies.prototype = {
     },
     get:function(name){
         var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
-        if(arr=document.cookie.match(reg)){
+        if(document.cookie.match(reg)){
             return (arr[2]);
         }
         else{
