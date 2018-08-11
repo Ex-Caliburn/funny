@@ -260,3 +260,23 @@ function myIsNaN(value) {
 function arrayTransform(arr) {
     return [].slice.call(arr)
 }
+
+// 限制中英文混合用户名长度
+function nameFilter (val) {
+  // 获取字符串长度（汉字算两个字符，字母数字算一个）
+  let len = 0
+  let numLen = 0
+  const limit = 10
+  for (let i = 0; i < val.length; i++) {
+    let a = val.charAt(i)
+    if (a.match(/[^\x00-\xff]/ig) !== null) {
+      len += 1
+    } else {
+      numLen += 1
+    }
+    if ((len * 2 + numLen) > limit) {
+      return val.slice(0, (len + numLen))
+    }
+  }
+  return val
+}
