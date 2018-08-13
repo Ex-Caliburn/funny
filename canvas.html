@@ -6,8 +6,8 @@
 </head>
 <body>
 <img style="display: none" id="scream" crossOrigin="anonymous" src="https://jdk3t-qiye.oss-cn-shanghai.aliyuncs.com/wx/face/2018/06/13/46b52a9f-b7a8-4657-93f3-e3a7d460debe.jpg?n" alt="">
-<canvas id="myCanvas" width="200" height="100"
-        style="border:1px solid #000000;">
+<canvas id="myCanvas"
+        style="border:1px solid #000000; width: 300px; height: 200px">
 </canvas>
 
 <button id="btn">生成图片</button>
@@ -74,7 +74,29 @@
 		img.src = "https://jdk3t-qiye.oss-cn-shanghai.aliyuncs.com/backend_pic/dst/poster/2018/08/09/AGck4stYxw3z5NWSYZ353PWHir5snKkQ.jpg"
 
         img.onload = function  () {
-          ctx.drawImage(img,10,10);
+            var w = img.width
+            var h = img.height
+            var dw = 300/w          //canvas与图片的宽高比
+            var dh = 200/h
+            var ratio
+            // 裁剪图片中间部分
+            if(w > 300 && h > 200 || w < 300 && h < 200){
+                if (dw > dh) {
+                    ctx.drawImage(img, 0, (h - 200/dw)/2, w, 200/dw, 0, 0, 300, 200)
+                } else {
+                    ctx.drawImage(img, (w - 300/dh)/2, 0, 300/dh, h, 0, 0, 300, 200)
+                }
+            }
+            // 拉伸图片
+            else{
+                if(w < 300){
+                    ctx.drawImage(img, 0, (h - 200/dw)/2, w, 200/dw, 0, 0, 300, 200)
+                }else {
+                    ctx.drawImage(img, (w - 300/dh)/2, 0, 300/dh, h, 0, 0, 300, 200)
+                }
+            }
+          // ctx.drawImage(img,0,0, 300, 500, 0, 0, 400, 200);
+          // ctx.scale(2)
         }
         console.log(img)
 
