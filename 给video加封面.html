@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<video
+        v-else-if="item.type === 'video'"  preload="metadata" controls
+        :poster="getMediaPath(item.content[0].video_url, 'poster')"
+        :ref="'video-' + item.content[0].video_name.split('.')[0]" crossOrigin="anonymous"
+        controlsList="nodownload">
+    <source :src="item.content[0].video_url" type="video/mp4">
+    您的浏览器不支持视频播放，请更换最新的谷歌浏览器、火狐浏览器。
+</video>
+</body>
+<script type="text/javascript">
+	this.contentArray.forEach((item) => {
+		if (item.type === 'video') {
+		let scale = 0.8 // 第一帧图片与源视频的比例
+		let video = this.$refs['video-' + item.content[0].video_name.split('.')[0]][0] // 赋值标签
+		console.log('video', this.$refs, video)
+		let captureImage = function () {
+			console.log('loadeddata')
+			let canvas = document.createElement('canvas') // canvas画布
+			canvas.width = video.videoWidth * scale
+			canvas.height = video.videoHeight * scale
+			canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height) // 画图
+			video.setAttribute('poster', canvas.toDataURL('image/png', 1)) // 关键一步 —— 设置标签的 poster 属性的值为 base64 编译过后的canvas绘图。
+		}
+		video.addEventListener('loadeddata', captureImage)
+	}
+	})
+</script>
+</html>
