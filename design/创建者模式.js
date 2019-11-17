@@ -64,6 +64,7 @@ var Person = function (name, work) {
 }
 
 var person = new Person('li jiye','code')
+console.log(person);
 console.log(person.work);
 console.log(person.name);
 console.log(person.work.workDescript);

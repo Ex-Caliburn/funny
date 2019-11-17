@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <!--<link rel="stylesheet" href="css/reset.css">-->
+  <link rel="stylesheet" href="">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.2,user-scalable=no">
+  <style type="text/css">
+
+  </style>
+</head>
+<body>
+
+<script src="https://cdn.bootcss.com/three.js/r83/three.js"></script>
+<script>
+  var width = window.innerWidth;
+var height= window.innerHeight;
+var container = document.createElement( 'div' );
+document.body.appendChild( container );
+var webglcanvas = document.createElement('canvas');
+container.appendChild(webglcanvas);
+var gl = webglcanvas.getContext("experimental-webgl");
+
+function updateFrame () {
+  gl.viewport ( 0, 0, width, height );
+        gl.clearColor(0.4, 0.4, 0.7, 1);
+        gl.clear ( gl.COLOR_BUFFER_BIT );
+         setTimeout(
+    function(){updateFrame()},
+            20);
+     }
+
+setTimeout(
+  function(){
+    updateFrame();
+  },
+20);
+
+  var json={
+    objects: [{
+      name: '地板',
+      type: 'cube',
+      width: 1600,
+      height: 10,
+      depth: 1300,
+
+      style: {
+        'm.color': '#BEC9BE',
+        'm.ambient': '#BEC9BE',
+      }
+    },{
+  }],
+  }
+
+
+
+
+
+
+</script>
+
+</body>
+</html>

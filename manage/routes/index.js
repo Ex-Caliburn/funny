@@ -48,7 +48,8 @@ try {
 
 /* GET home page. */
 router.all('/', function(req, res, next) {
-    res.status(200)
+  // res.status(200);
+  console.log(111111);
     res.set({
         'Content-Type': 'text/html; charset=utf8',
         'Access-Control-Allow-Origin': '*',
