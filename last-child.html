@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    .a > .list:last-child{
+        background-color: red;
+    }
+
+    /*.a p:not(:last-child){*/
+        /*background-color: red;*/
+    /*}*/
+    #c{
+        background-color: red;
+    }
+
+</style>
+<body>
+
+<div class="a">
+    <p class="list">
+        1
+        <!--<p class="list">1</p>-->
+        <!--<p class="list">2</p>-->
+    </p>
+    <p class="list " id="c" style="background-color: red;color: gold">
+        <p class="list">1</p>
+        <!--<p class="list">2</p>-->
+    </p>
+</div>
+
+</body>
+<script type="text/javascript">
+    let node = document.getElementById('c')
+		console.log(node.getAttribute('style').split(';').map(function (value) {
+			let arr = value.split(':')
+			return arr[0].trim()
+		}))
+</script>
+
+</html>

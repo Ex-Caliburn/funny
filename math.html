@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.css" integrity="sha256-T4bfkilI7rlQXG1R8kqn+FGhe56FhZmqmp9x75Lw4s8=" crossorigin="anonymous">
+<body>
+    <div id="html1"></div>
+    <div id="html2"></div>
+
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.js" integrity="sha256-9uW7yW4EwdUyWU2PHu+Ccek7+xbQpDTDS5OBP0qDrTM=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+
+	let init = function  () {
+
+			var html1 = katex.renderToString("c = \\pm\\sqrt{a^2 + b^2}");
+
+			var html2 =	katex.render("c = \\pm\\sqrt{a^2 + b^2}", document.getElementById('html2'));
+
+			document.getElementById('html1').innerHTML = html1
+			// document.getElementById('html2').innerHTML = html2
+	}
+	window.onload = init
+</script>
+</html>
