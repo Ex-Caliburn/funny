@@ -280,3 +280,216 @@ function nameFilter (val) {
   }
   return val
 }
+
+/* 获取跨域图片base64 */
+function imgToBase64(url,callback ,ext = 'png') {
+  let canvas = document.createElement("canvas");   //创建canvas DOM元素
+  let ctx = canvas.getContext('2d')
+  let img = new Image;
+  img.crossOrigin = 'Anonymous'; // 支持跨域
+  img.src = url;
+  img.onload = () => {
+    canvas.height = img.height; //指定画板的高度,自定义
+    canvas.width = img.width; //指定画板的宽度，自定义
+    ctx.drawImage(img, 0,0); //参数可自定义
+    let dataURL = canvas.toDataURL("image/" + ext);    // 传递的自定义的参数
+    callback.call(this, dataURL); //回掉函数获取Base64编码
+    canvas = null;
+  };
+}
+
+/* 将obj2对象中与obj1共同的东西拷贝覆盖到obj1 */
+export function objectAssignment(obj1, obj2) {
+  Object.keys(obj1).forEach(item => {
+    obj1[item] = obj2[item]
+  })
+}
+
+// 字母转汉字 num从零开始
+export function EnToChinese(num) {
+  return String.fromCharCode(65 + num)
+}
+
+/**
+ * 计算两个日期之间间隔的天数
+ * 错误返回0
+ * 包含开始日期和结束日期的情况需要+1修正
+ */
+export function daysBetweenTwoDates(start, end) {
+  if (start && end) {
+    const startTime = new Date(start).getTime()
+    const endTime = new Date(end).getTime()
+
+    if (endTime >= startTime) {
+      return Math.floor((endTime - startTime) / (24 * 3600 * 1000))
+    } else if (startTime > endTime) {
+      return Math.floor((startTime - endTime) / (24 * 3600 * 1000))
+    }
+    return 0
+  }
+  return 0
+}
+
+
+/*  base64转blob */
+export function base64ToBlob(code) {
+  let parts = code.split(';base64,')
+  let contentType = parts[0].split(':')[1]
+  let raw = window.atob(parts[1])
+  let rawLength = raw.length
+  let uInt8Array = new Uint8Array(rawLength)
+  for (let i = 0; i < rawLength; ++i) {
+    uInt8Array[i] = raw.charCodeAt(i)
+  }
+  return new Blob([uInt8Array], { type: contentType })
+}
+
+
+/* 将图片下载到本地 */
+export function downloadImg(content, fileName) {
+  let aLink = document.createElement('a')
+  let blob = base64ToBlob(content) // new Blob([content]);
+  let evt = document.createEvent('HTMLEvents')
+  evt.initEvent('click', true, true) // initEvent 不加后两个参数在FF下会报错  事件类型，是否冒泡，是否阻止浏览器的默认行为
+  aLink.download = fileName
+  aLink.href = URL.createObjectURL(blob)
+  aLink.click()
+}
+
+/* 用于每天读取弹窗 */
+export function readDailyPopupConfig(key) {
+  if (!key) {
+    console.error('key值非法')
+    return
+  }
+  let popupTime = localStorage.getItem(key)
+  if (!popupTime || Date.now() - popupTime > ONE_DAY) {
+    localStorage.setItem(key, Date.now())
+    return true
+  }
+  return false
+}
+
+
+
+/* 判断移动终端浏览器版本信息 */
+export function judeBrowseType() {
+  const u = navigator.userAgent
+  let result = {
+    ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), // ios终端
+    trident: u.indexOf('Trident') > -1, // IE内核
+    edge: u.indexOf('Edge') > -1, // Edge内核
+    mac: u.match(/Mac OS X/) && u.indexOf('Chrome') === -1 && u.indexOf('Firefox') === -1, // 苹果mac safari
+    webKit: u.indexOf('Chrome') > -1 && u.indexOf('Edge') === -1, // webKit谷歌内核
+    gecko: u.indexOf('Firefox') > -1, // 火狐内核
+    mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+    android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+    iPad: u.indexOf('iPad') > -1, //是否iPad
+    wx: /MicroMessenger/i.test(u), // 微信内核 和 PC微信内核
+    WindowsWX: /WindowsWechat/i.test(u), // 单独PC微信内核
+    mobileWx: /MicroMessenger/i.test(u) && !/WindowsWechat/i.test(u) // 单独PC微信内核
+  }
+  if (
+    !(
+      result.mobile ||
+      result.WindowsWX ||
+      result.wx ||
+      result.android ||
+      result.ios ||
+      result.iPad
+    )
+  ) {
+    result.pc = true
+  }
+  return result
+}
+
+/* 判断页面切出屏幕，或者切换tab，以及息屏 */
+export function getHiddenProp() {
+  var prefixes = ['webkit', 'moz', 'ms', 'o']
+  // 如果hidden 属性是原生支持的，我们就直接返回
+  if ('hidden' in document) {
+    return 'hidden'
+  }
+
+  // 其他的情况就循环现有的浏览器前缀，拼接我们所需要的属性
+  for (var i = 0; i < prefixes.length; i++) {
+    // 如果当前的拼接的前缀在 document对象中存在 返回即可
+    if (prefixes[i] + 'Hidden' in document) {
+      return prefixes[i] + 'Hidden'
+    }
+  }
+
+  // 其他的情况 直接返回null
+  return null
+}
+
+/*
+    倒计时 思路不一定是最好的，暂时
+
+ * countDownObj {
+ time: 0,
+ timer: null,
+ leftTime: 0,
+ noHour: 0, 没有小时
+ format: ''
+ }
+ haveSecond 是否有秒
+ * */
+export function countDown(countDownObj, haveSecond = true) {
+  if (!countDownObj.time) {
+    return
+  }
+  let leftTime = Math.round(
+    (+new Date(countDownObj.time.replace(/-/g, '/')) - +new Date()) / 1000
+  )
+  countDownObj.timer = setInterval(() => {
+    if (leftTime <= 0) {
+      clearInterval(countDownObj.timer)
+      countDownObj.leftTime = 0
+      return
+    }
+    leftTime--
+    let day = Math.floor(leftTime / (60 * 60 * 24))
+    let hours = Math.floor((leftTime - day * (60 * 60 * 24)) / (60 * 60))
+    let minute = Math.floor((leftTime - day * (60 * 60 * 24) - hours * 60 * 60) / 60)
+    let second = Math.floor(
+      leftTime - day * (60 * 60 * 24) - hours * 60 * 60 - minute * 60
+    )
+    let temp = ''
+    // console.log(day, hours, minute, second)
+    if (day > 0) {
+      temp += `<span class="jdk-color-link">${day}</span>天`
+    }
+    if (hours < 9) {
+      hours = '0' + hours
+    }
+    if (minute < 9) {
+      minute = '0' + minute
+    }
+    if (second < 9) {
+      second = '0' + second
+    }
+    if (!countDownObj.noHour) {
+      temp += `<span class="jdk-color-link">${hours}</span>时`
+    }
+    temp += `<span class="jdk-color-link">${minute}</span>分`
+    if (haveSecond && !day) {
+      temp += `<span class="jdk-color-link">${second}</span>秒`
+    }
+    // console.log(temp)
+    countDownObj.format = temp
+    countDownObj.leftTime = leftTime
+  }, 1000)
+}
+
+/* 下载跨域图片 */
+export function downloadCrossOriginImg(url, fileName = '下载图片', ext = '') {
+  imgToBase64(
+    url,
+    file => {
+      downloadImg(file, fileName)
+    },
+    ext
+  )
+}
