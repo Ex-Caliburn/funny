@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style>
+		.outer, .middle, .inner1, .inner2 {
+			display: block;
+			width: 520px;
+			padding: 15px;
+			margin: 15px;
+			text-decoration: none;
+		}
+
+		.outer {
+			border: 1px solid red;
+			color: red;
+		}
+
+		.middle {
+			border: 1px solid green;
+			color: green;
+			width: 460px;
+		}
+
+		.inner1, .inner2 {
+			border: 1px solid purple;
+			color: purple;
+			width: 400px;
+		}
+	</style>
+</head>
+<body>
+<div class="wrap">
+	e.stopPropagation()
+	<div class="outer">
+		outer, once & none-once
+		<div class="middle" target="_blank">
+			middle, capture & none-capture
+			<a class="inner1" href="https://www.mozilla.org" target="_blank">
+				inner1, passive & preventDefault(which is not allowed)
+			</a>
+			<a class="inner2" href="https://developer.mozilla.org/" target="_blank">
+				inner2, none-passive & preventDefault(not open new page)
+			</a>
+		</div>
+	</div>
+</div>
+
+<script>
+  let wrap = document.getElementsByClassName('wrap') [0]
+  let outer = document.getElementsByClassName('outer') [0]
+  let middle = document.getElementsByClassName('middle')[0]
+  let inner1 = document.getElementsByClassName('inner1')[0]
+  let inner2 = document.getElementsByClassName('inner2')[0]
+
+  let capture = {
+    capture: true
+  }
+  let noneCapture = {
+    capture: false
+  }
+  let once = {
+    once: true
+  }
+  let noneOnce = {
+    once: false
+  }
+  let passive = {
+    passive: true
+  }
+  let nonePassive = {
+    passive: false
+  }
+
+  // Boolean，在DOM树中，注册了listener的元素， 是否要先于它下面的EventTarget，
+	// 调用该listener。 当useCapture(设为true) 时，沿着DOM树向上冒泡的事件，不会触发listener
+	// 。当一个元素嵌套了另一个元素，并且两个元素都对同一事件注册了一个处理函数时，
+	// 所发生的事件冒泡和事件捕获是两种不同的事件传播方式。事件传播模式决定了元素以哪个顺序接收事件
+	// 。进一步的解释可以查看 事件流 及 JavaScript Event order 文档。 如果没有指定， useCapture 默认为 false 。
+
+  // 我的解释：当useCapture 为false，在捕获阶段就会跳过 不会触发listener 作用和 第三个参数中  capture: false相同
+
+  wrap.addEventListener('click', wrapHandler, {capture: false})
+  outer.addEventListener('click', onceHandler, once)
+  outer.addEventListener('click', noneOnceHandler, noneOnce)
+  middle.addEventListener('click', captureHandler, capture)
+  middle.addEventListener('click', noneCaptureHandler, noneCapture)
+  inner1.addEventListener('click', passiveHandler, passive)
+  inner2.addEventListener('click', nonePassiveHandler, nonePassive)
+
+  function wrapHandler(event) {
+    /*  使用捕获，不在向内捕获 */
+    event.stopPropagation() // 阻止捕获和冒泡阶段中当前事件的进一步传播。无法阻止 a标签的跳转
+    // 在事件流的任何阶段调用preventDefault()都会取消事件，这意味着任何通常被该实现触发并作为结果的默认行为都不会发生。
+    // 你可以使用 Event.cancelable 来检查该事件是否支持取消。为一个不支持cancelable的事件调用preventDefault()将没有效果
+    event.preventDefault() // 阻止默认行为
+    alert('wrap, once')
+  }
+  function onceHandler(event) {
+    alert('outer, once')
+  }
+
+  function noneOnceHandler(event) {
+    alert('outer, none-once, default')
+  }
+
+  function captureHandler(event) {
+    //event.stopImmediatePropagation();
+    alert('middle, capture')
+  }
+
+  function noneCaptureHandler(event) {
+    alert('middle, none-capture, default')
+  }
+
+  function passiveHandler(event) {
+    // Unable to preventDefault inside passive event listener invocation.
+    //在调用passive事件监听器内部不能使用preventDefault
+    event.preventDefault()
+    alert('inner1, passive, open new page')
+  }
+
+  function nonePassiveHandler(event) {
+    event.preventDefault()
+    //event.stopPropagation();
+    alert('inner2, none-passive, default, not open new page')
+  }
+
+</script>
+</body>
+</html>

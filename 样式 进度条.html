@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style>
+		.box{
+			border: 1px solid black;
+			position: relative;
+			background-color: #fff;
+			width: 700px;
+			height: 50px;
+			border-radius: 25px;
+			overflow: hidden;
+		}
+		.item{
+			width: 14.3%;
+			/*max-width: 14.3%;*/
+			height: 100%;
+			background-color: black;
+			border-right: 5px solid #fff ;
+			box-sizing: border-box;
+			transform: skewx(-45deg);
+		}
+		.item:last-child{
+			border-right: none;
+		}
+		.flexh{
+			display: flex;
+		}
+
+		.first::before{
+			width: 50%;
+			height: 100%;
+			content: ' ' ;
+			position: absolute;
+			top: 0;
+			left: 0;
+			 background-color: black;
+			transform: skewx(45deg);
+		}
+		.last::before{
+			width: 50%;
+			height: 100%;
+			content: ' ' ;
+			position: absolute;
+			top: 0;
+			right: 0;
+			background-color: black;
+			transform: skewx(45deg);
+		}
+
+	</style>
+</head>
+<body>
+<div class="flexh box">
+	<div class="item first"></div>
+	<div class="item"></div>
+	<div class="item"></div>
+	<div class="item"></div>
+	<div class="item"></div>
+	<div class="item"></div>
+</div>
+</body>
+</html>
