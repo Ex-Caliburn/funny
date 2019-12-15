@@ -41,5 +41,31 @@ var maxProfit2 = function(prices) {
   return profit
 };
 
-console.log(maxProfit([7,1,5,3,0,6]))
-console.log(maxProfit2([10,2,9,1,2,1,3,1]))
+//console.log(maxProfit([7,1,5,3,0,6]))
+//console.log(maxProfit2([10,2,9,1,2,1,3,1]))
+
+// 当前数 min 最大收益
+// [7,1,5,3,6,4]
+// 7 7 0
+// 1 1 0
+// 5 1 4
+// 3 1 4
+// 6 1 5
+// 4 1 5
+
+/* 温习*/
+var maxProfit3 = function(prices) {
+  let maxPrice = 0
+  let min = prices[0]
+  for (var i = 1; i < prices.length; i++) {
+    if(prices[i] > min){
+      maxPrice = Math.max(prices[i]-min, maxPrice)
+    } else {
+      min = prices[i]
+    }
+  }
+  return maxPrice
+};
+
+console.log(maxProfit3([7,1,5,3,0,6]))
+console.log(maxProfit3([10,2,9,1,2,1,3,1]))
