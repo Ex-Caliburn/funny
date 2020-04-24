@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=s, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+
+      <big-topic>
+        Hiking Boots
+      </big-topic>
+      <!-- <smart-table :items='vehicles'> -->
+      <!-- <smart-list :items='vehicles' :is-ordered="false"></smart-list> -->
+
+      <slot-demo>
+        <template v-slot:header>
+          <h1>h1h1h1h1h1h1h1</h1>
+        </template>
+      
+        <p>A paragraph for the main content.</p>
+        <p>And another one.</p>
+      
+        <template v-slot:footer>
+          <p>Here's some contact info</p>
+        </template>
+
+        <!-- <template v-slot:default="user">
+          {{ user }}
+        </template> -->
+
+        <template v-slot:default="{ user: person }">
+          {{ person }}
+        </template>
+        
+        
+      </slot-demo>
+
+      <input type="checkbox">
+
+      <todo-list v-bind:todos="todos">
+        <template v-slot:todo="{ todo }">
+          <span v-if="todo.isComplete">✓</span>
+          {{ todo.text }}
+          <input type="checkbox" :checked="todo.isComplete">
+        </template>
+      </todo-list>
+
+    </div>
+    <script src="https://cdn.bootcss.com/vue/2.6.11/vue.js"></script>
+    <script>
+      Vue.component("big-topic", {
+        functional: true,
+        render(h, context) {
+          //   return h("h1", "Topic: " + context.$slots.default);
+          console.log(context.slots());
+          return h("h1", context.slots().default);
+        },
+      });
+
+      const EmptyTable = {
+        template: `<h1>Nothing Here</h1>`,
+      };
+      const NormalTable = {
+        // Normally this would be more complex
+        template: `<h1>Normal Table</h1>`,
+      };
+
+      Vue.component("smart-table", {
+        functional: true,
+        props: { items: { type: Array } },
+        render(h, context) {
+          if (context.props.items.length > 0) {
+            // Delegate
+            return h(NormalTable, context.data, context.children);
+          } else {
+            return h(EmptyTable, context.data, context.children);
+          }
+        },
+      });
+
+      // Here are the four components we're delegating to
+
+      var EmptyList = {
+        template: `<h1>EmptyList</h1>`,
+      };
+      var TableList = {
+        template: `<h1>TableList</h1>`,
+      };
+      var OrderedList = {
+        template: `<h1>OrderedList</h1>`,
+      };
+      var UnorderedList = {
+        template: `<h1>UnorderedList</h1>`,
+      };
+
+      Vue.component("smart-list", {
+        functional: true,
+        props: {
+          items: {
+            type: Array,
+            required: true,
+          },
+          isOrdered: Boolean,
+        },
+        render: function (createElement, context) {
+          // This function returns which component to use to render
+          function appropriateListComponent() {
+            var items = context.props.items;
+
+            if (items.length === 0) return EmptyList;
+            if (typeof items[0] === "object") return TableList;
+            if (context.props.isOrdered) return OrderedList;
+
+            return UnorderedList;
+          }
+
+          // Now call the appropriate component.
+          // Remember that h is short-hand for createElement
+          return createElement(
+            appropriateListComponent(),
+            context.data,
+            context.children
+          );
+        },
+      });
+
+
+      Vue.component("slot-demo", {
+        data() {
+          return {
+            user: 11
+          }
+        },
+       template: `
+            <div>
+              <header>
+        <slot name="header"></slot>
+      </header>
+      <main>
+        <slot></slot>
+      </main>
+      <footer>
+        <slot name="footer"></slot>
+      </footer>
+      <slot v-bind:user="user">
+          {{ user }}
+        </slot>
+    
+              </div>
+            `,
+      });
+
+      Vue.component("todo-list", {
+        props: ['todos'],
+        data() {
+          return {
+            filteredTodos: [{id: 1, text: 2},{id: 2, text: 3,isComplete: true}]
+          }
+        },
+       template: `<ul>
+  <li
+    v-for="todo in todos"
+    v-bind:key="todo.id"
+  >
+    <slot name="todo" v-bind:todo="todo">
+      <!-- 后备内容 -->
+      {{ todo.text }}
+    </slot>
+  </li>
+</ul>`,
+      });
+
+      new Vue({
+        el: "#app",
+        // template: '<div>111</div>',
+        data: {
+          vehicles: ["Fiat", "Toyota", "BMW"],
+          todos:[{id: 1, text: 2},{id: 2, text: 3,isComplete: true}]
+        },
+      });
+    </script>
+  </body>
+</html>

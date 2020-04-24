@@ -1,53 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-  <link rel="stylesheet" href="css/reset.css">
-  <link rel="stylesheet" href="">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.2,user-scalable=no">
-  <style type="text/css">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.2,user-scalable=no"
+    />
+    <style type="text/css">
+      .box {
+        height: 100px;
+        width: 100px;
+        margin: 0 auto;
+        background-color: #f0f0f0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box"></div>
 
-    .box {
-      height: 100px;
-      width: 100px;
-      margin: 0 auto;
-      background-color: #f0f0f0;
-    }
-
-  </style>
-</head>
-<body>
-<div class="box"></div>
-
-<script type="text/javascript">
-  <!--  -->
-  /*
+    <script type="text/javascript">
+      /*
     作用域是静态观念的，而执行上下文环境是动态上的，两者并不一样。作用域中变量的值是在执行过程中确定的，而作用域是在函数创建时就确定的
     作用域： 全局作用域,函数作用域,块级作用域（es6引入，如if，switch语句）
     上下文：主要是关键字this的值，这个是由函数运行时决定的，简单来说就是谁调用此函数，this就指向谁
     上下文栈，先进后出，全局有上下文，函数也是上下文，执行完，出栈，闭包除外
 
-  * 执行js 时，先生成上下文，然后解析表达式，有var 变量提升，写入栈中，如果是函数，
+  * 执行js 时，先生成上下文，然后解析表达式，var 变量写入写入栈中， 没有var的变量会变量提升(hoisting)，如果是函数，也会提升
   * 执行生成新的上下文，也是函数作用域，你可以访问外部变量，外部不能访问你。函数中的变量所存放的空间是堆，
   * 因为函数是引入类型，如果将函数赋值给变量， 当函数被使用后，获取失去引用时，函数的变量就会被内存回收并销毁。而闭包，不会销毁，
   * 生成单独的上下文，不会被销毁，如果不是某些特定任务需要使用闭包，在其它函数中创建函数是不明智的，因为闭包在处理速度和内存消耗方面对脚本性能具有负面影响。
   * 上下文引出作用域，访问变量时，先访问当前当前作用域，找不到，层层往上，直到window
   *
   * */
-var a = 3
-  function test(){
-    var b = 3
-    function add () {
-      b++
-      return b
-    }
-    return add
-  }
-  let b = test()
-  console.log(b())
-</script>
+      var a = 3;
+      function test() {
+        var b = 3;
+        function add() {
+          b++;
+          return b;
+        }
+        return add;
+      }
+      let b = test();
+      console.log(b());
 
-</body>
+      // 变量提升
+      
+    </script>
+  </body>
 </html>

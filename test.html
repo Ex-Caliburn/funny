@@ -1,0 +1,39 @@
+<!--
+ * @Author: Alex lijiyebest@gmail.com
+ * @Date: 2020-04-09 00:14:08
+ * @LastEditTime: 2020-04-09 00:27:44
+ * @LastEditors: Alex lijiyebest@gmail.com
+ * @Description: 当前文件做什么的
+ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input id="test" @onkeyup />
+
+    <script>
+      let obj = {
+          input: ''
+      };
+      Object.defineProperty(obj, "inpVal", {
+        get: function () {
+          console.log("get!");
+          return obj.input;
+        },
+        set: function (value) {
+            obj.input = value;
+            console.log(value)
+        },
+      });
+      test = document.getElementById('test');
+      test.addEventListener('keydown', (e) => {
+        console.log(e.target, e.target.value)
+        obj.inpVal =  e.target.value
+      })
+    </script>
+  </body>
+</html>

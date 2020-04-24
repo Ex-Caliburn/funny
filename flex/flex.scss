@@ -1,0 +1,158 @@
+.flex {
+  display: flex;
+  // 默认横向 ,所以主轴为横向,  justify-content调整主轴的对齐方式，align-items是交叉轴的对齐方式
+  &__h {
+    @extend .flex;
+    &--start {
+      @extend .flex;
+      justify-content: flex-start;
+    }
+    &--center {
+      @extend .flex;
+      justify-content: center;
+    }
+    &--end {
+      @extend .flex;
+      justify-content: flex-end;
+    }
+    &--around {
+      @extend .flex;
+      justify-content: space-around;
+    }
+    &--between {
+      @extend .flex;
+      justify-content: space-between;
+    }
+  }
+  // 交叉抽 默认stretch
+  &__v {
+    @extend .flex;
+    &--start {
+      @extend .flex;
+      align-items: flex-start;
+    }
+    &--center {
+      @extend .flex;
+      align-items: center;
+    }
+    &--end {
+      @extend .flex;
+      align-items: flex-end;
+    }
+    &--stretch {
+      @extend .flex;
+      align-items: stretch;
+    }
+    &--base {
+      @extend .flex;
+      align-items: baseline;
+    }
+    &--around {
+      @extend .flex;
+      align-items: space-around;
+    }
+    &--between {
+      @extend .flex;
+      align-items: space-between;
+    }
+  }
+  // 多轴交叉轴 默认stretch 配合 flex-wrap: wrap;使用，不然效果和 align-items一致
+  &__multi {
+    @extend .flex;
+    &--start {
+      @extend .flex;
+      align-content: flex-start;
+    }
+    &--center {
+      @extend .flex;
+      align-content: center;
+    }
+    &--end {
+      @extend .flex;
+      align-content: flex-end;
+    }
+    &--stretch {
+      @extend .flex;
+      align-content: stretch;
+    }
+    &--around {
+      @extend .flex;
+      align-content: space-around;
+    }
+    &--between {
+      @extend .flex;
+      align-content: space-between;
+    }
+  }
+  &__item {
+    // 子项目上，设置与其他不同的对齐方式默认 auto，表示继承父元素的align-items属性，如果没有父元素，则等同于stretch
+    &--align {
+      &--start {
+        @extend .flex;
+        align-self: flex-start;
+      }
+      &--center {
+        @extend .flex;
+        align-self: center;
+      }
+      &--end {
+        @extend .flex;
+        align-self: flex-end;
+      }
+      &--stretch {
+        @extend .flex;
+        align-self: stretch;
+      }
+      &--base {
+        @extend .flex;
+        align-self: baseline;
+      }
+      &--around {
+        @extend .flex;
+        align-self: space-around;
+      }
+      &--between {
+        @extend .flex;
+        align-self: space-between;
+      }
+    }
+    //flex-grow属性定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大。
+    // flex-shrink属性定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小。
+    // flex-basis属性定义了在分配多余空间之前，项目占据的主轴空间（main size）。浏览器根据这个属性，计算主轴是否有多余空间。它的默认值为auto，即项目的本来大小。
+    // flex属性是flex-grow, flex-shrink 和 flex-basis的简写，默认值为0 1 auto。后两个属性可选。
+    // flex: none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ]
+    //  放大也缩小(1 1 auto)
+    &--grow {
+      flex-grow: 1;
+    }
+    &--shirk {
+      flex-shrink: 0;
+    }
+    &--auto {
+      flex: auto;
+    }
+    //  不放大也不缩小(0 0 auto)
+    &--none {
+      flex: none;
+    }
+    // 设置flex-basis或者设置flex ，元素设置的width 就失效了，只能被内容撑开，相当于inline-block
+  }
+  // 竖直排列
+  &--column {
+    @extend .flex;
+    flex-direction: column;
+  }
+  &--center {
+    @extend .flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &--warp {
+    @extend .flex;
+    flex-wrap: wrap;
+  }
+  &--nowarp {
+    @extend .flex;
+    flex-wrap: no-wrap;
+  }
+}
