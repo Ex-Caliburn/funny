@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+    <style>
+      .outer,
+      .middle,
+      .inner1,
+      .inner2 {
+        display: block;
+        width: 520px;
+        padding: 15px;
+        margin: 15px;
+        text-decoration: none;
+      }
+
+      .outer {
+        border: 1px solid red;
+        color: red;
+      }
+
+      .middle {
+        border: 1px solid green;
+        color: green;
+        width: 460px;
+      }
+
+      .inner1,
+      .inner2 {
+        border: 1px solid purple;
+        color: purple;
+        width: 400px;
+      }
+      /* .wrap{
+          width: 500px;
+          height: 600px;
+        overflow: scroll;
+      }
+      .outer2{
+          height: 1000px;
+          background-color: red;
+      } */
+    </style>
+  </head>
+
+  <body>
+    <div class="wrap">
+      e.stopPropagation()
+      <div class="outer">
+        outer, once & none-once
+        <div class="middle" target="_blank">
+          middle, capture & none-capture
+          <a class="inner1" href="https://www.mozilla.org" target="_blank">
+            inner1, passive & preventDefault(which is not allowed)
+          </a>
+          <a
+            class="inner2"
+            href="https://developer.mozilla.org/"
+            target="_blank"
+          >
+            inner2, none-passive & preventDefault(not open new page)
+          </a>
+        </div>
+      </div>
+      <div class="outer2"></div>
+    </div>
+    <script>
+      // 1. 普通情况
+      // 2. 定位
+      // 点击时间 a 标签附带的跳转事件
+      let wrap = document.getElementsByClassName("wrap")[0];
+      let outer = document.getElementsByClassName("outer")[0];
+      let middle = document.getElementsByClassName("middle")[0];
+      let inner1 = document.getElementsByClassName("inner1")[0];
+      let inner2 = document.getElementsByClassName("inner2")[0];
+
+      wrap.addEventListener("click", (e) => {
+        console.log("wrap click");
+      });
+      wrap.addEventListener("touchmove", (e) => {
+        console.log("wrap touchmove");
+        // e.preventDefault()
+        // e.returnValue = 0
+      });
+      outer.addEventListener("click", (e) => {
+        console.log("outer click");
+      },    {
+          capture: true,
+        });
+    //   middle.addEventListener(
+    //     "click",
+    //     e => {
+    //       console.log("middle click1");
+    //       e.preventDefault()
+    //     },
+    //     {
+    //     //   capture: true,
+    //     //   passive: true
+    //     }
+    //   );
+      middle.addEventListener(
+        "click",
+        e => {
+          console.log("middle click2");
+          e.stopPropagation()
+        e.preventDefault()
+        },
+             {
+          capture: true,
+        }
+      );
+    //   middle.addEventListener(
+    //     "click",
+    //     e => {
+    //       console.log("middle click3");
+    //     }
+    //   );
+      inner1.addEventListener(
+        "click",
+        e => {
+          console.log("inner1 click");
+        //   a.b = 1
+        //   e.stopPropagation();
+        },
+        {
+        //   capture: true,
+        //   passive: true
+        }
+      );
+      inner2.addEventListener("click", (e) => {
+        console.log("inner2 click");
+      });
+
+      
+
+    </script>
+  </body>
+</html>
