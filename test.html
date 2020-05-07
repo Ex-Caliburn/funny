@@ -1,7 +1,7 @@
 <!--
  * @Author: Alex lijiyebest@gmail.com
  * @Date: 2020-04-09 00:14:08
- * @LastEditTime: 2020-04-09 00:27:44
+ * @LastEditTime: 2020-04-26 00:17:31
  * @LastEditors: Alex lijiyebest@gmail.com
  * @Description: 当前文件做什么的
  -->
@@ -14,6 +14,9 @@
   </head>
   <body>
     <input id="test" @onkeyup />
+
+    <button id="time">开始</button>
+    <button id="print"">console</button>
 
     <script>
       let obj = {
@@ -34,6 +37,20 @@
         console.log(e.target, e.target.value)
         obj.inpVal =  e.target.value
       })
+      time = document.getElementById('time');
+      print = document.getElementById('print');
+      time.addEventListener("click", () => {
+        var b = 1;
+        for (let i=0; i < 100000; i++) {
+          for (let j=0; j < 10000; j++) {
+            b = b * Math.random() *100;
+          }
+        }
+      })
+      print.addEventListener("click", () => {
+        console.log(11111)
+      })
+
     </script>
   </body>
 </html>
