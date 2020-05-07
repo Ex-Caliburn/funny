@@ -1,9 +1,30 @@
-/*
- * @Author: Alex lijiyebest@gmail.com
- * @Date: 2020-04-19 15:13:45
- * @LastEditTime: 2020-04-19 15:13:46
- * @LastEditors: Alex lijiyebest@gmail.com
- * @Description: 当前文件做什么的
- */
-let a = new Set([1, 4, 9]);
-a.forEach((value, key) => console.log(key + ' : ' + value))
+setTimeout(() => {
+    console.log(1)
+    setTimeout(() => {
+        console.log(5)
+    },0)
+    new Promise((resolve) => {
+        console.log(6)
+        resolve()
+    }).then(() => {
+        console.log(7)
+    })
+    new Promise((resolve) => {
+        console.log(8)
+        resolve()
+    }).then(() => {
+        console.log(9)
+    })
+},0)
+setTimeout(() => {
+    console.log(2)
+},0)
+new Promise((resolve) => {
+    console.log(3)
+    resolve()
+}).then(() => {
+    console.log(4)
+})
+// Promise.resolve().then(() => {
+//     console.log(4)
+// })

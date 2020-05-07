@@ -8,14 +8,14 @@
 <input id="number1" type="text">
 <input id="number2" type="text">
 <script>
-	/* worker.js 需要是互联网中的，本地文件不行 */
+	/* web_work.js 需要是互联网中的，本地文件不行 */
   const first = document.querySelector('#number1');
   const second = document.querySelector('#number2');
 
   const result = document.querySelector('.result');
 
   if (window.Worker) {
-    const myWorker = new Worker("worker.js");
+    const myWorker = new Worker("web_work.js");
 
     first.onchange = function() {
       myWorker.postMessage([first.value, second.value]);
