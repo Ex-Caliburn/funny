@@ -1,0 +1,12 @@
+.box1{
+    height: 100px;
+    width: 100px;
+    background-color: aqua;
+    display: flex;
+    backface-visibility: hidden;
+}
+.box4{
+    height: 100px;
+    width: 100px;
+    background: url('../img/2.png');
+}
