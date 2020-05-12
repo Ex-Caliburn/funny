@@ -5,7 +5,7 @@
 // Current Index (idx) (当前索引)
 // Source Array (src) (源数组)
 
-// 您的 reducer 函数的返回值分配给累计器，该返回值在数组的每个迭代中被记住，并最后成为最终的单个结果值。
+// 您的 reducer 函数的返回值分配给累计器，该返回值在数组的每个迭代中被记住，并最后成为最终的单个结果值
 
 a = [0, 1, 2, 3, 4].reduce(function(accumulator, currentValue, currentIndex, array){
   console.log(accumulator, currentValue, currentIndex, array)
