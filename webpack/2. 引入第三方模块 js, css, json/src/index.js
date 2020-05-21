@@ -14,6 +14,7 @@
 
 import data from './1.json'
 
-import './index.less'
+// import './index.less'
+import './1.js'
 
 console.log(data)
