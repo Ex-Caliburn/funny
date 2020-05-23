@@ -3,7 +3,7 @@
  */
 
 // 按照字符串内的数字排序
-var arr = ['test1','this2','a3'];
+var arr = ["test1", "this2", "a3"];
 console.log(arr[1].match(/\d+/));
 
 var temp = [];
@@ -14,14 +14,17 @@ var temp = [];
 //     }
 //   }
 // }
-console.log(temp.join( ' '));
+console.log(temp.join(" "));
 
-var arr1 = [7,6,5,123,3,9];
-var arr2 = [7,6,5,123,3,9];
-var arr3 = [7,6,5,123,3,9];
-var arr4 = [7,6,5,123,3,9];
+var arr1 = [7, 6, 5, 123, 3, 9];
+var arr2 = [7, 6, 5, 123, 3, 9];
+var arr3 = [7, 6, 5, 123, 3, 9];
+var arr4 = [7, 6, 5, 123, 3, 9];
 
 //冒泡
+// es6值互换
+[arr5[j],  arr5[j + 1]] = [arr5[j + 1], arr5[j]]
+
 // 先选出最轻的气泡排在第一个，然后再剩余再冒第二小的
 
 // for (var i = 0; i < arr1.length-1; i++) {
@@ -62,27 +65,41 @@ var arr4 = [7,6,5,123,3,9];
 console.log(arr3);
 
 // map 方法简单重写
-if(!Array.prototype.forr){
+if (!Array.prototype.forr) {
   Array.prototype.forr = function (param) {
-    if(typeof param === "function"){
+    if (typeof param === "function") {
       var temp = [];
       for (var i = 0; i < this.length; i++) {
-        if(param.apply(this,[this[i],i,this])){
+        if (param.apply(this, [this[i], i, this])) {
           temp.push(this[i]);
         }
       }
       return temp;
     }
-  }
+  };
 }
 
 var b = arr4.forr(function (item) {
-    return item > 5
+  return item > 5;
 });
 
 console.log(b);
 
-
-
-
-
+// 从小到大
+var arr5 = [7, 6, 5, 123, 3, 9];
+for (let i = 0; i < arr5.length - 1; i++) {
+  for (let j = 0; j < arr5.length - 1 - i; j++) {
+    if (arr5[j] > arr5[j + 1]) {
+      [arr5[j],  arr5[j + 1]] = [arr5[j + 1], arr5[j]]
+    }
+  }
+}
+// 冒泡
+var arr5 = [7, 6, 5, 123, 3, 9];
+for (let i = 0; i < arr5.length - 1; i++) {
+  for (let j = arr5.length - 1; j > i; j--) {
+    if (arr5[j] < arr5[j - 1]) {
+      [arr5[j],  arr5[j - 1]] = [arr5[j - 1], arr5[j]]
+    }
+  }
+}

@@ -2,13 +2,13 @@
 require 读取一次，之后读取就会读取缓存
 */
 
-const a = require('./exports.js')
-const {g, h} = require('./exports.js')
+const a = require('./ 模块化_exports.js')
+const {g, h} = require('./ 模块化_exports.js')
 console.log(a, g, h)
-require('./exports.js').b = 3
+require('./ 模块化_exports.js').b = 3
 console.log(a)
 
 setTimeout(() => {
-    const a = require('./exports.js')
+    const a = require('./ 模块化_exports.js')
     console.log(a, g, h)
 }, 500);

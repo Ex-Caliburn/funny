@@ -8,10 +8,10 @@
  * 形式: key=value
  *
  */
-function stroge() {
+function Storage() {
 }
 
-stroge.prototype = {
+Storage.prototype = {
   setLocal: function set(key, value) {
     //必须转换为json放在localStorage存储里，不然不方便读取
     if (typeof value === 'object') {
@@ -50,4 +50,4 @@ stroge.prototype = {
     sessionStorage.removeItem(key);
   }
 }
-console.log(stroge.prototype);
+console.log(Storage.prototype);

@@ -1,5 +1,5 @@
 //配置JSconfig
-function hander_js_config(data) {
+function handler_js_config(data) {
     var title = '彩球狂送8888万壕礼，100%中奖，就等你！';
     var desc = '彩球春节刮刮乐活动火热来袭，8888万奖品已备齐，就等你来领！';
     var imgUrl = 'https://ojhwh2s98.qnssl.com/guaguale-shareIcon.png';
