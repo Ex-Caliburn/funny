@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <div id="app">
+    <my-component></my-component>
+    <!-- <li :key="index" v-for="(item, index) in [1, 3]">
+      {{item}}
+    </li> -->
+    <p>{{msg}} <span>11</span></p>
+    <!-- {{a.b }} -->
+  </div>
+  <!-- <script type="text/javascript" src="./lib/vue.js"></script> -->
+  <script type="text/javascript" src="./lib/vue.runtime.js"></script>
+  <script type="text/javascript">
+    var Child = {
+      template: '<div>A custom component!</div>'
+    }
+
+    //  el 模式
+    // var index = new Vue({
+    //   el:'#app',
+    //   data:{
+    //     a: {b:2},
+    //     msg:'hello',
+    //   },
+    //   mounted() {
+    //     setTimeout(() => {
+    //       console.log('111')
+    //       this.a.b = 3
+    //       this.msg = 111
+    //     }, 1000);
+    //   },
+    //   computed: {
+    //     aaa() {
+    //       return this.msg
+    //     }
+    //   }
+    // })
+
+    //  template挂载 ，覆盖 #app
+    // var index = new Vue({
+    //   el:'#app', //
+    // template: '<div>{{ msg }}</div>',
+    //   components: {
+    //     'my-component': Child
+    //   },
+    //   data: {
+    //     msg: 'hello'
+    //   },
+    //   mounted() {
+    //     setTimeout(() => {
+    //       console.log('111')
+    //       this.msg = 111
+    //     }, 1000)
+    //   }
+    // })
+
+    //  vue.runtime.js"
+    // template挂载 ，覆盖 #app 
+    var index = new Vue({
+      components: {
+        'my-component': Child
+      },
+      data: {
+        msg: 'hello'
+      },
+      render(h) {
+        console.log(h)
+        return h('div', [this.msg])
+      },
+      mounted() {
+        setTimeout(() => {
+          console.log('111')
+          this.msg = 111
+        }, 1000)
+      }
+    }).$mount('#app')
+  </script>
+</html>

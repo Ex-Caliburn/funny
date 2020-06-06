@@ -1,10 +1,12 @@
 # defineProperty和proxy 双向数据绑定
 
-### proxy 的优势
+## proxy 的优势
+
 不再需要先创建属性才能数据双向绑定
 这也是为什么vue data:{}开始值不存在，之后添加，就无法同步更新数据
 
-###  defineProperty
+### defineProperty
+
 通过数据修饰符set，get 达到双向数据绑定目的
 个人理解； defineProperty 加通知和订阅实现 vue的双向数据绑定，
 defineProperty 对数组不好用，push操作和直接通过下标修改数组等只可以只会触发get方法，而不是set方法
@@ -45,7 +47,7 @@ record() {
   storage.push(target)
 }
 function reply() {
-  storage.forEach(item => item()) 
+  storage.forEach(item => item())
 }
 
 target()
@@ -199,6 +201,7 @@ get() 和 set() 可以触发 dep.depend() and dep.notify()，新添加的属性�
 
 ###  Proxy 改写数据绑定
 ```
+
 (1)
 let data = { num: 1, price: 2 }
 let target = null
@@ -249,7 +252,6 @@ data = new Proxy(data_without_proxy,{
   }
 })
 
-
 function watcher(func) {
   target = func
   target()
@@ -284,16 +286,19 @@ console.log(total)
 下面是一个get方法的第三个参数的例子，它总是指向原始的读操作所在的那个对象，一般情况下就是 Proxy 实例。
 
 ```
+
 const proxy = new Proxy({}, {
   get: function(target, key, receiver) {
     return receiver;
   }
 });
 proxy.c === proxy // true
+
 ```
 上面代码中，proxy对象的getReceiver属性是由proxy对象提供的，所以receiver指向proxy对象。
 
 ```
+
 const proxy = new Proxy({}, {
   get: function(target, key, receiver) {
     return receiver;
@@ -302,6 +307,7 @@ const proxy = new Proxy({}, {
 
 const d = Object.create(proxy);
 d.a === d // true
+
 ```
 上面代码中，d对象本身没有a属性，所以读取d.a的时候，会去d的原型proxy对象找。这时，receiver就指向d，代表原始的读操作所在的那个对象。
 
