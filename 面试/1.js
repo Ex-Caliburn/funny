@@ -2,6 +2,8 @@
  * Created by Alex on 2017/11/30.
  */
 
+ import print from './3.js'
+
 // function add(a,b) {
 //   if(typeof a == 'number' && !isNaN(a) ){
 //     if(typeof b == 'number' && !isNaN(b) ){

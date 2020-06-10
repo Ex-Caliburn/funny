@@ -1,0 +1,60 @@
+<!--
+ * @Author: Alex lijiyebest@gmail.com
+ * @Date: 2020-04-09 00:14:08
+ * @LastEditTime: 2020-05-22 11:38:11
+ * @LastEditors: Alex(lijiyebest@gmail.com)
+ * @Description: 当前文件做什么的
+ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input id="test" @onkeyup />
+
+    <button id="time">开始</button>
+    <button id="print"">console</button>
+
+    <script>
+      import('https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.js')
+      .then(res => {
+        console.log(res)
+      })
+      let obj = {
+          input: ''
+      };
+      Object.defineProperty(obj, "inpVal", {
+        get: function () {
+          console.log("get!");
+          return obj.input;
+        },
+        set: function (value) {
+            obj.input = value;
+            console.log(value)
+        },
+      });
+      test = document.getElementById('test');
+      test.addEventListener('keydown', (e) => {
+        console.log(e.target, e.target.value)
+        obj.inpVal =  e.target.value
+      })
+      time = document.getElementById('time');
+      print = document.getElementById('print');
+      time.addEventListener("click", () => {
+        var b = 1;
+        for (let i=0; i < 100000; i++) {
+          for (let j=0; j < 10000; j++) {
+            b = b * Math.random() *100;
+          }
+        }
+      })
+      print.addEventListener("click", () => {
+        console.log(11111)
+      })
+
+    </script>
+  </body>
+</html>

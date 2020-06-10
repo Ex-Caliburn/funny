@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "start": "webpack --config webpack.config.js"
+  },
+  "devDependencies": {
+    "html-webpack-plugin": "^4.3.0",
+    "postcss-preset-env": "^6.7.0"
+  }
+}

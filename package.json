@@ -1,0 +1,25 @@
+{
+  "name": "funny",
+  "version": "1.0.0",
+  "description": "作者：戴嘉华 https://github.com/livoras/blog/issues/7 1111 目录",
+  "main": " 模块化_exports.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ex-Caliburn/funny.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ex-Caliburn/funny/issues"
+  },
+  "homepage": "https://github.com/Ex-Caliburn/funny#readme",
+  "devDependencies": {
+    "express": "^4.17.1"
+  }
+}

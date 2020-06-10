@@ -1,6 +1,7 @@
-## Set Map WeakSet, WeakMap
+# Set Map WeakSet, WeakMap
 
 ### Set Map
+
 new Set([iterable]);
 
 Set。它类似于数组，但是成员的值都是唯一的，没有重复的值。
@@ -32,6 +33,7 @@ keys方法、values方法、entries方法返回的都是遍历器对象,由于 S
 ```
 
 ### map
+
 JavaScript 的对象（Object），本质上是键值对的集合（Hash 结构），但是传统上只能用字符串当作键。这给它的使用带来了很大的限制。
 
 ```
@@ -41,6 +43,7 @@ const element = document.getElementById('myDiv');
 data[element] = 'metadata';
 data['[object HTMLDivElement]'] // "metadata"
 ```
+
 上面代码原意是将一个 DOM 节点作为对象data的键，但是由于对象只接受字符串作为键名，所以element被自动转为字符串[object HTMLDivElement]。
 
 为了解决这个问题，ES6 提供了 Map 数据结构。它类似于对象，也是键值对的集合，但是“键”的范围不限于字符串，各种类型的值（包括对象）都可以当作键。也就是说，Object 结构提供了“字符串—值”的对应，Map 结构提供了“值—值”的对应，是一种更完善的 Hash 结构实现。如果你需要“键值对”的数据结构，Map 比 Object 更合适。
@@ -56,6 +59,7 @@ m.has(o) // true
 m.delete(o) // true
 m.has(o) // false
 ```
+
 上面代码使用 Map 结构的set方法，将对象o当作m的一个键，然后又使用get方法读取这个键，接着使用delete方法删除了这个键。
 
 ```
@@ -70,6 +74,7 @@ map.get('name') // "张三"
 map.has('title') // true
 map.get('title') // "Author"
 ```
+
 上面代码在新建 Map 实例时，就指定了两个键name和title。
 
 Map构造函数接受数组作为参数，实际上执行的是下面的算法。
@@ -86,8 +91,8 @@ map.get('name') // "张三"
 map.has('title') // true
 map.get('title') // "Author"
 ```
-事实上，不仅仅是数组，任何具有 Iterator 接口、且每个成员都是一个双元素的数组的数据结构（详见《Iterator》一章）都可以当作Map构造函数的参数。这就是说，Set和Map都可以用来生成新的 Map。
 
+事实上，不仅仅是数组，任何具有 Iterator 接口、且每个成员都是一个双元素的数组的数据结构（详见《Iterator》一章）都可以当作Map构造函数的参数。这就是说，Set和Map都可以用来生成新的 Map。
 
 ```
 const map = new Map();
@@ -116,6 +121,7 @@ map.get(k2) // 222
 首先，WeakMap只接受对象作为键名（null除外），不接受其他类型的值作为键名。
 
 有时我们想在某个对象上面存放一些数据，但是这会形成对于这个对象的引用。请看下面的例子。
+
 ```
 const e1 = document.getElementById('foo');
 const e2 = document.getElementById('bar');
@@ -124,6 +130,7 @@ const arr = [
   [e2, 'bar 元素'],
 ];
 ```
+
 上面代码中，e1和e2是两个对象，我们通过arr数组对这两个对象添加一些文字说明。这就形成了arr对e1和e2的引用。
 
 一旦不再需要这两个对象，我们就必须手动删除这个引用，否则垃圾回收机制就不会释放e1和e2占用的内存。
@@ -149,6 +156,7 @@ const element = document.getElementById('example');
 wm.set(element, 'some information');
 wm.get(element) // "some information"
 ```
+
 上面代码中，先新建一个 Weakmap 实例。然后，将一个 DOM 节点作为键名存入该实例，并将一些附加信息作为键值，一起存放在 WeakMap 里面。这时，WeakMap 里面对element的引用就是弱引用，不会被计入垃圾回收机制。
 
 也就是说，上面的 DOM 节点对象的引用计数是1，而不是2。这时，一旦消除对该节点的引用，它占用的内存就会被垃圾回收机制释放。Weakmap 保存的这个键值对，也会自动消失。
@@ -170,11 +178,13 @@ delete window.key
 wm.get(key)
 // Object {foo: 1}
 ```
+
 上面代码中，键值obj是正常引用。所以，即使在 WeakMap 外部消除了obj的引用，WeakMap 内部的引用依然存在。
 
 ### WeakMap 的用途
 
 前文说过，WeakMap 应用的典型场合就是 DOM 节点作为键名。下面是一个例子。
+
 ```
 let myWeakmap = new WeakMap();
 
@@ -188,9 +198,11 @@ document.getElementById('logo').addEventListener('click', function() {
   logoData.timesClicked++;
 }, false);
 ```
+
 上面代码中，document.getElementById('logo')是一个 DOM 节点，每当发生click事件，就更新一下状态。我们将这个状态作为键值放在 WeakMap 里，对应的键名就是这个节点对象。一旦这个 DOM 节点删除，该状态就会自动消失，不存在内存泄漏风险。
 
 WeakMap 的另一个用处是部署私有属性。
+
 ```
 const _counter = new WeakMap();
 const _action = new WeakMap();
@@ -217,20 +229,25 @@ c.dec()
 c.dec()
 // DONE
 ```
+
 上面代码中，Countdown类的两个内部属性_counter和_action，是实例的弱引用，所以如果删除实例，它们也就随之消失，不会造成内存泄漏。
 
 #### WeakMap  垃圾回收演示
+
 WeakMap 的例子很难演示，因为无法观察它里面的引用会自动消失。此时，其他引用都解除了，已经没有引用指向 WeakMap 的键名了，导致无法证实那个键名是不是存在。
 
 贺师俊老师提示，如果引用所指向的值占用特别多的内存，就可以通过 Node 的process.memoryUsage方法看出来。根据这个思路，网友vtxf补充了下面的例子。
 
 首先，打开 Node 命令行。
+
 ```
-$ node --expose-gc
+node --expose-gc
 ```
+
 上面代码中，--expose-gc参数表示允许手动执行垃圾回收机制。
 
 然后，执行下面的代码。
+
 ```
 // 手动执行一次垃圾回收，保证获取的内存使用状态准确
 > global.gc();
@@ -284,7 +301,9 @@ undefined
   heapUsed: 3979792,
   external: 8956 }
 ```
+
 上面代码中，只要外部的引用消失，WeakMap 内部的引用，就会自动被垃圾回收清除。由此可见，有了 WeakMap 的帮助，解决内存泄漏就会简单很多。
 
 ### 参考文献
-1. https://es6.ruanyifeng.com/?search=defineProperty&x=0&y=0#docs/set-map#WeakMap
+
+1. <https://es6.ruanyifeng.com/?search=defineProperty&x=0&y=0#docs/set-map#WeakMap>

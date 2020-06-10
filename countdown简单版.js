@@ -1,4 +1,4 @@
-function countdown(times, returnfn) {
+function countdown(times, cb) {
   var days = Math.floor(times / 86400);
   var hourtime = times - days * 86400;
   var hours = Math.floor(hourtime / 3600);
@@ -6,7 +6,7 @@ function countdown(times, returnfn) {
   var minutes = Math.floor(mintime / 60);
   var second = mintime - minutes * 60;
   if (times < 0) {
-    returnfn();
+    cb();
     return;
   } else {
     if (days < 10) {
