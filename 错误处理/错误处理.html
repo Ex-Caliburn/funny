@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body onerror="alert(1)">
+    <img src="sdfdf" alt="">
+    <div id="button">111</div>
+
+    <script>
+      window.onerror = function () {
+        console.log(...arguments)
+      }
+      window.addEventListener('error', function() {
+        console.log(...arguments)
+      })
+
+      //   当Promise 被 reject 且没有 reject 处理器的时候，会触发 unhandledrejection 事件
+      window.addEventListener('unhandledrejection', function (event) {
+        console.log(event)
+      })
+
+      // onerror 1 unhandledrejection 0
+      //  console.log(a.b)
+
+      //  try {
+      //   console.log(a.b)
+      //  } catch (error) {
+      //    console.log(error)
+      //  }
+
+      // onerror 1 unhandledrejection 0 try catch 不能捕获异步错误
+        // try {
+        //   setTimeout(() => {
+        //     console.log(a.b)
+        //   }, 100)
+        // } catch (err) {
+        //   console.log(err)
+        // }
+
+      // onerror 1 unhandledrejection 0 try catch 不能捕获异步错误
+      //   let work = new Promise((resolve, reject) => {
+      //     setTimeout(() => {
+      //       console.log(a.b)
+      //       resolve(111)
+      //     }, 11)
+      //   })
+        // let work = new Promise((resolve, reject) => {
+        //   console.log(a.b)
+        //   setTimeout(() => {
+        //   //   console.log(a.b)
+        //     resolve(111)
+        //   }, 11)
+        // })
+
+        // work
+        //   .then((res) => {
+        //     console.log(res)
+        //   })
+        //   .catch((err) => {
+        //     console.log(err)
+        //   })
+
+      // then 中 报错 unhandledrejection 1  onerror 0
+      // 我以为是冒泡还是啥，去掉 unhandledrejection onerror还是没触发
+    //   let work = new Promise((resolve, reject) => {
+    //       setTimeout(() => {
+    //         resolve(111)
+    //       }, 11)
+    //     })
+      //   work.then((res) => {
+      //     console.log(a.b)
+      //     console.log(res)
+      //   })
+
+      //   try {
+      //     work.then((res) => {
+      //     console.log(a.b)
+      //     console.log(res)
+      //   })
+      //   } catch(err){
+      //       console.log(err)
+      //   }
+
+    //  unhandledrejection 1  onerror 0 这个work 函数 和 async 函数 里的报错都会被unhandledrejection捕获到
+    // reject(111) PromiseRejectionEvent unhandledrejection 1  onerror 0
+      let work = function () {
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            resolve(111)
+            // reject(111)
+          }, 11)
+        })
+      }
+      async function ajax() {
+        console.log(a.b)
+        let res = await work()
+        console.log(res)
+      }
+      ajax()
+
+    // 资源报错
+
+    </script>
+
+        <!-- <script src="./lib/vue.1js"  crossorigin="anonymous"></script> -->
+
+  </body>
+</html>

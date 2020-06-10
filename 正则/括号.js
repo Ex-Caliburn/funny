@@ -1,5 +1,6 @@
-// 括号匹配的字符串，不是正则
-var re = /(\w+)\s(\w+)/;
+// 括号匹配的字符串， 从1开始，$1-$n, 没有括号，$1 不存在的
+
+var re = /(\w+)\s(\w+)/; 
 var str = "John Smith";
 var newstr = str.replace(re, "$2, $1");
 console.log(newstr);

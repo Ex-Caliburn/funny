@@ -5,6 +5,8 @@
 // Current Index (idx) (当前索引)
 // Source Array (src) (源数组)
 
+// initialValue  Accumulator的初始值
+
 // 您的 reducer 函数的返回值分配给累计器，该返回值在数组的每个迭代中被记住，并最后成为最终的单个结果值
 
 a = [0, 1, 2, 3, 4].reduce(function(accumulator, currentValue, currentIndex, array){
@@ -12,7 +14,6 @@ a = [0, 1, 2, 3, 4].reduce(function(accumulator, currentValue, currentIndex, arr
   return accumulator + currentValue;
 });
 
-// b = [                      ].reduce( () => {} )
 
 console.log(a)
 // console.log(b)
@@ -23,7 +24,7 @@ var sum = [{x: 1}, {x:2}, {x:3}].reduce(
   ,initialValue
 );
 
-console.log(sum) // logs 6
+console.log(sum) // logs 10
 
 var flattened = [[0, 1], [2, 3], [4, 5]].reduce(
   function(a, b) {
