@@ -3,10 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <title>Title</title>
+  <style>
+    [v-cloak] {
+  display: none;
+}
+  </style>
 </head>
 <body id="app">
 <!--　v-text不会闪,想对于{{}}语法-->
 <p v-text="msg"></p>
+
+<div v-cloak>{{msg}}</div>
 
 <div v-if="flag1">word1</div>
 <div v-else="flag2">word2</div>
