@@ -2,7 +2,9 @@
 
 ## 前言
 
-Hyper Text Transfer Protocol over Secure Socket Layer
+HTTPS: Hyper Text Transfer Protocol over Secure Socket Layer
+TLS: Transport Layer Security
+SSL: Secure Socket Layer
 
 ### 对称密钥
 
