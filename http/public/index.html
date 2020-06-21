@@ -6,7 +6,7 @@
     <title>option</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
-  <body></body>
+  <body>111</body>
   <script>
     var url = 'http://127.0.0.1:5000'
     // var url = 'http://127.0.0.1:3000/1.png'
@@ -28,7 +28,8 @@
           }
         }
       };
-    xhr.open('delete', url)
+    xhr.open('get', url)
+    // xhr.open('delete', url)
     xhr.withCredentials = true
     xhr.setRequestHeader('X-Custom-Header', 'value');
     xhr.send()

@@ -103,6 +103,36 @@ cherry-pick <commit> -m 1 可以摘取合并请求
  3. 每个分支有自己独立的持续集成环境，在分支内进行持续集成，同时每日将不同分支merge回develop分支进行集成。听起来很完美，不同分支间的代码也可以持续集成了。可发生了冲突、CI挂掉谁来修呢，也就是说我们还是得关心其他developer和其他团队的开发情况。不是说好了用feature branch就可以不管他们自己玩吗，那我们要feature branch还有什么用呢？
 所以你会发现，在坚持持续集成实践的情况下，feature branch是一件非常矛盾的事情。持续集成在鼓励更加频繁的代码集成和交互，让冲突越早解决越好。feature branch的代码隔离策略却在尽可能推迟代码的集成。延迟集成所带来的恶果在软件开发的历史上已经出现过很多次了，每个团队自己写自己的代码是挺high，到最后不同团队进行联调集成的时候就傻眼了，经常出现写两个月代码，花一个月时间集成的情况，质量还无法保证
 
+### git rebase
+
+目的：
+如果使用merge 大家提交记录全部出现在master分支，很不清晰
+如果在提交到dev，master分支之前，将自己的提交记录整理合并，更简洁清晰，这就是 存在的意义
+
+pick：正常选中
+reword：选中，并且修改提交信息；
+edit：选中，rebase时会暂停，允许你修改这个commit（参考这里）
+squash：选中，会将当前commit与上一个commit合并
+fixup：与squash相同，但不会保存当前commit的提交信息
+exec：执行其他shell命令
+
+一般使用 squash或者fixup
+
+$ git rebase -i origin/master
+然后修改 需要合并的注释 `pick`改为`s` 或者 `squash`,提交信息将合并到上一个 `commit`
+
+```git
+pick 07c5abd Introduce OpenPGP and teach basic usage
+pick de9b1eb Fix PostChecker::Post#urls
+pick 3e7ee36 Hey kids, stop all the highlighting
+pick fa20af3 git interactive rebase, squash, amend
+
+pick 07c5abd Introduce OpenPGP and teach basic usage
+s de9b1eb Fix PostChecker::Post#urls
+s 3e7ee36 Hey kids, stop all the highlighting
+pick fa20af3 git interactive rebase, squash, amend
+```
+
 ## 总结
 
 Gitflow也不是Github所推荐的工作流
@@ -115,3 +145,4 @@ gitflow作者推荐：
 1. <https://nvie.com/posts/a-successful-git-branching-model/>
 2. <https://insights.thoughtworks.cn/gitflow-consider-harmful/>
 3. <https://guides.github.com/introduction/flow/>
+4. <http://www.ruanyifeng.com/blog/2015/08/git-use-process.html>

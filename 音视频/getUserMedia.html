@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" />
+    <button></button>
+    <script>
+      var range = document.querySelector('input')
+      var btn = document.querySelector('button')
+
+      btn.addEventListener('click',() => {
+        window.AudioContext = window.AudioContext || window.webkitAudioContext
+      var audioCtx = new AudioContext()
+      navigator.getUserMedia(
+        {
+          audio: true
+        },
+        function (stream) {
+          // 创建音频流
+          var source = audioCtx.createMediaStreamSource(stream)
+          // 双二阶滤波器
+          var biquadFilter = audioCtx.createBiquadFilter()
+          biquadFilter.type = 'lowshelf'
+          biquadFilter.frequency.value = 1000
+          biquadFilter.gain.value = range.value
+
+          source.connect(biquadFilter)
+          biquadFilter.connect(audioCtx.destination)
+        },
+        function (error) {
+          console.log(error)
+        }
+      )
+      })
+
+     
+    </script>
+  </body>
+</html>

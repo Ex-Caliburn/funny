@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/Ex-Caliburn/funny#readme",
   "devDependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "multiparty": "^4.2.1"
   }
 }

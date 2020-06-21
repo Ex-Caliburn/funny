@@ -196,7 +196,7 @@ index.html
 
 控制台报错
 Access to XMLHttpRequest at 'http://127.0.0.1:5000/' from origin 'http://127.0.0.1:3000' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: The value of the 'Access-Control-Allow-Origin' header in the response must not be the wildcard '*' when the request's credentials mode is 'include'. The credentials mode of requests initiated by the XMLHttpRequest is controlled by the withCredentials attribute.
-没有预检请求没有通过访问控制检查，当请求credentials 是 include ， Access-Control-Allow-Origin不能设置为 通配符*
+预检请求没有通过访问控制检查，当请求credentials 是 include ， Access-Control-Allow-Origin不能设置为 通配符*
 
 app.js
 
