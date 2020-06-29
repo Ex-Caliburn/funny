@@ -26,12 +26,12 @@ rule 下可以添加规则  正式环境不能添加 debugger
 注意设置yarn和npm 仓库 为 淘宝镜像
 
 ```shell
-npm config set registry <https://registry.npm.taobao.org>
-npm config set sass_binary_site <https://npm.taobao.org/mirrors/node-sass/>
+npm config set registry https://registry.npm.taobao.org
+npm config set sass_binary_site https://npm.taobao.org/mirrors/node-sass/
 npm config get registry // 查看 registry
 
-yarn config set registry <https://registry.npm.taobao.org> -g
-yarn config set sass_binary_site <https://npm.taobao.org/mirrors/node-sass/> -g
+yarn config set registry https://registry.npm.taobao.org -g
+yarn config set sass_binary_site https://npm.taobao.org/mirrors/node-sass/ -g
 yarn config get registry // 查看 registry
 ```
 

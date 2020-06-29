@@ -133,6 +133,8 @@ s 3e7ee36 Hey kids, stop all the highlighting
 pick fa20af3 git interactive rebase, squash, amend
 ```
 
+git rebase 要遵守的法则是：只对尚未推送或分享给别人的本地修改执行 git rebase 操作清理历史，而不对已推送至别处的提交执行 git rebase 操作。比如在 push 所有代码并发起合并请求之前去使用，保证本地进行的提交引用于所有历史提交的最顶端，这种需求非常适合用 git rebase。但是不要对自己仓库以外的副本分支执行 git rebase。
+
 ## 总结
 
 Gitflow也不是Github所推荐的工作流
