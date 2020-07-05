@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<style>
+.warp{
+    /* float: left; */
+}
+
+/*清除浮动*/
+.clearfix:after {
+  height: 0;
+  content: '';
+  display: block;
+  clear: both;
+}
+</style>
+<body>
+    <div class="warp">
+        <div style="float: left;width: 20%;">left</div>
+        <div class="clearfix"></div>
+        <div style="float: right;width: 20%;">right</div>
+    </div>
+    
+</body>
+</html>
