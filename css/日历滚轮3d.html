@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    .nut-picker-indicator {
+      z-index: 11;
+    }
+    .warp {
+      transform-style: preserve-3d;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      transform: rotate3d(1, 0, 0, 80deg);
+    }
+    .item {
+      backface-visibility: hidden;
+      position: absolute;
+      top: 0;
+    }
+  </style>
+  <body>
+    <div id="app">
+      <div class="warp">
+        <div
+          class="item"
+          :key="i"
+          v-for=" (item, i) in listData"
+          :style="setRollerStyle(i)"
+        >
+          {{item}}
+        </div>
+      </div>
+    </div>
+  </body>
+  <script type="text/javascript" src="../lib/vue.js"></script>
+  <!-- https://mp.weixin.qq.com/s/13kGxbdIVeOzbObrECdEeQ -->
+  <script>
+    new Vue({
+      components: {},
+      data: {
+        rotation: 20,
+        listData: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+      },
+      mounted() {},
+      computed: {},
+      methods: {
+        // 因为我们设定可视区域的高度为260，所以设置半径为104，如果半径过小，我们需要戴着高倍放大镜来寻找滚轮项，如果半径过大，那么滚轮项就跑到我们脑后去了...，不能让眼睛长在后脑勺这么可怕的事情发生！所谓距离产生美，所以保持适当的距离（80%）是最美的。
+        setRollerStyle(index) {
+          return `transform: rotate3d(1, 0, 0, ${
+            -this.rotation * index
+          }deg) translate3d(0px, 0px, 104px)`
+        },
+        isHidden(index) {
+          return false
+        }
+      }
+    }).$mount('#app')
+  </script>
+</html>
