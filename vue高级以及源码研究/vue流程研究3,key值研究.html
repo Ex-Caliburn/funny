@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <div id="app">
+    <div v-for="(item, index) in list" :key="GetRandomKey()">
+      {{item}}
+    </div>
+    <div @click="list.push(Date.now())">添加</div>
+  </div>
+  <script type="text/javascript" src="../lib/vue.js"></script>
+  <script type="text/javascript">
+  //  key  使用 动态生成 如 GetRandomKey，每次数据改变都会生成新的key值，也就是数组发生了改变，但是相同dom前后拥有了不同的key 值，不能够复用了
+
+    var index = new Vue({
+      components: {},
+      data: {
+        list: [1]
+      },
+      beforeCreate() {
+        console.log('beforeCreate')
+      },
+      created() {
+        console.log('created')
+      },
+      beforeMount() {
+        console.log('beforeMount')
+      },
+      mounted() {
+        console.log('mounted')
+      },
+      computed: {},
+      methods: {
+        GetRandomKey(len = 8) {
+          const chars = [
+            ...'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+          ]
+          let KEY = ''
+          for (let i = 0; i < len; i += 1) {
+            KEY += chars[Math.floor(Math.random() * chars.length)]
+          }
+          // eg:"erDutSqX"
+          return KEY
+        }
+      }
+    }).$mount('#app')
+  </script>
+</html>

@@ -6,6 +6,11 @@ const app = express()
 
 // app.use(express.static('./public'));
 
+app.use('/', function (req, res, next) {
+  console.log('all', req.method, req.url, req.path, req.get('Content-type'))
+  next()
+})
+
 app.use(
   express.static('./public', {
     setHeaders(res) {
@@ -14,9 +19,6 @@ app.use(
     }
   })
 )
-app.use(function (req, res, next) {
-  console.log('err')
-})
 
 app.listen(3000, () => console.log(`Example app listening at http://localhost:${3000}`))
 app.listen(4000, () => console.log(`Example app listening at http://localhost:${4000}`))

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <input type="file" accept="image/*" onchange="loadFile(event)" />
+    <img id="previewContainer" />
+    <script>
+      // 其实对于 FileReader 对象来说，除了支持把 File/Blob 对象转换为 Data URL 之外，
+      // 它还提供了 readAsArrayBuffer() 和 readAsText() 方法，用于把 File/Blob 对象转换为其它的数据格式。
+      const loadFile = function (event) {
+        const reader = new FileReader()
+        reader.onload = function () {
+          const output = document.querySelector('#previewContainer')
+          output.src = reader.result
+          console.log(reader.result)
+          
+          // readAsDataURL 结果data:image/png;base64,iVBORw0KGgoAAAANSUhE...
+        }
+        // reader.readAsDataURL(event.target.files[0])
+        // reader.readAsArrayBuffer(event.target.files[0])
+        reader.readAsText(event.target.files[0])
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <img id="image0" src="https://www.w3.org/Icons/w3c_main.png" />
+    <script>
+      function init() {
+        // see [[USER-TIMING-2]]
+        performance.mark('startWork')
+        performance.mark('mySetTimeout-start')
+
+        // 测量两个不同的标志。
+        setTimeout(() => {
+          performance.mark('mySetTimeout-end')
+          performance.measure('mySetTimeout', 'mySetTimeout-start', 'mySetTimeout-end')
+
+          performance.mark('endWork')
+          measurePerf()
+        }, 2000)
+      }
+      function measurePerf() {
+        performance
+          .getEntries()
+          .map((entry) => JSON.stringify(entry, null, 2))
+          .forEach((json) => console.log(json))
+      }
+      init()
+
+    
+
+      // 如果事件触发，我不想去轮询，就有了观察者模式Api，PerformanceObserver
+      const observer = new PerformanceObserver((list) => {
+        list.getEntries().forEach((entry) => {
+          console.log('entry对象', entry)
+        })
+      })
+      // 观察的类型
+      observer.observe({
+        entryTypes: ['paint', 'resource',  'longtask']
+      })
+
+      for (let index = 0; index < 10000; index++) {
+        console.log(index)
+      }
+
+      a = document.createElement('img')
+      a.src =
+        'https://jdk3t-qiye.oss-cn-shanghai.aliyuncs.com/backend_pic/dst/poster/2018/08/09/AGck4stYxw3z5NWSYZ353PWHir5snKkQ.jpg'
+      document.body.appendChild(a)
+    </script>
+  </body>
+</html>

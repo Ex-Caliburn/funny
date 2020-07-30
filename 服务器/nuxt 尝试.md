@@ -128,6 +128,22 @@ export const actions = {
 }
 ```
 
+### 生命周期
+
+服务端生命周期
+beforeCreate， create
+
+对比客户端
+所有vue钩子函数 beforeCreate， create...
+
+### SSR执行流程
+
+nuxtServerInit
+asyncData
+beforeCreated
+created
+fetch
+
 ### 参考文献
 
 1. <https://zh.nuxtjs.org/api/pages-fetch/>
