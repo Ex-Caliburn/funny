@@ -30,6 +30,7 @@ function circle(parentID, parentContainer) {
     }
   }
 }
-
+console.time(1)
 circle()
+console.timeEnd(1)
 console.log(tree)

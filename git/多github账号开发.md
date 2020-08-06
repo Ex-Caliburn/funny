@@ -43,9 +43,9 @@ Hi xxx! You've successfully authenticated, but GitHub does not provide shell acc
 
 修改config文件
 
-# 更改[remote "origin"]项中的url中的
+ 更改[remote "origin"]项中的url中的
 
-# test1.github.com 对应上面配置的host
+ test1.github.com 对应上面配置的host
 
 [remote "origin"]
  url = git@test1.github.com:test1/blog.git
