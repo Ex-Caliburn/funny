@@ -68,3 +68,15 @@ console.log(person);
 console.log(person.work);
 console.log(person.name);
 console.log(person.work.workDescript);
+
+```
+原型上定义方法的方式不同，this的指向不同，箭头函数this指向 xxx，普通函数，指向调用者
+xxx.prototype = {
+  a : function () {
+    return this.skill;
+  },
+  b : () => {
+    return this.skill;
+  },
+}
+```

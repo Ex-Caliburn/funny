@@ -21,7 +21,7 @@ const arr = [
 /*  递归实现， 不清晰，脑子潜意识就是递归 */
 function arrToTree(arr) {
   let router = {}
-  router.root = arr.filter((item) => item.parentId === 0)[0]
+  router.root = arr.find((item) => item.parentId === 0)
   function search(tree, parentId) {
     if (!tree.child) {
       tree.child = []
@@ -37,19 +37,63 @@ function arrToTree(arr) {
   return router
 }
 
-console.time(1)
+// console.time(1)
+// // arrToTree(arr)
+// console.log(JSON.stringify(arrToTree(arr)))
+// console.timeEnd(1)
+
+/* 2 先抽取相同子元素， 从上往下 */
+function arrToTree2(arr) {
+  let router = {}
+  let temp = {}
+  router.root = arr.find((item) => item.parentId === 0)
+  arr.forEach((item) => {
+    if (!temp[item.parentId]) {
+      temp[item.parentId] = [item]
+    } else {
+      temp[item.parentId].push(item)
+    }
+  })
+  function appendChild(parent) {
+    if (temp[parent.id]) {
+      parent.children = temp[parent.id]
+      parent.children.map((item) => {
+        appendChild(item)
+      })
+    }
+  }
+  appendChild(router.root)
+  return router
+}
+
+// console.time(2)
+// // arrToTree(arr)
+// console.log(JSON.stringify(arrToTree2(arr)))
+// console.timeEnd(2)
+
+/* 从底层到上层组装， 引用的关系*/
+function arrToTree3(arr) {
+  let temp = {}
+  let rootId = arr.find((item) => item.parentId === 0).id
+  arr.forEach(item => {
+    temp[item.id] = item
+  })
+  arr.map((item) => {
+    if (item.id !== rootId) {
+      if (temp[item.parentId].children) {
+        temp[item.parentId].children.push(item)
+      } else {
+        temp[item.parentId].children = [item]
+      }
+    }
+  })
+  return temp[rootId]
+}
+
+console.time(3)
 // arrToTree(arr)
-console.log(JSON.stringify(arrToTree(arr)))
-console.timeEnd(1)
-
-/* 使用栈  出入栈*/
-// function arrToTree(arr) {
-//   let router = {}
-//   router.root = arr.filter((item) => item.parentId === 0)[0]
-//   let stack = []
-
-//   return router
-// }
+console.log(JSON.stringify(arrToTree3(arr)))
+console.timeEnd(3)
 
 // let res = {
 //   root: {
