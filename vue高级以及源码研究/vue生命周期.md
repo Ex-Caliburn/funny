@@ -7,21 +7,28 @@ parent 和 child 生命周期渲染过程有什么区别
 
 ```html
 <parent>
-    <child/>  
+    <child>
+        <grandson>
+        </grandson>  
+    </child>  
 </parent>
 ```
 
 ### 加载顺序如下
 
 ```
-    beforeCreate parent
-    created parent
-    beforeMount parent
-    beforeCreate child
-    created child
-    beforeMount child
-    mounted child
-    mounted parent
+ beforeCreate
+ created
+ beforeMount
+ Child beforeCreate
+ Child created
+ Child beforeMount
+ grandson beforeCreate
+ grandson created
+ grandson beforeMount
+ grandson mounted
+ Child mounted
+ mounted
 ```
 
   源码中运行步骤

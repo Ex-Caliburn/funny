@@ -27,25 +27,25 @@
   <!-- <script type="text/javascript" src="../lib/vue.runtime.js"></script> -->
   <script type="text/javascript">
     
-    var SubChild = {
-      template: '<div>SubChild!</div>',
+    var grandson = {
+      template: '<div>grandson!</div>',
       beforeCreate() {
-        console.log('SubChild beforeCreate')
+        console.log('grandson beforeCreate')
       },
       created() {
-        console.log('SubChild created')
+        console.log('grandson created')
       },
       beforeMount() {
-        console.log('SubChild beforeMount')
+        console.log('grandson beforeMount')
       },
       mounted() {
-        console.log('SubChild mounted')
+        console.log('grandson mounted')
       }
     }
     var Child = {
-      template: '<div>Child! <SubChild></SubChild></div>',
+      template: '<div>Child! <grandson></grandson></div>',
       components: {
-        'SubChild': SubChild,
+        'grandson': grandson,
       },
       beforeCreate() {
         console.log('Child beforeCreate')

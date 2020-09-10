@@ -185,20 +185,18 @@
           return this.factorial(i - 1, total * i)
         }
         chooseRedBall(ball) {
-          let index = this.selectRedBall.findIndex((item) => ball === item)
-          if (index > -1) {
-            this.selectRedBall.splice(index, 1)
-          } else {
-            this.selectRedBall.push(ball)
-          }
-          this.notes = this.getNotes()
+          this.chooseBall(ball, 'red')
         }
         chooseBlueBall(ball) {
-          let index = this.selectBlueBall.findIndex((item) => ball === item)
+          this.chooseBall(ball, 'blue')
+        }
+        chooseBall(ball,type = 'red') {
+          let selectBall = type ===  'red' ?this.selectRedBall : this.selectBlueBall
+          let index = selectBall.findIndex((item) => ball === item)
           if (index > -1) {
-            this.selectBlueBall.splice(index, 1)
+            selectBall.splice(index, 1)
           } else {
-            this.selectBlueBall.push(ball)
+            selectBall.push(ball)
           }
           this.notes = this.getNotes()
         }

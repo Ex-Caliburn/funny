@@ -51,7 +51,7 @@ mac: ~/.yarnrc  和  ~/.npmrc
 ```js
 {
  "scripts": {
-    "stylelint": "stylelint src/**/*.{vue,html,css,scss} --syntax --cache --cache-location '/.stylelintcache' --fix"
+    "stylelint": "stylelint src/**/*.{vue,html,css,scss} --syntax --cache --cache-location 'src/.stylelintcache' --fix"
   }
 }
 ```
