@@ -103,3 +103,4 @@ jwt的核心就是 服务端不存东西。
 ### 参考文献
 
 1. <http://www.ruanyifeng.com/blog/2018/07/json_web_token-tutorial.html>
+2. <https://mp.weixin.qq.com/s/z7fxgnkK96jfPs5I672kQA>
