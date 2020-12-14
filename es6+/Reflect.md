@@ -19,7 +19,7 @@ Reflect.get(obj_proxy, 'c')  // 1
 
 2. 修改某些Object方法的返回结果，让其变得更合理。比如，Object.defineProperty(obj, name, desc)在无法定义属性时，会抛出一个错误，而Reflect.defineProperty(obj, name, desc)则会返回false。
 
-```
+```js
 // 老写法
 try {
   Object.defineProperty(target, property, attributes);
@@ -54,7 +54,7 @@ Reflect.defineProperty(o, 'a', {
 
 3. 让Object操作都变成函数行为。某些Object操作是命令式，比如name in obj和delete obj[name]，而Reflect.has(obj, name)和Reflect.deleteProperty(obj, name)让它们变成了函数行为。
 
-```
+```js
 // 老写法
 'assign' in Object // true
 
@@ -64,7 +64,7 @@ Reflect.has(Object, 'assign') // true
 
 4. Reflect对象的方法与Proxy对象的方法一一对应，只要是Proxy对象的方法，就能在Reflect对象上找到对应的方法。这就让Proxy对象可以方便地调用对应的Reflect方法，完成默认行为，作为修改行为的基础。也就是说，不管Proxy怎么修改默认行为，你总可以在Reflect上获取默认行为。
 
-```
+```js
 // 有了Reflect对象以后，很多操作会更易读。
 var loggedObj = new Proxy(obj, {
   get(target, name) {
@@ -86,7 +86,7 @@ var loggedObj = new Proxy(obj, {
 
 Reflect.get方法查找并返回target对象的name属性，如果没有该属性，则返回undefined。
 
-```
+```js
 var myObject = {
   foo: 1,
   bar: 2,
@@ -122,7 +122,7 @@ this.foo + this.bar this绑定是myReceiverObject
 
 Reflect.set方法设置target对象的name属性等于value。
 
-```
+```js
 var myObject = {
   foo: 1,
   set bar(value) {
@@ -152,7 +152,7 @@ myReceiverObject.foo // 1
 
 注意，如果 Proxy对象和 Reflect对象联合使用，前者拦截赋值操作，后者完成赋值的默认行为，而且传入了receiver，那么Reflect.set会触发Proxy.defineProperty拦截。
 
-```
+```js
 let p = {
   a: 'a'
 };
