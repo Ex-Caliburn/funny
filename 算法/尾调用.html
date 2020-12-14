@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //   function g(a) {
+      //     console.log(a)
+      //   }
+
+      // 情况二
+      //   function f(x) {
+      //     return g(x) + 1
+      //   }
+
+      //   function f() {
+      //     let m = 1
+      //     let n = 2
+      //     return g(m + n)
+      //   }
+      //   f()
+
+      // 不是尾调用
+      function factorial(n, total) {
+        if (n === 1) return total
+        return n * factorial(n - 1, total)
+      }
+      factorial(4)
+      console.log(factorial(4, 1))
+
+      // 上面代码是一个阶乘函数，计算n的阶乘，最多需要保存n个调用记录，复杂度 O(n) 。
+
+      //   如果改写成尾递归，只保留一个调用记录，复杂度 O(1) 。
+
+      function factorial2(n, total) {
+        if (n === 1) return total
+        return factorial(n - 1, total * n)
+      }
+      console.log(factorial2(4, 1))
+
+      // factorial2 有两个参数很奇怪 1. 使用 es6 默认参数， 2.克里化函数
+
+      function factorial3(n, total = 1) {
+        if (n === 1) return total
+
+        return factorial(n - 1, total * n)
+      }
+      console.log(factorial3(4))
+
+      // 普通实现
+      function tailFactorial(n, total) {
+        if (n === 1) return total
+        return tailFactorial(n - 1, total * n)
+      }
+
+      let factorial4 = (n) => {
+        return tailFactorial(n, 1)
+      }
+      console.log(factorial4(4))
+
+      // 克里化函数
+      function tailFactorial(n, total) {
+        if (n === 1) return total
+        return tailFactorial(n - 1, total * n)
+      }
+
+      function currying(fn, n) {
+        return function (m) {
+          return fn.call(this, m, n)
+        }
+      }
+      let factorial5 = currying(tailFactorial, 1)
+      console.log(factorial5(4))
+
+      //   还有一个比较著名的例子，就是计算 Fibonacci 数列，也能充分说明尾递归优化的重要性。
+      // 前两个数组之后为第三个的值， 前两个为 0 1 , 1, 2
+      function Fibonacci(n) {
+        if (n === 0) return 0
+        if (n === 1) return 1
+        return Fibonacci(n - 1) + Fibonacci(n - 2)
+      }
+      Fibonacci(11) // 89
+      Fibonacci(100) // 超时
+      Fibonacci(500) // 超时
+
+      // 反向操作， 从 0 1 1 2， 0，1 开始相加, n减少，累加器数相加
+      function Fibonacci2(n, acc1 = 0, acc2 = 1) {
+        if (n <= 0) return acc1
+        return Fibonacci2(n - 1, acc2, acc1 + acc2)
+      }
+      Fibonacci2(11) // 89
+      Fibonacci2(1000) // 4.346655768693743e+208
+      Fibonacci2(10000) // 超时
+
+      // 阮一峰写法  1 1 2 ..., 不是从0开始
+      function Fibonacci3(n, ac1 = 1, ac2 = 1) {
+        if (n <= 1) {
+          return ac2
+        }
+
+        return Fibonacci3(n - 1, ac2, ac1 + ac2)
+      }
+
+      Fibonacci3(100) // 573147844013817200000
+      Fibonacci3(1000) // 7.0330367711422765e+208
+      Fibonacci3(10000) // Infinity
+    </script>
+  </body>
+</html>

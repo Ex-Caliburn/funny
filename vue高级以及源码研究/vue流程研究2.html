@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <div id="app">
+    <Child>
+     
+    </Child>
+    <!-- <input v-model="a" type="text"> -->
+    <!-- {{a}} -->
+    <!-- {{a}} -->
+    <!-- <div v-for="(item, index) in list" :key="index">{{item}}
+       <template v-if="item < 3 ">
+        <div @click="list.splice(index+1, 0, Date.now())">添加</div>
+        <div @click="list.splice(index, 1)">删除</div>
+       </template>
+       <template v-else>
+        <span @click="list.splice(index+1, 0, Date.now())">添加</span>
+        <span @click="list.splice(index, 1)">删除</span>
+       </template>
+     </div>
+     <!-- <div @click="list.push(Date.now())">添加</div> -->
+    <!-- <div @click="list.splice(1, 1, 4)">添加</div> -->
+  </div>
+  <script type="text/javascript" src="../lib/vue.js"></script>
+  <!-- <script type="text/javascript" src="../lib/vue.runtime.js"></script> -->
+  <script type="text/javascript">
+    
+    var grandson = {
+      template: '<div>grandson!</div>',
+      beforeCreate() {
+        console.log('grandson beforeCreate')
+      },
+      created() {
+        console.log('grandson created')
+      },
+      beforeMount() {
+        console.log('grandson beforeMount')
+      },
+      mounted() {
+        console.log('grandson mounted')
+      }
+    }
+    var Child = {
+      template: '<div>Child! <grandson></grandson></div>',
+      components: {
+        'grandson': grandson,
+      },
+      beforeCreate() {
+        console.log('Child beforeCreate')
+      },
+      created() {
+        console.log('Child created')
+      },
+      beforeMount() {
+        console.log('Child beforeMount')
+      },
+      mounted() {
+        console.log('Child mounted')
+      }
+    }
+    var index = new Vue({
+      components: {
+        'Child': Child,
+        
+      },
+      data: {
+        a: 'hello',
+        list: [1, 2]
+      },
+      beforeCreate() {
+        console.log('beforeCreate')
+      },
+      created() {
+        console.log('created')
+      },
+      beforeMount() {
+        console.log('beforeMount')
+      },
+      mounted() {
+        console.log('mounted')
+
+        setTimeout(() => {
+          this.a = 'mounted'
+        }, 0)
+      },
+      computed: {},
+      methods: {}
+    }).$mount('#app')
+    console.log(index)
+  </script>
+</html>

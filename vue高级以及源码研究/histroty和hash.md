@@ -4,7 +4,7 @@
 
 ### history
 
-url变化
+监听url变化事件
 onpopstatechange
 
 back(), forward(), go()等方法，我们可以读取浏览器历史记录栈的信息，进行各种跳转操作。
@@ -18,7 +18,7 @@ window.history.replaceState(stateObject, title, URL)
 
 ### hash
 
-url变化
+监听url变化事件
 onhashchange
 
 push

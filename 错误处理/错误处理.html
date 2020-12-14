@@ -6,16 +6,50 @@
     <title>Document</title>
   </head>
   <body onerror="alert(1)">
-    <img src="sdfdf" alt="">
+    <img src="http://www.ruanyifeng.com/blog1img/asset/201205/bg2012052913.png" alt="" />
     <div id="button">111</div>
 
     <script>
       window.onerror = function () {
         console.log(...arguments)
       }
-      window.addEventListener('error', function() {
-        console.log(...arguments)
-      })
+      window.addEventListener(
+        'error',
+        function () {
+          console.log(...arguments)
+
+          // 加了capture 可以捕获 img错误，但是不知道因为什么出错，404，403，或者其他
+          // https://stackoverflow.com/questions/8504673/how-to-detect-on-page-404-errors-using-javascript/28771916#28771916
+        },
+        true
+      )
+
+      // img error 不行
+      // let img = new Image()
+      // img.onerror =(err) => {
+      //   console.log(err)
+      // }
+      // img.src = 'http://www.ruanyifeng.com/blog1img/asset/201205/bg2012052913.png'
+
+      // 同域和设置了 允许跨域头可以拿到错误码404或者其他错误，其他拿不到，status只是 0
+      var url = 'http://www.ruanyifeng.com/blogimg/asset/201205/bg2012052913.png'
+      var xhr = new XMLHttpRequest()
+      xhr.open('get', url)
+      // xhr.withCredentials = true
+      xhr.onerror = (err) => {
+        console.log(err)
+      }
+      xhr.send()
+      xhr.onreadystatechange = function () {
+        console.log(xhr.readyState, xhr.status)
+        if (xhr.readyState == 4) {
+          if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
+            console.log(xhr.response)
+          } else {
+            console.log(xhr.response)
+          }
+        }
+      }
 
       //   当Promise 被 reject 且没有 reject 处理器的时候，会触发 unhandledrejection 事件
       window.addEventListener('unhandledrejection', function (event) {
@@ -32,13 +66,13 @@
       //  }
 
       // onerror 1 unhandledrejection 0 try catch 不能捕获异步错误
-        // try {
-        //   setTimeout(() => {
-        //     console.log(a.b)
-        //   }, 100)
-        // } catch (err) {
-        //   console.log(err)
-        // }
+      // try {
+      //   setTimeout(() => {
+      //     console.log(a.b)
+      //   }, 100)
+      // } catch (err) {
+      //   console.log(err)
+      // }
 
       // onerror 1 unhandledrejection 0 try catch 不能捕获异步错误
       //   let work = new Promise((resolve, reject) => {
@@ -47,29 +81,29 @@
       //       resolve(111)
       //     }, 11)
       //   })
-        // let work = new Promise((resolve, reject) => {
-        //   console.log(a.b)
-        //   setTimeout(() => {
-        //   //   console.log(a.b)
-        //     resolve(111)
-        //   }, 11)
-        // })
+      // let work = new Promise((resolve, reject) => {
+      //   console.log(a.b)
+      //   setTimeout(() => {
+      //   //   console.log(a.b)
+      //     resolve(111)
+      //   }, 11)
+      // })
 
-        // work
-        //   .then((res) => {
-        //     console.log(res)
-        //   })
-        //   .catch((err) => {
-        //     console.log(err)
-        //   })
+      // work
+      //   .then((res) => {
+      //     console.log(res)
+      //   })
+      //   .catch((err) => {
+      //     console.log(err)
+      //   })
 
       // then 中 报错 unhandledrejection 1  onerror 0
       // 我以为是冒泡还是啥，去掉 unhandledrejection onerror还是没触发
-    //   let work = new Promise((resolve, reject) => {
-    //       setTimeout(() => {
-    //         resolve(111)
-    //       }, 11)
-    //     })
+      //   let work = new Promise((resolve, reject) => {
+      //       setTimeout(() => {
+      //         resolve(111)
+      //       }, 11)
+      //     })
       //   work.then((res) => {
       //     console.log(a.b)
       //     console.log(res)
@@ -84,8 +118,8 @@
       //       console.log(err)
       //   }
 
-    //  unhandledrejection 1  onerror 0 这个work 函数 和 async 函数 里的报错都会被unhandledrejection捕获到
-    // reject(111) PromiseRejectionEvent unhandledrejection 1  onerror 0
+      //  unhandledrejection 1  onerror 0 这个work 函数 和 async 函数 里的报错都会被unhandledrejection捕获到
+      // reject(111) PromiseRejectionEvent unhandledrejection 1  onerror 0
       let work = function () {
         return new Promise((resolve, reject) => {
           setTimeout(() => {
@@ -101,11 +135,10 @@
       }
       ajax()
 
-    // 资源报错
-
+      // 资源报错
     </script>
 
-        <!-- <script src="./lib/vue.1js"  crossorigin="anonymous"></script> -->
-
+    <!-- <script src="./lib/vue.1js" crossorigin="anonymous"></script> -->
+    <!-- <script src="http://www.ruanyifeng.com/lib/vue.1js" crossorigin="anonymous"></script> -->
   </body>
 </html>

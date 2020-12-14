@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=s, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        height: 100vh;
+      }
+      .flexh {
+        display: flex;
+      }
+
+      .flexv {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .flex0 {
+        flex: none;
+      }
+
+      .flex1 {
+        flex: 1;
+      }
+
+      .flex-between {
+        justify-content: space-between;
+      }
+
+      .flex-around {
+        justify-content: space-around;
+      }
+
+      .flex-wrap {
+        flex-wrap: wrap;
+      }
+      .tab-item {
+        background-color: #eee;
+        text-align: center;
+        width: 50%;
+        line-height: 50px;
+      }
+      .tab-active {
+        color: #fff;
+        background-color: red;
+      }
+      .red-item {
+        margin: 16px;
+        text-align: center;
+        margin: 16px;
+        width: 50px;
+        line-height: 50px;
+        border-radius: 50%;
+        color: red;
+        border: 1px solid red;
+        box-sizing: border-box;
+      }
+      .red-item-active {
+        background-color: red;
+        color: #fff;
+      }
+
+      .blue-item {
+        margin: 16px;
+        text-align: center;
+        width: 50px;
+        line-height: 50px;
+        border-radius: 50%;
+        color: blue;
+        border: 1px solid blue;
+        box-sizing: border-box;
+      }
+      .blue-item-active {
+        background-color: blue;
+        color: #fff;
+      }
+      [v-cloak] {
+        display: none;
+      }
+      .red {
+        color: red;
+      }
+      .footer {
+        background-color: #eee;
+        padding: 16px;
+      }
+      .PL16 {
+        padding-left: 16px;
+      }
+      .flex-hcenter{
+        align-items: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app">
+      <div class="container flexv flex-between" v-cloak>
+        <div class="flexh flex-between tab">
+          <div class="tab-item" :class="{'tab-active': tab === 0}" @click="choose(0)">
+            双色球
+          </div>
+          <div class="tab-item" :class="{'tab-active': tab === 1}" @click="choose(1)">
+            大乐透
+          </div>
+        </div>
+
+        <div class="PL16">红球号码投注</div>
+        <div class="flexh flex-wrap flex0">
+          <div
+            class="red-item"
+            :class="{'red-item-active': select.selectRedBall.includes(item)}"
+            v-for="item in select.redBallPoll"
+            @click="chooseRedBall(item)"
+          >
+            {{item}}
+          </div>
+        </div>
+
+        <div class="PL16">蓝球号码投注</div>
+        <div class="flexh flex-wrap flex0">
+          <div
+            class="blue-item"
+            :class="{'blue-item-active': select.selectBlueBall.includes(item)}"
+            v-for="item in select.blueBallPoll"
+            @click="chooseBlueBall(item)"
+          >
+            {{item}}
+          </div>
+        </div>
+
+        <div class="footer flexh flex-between flex-hcenter">
+          <div>
+            <div>总计： <span class="red">{{select.notes}}</span> 注</div>
+            共需要：<span class="red">{{select.notes * 2}}</span> 元
+          </div>
+          <div @click="resetSelect">清空</div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.bootcss.com/vue/2.6.11/vue.js"></script>
+    <script>
+      class Lottery {
+        constructor(minRedBallNum, redBallPollNum, minBlueBallNum, blueBallPollNum) {
+          this.notes = 0
+          this.selectRedBall = []
+          this.selectBlueBall = []
+          this.redBallPollNum = redBallPollNum
+          this.minRedBallNum = minRedBallNum
+          this.minBlueBallNum = minBlueBallNum
+          this.blueBallPollNum = blueBallPollNum
+          this.redBallPoll = this.createPool(redBallPollNum)
+          this.blueBallPoll = this.createPool(blueBallPollNum)
+        }
+
+        createPool(length) {
+          return Array.from({ length }, (item, index) => index + 1)
+        }
+        getNotes() {
+          if (
+            this.selectRedBall.length < this.minRedBallNum ||
+            this.selectBlueBall.length < this.minBlueBallNum
+          ) {
+            return 0
+          }
+          return (
+            this.randomDraw(this.selectRedBall.length, this.minRedBallNum) *
+            this.randomDraw(this.selectBlueBall.length, this.minBlueBallNum)
+          )
+        }
+        randomDraw(num, min) {
+          if (min <= 0) {
+            return 0
+          }
+          return this.factorial(num) / (this.factorial(min) * this.factorial(num - min))
+        }
+        factorial(i, total = 1) {
+          if (i <= 1) return total
+          return this.factorial(i - 1, total * i)
+        }
+        chooseRedBall(ball) {
+          this.chooseBall(ball, 'red')
+        }
+        chooseBlueBall(ball) {
+          this.chooseBall(ball, 'blue')
+        }
+        chooseBall(ball,type = 'red') {
+          let selectBall = type ===  'red' ?this.selectRedBall : this.selectBlueBall
+          let index = selectBall.findIndex((item) => ball === item)
+          if (index > -1) {
+            selectBall.splice(index, 1)
+          } else {
+            selectBall.push(ball)
+          }
+          this.notes = this.getNotes()
+        }
+        resetSelect() {
+          this.notes = 0
+          this.selectRedBall = []
+          this.selectBlueBall = []
+        }
+      }
+
+      class DoubleColorBallLottery extends Lottery {
+        constructor() {
+          super(6, 33, 1, 16)
+        }
+      }
+
+      class SuperLottery extends Lottery {
+        constructor() {
+          super(5, 35, 2, 12)
+        }
+      }
+      new Vue({
+        el: '#app',
+        data: {
+          tab: 0,
+          select: null
+        },
+        created() {
+          this.doubleColorBallLottery = new DoubleColorBallLottery()
+          this.superLottery = new SuperLottery()
+          this.select = this.doubleColorBallLottery
+        },
+        methods: {
+          choose(type) {
+            this.tab = type
+            this.select = type ? this.superLottery : this.doubleColorBallLottery
+          },
+          chooseRedBall(ball) {
+            this.select.chooseRedBall(ball)
+          },
+          chooseBlueBall(ball) {
+            this.select.chooseBlueBall(ball)
+          },
+          resetSelect() {
+            this.select.resetSelect()
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

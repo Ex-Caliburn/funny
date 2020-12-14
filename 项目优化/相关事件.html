@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      // 在文档装载完成后会触发  load 事件。此时，在文档中的所有对象都在DOM中，所有图片，脚本，链接以及子框都完成了装载。
+      window.onload = () => {
+        console.log('onload', Date.now())
+      }
+
+      console.log(document.readyState)
+      // 当纯HTML被完全加载以及解析时，DOMContentLoaded 事件会被触发，而不必等待样式表，图片或者子框架完成加载。
+      document.addEventListener('DOMContentLoaded', (event) => {
+        console.log('DOM fully loaded and parsed', Date.now())
+      })
+
+      // 这两个事件都会被js阻塞，因为是回调事件 也要遵循事件机制
+      //   一个文档的 readyState 可以是以下之一：
+
+      //     loading（正在加载）
+      //     document 仍在加载。
+      //     interactive（可交互）
+      //     文档已被解析，"正在加载"状态结束，但是诸如图像，样式表和框架之类的子资源仍在加载。
+      //     complete（完成）
+      //     文档和所有子资源已完成加载。表示 load 状态的事件即将被触发。
+      document.addEventListener('readystatechange', (event) => {
+        console.log(`readystate: ${document.readyState}\n`)
+      })
+
+      // 模拟 DOMContentLoaded/ jquery ready
+      document.onreadystatechange = function () {
+        if (document.readyState === 'interactive') {
+          initApplication()
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <img src="http://www.ruanyifeng.com/blogimg/asset/201205/bg2012052913.png" alt="" />
+    <script>
+      for (let index = 0; index < 1000000000; index++) {
+        //   console.log(index)
+      }
+
+      //   https://developer.mozilla.org/zh-CN/docs/Web/API/Document/readyState
+    </script>
+  </body>
+</html>

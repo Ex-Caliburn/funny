@@ -2,7 +2,9 @@
 
 ## 前言
 
-Hyper Text Transfer Protocol over Secure Socket Layer
+HTTPS: Hyper Text Transfer Protocol over Secure Socket Layer
+TLS: Transport Layer Security
+SSL: Secure Socket Layer
 
 ### 对称密钥
 
@@ -93,6 +95,11 @@ SSL/TLS协议的基本思路是采用公钥加密法，也就是说，客户端�
 至此，整个握手阶段全部结束。接下来，客户端与服务器进入加密通信，就完全是使用普通的HTTP协议，只不过用"会话密钥"加密内容。
 
 ## 总结
+
+一个有意思的描述
+三次握手就是面试，我俩都不认识，我投递简历，然后面试官看中了，发出邀请，你接受邀请，发起面试
+
+四次挥手： 辞职，你提交辞职信，公司告诉你可以，稍后辞职信发你，然后你等待，公司把辞职信给你，然后你收到后，告诉公司我走了
 
 ### 参考文献
 

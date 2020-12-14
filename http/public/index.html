@@ -6,22 +6,41 @@
     <title>option</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
-  <body></body>
+  <body>
+    111
+  </body>
+  <script src="https://bushu3t.jingdaka.com/bg/course/task?limit=10&offset=0&current=1&totalCount=2314&search_name="></script>
+  <img
+    src="https://bushu3t.jingdaka.com/bg/course/task?limit=10&offset=0&current=1&totalCount=2314&search_name="
+    alt=""
+  />
   <script>
     var url = 'http://127.0.0.1:5000'
+    // var url =
+    //   'https://bushu3t.jingdaka.com/bg/course/task?limit=10&offset=0&current=1&totalCount=2314&search_name='
+    // var url = 'http://127.0.0.1:3000/1.png'
+    // var url = 'https://cdn-qiye.jingdaka.com/backend_pic/dst/poster/2020/06/05/1kTe6LlAfEYc4npb3excvTuY1JxMHcZ44.jpg'
     var xhr = new XMLHttpRequest()
-    xhr.open('delete', url, true)
-    xhr.withCredentials = true
-    xhr.setRequestHeader('X-Custom-Header', 'value');
     xhr.onreadystatechange = function () {
-        if (xhr.readyState == 4 ) {
-          if((xhr.status >= 200 || xhr.status < 300 || xhr.status == 304)){
-            console.log(xhr.responseText)
-          }else{
-            console.log(xhr.responseText)
-          }
+      console.log(xhr.readyState, xhr.status)
+      // 1 0
+      // 2 200
+      // 3 200
+      // 4 200
+      if (xhr.readyState == 4) {
+        if (xhr.status >= 200 || xhr.status < 300 || xhr.status == 304) {
+          console.log(xhr.responseText)
+          console.log(xhr.response)
+          document.body.innerHTML = xhr.responseText
+        } else {
+          console.log(xhr.responseText)
         }
-      };
+      }
+    }
+    xhr.open('get', url)
+    // xhr.open('delete', url)
+    xhr.withCredentials = true
+    xhr.setRequestHeader('X-Custom-Header', 'value')
     xhr.send()
   </script>
 </html>

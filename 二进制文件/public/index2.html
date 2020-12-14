@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <img src="http://localhost:4000/logo.png" alt="" />
+    <img id="previewContainer" style="width: 50%;" />
+  </body>
+  <script>
+    // img直接url访问，不受跨域影响
+    // 头部自动设置 Accept: image/webp,image/apng,image/*,*/*;q=0.8
+    const image = document.querySelector('#previewContainer')
+    fetch('http://localhost:4000/logo.png')
+      // .then((response) => response.blob())
+      .then((response) => {
+        // image.src = response.blob()
+        // console.log(response)
+        // console.log(response.blob()) // promise  不能执行两次blob Failed to execute 'blob' on 'Response': body stream is locked
+        return response.blob()
+        // return response.arrayBuffer()
+      })
+      .then((blob) => {
+        console.log(blob) // Blob {size: 6849, type: "image/png"} __proto__: Blob
+        const objectURL = URL.createObjectURL(blob)
+        console.log(objectURL) // blob:null/1297db62-e9d1-4a5f-b987-c4407fca6fb2
+        image.src = objectURL
+      })
+
+      fetch('http://localhost:4000/logo.png')
+      .then((response) => response.arrayBuffer())
+      .then((buffer) => {
+        const blob = new Blob([buffer])
+        const objectURL = URL.createObjectURL(blob)
+        image.src = objectURL
+      })
+  </script>
+</html>

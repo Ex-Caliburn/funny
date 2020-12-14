@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <img id="app" src=''>
+    <input type="file" id="upload" />
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <script>
+
+      /* 
+      multipart/form-data 上传
+      https://www.w3.org/TR/html401/interact/forms.html#h-17.13.4.2
+      https://stackoverflow.com/questions/3508338/what-is-the-boundary-in-multipart-form-data?r=SearchResults#
+      */
+      let upload = document.getElementById('upload')
+      upload.addEventListener('change', (ev) => {
+        console.log(ev.target.files[0])
+        //   ajax({
+        //     url: 'http://127.0.0.1:5000',
+        //     method: 'POST',
+        //     contentType: 'multipart/form-data;boundary=test',
+        //     // header: 'multipart/form-data',
+        //     data: ev.target.files[0],
+        //     success() {
+        //       console.log('success')
+        //     },
+        //     error(e) {
+        //       console.log(e)
+        //     }
+        //   })
+        postData = new FormData()
+          postData.append('file', ev.target.files[0])
+        $.ajax({
+          url: 'http://127.0.0.1:5000',
+          method: 'POST',
+          contentType : false, // 不要设置Content-Type请求头
+          // contentType: 'multipart/form-data',
+          // contentType: 'image/png',
+          data: postData,
+          processData: false,
+          success: (res)=> {
+            console.log(res)
+            document.getElementById('app').src = 'http://127.0.0.1:5000' + res.url
+            console.log('success')
+          }
+        })
+      })
+
+      function ajax(opt) {
+        opt = opt || {}
+        opt.method = opt.method.toUpperCase() || 'POST'
+        opt.url = opt.url || ''
+        opt.async = opt.async || true
+        opt.data = opt.data || null
+        opt.header = opt.header || {}
+        opt.success = opt.success || function () {}
+        opt.error = opt.error || function () {}
+        opt.contentType = opt.contentType || 'application/x-www-form-urlencoded'
+
+        var xmlHttp = null
+        if (XMLHttpRequest) {
+          xmlHttp = new XMLHttpRequest()
+        } else {
+          xmlHttp = new ActiveXObject('Microsoft.XMLHTTP')
+        }
+        var postData = null
+        var params = []
+        if (opt.contentType === 'multipart/form-data') {
+          postData = new FormData()
+          postData.append('file', opt.data)
+          console.log(postData, opt.data)
+        } else {
+          for (var key in opt.data) {
+            params.push(key + '=' + opt.data[key])
+          }
+          postData = params.join('&')
+        }
+
+        if (opt.method.toUpperCase() === 'POST') {
+          xmlHttp.open(opt.method, opt.url, opt.async)
+        } else if (opt.method.toUpperCase() === 'GET') {
+          xmlHttp.open(opt.method, opt.url + '?' + postData, opt.async)
+        }
+        for (var key in opt.header) {
+          xmlHttp.setRequestHeader('key', opt.header[key])
+        }
+        xmlHttp.setRequestHeader('Content-Type', opt.contentType)
+        xmlHttp.send(postData)
+        xmlHttp.onreadystatechange = function () {
+          if (xmlHttp.readyState == 4) {
+            console.log(xmlHttp)
+            if (xmlHttp.status >= 200 || xmlHttp.status < 300 || xmlHttp.status == 304) {
+              opt.success(xmlHttp.responseText)
+            } else {
+              opt.error(xmlHttp.responseText)
+            }
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

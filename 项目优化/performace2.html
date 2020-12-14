@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      {
+        var perf = window.performance
+        /* istanbul ignore if */
+        if (perf && perf.mark && perf.measure && perf.clearMarks && perf.clearMeasures) {
+          mark = function (tag) {
+            return perf.mark(tag)
+          }
+          measure = function (name, startTag, endTag) {
+            perf.measure(name, startTag, endTag)
+            perf.clearMarks(startTag)
+            perf.clearMarks(endTag)
+            // perf.clearMeasures(name)
+          }
+        }
+      }
+
+      function do_task(params) {
+        for (let index = 0; index < 1000; index++) {
+          console.log(index)
+        }
+      }
+
+    //   function calculate_time() {
+    //     var startTime
+    //     var endTime
+    //     console.time(1)
+    //     startTime = performance.now()
+    //     do_task()
+    //     console.timeEnd(1)
+    //     endTime = performance.now()
+    //     console.log(endTime - startTime)
+
+    //     return endTime - startTime
+    //   }
+    //   calculate_time()
+
+      performance.mark('mySetTimeout-start')
+
+      // 等待一些时间。
+      setTimeout(function () {
+        // 标志时间的结束。
+        performance.mark('mySetTimeout-end')
+
+        // 测量两个不同的标志。
+        performance.measure('mySetTimeout', 'mySetTimeout-start', 'mySetTimeout-end')
+
+        // 获取所有的测量输出。
+        // 在这个例子中只有一个。
+        var measures = performance.getEntriesByName('mySetTimeout')
+        var measure = measures[0]
+        console.log('setTimeout milliseconds:', measure.duration)
+
+        // 清除存储的标志位
+        // performance.clearMarks()
+        // performance.clearMeasures()
+      }, 1000)
+    </script>
+  </body>
+</html>

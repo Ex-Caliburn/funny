@@ -19,9 +19,16 @@
       document.querySelector('#info').textContent = info
     })
 
-
-
+    window.addEventListener(
+      'error',
+      (evt) => {
+        const info = evt.error ? evt.error.stack : evt.message
+        console.log(info)
+      },
+      true
+    )
   </script>
   <script src="http://127.0.0.1:3000/at3000.js" crossorigin="anonymous"></script>
+  <!-- <script src="http://127.0.0.1:4000/at4000.js" ></script> -->
   <script src="http://127.0.0.1:4000/at4000.js" crossorigin="anonymous"></script>
 </html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- 示例: 禁用不安全的内联/动态执行, 只允许通过 https加载这些资源 (images, fonts, scripts, etc.) -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'" /> -->
+
+    <!-- 示例: 已经存在的一个网站，用了太多内联代码修复问题 这样会运行内联代码-->
+    <!-- <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'unsafe-eval' 'unsafe-inline';"
+    /> -->
+
+    <!-- 行内脚本 data: 模式   -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="script-src-elem data: 'self' 'unsafe-eval' 'unsafe-inline' ;"
+    />
+  </head>
+  <body>
+
+    <img src="x" onerror="evil()" />
+    <script src="data:text/javascript, function evil(){alert(1)}"></script>
+
+
+    <script>
+      try {
+        new Function('return 1')
+      } catch (e) {
+        console.log(e)
+        if (e.toString().match(/unsafe-eval|CSP/)) {
+          console.log(
+            'It seems you are using the standalone build of Vue.js in an ' +
+              'environment with Content Security Policy that prohibits unsafe-eval. ' +
+              'The template compiler cannot work in this environment. Consider ' +
+              'relaxing the policy to allow unsafe-eval or pre-compiling your ' +
+              'templates into render functions.'
+          )
+        }
+      }
+
+      /*    Refused to execute inline script because it violates the following Content Security Policy directive:
+       "default-src 'self'". Either the 'unsafe-inline' keyword, 
+       a hash ('sha256-TVze9iSfjutpSc+Zj7qE268HJUiY+TkmBnKpQHL1pzw='), 
+       or a nonce ('nonce-...') is required to enable inline execution. 
+       Note also that 'script-src' was not explicitly set, so 'default-src' is used as a fallback. */
+
+      //    https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Content-Security-Policy
+      // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/default-src
+
+      
+    </script>
+  </body>
+</html>

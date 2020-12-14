@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      window.onerror = function () {
+        console.log(...arguments)
+      }
+
+      window.addEventListener(
+        'error',
+        function () {
+          console.log(...arguments)
+
+          // 加了capture 可以捕获 img错误，但是不知道因为什么出错，404，403，或者其他
+          // https://stackoverflow.com/questions/8504673/how-to-detect-on-page-404-errors-using-javascript/28771916#28771916
+        },
+        true
+      )
+
+      // try {
+      //   console.log(a)
+      // } catch (err) {
+      //   console.log(err)
+      // }
+
+      //   当Promise 被 reject 且没有 reject 处理器的时候，会触发 unhandledrejection 事件
+      window.addEventListener('unhandledrejection', function (event) {
+        console.log(event)
+      })
+
+      // 同域和设置了 允许跨域头可以拿到错误码404或者其他错误，其他拿不到，status只是 0
+      // var url = 'http://localhost:4000'
+      // var xhr = new XMLHttpRequest()
+
+      // xhr.onreadystatechange = function () {
+      //   console.log(xhr.readyState, xhr.status)
+      //   if (xhr.readyState == 4) {
+      //     if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
+      //       console.log(xhr.response)
+      //     } else {
+      //       console.log(xhr.response)
+      //     }
+      //   }
+      // }
+
+      // xhr.open('get', url)
+      // // xhr.withCredentials = true
+      // xhr.send()
+      // xhr.onerror = (err) => {
+      //   console.log(err)
+      // }
+
+      function ajax() {
+        return new Promise((resolve, reject) => {
+          console.log(a)
+          var url = 'http://localhost:4000'
+          var xhr = new XMLHttpRequest()
+          xhr.onreadystatechange = () => {
+            // console.log(a)
+            console.log(xhr.readyState, xhr.status)
+            if (xhr.readyState == 4) {
+              if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
+                // console.log(xhr.response)
+                resolve(xhr.response)
+              } else {
+                console.log(xhr.response)
+                // reject(xhr.response)
+              }
+            }
+          }
+
+          xhr.open('get', url)
+          // xhr.withCredentials = true
+          xhr.send()
+          xhr.onerror = (err) => {
+            console.log(err)
+          }
+        })
+      }
+      ajax()
+        .then((res) => {
+          console.log(res)
+        })
+        .catch((err) => {
+          console.log(JSON.stringify(err))
+          uploadErr(err)
+        })
+
+      function uploadErr(params) {
+        console.log(params.message)
+        let IMG = document.createElement('IMG')
+        IMG.src = `http://localhost:4000/err/1.img?error=${params.message}`
+        // IMG.src = `http://localhost:4000/err/1.img?error=${params.message}&stack=${params.stack}`
+      }
+
+      function uploadErr(params) {
+        let IMG = document.createElement('IMG')
+        IMG.src = `http://localhost:4000/err/1.img?error=${params.message}`
+        // IMG.src = `http://localhost:4000/err/1.img?error=${params.message}&stack=${params.stack}`
+      }
+
+      window.addEventListener('unload', logData, false)
+
+      function logData() {
+        /// 字符串 Content-Type 为 text/plain。
+        // navigator.sendBeacon('http://localhost:4000/err/1.img?a=1', JSON.stringify({ id: 123 }))
+
+        // FormData 格式 此时该请求会自动设置请求头的 Content-Type 为 multipart/form-data。
+        // var fd = new FormData()
+        // fd.append('id', 123)
+        // navigator.sendBeacon('http://localhost:4000/err/1.img?a=1', fd)
+
+        // Bolb 格式 这时需要我们手动设置 Blob 的 MIME type，一般设置为 application/x-www-form-urlencoded。
+        var data = { id: 22 }
+        var blob = new Blob([JSON.stringify(data)], { type: 'application/json' })
+        navigator.sendBeacon('http://localhost:4000/err/1.img?a=1', blob)
+
+        //  URLSearchParams object，Content-Type application/x-www-form-urlencoded。
+        // var params = new URLSearchParams({ id: 22 })
+        // navigator.sendBeacon('http://localhost:4000/err/1.img?a=1', params)
+      }
+
+      //  unhandledrejection 1  onerror 0 这个work 函数 和 async 函数 里的报错都会被unhandledrejection捕获到
+      // reject(111) PromiseRejectionEvent unhandledrejection 1  onerror 0
+      // let work = function () {
+      //   return new Promise((resolve, reject) => {
+      //     setTimeout(() => {
+      //       resolve(111)
+      //       // reject(111)
+      //     }, 11)
+      //   })
+      // }
+      // async function ajax() {
+      //   console.log(a.b)
+      //   let res = await work()
+      //   console.log(res)
+      // }
+      // ajax()
+
+      // 资源报错
+    </script>
+  </body>
+</html>
+<!-- https://www.jianshu.com/p/04e88271a8f2 -->

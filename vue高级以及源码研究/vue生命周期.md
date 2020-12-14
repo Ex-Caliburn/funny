@@ -7,27 +7,82 @@ parent 和 child 生命周期渲染过程有什么区别
 
 ```html
 <parent>
-    <child/>  
+    <child>
+        <grandson>
+        </grandson>  
+    </child>  
 </parent>
 ```
 
 ### 加载顺序如下
 
-    beforeCreate parent
-    created parent
-    beforeMount parent
-    beforeCreate child
-    created child
-    beforeMount child
-    mounted child
-    mounted parent
+```
+ beforeCreate
+ created
+ beforeMount
+ Child beforeCreate
+ Child created
+ Child beforeMount
+ grandson beforeCreate
+ grandson created
+ grandson beforeMount
+ grandson mounted
+ Child mounted
+ mounted
+```
+
+  源码中运行步骤
+
+```
+    new Vue
+    parent 完成
+    Vue.prototype._init
+    beforeCreate
+    created
+    beforeMount
+
+    $mount // 首次挂载触发
+    mountComponent
+    new Watcher(根组件)
+    触发Watcher 的get()
+    updateComponent
+    vm._update(vm._render(), hydrating);
+    vm.__patch__(vm.$el, vnode, hydrating, false /* removeOnly */);
+    createElm
+    createChildren(vnode, children, insertedVnodeQueue);
+    createElm
+    createComponent (vnode, insertedVnodeQueue, parentElm, refElm)
+    组件init
+    createComponentInstanceForVnode
+    new vnode.componentOptions.Ctor(options)
+    this._init(options); // Vue.extend 中
+    Vue.prototype._init
+    完成子组件的
+    beforeCreate
+    created
+    beforeMount
+    child.$mount(hydrating ? vnode.elm : undefined, hydrating);
+    $mount
+    mountComponent
+    // 又开始了，循环往复，一直到最底层的树枝组件
+    invokeCreateHooks
+     if (isDef(i.insert)) { insertedVnodeQueue.push(vnode); }
+    invokeInsertHook(vnode, insertedVnodeQueue, isInitialPatch); // 触发子组件的insert ，也就是mounted
+    for (var i = 0; i < queue.length; ++i) {
+          queue[i].data.hook.insert(queue[i]);
+        }
+    insert
+     callHook(componentInstance, 'mounted');
+```
 
 ### 销毁顺序
 
+```
     beforeDestroy parent
     beforeDestroy child
     destroyed child
     destroyed parent
+```
 
 ### 看了源码
 
