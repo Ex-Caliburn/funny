@@ -118,25 +118,35 @@ for(var i=0 ; i<elements.length ; i++){
 
 当代码被内联 on-event 处理函数 调用时，它的this指向监听器所在的DOM元素：
 
+```js
 <button onclick="alert(this.tagName.toLowerCase());">
   Show this
 </button>
+```
+
 上面的 alert 会显示 button。注意只有外层代码中的 this 是这样设置的：
 
+```js
 <button onclick="alert((function(){return this})());">
   Show inner this
 </button>
+```
+
 在这种情况下，没有设置内部函数的 this，所以它指向 global/window 对象（即非严格模式下调用的函数未设置 this 时指向的默认对象）。
 
 #### 派生类
 
 不像基类的构造函数，派生类的构造函数没有初始的 this 绑定。在构造函数中调用 super() 会生成一个 this 绑定，并相当于执行如下代码，Base为基类：
 
+```js
 this = new Base();
+```
+
 警告：在调用 super() 之前引用 this 会抛出错误。
 
 派生类不能在调用 super() 之前返回，除非其构造函数返回的是一个对象，或者根本没有构造函数。
 
+```js
 class Base {}
 class Good extends Base {}
 class AlsoGood extends Base {
@@ -151,6 +161,7 @@ class Bad extends Base {
 new Good();
 new AlsoGood();
 new Bad(); // ReferenceError
+```
 
 ### use strict
 

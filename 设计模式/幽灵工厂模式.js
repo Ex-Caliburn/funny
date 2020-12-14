@@ -1,4 +1,6 @@
 
+// 抽象类中定义的方法只是显性的定义一些功能，但没有具体的实现，而一个对象是要具有一套完整功能，
+// 所以用抽象类创建的对象当然也是‘抽象的’，我们一般把他们作为父类创建一些子类
 var VehicleFactory = function (subType, superType) {
     // 判断抽象工厂中是否有该抽象类
   if(typeof VehicleFactory[superType] === "function"){
