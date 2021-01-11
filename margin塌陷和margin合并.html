@@ -1,0 +1,137 @@
+<!--,
+ * 我以前知道，但是我没去区分，和总结这种现象，所以是认知蒙蔽了我
+ margin塌陷和margin合并
+ margin合并 ： 必须块元素
+ 发生在兄弟之间，如果 一个块元素的margin小于另一个块元素，两个块元素margin会取其中大的一个，相当于融合
+ 一定是竖直方向，float的情况不会发生，flex也不会
+
+ 原理: 所有毗邻的两个或者多个元素的margin将会合并为一个margin共享之
+
+ 官方定义： margin塌陷和margin合并其实都是一个原因
+ In CSS, the adjoining margins of two or more boxes (which might or might not be siblings) can combine to form a single margin.
+  Margins that combine this way are said to collapse, and the resulting combined margin is called a collapsed margin.
+
+css 中，两个或者更多毗邻的盒子(无论他们是不是兄弟元素) 都可以结合形成一个margin，这种结合方式被成为塌陷，导致这种结合margin的原因被称为 margin 塌陷
+
+“In this specification, the expression collapsing margins means that adjoining margins
+ (no non-empty content, padding, or border areas, or clearance separate them) of two or more boxes
+  (which may be next to one another or nested) combine to form a single margin.”
+
+  在本规范中，表述边缘塌陷是指两个或多个盒子（可能彼此相邻或嵌套）的相邻边缘（没有非空内容，填充或边界区域，或以空格隔开）单一的margin
+
+ 处理：
+    只给一个块元素，两个块元素之和
+    在黄色和黑色的盒子外面在加一个盒子，让这个加的外层盒子的渲染规则改为BFC
+
+ margin塌陷 发生在父子之间，如果父子都设置竖直方向的margin，父元素没有设置border，padding，子元素的margin和父元素的Marin谁大谁生效
+
+  处理：
+    加1px padding，透明border
+    将父元素的渲染规则改为BFC
+
+ 期间发现一个奇特的现象，把所有块元素变为inline-block
+ brother 反而在上方， 黑色 father在下面，反而黑色还往上偏移，测了是son 的高度加上margin大小
+
+
+ 如果 一个空div，一个兄弟块元素 设置margin，并不会把margin-top传递给空div，在css看来这不是毗邻的，参照 sister div
+
+ // 毗邻竖直margin塌陷，除了
+ Adjoining vertical margins collapse, except:
+
+Margins of the root element's box do not collapse.
+If the top and bottom margins of an element with clearance are adjoining, 
+its margins collapse with the adjoining margins of following siblings 
+but that resulting margin does not collapse with the bottom margin of the parent block.
+
+1. 根元素的margin 不会塌陷
+2. 如果一个空元素的top和margin毗邻，他的margin会与相邻兄弟的毗邻margin，会产生塌陷，但是它margin不会和父亲块元素底部margin产生塌陷
+
+    测试了表明，空元素的bottom margin 不会和父元素 bottom margin 产生塌陷，但是会使父元素的兄弟元素的位置
+
+ // 原来是受line-height，baseline 影响，inline-block 内容块都会在默认对齐在 vertical-align: baseline
+ // 需要所有inline-block 设置 相同 vertical-align 属性值
+ // 如果vertical-align: bottom或者vertical-align: top就没有了多出的一块了。或者可以把父元素的font-size设为0，那么baseline就和bottom在一条线上了。
+ 不管你实际上有没有文字内容，实际上都会假想你有文字，即使你没有文字基线也是在那里
+ https://segmentfault.com/q/1010000010207212
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    div {
+      /* display: inline; */
+      /* display: inline-block; */
+    }
+    .parent {
+      width: 200px;
+      height: 200px;
+      margin: 20px;
+      background-color: black;
+    }
+    .son {
+      width: 20px;
+      height: 20px;
+      margin: 40px;
+      background-color: yellow;
+    }
+    .brother {
+      width: 200px;
+      height: 200px;
+      margin: 20px;
+      background-color: pink;
+    }
+    .sister {
+      width: 200px;
+      height: 200px;
+      margin: 20px;
+      background-color: red;
+    }
+    .son2{
+        margin: 20px;
+    }
+  </style>
+  <body>
+    <div class="parent">
+      <div class="son"></div>
+    </div>
+
+    <div class="brother">
+      <!-- 1 -->
+    </div>
+    <!-- 1 -->
+
+    <!--  空元素竖直方向 是否会塌陷 -->
+    <div></div>
+    <div class="sister"></div>
+
+    <div>分割线</div>
+
+    <!--  有缝隙的元素 -->
+    <div style="margin: 10px;clear: both;">
+      <div style="float:right">222</div>
+    </div>
+    <div style="margin: 15px;">2222</div>
+
+    <!--  空元素的父亲，和空元素的兄弟元素，第二个有点诡异 -->
+    <!-- <div style="margin: 10px;"><div class="son2"></div></div>
+    <div>111</div> -->
+
+    <!-- <div style="display: inline-block;background-color: blue;">
+      <div>
+        <div style="margin: 20px">1</div>
+      </div>
+      <div>
+        <div style="margin: 20px">2</div>
+      </div>
+    </div> -->
+</body>
+</html>

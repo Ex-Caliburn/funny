@@ -1,0 +1,51 @@
+<!--
+ * div 嵌套 inline-block，没有东西却被撑开
+ 平常有遇到，但是没有去想为什么，通常各种试，font-size: 0 就好了，不知道背后的原理
+
+ 有东西，会被认为是
+ 这是因为 line box 的最小高度是由一个叫 strut 的假想块决定的。
+
+当 line box 为空时，高度当 0 处理，见 9.4.2。
+
+Line boxes that contain no text, no preserved white space, no inline elements with non-zero margins, padding, or borders,
+ and no other in-flow content (such as images, inline blocks or inline tables), and do not end with a preserved newline 
+ must be treated as zero-height line boxes for the purposes of determining the positions of any elements inside of them,
+  and must be treated as not existing for any other purpose.
+否则 line box 就会计算高度（如问题中有了 inline-block 子元素），按这里。因为那个 inline-block 没有高度，故直接看第三步
+
+The line box height is the distance between the uppermost box top and the lowermost box bottom. (This includes the strut, as explained under 'line-height' below.)
+那个 inline-block 默认放在 baseline 上，其高度是由 line-height 和 font-size 属性决定的。具体看浏览器的默认样式。
+
+设置  font-size:0 可以完全消除
+
+设置line-height: 0; 还是会有 baseline的高度， baseline距离底部还有距离
+
+设置 vertical-align: bottom; top
+ https://segmentfault.com/q/1010000010207212
+ https://www.w3.org/TR/CSS22/visuren.html#inline-formatting
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }˜
+    .parent {
+      background-color: yellow;
+    }
+  </style>
+  <body>
+    <div class="parent">
+      <div style="display: inline-block"></div>
+    </div>
+
+    
+  </body>
+</html>
