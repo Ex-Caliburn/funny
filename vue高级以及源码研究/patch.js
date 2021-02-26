@@ -25,15 +25,21 @@ var baseModules = [
     tagName: tagName,
     setTextContent: setTextContent,
     setSt
+  })
   
+    Vue.prototype.__patch__ = inBrowser ? patch : noop;
   
   // the directive module should be applied last, after all
   // built-in modules have been applied.
   var modules = platformModules.concat(baseModules);
   
+  
   var patch = createPatchFunction({ nodeOps: nodeOps, modules: modules });
 
-  patch
+  function createPatchFunction (backend) {
+    //...
+    return function patch (oldVnode, vnode, hydrating, removeOnly) {}
+  }
 
   // 判断是否是真是的 dom对象，oldVnode.nodeType 如果有则是 dom对象，没有则是vnode节点
 
@@ -309,6 +315,7 @@ function createComponent (vnode, insertedVnodeQueue, parentElm, refElm) {
 
     // 先判断新节点Vnode是不是文本节点，是文本节点，直接覆盖setTextContent，
     // 不是进入比较孩子环节
+    // insertedVnodeQueue 一开始是空数组，已经插入的vnode队列
     function patchVnode (
       oldVnode,
       vnode,
@@ -326,7 +333,7 @@ function createComponent (vnode, insertedVnodeQueue, parentElm, refElm) {
         vnode = ownerArray[index] = cloneVNode(vnode);
       }
 
-      var elm = vnode.elm = oldVnode.elm;
+      var elm = vnode.elm = oldVnode.elm; // 新旧vnode的真实elm
 
       if (isTrue(oldVnode.isAsyncPlaceholder)) {
         if (isDef(vnode.asyncFactory.resolved)) {
@@ -365,7 +372,7 @@ function createComponent (vnode, insertedVnodeQueue, parentElm, refElm) {
       // 新vnode不是文本节点
     // 1. 新vnode不是文本节点
           //  新旧节点孩子存在比较 updateChildren
-          //  新节点孩子存在 老的不存在 添加
+          //  新节点孩子存在 老的不存在 添加到elm上
           //  新节点孩子不存在 老的节点存在 移除
           //  老的节点是文本节点 清空文本节点内容
     // 2. 新vnode是文本节点
@@ -383,13 +390,14 @@ function createComponent (vnode, insertedVnodeQueue, parentElm, refElm) {
           if (isDef(oldVnode.text)) { nodeOps.setTextContent(elm, ''); }
           addVnodes(elm, null, ch, 0, ch.length - 1, insertedVnodeQueue);
         } else if (isDef(oldCh)) {
-          // 新节点不存在，直接移除
+          // 新节点不存在，直接移除子dom
           removeVnodes(oldCh, 0, oldCh.length - 1);
         } else if (isDef(oldVnode.text)) {
            // 新节点不存在，老节点是文本，直接置为空串
           nodeOps.setTextContent(elm, '');
         }
       } else if (oldVnode.text !== vnode.text) {
+        // 新旧文本变化，设置新文本
         nodeOps.setTextContent(elm, vnode.text);
       }
       if (isDef(data)) {
@@ -412,35 +420,42 @@ function createComponent (vnode, insertedVnodeQueue, parentElm, refElm) {
     // removeOnly is a special flag used only by <transition-group>
     // to ensure removed elements stay in correct relative positions
     // during leaving transitions
-    var canMove = !removeOnly;
+    var canMove = !removeOnly;  // 避免不避免的移动
 
     {
-      checkDuplicateKeys(newCh);
+      checkDuplicateKeys(newCh); // 检查孩子是否有相同的key
     }
 
     while (oldStartIdx <= oldEndIdx && newStartIdx <= newEndIdx) {
       if (isUndef(oldStartVnode)) {
+        // 旧vdom首指针指向dom不存在，指针右移
         oldStartVnode = oldCh[++oldStartIdx]; // Vnode has been moved left
       } else if (isUndef(oldEndVnode)) {
+        // 旧vdom尾指针指向dom不存在，指针右移
         oldEndVnode = oldCh[--oldEndIdx];
       } else if (sameVnode(oldStartVnode, newStartVnode)) {
+        //  旧的首指针和新的首指针是相同的node
         patchVnode(oldStartVnode, newStartVnode, insertedVnodeQueue, newCh, newStartIdx);
-        oldStartVnode = oldCh[++oldStartIdx];
+        oldStartVnode = oldCh[++oldStartIdx]; // 旧首指针右移
         newStartVnode = newCh[++newStartIdx];
       } else if (sameVnode(oldEndVnode, newEndVnode)) {
+        //  旧的尾指针和新的尾指针是相同的node
         patchVnode(oldEndVnode, newEndVnode, insertedVnodeQueue, newCh, newEndIdx);
-        oldEndVnode = oldCh[--oldEndIdx];
+        oldEndVnode = oldCh[--oldEndIdx];  //旧尾指针右移
         newEndVnode = newCh[--newEndIdx];
       } else if (sameVnode(oldStartVnode, newEndVnode)) { // Vnode moved right
-        // 新节点右移
+        // 旧的首指针和新的尾指针是相同的node，说明位置调换 新节点右移
         patchVnode(oldStartVnode, newEndVnode, insertedVnodeQueue, newCh, newEndIdx);
-        // insertBefore 新vnode插入到老节点的后面的兄弟元素之前
+        // canMove  非<transition-group> 情况
+        // 使用 insertBefore 新vnode插入到老节点尾指针一个节点的后面的兄弟元素之前
         canMove && nodeOps.insertBefore(parentElm, oldStartVnode.elm, nodeOps.nextSibling(oldEndVnode.elm));
         oldStartVnode = oldCh[++oldStartIdx];
         newEndVnode = newCh[--newEndIdx];
       } else if (sameVnode(oldEndVnode, newStartVnode)) { // Vnode moved left
-        // 新节点左移 新vnode插入到老节点的之前
+        // 旧的旧指针和新的首指针是相同的node
+        // 新节点左移
         patchVnode(oldEndVnode, newStartVnode, insertedVnodeQueue, newCh, newStartIdx);
+        // 使用 insertBefore 新vnode插入到老节点首首指针节点的之前
         canMove && nodeOps.insertBefore(parentElm, oldEndVnode.elm, oldStartVnode.elm);
         oldEndVnode = oldCh[--oldEndIdx];
         newStartVnode = newCh[++newStartIdx];
@@ -472,7 +487,8 @@ function createComponent (vnode, insertedVnodeQueue, parentElm, refElm) {
         newStartVnode = newCh[++newStartIdx];
       }
     }
-    // 只是 oldStartIdx 增加， oldStartIdx > oldEndIdx
+    // 一个多，一个少的情况 eg：旧dom就一个，新的有三个， while (oldStartIdx <= oldEndIdx && newStartIdx <= newEndIdx)  执行一遍就不执行了
+    //  新node 循环完了，但是老的还没，说明老的插入很多，需要删除重复的
     if (oldStartIdx > oldEndIdx) {
       refElm = isUndef(newCh[newEndIdx + 1]) ? null : newCh[newEndIdx + 1].elm;
       addVnodes(parentElm, refElm, newCh, newStartIdx, newEndIdx, insertedVnodeQueue);
@@ -483,7 +499,7 @@ function createComponent (vnode, insertedVnodeQueue, parentElm, refElm) {
 
   function addVnodes (parentElm, refElm, vnodes, startIdx, endIdx, insertedVnodeQueue) {
     for (; startIdx <= endIdx; ++startIdx) {
-      // 创建dom ，插入到 parentElm
+      // 创建dom,如果组件就渲染组件，插入到 parentElm
       createElm(vnodes[startIdx], insertedVnodeQueue, parentElm, refElm, false, vnodes, startIdx);
     }
   }

@@ -2,6 +2,16 @@
 
 ## 前言
 
+网络协议 HTTP
+
+封装格式 MEPG-2 TS
+
+编码格式 视频编码格式为H.264，音频编码格式为MP3、AAC、AC-3或EC-3
+
+索引文件 M3U8
+
+### 原理
+
 从概念上讲，HTTP Live Streaming由三个部分组成：服务器组件，分发组件和客户端软件。
 
 的服务器组件是负责采取的媒体输入流和数字编码它们，以适合于递送的格式将它们封装，以及制备所述包封的媒体分发。
@@ -31,6 +41,8 @@ M3U8 是 Unicode 版本的 M3U，用 UTF-8 编码。"M3U" 和 "M3U8" 文件都�
 一个.M3U8文件是一个可扩展的播放列表文件格式。这是一个包含UTF-8编码文本的m3u播放列表。m3u文件格式是事实上的标准播放列表格式，适用于携带媒体文件URL列表。这是用作HTTP Live Streaming索引文件的格式。
 
 ### ts
+
+全称为MPEG2-TS。ts即"Transport Stream"的缩写。MPEG2-TS格式的特点就是要求从视频流的任一片段开始都是可以独立解码的
 
 TS（Transport Stream）: 动态文件流
 
@@ -66,6 +78,21 @@ m3u8 无法走CDN， m3u8 必须动态更新，ts 可以走 CDN。
 
 HLS 协议本质还是一个个的 HTTP 请求 / 响应，所以适应性很好，不会受到防火墙影响
 
+虽然HLS有上述优势，但也同时存在延迟过大的劣势。采用HLS直播的视频流延时一般在10秒以上，使用推荐配置时延迟大概在30s，而RTMP直播的延迟最低可达到3、4秒，因此，在对实时性要求较高的场合，如互动直播，就要慎用HLS了。
+
+HLS：延迟主要来自编码解码时产生延迟、网络延迟、CDN 分发延迟。由于它是切片协议，延迟分两大块，一个是服务端有切片缓冲延迟，另一个是在播放端防抖缓冲会有延迟。切片的大小和数量都会 HLS 影响延迟大小，一般在十秒以上。
+
+RTMP/HTTP-FLV: 目前国内大部分厂家在用的 RTMP，它相对于 HLS 在服务端做了优化。RTMP 服务端不再进行切片，而是分别转发每一帧，CDN 分发延迟非常小。
+RTMP 延迟主要来自播放端防抖缓冲：为提升弱网环境下抖动时直播的流畅度，缓冲延迟一般有五到十秒。这两类协议都是基于 TCP，国内厂商基本上已经将 RTMP over TCP 的延迟做到的极致，如果一个协议仍然基于 TCP 优化延迟，效果上很难优于目前的 RTMP 。
+
+TCP 由于其自身的一些特性，并不适用于低延迟直播场景，主要原因如下：
+重传慢：TCP 的 ACK 确认机制，丢包后发送侧超时重传，超时时间一般200ms，会造成接收侧帧抖动。
+拥塞判断不准确：基于丢包的拥塞控制算法无法准确判断拥塞，丢包并不等于拥塞；也会造成发送链路 bufferbloat，链路 RTT 增大，延迟增加。
+灵活性差：这是最主要原因，TCP 拥塞控制算法在操作系统内核层实现，优化成本较高，移动端只有利用系统已有的优化。
+
 ### 参考文献
 
 1. <https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/StreamingMediaGuide/HTTPStreamingArchitecture/HTTPStreamingArchitecture.html#//apple_ref/doc/uid/TP40008332-CH101-SW2>
+2. <https://blog.csdn.net/u011857683/article/details/84863250>
+3. <https://segmentfault.com/a/1190000009859281>
+4. <https://www.zhihu.com/question/25497090>

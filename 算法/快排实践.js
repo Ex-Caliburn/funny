@@ -72,3 +72,13 @@ function swap(arr, st, ed) {
 
 let arr2 = [1, 2, 3, 4, 1, 2, 3, 2, 1, 2]
 console.log(quickSort2(arr2))
+
+
+
+function quickSort3 (arr) {
+  let pivot =  arr[0]
+  let index = 1
+  index = arr.length -1 
+  
+}
+

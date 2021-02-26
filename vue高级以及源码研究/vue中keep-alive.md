@@ -1,8 +1,16 @@
 # keep-alive
 
-## 前言
+## 问题
 
-保存用户操作记录
+场景：  有个新闻list列表，用  <keep-alive> 包裹组件， 点详情回去到详情页面，返回还是新闻list 列表对应页面，但是点开其他详情，还是首次点开的新闻详情，
+原因：  <keep-alive> 他会缓存所有的子组件
+解决方案：使用 include 仅仅对list组件生效
+
+```vue
+<keep-alive :include="/.+List/">
+  <router-view  />
+</keep-alive>
+```
 
 ## 用法
 
@@ -18,7 +26,7 @@ include - 字符串或正则表达式。只有名称匹配的组件会被缓存�
 exclude - 字符串或正则表达式。任何名称匹配的组件都不会被缓存。
 max - 数字。最多可以缓存多少组件实例。
 
-```html
+```vue
 <!-- 基本 -->
 <keep-alive>
   <component :is="view"></component>
@@ -42,7 +50,7 @@ max - 数字。最多可以缓存多少组件实例。
 
 include 和 exclude prop 允许组件有条件地缓存。二者都可以用逗号分隔字符串、正则表达式或一个数组来表示：
 
-```html
+```vue
 
 <!-- 逗号分隔字符串 -->
 <keep-alive include="a,b">
@@ -61,19 +69,50 @@ include 和 exclude prop 允许组件有条件地缓存。二者都可以用逗�
 匹配首先检查组件自身的 name 选项，如果 name 选项不可用，则匹配它的局部注册名称 (父组件 components 选项的键值)。匿名组件不能被匹配。
 ```
 
+### 原理
+
+将缓存vnode 缓存在当前组件的 $vue.cache下， $vue.keys 存放 keys，方便查询,有直接从 cache拿出来用，没有则保存并缓存
+,超出最大缓存实例，会销毁，include和exclude 发生变化也会出发销毁
+
+```js
+if (cache[key]) {
+    vnode.componentInstance = cache[key].componentInstance;
+    // make current key freshest
+    remove(keys, key);
+    keys.push(key);
+  } else {
+    cache[key] = vnode;
+    keys.push(key);
+    // prune oldest entry
+    if (this.max && keys.length > parseInt(this.max)) {
+      pruneCacheEntry(cache, keys[0], keys, this._vnode);
+    }
+  }
+
+function pruneCacheEntry (
+    cache,
+    key,
+    keys,
+    current
+  ) {
+    var cached$$1 = cache[key];
+    if (cached$$1 && (!current || cached$$1.tag !== current.tag)) {
+      cached$$1.componentInstance.$destroy();
+    }
+    cache[key] = null;
+    remove(keys, key);
+  }
+  ```
+
 ## 总结
 
-```
+```vue
 <router-view>
   <router-view></router-view>
 </router-view>
 ```
 
 如果多种路由嵌套，你需要缓存子组件，你必须缓存父路由，子路由才能缓存
-
-所以更常见的因该是,tab切换缓存
-
-强制更新 调用 $forceUpdate 更新组件
 
 ### 参考文献
 

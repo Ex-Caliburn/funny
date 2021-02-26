@@ -113,3 +113,40 @@ var isValid3 = function(s) {
   }
   return s.length === 0;
 };
+
+// 第二次碰到 想了栈，但是瞬间忘了怎么实现了，先写了replace 版本
+function isMatch(str) {
+  let len
+  while (str) {
+    len = str.length
+    str = str.replace(/\(\)|\[\]|\{\}/, '')
+    if (str.length % 2 === 1 || str.length === len) {
+      return false
+    }
+  }
+  return true
+}
+
+function isMatch2(str) {
+  let arr = str.split('')
+  let item
+  let stack = []
+  let map = {
+    '{': '}',
+    '[': ']',
+    '(': ')'
+  }
+  while (arr.length) {
+    item = arr.shift()
+    if (['{', '[', '('].includes(item)) {
+      stack.push(item)
+    } else if (map[stack.pop()] !== item) {
+      return false
+    }
+  }
+  if (stack.length) {
+    return false
+  }
+  return true
+}
+console.log(isMatch2('()'))
