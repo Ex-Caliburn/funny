@@ -15,7 +15,7 @@ WebSocket协议还很年轻，RFC文档相比HTTP的发布时间也很短，它�
 
 如果服务器接受了这个请求，可能会发送如下这样的返回信息，这是一个标准的HTTP的Response消息。101表示服务器收到了客户端切换协议的请求，并且同意切换到此协议。RFC2616规定只有切换到的协议「比HTTP1.1更好」的时候才能同意切换。
 
-```
+```http
     HTTP/1.1 101 Switching Protocols //1
     Upgrade: websocket. //2
     Connection: Upgrade. //3

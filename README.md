@@ -1,17 +1,16 @@
 作者：戴嘉华
-https://github.com/livoras/blog/issues/7
-1111
+<https://github.com/livoras/blog/issues/7>
 目录
 
 前言
 仓库（Repository）
 
-	- 源仓库
-	- 开发者仓库
+- 源仓库
+- 开发者仓库
 分支（Branch）
 
-	 - 永久性分支
-	 - 暂时性分支
+- 永久性分支
+- 暂时性分支
 工作流（workflow）
 总结
 参考资料

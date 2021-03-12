@@ -121,8 +121,8 @@ data: {
 
 使用了这个策略，我甚至可以让多个输入框元素同时使用不同的 Pikaday，每个新的实例都程序化地在后期清理它自己
 
-```
-mounted: function () {
+```js
+  mounted: function () {
   this.attachDatepicker('startDateInput')
   this.attachDatepicker('endDateInput')
 },

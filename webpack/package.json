@@ -29,12 +29,6 @@
   "dependencies": {
     "lodash": "^4.17.15"
   },
-  // "eslintConfig": {
-  //   "extends": "airbnb-base",
-  //   "env": {
-  //     "browser": true
-  //   }
-  // },
   "browserslist": [
     "> 1%",
     "last 2 versions"
