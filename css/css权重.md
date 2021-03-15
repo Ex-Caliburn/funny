@@ -24,7 +24,7 @@ css权重是基础，平常不太会记
 
 ### 例子
 
-```css
+```html
 #sidebar h2                — 0, 1, 0, 1
 h2.title                   — 0, 0, 1, 1
 h2 + p                     — 0, 0, 0, 2
@@ -33,4 +33,10 @@ h2 + p                     — 0, 0, 0, 2
 
 ## 总结
 
+Chrome和Opera就已经是“即便超过256个，权重也无法超过id”了。 这是原来服务器有的bug
+
+严谨的是 i a b c d 的形式。
+
 ### 参考文献
+
+1. <https://www.zhangxinxu.com/wordpress/2012/08/256-class-selector-beat-id-selector/>
