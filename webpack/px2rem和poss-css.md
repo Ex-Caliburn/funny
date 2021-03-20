@@ -1,4 +1,4 @@
-# px2rem
+# px2rem和poss-css
 
 ## 前言
 
@@ -41,6 +41,13 @@ stylus-loader 加载和转译 Stylus 文件
 
 - 把 CSS 解析成 JavaScript 可以操作的 AST
 - 调用插件来处理 AST 并得到结果。因此，不能简单的把 PostCSS 归类成 CSS 预处理或后处理工具。PostCSS 所能执行的任务非常多，同时涵盖了传统意义上的预处理和后处理
+
+PostCSS 接收一个 CSS 文件并提供了一个 API 来分析、修改它的规则（通过把 CSS 规则转换成一个抽象语法树的方式）。在这之后，这个 API 便可被许多插件利用来做有用的事情，比如寻错或自动添加 CSS vendor 前缀。
+
+#### Autoprefixer
+
+PostCSS 的 Autoprefixer 插件是最流行的 CSS 处理工具之一。
+autoprefixer 添加了 vendor 浏览器前缀，它使用 Can I Use 上面的数据。
 
 #### 调用时机
 
@@ -143,3 +150,5 @@ vue-style-loader 相当于 style-loader，基于此修改
 1. <https://github.com/songsiqi/px2rem>
 2. <https://github.com/songsiqi/px2rem-postcss>
 3. <https://www.webpackjs.com/loaders/>
+4. <https://github.com/postcss/postcss/blob/main/docs/README-cn.md>
+5. <https://davidtheclark.com/its-time-for-everyone-to-learn-about-postcss/>
