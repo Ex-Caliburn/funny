@@ -8,8 +8,8 @@
 2. http链接， 三次握手，四次挥手
 3. 链接 返回 页面
 4. 解析html， ast， 生成 dom tree 和 css( Cascading Style Sheets) 样式层叠表, 浏览器对我们真的很包容
-5. 画layout tree，开始渲染，将dom tree，一一对应
-6. 栅栏格化， 绘制， 排版，最后出来页面
+5. 画layout tree，开始渲染，将dom tree和css，一一对应
+6. 建立图层树，生成绘制列表， 栅栏格化， 绘制， 排版，最后出来页面
 
 ### 正确姿势
 

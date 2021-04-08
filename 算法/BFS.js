@@ -11,7 +11,6 @@
 function PrintFromTopToBottom(root) {
   let queue = []
   let res = []
-  console.log()
   if (root) {
     let currentItem = null
     queue.push(root)
@@ -57,7 +56,7 @@ node = {
   }
 }
 
-console.log(PrintFromTopToBottom(node))
+// console.log(PrintFromTopToBottom(node))
 
 function PrintMultiLine(root) {
   let queue = []
@@ -87,7 +86,7 @@ function PrintMultiLine(root) {
   return res
 }
 
-console.log(PrintMultiLine(node))
+// console.log(PrintMultiLine(node))
 
 // 记录方向 1. 循环顺序不变，插入顺序根据行数变化， 2 循环顺序根据行数变化 插入不变
 // 队列，先进先出
@@ -180,7 +179,134 @@ function Print2(root, dir = 'right') {
   return res
 }
 
-console.log(Print(node, 'left'))
-console.log(Print(node, 'right'))
-console.log(Print2(node, 'left'))
-console.log(Print2(node, 'right'))
+// console.log(Print(node, 'left'))
+// console.log(Print(node, 'right'))
+// console.log(Print2(node, 'left'))
+// console.log(Print2(node, 'right'))
+
+//  思路1 从左到右 打印
+// 推入数组，然后循环 打印
+function printLeftToRight(node) {
+  if (!node) {
+    return
+  }
+  if (!Array.isArray(node)) {
+    node = [node]
+  }
+  let len = node.length
+  let arr = []
+  for (let i = 0; i < len; i++) {
+    console.log(node[i].val)
+    if (node[i].left) {
+      arr.push(node[i].left)
+    }
+    if (node[i].right) {
+      arr.push(node[i].right)
+    }
+  }
+  if (arr.length) printLeftToRight(arr)
+}
+
+// printLeftToRight(node)
+
+// 思路2 一次循环 不断往数组后面添加
+function printLeftToRight2(node) {
+  if (!node) {
+    return
+  }
+  let arr = [node]
+  let currentItem
+  for (let i = 0; i < arr.length; i++) {
+    currentItem = arr[i]
+    console.log(currentItem.val)
+    if (currentItem.left) {
+      arr.push(currentItem.left)
+    }
+    if (currentItem.right) {
+      arr.push(currentItem.right)
+    }
+  }
+}
+
+// printLeftToRight2(node)
+
+// 思路3 以这种思路思考之字打印
+function printLeftToRight3(node, dir = 'right') {
+  if (!node) {
+    return
+  }
+  let arr = [node]
+  let currentItem
+  let ed = 0
+  let currentLineNum = 1
+  let nextLineNum = 0
+  for (let i = 0; i < arr.length; i++) {
+    currentItem = arr[i]
+    console.log(currentItem.val)
+    if (currentLineNum === 0) {
+      ed = ed + nextLineNum
+      currentLineNum = nextLineNum
+      nextLineNum = 0
+      dir = dir === 'left' ? 'right' : 'left'
+    }
+    if (dir === 'right') {
+      if (currentItem.left) {
+        arr.splice(ed + 1, 0, currentItem.left)
+        nextLineNum++
+      }
+      if (currentItem.right) {
+        arr.splice(ed + 1, 0, currentItem.right)
+        nextLineNum++
+      }
+    } else {
+      if (currentItem.right) {
+        arr.splice(ed + 1, 0, currentItem.right)
+        nextLineNum++
+      }
+      if (currentItem.left) {
+        arr.splice(ed + 1, 0, currentItem.left)
+        nextLineNum++
+      }
+    }
+    currentLineNum--
+  }
+}
+
+// printLeftToRight3(node)
+
+
+// 思路4 用数组 这样少了不少遍历，但是空间复杂度会高，，数组的插入删除都是 O(n)，但是清晰
+function printLeftToRight4(node, dir = 'right') {
+  if (!node) {
+    return
+  }
+  let arr = [node]
+  let currentItem
+  let newArr = []
+  while (arr.length) {
+    currentItem = arr.shift()
+    console.log(currentItem.val)
+    if (dir === 'right') {
+      if (currentItem.left) {
+        newArr.unshift(currentItem.left)
+      }
+      if (currentItem.right) {
+        newArr.unshift(currentItem.right)
+      }
+    } else {
+      if (currentItem.right) {
+        newArr.unshift(currentItem.right)
+      }
+      if (currentItem.left) {
+        newArr.unshift(currentItem.left)
+      }
+    }
+    if (!arr.length) {
+      arr = newArr
+      newArr = []
+      dir = dir === 'left' ? 'right' : 'left'
+    }
+  }
+}
+
+printLeftToRight4(node)

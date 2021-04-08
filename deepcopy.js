@@ -1,7 +1,7 @@
 /*
  * @Author: Alex(lijiyebest@gmail.com)
  * @Date: 2020-05-30 00:22:51
- * @LastEditTime: 2020-06-12 14:20:58
+ * @LastEditTime: 2021-03-30 18:53:48
  * @LastEditors: Alex(lijiyebest@gmail.com)
  * @Description: 几分钟可以写出deepCopy
  */
@@ -20,7 +20,7 @@ function deepCopy(obj, target = {}) {
 
 function deepCopy(val) {
   if (Object.prototype.toString.call(val) === ['object Object'] || Array.isArray(val)) {
-    let res =  Array.isArray(val) ? [] : {}
+    let res = Array.isArray(val) ? [] : {}
     for (const key in object) {
       if (object.hasOwnProperty(key)) {
         res[key] = deepClone(object[key])
@@ -31,12 +31,33 @@ function deepCopy(val) {
   }
 }
 
-// 如何复制函数,暂时不考虑原型
-// 箭头函数可以复制，但是普通函数不行
-// new 函数内部语句不会复制，只有内部绑定this的方法和属性会复制
-// 转化为string，然后eval，但是对普通函数不管用
+// 我的写的啥，不清晰
+function extend(target, source, isDeep) {
+  for (let key in target) {
+    if (isDeep && ['Object', 'Array'].includes(Object.prototype.toString.call(target[key]).slice(8, -1))) {
+      let temp = Object.prototype.toString.call(target[key]).slice(8, -1) === 'Object' ? {} : []
+      source[key] = temp
+      extend(target[key], source[key], isDeep)
+    } else {
+      source[key] = target[key]
+    }
+  }
+  return source
+}
 
-// 测试用例
+// 优化
+function deepClone2(target, source, isDeep) {
+  for (let k in target) {
+    let v = target[k]
+    if (Array.isArray(v) || (v !== null && typeof v === 'object')) {
+      source[k] = deepClone2(target[k], Array.isArray(v) ? [] : {}, isDeep)
+    } else {
+      source[k] = target[k]
+    }
+  }
+  return source
+}
+
 let test = {
   a: 1,
   b: 0,
@@ -58,7 +79,14 @@ let test = {
   },
   o: Symbol('foo')
 }
-result = deepCopy(test)
+
+result1 = deepClone2(test, {})
+
+
+// result = extend(test, {})
+
+
+// result = deepCopy(test)
 result = {
   a: 1,
   b: 0,
@@ -72,7 +100,7 @@ result = {
   j: {},
   k: { a: 1, b: 0, c: { a: 1 } },
   l: [1, 2, 3, { a: 1 }],
-  m: function (a) {},
+  m: function (a) { },
   n: (arrow) => {
     console.log(arrow)
   }

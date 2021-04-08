@@ -89,20 +89,23 @@ console.log(this === undefined); // true
 
 const isNotModuleScript = this !== undefined;
 
-ES6 模块与 CommonJS 模块的差异 § ⇧
+### ES6 模块与 CommonJS 模块的差异
+
 讨论 Node.js 加载 ES6 模块之前，必须了解 ES6 模块与 CommonJS 模块完全不同。
 
 它们有三个重大差异。
 
-CommonJS 模块输出的是一个值的拷贝，ES6 模块输出的是值的引用。
-CommonJS 模块是运行时加载，ES6 模块是编译时输出接口。
-CommonJS 模块的require()是同步加载模块，ES6 模块的import命令是异步加载，有一个独立的模块依赖的解析阶段。
+- CommonJS 模块输出的是一个值的拷贝，ES6 模块输出的是值的引用。
+- CommonJS 模块是运行时加载，ES6 模块是编译时输出接口。
+- CommonJS 模块的require()是同步加载模块，ES6 模块的import命令是异步加载，有一个独立的模块依赖的解析阶段。
+  
 第二个差异是因为 CommonJS 加载的是一个对象（即module.exports属性），该对象只有在脚本运行完才会生成。而 ES6 模块不是对象，它的对外接口只是一种静态定义，在代码静态解析阶段就会生成。
 
 下面重点解释第一个差异。
 
 CommonJS 模块输出的是值的拷贝，也就是说，一旦输出一个值，模块内部的变化就影响不到这个值。请看下面这个模块文件lib.js的例子。
 
+```js
 // lib.js
 var counter = 3;
 function incCounter() {
@@ -112,7 +115,11 @@ module.exports = {
   counter: counter,
   incCounter: incCounter,
 };
+```
+
 上面代码输出内部变量counter和改写这个变量的内部方法incCounter。然后，在main.js里面加载这个模块。
+
+```js
 
 // main.js
 var mod = require('./lib');
@@ -120,7 +127,11 @@ var mod = require('./lib');
 console.log(mod.counter);  // 3
 mod.incCounter();
 console.log(mod.counter); // 3
+```
+
 上面代码说明，lib.js模块加载以后，它的内部变化就影响不到输出的mod.counter了。这是因为mod.counter是一个原始类型的值，会被缓存。除非写成一个函数，才能得到内部变动后的值。
+
+```js
 
 // lib.js
 var counter = 3;
@@ -133,14 +144,17 @@ module.exports = {
   },
   incCounter: incCounter,
 };
+```
+
 上面代码中，输出的counter属性实际上是一个取值器函数。现在再执行main.js，就可以正确读取内部变量counter的变动了。
 
-$ node main.js
 3
 4
 ES6 模块的运行机制与 CommonJS 不一样。JS 引擎对脚本静态分析的时候，遇到模块加载命令import，就会生成一个只读引用。等到脚本真正执行时，再根据这个只读引用，到被加载的那个模块里面去取值。换句话说，ES6 的import有点像 Unix 系统的“符号连接”，原始值变了，import加载的值也会跟着变。因此，ES6 模块是动态引用，并且不会缓存值，模块里面的变量绑定其所在的模块。
 
 还是举上面的例子。
+
+```js
 
 // lib.js
 export let counter = 3;
@@ -153,10 +167,13 @@ import { counter, incCounter } from './lib';
 console.log(counter); // 3
 incCounter();
 console.log(counter); // 4
+```
+
 上面代码说明，ES6 模块输入的变量counter是活的，完全反应其所在模块lib.js内部的变化。
 
 再举一个出现在export一节中的例子。
 
+```js
 // m1.js
 export var foo = 'bar';
 setTimeout(() => foo = 'baz', 500);
@@ -165,6 +182,8 @@ setTimeout(() => foo = 'baz', 500);
 import {foo} from './m1.js';
 console.log(foo);
 setTimeout(() => console.log(foo), 500);
+```
+
 上面代码中，m1.js的变量foo，在刚加载时等于bar，过了 500 毫秒，又变为等于baz。
 
 让我们看看，m2.js能否正确读取这个变化。
@@ -173,10 +192,12 @@ $ babel-node m2.js
 
 bar
 baz
+
 上面代码表明，ES6 模块不会缓存运行结果，而是动态地去被加载的模块取值，并且变量总是绑定其所在的模块。
 
 由于 ES6 输入的模块变量，只是一个“符号连接”，所以这个变量是只读的，对它进行重新赋值会报错。
 
+```js
 // lib.js
 export let obj = {};
 
@@ -185,9 +206,13 @@ import { obj } from './lib';
 
 obj.prop = 123; // OK
 obj = {}; // TypeError
+```
+
 上面代码中，main.js从lib.js输入变量obj，可以对obj添加属性，但是重新赋值就会报错。因为变量obj指向的地址是只读的，不能重新赋值，这就好比main.js创造了一个名为obj的const变量。
 
 最后，export通过接口，输出的是同一个值。不同的脚本加载这个接口，得到的都是同样的实例。
+
+```js
 
 // mod.js
 function C() {
@@ -201,7 +226,11 @@ function C() {
 }
 
 export let c = new C();
+```
+
 上面的脚本mod.js，输出的是一个C的实例。不同的脚本加载这个模块，得到的都是同一个实例。
+
+```js
 
 // x.js
 import {c} from './mod';
@@ -214,13 +243,16 @@ c.show();
 // main.js
 import './x';
 import './y';
+```
+
 现在执行main.js，输出的是1。
 
 $ babel-node main.js
 1
 这就证明了x.js和y.js加载的都是C的同一个实例。
 
-Node.js 的模块加载方法
+### Node.js 的模块加载方法
+
 概述
 JavaScript 现在有两种模块。一种是 ES6 模块，简称 ESM；另一种是 CommonJS 模块，简称 CJS。
 
@@ -419,7 +451,8 @@ export const foo = cjsModule.foo;
 }
 上面代码指定require()和import，加载该模块会自动切换到不一样的入口文件。
 
-Node.js 的内置模块
+### Node.js 的内置模块
+
 Node.js 的内置模块可以整体加载，也可以加载指定的输出项。
 
 // 整体加载
@@ -435,7 +468,9 @@ readFile('./foo.txt', (err, source) => {
     console.log(source);
   }
 });
-加载路径
+
+### 加载路径
+
 ES6 模块的加载路径必须给出脚本的完整路径，不能省略脚本的后缀名。import命令和package.json文件的main字段如果省略脚本的后缀名，会报错。
 
 // ES6 模块中将报错
@@ -447,7 +482,8 @@ import './foo.mjs?query=1'; // 加载 ./foo 传入参数 ?query=1
 
 目前，Node.js 的import命令只支持加载本地模块（file:协议）和data:协议，不支持加载远程模块。另外，脚本路径只支持相对路径，不支持绝对路径（即以/或//开头的路径）。
 
-内部变量
+### 内部变量
+
 ES6 模块应该是通用的，同一个模块不用修改，就可以用在浏览器环境和服务器环境。为了达到这个目标，Node.js 规定 ES6 模块之中不能使用 CommonJS 模块的特有的一些内部变量。
 
 首先，就是this关键字。ES6 模块之中，顶层的this指向undefined；CommonJS 模块的顶层this指向当前模块，这是两者的一个重大差异。
@@ -552,11 +588,13 @@ exports.bad = function (arg) {
 };
 上面代码中，如果发生循环加载，require('a').foo的值很可能后面会被改写，改用require('a')会更保险一点。
 
-ES6 模块的循环加载
+#### ES6 模块的循环加载
+
 ES6 处理“循环加载”与 CommonJS 有本质的不同。ES6 模块是动态引用，如果使用import从一个模块加载变量（即import foo from 'foo'），那些变量不会被缓存，而是成为一个指向被加载模块的引用，需要开发者自己保证，真正取值的时候能够取到值。
 
 请看下面这个例子。
 
+```js
 // a.mjs
 import {bar} from './b';
 console.log('a.mjs');
@@ -568,11 +606,16 @@ import {foo} from './a';
 console.log('b.mjs');
 console.log(foo);
 export let bar = 'bar';
+```
+
 上面代码中，a.mjs加载b.mjs，b.mjs又加载a.mjs，构成循环加载。执行a.mjs，结果如下。
 
+```js
 $ node --experimental-modules a.mjs
 b.mjs
 ReferenceError: foo is not defined
+```
+
 上面代码中，执行a.mjs以后会报错，foo变量未定义，这是为什么？
 
 让我们一行行来看，ES6 循环加载是怎么处理的。首先，执行a.mjs以后，引擎发现它加载了b.mjs，因此会优先执行b.mjs，然后再执行a.mjs。接着，执行b.mjs的时候，已知它从a.mjs输入了foo接口，这时不会去执行a.mjs，而是认为这个接口已经存在了，继续往下执行。执行到第三行console.log(foo)的时候，才发现这个接口根本没定义，因此报错。

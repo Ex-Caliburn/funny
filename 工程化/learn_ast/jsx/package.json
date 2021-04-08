@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "test": "babel test/index.jsx --out-file test/dist.js"
+  },
+  "dependencies": {
+    "@babel/helper-plugin-utils": "^7.0.0",
+    "@babel/plugin-syntax-jsx": "^7.0.0"
+  }
+}

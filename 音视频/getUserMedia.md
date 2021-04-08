@@ -28,6 +28,18 @@ getUserMedia 因为太过强大，以至于只能在安全的环境下使用， 
 </iframe>
 ```
 
+### mac Safari的问题
+
+参考 `https://xiangyuecn.gitee.io/recorder/assets/ztest_apple_developer_forums_getusermedia.html`
+
+safari 录第一遍好好地，第二遍就没有声音了，不知道是Safari对 record 做了权限限制，需要每次录音必须调用 navigator.mediaDevices.getUserMedia(constraints) 方法才能录音
+
+### 一些注意点
+
+1. mac 打开多个浏览器软件，Safari只有一个能正常录音，其他虽然很获取权限，但是没有声音，同一个浏览器多个标签页录音是没有问题
+2. 手机录音接电话的异常处理
+3. 微信录音兼容
+
 ## 总结
 
 英文文档更完整
@@ -35,3 +47,4 @@ getUserMedia 因为太过强大，以至于只能在安全的环境下使用， 
 ### 参考文献
 
 1. <https://developer.mozilla.org/zh-CN/docs/Web/API/MediaDevices/getUserMedia>
+2. <https://xiangyuecn.gitee.io/recorder/assets/ztest_apple_developer_forums_getusermedia.html>

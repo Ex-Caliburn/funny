@@ -34,7 +34,7 @@ class MyPromise {
       onFulFilled(this.value)
     }
     if (this.state === 'REJECTED') {
-        onRejected(this.value)
+      onRejected(this.value)
     }
   }
   catch(err) {
@@ -47,3 +47,30 @@ class MyPromise {
     }
   }
 }
+// 对比
+MyPromiseTest = new MyPromise((resolve, reject) => {
+  console.log(resolve, reject, 'resolve')
+  resolve(1)
+})
+console.log(MyPromiseTest)
+
+MyPromiseTest.then((res) => {
+  console.log('MyPromiseTest res', res)
+})
+
+let realPromise = new Promise((resolve, reject) => {
+  console.log(resolve, reject, 'resolve')
+  resolve(1)
+})
+console.log(realPromise)
+realPromise.then(
+  (res) => {
+    console.log('realPromise res', res)
+  },
+  (err) => {
+    console.log('realPromise err', err)
+  }
+)
+
+
+

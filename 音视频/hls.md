@@ -90,9 +90,26 @@ TCP 由于其自身的一些特性，并不适用于低延迟直播场景，主�
 拥塞判断不准确：基于丢包的拥塞控制算法无法准确判断拥塞，丢包并不等于拥塞；也会造成发送链路 bufferbloat，链路 RTT 增大，延迟增加。
 灵活性差：这是最主要原因，TCP 拥塞控制算法在操作系统内核层实现，优化成本较高，移动端只有利用系统已有的优化。
 
+### videojs兼容方案
+
+步骤
+
+1. 通过http请求获取索引文件
+2. 将传输的视频流二进制数据封装成可直接播放的视频格式
+3. videojs-contrib-hls是利用video.js里SWF的一个特殊模块，将视频二进制数据打包成flv格式hls.js是转化成MP4格式
+4. 使用appendBuffer将视频片段添加到SourceBuffer中
+
+
+### Media Source Extensions API
+
+媒体源扩展（MSE）实现后，情况就不一样了。MSE 使我们可以把通常的单个媒体文件的 src 值替换成引用 MediaSource 对象（一个包含即将播放的媒体文件的准备状态等信息的容器），以及引用多个 SourceBuffer 对象（代表多个组成整个串流的不同媒体块）的元素。MSE 让我们能够根据内容获取的大小和频率，或是内存占用详情（例如什么时候缓存被回收），进行更加精准地控制。 它是基于它可扩展的 API 建立自适应比特率流客户端（例如DASH 或 HLS 的客户端）的基础。
+
+在现代浏览器中创造能兼容 MSE 的媒体（assets）非常费时费力，还要消耗大量计算机资源和能源。此外，还须使用外部实用程序将内容转换成合适的格式。虽然浏览器支持兼容 MSE 的各种媒体容器，但采用 H.264 视频编码、AAC 音频编码和 MP4 容器的格式是非常常见的，且一定兼容。MSE 同时还提供了一个 API，用于运行时检测容器和编解码是否受支持。
+
 ### 参考文献
 
 1. <https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/StreamingMediaGuide/HTTPStreamingArchitecture/HTTPStreamingArchitecture.html#//apple_ref/doc/uid/TP40008332-CH101-SW2>
 2. <https://blog.csdn.net/u011857683/article/details/84863250>
 3. <https://segmentfault.com/a/1190000009859281>
 4. <https://www.zhihu.com/question/25497090>
+5. <https://developer.mozilla.org/zh-CN/docs/Web/API/Media_Source_Extensions_API>
