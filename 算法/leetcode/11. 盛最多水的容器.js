@@ -19,7 +19,7 @@ console.log(maxArea([1]))
 
 // 暴力法，两次遍历，计算出所有可能，得出 最大面积
 // 双休指针，两侧，每次移动小的那边
-
+// 超时了！！！
 var maxArea2 = function (height) {
   let right = height.length - 1
   let left = 0

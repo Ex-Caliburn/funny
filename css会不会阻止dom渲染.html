@@ -1,7 +1,7 @@
 <!--
  * @Author: Alex(lijiyebest@gmail.com)
  * @Date: 2020-05-27 14:05:15
- * @LastEditTime: 2020-05-28 01:32:20
+ * @LastEditTime: 2021-04-11 19:27:13
  * @LastEditors: Alex(lijiyebest@gmail.com)
  * @Description: 当前文件做什么的
  * @Trap: 坑，历史包袱，注意事项
@@ -49,6 +49,8 @@
     /* 
         1. 会阻止 dom tree的生成 以及后续的渲染
         2. 会阻塞js 的运行
+        3. link 标签 解析会有一个下载过程，下载 ，解析stylesheet，layout tree，收集style，更新layer tree， css tree， composite layer， paint绘制
+        4. 没有link 标签，这个需要style包裹很多的css能清晰看到效果，一样也会阻塞 除了下载和上一步一致
 
         解决办法:
         1. css小的可以内联样式，不过内联不能被缓存
@@ -57,6 +59,20 @@
         4. 不是首屏样式稍后加载 加上preload, prefetch不影响首屏渲染
         5. 合理使用缓存 cache-control: no-cache; ETag,Last-Modified,文件命名hash
  
+        CSS 是阻塞渲染的资源。需要将它尽早、尽快地下载到客户端，以便缩短首次渲染的时间。
+
+        不过，如果我们有一些 CSS 样式只在特定条件下（例如显示网页或将网页投影到大型显示器上时）使用，又该如何？如果这些资源不阻塞渲染，该有多好。
+
+        我们可以通过 CSS“媒体类型”和“媒体查询”来解决这类用例:
+
+        <link href="style.css" rel="stylesheet">
+        <link href="print.css" rel="stylesheet" media="print">
+        <link href="other.css" rel="stylesheet" media="(min-width: 40em)">
+        媒体查询由媒体类型以及零个或多个检查特定媒体特征状况的表达式组成。
+        例如，上面的第一个样式表声明未提供任何媒体类型或查询，因此它适用于所有情况，
+        也就是说，它始终会阻塞渲染。第二个样式表则不然，它只在打印内容时适用---
+        或许您想重新安排布局、更改字体等等，因此在网页首次加载时，该样式表不需要阻塞渲染。
+        最后，最后一个样式表声明提供由浏览器执行的“媒体查询”: 符合条件时，浏览器将阻塞渲染，直至样式表下载并处理完毕。
     
     */
   </script>
