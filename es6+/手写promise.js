@@ -1,5 +1,5 @@
 // 手写题：Promise 原理
-
+// 思路，执行完resolve，才能进去then，非则就卡住了，then执行成功后执行成功队列和错误队列，依次执行
 class MyPromise {
   constructor(fn) {
     this.resolvedCallbacks = []
@@ -60,7 +60,7 @@ MyPromiseTest.then((res) => {
 
 let realPromise = new Promise((resolve, reject) => {
   console.log(resolve, reject, 'resolve')
-  resolve(1)
+  resolve(1) // 不执行resolve 一直会进入then 的回吊
 })
 console.log(realPromise)
 realPromise.then(

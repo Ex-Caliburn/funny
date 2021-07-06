@@ -1,0 +1,73 @@
+<!--
+那么到底有哪些情况会出现内存泄漏的情况呢？这里列举了常见的几种：
+
+闭包使用不当引起内存泄漏
+全局变量
+分离的DOM节点
+控制台的打印
+遗忘的定时器
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body id="root">
+    <button>按钮</button>
+    <button id="timer">开启定时器</button>
+    <div class="child">我是子元素</div>
+    <button id="remove">移除</button>
+    <script>
+
+        let btn = document.querySelector('#remove')
+        // let child = document.querySelector('.child')
+        // let root = document.querySelector('#root')
+
+        // btn.addEventListener('click', function () {
+        //     root.removeChild(child)
+        // })
+
+
+        btn.addEventListener('click', function () {
+            let child = document.querySelector('.child')
+            let root = document.querySelector('#root')
+            root.removeChild(child)
+        })
+
+        document.querySelector('button').addEventListener('click', function () {
+            let obj = new Array(1000000)
+
+            console.log(obj);
+        })
+
+        function fn1() {
+            let largeObj = new Array(100000)
+
+            // setInterval(() => {
+            //     let myObj = largeObj
+            // }, 1000)
+
+            let index = 0
+            let timer = setInterval(() => {
+                if (index === 3) clearInterval(timer);
+                let myObj = largeObj
+                index++
+            }, 1000)
+        }
+
+        document.querySelector('#timer').addEventListener('click', function () {
+            fn1()
+        })
+
+
+    </script>
+
+</body>
+
+</html>

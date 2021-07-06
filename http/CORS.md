@@ -7,6 +7,20 @@ CORS是一个W3C标准，全称是"跨域资源共享"（Cross-origin resource s
 
 浏览器将CORS请求分成两类：简单请求（simple request）和非简单请求（not-so-simple request）。
 
+### 资源的访问分为三种
+
+跨域写操作
+跨域资源嵌入
+跨域读操作
+
+写操作： 包括链接、重定向和表单提交
+
+跨域嵌入是指通过 <script>、 <link>、 <img>、 <video>、 <audio>、 <object>、 <embed>、 <iframe> 等标签加载的子资源。默认情况下它们均被允许跨域嵌入。不过 <iframe> 有点特别 —— 因为它的目的是在框架内加载不同的页面，可以使用 X-Frame-options 响应头控制其是否可以跨域加载。
+
+跨域读取 是由 AJAX / fetch 获取子资源所产生的。默认情况下，浏览器会限制此类请求。当然，有一种通过嵌入子资源的方法也能实现跨域读取，不过相应地，如今的浏览器也存在着另一个策略来应对这种方法。如果你的浏览器已更新至最新版本，那么它应该已经实现以上的策略了。
+
+浏览器获取到来自服务器的响应时，它会去检查响应头的 Access-Control-Allow-Origin 属性值，用以决定是否让页面读取响应内容。
+
 ### 简单请求
 
 （1) 请求方法是以下三种方法之一：
@@ -414,3 +428,4 @@ JSONP只支持GET请求，CORS支持所有类型的HTTP请求。JSONP的优势�
 ### 参考文献
 
 1. <http://www.ruanyifeng.com/blog/2016/04/cors.html>
+2. <https://mp.weixin.qq.com/s/JRanXA3_lIm7HUG8E_coUA>

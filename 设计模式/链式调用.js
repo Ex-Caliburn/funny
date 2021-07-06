@@ -14,6 +14,7 @@
 
 // 首次写 多了 initValue ，其实把运算后的值返回就好了，包一个函数，而且写的不对，initValue没用
 // 刚开始 node 返回和我预期不一样，以为我写错，其实就是node 和浏览器不一样
+// 和promise 类似，但是利用了valueOf和 toString
 function add(val = 0, initValue = 0) {
     val = initValue + val
     console.log(val)
