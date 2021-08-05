@@ -74,12 +74,13 @@ XHR回调、事件回调（鼠标键盘事件）、setImmediate、setTimeout、s
 process.nextTick（nodejs）、Promise.then、Object.observer(已经被废弃)、MutationObserver(html5新特性)
 为了突破单线程的限制
 
+每个宏任务都有一个微任务列表
+
 区别
 hen executing tasks from the task queue, the runtime executes each task that is in the queue at the moment a new iteration of the event loop begins. Tasks added to the queue after the iteration begins will not run until the next iteration.
 
 1. 当执行回调队列，执行队列执行每一个在回调队列中的任务同时事件循环开始新的循环，在循环开始之后回调队列新添加的任务，直到下一次事件轮询开始才会运行
 2. 当任务退出，当执行栈为空，每一个微任务队列的微任务都会执行，一个接一个 微任务队列会执行到微任务队列为空为止，即使有新队列加入， 微任务队列能加入新的微任务，这些新的微任务会在下一个宏任务开始之前执行，而且在当前事件事件轮询结束之前
-
 
 ### 新解决方案
 

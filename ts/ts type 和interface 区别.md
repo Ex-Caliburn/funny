@@ -14,7 +14,7 @@ TypeScript的核心原则之一是对值所具有的结构进行类型检查。 
 
 * Interface(接口) vs Type alias(类型别名)
 * 相同点-> 都可以描述一个对象或者函数
-* -> 都允许拓展（extends）
+* -> 都允许拓展（extends） 只是语法不一样
 * --->> interface extends interface (接口继承接口)
 * --->> type extends type (类型继承类型)
 * --->> interface extends type (接口继承类型)
@@ -188,7 +188,7 @@ declare function aliased(arg: Alias): Alias;
 declare function interfaced(arg: Interface): Interface;
 ```
 
-另一个重要区别是类型别名不能被 extends和 implements（自己也不能 extends和 implements其它类型）。 因为 软件中的对象应该对于扩展是开放的，但是对于修改是封闭的，你应该尽量去使用接口代替类型别名。
+另一个重要区别是类型别名不能被 implements。 因为 软件中的对象应该对于扩展是开放的，但是对于修改是封闭的，你应该尽量去使用接口代替类型别名。
 
 另一方面，如果你无法通过接口来描述一个类型并且需要使用联合类型或元组类型，这时通常会使用类型别名。
 

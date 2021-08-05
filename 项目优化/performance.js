@@ -121,7 +121,7 @@ function getPerformanceTiming() {
         console.log('你的浏览器不支持 performance 接口');
         return;
     }
-    var t = performance.timing;
+    var t = performance.PerformanceTiming;
     var times = {};
     //【重要】页面加载完成的时间
     //【原因】这几乎代表了用户等待页面可用的时间

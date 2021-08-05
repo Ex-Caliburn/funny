@@ -1,9 +1,10 @@
 /*
  * @Author: Alex(lijiyebest@gmail.com)
  * @Date: 2020-05-30 00:22:51
- * @LastEditTime: 2021-03-30 18:53:48
+ * @LastEditTime: 2021-07-28 00:44:26
  * @LastEditors: Alex(lijiyebest@gmail.com)
  * @Description: 几分钟可以写出deepCopy
+ * 你需要考虑那些坑
  */
 
 function deepCopy(obj, target = {}) {

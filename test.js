@@ -52,48 +52,6 @@ async function async4() {
 }
 let b = await async3() // 1
 
-// 3. Tree To String
-// Please convert a binary tree to a string that consists of parenthesis and integers using preorder traversing.
-
-let tree = [1, 2, 3, null, 4]
-
-node = {
-  right: {
-    val: 1,
-    left: 1,
-    right: 2
-  },
-  left: {
-    val: 1,
-    left: 1,
-    right: 2
-  }
-}
-
-/**
- * @param {Array<int>} t
- * @return {string}
- */
-var tree2str = function (t) {
-  // 在这里实现
-  if (!t) {
-    return ''
-  }
-  let temp = ''
-  let item
-  t = 0
-  for (let i = 0; index < t.length; index++) {
-    if ((t = 0)) {
-      temp += t[i]
-    } else {
-      temp += '('
-    }
-  }
-}
-
-function helper(params) {}
-
-
 
 // script start
 // async1 start

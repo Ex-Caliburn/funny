@@ -40,6 +40,35 @@ function showName() {
 所以showName还是不变
 执行阶段， showName() 打印 1
 
+### 执行上下文
+
+ 主要分为三种
+
+- 全局执行上下文
+- 函数执行上下文
+- eval 执行上下文
+
+  执行上下文中包含了变量环境、词法环境、外部环境、this
+
+#### eval 执行上下文
+
+```js
+'use strict';
+var x = 1;
+eval("var x = 2;");
+console.log(x); // 严格模式为1，非严格模式为2
+```
+
+执行eval函数会创建执行上下文。
+只不过严格模式执行eval函数，不会作用于它的外层作用域，所以修改x不会生效。
+
+webpack 中使用了eval
+用于导入模块,如下
+
+```js
+eval("module.exports = __webpack_require__.p + \"imgs/c2f2c28284.png\";\n\n//# sourceURL=webpack:///./src/imgs/react.png?");
+```
+
 ## 总结
 
 ### 参考文献
