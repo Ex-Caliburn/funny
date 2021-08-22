@@ -34,6 +34,12 @@ set.forEach((value, key) => console.log(key + ' : ' + value))
 keys方法、values方法、entries方法返回的都是遍历器对象,由于 Set 结构没有键名，只有键值（或者说键名和键值是同一个值），所以keys方法和values方法的行为完全一致。
 ```
 
+```js
+let a = new Set()
+a.add({a:1})
+a.has({a:1}) // false 必须要用那个引用
+```
+
 ### map
 
 JavaScript 的对象（Object），本质上是键值对的集合（Hash 结构），但是传统上只能用字符串当作键。这给它的使用带来了很大的限制。

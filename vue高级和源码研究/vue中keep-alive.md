@@ -75,19 +75,85 @@ include 和 exclude prop 允许组件有条件地缓存。二者都可以用逗�
 ,超出最大缓存实例，会销毁，include和exclude 发生变化也会出发销毁
 
 ```js
-if (cache[key]) {
-    vnode.componentInstance = cache[key].componentInstance;
-    // make current key freshest
-    remove(keys, key);
-    keys.push(key);
-  } else {
-    cache[key] = vnode;
-    keys.push(key);
-    // prune oldest entry
-    if (this.max && keys.length > parseInt(this.max)) {
-      pruneCacheEntry(cache, keys[0], keys, this._vnode);
+ var KeepAlive = {
+    name: 'keep-alive',
+    abstract: true,
+
+    props: {
+      include: patternTypes,
+      exclude: patternTypes,
+      max: [String, Number]
+    },
+
+    created: function created () {
+      this.cache = Object.create(null);
+      this.keys = [];
+    },
+
+    destroyed: function destroyed () {
+      for (var key in this.cache) {
+        pruneCacheEntry(this.cache, key, this.keys);
+      }
+    },
+
+    mounted: function mounted () {
+      var this$1 = this;
+
+      this.$watch('include', function (val) {
+        pruneCache(this$1, function (name) { return matches(val, name); });
+      });
+      this.$watch('exclude', function (val) {
+        pruneCache(this$1, function (name) { return !matches(val, name); });
+      });
+    },
+
+    render: function render () {
+      var slot = this.$slots.default;
+      var vnode = getFirstComponentChild(slot);
+      var componentOptions = vnode && vnode.componentOptions;
+      if (componentOptions) {
+        // check pattern
+        var name = getComponentName(componentOptions);
+        var ref = this;
+        var include = ref.include;
+        var exclude = ref.exclude;
+        if (
+          // not included
+          (include && (!name || !matches(include, name))) ||
+          // excluded
+          (exclude && name && matches(exclude, name))
+        ) {
+          return vnode
+        }
+
+        var ref$1 = this;
+        var cache = ref$1.cache;
+        var keys = ref$1.keys;
+        var key = vnode.key == null
+          // same constructor may get registered as different local components
+          // so cid alone is not enough (#3269)
+          ? componentOptions.Ctor.cid + (componentOptions.tag ? ("::" + (componentOptions.tag)) : '')
+          : vnode.key;
+        if (cache[key]) {
+          // 直接使用缓存中的实例
+          vnode.componentInstance = cache[key].componentInstance;
+          // make current key freshest
+          remove(keys, key);
+          keys.push(key);
+        } else {
+          cache[key] = vnode;
+          keys.push(key);
+          // prune oldest entry 废弃最老的 cache
+          if (this.max && keys.length > parseInt(this.max)) {
+            pruneCacheEntry(cache, keys[0], keys, this._vnode);
+          }
+        }
+
+        vnode.data.keepAlive = true;
+      }
+      return vnode || (slot && slot[0])
     }
-  }
+  };
 
 function pruneCacheEntry (
     cache,
@@ -96,6 +162,7 @@ function pruneCacheEntry (
     current
   ) {
     var cached$$1 = cache[key];
+    // 老vnode已经被销毁 或者 和当前渲染的新vnode 的 标签名 不一样，则组件调用 destroy()主动销毁
     if (cached$$1 && (!current || cached$$1.tag !== current.tag)) {
       cached$$1.componentInstance.$destroy();
     }

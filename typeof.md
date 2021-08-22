@@ -29,7 +29,8 @@ typeof null  === 'object' // 为什么?
 ### NOTE
 
 Implementations are discouraged from defining new typeof result values for non-standard exotic objects. If possible "object"should be used for such objects.
-不鼓励typeof为非标准奇异对象定义新的结果值的实现。如果可能的话，"object"应使用此类物体
+
+不鼓励为非标准奇异对象定义新的typeof结果的值的实现。如果可能的话，应使用"object"标记此类物体
 
 ### 历史原因
 
@@ -55,6 +56,18 @@ null (JSVAL_NULL) 是机器码空指针。或者是：一个对象类型标记�
 1、typeof null 返回 "object"，是因为 JS 内部把值的低位为 0x0 的标记定义成对象类型，而 null 被计算成了一个低位具有对象类型标记的值，所以就返回了 "object"；
 2、typeof 返回 "function"，只要一个对象有一个不为 0 的 call 属性/方法，或者是 js_FunctionClass 类型，也就是这个对象里面有 "Function" 标记，那么就返回 "function"，其它情况都返回 "object"；
 
+### v8的处理
+
+1，null 和 undefined 的流程应该是一样的，从源码的写法来看，为了避免出现 typeof null === 'undefined' 这种不合规范的情况，V8 对 null 提前做了一层判断，就在 CodeStubAssembler::Typeof 函数比较早的一行。
+
+```C++
+GotoIf(InstanceTypeEqual(instance_type, ODDBALL_TYPE), &if_oddball);
+```
+
+null 的 instance_type 是 ODDBALL_TYPE（值为 67），跳转到 if_oddball 标号执行。完美避开了后续的判断，ODDBALL_TYPE 如果翻译成中文的话，可能会叫奇怪类型。至少从 ODDBALL_TYPE 的命名来看，V8 也认为 null 是一个不走寻常路的类型。
+
+null 和 undefined 虽然不是 Javascript 对象，却是 C++ 对象null 和 undefined 的共同点是 is_undetectable bit 是 1，区别点在于 null 的 instance_type 是 ODDBALL_TYPE，CodeStubAssembler::Typeof 对 ODDBALL_TYPE（暂译为奇葩类型）做了特殊处理，提前返回
+
 ## ES6 是如何解释的
 
 我们再来看一下现在 ES6 的 typeof 是如何对待函数和对象类型的：
@@ -76,3 +89,4 @@ null (JSVAL_NULL) 是机器码空指针。或者是：一个对象类型标记�
 1. <https://juejin.im/post/5df3d255f265da33f030237e#heading-10>
 2. <https://2ality.com/2013/10/typeof-null.html>
 3. <http://www.ecma-international.org/ecma-262/6.0/#sec-typeof-operator>
+4. <https://zhuanlan.zhihu.com/p/143590829>

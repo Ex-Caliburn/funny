@@ -105,6 +105,36 @@ Number(sym) // TypeError
 sym + 2 // TypeError
 ```
 
+Symbol 属性名无法被  Object.keys 找到
+Object.getOwnPropertySymbols(target)
+
+```js
+let test = {
+  [Symbol('1')]: 2
+}
+
+Object.keys(test) // []
+Object.getOwnPropertySymbols(test) // [Symbol(1)]
+
+let aa = {
+  b: 2,
+  [Symbol(1)]: Symbol(2)
+}
+aa.__proto__.bbb = 3
+aa.__proto__[Symbol(4)] = Symbol(5)
+
+temp = [...Object.keys(aa), ...Object.getOwnPropertySymbols(aa)]
+console.log(temp)
+
+for (const key in aa) {
+  console.log(key)
+}
+
+temp.forEach((item) => {
+  console.log(item)
+})
+```
+
 ## 总结
 
 ### 参考文献

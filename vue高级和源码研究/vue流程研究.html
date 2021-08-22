@@ -15,6 +15,8 @@
     <div :key="i" v-for="(item, i) in arr">
       {{item}}
     </div>
+    {{msg}}
+    {{b}}
     <!-- {{test}} -->
     <!-- <span v-html="test"></span> -->
     <!-- <span v-pre>111</span> -->
@@ -91,12 +93,15 @@
       // el:'#app',
       data: {
         msg: 1111,
-        arr: [1, 2]
+        arr: [1, 2],
+        b:{a:2}
       },
       mounted() {
         setTimeout(() => {
-          this.msg = 333
-          this.arr.splice(1,1)
+          // this.msg = 333
+          // this.arr.splice(1,1)
+          // this.$set(this.b, 'aaa', '[1, 2]')
+          this.$delete(this.b, 'a')
         }, 500);
       },
       computed: {

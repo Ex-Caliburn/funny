@@ -6,6 +6,7 @@
 
 甩掉TCP、TLS 的包袱，构建高效网络
 QUIC（Quick UDP Internet Connection）
+UDP User Datagram Protocol
 
 ### TCP 的队头阻塞
 

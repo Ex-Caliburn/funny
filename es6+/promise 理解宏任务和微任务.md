@@ -86,6 +86,14 @@ hen executing tasks from the task queue, the runtime executes each task that is 
 
 通过引入 queueMicrotask()，由晦涩地使用 promise 去创建微任务而带来的风险就可以被避免了。举例来说，当使用 promise 创建微任务时，由回调抛出的异常被报告为 rejected promises 而不是标准异常。同时，创建和销毁 promise 带来了事件和内存方面的额外开销，这是正确入列微任务的函数应该避免的。
 
+queueMacrotask 除了 IE都支持
+
+```js
+queueMicrotask(function);
+```
+
+A function to be executed when the browser engine determines it is safe to call your code. Enqueued microtasks are executed after all pending tasks have completed but before yielding control to the browser's event loop.
+
 ```js
 let queuePromisetask = f => Promise.resolve().then(f);
 let queueMacrotask= f => setTimeout(f);
@@ -95,6 +103,9 @@ queueMacrotask(() => console.log('Macro task'));
 queuePromisetask(() => console.log('Promise task'));
 queueMicrotask(() => console.log('Microtask 2'));
 ```
+
+因为微任务自身可以入列更多的微任务，且事件循环会持续处理微任务直至队列为空，那么就存在一种使得事件循环无尽处理微任务的真实风险。如何处理递归增加微任务是要谨慎而行的
+
 
 ### 参考文献
 

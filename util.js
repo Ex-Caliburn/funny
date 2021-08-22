@@ -1,132 +1,204 @@
+// 检查两个值是否相等 不对map，set进行处理
+// 1 用原生比较
+// 检查是否是对象类型
+// 不是，直接用 String() 进行比较
+// 是，判断是否是数组，对象，对属性进行递归，时间对象时间戳比较
 
+/**
+ * Check if two values are loosely equal - that is,
+ * if they are plain objects, do they have the same shape?
+ */
+function looseEqual(a, b) {
+  if (a === b) {
+    return true
+  }
+  var isObjectA = isObject(a)
+  var isObjectB = isObject(b)
+  if (isObjectA && isObjectB) {
+    try {
+      var isArrayA = Array.isArray(a)
+      var isArrayB = Array.isArray(b)
+      if (isArrayA && isArrayB) {
+        return (
+          a.length === b.length &&
+          a.every(function (e, i) {
+            return looseEqual(e, b[i])
+          })
+        )
+      } else if (a instanceof Date && b instanceof Date) {
+        return a.getTime() === b.getTime()
+      } else if (!isArrayA && !isArrayB) {
+        var keysA = Object.keys(a)
+        var keysB = Object.keys(b)
+        return (
+          keysA.length === keysB.length &&
+          keysA.every(function (key) {
+            return looseEqual(a[key], b[key])
+          })
+        )
+      } else {
+        /* istanbul ignore next */
+        return false
+      }
+    } catch (e) {
+      /* istanbul ignore next */
+      return false
+    }
+  } else if (!isObjectA && !isObjectB) {
+    return String(a) === String(b)
+  } else {
+    return false
+  }
+}
+
+// 驼峰化 一个字符串
+/**
+ * Create a cached version of a pure function.
+ */
+function cached(fn) {
+  var cache = Object.create(null)
+  return function cachedFn(str) {
+    var hit = cache[str]
+    return hit || (cache[str] = fn(str))
+  }
+}
+
+/**
+ * Camelize a hyphen-delimited string.
+ */
+var camelizeRE = /-(\w)/g
+var camelize = cached(function (str) {
+  return str.replace(camelizeRE, function (_, c) {
+    return c ? c.toUpperCase() : ''
+  })
+})
 // 对象序列化 post请求用
-data = Object.keys(data).map(function (key) {
-    return encodeURIComponent(key) + '=' + encodeURIComponent(data[key]);
-}).join('&');
+data = Object.keys(data)
+  .map(function (key) {
+    return encodeURIComponent(key) + '=' + encodeURIComponent(data[key])
+  })
+  .join('&')
 
 //数组加1
 Array.prototype.add = function (number) {
-    return this.map(function (item) {
-        return item + number;
-    })
-};
+  return this.map(function (item) {
+    return item + number
+  })
+}
 
 // 生成验证码
 function randomCode(length) {
-  var chars = ['0','1','2','3','4','5','6','7','8','9'];
-  var result = '';
+  var chars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+  var result = ''
   for (var i = 0; i < length; i++) {
-    var index = Math.round(Math.random()*9);
-    result += chars[index];
+    var index = Math.round(Math.random() * 9)
+    result += chars[index]
   }
-  return result;
+  return result
 }
 
 function randomNum(max, min) {
-    return parseInt(Math.random() * (max - min + 1) + min, 10);
+  return parseInt(Math.random() * (max - min + 1) + min, 10)
 }
 
 // 按数字从小到大
 // sortAB不支持字母
 // sort 支持字母
 function sortNum(array) {
-    return array.sort(function (a, b) {
-        return a - b;
-    });
+  return array.sort(function (a, b) {
+    return a - b
+  })
 }
 // console.log(sortNum([123,2,310,10]));
-console.log([123,'a',2,'b',310,10].sort());
+console.log([123, 'a', 2, 'b', 310, 10].sort())
 
 /*获取url里的参数*/
 // https://mzlottery.caiqr.cn/jingcai/c2c/orderDetail.html?order_id=ID211502870501172733909670
 // window.location.search 是 ?order_id=ID211502870501172733909670
 function getUrlParam(name) {
-    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
-    var r = window.location.search.slice(1).match(reg);  //匹配目标参数
-    if (r != null) return decodeURIComponent(r[2]);
-    return null; //返回参数值
+  var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)') //构造一个含有目标参数的正则表达式对象
+  var r = window.location.search.slice(1).match(reg) //匹配目标参数
+  if (r != null) return decodeURIComponent(r[2])
+  return null //返回参数值
 }
 
-var url = 'https://mzlottery.caiqr.cn/jingcai/c2c/orderDetail.html?order_id=ID211502870501172733909670'
-console.log(getUrlParam1(url,'order_id'));
-function getUrlParam1(url,name) {
-    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
-    var r = url.split('?')[1].match(reg);  //匹配目标参数
-    if (r != null) return decodeURIComponent(r[2]);
-    return null;
+var url =
+  'https://mzlottery.caiqr.cn/jingcai/c2c/orderDetail.html?order_id=ID211502870501172733909670'
+console.log(getUrlParam1(url, 'order_id'))
+function getUrlParam1(url, name) {
+  var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)') //构造一个含有目标参数的正则表达式对象
+  var r = url.split('?')[1].match(reg) //匹配目标参数
+  if (r != null) return decodeURIComponent(r[2])
+  return null
 }
 
 // 排列算法,要求顺序A53
-function arrangeA(top,bottom) {
-    var sum = 1;
-    for ( var i = top ;i>0;bottom--, i--) {
-        sum *= bottom
-    }
-    return sum;
+function arrangeA(top, bottom) {
+  var sum = 1
+  for (var i = top; i > 0; bottom--, i--) {
+    sum *= bottom
+  }
+  return sum
 }
 // 排列算法C35
-function arrangeC(top,bottom) {
-    var topSum = 1;
-    var bottomSum = 1;
-    for ( var i = top ;i>0;bottom--, i--) {
-        bottomSum *= bottom
-    }
-    for (var j = top; 0 < j; j--) {
-        topSum *= j;
-    }
-    return bottomSum/topSum;
+function arrangeC(top, bottom) {
+  var topSum = 1
+  var bottomSum = 1
+  for (var i = top; i > 0; bottom--, i--) {
+    bottomSum *= bottom
+  }
+  for (var j = top; 0 < j; j--) {
+    topSum *= j
+  }
+  return bottomSum / topSum
 }
 
 // 第二种，原型
 Array.prototype.combine = function (iItems) {
-    function func(n,m){
-        if(m==0)
-            return 1;
-        else
-            return n*func(n-1,m-1);
-    }
-    var bottomNumber = this.length;
-    var topNumber = iItems;
-    return func(bottomNumber,topNumber)/func(topNumber,topNumber);
-};
+  function func(n, m) {
+    if (m == 0) return 1
+    else return n * func(n - 1, m - 1)
+  }
+  var bottomNumber = this.length
+  var topNumber = iItems
+  return func(bottomNumber, topNumber) / func(topNumber, topNumber)
+}
 
 // c42 4*3/ 2*1
-console.log([ '03', '07', '32', '33' ].combine(2));
-
+console.log(['03', '07', '32', '33'].combine(2))
 
 function getDate() {
-    var dayArr = ['星期天', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
-    var dataObj = new Date(Date.now());
-    var year = dataObj.getFullYear();
-    var month = dataObj.getMonth()+1;
-    var day = dataObj.getDate();
-    var weekday = dayArr[dataObj.getDay()];
+  var dayArr = ['星期天', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六']
+  var dataObj = new Date(Date.now())
+  var year = dataObj.getFullYear()
+  var month = dataObj.getMonth() + 1
+  var day = dataObj.getDate()
+  var weekday = dayArr[dataObj.getDay()]
 
-    if (month < 10) {
-        month = '0' + month;
-    }
-    if (day < 10) {
-        day = '0' + day;
-    }
-    return year + "-" + month + "-" + day + " " + weekday;
+  if (month < 10) {
+    month = '0' + month
+  }
+  if (day < 10) {
+    day = '0' + day
+  }
+  return year + '-' + month + '-' + day + ' ' + weekday
 }
 
 /*
-*  深复制
-* */
+ *  深复制
+ * */
 function deepCopy(p, c) {
-    var c = c || {};
-    for (var i in p) {
-        if (typeof p[i] === 'object') {
-            c[i] = (p[i].constructor === Array) ? [] : {};
-            deepCopy(p[i], c[i]);
-        } else {
-            c[i] = p[i];
-        }
+  var c = c || {}
+  for (var i in p) {
+    if (typeof p[i] === 'object') {
+      c[i] = p[i].constructor === Array ? [] : {}
+      deepCopy(p[i], c[i])
+    } else {
+      c[i] = p[i]
     }
-    return c;
+  }
+  return c
 }
-
 
 /**
  *    应用场景，就是面对不同二级域名下，信息的传递，如果是相同域名下，localstroge，session是你更好的选择
@@ -137,170 +209,198 @@ function deepCopy(p, c) {
  读取只能读取的到key-value，日期，域名，path读不到，
  删除原理只是让时间过期，所以需要路径一致，不同路径不会删除 ，谷歌cookie过期8个小时自动删除，
  */
-var Cookies = function(){};
+var Cookies = function () {}
 Cookies.prototype = {
-    secondDomain:location.hostname.split('.').slice(1).join('.'),
-    /*
-     * 不传path，默认当前路径.不传domain为当前域名，传"auto"使用当前网站二级域名
-     * */
-    set:function(name,value,expiresTime,domain,path) {
-        if(!name || !value){
-            return;
-        }
-        var cookieName = name;
-        var cookieValue = value;
-        if(domain == "auto"){
-            //取得当前二级域名
-            domain = this.secondDomain;
-        }else{
-            domain = '';
-        }
-        console.log(path);
-        if(!expiresTime){
-            var myDate = new Date();
-            console.log(myDate);
-            //默认有效期一个月
-            myDate.setMonth(myDate.getMonth() + 1);
-            console.log(myDate);
-        }
-        document.cookie = cookieName + "=" + cookieValue + ";expires=" + (expiresTime || myDate) + ";domain=" + domain + ";path=" + path ;
-    },
-    get:function(name){
-        var reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
-        var arr = document.cookie.match(reg)
-        if(arr){
-            return (arr[2]);
-        }
-        else{
-            return null;
-        }
-    },
-    delete: function  (name,domain){
-        if(domain == "auto"){
-            //取得当前二级域名
-            domain = this.secondDomain;
-        }else{
-            domain = '';
-        }
-        var expires = new Date();
-        expires.setTime(expires.getTime() - 1);
-        console.log(expires.toGMTString());
-
-        var oldValue=getCookie(name);
-        if(oldValue!=null){
-            document.cookie= name + "="+oldValue+";expires="+expires.toGMTString()+ ";domain=" + domain;
-        }
+  secondDomain: location.hostname.split('.').slice(1).join('.'),
+  /*
+   * 不传path，默认当前路径.不传domain为当前域名，传"auto"使用当前网站二级域名
+   * */
+  set: function (name, value, expiresTime, domain, path) {
+    if (!name || !value) {
+      return
     }
+    var cookieName = name
+    var cookieValue = value
+    if (domain == 'auto') {
+      //取得当前二级域名
+      domain = this.secondDomain
+    } else {
+      domain = ''
+    }
+    console.log(path)
+    if (!expiresTime) {
+      var myDate = new Date()
+      console.log(myDate)
+      //默认有效期一个月
+      myDate.setMonth(myDate.getMonth() + 1)
+      console.log(myDate)
+    }
+    document.cookie =
+      cookieName +
+      '=' +
+      cookieValue +
+      ';expires=' +
+      (expiresTime || myDate) +
+      ';domain=' +
+      domain +
+      ';path=' +
+      path
+  },
+  get: function (name) {
+    var reg = new RegExp('(^| )' + name + '=([^;]*)(;|$)')
+    var arr = document.cookie.match(reg)
+    if (arr) {
+      return arr[2]
+    } else {
+      return null
+    }
+  },
+  delete: function (name, domain) {
+    if (domain == 'auto') {
+      //取得当前二级域名
+      domain = this.secondDomain
+    } else {
+      domain = ''
+    }
+    var expires = new Date()
+    expires.setTime(expires.getTime() - 1)
+    console.log(expires.toGMTString())
+
+    var oldValue = getCookie(name)
+    if (oldValue != null) {
+      document.cookie =
+        name + '=' + oldValue + ';expires=' + expires.toGMTString() + ';domain=' + domain
+    }
+  }
 }
 
-var cookies = new Cookies();
+var cookies = new Cookies()
 
 // cookies.set('isReload',3,null,null,'/1');
 
 // 工具 效验函数
-var util = (function(){
-    // number
-    function isNumber(value) {
-        return Object.prototype.toString.call(value)  == "[object Number]";
-    }
-    // string ...
-    function isString(value) {
-        return Object.prototype.toString.call(value)  == "[object String]";
-    }
+var util = (function () {
+  function isNumber(value) {
+    return Object.prototype.toString.call(value) == '[object Number]'
+  }
+  function isString(value) {
+    return Object.prototype.toString.call(value) == '[object String]'
+  }
 
-    function isObject(value) {
-        return Object.prototype.toString.call(value)  == "[object Object]";
-    }
-    function isFunction(value) {
-        return Object.prototype.toString.call(value)  == "[object Function]";
-    }
+  function isObject(value) {
+    return Object.prototype.toString.call(value) == '[object Object]'
+  }
+  function isFunction(value) {
+    return Object.prototype.toString.call(value) == '[object Function]'
+  }
 
-    function isArray(value) {
-        return Object.prototype.toString.call(value)  == "[object Array]";
-    }
-    function isNull(value) {
-        return Object.prototype.toString.call(value)  == "[object Null]";
-    }
-    function isUndefined(value) {
-        return Object.prototype.toString.call(value)  == "[object Undefined]";
-    }
+  function isArray(value) {
+    return Object.prototype.toString.call(value) == '[object Array]'
+  }
+  function isNull(value) {
+    return Object.prototype.toString.call(value) == '[object Null]'
+  }
+  function isUndefined(value) {
+    return Object.prototype.toString.call(value) == '[object Undefined]'
+  }
 
-    function isBoolean(value) {
-        return Object.prototype.toString.call(value)  == "[object Boolean]";
-    }
+  function isBoolean(value) {
+    return Object.prototype.toString.call(value) == '[object Boolean]'
+  }
 
-    function isRegExp(value) {
-        return Object.prototype.toString.call(value)  == "[object RegExp]";
-    }
+  function isRegExp(value) {
+    return Object.prototype.toString.call(value) == '[object RegExp]'
+  }
+  function isMap(value) {
+    return Object.prototype.toString.call(value) == '[object Map]'
+  }
+  function isSet(value) {
+    return Object.prototype.toString.call(value) == '[object Set]'
+  }
+  function isSymbol(value) {
+    return Object.prototype.toString.call(value) == '[object Symbol]'
+  }
+  function isBigInt(value) {
+    return Object.prototype.toString.call(value) == '[object BigInt]'
+  }
+  function isDate(value) {
+    return Object.prototype.toString.call(value) == '[object Date]'
+  }
+  
 
-    return {
-        isArray : isArray,
-        isRegExp :isRegExp,
-        isBoolean : isBoolean,
-        isUndefined : isUndefined,
-        isNull : isNull,
-        isFunction :isFunction,
-        isObject : isObject,
-        isString : isString,
-        isNumber :isNumber,
-    }
-})();
+  return {
+    isSet,
+    isMap,
+    isSymbol,
+    isBigInt,
+    isDate,
+    isArray: isArray,
+    isRegExp: isRegExp,
+    isBoolean: isBoolean,
+    isUndefined: isUndefined,
+    isNull: isNull,
+    isFunction: isFunction,
+    isObject: isObject,
+    isString: isString,
+    isNumber: isNumber
+  }
+})()
 
 //判断NaN
 // Object.prototype.toString.call(NaN) == "number";
 function myIsNaN(value) {
-    if(typeof value == "number"){
-        if(isNaN(value)){
-            return true;
-        }
+  if (typeof value == 'number') {
+    if (isNaN(value)) {
+      return true
     }
+  }
 }
 
 // 伪数组转换伪真数组
 function arrayTransform(arr) {
-    return [].slice.call(arr)
+  return [].slice.call(arr)
 }
 
 // 限制中英文混合用户名长度
-function nameFilter (val) {
+function nameFilter(val) {
   // 获取字符串长度（汉字算两个字符，字母数字算一个）
   let len = 0
   let numLen = 0
   const limit = 10
   for (let i = 0; i < val.length; i++) {
     let a = val.charAt(i)
-    if (a.match(/[^\x00-\xff]/ig) !== null) {
+    if (a.match(/[^\x00-\xff]/gi) !== null) {
       len += 1
     } else {
       numLen += 1
     }
-    if ((len * 2 + numLen) > limit) {
-      return val.slice(0, (len + numLen))
+    if (len * 2 + numLen > limit) {
+      return val.slice(0, len + numLen)
     }
   }
   return val
 }
 
 /* 获取跨域图片base64 */
-function imgToBase64(url,callback ,ext = 'png') {
-  let canvas = document.createElement("canvas");   //创建canvas DOM元素
+function imgToBase64(url, callback, ext = 'png') {
+  let canvas = document.createElement('canvas') //创建canvas DOM元素
   let ctx = canvas.getContext('2d')
-  let img = new Image;
-  img.crossOrigin = 'Anonymous'; // 支持跨域
-  img.src = url;
+  let img = new Image()
+  img.crossOrigin = 'Anonymous' // 支持跨域
+  img.src = url
   img.onload = () => {
-    canvas.height = img.height; //指定画板的高度,自定义
-    canvas.width = img.width; //指定画板的宽度，自定义
-    ctx.drawImage(img, 0,0); //参数可自定义
-    let dataURL = canvas.toDataURL("image/" + ext);    // 传递的自定义的参数
-    callback.call(this, dataURL); //回掉函数获取Base64编码
-    canvas = null;
-  };
+    canvas.height = img.height //指定画板的高度,自定义
+    canvas.width = img.width //指定画板的宽度，自定义
+    ctx.drawImage(img, 0, 0) //参数可自定义
+    let dataURL = canvas.toDataURL('image/' + ext) // 传递的自定义的参数
+    callback.call(this, dataURL) //回掉函数获取Base64编码
+    canvas = null
+  }
 }
 
 /* 将obj2对象中与obj1共同的东西拷贝覆盖到obj1 */
 export function objectAssignment(obj1, obj2) {
-  Object.keys(obj1).forEach(item => {
+  Object.keys(obj1).forEach((item) => {
     obj1[item] = obj2[item]
   })
 }
@@ -330,7 +430,6 @@ export function daysBetweenTwoDates(start, end) {
   return 0
 }
 
-
 /*  base64转blob */
 export function base64ToBlob(code) {
   let parts = code.split(';base64,')
@@ -343,7 +442,6 @@ export function base64ToBlob(code) {
   }
   return new Blob([uInt8Array], { type: contentType })
 }
-
 
 /* 将图片下载到本地 */
 export function downloadImg(content, fileName) {
@@ -369,8 +467,6 @@ export function readDailyPopupConfig(key) {
   }
   return false
 }
-
-
 
 /* 判断移动终端浏览器版本信息 */
 export function judeBrowseType() {
@@ -487,7 +583,7 @@ export function countDown(countDownObj, haveSecond = true) {
 export function downloadCrossOriginImg(url, fileName = '下载图片', ext = '') {
   imgToBase64(
     url,
-    file => {
+    (file) => {
       downloadImg(file, fileName)
     },
     ext
