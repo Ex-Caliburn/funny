@@ -1,0 +1,16 @@
+<html>
+
+<body>
+    <div>1</div>
+    <script>
+        let div1 = document.getElementsByTagName('div')[0]
+        div1.innerText = 'time.geekbang'
+
+        let div2 = document.getElementsByTagName('div')[1]
+        // 渲染引擎 和js引擎 是两个进程，所以报错不影响渲染，但是影响js引擎的执行
+        div2.innerText = 'time.geekbang.com'
+    </script>
+    <div>test</div>
+</body>
+
+</html>

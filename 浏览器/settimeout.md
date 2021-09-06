@@ -155,7 +155,7 @@ requestAnimationFrame 提供一个原生的API去执行动画的效果，它会�
 
 本质上也是一个for死循环，只不过多了一个event_.Wait() 让线程挂起，其他线程提交任务时，通过event_.Signal() 再唤醒刚刚挂起的线程去执行相应的任务
 
-```C++
+```cpp
  for (;;) {
 #if defined(OS_APPLE)
     mac::ScopedNSAutoreleasePool autorelease_pool;

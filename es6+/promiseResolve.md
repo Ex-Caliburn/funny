@@ -68,7 +68,7 @@ return Promise.resolve(4) 所在的 fulfilled 处理函数执行完成后，V8 �
 
 但本题我们的 p2 是 return Promise.resolve(4) 的结果，是一个 Promise 对象，所以 if (resolutionMap.prototype == promisePrototype) 分支为 true，跳转到标号 Enqueue，Enqueue 代码逻辑与规范一致，创建一个 microtask，也就是规范中的 NewPromiseResolveThenableJob，然后插入 microtask 队列。这是`第一个不执行任何 JS 代码的 microtask`。
 
-```C++
+```cpp
 // <https://tc39.es/ecma262/#sec-promise-resolve-functions>
 transitioning builtin
 ResolvePromise(implicit context: Context)(
@@ -110,7 +110,7 @@ then =*NativeContextSlot(ContextSlot::PROMISE_THEN_INDEX);
 
 虽然在 JS 层面感受不深，但在 V8 中，microtask 有多种类型，所以 RunSingleMicrotask 有多个分支，与本题相关的分支是，BIND(&is_promise_resolve_thenable_job)，从名字也可以看出，和规范中的  NewPromiseResolveThenableJob 命名基本一致。BIND(&is_promise_resolve_thenable_job) 分支最重要的一行代码是 CallBuiltin(Builtins::kPromiseResolveThenableJob, native_context, promise_to_resolve, thenable, then)。相当于调用了 PromiseResolveThenableJob，这里的 promise_to_resolve 是 p1，thenable 是 p2，then 是 JS Promise 原型的 then 方法。PromiseResolveThenableJob 的源码见代码片断 3。
 
-```C++
+```cpp
 void MicrotaskQueueBuiltinsAssembler::RunSingleMicrotask(
     TNode<Context> current_context, TNode<Microtask> microtask) {
   CSA_ASSERT(this, TaggedIsNotSmi(microtask));
@@ -157,7 +157,7 @@ void MicrotaskQueueBuiltinsAssembler::RunSingleMicrotask(
 代码片断3：PromiseResolveThenableJob，功能是执行前面创建的 NewPromiseResolveThenableJob。
 PromiseResolveThenableJob 的参数 promiseToResolve 是 p1，thenable 是 p2，then 是 JS Promise 原型的 then，底层调用了 PerformPromiseThen。PerformPromiseThen 方法也是  JS Promise then 方法的底层调用，如果用 JS 表述，大致相当于 JS 代码：`p1 = p2.then(undefined, undefined)`。p2 的状态是 fulfilled，fulfilled 回调函数 undefined 直接进入 microtask 队列。于是就出现了`第二个不执行任何 JS 代码的 microtask`，在这个 microtask 执行完成后，p1 的状态终于变成了 fulfilled。
 
-```C++
+```cpp
 // <https://tc39.es/ecma262/#sec-promiseresolvethenablejob>
 transitioning builtin
 PromiseResolveThenableJob(implicit context: Context)(

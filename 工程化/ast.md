@@ -24,6 +24,4 @@ generator：把AST转换为代码。
 
 1. ![AST 辅助开发工具]([https://link](https://astexplorer.net/))
 2. ![用JS解释JS！详解AST及其应用
-]([https://link](https://mp.weixin.qq.com/s/j8_8QwFnyOr66m9aekor1g))
-
-3.  
+](https://mp.weixin.qq.com/s/j8_8QwFnyOr66m9aekor1g))

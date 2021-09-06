@@ -60,7 +60,7 @@ null (JSVAL_NULL) 是机器码空指针。或者是：一个对象类型标记�
 
 1，null 和 undefined 的流程应该是一样的，从源码的写法来看，为了避免出现 typeof null === 'undefined' 这种不合规范的情况，V8 对 null 提前做了一层判断，就在 CodeStubAssembler::Typeof 函数比较早的一行。
 
-```C++
+```cpp
 GotoIf(InstanceTypeEqual(instance_type, ODDBALL_TYPE), &if_oddball);
 ```
 
