@@ -31,6 +31,25 @@ parent 和 child 生命周期渲染过程有什么区别
  mounted
 ```
 
+更新
+
+```
+'beforeCreate',
+    'created',
+    'beforeMount',
+    'mounted',
+    'beforeUpdate',
+    'updated',
+    'beforeDestroy',
+    'destroyed',
+    'activated',
+    'deactivated',
+    'errorCaptured',
+    'renderTracked',
+    'renderTriggered',
+    我觉的 $nextTick 也算吧
+```
+
   源码中运行步骤
 
 ```

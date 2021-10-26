@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .content {
+        position: relative;
+    }
+
+    .thumbnails {
+        width: 300px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 1;
+        filter: blur(4px);
+        transition: all 0.7s;
+    }
+
+    .complete {
+        filter: blur(0);
+    }
+</style>
+
+<body>
+    <div class="content">
+        <img id="img"
+            src="https://jdk3t-qiye.oss-cn-shanghai.aliyuncs.com/backend_pic/dst/poster/10r/2021/08/24/JSYzpDVg2PC8miiaGd84xSkIf5k7T8cd.jpg?x-oss-process=image/resize,w_124"
+            class="thumbnails" onload="loadImg()" />
+    </div>
+
+    默认加载2张图片，一张缩略图，一张原图，当打开网页的时候默认只显示缩略图，然后我们把缩略图模糊处理后按照原图尺寸显示，这样做的目的是为了提高用户体验；
+
+    使用js去监听原图的加载，当原图加载成功后，我们把缩略图隐藏，让原图显示出来。这样就实现了图片由模糊变成清晰的过程，为了让变化有渐变效果，我们需要使用到css的transition属性。具体代码实现如下：
+
+    <script>
+        let flag = true
+        function loadImg(e) {
+            if (!flag) return
+            flag = false
+            let img = document.getElementById('img')
+            img.src = 'https://jdk3t-qiye.oss-cn-shanghai.aliyuncs.com/backend_pic/dst/poster/10r/2021/08/24/JSYzpDVg2PC8miiaGd84xSkIf5k7T8cd.jpg'
+            img.classList.add('complete')
+        }
+    </script>
+</body>
+
+</html>

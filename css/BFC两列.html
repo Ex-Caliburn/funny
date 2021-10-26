@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        min-width: 600px;
+    }
+    .warp{
+        /* display: flex; */
+        position: relative;
+    }
+
+    .left {
+        width: 200px;
+        height: 200px;
+        background: black;
+        /* float: left; */
+        /* opacity: 0.3; */
+        /* left: 0; */
+        position: absolute;
+        /* overflow: hidden; */
+        /*测试使用*/
+
+    }
+
+    .right {
+        margin-left:200px;
+        height: 200px;
+        background: greenyellow;
+    }
+</style>
+
+<body>
+
+    <div class="warp">
+        <div class="left">111</div>
+        <div class="right">
+            <div>11</div>
+            <div>22</div>
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .content {
+        /* width: 200px; */
+        height: 200px;
+        background: black;
+        opacity: 0.3;
+        /* position: absolute; */
+        /* overflow: hidden; */
+    }
+
+    .left {
+        float: left;
+        height: 200px;
+        background: greenyellow;
+    }
+
+    .right {
+        float: right;
+        height: 200px;
+        background: greenyellow;
+    }
+</style>
+
+<body>
+
+    <div class="warp">
+        <div class="left">left</div>
+        <div class="right">
+            right
+        </div>
+        <div class="content">
+            <div>11</div>
+            <div>22</div>
+            注意：center盒子的div一定要在写在最下面，这样左右两边设置左右浮动，不占位，center盒子自动顶上去
+            3、BFC的区域不会与float box重叠。
+        </div>
+    </div>
+
+</body>
+
+</html>

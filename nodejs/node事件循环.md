@@ -171,6 +171,7 @@ close callbacks
 setTimeout()和setInterval()的回调函数
 setImmediate()的回调函数
 用于关闭请求的回调函数，比如socket.on('close', ...)
+
 （3）idle, prepare
 
 该阶段只供 libuv 内部调用，这里可以忽略。

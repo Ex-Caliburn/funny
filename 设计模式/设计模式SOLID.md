@@ -17,6 +17,7 @@ O – OpenClosed Principle 开放/封闭原则
 增加需求时，扩展新代码，而非修改已有代码
 
 L - Law of  Demeter 迪米特原则
+最少知识原则（The Least Knowledge Principle）
 最少知道原则，尽量降低类与类之间的耦合；
 一个对象应该对其他对象有最少的了解
 迪米特法则的定义是：只与你的直接朋友交谈，不跟“陌生人”说话（Talk only to your immediate friends and not to strangers）。其含义是：如果两个软件实体无须直接通信，那么就不应当发生直接的相互调用，可以通过第三方转发该调用。其目的是降低类之间的耦合度，提高模块的相对独立性

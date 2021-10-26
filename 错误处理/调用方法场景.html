@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+  <title>Test page in http://test.com</title>
+</head>
+<body>
+  <script src="https://yun.dui88.com/tuia/cdn/remote/testerror.js"></script>
+  <script>
+  window.onerror = function (message, url, line, column, error) {
+    console.log(message, url, line, column, error);
+  }
+
+  function wrapErrors(fn) {
+    // don't wrap function more than once
+    if (!fn.__wrapped__) {
+      fn.__wrapped__ = function () {
+        try {
+          return fn.apply(this, arguments);
+        } catch (e) {
+          throw e; // re-throw the error
+        }
+      };
+    }
+
+    return fn.__wrapped__;
+  }
+
+  wrapErrors(foo)()
+  </script>
+</body>
+</html>

@@ -317,6 +317,27 @@ d.a === d // true
 
 上面代码中，d对象本身没有a属性，所以读取d.a的时候，会去d的原型proxy对象找。这时，receiver就指向d，代表原始的读操作所在的那个对象。
 
+### Object.defineProperties
+
+Object.defineProperties(obj, props)
+
+defineProperties 是复数，可以修改多个 属性
+
+```js
+var obj = {};
+Object.defineProperties(obj, {
+  'property1': {
+    value: true,
+    writable: true
+  },
+  'property2': {
+    value: 'Hello',
+    writable: false
+  }
+  // etc. etc.
+});
+```
+
 ### 参考文献
 
 1. <https://es6.ruanyifeng.com/?search=defineProperty&x=0&y=0#docs/proxy#%E6%A6%82%E8%BF%B0>

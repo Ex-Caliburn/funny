@@ -178,7 +178,7 @@ store.subscribe((mutation, state) => {
 
 ## 总结
 
-vuex
+使用mixin， 在每个实例初始化 beforeCreate 的时候注入vuex
 
 ### 参考文献
 

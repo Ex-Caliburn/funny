@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+<head>
+  <title>Test page in http://test.com</title>
+</head>
+<body>
+  <script src="https://yun.dui88.com/tuia/cdn/remote/testerror.js"></script>
+  <script>
+  window.onerror = function (message, url, line, column, error) {
+    console.log(message, url, line, column, error);
+  }
+
+  foo()
+//   try {
+//     foo(); // 调用testerror.js中定义的foo方法
+//   } catch (e) {
+//     throw e;
+//   }
+  </script>
+</body>
+</html>

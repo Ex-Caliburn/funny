@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        window.onerror = (err) => {
+            console.log('onerror', err)
+        }
+        window.addEventListener('error', function (event) {
+            console.log('error', event)
+        })
+        window.addEventListener('unhandledrejection', function (event) {
+            console.log('unhandledrejection', event)
+        })
+        // const a
+
+        // const person = void 0
+        // person.name
+
+        // nodefined
+
+        // (function fn() { fn() })()
+
+        // let b= new Image()
+        // b.onerror = (err) => {
+        //     console.log('Image', err)
+        // }
+        // b.src = '/remote/image/notdeinfed.png'
+
+        // fetch('/remote/notdefined', {})
+
+        function c(e) {
+            console.log(e, ...arguments, 1111)
+        }
+
+        setTimeout(() => {
+            console.log(notdefined);
+        }, 0)
+
+
+    </script>
+    <img src="https://yun.tuia.cn/image/kkk.png">
+    <!-- <script src="/remote/image/notdeinfed.png" onerror="javascript:c(event)"></script> -->
+    <script src="/remote/image/notdeinfed.png"></script>
+</body>
+
+</html>

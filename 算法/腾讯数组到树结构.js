@@ -1,3 +1,5 @@
+// 数组到树
+
 const arr = [
   { id: 2, name: '部门B', parentId: 0 },
   { id: 3, name: '部门C', parentId: 1 },
@@ -71,11 +73,11 @@ function arrToTree2(arr) {
 // console.log(JSON.stringify(arrToTree2(arr)))
 // console.timeEnd(2)
 
-/* 从底层到上层组装， 引用的关系*/
+/* 从底层到上层组装， 利用js引用数据的特性*/
 function arrToTree3(arr) {
   let temp = {}
   let rootId = arr.find((item) => item.parentId === 0).id
-  arr.forEach(item => {
+  arr.forEach((item) => {
     temp[item.id] = item
   })
   arr.map((item) => {
@@ -125,4 +127,5 @@ console.timeEnd(3)
 //     ]
 //   }
 // }
+
 

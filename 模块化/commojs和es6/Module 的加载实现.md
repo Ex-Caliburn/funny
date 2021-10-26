@@ -50,34 +50,49 @@ defer要等到整个页面在内存中正常渲染结束（DOM 结构完全生�
 
 浏览器加载 ES6 模块，也使用`<script>`标签，但是要加入type="module"属性。
 
+```js
 <script type="module" src="./foo.js"></script>
+```
+
 上面代码在网页中插入一个模块foo.js，由于type属性设为module，所以浏览器知道这是一个 ES6 模块。
 
-浏览器对于带有type="module"的`<script>`，都是异步加载，不会造成堵塞浏览器，即等到整个页面渲染完，再执行模块脚本，等同于打开了`<script>`标签的defer属性。
+浏览器对于带有type="module"的`<script>`，都是`异步加载`，不会造成堵塞浏览器，即等到整个页面渲染完，再执行模块脚本，等同于打开了`<script>`标签的defer属性。
 
+```js
 <script type="module" src="./foo.js"></script>
 <!-- 等同于 -->
 <script type="module" src="./foo.js" defer></script>
+```
+
 如果网页有多个<script type="module">，它们会按照在页面出现的顺序依次执行。
 
 `<script>`标签的async属性也可以打开，这时只要加载完成，渲染引擎就会中断渲染立即执行。执行完成后，再恢复渲染。
 
+```js
 <script type="module" src="./foo.js" async></script>
+```
+
 一旦使用了async属性，<script type="module">就不会按照在页面出现的顺序执行，而是只要该模块加载完成，就执行该模块。
 
 ES6 模块也允许内嵌在网页中，语法行为与加载外部脚本完全一致。
 
+```js
 <script type="module">
   import utils from "./utils.js";
 
   // other code
 </script>
+```
+
 举例来说，jQuery 就支持模块加载。
 
+```js
 <script type="module">
   import $ from "./jquery/src/jquery.js";
   $('#message').text('Hi from jQuery!');
 </script>
+```
+
 对于外部的模块脚本（上例是foo.js），有几点需要注意。
 
 代码是在模块作用域之中运行，而不是在全局作用域运行。模块内部的顶层变量，外部不可见。
@@ -87,15 +102,20 @@ ES6 模块也允许内嵌在网页中，语法行为与加载外部脚本完全�
 同一个模块如果加载多次，将只执行一次。
 下面是一个示例模块。
 
+```js
 import utils from 'https://example.com/js/utils.js';
 
 const x = 1;
 
 console.log(x === window.x); //false
 console.log(this === undefined); // true
+```
+
 利用顶层的this等于undefined这个语法点，可以侦测当前代码是否在 ES6 模块之中。
 
+```js
 const isNotModuleScript = this !== undefined;
+```
 
 ### ES6 模块与 CommonJS 模块的差异
 
@@ -717,3 +737,5 @@ TypeError: even is not a function
 ## 总结
 
 ### 参考文献
+
+1. <https://segmentfault.com/a/1190000020388889>

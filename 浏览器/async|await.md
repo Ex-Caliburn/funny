@@ -2,9 +2,11 @@
 
 ## 前言
 
+async: asynchronous
 
-
-
+前缀: syn-
+表示"共同,相同"
+a- 相反的
 
 ```js
 fetch('https://www.geekbang.org')
