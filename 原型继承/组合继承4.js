@@ -29,9 +29,3 @@ console.log(c31 instanceof Child3) // true
 console.log(c31 instanceof Parent3) // true
 console.log(c31.constructor === Child3) // false
 console.log(c31.constructor === Parent3) // true
-
-/* 
-
-缺点 ：需要重新赋值一下子类构造函数的constructor： Child3.prototype.constructor = Child3，完整版如下
-
-*/

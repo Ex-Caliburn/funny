@@ -11,7 +11,7 @@
 个人理解； defineProperty 加通知和订阅实现 vue的双向数据绑定，
 defineProperty 对数组不好用，push操作和直接通过下标修改数组等只可以只会触发get方法，而不是set方法
 
-```
+```js
 (1)
 let num  = 1
 let price = 2
@@ -190,17 +190,21 @@ watcher(() => {
 data.total // 2
 data.num = 4 //
 data.total // 8
+```
 
 ## Proxy
+
 Proxy 用于修改某些操作的默认行为，等同于在语言层面做出修改，所以属于一种“元编程”（meta programming），即对编程语言进行编程。
 
 Proxy 可以理解成，在目标对象之前架设一层“拦截”，外界对该对象的访问，都必须先通过这层拦截，因此提供了一种机制，可以对外界的访问进行过滤和改写。Proxy 这个词的原意是代理，用在这里表示由它来“代理”某些操作，可以译为“代理器”
 
 ### 优点
+
 get() 和 set() 可以触发 dep.depend() and dep.notify()，新添加的属性将触发set(),将合适创建一个新的响应式属性， 我们不需要使用Vue.$set添加新属性，删除属性也可以使用deleteProperty() 代替
 
-###  Proxy 改写数据绑定
-```
+### Proxy 改写数据绑定
+
+```js
 
 (1)
 let data = { num: 1, price: 2 }
@@ -220,20 +224,20 @@ class Dep {
   }
 }
 
-<!-- Object.keys(data).forEach(key => {
-  let internalValue = data[key]
-  let dep = new Dep()
-  Object.defineProperty(data, key , {
-    get() {
-      dep.depend()
-      return  internalValue
-    },
-    set(val) {
-     internalValue = val
-     dep.notify()
-    }
-  })
-}) -->
+// Object.keys(data).forEach(key => {
+//   let internalValue = data[key]
+//   let dep = new Dep()
+//   Object.defineProperty(data, key , {
+//     get() {
+//       dep.depend()
+//       return  internalValue
+//     },
+//     set(val) {
+//      internalValue = val
+//      dep.notify()
+//     }
+//   })
+// }) 
 
 let deps = new Map(); // Let's store all of our data's deps in a map
 
@@ -285,7 +289,7 @@ console.log(total)
 
 下面是一个get方法的第三个参数的例子，它总是指向原始的读操作所在的那个对象，一般情况下就是 Proxy 实例。
 
-```
+```js
 
 const proxy = new Proxy({}, {
   get: function(target, key, receiver) {
@@ -295,9 +299,10 @@ const proxy = new Proxy({}, {
 proxy.c === proxy // true
 
 ```
+
 上面代码中，proxy对象的getReceiver属性是由proxy对象提供的，所以receiver指向proxy对象。
 
-```
+```js
 
 const proxy = new Proxy({}, {
   get: function(target, key, receiver) {
@@ -309,12 +314,31 @@ const d = Object.create(proxy);
 d.a === d // true
 
 ```
+
 上面代码中，d对象本身没有a属性，所以读取d.a的时候，会去d的原型proxy对象找。这时，receiver就指向d，代表原始的读操作所在的那个对象。
 
+### Object.defineProperties
 
+Object.defineProperties(obj, props)
+
+defineProperties 是复数，可以修改多个 属性
+
+```js
+var obj = {};
+Object.defineProperties(obj, {
+  'property1': {
+    value: true,
+    writable: true
+  },
+  'property2': {
+    value: 'Hello',
+    writable: false
+  }
+  // etc. etc.
+});
+```
 
 ### 参考文献
 
-1. https://es6.ruanyifeng.com/?search=defineProperty&x=0&y=0#docs/proxy#%E6%A6%82%E8%BF%B0
-2. https://www.vuemastery.com/courses/advanced-components/build-num-reactivity-system
-```
+1. <https://es6.ruanyifeng.com/?search=defineProperty&x=0&y=0#docs/proxy#%E6%A6%82%E8%BF%B0>
+2. <https://www.vuemastery.com/courses/advanced-components/build-num-reactivity-system>

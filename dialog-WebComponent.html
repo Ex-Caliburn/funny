@@ -1,0 +1,100 @@
+<!-- 
+    https://developer.mozilla.org/zh-CN/docs/Web/Web_Components
+ -->
+<!DOCTYPE html>
+<html>
+
+<body>
+    <template id="dialog">
+        <style>
+            .my-dialog {
+                display: none;
+                position: fixed; 
+                width: 100px;
+                height: 100px;
+                left: 50%;
+                top: 50%;
+                transform: translate3D(-50%, -50%, 0);
+            }
+
+            .active {
+                display: block;
+            }
+        </style>
+        <div class="my-dialog">
+            <div class="close">X</div>
+            <slot name="header"></slot>
+            <slot name="content"></slot>
+            <slot name="footer"></slot>
+        </div>
+    </template>
+
+
+    <button id="trigger">visible</button>
+    <my-dialog class="dialog" visible="false">
+        <div slot="header">标题</div>
+        <div slot="content">内容</div>
+        <div slot="footer">
+            尾部
+            <div>
+                <button>取消</button>
+                <button id="confirm">确定</button>
+            </div>
+        </div>
+    </my-dialog>
+
+    <script>
+        class myDialog extends HTMLElement {
+            static get observedAttributes() { return ['visible']; }
+            constructor() {
+                super()
+                //获取组件模板
+                const content = document.querySelector('#dialog').content
+                //创建影子DOM节点
+                const shadowDOM = this.attachShadow({ mode: 'open' })
+                //将模板添加到影子DOM上
+                shadowDOM.appendChild(content)
+            }
+            connectedCallback() {
+                console.log('connectedCallback')
+                const shadowRoot = this.shadowRoot;
+                const closeBtn = shadowRoot.querySelector('.close');
+                closeBtn.addEventListener('click', () => {
+                    const wrapper = shadowRoot.querySelector('.my-dialog');
+                    wrapper.setAttribute("class", `my-dialog`);
+                    this.setAttribute('visible', false)
+                })
+            }
+            disconnectedCallback() {
+                console.log('disconnectedCallback')
+            }
+            attributeChangedCallback() {
+                console.log('attributeChangedCallback')
+                const shadowRoot = this.shadowRoot;
+                const wrapper = shadowRoot.querySelector('.my-dialog');
+                console.log(wrapper, this.getAttribute('visible'))
+                wrapper.setAttribute("class", `my-dialog ${this.getAttribute('visible') === 'true' ? 'active' : ''}`);
+            }
+
+        }
+        customElements.define('my-dialog', myDialog)
+
+        document.getElementById('trigger').addEventListener('click', () => {
+            let target = document.querySelector('.dialog');
+            console.log(target.getAttribute('visible'))
+            if (target.getAttribute('visible') === 'true') {
+                target.setAttribute("visible", false);
+            } else {
+                target.setAttribute("visible", true);
+            }
+        })
+        document.getElementById('confirm').addEventListener('click', () => {
+            let target = document.querySelector('.dialog');
+            target.setAttribute("visible", false);
+        })
+
+    </script>
+</body>
+
+
+</html>

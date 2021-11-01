@@ -1,5 +1,4 @@
-##  git commit 规范
-
+## git commit 规范
 
 ### 格式
 
@@ -14,6 +13,7 @@
 ```
 
 ### header
+
 Header 部分只有一行，包括三个字段：type（必需）、scope（可选）和subject（必需）。
 
 ```
@@ -34,7 +34,6 @@ subject: commit 目的的简短描述
 
 ### body
 
-
 ```
 对本次 commit 修改内容的具体描述, 可以分为多行。如下图:
 # body: 72-character wrapped. This should answer:
@@ -44,7 +43,6 @@ subject: commit 目的的简短描述
 # initial commit
 ```
 
-
 ### footer
 
 ```
@@ -53,15 +51,18 @@ subject: commit 目的的简短描述
 ```
 
 ### 设置
+
 如果你的团队对提交信息有格式要求，可以在系统上创建一个文件，并配置 git 把它作为默认的模板，这样可以更加容易地使提交信息遵循格式。
 通过以下命令来配置提交信息模板:
-```
+
+```bash
 git config commit.template   [模板文件名]    //这个命令只能设置当前分支的提交模板
 git config  — —global commit.template   [模板文件名]    //这个命令能设置全局的提交模板，注意global前面是两杠
 ```
 
 新建 .gitmessage.txt(模板文件) 内容可以如下:
-```
+
+```vim
 # header: <type>(<scope>): <subject>
 # - type: feat, fix, docs, style, refactor, test, chore
 # - scope: can be empty
@@ -77,11 +78,13 @@ git config  — —global commit.template   [模板文件名]    //这个命令�
 # - BREAKING CHANGE
 #
 ```
+
 看完上面这些，你会不会像我一样感觉配置下来挺麻烦的，配置一个适合自己和团队使用的近乎完美的 commit 规范看来也不是一件容易的事情。不过社区也为我们提供了一些辅助工具来帮助进行提交，下面来简单介绍一下这些工具。
 
 ### 安装
 
 commitizen 根据不同的adapter配置 commit message。例如，要使用 Angular 的 commit message 格式，可以安装cz-conventional-changelog。
+
 ```
 # 需要同时安装commitizen和cz-conventional-changelog，后者是adapter
 $ npm install -g commitizen cz-conventional-changelog
@@ -93,6 +96,7 @@ $ git cz
 ```
 
 本地项目安装:
+
 ```
 # 安装commitizen
 $ npm install --save-dev commitizen
@@ -111,4 +115,5 @@ $ npm run commit
 ```
 
 ### 参考文献
-1. https://mp.weixin.qq.com/s/8oWsj_ipp73crD_vg58LeQ
+
+1. <https://mp.weixin.qq.com/s/8oWsj_ipp73crD_vg58LeQ>

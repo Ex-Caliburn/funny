@@ -1,3 +1,5 @@
+# 宏任务和微任务
+
 ## 现象 同是异步队列为什么别人比我快
 
 ```js
@@ -72,21 +74,25 @@ XHR回调、事件回调（鼠标键盘事件）、setImmediate、setTimeout、s
 process.nextTick（nodejs）、Promise.then、Object.observer(已经被废弃)、MutationObserver(html5新特性)
 为了突破单线程的限制
 
+每个宏任务都有一个微任务列表
+
 区别
 hen executing tasks from the task queue, the runtime executes each task that is in the queue at the moment a new iteration of the event loop begins. Tasks added to the queue after the iteration begins will not run until the next iteration.
 
 1. 当执行回调队列，执行队列执行每一个在回调队列中的任务同时事件循环开始新的循环，在循环开始之后回调队列新添加的任务，直到下一次事件轮询开始才会运行
 2. 当任务退出，当执行栈为空，每一个微任务队列的微任务都会执行，一个接一个 微任务队列会执行到微任务队列为空为止，即使有新队列加入， 微任务队列能加入新的微任务，这些新的微任务会在下一个宏任务开始之前执行，而且在当前事件事件轮询结束之前
 
-### process.nextTick()
-
-process.nextTick这个名字有点误导，它是在本轮循环执行的，而且是所有异步任务里面最快执行的。
-
-Node 执行完所有同步任务，接下来就会执行process.nextTick的任务队列
-
 ### 新解决方案
 
 通过引入 queueMicrotask()，由晦涩地使用 promise 去创建微任务而带来的风险就可以被避免了。举例来说，当使用 promise 创建微任务时，由回调抛出的异常被报告为 rejected promises 而不是标准异常。同时，创建和销毁 promise 带来了事件和内存方面的额外开销，这是正确入列微任务的函数应该避免的。
+
+queueMacrotask 除了 IE都支持
+
+```js
+queueMicrotask(function);
+```
+
+A function to be executed when the browser engine determines it is safe to call your code. Enqueued microtasks are executed after all pending tasks have completed but before yielding control to the browser's event loop.
 
 ```js
 let queuePromisetask = f => Promise.resolve().then(f);
@@ -97,6 +103,9 @@ queueMacrotask(() => console.log('Macro task'));
 queuePromisetask(() => console.log('Promise task'));
 queueMicrotask(() => console.log('Microtask 2'));
 ```
+
+因为微任务自身可以入列更多的微任务，且事件循环会持续处理微任务直至队列为空，那么就存在一种使得事件循环无尽处理微任务的真实风险。如何处理递归增加微任务是要谨慎而行的
+
 
 ### 参考文献
 

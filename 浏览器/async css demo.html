@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            console.log('DOM fully loaded and parsed', Date.now())
+        })
+        window.onload = () => {
+            console.log('onload')
+        }
+    </script>
+    <!-- media="print" onload="this.media='all'" 发现在chrome 中 优先级从highest 变成了 lowest -->
+    <link rel="stylesheet" media="print" onload="this.media='all';console.log('css2')"
+        href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap-grid.css" onload="">
+    <!--  -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap-reboot.css"
+        onload="console.log('css1')">
+    <!-- Preload -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap-utilities.rtl.min.css" rel="preload" as="style" onload="this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap-utilities.rtl.min.css">
+    </noscript>
+</body>
+
+</html>

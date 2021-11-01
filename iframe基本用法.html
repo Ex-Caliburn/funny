@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <iframe
+      id="iframe1"
+      src="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/iframe"
+      frameborder="0"
+    >
+      <p>Your browser does not support iframes.</p>
+    </iframe>
+    <iframe
+      id="iframe2"
+      src="https://www.vue3js.cn/docs/zh/guide/installation.html"
+      frameborder="0"
+    ></iframe>
+  </body>
+  <script>
+        // 每个嵌入的浏览上下文（embedded browsing context）都有自己的会话历史记录(session history)和DOM树。
+        // 包含嵌入内容的浏览上下文称为父级浏览上下文。顶级浏览上下文（没有父级）通常是由 Window 对象表示的浏览器窗口。
+
+        // 页面上的每个<iframe>都需要增加内存和其它计算资源，这是因为每个浏览上下文都拥有完整的文档环境。
+        // 虽然理论上来说你能够在代码中写出来无限多的<iframe>，但是你最好还是先看看这么做会不会导致某些性能问题。
+
+        // referrerpolicy
+        // 表示在获取 iframe 资源时如何发送 referrer 首部：
+
+        // sandbox
+        // 该属性对呈现在 iframe 框架中的内容启用一些额外的限制条件。属性值可以为空字符串（这种情况下会启用所有限制），也可以是用空格分隔的一系列指定的字符串。有效的值有：
+
+        console.log(document.getElementById('iframe1'))
+        console.log(document.getElementById('iframe2'))
+
+        // 内联的框架，就像 <frame> 元素一样，会被包含在 window.frames 伪数组（类数组的对象）中。
+
+        // 有了 DOM HTMLIFrameElement 对象，脚本可以通过 contentWindow 访问内联框架的 window 对象。 contentDocument 属性则引用了 <iframe> 内部的 document 元素，(等同于使用contentWindow.document），但IE8-不支持。
+
+        // 在框架内部，脚本可以通过 window.parent 引用父窗口对象。
+
+        // 脚本访问框架内容必须遵守同源策略，并且无法访问非同源的 window 对象的几乎所有属性。同源策略同样适用于子窗体访问父窗体的 window 对象。跨域通信可以通过 window.postMessage 来实现
+
+        // postmessage
+    // window.postMessage方法可以安全地实现跨源通信，写明目标窗口的协议、主机地址或端口就可以发信息给它。
+    // b页面
+    parent.postMessage(
+        value,
+        "http://a.demo.com"
+    );
+    // 复制代码// a页面
+    window.addEventListener("message", function( event ) {
+        if (event.origin !== 'http://b.demo.com') return;
+        toggleFullScreen()
+     });
+    // 复制代码为了安全，收到信息后要检测下event.origin判断是否要收信息的窗口发过来的。
+
+    
+  </script>
+</html>

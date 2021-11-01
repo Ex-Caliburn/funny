@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<!-- https://bushu3t.jingdaka.com/bg/UserC/Login?email=zhufuce%40jingdaka.com&password=14b62e4357620f6f0ffb2c4d0508bd55&csessionid=010B3TrWzwsdkM2Lqh18cIUwwbRXz6hkXQJ1L0ygOliuv849EaPGRQj8qwXZTzR3sJZcjjg2kOzpkbVPE7gwM7gdILksAsi_jOiYiArUQCcwdB868MvOl8tcUwL1pP4Cne1mMCw0UhUmAuWXCkjuvdo-DBV3FXSMA5RbT3ulf2KkcpLyvq5Lg6L06tFuNY76JmnALcbseNIzyI6tVyQ-jUIA&value=pass&sig=05XqrtZ0EaFgmmqIQes-s-CKdtFOXi-TcdnSToZT_GuQKwgcJrDv8PQoOuT8bQu3abSoWOMkj3boHTaJdOaCYRFSORh6gPpZJE4V0Kz7DRjw9c61lO4c5xF4cmdomh5dU6fqRZvlQAiqehCPxUcTZ0rNX6hzYblqKu8JekrWmb6NVwfhS7S3ZzLWVWHH3DBXCGwRALfB0K8PQU_P37YlhS_10OHBtdaIaMAeD2FpS7yWWJ5qhY_MrcYaNOV0HVaB0v01Ar3YahFiLVfGqfBS59zjHNn9Qigq_c6V7YDA7mxsFud2U5A94RcnN4-lRVRzmiZyrWonuwVLYdFvKjSL3xpVUGcYWMzpjsl1z0buJviWFMMOD8hP1Ta302XL7MQWB9BelDfZVUAwe_GpCUva16Nz0ZFS1mz4z4HP5D9PkHdQT0mfwbBsoefo4AQo2_VoLflWMKiKT4YEC2e6lDk-5qH9r0Pi1fbnn05KcstdlnlSQ&token=FFFF0N0000000000912A:1617887269423:0.2635509601007955&is_new=true -->
+<!-- Form表单可以跨域是因为要保持兼容性，当请求到另一个域名后，原页面得脚本无法获取新页面中得内容，
+    提交的form表单数据不需要返回，所以浏览器认为是安全得行为，所以浏览器不会阻止form表单跨域，
+    而ajax我们需要返回的数据，浏览器认为不安全，所以会阻止这个请求行为。 -->
+
+<body>
+    <form action="https://bushu3t.jingdaka.com/bg/UserC/Login">
+        <input name="email" value="zhufuce@jingdaka.com" type="text">
+        <input name="password" value="14b62e4357620f6f0ffb2c4d0508bd55" type="text">
+        <input type="submit" value="Subscribe!">
+    </form>
+
+</body>
+
+<script>
+    //     由于form表单在提交时不会出现跨域问题，因此可以利用form表单进行跨域。
+    // ifame标签，主要用来避免页面刷新的问题，收到响应数据后直接将表单的数据显示到iframe标签中。
+    // 但是该方法的局限性比较大，后台传递回来的数据只在iframe中渲染，在iframe的父页面中无法获取。
+    /* 前端 */
+    let iframe = document.createElement("iframe"), // 首先创建一个用来发送数据的iframe.
+        form = document.createElement("form"),
+        node = document.createElement("input"),
+        context = this
+    console.log(form)
+    data = {
+        anything: 111
+    };
+
+    // 设置并添加iframe至dom树
+    iframe.name = "iframePost";
+    iframe.style.display = "none";
+    iframe.src = "http://localhost:8080";
+    iframe.addEventListener("load", function (res) {
+        context.returnMsg = res;
+        console.log(res);
+    });
+    document.body.appendChild(iframe);
+
+    // 设置并添加form至iframe
+    form.action = "https://bushu3t.jingdaka.com/bg/UserC/Login";
+    form.target = iframe.name; // 在提交表单之后，在指定的iframe中显示响应信息
+    form.method = "post";
+    for (let prop in data) {
+        node.name = prop;
+        node.value = data[prop].toString();
+        form.appendChild(node.cloneNode());
+    }
+    form.style.display = "none";
+    document.body.appendChild(form);
+    form.submit(); // 发送form
+    document.body.removeChild(form); // 表单提交后,就可以删除这个表单,不影响下次的数据发送.
+</script>
+
+</html>
+

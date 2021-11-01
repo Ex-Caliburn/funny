@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    .div1,
+    .span1,
+    .btn1 {
+      width: 100px;
+      height: 100px;
+      background-color: red;
+      margin-right: 100px;
+    }
+    .div2,
+    .span2,
+    .btn2 {
+      width: 100px;
+      height: 100px;
+      background-color: yellow;
+      /* margin-bottom: -50px; */
+      /* margin-left: -50%; */
+    }
+  </style>
+  <body>
+    
+    <div class="div1"></div>
+    <div class="div1"></div>
+    <div class="div2"></div>
+
+    <div>111</div>
+
+    <span class="span1">span1</span>
+    <span class="span1">span2</span>
+    <div>222</div>
+
+    <button class="btn1"></button>
+    <button class="btn2"></button>
+
+    <div>333</div>
+
+    <!-- margin 竖直方向的设置 只对块元素生效， 行内和行内块都无效 -->
+    <!-- button input textarea select img -->
+
+    <!-- When two or more margins collapse, the resulting margin width is the maximum of the collapsing margins' widths. 
+      In the case of negative margins, 
+      the maximum of the absolute values of the negative adjoining margins is deducted from the maximum of the positive adjoining margins. 
+      If there are no positive margins, 
+      the maximum of the absolute values of the adjoining margins is deducted from zero. -->
+  </body>
+</html>

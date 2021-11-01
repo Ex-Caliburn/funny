@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="module" scr="./es.js">
+        console.log(1111)
+        console.log(name)
+
+        let a = {}
+        const proxy = new Proxy(a, {
+            get(target, key, receiver) {
+                console.log('get', target, key)
+                return {}
+            },
+            set(target, key, receiver) {
+                console.log('set', target, key)
+                return key
+            },
+        });
+        proxy.b = 3
+        let x = {
+            y: {}
+        }
+        // 我赋值 触发的是 get 方法
+        Object.defineProperty(x, 'y', {
+            get(val) {
+                console.log('get', val)
+            },
+            set(val) {
+                console.log('set', val)
+            },
+        })
+        x.y.c = 5
+    </script>
+</body>
+
+</html>

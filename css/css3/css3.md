@@ -39,7 +39,7 @@ element1~element2
 ```css
 p~ul
 {
-background:#ff0000; // 为所有相同的父元素中位于 p 元素之后的所有 ul 元素设置背景
+  background:#ff0000; // 为所有相同的父元素中位于 p 元素之后的所有 ul 元素设置背景
 }
 ```
 

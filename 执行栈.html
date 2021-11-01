@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    fn()
+    function fn(params) {
+        console.log(this)
+        fn2.bind(fn)()
+    }
+    function fn2(params) {
+        console.log(this)
+
+    }
+    var myname = "极客时间";
+    function showName() { console.log(myname); if (0) { 
+        console.log(3)
+        var myname = "极客邦" } console.log(myname); }; showName()
+
+</script>
+
+</html>

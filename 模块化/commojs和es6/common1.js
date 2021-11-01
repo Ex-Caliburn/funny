@@ -1,0 +1,7 @@
+// CommonJS 模块的循环加载 § ⇧
+
+exports.done = false;
+var b = require('./common2.js');
+console.log('在 a.js 之中，b.done = %j', b.done);
+exports.done = true;
+console.log('a.js 执行完毕');

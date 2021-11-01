@@ -109,19 +109,19 @@ cherry-pick <commit> -m 1 可以摘取合并请求
 如果使用merge 大家提交记录全部出现在master分支，很不清晰
 如果在提交到dev，master分支之前，将自己的提交记录整理合并，更简洁清晰，这就是 存在的意义
 
-pick：正常选中
-reword：选中，并且修改提交信息；
-edit：选中，rebase时会暂停，允许你修改这个commit（参考这里）
-squash：选中，会将当前commit与上一个commit合并
-fixup：与squash相同，但不会保存当前commit的提交信息
-exec：执行其他shell命令
+- pick：正常选中
+- reword：选中，并且修改提交信息；
+- edit：选中，rebase时会暂停，允许你修改这个commit（参考这里）
+- squash：选中，会将当前commit与上一个commit合并
+- fixup：与squash相同，但不会保存当前commit的提交信息
+- exec：执行其他shell命令
 
 一般使用 squash或者fixup
 
 $ git rebase -i origin/master
 然后修改 需要合并的注释 `pick`改为`s` 或者 `squash`,提交信息将合并到上一个 `commit`
 
-```git
+```bash
 pick 07c5abd Introduce OpenPGP and teach basic usage
 pick de9b1eb Fix PostChecker::Post#urls
 pick 3e7ee36 Hey kids, stop all the highlighting
@@ -136,6 +136,8 @@ pick fa20af3 git interactive rebase, squash, amend
 git rebase 要遵守的法则是：只对尚未推送或分享给别人的本地修改执行 git rebase 操作清理历史，而不对已推送至别处的提交执行 git rebase 操作。比如在 push 所有代码并发起合并请求之前去使用，保证本地进行的提交引用于所有历史提交的最顶端，这种需求非常适合用 git rebase。但是不要对自己仓库以外的副本分支执行 git rebase。
 
 ## 总结
+
+git 的实现就是链表，你可以根据 commitid 找到 commit，或者 ^找到下一个
 
 Gitflow也不是Github所推荐的工作流
 

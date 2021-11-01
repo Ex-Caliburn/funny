@@ -26,6 +26,7 @@ var removeDuplicates = function (nums) {
   return nums.length
 }
 
+//  这是一个有序数组， 你只需要返回这个count数量，比较前后不一致举行
 var removeDuplicates2 = function (nums) {
   let item = nums[0]
   for (var i = 1; i < nums.length; i++) {
@@ -39,7 +40,7 @@ var removeDuplicates2 = function (nums) {
   return nums.length
 }
 
-/* 最快*/
+/* 计算count */
 var removeDuplicates3 = function (nums) {
   // 校验可以不需要
   if(!nums|| !nums.length)return 0
@@ -55,4 +56,23 @@ var removeDuplicates3 = function (nums) {
 
 let arr = [1, 1, 1, 2, 2, 3, 4]
 let length = removeDuplicates3(arr)
+console.log(arr, length)
+
+
+/* 最快  用慢指针存放，不重复的数，快指针遍历  */
+var removeDuplicates4 = function (nums) {
+  if(!nums|| !nums.length)return 0
+  let slow = 0
+  const len = nums.length
+  for (let fast = 1; fast < len; fast++) {
+    if(nums[fast] !== nums[slow]){
+      slow++
+      nums[slow] = nums[fast]
+    }
+  }
+  return slow + 1
+}
+
+arr = [1, 1, 1, 2, 2, 3, 4]
+length = removeDuplicates4(arr)
 console.log(arr, length)

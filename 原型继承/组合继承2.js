@@ -20,7 +20,8 @@ c31.arr.push('9')
 c31.__proto__.add = 1
 console.log('c31.arr : ', c31.arr, c31.__proto__)
 console.log('c31.arr : ', c32.arr, c32.__proto__)
-console.log(Child3.prototype, Parent3.prototype)
+console.log(Child3.prototype, Parent3.prototype) // 多了个 add
+
 /* 
 
 缺点 ： 很明显，无法定义子类构造函数原型私有的方法

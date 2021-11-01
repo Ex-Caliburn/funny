@@ -5,14 +5,26 @@
   <title>Title</title>
 </head>
 <body>
-  
+  <div>
+    时间<span id="time"></span>
+  </div>
 </body>
 <script type="text/javascript">
-  //继续线程占用
-  setInterval(function(){
-    var j = 0;
-    while(j++ < 100000000);
-  }, 0);
+  // 定时器的误差产生的原因
+  // 从后台返回的数据，有误差
+  // 单线程， 宏任务的定时器会被 系统任务或者其他宏任务阻塞
+  // 所以定时器 使用 setTimeout 而不是 setInterval
+  // 每次计算上一次过了多久，设置setTimeout的间隔
+  // 用每次定时器运行的时刻- 定时器开始的时间，得到下一次运行的时间，
+  // 如果下一次运行的时间大于循环的间隔
+  // 1. ，取余数，跳过不必要的循环次数
+  // 2. 直接跳到循环的次数
+
+  // setInterval(function(){
+  //   var j = 0;
+  //   while(j++ < 1000000000);
+  // }, 0);
+
 
   //倒计时
   var  interval = 1000,
@@ -20,21 +32,44 @@
     count = 0,
     startTime = new Date().getTime();
   if( ms >= 0){
-    var timeCounter = setTimeout(countDownStart,interval);
+    var timeCounter = setTimeout(countDownStart2,interval);
   }
 
+  setTimeout(function(){
+    var j = 0;
+    while(j++ < 1000000000);
+  }, 0);
+
+      // 一种方案
   function countDownStart(){
     count++;
     var offset = new Date().getTime() - (startTime + count * interval);
     var nextTime = interval - offset;
-    var daytohour = 0;
     if (nextTime < 0) { nextTime = 0 };
     ms -= interval;
     console.log("误差：" + offset + "ms，下一次执行：" + nextTime + "ms后，离活动开始还有：" + ms + "ms");
+    document.getElementById('time').innerText = ms/ 1000
     if(ms <= 0){
       clearTimeout(timeCounter);
     }else{
       timeCounter = setTimeout(countDownStart,nextTime);
+    }
+  }
+
+  // 跳过不必要的循环，如果循环做复杂操作，直接跳过没必要的循环，同步计数次数
+  function countDownStart2(){
+    count++;
+    var offset = new Date().getTime() - (startTime + count * interval);
+    var nextTime = interval - offset % interval ;
+    let gap = Math.floor(offset / interval )
+    ms -= (interval + gap * interval);
+    count = count + gap
+    console.log("误差：" + offset + "ms，下一次执行：" + nextTime + "ms后，离活动开始还有：" + ms + "ms");
+    document.getElementById('time').innerText = ms/ 1000
+    if(ms <= 0){
+      clearTimeout(countDownStart2);
+    }else{
+      timeCounter = setTimeout(countDownStart2,nextTime);
     }
   }
 </script>

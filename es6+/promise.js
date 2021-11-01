@@ -47,3 +47,32 @@ Promise.resolve()
   .catch((err) => {
     console.log(err)
   })
+
+  // catch 错误之后依然继续 then，真链式调用, 报错后会走then的错误handler，但是后面的then就会走正常的handler
+  // finally 可以连续调用多次。。，并不是一次
+Promise.resolve()
+  .then(() => {
+    console.log(a)
+  })
+  .catch((err) => {
+    console.log(err)
+    console.log(b)
+  })
+  .then(
+    (res) => {
+      console.log(111)
+    },
+    (res) => {
+      console.log(222)
+    }
+  ).finally(() => {
+    console.log('finally')
+  })
+  .then(
+    (res) => {
+      console.log(111)
+    },
+    (res) => {
+      console.log(222)
+    }
+  )

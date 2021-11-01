@@ -15,6 +15,7 @@
 //   return res
 // }
 
+
 // console.log(genRandomArr(10))
 // console.log(genRandomArr(0))
 // console.log(genRandomArr(1))
