@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .left {
+        background-color: chartreuse;
+    }
+
+    .right {
+        background-color: red;
+    }
+
+    .left {
+        position: fixed;
+        width: 200px;
+        height: 300px;
+    }
+
+    .right {
+        position: absolute;
+        margin-left: 200px;
+        width: calc(100% - 200px);
+        height: 300px;
+    }
+
+    /* flex */
+    /* body {
+        display: flex;
+    }
+
+    .left {
+        flex-basis: 200px;
+        height: 300px;
+    }
+
+    .right {
+        flex-grow: 1;
+        height: 300px;
+    } */
+
+
+    /* bfc  .BFC的区域不会与float box重叠。  */
+    /* .left {
+        float: left;
+        width: 200px;
+        height: 300px;
+    }
+
+    // 不需要这只margin-left:300 
+    .right {
+        height: 300px;
+        background-color: red;
+    } */
+</style>
+
+<body>
+
+    <div class="left">左</div>
+    <div class="right">右</div>
+
+</body>
+
+</html>

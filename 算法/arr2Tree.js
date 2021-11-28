@@ -75,3 +75,23 @@ function arrToTree6(arr) {
 console.time(3)
 console.log(arrToTree5(arr))
 console.timeEnd(3)
+
+// o(n) pid 是按顺序排的，这种情况
+function arrToTrr(arr) {
+  let itemMap = {}
+  let result = []
+  for (let i = 0; i < arr.length; i++) {
+    let id = arr[i].id
+    let pid = arr[i].parentId
+    if (!itemMap[id]) {
+      itemMap[id] = {
+        children: []
+      }
+    }
+    itemMap[id] = {
+      ...item,
+      children: itemMap[id]['children']
+    }
+  }
+  return result
+}

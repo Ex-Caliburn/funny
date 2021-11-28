@@ -24,7 +24,7 @@ Vue.component('aa', function(resolve, reject) {
 Promise 异步组件
 
 ```js
-Vue.component('aa', () => import('./aa.js') )
+Vue.component('aa', () => import('./aa.js') ) 
 ```
 
 高级异步组件
