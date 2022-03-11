@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+  <script>
+    // let formData = new FormData()
+    formData = {
+      'g-recaptcha-response': '03AGdBq24L9HZ2gtudTUFc2B6lUqsaLmlEHrJJyxOffuptVPX915GWKayefxNOWttczBTO020DoHQgtefHSN6VEPS_DnL3_qHCXCL-Q8GbJeEhJ7lWoHuOGA-DOhnTeJBNiUZvyjTPyKPeAEMeJqtHymCI9it-yMtNDK8rnHG9eBrgmuFDDU7h0bcNDPLzcG49MWbVH8heqNMDlEAkLMtR7sdjVRpSzXDUlUIYP3z_YYyMYcAUyw33pIj4h8PaavFg6GQ52kZta5DyEGzr1Y_m-qiXki8NEN8OvjSlsmyQsh78gBHhX7GJDF4QETJ4SZoPFGdkW84dMvcN_e9g72V_9F7FjvjTwWWfBJOeSbAGY8Y8YVRIHR2bFnNIEdF9C2AVzKLy20RQkIsttYq9dCoK9txk8f7JXHKO7rJBZwCndrT02QEyNhpDgnvDQg-CLrxduC_M-LApFHR4eECyNDAKCcymwdowT51aTA',
+      code: 12345123451234
+    }
+    // formData.append('g-recaptcha-response', '03AGdBq24L9HZ2gtudTUFc2B6lUqsaLmlEHrJJyxOffuptVPX915GWKayefxNOWttczBTO020DoHQgtefHSN6VEPS_DnL3_qHCXCL-Q8GbJeEhJ7lWoHuOGA-DOhnTeJBNiUZvyjTPyKPeAEMeJqtHymCI9it-yMtNDK8rnHG9eBrgmuFDDU7h0bcNDPLzcG49MWbVH8heqNMDlEAkLMtR7sdjVRpSzXDUlUIYP3z_YYyMYcAUyw33pIj4h8PaavFg6GQ52kZta5DyEGzr1Y_m-qiXki8NEN8OvjSlsmyQsh78gBHhX7GJDF4QETJ4SZoPFGdkW84dMvcN_e9g72V_9F7FjvjTwWWfBJOeSbAGY8Y8YVRIHR2bFnNIEdF9C2AVzKLy20RQkIsttYq9dCoK9txk8f7JXHKO7rJBZwCndrT02QEyNhpDgnvDQg-CLrxduC_M-LApFHR4eECyNDAKCcymwdowT51aTA')
+    // formData.append('code', 12345123451234)
+
+    ajax({
+      url: 'https://relx.fastgrowth.app/auth/product/verify',
+      method: 'POST',
+      contentType: 'application/x-www-form-urlencoded',
+      data: formData,
+      success() {
+        console.log('success')
+      },
+      error(e) {
+        console.log(e)
+      }
+    })
+
+    function ajax(opt) {
+      opt = opt || {}
+      opt.method = opt.method.toUpperCase() || 'POST'
+      opt.url = opt.url || ''
+      opt.async = opt.async || true
+      opt.data = opt.data || null
+      opt.success = opt.success || function () { }
+      opt.error = opt.error || function () { }
+      opt.contentType = opt.contentType || 'application/x-www-form-urlencoded'
+
+      var xmlHttp = null
+      if (XMLHttpRequest) {
+        xmlHttp = new XMLHttpRequest()
+      } else {
+        xmlHttp = new ActiveXObject('Microsoft.XMLHTTP')
+      }
+      var postData = ''
+      var params = []
+      if (opt.contentType === 'multipart/form-data') {
+        const formData = new FormData()
+        formData.append('file', opt.data)
+        opt.data = formData
+      } else {
+        for (var key in opt.data) {
+          params.push(key + '=' + opt.data[key])
+        }
+        postData = params.join('&')
+      }
+
+      if (opt.method.toUpperCase() === 'POST') {
+        xmlHttp.open(opt.method, opt.url, opt.async)
+        xmlHttp.setRequestHeader('Content-Type', opt.contentType)
+        xmlHttp.send(postData)
+      } else if (opt.method.toUpperCase() === 'GET') {
+        xmlHttp.open(opt.method, opt.url + '?' + postData, opt.async)
+        xmlHttp.send(null)
+      }
+      xmlHttp.onreadystatechange = function () {
+        if (xmlHttp.readyState == 4) {
+          console.log(xmlHttp)
+          if (xmlHttp.status >= 200 || xmlHttp.status < 300 || xmlHttp.status == 304) {
+            opt.success(xmlHttp.responseText)
+          } else {
+            opt.error(xmlHttp.responseText)
+          }
+        }
+      }
+    }
+  </script>
+</body>
+
+</html>

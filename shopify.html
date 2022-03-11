@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input id="email" type="email" name="email">
+    <button id="submit">submit</button>
+    <a id="jump" href="">跳转</a>
+
+    <script>
+        let email = document.getElementById('email')
+        let submit = document.getElementById('submit')
+
+        submit.addEventListener('click', (ev) => {
+            console.log(email.value)
+            postData = {
+                email: email.value
+            }
+            // console.log(ev.target.files[0])
+            // postData = new FormData()
+            // postData.append('file', ev.target.files[0])
+            ajax({
+                url: 'http://127.0.0.1:3000',
+                method: 'POST',
+                contentType: "application/json; charset=UTF-8", // 不要设置Content-Type请求头
+                // contentType: 'multipart/form-data',
+                // contentType: 'image/png',
+                data: postData,
+                success: (res) => {
+                    console.log(res)
+                    document.getElementById('jump').href = res
+                    console.log('success')
+                }
+            })
+        })
+
+        function ajax(opt) {
+            opt = opt || {}
+            opt.method = opt.method.toUpperCase() || 'POST'
+            opt.url = opt.url || ''
+            opt.async = opt.async || true
+            opt.data = opt.data || null
+            opt.header = opt.header || {}
+            opt.success = opt.success || function () { }
+            opt.error = opt.error || function () { }
+            opt.contentType = opt.contentType || 'application/x-www-form-urlencoded'
+
+            var xmlHttp = null
+            if (XMLHttpRequest) {
+                xmlHttp = new XMLHttpRequest()
+            } else {
+                xmlHttp = new ActiveXObject('Microsoft.XMLHTTP')
+            }
+            var postData = null
+            var params = []
+            if (opt.contentType === 'multipart/form-data') {
+                postData = new FormData()
+                postData.append('file', opt.data)
+                console.log(postData, opt.data)
+            } else {
+                for (var key in opt.data) {
+                    params.push(key + '=' + opt.data[key])
+                }
+                postData = params.join('&')
+            }
+
+            if (opt.method.toUpperCase() === 'POST') {
+                xmlHttp.open(opt.method, opt.url, opt.async)
+            } else if (opt.method.toUpperCase() === 'GET') {
+                xmlHttp.open(opt.method, opt.url + '?' + postData, opt.async)
+            }
+            for (var key in opt.header) {
+                xmlHttp.setRequestHeader('key', opt.header[key])
+            }
+            xmlHttp.setRequestHeader('Content-Type', opt.contentType)
+            xmlHttp.send(postData)
+            xmlHttp.onreadystatechange = function () {
+                if (xmlHttp.readyState == 4) {
+                    console.log(xmlHttp)
+                    if (xmlHttp.status >= 200 || xmlHttp.status < 300 || xmlHttp.status == 304) {
+                        opt.success(xmlHttp.responseText)
+                    } else {
+                        opt.error(xmlHttp.responseText)
+                    }
+                }
+            }
+        }
+
+    </script>
+</body>
+
+</html>
