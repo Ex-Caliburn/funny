@@ -281,7 +281,7 @@ var cookies = new Cookies()
 // 工具 效验函数
 var util = (function () {
   function isNumber(value) {
-    return Object.prototype.toString.call(value) == '[object Number]'
+    return Object.prototype.toString.call(value) == '[object Number]' && !isNaN(obj)
   }
   function isString(value) {
     return Object.prototype.toString.call(value) == '[object String]'
@@ -669,4 +669,36 @@ function taskDebounce(fn) {
       }, timeoutDuration);
     }
   };
+}
+
+// 去掉url参数search 指定参数，并可修改url
+function deleteKeyUrlSearch(key, url) {
+  if (!key) return
+  let urlObj = new URL(url || window.location.href)
+  urlObj.searchParams.delete(key)
+  if (!url) {
+    let temp = {}
+    urlObj.searchParams.forEach((value, key) => {
+      temp[key] = value
+    })
+    history.replaceState(temp, '', window.location.pathname)
+  } else {
+    return urlObj.toString()
+  }
+}
+
+export function supportTouch() {
+  return (
+    'ontouchstart' in window ||
+    (window.DocumentTouch && document instanceof window.DocumentTouch) ||
+    navigator.maxTouchPoints > 0 ||
+    window.navigator.msMaxTouchPoints > 0
+  )
+}
+
+export function getMonthDay(date) {
+  if (!date) return
+  return date.replace(/\d{4}\-(\d{2})\-(\d{2}) (\d{2}:\d{2}:\d{2})/, ($1, $2, $3) => {
+    return `${$2}.${$3}`
+  })
 }
