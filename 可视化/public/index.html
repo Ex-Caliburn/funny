@@ -1,0 +1,63 @@
+<!--
+ * @Author: Alex(lijiyebest@gmail.com)
+ * @Date: 2021-12-08 11:11:28
+ * @LastEditTime: 2021-12-08 11:56:00
+ * @LastEditors: Alex(lijiyebest@gmail.com)
+ * @Description: 当前文件做什么的
+ * @Trap: 坑，历史包袱，注意事项
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<link type="text/css" href="./styles.css" rel="stylesheet" />
+
+<body>
+    <!-- Import the component -->
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+    <!-- Use it like any other HTML element -->
+    <model-viewer width="500px" bounds="tight" src="./RobotExpressive.glb" ar ar-modes="webxr scene-viewer quick-look"
+        camera-controls environment-image="neutral" poster="poster.webp" shadow-intensity="1" autoplay>
+        <div class="progress-bar hide" slot="progress-bar">
+            <div class="update-bar"></div>
+        </div>
+        <button slot="ar-button" id="ar-button">
+            View in your space
+        </button>
+        <div id="ar-prompt">
+            <img src="https://modelviewer.dev/shared-assets/icons/hand.png">
+        </div>
+    </model-viewer>
+
+
+    <!-- <model-viewer
+        alt="Neil Armstrong's Spacesuit from the Smithsonian Digitization Programs Office and National Air and Space Museum"
+        src="./Astronaut.glb" ar ar-modes="webxr scene-viewer quick-look" environment-image="./moon_1k.hdr"
+        poster="./NeilArmstrong.webp" seamless-poster shadow-intensity="1" camera-controls></model-viewer> -->
+
+    <script>
+        // Handles loading the events for <model-viewer>'s slotted progress bar
+        const onProgress = (event) => {
+            const progressBar = event.target.querySelector('.progress-bar');
+            const updatingBar = event.target.querySelector('.update-bar');
+            updatingBar.style.width = `${event.detail.totalProgress * 100}%`;
+            if (event.detail.totalProgress === 1) {
+                progressBar.classList.add('hide');
+            } else {
+                progressBar.classList.remove('hide');
+                if (event.detail.totalProgress === 0) {
+                    event.target.querySelector('.center-pre-prompt').classList.add('hide');
+                }
+            }
+        };
+        document.querySelector('model-viewer').addEventListener('progress', onProgress);
+    </script>
+</body>
+
+</html>

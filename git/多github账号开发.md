@@ -6,7 +6,7 @@
 
 ### 步骤
 
-```
+```shell
 $ ssh-keygen -t rsa -C "test1@xxx.com"
 第一次可以一路回车
 
@@ -63,7 +63,17 @@ Bad owner or permissions on .ssh/config
 需要给config 读写权限
 sudo chmod 600 config
 
+### 不是默认 private SSH key
+
+If you used a non-default file path for your GitLab SSH key pair,
+configure your SSH client to point to your GitLab private SSH key.
+
+eval $(ssh-agent -s)
+ssh-add ~/.ssh/id_rsa
+
 ## 总结
+
+gitlab 同理
 
 ### 参考文献
 

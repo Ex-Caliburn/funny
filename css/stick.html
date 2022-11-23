@@ -1,0 +1,60 @@
+<!-- 包裹的元素一定不能和吸附他一样高
+https://www.zhangxinxu.com/wordpress/2018/12/css-position-sticky/
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    article h4, 
+h4 {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+content {
+    position: relative;
+}
+footer {
+    position: sticky;
+    bottom: 50vh;
+    z-index: -1;
+}
+</style>
+<body>
+    <article>
+        <section>
+            <h4>网曝王宝强殴打马蓉</h4>
+            <content>
+                <p>12月2日，有网友爆料称...</p>
+            </content>
+            <footer>网友评论：...</footer>
+        </section>
+        <section>
+            <h4>知情人爆料称马蓉闯入王宝强家拿剪刀对峙</h4>
+            <content>
+                <p>...</p>
+            </content>
+            <footer>网友评论：...
+                应，表示唐嫣没有不礼貌，自己也没有尴尬。随后，唐嫣也评论：“美丽的误会”
+
+韩寒：我的生活有两个节点，一个是出书，另一个就是写博客。出书让我有了收入，博客让我有了跟读者的连接。我从小就被贴过很多标签，每多一个标签就更接近真实的我。微博也一样，每一次更新都跟随着时代的风向，与时代同行。
+
+《游戏人生》作者榎宫祐 表示，近日有朋友想成为漫画家，过来找他商量。
+他：“漫画家相当于无职啊，月收入又低，如果请助手花费更大。”（为了让朋友知道现实，又不否定梦想的小心翼翼的说法）
+朋友：“可是我有一栋公寓用来收租唉......”
+他：“那你想怎么活就怎么活吧！” ​​​​
+
+【湖北一小学三年级才教数学，校长回应争议：实验班的成绩远高于对比班】湖北赤壁一小学施行三年级才上数学课的教学设置，引起关注。该校校长表示，数学是一个抽象思维的功课，6岁的小孩是形象思维发展的最佳期，应该把数学往后移，按照知识发展规律。从三年级开始学数学，用3年时间学完原本5年的课程是可行的，并且经过3年的实验，实验班的成绩都要远高于对比班。
+
+刘国梁：暮然回首这一路走来⋯⋯感恩国家队30年的培养，把我从一个13岁的孩子，培养成大满贯、总教练、再到乒协主席🏓️[心]感谢这么多年跟我一起努力征战国际赛场的教练员和运动员，是你们辛勤的付出取得的荣耀造就了今天的自己[抱抱][心]感动的是亿万国人和球迷粉丝，这么多年不离不弃的支持，才有了今日国乒的新辉煌。赢不狂.输不慌.陪国乒.战东京！
+            </footer>
+        </section>
+        ...
+    </article>
+</body>
+</html>

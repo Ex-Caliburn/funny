@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  .beautiful {
+    font-style: italic;
+    font-weight: 900;
+    font-size: 80px;
+    line-height: 64px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #ff2d02;
+    filter: url(#dilate);
+  }
+</style>
+
+<body>
+  <svg width="0" height="0">
+    <filter id="dilate">
+      <feMorphology in="SourceAlpha" result="DILATED" operator="dilate" radius="2"></feMorphology>
+      <feFlood flood-color="#CDE5F1" flood-opacity="1" result="flood"></feFlood>
+      <feComposite in="flood" in2="DILATED" operator="in" result="OUTLINE"></feComposite>
+
+      <feMerge>
+        <feMergeNode in="OUTLINE" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </svg>
+  <div class="beautiful">beautiful</div>
+</body>
+
+</html>

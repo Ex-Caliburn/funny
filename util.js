@@ -281,7 +281,7 @@ var cookies = new Cookies()
 // 工具 效验函数
 var util = (function () {
   function isNumber(value) {
-    return Object.prototype.toString.call(value) == '[object Number]'
+    return Object.prototype.toString.call(value) == '[object Number]' && !isNaN(obj)
   }
   function isString(value) {
     return Object.prototype.toString.call(value) == '[object String]'
@@ -588,4 +588,117 @@ export function downloadCrossOriginImg(url, fileName = '下载图片', ext = '')
     },
     ext
   )
+}
+
+// https://developer.mozilla.org/zh-CN/docs/Web/API/Document/cookie
+//   * docCookies.setItem(name, value[, end[, path[, domain[, secure]]]])
+//   * docCookies.getItem(name)
+//   * docCookies.removeItem(name[, path], domain)
+//   * docCookies.hasItem(name)
+//   * docCookies.keys()
+var docCookies = {
+  getItem: function (sKey) {
+    return decodeURIComponent(document.cookie.replace(new RegExp("(?:(?:^|.*;)\\s*" + encodeURIComponent(sKey).replace(/[-.+*]/g, "\\$&") + "\\s*\\=\\s*([^;]*).*$)|^.*$"), "$1")) || null;
+  },
+  setItem: function (sKey, sValue, vEnd, sPath, sDomain, bSecure) {
+    if (!sKey || /^(?:expires|max\-age|path|domain|secure)$/i.test(sKey)) { return false; }
+    var sExpires = "";
+    if (vEnd) {
+      switch (vEnd.constructor) {
+        case Number:
+          sExpires = vEnd === Infinity ? "; expires=Fri, 31 Dec 9999 23:59:59 GMT" : "; max-age=" + vEnd;
+          break;
+        case String:
+          sExpires = "; expires=" + vEnd;
+          break;
+        case Date:
+          sExpires = "; expires=" + vEnd.toUTCString();
+          break;
+      }
+    }
+    document.cookie = encodeURIComponent(sKey) + "=" + encodeURIComponent(sValue) + sExpires + (sDomain ? "; domain=" + sDomain : "") + (sPath ? "; path=" + sPath : "") + (bSecure ? "; secure" : "");
+    return true;
+  },
+  removeItem: function (sKey, sPath, sDomain) {
+    if (!sKey || !this.hasItem(sKey)) { return false; }
+    document.cookie = encodeURIComponent(sKey) + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT" + ( sDomain ? "; domain=" + sDomain : "") + ( sPath ? "; path=" + sPath : "");
+    return true;
+  },
+  hasItem: function (sKey) {
+    return (new RegExp("(?:^|;\\s*)" + encodeURIComponent(sKey).replace(/[-.+*]/g, "\\$&") + "\\s*\\=")).test(document.cookie);
+  },
+  keys: /* optional method: you can safely remove it! */ function () {
+    var aKeys = document.cookie.replace(/((?:^|\s*;)[^\=]+)(?=;|$)|^\s*|\s*(?:\=[^;]*)?(?:\1|$)/g, "").split(/\s*(?:\=[^;]*)?;\s*/);
+    for (var nIdx = 0; nIdx < aKeys.length; nIdx++) { aKeys[nIdx] = decodeURIComponent(aKeys[nIdx]); }
+    return aKeys;
+  }
+};
+
+var timeoutDuration = function () {
+  var longerTimeoutBrowsers = ['Edge', 'Trident', 'Firefox'];
+  for (var i = 0; i < longerTimeoutBrowsers.length; i += 1) {
+    if (isBrowser && navigator.userAgent.indexOf(longerTimeoutBrowsers[i]) >= 0) {
+      return 1;
+    }
+  }
+  return 0;
+}();
+
+function microtaskDebounce(fn) {
+  var called = false;
+  return function () {
+    if (called) {
+      return;
+    }
+    called = true;
+    window.Promise.resolve().then(function () {
+      called = false;
+      fn();
+    });
+  };
+}
+
+function taskDebounce(fn) {
+  var scheduled = false;
+  return function () {
+    if (!scheduled) {
+      scheduled = true;
+      setTimeout(function () {
+        scheduled = false;
+        fn();
+      }, timeoutDuration);
+    }
+  };
+}
+
+// 去掉url参数search 指定参数，并可修改url
+function deleteKeyUrlSearch(key, url) {
+  if (!key) return
+  let urlObj = new URL(url || window.location.href)
+  urlObj.searchParams.delete(key)
+  if (!url) {
+    let temp = {}
+    urlObj.searchParams.forEach((value, key) => {
+      temp[key] = value
+    })
+    history.replaceState(temp, '', window.location.pathname)
+  } else {
+    return urlObj.toString()
+  }
+}
+
+export function supportTouch() {
+  return (
+    'ontouchstart' in window ||
+    (window.DocumentTouch && document instanceof window.DocumentTouch) ||
+    navigator.maxTouchPoints > 0 ||
+    window.navigator.msMaxTouchPoints > 0
+  )
+}
+
+export function getMonthDay(date) {
+  if (!date) return
+  return date.replace(/\d{4}\-(\d{2})\-(\d{2}) (\d{2}:\d{2}:\d{2})/, ($1, $2, $3) => {
+    return `${$2}.${$3}`
+  })
 }

@@ -37,7 +37,7 @@ HTML 网页中，浏览器通过`<script>`标签加载 JavaScript 脚本。
 defer: 延期，推迟
 async: 异步
 
-都是异步加载，只是执行的时间不一样
+都是异步加载，执行的时间不一样
 
 defer: 页面渲染完再执行，DOMContentLoad之前
 async: 下载完就执行
