@@ -1,7 +1,0 @@
-export const CHANGE_LAYER_ZINDEX = 'CHANGE_LAYER_ZINDEX'
-export const DEL_LAYER = 'DEL_LAYER'
-export const REMOVE_FROM_ARR = 'REMOVE_FROM_ARR'
-export const ADD_TO_ARR = 'ADD_TO_ARR'
-export const DEL_SCENE = 'DEL_SCENE'
-export const INCREMENT_COUNT = 'INCREMENT_COUNT'
-
