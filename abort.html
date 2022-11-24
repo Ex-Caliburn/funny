@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <button class="download">download</button>
+  <button class="abort">abort</button>
+
+  <script>
+    const controller = new AbortController();
+    const signal = controller.signal;
+
+    const url = "video.mp4";
+    const downloadBtn = document.querySelector(".download");
+    const abortBtn = document.querySelector(".abort");
+
+    downloadBtn.addEventListener("click", fetchVideo);
+
+    abortBtn.addEventListener("click", () => {
+      controller.abort();
+      console.log("Download aborted");
+    });
+
+    function fetchVideo() {
+      fetch('https://servicesensors.offlinesass.com/sa.gif', { signal })
+        .then((response) => {
+          console.log("Download complete", response);
+        })
+        .catch((err) => {
+          console.error(`Download error: ${err.message}`);
+        });
+        // abort 会走 catch
+        controller.abort();
+    }
+  </script>
+</body>
+
+</html>
