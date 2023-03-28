@@ -157,6 +157,10 @@ git config core.ignorecase false
 
 git 仓库 优先  全局  gitconfig  
 
+## Failed to connect to github.com port 443 after 75010 ms: Operation timed out
+
+开vpn
+
 ## 总结
 
 git 的实现就是链表，你可以根据 commitid 找到 commit，或者 ^找到下一个
