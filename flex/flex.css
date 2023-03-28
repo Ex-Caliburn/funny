@@ -179,7 +179,7 @@
   flex-grow: 1;
 }
 
-.flex_item-shirk {
+.flex_item-shrink {
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }

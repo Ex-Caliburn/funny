@@ -135,6 +135,26 @@ pick fa20af3 git interactive rebase, squash, amend
 
 git rebase 要遵守的法则是：只对尚未推送或分享给别人的本地修改执行 git rebase 操作清理历史，而不对已推送至别处的提交执行 git rebase 操作。比如在 push 所有代码并发起合并请求之前去使用，保证本地进行的提交引用于所有历史提交的最顶端，这种需求非常适合用 git rebase。但是不要对自己仓库以外的副本分支执行 git rebase。
 
+### origin 修改
+
+默认是 origin
+git remote
+git remote rename origin old
+git remote rename new origin
+
+### Git 重命名时遇到的大小写不敏感的问题
+
+Windows/Mac OS 操作系统文件的大小写是不敏感的，不管文件路径是何种奇怪的大小写，我们始终可以以另一种大小写的方式访问到这个路径种的文件或者文件夹。Linux 操作系统文件的大小写却是敏感的，不同大小写意味着不同的路径。于是，Windows 下的 A 文件在 Docs 文件夹下，B 文件在 docs 文件夹下，最终效果是 A B 都在 docs 文件夹下；而同样的情况放到 Linux 中，A B 就在两个不同的文件夹。
+
+git mv -f OldFileNameCase newfilenamecase
+
+git config core.ignorecase false
+
+全局 git 配置文件 gitconfig 中添加了一项：
+
+[core]
+    ignorecase = false
+
 ## 总结
 
 git 的实现就是链表，你可以根据 commitid 找到 commit，或者 ^找到下一个

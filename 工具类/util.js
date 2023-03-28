@@ -188,7 +188,7 @@ function getDate() {
  *  深复制
  * */
 function deepCopy(p, c) {
-  var c = c || {}
+  c = c || (p.constructor === Array ? [] : {})
   for (var i in p) {
     if (typeof p[i] === 'object') {
       c[i] = p[i].constructor === Array ? [] : {}
@@ -326,7 +326,6 @@ var util = (function () {
   function isDate(value) {
     return Object.prototype.toString.call(value) == '[object Date]'
   }
-  
 
   return {
     isSet,
@@ -452,6 +451,7 @@ export function downloadImg(content, fileName) {
   aLink.download = fileName
   aLink.href = URL.createObjectURL(blob)
   aLink.click()
+  revokeObjectURL
 }
 
 /* 用于每天读取弹窗 */
@@ -598,77 +598,112 @@ export function downloadCrossOriginImg(url, fileName = '下载图片', ext = '')
 //   * docCookies.keys()
 var docCookies = {
   getItem: function (sKey) {
-    return decodeURIComponent(document.cookie.replace(new RegExp("(?:(?:^|.*;)\\s*" + encodeURIComponent(sKey).replace(/[-.+*]/g, "\\$&") + "\\s*\\=\\s*([^;]*).*$)|^.*$"), "$1")) || null;
+    return (
+      decodeURIComponent(
+        document.cookie.replace(
+          new RegExp(
+            '(?:(?:^|.*;)\\s*' +
+              encodeURIComponent(sKey).replace(/[-.+*]/g, '\\$&') +
+              '\\s*\\=\\s*([^;]*).*$)|^.*$'
+          ),
+          '$1'
+        )
+      ) || null
+    )
   },
   setItem: function (sKey, sValue, vEnd, sPath, sDomain, bSecure) {
-    if (!sKey || /^(?:expires|max\-age|path|domain|secure)$/i.test(sKey)) { return false; }
-    var sExpires = "";
+    if (!sKey || /^(?:expires|max\-age|path|domain|secure)$/i.test(sKey)) {
+      return false
+    }
+    var sExpires = ''
     if (vEnd) {
       switch (vEnd.constructor) {
         case Number:
-          sExpires = vEnd === Infinity ? "; expires=Fri, 31 Dec 9999 23:59:59 GMT" : "; max-age=" + vEnd;
-          break;
+          sExpires =
+            vEnd === Infinity
+              ? '; expires=Fri, 31 Dec 9999 23:59:59 GMT'
+              : '; max-age=' + vEnd
+          break
         case String:
-          sExpires = "; expires=" + vEnd;
-          break;
+          sExpires = '; expires=' + vEnd
+          break
         case Date:
-          sExpires = "; expires=" + vEnd.toUTCString();
-          break;
+          sExpires = '; expires=' + vEnd.toUTCString()
+          break
       }
     }
-    document.cookie = encodeURIComponent(sKey) + "=" + encodeURIComponent(sValue) + sExpires + (sDomain ? "; domain=" + sDomain : "") + (sPath ? "; path=" + sPath : "") + (bSecure ? "; secure" : "");
-    return true;
+    document.cookie =
+      encodeURIComponent(sKey) +
+      '=' +
+      encodeURIComponent(sValue) +
+      sExpires +
+      (sDomain ? '; domain=' + sDomain : '') +
+      (sPath ? '; path=' + sPath : '') +
+      (bSecure ? '; secure' : '')
+    return true
   },
   removeItem: function (sKey, sPath, sDomain) {
-    if (!sKey || !this.hasItem(sKey)) { return false; }
-    document.cookie = encodeURIComponent(sKey) + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT" + ( sDomain ? "; domain=" + sDomain : "") + ( sPath ? "; path=" + sPath : "");
-    return true;
+    if (!sKey || !this.hasItem(sKey)) {
+      return false
+    }
+    document.cookie =
+      encodeURIComponent(sKey) +
+      '=; expires=Thu, 01 Jan 1970 00:00:00 GMT' +
+      (sDomain ? '; domain=' + sDomain : '') +
+      (sPath ? '; path=' + sPath : '')
+    return true
   },
   hasItem: function (sKey) {
-    return (new RegExp("(?:^|;\\s*)" + encodeURIComponent(sKey).replace(/[-.+*]/g, "\\$&") + "\\s*\\=")).test(document.cookie);
+    return new RegExp(
+      '(?:^|;\\s*)' + encodeURIComponent(sKey).replace(/[-.+*]/g, '\\$&') + '\\s*\\='
+    ).test(document.cookie)
   },
   keys: /* optional method: you can safely remove it! */ function () {
-    var aKeys = document.cookie.replace(/((?:^|\s*;)[^\=]+)(?=;|$)|^\s*|\s*(?:\=[^;]*)?(?:\1|$)/g, "").split(/\s*(?:\=[^;]*)?;\s*/);
-    for (var nIdx = 0; nIdx < aKeys.length; nIdx++) { aKeys[nIdx] = decodeURIComponent(aKeys[nIdx]); }
-    return aKeys;
+    var aKeys = document.cookie
+      .replace(/((?:^|\s*;)[^\=]+)(?=;|$)|^\s*|\s*(?:\=[^;]*)?(?:\1|$)/g, '')
+      .split(/\s*(?:\=[^;]*)?;\s*/)
+    for (var nIdx = 0; nIdx < aKeys.length; nIdx++) {
+      aKeys[nIdx] = decodeURIComponent(aKeys[nIdx])
+    }
+    return aKeys
   }
-};
+}
 
-var timeoutDuration = function () {
-  var longerTimeoutBrowsers = ['Edge', 'Trident', 'Firefox'];
+var timeoutDuration = (function () {
+  var longerTimeoutBrowsers = ['Edge', 'Trident', 'Firefox']
   for (var i = 0; i < longerTimeoutBrowsers.length; i += 1) {
     if (isBrowser && navigator.userAgent.indexOf(longerTimeoutBrowsers[i]) >= 0) {
-      return 1;
+      return 1
     }
   }
-  return 0;
-}();
+  return 0
+})()
 
 function microtaskDebounce(fn) {
-  var called = false;
+  var called = false
   return function () {
     if (called) {
-      return;
+      return
     }
-    called = true;
+    called = true
     window.Promise.resolve().then(function () {
-      called = false;
-      fn();
-    });
-  };
+      called = false
+      fn()
+    })
+  }
 }
 
 function taskDebounce(fn) {
-  var scheduled = false;
+  var scheduled = false
   return function () {
     if (!scheduled) {
-      scheduled = true;
+      scheduled = true
       setTimeout(function () {
-        scheduled = false;
-        fn();
-      }, timeoutDuration);
+        scheduled = false
+        fn()
+      }, timeoutDuration)
     }
-  };
+  }
 }
 
 // 去掉url参数search 指定参数，并可修改url
@@ -709,7 +744,7 @@ export function getMonthDay(date) {
  * @param {*} limit 限制长度
  *  return 纯文本
  */
- export function getTextByHtml(html = '', limit) {
+export function getTextByHtml(html = '', limit) {
   if (typeof html !== 'string' || !html.length) return ''
   // 过滤标签 只取纯文本
   const regEx_html = /<[^>]+>/g
@@ -768,10 +803,10 @@ export function getBitsLength(str) {
  * @param {*} object
  * @param {*} propertyNames 格式为 'id,title,items'
  */
- export function copyPartProperty(obj, propertyNames) {
+export function copyPartProperty(obj, propertyNames) {
   if (!isObject(obj)) return clone(obj)
   const resObj = {}
-  propertyNames.split(',').forEach(property => {
+  propertyNames.split(',').forEach((property) => {
     if (hasOwn(obj, property)) {
       resObj[property] = clone(obj[property])
     }
@@ -784,9 +819,9 @@ export function getBitsLength(str) {
  * @param {*} object
  * @param {*} propertyNames 格式为 'id,title,items'
  */
- export function updatePartProperty(originObj, obj, propertyNames) {
+export function updatePartProperty(originObj, obj, propertyNames) {
   if (!isObject(obj)) return clone(originObj)
-  propertyNames.split(',').forEach(property => {
+  propertyNames.split(',').forEach((property) => {
     if (hasOwn(obj, property)) {
       originObj[property] = clone(obj[property])
     }
@@ -818,32 +853,32 @@ export function replaceAllObjectProperty(originObject, targetObject, isDelete = 
 /**
  * 转为驼峰格式
  */
- const camelizeRE = /-(\w)/g
- export const camelize = str => {
-   return str.replace(camelizeRE, (_, c) => (c ? c.toUpperCase() : ''))
- }
- /**
-  * 用连字符连接
-  */
- const hyphenateRE = /\B([A-Z])/g
- export const hyphenate = str => {
-   return str.replace(hyphenateRE, '-$1').toLowerCase()
- }
- /**
-  * 下划线转为驼峰式
-  */
- const underlineRE = /_(\w)/g
- export const underline = str => {
-   return str.replace(underlineRE, (_, c) => (c ? c.toUpperCase() : ''))
- }
- /**
-  * 首字母大写
-  */
- export const capitalize = str => {
-   return str.charAt(0).toUpperCase() + str.slice(1)
- }
+const camelizeRE = /-(\w)/g
+export const camelize = (str) => {
+  return str.replace(camelizeRE, (_, c) => (c ? c.toUpperCase() : ''))
+}
+/**
+ * 用连字符连接
+ */
+const hyphenateRE = /\B([A-Z])/g
+export const hyphenate = (str) => {
+  return str.replace(hyphenateRE, '-$1').toLowerCase()
+}
+/**
+ * 下划线转为驼峰式
+ */
+const underlineRE = /_(\w)/g
+export const underline = (str) => {
+  return str.replace(underlineRE, (_, c) => (c ? c.toUpperCase() : ''))
+}
+/**
+ * 首字母大写
+ */
+export const capitalize = (str) => {
+  return str.charAt(0).toUpperCase() + str.slice(1)
+}
 
- // 获取字节长度 空格算一个字符
+// 获取字节长度 空格算一个字符
 export function getByteLen(val) {
   let len = 0
   for (let i = 0; i < val.length; i++) {
@@ -880,7 +915,7 @@ export function getByteLenStr(str = '', byte) {
 // 将对象序列化 往一个 url 添加查询字符串,
 export function appendQuery(url, params = {}) {
   let query = Object.keys(params)
-    .map(key => {
+    .map((key) => {
       return encodeURIComponent(key) + '=' + encodeURIComponent(params[key])
     })
     .join('&')
@@ -890,7 +925,7 @@ export function appendQuery(url, params = {}) {
 /**
  * 获取区分中英文的长度,中文为两个字符,英文为一个字符
  */
- export function getWordRealLength(str) {
+export function getWordRealLength(str) {
   let len = 0
   for (let i = 0; i < str.length; i++) {
     if (str[i].match(/[^\\x00-\\xff\s]/gi) != null) {
@@ -938,7 +973,7 @@ export function removeItem(reg) {
   if (typeof reg === 'string') {
     localStorage.removeItem(reg)
   } else if (reg instanceof Array) {
-    reg.map(item => {
+    reg.map((item) => {
       removeItem(item)
     })
   } else if (reg instanceof RegExp) {
@@ -954,7 +989,7 @@ export function removeItem(reg) {
 // 将对象序列化 往一个 url 添加查询字符串,
 export function appendQuery(url, params = {}) {
   let query = Object.keys(params)
-    .map(key => {
+    .map((key) => {
       return encodeURIComponent(key) + '=' + encodeURIComponent(params[key])
     })
     .join('&')
@@ -981,10 +1016,10 @@ export function base64ToBlob(code) {
  */
 export function downloadPDF(url, fileName) {
   fetch(url)
-    .then(res => {
+    .then((res) => {
       return res.blob()
     })
-    .then(blob => {
+    .then((blob) => {
       let link = document.createElement('a')
       let evt = document.createEvent('HTMLEvents')
       evt.initEvent('click', true, true) // initEvent 不加后两个参数在FF下会报错  事件类型，是否冒泡，是否阻止浏览器的默认行为
@@ -992,7 +1027,7 @@ export function downloadPDF(url, fileName) {
       link.href = URL.createObjectURL(blob)
       link.click()
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err, '下载失败')
     })
 }
@@ -1076,7 +1111,7 @@ export function Date2UTC(date, hasHms = true) {
  */
 export function getDiffKey(...params) {
   let str = ''
-  params.map(item => {
+  params.map((item) => {
     str += '-' + item
   })
   str = str.substr(1)
@@ -1096,17 +1131,14 @@ export function GetRandomKey(len = 8) {
 // 通过文件后缀得到文件类型
 export function GetFileTypeByFileSuffix(file) {
   let fileType = 0
-  const suffix = file.name
-    .split('.')
-    .pop()
-    .toLowerCase()
+  const suffix = file.name.split('.').pop().toLowerCase()
   const fileConfig = {
     [RESOURCE_TYPE.PICTURE]: ['jpg', 'gif', 'png', 'jpeg'],
     [RESOURCE_TYPE.VOICE]: ['mp3', 'aac', 'amr', 'dsd'],
     [RESOURCE_TYPE.VIDEO]: ['mp4', 'm3u8', 'flv', 'avi', 'wmv', 'mkv', 'mov', '3gp'],
     [RESOURCE_TYPE.DOC]: ['doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'pdf']
   }
-  Object.keys(fileConfig).forEach(element => {
+  Object.keys(fileConfig).forEach((element) => {
     if (fileConfig[element].includes(suffix)) {
       fileType = Number(element)
     }
@@ -1134,7 +1166,7 @@ export function judeBrowseType() {
  * @param {*} t1
  * @param {*} t2
  */
- export function compare(t1, t2) {
+export function compare(t1, t2) {
   if (!t1 || !t2) {
     return false
   }
@@ -1186,7 +1218,7 @@ export function NumToChinese(num) {
  * compareCurrentVersion('1.11.0', '1.11.0') => 0   // 1.11.0 === 1.11.0
  * compareCurrentVersion('1.11.0', '1.99.0') => -1  // 1.11.0 < 1.99.0
  */
- export function compareCurrentVersion(v1, v2 = store.state.app.user.AppVersion) {
+export function compareCurrentVersion(v1, v2 = store.state.app.user.AppVersion) {
   if (!v2) {
     return -2
   }
@@ -1311,11 +1343,12 @@ export function dataURLtoFile(dataUrl, fileName) {
   }
   return new File([u8arr], fileName, { type: mime })
 }
+
 /* 下载跨域图片 */
 export function downloadCrossOriginImg(url, fileName = '下载图片', ext = '') {
   imgToBase64(
     url,
-    file => {
+    (file) => {
       downloadImg(file, fileName)
     },
     ext
@@ -1333,7 +1366,7 @@ export async function generateExcelFile(dataList, columns) {
 
   worksheet.columns = columns
   worksheet.addRows(dataList)
-  return workbook.xlsx.writeBuffer().then(buffer => {
+  return workbook.xlsx.writeBuffer().then((buffer) => {
     // buffer --> blob
     const blob = new Blob([buffer], {
       type: 'application/vnd.ms-excel'
@@ -1365,7 +1398,7 @@ export function downloadBlob(blob, fileName) {
   const tempLink = document.createElement('a')
   tempLink.style.display = 'none'
   tempLink.href = blobURL
-  tempLink.setAttribute('download', fileName)
+  tempLink.setAttribute('download', decodeURIComponent(fileName))
   // 兼容：某些浏览器不支持HTML5的download属性
   if (typeof tempLink.download === 'undefined') {
     tempLink.setAttribute('target', '_blank')
@@ -1384,7 +1417,7 @@ export function downloadBlob(blob, fileName) {
  * @param name 导出文件名
  */
 export async function exportExcel(dataList, columns, name) {
-  return generateExcelFile(dataList, columns).then(filePath => {
+  return generateExcelFile(dataList, columns).then((filePath) => {
     return downloadTempFile(filePath, name)
   })
 }
@@ -1392,7 +1425,7 @@ export async function exportExcel(dataList, columns, name) {
 /**
  * 模拟链接点击,用于下载
  */
- export function mockLinkClick(url, name) {
+export function mockLinkClick(url, name) {
   let link = document.createElement('a')
   link.download = name
   link.target = '_blank'
@@ -1400,11 +1433,10 @@ export async function exportExcel(dataList, columns, name) {
   link.click()
 }
 
-
 // 将秒数转化时分秒
 // 示例：61秒 -> [1, 1]
 export function readableTime(seconds) {
-  const padding = number => {
+  const padding = (number) => {
     if (number < 10) {
       return `0${number}`
     }
@@ -1434,7 +1466,7 @@ export function readableTime(seconds) {
 
 // 替换标点中文到英文
 export function replacePunctuationCN2EN(str) {
-  return str.replace(/(‘)+|(’)+|(“)+|(”)+/g, $1 => {
+  return str.replace(/(‘)+|(’)+|(“)+|(”)+/g, ($1) => {
     console.log($1)
     if (['‘', '’'].includes($1)) {
       return "'"
@@ -1443,4 +1475,18 @@ export function replacePunctuationCN2EN(str) {
     }
     return ''
   })
+}
+
+// 生成html并下载
+export function makeAndDownloadHTML(str) {
+  const blob = new Blob([str], {
+    type: 'text/html',
+  })
+  const a = document.createElement(`a`)
+  a.setAttribute(`download`, `download.html`)
+  a.setAttribute(`target`, `_blank`)
+  const blobURL = URL.createObjectURL(blob)
+  a.href = blobURL
+  a.click()
+  window.URL.revokeObjectURL(blobURL)
 }
