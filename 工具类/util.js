@@ -1,3 +1,11 @@
+/*
+ * @Author: Alex(lijiyebest@gmail.com)
+ * @Date: 2022-11-24 09:57:58
+ * @LastEditTime: 2023-05-30 09:59:25
+ * @LastEditors: Alex(lijiyebest@gmail.com)
+ * @Description: 工具类函数
+ */
+
 // 检查两个值是否相等 不对map，set进行处理
 // 1 用原生比较
 // 检查是否是对象类型
@@ -1390,6 +1398,16 @@ export function downloadTempFile(filePath, name) {
   return true
 }
 
+/**
+ * @description: 
+ * @param {*} stream
+ * @param {*} type 'image/jpeg'
+ * @return {*} url
+ */
+function stream2Blob(stream, type) {
+  return window.URL.createObjectURL(new Blob([stream], { type: type }))
+}
+
 // 下载文件
 export function downloadBlob(blob, fileName) {
   // 创建新的URL并指向File对象或者Blob对象的地址
@@ -1480,7 +1498,7 @@ export function replacePunctuationCN2EN(str) {
 // 生成html并下载
 export function makeAndDownloadHTML(str) {
   const blob = new Blob([str], {
-    type: 'text/html',
+    type: 'text/html'
   })
   const a = document.createElement(`a`)
   a.setAttribute(`download`, `download.html`)
