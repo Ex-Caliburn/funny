@@ -1,7 +1,7 @@
 /*
  * @Author: Alex(lijiyebest@gmail.com)
  * @Date: 2022-11-24 09:57:58
- * @LastEditTime: 2023-05-30 09:59:25
+ * @LastEditTime: 2023-05-30 14:01:02
  * @LastEditors: Alex(lijiyebest@gmail.com)
  * @Description: 工具类函数
  */
@@ -1399,7 +1399,7 @@ export function downloadTempFile(filePath, name) {
 }
 
 /**
- * @description: 
+ * @description: 2进制转换成URL
  * @param {*} stream
  * @param {*} type 'image/jpeg'
  * @return {*} url
