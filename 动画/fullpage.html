@@ -1,0 +1,90 @@
+<!-- https://cdnjs.com/libraries/fullPage.js -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  .section {
+    text-align: center;
+    font-size: 3em;
+  }
+
+  .slide {
+    position: relative;
+  }
+
+  .section {
+    text-align: center;
+    font-size: 3em;
+    font-family: arial;
+  }
+
+  button {
+    padding: 15px 20px;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    color: white;
+    background: red;
+    z-index: 999;
+    border: 0;
+    border-radius: 5px;
+  }
+
+  .fp-viewing-1-0 button {
+    background: blue;
+  }
+
+  .animated {
+    position: absolute;
+    left: 0;
+    transform: translate3d(-100vw, 0, 0);
+    transition: transform 600ms ease;
+    right: 0;
+  }
+
+  .fp-section.active .animated {
+    transform: translate3d(0, 0, 0);
+
+  }
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.20/fullpage.css"
+  integrity="sha512-wCVOuVtxsXqrQK7tj9j4BvyfITQmpp7UE7mVilD7aieGLYFEIAa5UKTP1RapOf6dxQ9JIKAneakcyykWG4r4Ow=="
+  crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<body>
+  <div id="fullpage">
+    <div class="section">
+      <span class="animated">Section 1</span>
+    </div>
+    <div class="section">
+      <div class="slide">
+        <span class="animated">Slide 1</span>
+      </div>
+      <div class="slide">Slide 2</div>
+      <div class="slide">Slide 3</div>
+    </div>
+    <div class="section">
+      <span class="animated">Section 3</span>
+
+    </div>
+    <div class="section">Section 4</div>
+  </div>
+</body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.20/fullpage.min.js"
+  integrity="sha512-LGiXf+jHGTHcIybSsOWO3I/in+OObCkcEsWIZ7IyhzfD6RzD5qDUw2CK+JveuI7zTSEcDG//bIOvOpAJW2BWsg=="
+  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.20/vendors/easings.min.js" integrity="sha512-SrKslwu6IjHEo/8mAOtkoUOT3MzHCEOFWktrC8BNtjPuBBYLYjg1y/Marat34uYfOfxDMLEwy8DLArWEVc2i+w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+<script>
+  new fullpage('#fullpage', {
+    licenseKey: 'YOUR KEY HERE',
+    sectionsColor: ['yellow', 'orange', '#C0C0C0', '#ADD8E6'],
+  });
+</script>
+
+</html>

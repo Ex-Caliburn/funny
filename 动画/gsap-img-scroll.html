@@ -1,0 +1,246 @@
+<!-- https://cdnjs.com/libraries/fullPage.js -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  :root {
+    font-size: 16px
+  }
+
+  @media (max-width: 500px) {
+    :root {
+      font-size: 14px
+    }
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  ::selection {
+    background: #87cd33;
+    color: white;
+  }
+
+  body {
+    overflow: hidden;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;
+  }
+
+  h1 {
+    font-size: 5rem
+  }
+
+  h2 {
+    font-size: 2rem
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    background: #f0f0f0;
+  }
+
+  ul {
+    padding-left: 1rem;
+    list-style: none;
+  }
+
+  li {
+    flex-shrink: 0;
+    width: clamp(500px, 60vw, 800px);
+    padding-right: 1rem;
+  }
+
+  header {
+    height: 100vh
+  }
+
+  footer {
+    height: 50vh
+  }
+
+  :any-link {
+    color: #4e9815;
+  }
+
+  .df {
+    display: flex
+  }
+
+  .aic {
+    align-items: center
+  }
+
+  .jcc {
+    justify-content: center
+  }
+
+  .loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: black;
+    color: white;
+  }
+
+  .demo-wrapper {
+    overflow-x: hidden;
+  }
+
+  .wrapper {
+    display: flex;
+  }
+
+  .demo-gallery:not(.last) {
+    padding-bottom: 1rem;
+  }
+
+  .demo-text .text {
+    font-size: clamp(8rem, 15vw, 16rem);
+    line-height: 1;
+    font-weight: 900;
+  }
+</style>
+
+<body>
+  <!-- <div class='loader df aic jcc'>
+    <div>
+      <h1>Loading</h1>
+      <h2 class='loader--text'>0%</h2>
+    </div>
+  </div> -->
+  <div class='demo-wrapper'>
+    <!-- <header class='df aic jcc'>
+      <div>
+        <h1>ScrollTrigger</h1>
+        <h2>demo</h2>
+      </div>
+    </header> -->
+    <!-- <section class='demo-text'>
+      <div class='wrapper text'>
+        ABCDEFGHIJKLMNOPQRSTUVWXYZ
+      </div>
+    </section> -->
+    <section class='demo-gallery'>
+      <ul class='wrapper'>
+        <li>
+          <img height='874' src='https://source.unsplash.com/random/1240x874?sig=65' width='1240'>
+        </li>
+        <li>
+          <img height='874' src='https://source.unsplash.com/random/1240x874?sig=192' width='1240'>
+        </li>
+        <li>
+          <img height='874' src='https://source.unsplash.com/random/1240x874?sig=67' width='1240'>
+        </li>
+        <li>
+          <img height='874' src='https://source.unsplash.com/random/1240x874?sig=55' width='1240'>
+        </li>
+      </ul>
+    </section>
+    <!-- <section class='demo-gallery'>
+      <ul class='wrapper'>
+        <li>
+          <img height='874' src='https://source.unsplash.com/random/1240x874?sig=10' width='1240'>
+        </li>
+        <li>
+          <img height='874' src='https://source.unsplash.com/random/1240x874?sig=126' width='1240'>
+        </li>
+        <li>
+          <img height='874' src='https://source.unsplash.com/random/1240x874?sig=142' width='1240'>
+        </li>
+        <li>
+          <img height='874' src='https://source.unsplash.com/random/1240x874?sig=73' width='1240'>
+        </li>
+      </ul>
+    </section> -->
+    <!-- <section class='demo-gallery'>
+      <ul class='wrapper'>
+        <li>
+          <img height='874' src='https://source.unsplash.com/random/1240x874?sig=51' width='1240'>
+        </li>
+        <li>
+          <img height='874' src='https://source.unsplash.com/random/1240x874?sig=6' width='1240'>
+        </li>
+        <li>
+          <img height='874' src='https://source.unsplash.com/random/1240x874?sig=18' width='1240'>
+        </li>
+      </ul>
+    </section>
+    <section class='demo-gallery'>
+      <ul class='wrapper'>
+        <li>
+          <img height='874' src='https://source.unsplash.com/random/1240x874?sig=105' width='1240'>
+        </li>
+        <li>
+          <img height='874' src='https://source.unsplash.com/random/1240x874?sig=115' width='1240'>
+        </li>
+        <li>
+          <img height='874' src='https://source.unsplash.com/random/1240x874?sig=90' width='1240'>
+        </li>
+      </ul>
+    </section> -->
+    <!-- <footer class='df aic jcc'>
+      <p>Images from <a href="https://unsplash.com/">Unsplash</a></p>
+    </footer> -->
+  </div>
+
+</body>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+<script>
+  gsap.registerPlugin(ScrollTrigger);
+
+  const images = gsap.utils.toArray('img');
+
+  const loader = document.querySelector('.loader--text');
+  const updateProgress = (instance) =>
+    loader.textContent = `${Math.round(instance.progressedCount * 100 / images.length)}%`;
+
+  const showDemo = () => {
+    document.body.style.overflow = 'auto';
+    document.scrollingElement.scrollTo(0, 0);
+    gsap.to(document.querySelector('.loader'), { autoAlpha: 0 });
+
+    // xPercent: -100 * (panels.length - 1),
+
+    gsap.utils.toArray('section').forEach((section, index) => {
+      const w = section.querySelector('.wrapper');
+      console.log(w.scrollWidth, section.offsetWidth)
+
+      let img = section.querySelector('img')
+      const [x, xEnd] = (index % 2) ? ['100', '-200'] : [w.scrollWidth * -1, 0];
+      // const [x, xEnd] = (index % 2) ? ['-100%', (w.scrollWidth - section.offsetWidth) * -1] : [w.scrollWidth * -1, 0];
+      gsap.fromTo(w, { xPercent: x }, {
+        xPercent: xEnd,
+        ease: 'none',
+        // start: 11,
+        // end: 11,
+        scrollTrigger: {
+          pin: true,
+          trigger: section,
+          scrub: 0.5
+        }
+      });
+    });
+  }
+
+  // imagesLoaded(images).on('progress', updateProgress).on('always', showDemo);
+  imagesLoaded(images).on('always', showDemo);
+
+</script>
+
+</html>
