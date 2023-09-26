@@ -218,6 +218,6 @@
 }
 
 .flex-nowarp {
-  -ms-flex-wrap: no-wrap;
-  flex-wrap: no-wrap;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
 }

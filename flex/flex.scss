@@ -153,6 +153,6 @@
   }
   &--nowarp {
     @extend .flex;
-    flex-wrap: no-wrap;
+    flex-wrap: nowrap;
   }
 }
