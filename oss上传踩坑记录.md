@@ -24,6 +24,8 @@
 
 <https://www.alibabacloud.com/help/zh/object-storage-service/latest/cors-error-diagnosis>
 
+https://www.alibabacloud.com/help/zh/oss/the-no-access-control-allow-origin-error-message-is-still-reported-when-you-call-oss-after-setting-cross-domain-rules
+
 ### 断点续传
 
  可以将checkpoint保存到浏览器的localstorage，下次再调用的时候传入checkpoint参数，就可以实现断点续传功能。
