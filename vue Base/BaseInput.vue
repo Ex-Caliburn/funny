@@ -1,9 +1,3 @@
-<!--
-  /*
-   * Author: WuXiaoXiao(332595512@qq.com)
-   * Desc: 输入框自动计算字数组件封装
-   */
--->
 <template>
   <div
     :class="[

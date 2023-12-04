@@ -95,3 +95,27 @@ function arrToTrr(arr) {
   }
   return result
 }
+
+// 数组 > 数组树, 首层有多层
+export  function handleArr2Tree(data = [], labelName = 'label') {
+  let temp = {}
+  let tree = []
+  data.forEach((item) => {
+    temp[item.id] = {
+      label: item[labelName],
+      value: item.id,
+      parentId: item.parentId,
+    }
+  })
+  for (const id in temp) {
+    if (temp[id].parentId) {
+      if (!temp[temp[id].parentId].children) {
+        temp[temp[id].parentId].children = []
+      }
+      temp[temp[id].parentId].children.push(temp[id])
+    } else {
+      tree.push(temp[id])
+    }
+  }
+  return tree
+}
