@@ -79,6 +79,50 @@ configureWebpack: config => {
   },
 ```
 
+#### 遇到问题 
+
+
+@import '@/styles/mixin.scss';
+
+被处理成
+
+@import url('src/styles/mixin.scss');
+
+导致报错
+
+```
+  Module build failed: 
+  @include clearfix;
+ ^
+      Undefined mixin.
+   ╷
+52 │   @include clearfix;
+   │   ^^^^^^^^^^^^^^^^^
+```
+
+修改 stylelintrc
+
+```js
+   rules: {
+        'import-notation': "string"|"url",
+    }
+```
+
+
+自动将display:-webkit-box;转换为display:box;，
+
+通过设置
+
+rgba(0, 0, 0, 0.05) 变成 rgb(0 0 0 / 5%)
+
+```js
+"value-no-vendor-prefix":null
+```
+
+```js
+"color-function-notation":'legacy'
+```
+
 ### typescript eslint-typescript
 
 无法找到模块“lodash.debounce”的声明文件
@@ -95,10 +139,10 @@ vue 文件引入需要加上.vue后缀
 ```
 
 ```js
-declare module 'vue/types/vue' {
-  interface Vue {
+  declare module 'vue/types/vue' {
+    interface Vue {
+    }
   }
-}
 ```
 
 ### lint-staged
@@ -141,3 +185,4 @@ Some of your tasks use `git add` command. Please remove it from the config since
 
 1. [运用Stylelint 养成好习惯](https://dotblogs.com.tw/explooosion/2018/09/30/141005)
 2. [stylelint](https://stylelint.io/user-guide/usage/cli)
+3. https://www.stylelint.cn/user-guide/rules/import-notation

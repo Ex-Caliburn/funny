@@ -4,11 +4,9 @@
 
 统一提交格式
 
- -e, --edit  read last commit message from the specified file or  fallbacks to ./.git/COMMIT_EDITMSG               [string]
-
 ### 步骤
 
-npm install husky --save-dev
+npm install husky validate-branch-name --save-dev
 
 npx husky install
 
@@ -17,20 +15,24 @@ npx husky add .husky/pre-push 'npx validate-branch-name'
 
 已经废弃的方式
 // .huskyrc.json (v4)
+```JSON
 {
   "hooks": {
     "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
   }
 }
+```
 
 ### validate-branch-name
 
 npm install validate-branch-name --save-dev
 
-"validate-branch-name": {
-"pattern": "^(master|develop){1}$|^(feat|feature|fix|hotfix|release)-.+$",
-"errorMsg": "请规范提交分支命名"
-}
+```JSON
+  "validate-branch-name": {
+    "pattern": "^(master|develop){1}$|^(feat|feature|fix|hotfix|release)-.+$",
+    "errorMsg": "请规范提交分支命名"
+  }
+```
 
 ## 总结
 
