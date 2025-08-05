@@ -174,8 +174,8 @@ export default {
         text: 'loading pdf...',
         spinner: 'el-icon-loading',
       })
-      // 编码方式不同 http://relx-ec.oss-ap-southeast-1.aliyuncs.com/shopify-server/NEW%20RELXers%20Tips_20211112_GaJeehcQfr8adEb.pdf?response-cache-control=no-cache
-      // 二次 urlencoded 导致 http://relx-ec.oss-ap-southeast-1.aliyuncs.com/shopify-server/NEW%2520RELXers%2520Tips_20211112_GaJeehcQfr8adEb.pdf?response-cache-control=no-cache
+      // 编码方式不同 http://ec.oss-ap-southeast-1.aliyuncs.com/shopify-server/NEW%20***ers%20Tips_20211112_GaJeehcQfr8adEb.pdf?response-cache-control=no-cache
+      // 二次 urlencoded 导致 http://ec.oss-ap-southeast-1.aliyuncs.com/shopify-server/NEW%2520***ers%2520Tips_20211112_GaJeehcQfr8adEb.pdf?response-cache-control=no-cache
       this.OSSInstance.get(decodeURIComponent(new URL(this.value).pathname))
         .then((res) => {
           this.pdfSrc = res.content
