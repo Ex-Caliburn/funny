@@ -1,0 +1,93 @@
+# Cursor Commit 自动生成配置
+
+## 基本格式
+format: "<type>(<scope>): <subject>"
+
+## Type 映射规则
+types:
+  # 新功能
+  - pattern: "新增|添加|创建|实现"
+    type: "feat"
+  # 修复问题
+  - pattern: "修复|修复bug|修复问题|解决|修复错误"
+    type: "fix"
+  # 文档更新
+  - pattern: "文档|注释|README|说明"
+    type: "docs"
+  # 代码格式
+  - pattern: "格式|样式|缩进|空格|换行"
+    type: "style"
+  # 重构
+  - pattern: "重构|优化|改进|重写"
+    type: "refactor"
+  # 性能优化
+  - pattern: "性能|优化|提升|加速"
+    type: "perf"
+  # 测试
+  - pattern: "测试|单元测试|集成测试"
+    type: "test"
+  # 构建工具
+  - pattern: "构建|配置|依赖|包|工具"
+    type: "chore"
+  # CI/CD
+  - pattern: "CI|CD|部署|流水线|自动化"
+    type: "ci"
+  # 工作流
+  - pattern: "工作流|流程|审批|状态"
+    type: "workflow"
+  # 类型定义
+  - pattern: "类型|TypeScript|interface|type"
+    type: "types"
+
+## 默认规则
+defaults:
+  type: "feat"
+  scope: ""
+  subject_max_length: 50
+  body_max_length: 72
+
+## 语言设置
+language: "zh-CN"
+
+## 动词映射（用于 subject）
+verbs:
+  - pattern: "新增|添加|创建"
+    verb: "添加"
+  - pattern: "修改|更新|改变"
+    verb: "更新"
+  - pattern: "删除|移除|去掉"
+    verb: "删除"
+  - pattern: "修复|解决|修正"
+    verb: "修复"
+  - pattern: "优化|改进|提升"
+    verb: "优化"
+  - pattern: "重构|重写|重新设计"
+    verb: "重构"
+  - pattern: "配置|设置|调整"
+    verb: "配置"
+
+## 特殊规则
+rules:
+  # 如果是 Vue 组件文件，优先使用 component scope
+  - condition: "file_extension == 'vue'"
+    scope: "component"
+  
+  # 如果是 API 相关文件，使用 api scope
+  - condition: "file_path contains 'api'"
+    scope: "api"
+  
+  # 如果是路由文件，使用 router scope
+  - condition: "file_path contains 'router'"
+    scope: "router"
+  
+  # 如果是状态管理文件，使用 store scope
+  - condition: "file_path contains 'store'"
+    scope: "store"
+  
+  # 如果是权限相关文件，使用 permission scope
+  - condition: "file_path contains 'permission'"
+    scope: "permission"
+  
+  # 如果是插件文件，使用 plugin scope
+  - condition: "file_path contains 'plugin'"
+    scope: "plugin" 
