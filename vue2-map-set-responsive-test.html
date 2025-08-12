@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue 2 Map/Set 响应式支持测试</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .test-section {
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .test-section h3 {
+            margin-top: 0;
+            color: #333;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        .button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+            font-size: 14px;
+        }
+        .button:hover {
+            background: #0056b3;
+        }
+        .button.danger {
+            background: #dc3545;
+        }
+        .button.danger:hover {
+            background: #c82333;
+        }
+        .button.success {
+            background: #28a745;
+        }
+        .button.success:hover {
+            background: #218838;
+        }
+        .result {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 10px;
+            margin: 10px 0;
+            font-family: monospace;
+            white-space: pre-wrap;
+        }
+        .status {
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-weight: bold;
+            margin: 5px 0;
+        }
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .status.danger {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .status.warning {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .input-group {
+            margin: 10px 0;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .log {
+            background: #000;
+            color: #0f0;
+            padding: 10px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 12px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>Vue 2 Map/Set 响应式支持测试</h1>
+        
+        <div class="container">
+            <h2>测试说明</h2>
+            <p>这个页面演示了 Vue 2 对 Map/Set 的响应式支持问题。点击按钮后观察视图是否更新。</p>
+            <div class="status warning">
+                ⚠️ Vue 2 对 Map/Set 的响应式支持有限，主要是因为 Object.defineProperty 的技术限制
+            </div>
+        </div>
+
+        <div class="grid">
+            <!-- Map 测试 -->
+            <div class="container">
+                <div class="test-section">
+                    <h3>Map 响应式测试</h3>
+                    
+                    <div class="input-group">
+                        <label>Key:</label>
+                        <input v-model="mapKey" placeholder="输入 key">
+                    </div>
+                    <div class="input-group">
+                        <label>Value:</label>
+                        <input v-model="mapValue" placeholder="输入 value">
+                    </div>
+                    
+                    <button class="button success" @click="addToMap">Map.set() - 添加元素</button>
+                    <button class="button danger" @click="removeFromMap">Map.delete() - 删除元素</button>
+                    <button class="button" @click="updateMap">Map.set() - 更新元素</button>
+                    <button class="button" @click="getFromMap">Map.get() - 获取元素</button>
+                    <button class="button" @click="clearMap">Map.clear() - 清空</button>
+                    
+                    <div class="result">
+                        <strong>Map 内容:</strong>
+                        {{ mapDisplay }}
+                    </div>
+                    <div class="result">
+                        <strong>Map.size:</strong> {{ myMap.size }}
+                    </div>
+                    <div class="result">
+                        <strong>获取的值:</strong> {{ mapGetResult }}
+                    </div>
+                    
+                    <div class="status" :class="mapStatus.class">
+                        {{ mapStatus.message }}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Set 测试 -->
+            <div class="container">
+                <div class="test-section">
+                    <h3>Set 响应式测试</h3>
+                    
+                    <div class="input-group">
+                        <label>Value:</label>
+                        <input v-model="setValue" placeholder="输入要添加的值">
+                    </div>
+                    
+                    <button class="button success" @click="addToSet">Set.add() - 添加元素</button>
+                    <button class="button danger" @click="removeFromSet">Set.delete() - 删除元素</button>
+                    <button class="button" @click="checkSet">Set.has() - 检查元素</button>
+                    <button class="button" @click="clearSet">Set.clear() - 清空</button>
+                    
+                    <div class="result">
+                        <strong>Set 内容:</strong>
+                        {{ setDisplay }}
+                    </div>
+                    <div class="result">
+                        <strong>Set.size:</strong> {{ mySet.size }}
+                    </div>
+                    <div class="result">
+                        <strong>检查结果:</strong> {{ setCheckResult }}
+                    </div>
+                    
+                    <div class="status" :class="setStatus.class">
+                        {{ setStatus.message }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 解决方案测试 -->
+        <div class="container">
+            <div class="test-section">
+                <h3>解决方案测试</h3>
+                
+                <button class="button success" @click="forceUpdateMap">$set 强制更新 Map</button>
+                <button class="button success" @click="forceUpdateSet">$set 强制更新 Set</button>
+                <button class="button" @click="reassignMap">重新赋值整个 Map</button>
+                <button class="button" @click="reassignSet">重新赋值整个 Set</button>
+                
+                <div class="status success">
+                    ✅ 这些方法可以强制触发 Vue 2 的响应式更新
+                </div>
+            </div>
+        </div>
+
+        <!-- 对比测试 -->
+        <div class="container">
+            <div class="test-section">
+                <h3>对比：普通对象 vs Map/Set</h3>
+                
+                <div class="grid">
+                    <div>
+                        <h4>普通对象（响应式正常）</h4>
+                        <button class="button success" @click="addToObject">添加属性</button>
+                        <button class="button danger" @click="removeFromObject">删除属性</button>
+                        <div class="result">
+                            <strong>对象内容:</strong>
+                            {{ objectDisplay }}
+                        </div>
+                        <div class="status success">
+                            ✅ 普通对象的响应式工作正常
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4>Map/Set（响应式有限）</h4>
+                        <div class="status danger">
+                            ❌ Map/Set 的方法调用不会触发视图更新
+                        </div>
+                        <div class="status warning">
+                            ⚠️ 只有 size 属性变化会触发更新
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 操作日志 -->
+        <div class="container">
+            <div class="test-section">
+                <h3>操作日志</h3>
+                <div class="log" ref="logContainer">
+                    {{ logMessages.join('\n') }}
+                </div>
+                <button class="button" @click="clearLog">清空日志</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data() {
+                return {
+                    // Map 相关
+                    myMap: new Map([['key1', 'value1'], ['key2', 'value2']]),
+                    mapKey: 'newKey',
+                    mapValue: 'newValue',
+                    mapGetResult: '',
+                    mapStatus: { class: 'status', message: '等待操作...' },
+                    
+                    // Set 相关
+                    mySet: new Set(['item1', 'item2', 'item3']),
+                    setValue: 'newItem',
+                    setCheckResult: '',
+                    setStatus: { class: 'status', message: '等待操作...' },
+                    
+                    // 普通对象（对比用）
+                    myObject: { prop1: 'value1', prop2: 'value2' },
+                    
+                    // 日志
+                    logMessages: ['页面加载完成，开始测试 Vue 2 对 Map/Set 的响应式支持...']
+                }
+            },
+            computed: {
+                mapDisplay() {
+                    return Array.from(this.myMap.entries()).map(([k, v]) => `${k}: ${v}`).join(', ');
+                },
+                setDisplay() {
+                    return Array.from(this.mySet).join(', ');
+                },
+                objectDisplay() {
+                    return Object.entries(this.myObject).map(([k, v]) => `${k}: ${v}`).join(', ');
+                }
+            },
+            methods: {
+                // 日志方法
+                log(message) {
+                    const timestamp = new Date().toLocaleTimeString();
+                    this.logMessages.push(`[${timestamp}] ${message}`);
+                    this.$nextTick(() => {
+                        if (this.$refs.logContainer) {
+                            this.$refs.logContainer.scrollTop = this.$refs.logContainer.scrollHeight;
+                        }
+                    });
+                },
+                clearLog() {
+                    this.logMessages = [];
+                },
+
+                // Map 测试方法
+                addToMap() {
+                    this.myMap.set(this.mapKey, this.mapValue);
+                    this.log(`Map.set('${this.mapKey}', '${this.mapValue}') 执行`);
+                    this.mapStatus = {
+                        class: 'status danger',
+                        message: '❌ Map.set() 不会触发视图更新，但数据确实已添加'
+                    };
+                },
+                
+                removeFromMap() {
+                    const result = this.myMap.delete(this.mapKey);
+                    this.log(`Map.delete('${this.mapKey}') 执行，结果: ${result}`);
+                    this.mapStatus = {
+                        class: 'status danger',
+                        message: '❌ Map.delete() 不会触发视图更新，但数据确实已删除'
+                    };
+                },
+                
+                updateMap() {
+                    this.myMap.set('key1', 'updated_value');
+                    this.log('Map.set() 更新 key1 的值');
+                    this.mapStatus = {
+                        class: 'status danger',
+                        message: '❌ Map.set() 更新不会触发视图更新'
+                    };
+                },
+                
+                getFromMap() {
+                    this.mapGetResult = this.myMap.get(this.mapKey);
+                    this.log(`Map.get('${this.mapKey}') 结果: ${this.mapGetResult}`);
+                    this.mapStatus = {
+                        class: 'status warning',
+                        message: '⚠️ Map.get() 读取不会建立响应式依赖'
+                    };
+                },
+                
+                clearMap() {
+                    this.myMap.clear();
+                    this.log('Map.clear() 执行');
+                    this.mapStatus = {
+                        class: 'status warning',
+                        message: '⚠️ Map.clear() 可能触发 size 变化，但元素变化不会触发'
+                    };
+                },
+
+                // Set 测试方法
+                addToSet() {
+                    this.mySet.add(this.setValue);
+                    this.log(`Set.add('${this.setValue}') 执行`);
+                    this.setStatus = {
+                        class: 'status danger',
+                        message: '❌ Set.add() 不会触发视图更新，但数据确实已添加'
+                    };
+                },
+                
+                removeFromSet() {
+                    const result = this.mySet.delete(this.setValue);
+                    this.log(`Set.delete('${this.setValue}') 执行，结果: ${result}`);
+                    this.setStatus = {
+                        class: 'status danger',
+                        message: '❌ Set.delete() 不会触发视图更新，但数据确实已删除'
+                    };
+                },
+                
+                checkSet() {
+                    this.setCheckResult = this.mySet.has(this.setValue);
+                    this.log(`Set.has('${this.setValue}') 结果: ${this.setCheckResult}`);
+                    this.setStatus = {
+                        class: 'status warning',
+                        message: '⚠️ Set.has() 检查不会建立响应式依赖'
+                    };
+                },
+                
+                clearSet() {
+                    this.mySet.clear();
+                    this.log('Set.clear() 执行');
+                    this.setStatus = {
+                        class: 'status warning',
+                        message: '⚠️ Set.clear() 可能触发 size 变化，但元素变化不会触发'
+                    };
+                },
+
+                // 解决方案测试
+                forceUpdateMap() {
+                    // 注意：$set 对 Map 无效，这里演示重新赋值
+                    this.myMap = new Map([...this.myMap, [this.mapKey, this.mapValue]]);
+                    this.log('重新赋值整个 Map 来强制更新');
+                    this.mapStatus = {
+                        class: 'status success',
+                        message: '✅ 重新赋值可以触发视图更新'
+                    };
+                },
+                
+                forceUpdateSet() {
+                    // 注意：$set 对 Set 无效，这里演示重新赋值
+                    this.mySet = new Set([...this.mySet, this.setValue]);
+                    this.log('重新赋值整个 Set 来强制更新');
+                    this.setStatus = {
+                        class: 'status success',
+                        message: '✅ 重新赋值可以触发视图更新'
+                    };
+                },
+                
+                reassignMap() {
+                    this.myMap = new Map([['reassigned', 'value']]);
+                    this.log('重新赋值 Map');
+                    this.mapStatus = {
+                        class: 'status success',
+                        message: '✅ 重新赋值触发视图更新'
+                    };
+                },
+                
+                reassignSet() {
+                    this.mySet = new Set(['reassigned']);
+                    this.log('重新赋值 Set');
+                    this.setStatus = {
+                        class: 'status success',
+                        message: '✅ 重新赋值触发视图更新'
+                    };
+                },
+
+                // 普通对象测试（对比用）
+                addToObject() {
+                    this.$set(this.myObject, 'newProp', 'newValue');
+                    this.log('添加对象属性');
+                },
+                
+                removeFromObject() {
+                    this.$delete(this.myObject, 'prop1');
+                    this.log('删除对象属性');
+                }
+            },
+            mounted() {
+                this.log('Vue 2 Map/Set 响应式测试页面已加载');
+                this.log('注意：Vue 2 对 Map/Set 的响应式支持有限');
+            }
+        });
+    </script>
+</body>
+</html>
