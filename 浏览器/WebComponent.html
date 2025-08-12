@@ -6,6 +6,12 @@
 <!DOCTYPE html>
 <html>
 
+<style>
+    /* 不会影响 webcomponent 内部的样式 */
+    .green {
+        color: green;
+    }
+</style>
 
 <body>
     <!--
@@ -15,6 +21,7 @@
     -->
     <template id="geekbang-t">
         <style>
+            /* 不会影响外部样式 */
             p {
                 background-color: brown;
                 color: cornsilk
@@ -29,10 +36,11 @@
             }
         </style>
         <div>
-            <p>time.geekbang.org</p>
+            <p class="green">time.geekbang.org</p>
             <p>time1.geekbang.org</p>
         </div>
         <script>
+            // 这个函数定义在全局作用域，可以被外部访问，如果要限制访问，可以 定义在 GeekBang 内部
             function foo() {
                 console.log('inner log')
             }
@@ -44,8 +52,9 @@
                 super()
                 //获取组件模板
                 const content = document.querySelector('#geekbang-t').content
-                //创建影子DOM节点
+                //创建影子DOM节点 
                 const shadowDOM = this.attachShadow({ mode: 'open' })
+                // const shadowDOM = this.attachShadow({ mode: 'closed' })
                 //将模板添加到影子DOM上
                 shadowDOM.appendChild(content.cloneNode(true))
             }
@@ -56,7 +65,7 @@
 
     <geek-bang></geek-bang>
     <div>
-        <p>time.geekbang.org</p>
+        <p class="green">time.geekbang.org</p>
         <p>time1.geekbang.org</p>
     </div>
     <geek-bang></geek-bang>
