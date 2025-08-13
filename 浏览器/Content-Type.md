@@ -16,6 +16,18 @@ curl -I <https://res001.geekbang.org/apps/geektime/android/2.3.1/official/geekti
 
 所以，不同 Content-Type 的后续处理流程也截然不同。如果 Content-Type 字段的值被浏览器判断为下载类型，那么该请求会被提交给浏览器的下载管理器，同时该 URL 请求的导航流程就此结束。但如果是 HTML，那么浏览器则会继续进行导航流程。由于 Chrome 的页面渲染是运行在渲染进程中的，所以接下来就需要准备渲染进程了。
 
+### application/octet-stream
+
+这是应用程序文件的默认值。意思是 *未知的应用程序文件，*浏览器一般不会自动执行或询问执行。浏览器会像对待 设置了 HTTP 头Content-Disposition 值为 attachment 的文件一样来对待这类文件。
+
+### PDF预览
+
+application/octet-stream
+
+1. In Octet-stream you will be receiving the response as "Encoded Binary Data"
+2. Your need to convert the response data into "Decoded Base64 String"
+3. Finally save it as PDF.
+
 ## 总结
 
 ### 参考文献

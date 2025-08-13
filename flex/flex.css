@@ -179,7 +179,7 @@
   flex-grow: 1;
 }
 
-.flex_item-shirk {
+.flex_item-shrink {
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
@@ -218,6 +218,6 @@
 }
 
 .flex-nowarp {
-  -ms-flex-wrap: no-wrap;
-  flex-wrap: no-wrap;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
 }

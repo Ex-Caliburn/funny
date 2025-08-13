@@ -1,0 +1,30 @@
+<script type="module">
+  import { createApp } from 'https://unpkg.com/petite-vue?module'
+
+  function Counter(props) {
+    return {
+      count: props.initialCount,
+      inc() {
+        this.count++
+      },
+      mounted() {
+        console.log(`I'm mounted!`)
+      }
+    }
+  }
+
+  const app = createApp({
+    Counter
+  }).mount()
+  console.log(app)
+</script>
+
+<div v-scope="Counter({ initialCount: 1 })" @vue:mounted="mounted">
+  <p>{{ count }}</p>
+  <button @click="inc">increment</button>
+</div>
+
+<div v-scope="Counter({ initialCount: 2 })">
+  <p>{{ count }}</p>
+  <button @click="inc">increment</button>
+</div>

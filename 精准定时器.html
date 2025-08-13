@@ -21,30 +21,30 @@
   // 2. 直接跳到循环的次数
 
   // setInterval(function(){
-  //   var j = 0;
+  //   let j = 0;
   //   while(j++ < 1000000000);
   // }, 0);
 
 
   //倒计时
-  var  interval = 1000,
-    ms = 50000,  //从服务器和活动开始时间计算出的时间差，这里测试用50000ms
+  let  interval = 1000,
+    ms = 730000,  //从服务器和活动开始时间计算出的时间差，这里测试用50000ms
     count = 0,
     startTime = new Date().getTime();
   if( ms >= 0){
-    var timeCounter = setTimeout(countDownStart2,interval);
+    let timeCounter = setTimeout(countDownStart2,interval);
   }
 
   setTimeout(function(){
-    var j = 0;
+    let j = 0;
     while(j++ < 1000000000);
   }, 0);
 
       // 一种方案
   function countDownStart(){
     count++;
-    var offset = new Date().getTime() - (startTime + count * interval);
-    var nextTime = interval - offset;
+    let offset = new Date().getTime() - (startTime + count * interval);
+    let nextTime = interval - offset;
     if (nextTime < 0) { nextTime = 0 };
     ms -= interval;
     console.log("误差：" + offset + "ms，下一次执行：" + nextTime + "ms后，离活动开始还有：" + ms + "ms");
@@ -59,13 +59,27 @@
   // 跳过不必要的循环，如果循环做复杂操作，直接跳过没必要的循环，同步计数次数
   function countDownStart2(){
     count++;
-    var offset = new Date().getTime() - (startTime + count * interval);
-    var nextTime = interval - offset % interval ;
+    let offset = new Date().getTime() - (startTime + count * interval);
+    let nextTime = interval - offset % interval ;
     let gap = Math.floor(offset / interval )
     ms -= (interval + gap * interval);
     count = count + gap
     console.log("误差：" + offset + "ms，下一次执行：" + nextTime + "ms后，离活动开始还有：" + ms + "ms");
-    document.getElementById('time').innerText = ms/ 1000
+    let secs = 0
+    let mins = 0
+    let hrs = 0 
+    if (ms > 0) {
+     secs = ms / 1000
+    }
+    if (secs > 60) {
+      mins = Math.floor(secs / 60)
+      secs = secs % 60
+    }
+    if (mins > 60) {
+       hrs = Math.floor(mins / 60)
+    }
+    document.getElementById('time').innerText = `${hrs} hrs ${mins} mins ${secs} secs`
+
     if(ms <= 0){
       clearTimeout(countDownStart2);
     }else{

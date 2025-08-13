@@ -57,7 +57,7 @@ subject: commit 目的的简短描述
 
 ```bash
 git config commit.template   [模板文件名]    //这个命令只能设置当前分支的提交模板
-git config  — —global commit.template   [模板文件名]    //这个命令能设置全局的提交模板，注意global前面是两杠
+git config  ——global commit.template   [模板文件名]    //这个命令能设置全局的提交模板，注意global前面是两杠
 ```
 
 新建 .gitmessage.txt(模板文件) 内容可以如下:

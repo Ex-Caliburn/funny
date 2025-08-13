@@ -72,11 +72,6 @@ SmiLexicographicCompare
 
 ```
 
-```javascript
-快速排序：
-
-```
-
 ### Array.prototype.sort() 的排序稳定性
 
 排序稳定性（stable sorting）是排序算法的重要属性，指的是排序关键字相同的项目，排序前后的顺序不变。

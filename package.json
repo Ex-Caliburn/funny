@@ -1,7 +1,7 @@
 {
   "name": "funny",
   "version": "1.0.0",
-  "description": "作者：戴嘉华 https://github.com/livoras/blog/issues/7 1111 目录",
+  "description": "",
   "main": " 模块化_exports.js",
   "directories": {
     "lib": "lib"
@@ -20,8 +20,11 @@
   },
   "homepage": "https://github.com/Ex-Caliburn/funny#readme",
   "devDependencies": {
+    "@lit-labs/context": "^0.3.0",
     "axios": "^0.24.0",
     "express": "^4.17.2",
+    "lit": "^2.7.0",
+    "lit-element": "^3.3.0",
     "multer": "^1.4.2",
     "multiparty": "^4.2.1"
   },

@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  .line {
+    width: 100%;
+    max-width: 800px;
+    height: 8px;
+    margin: 0 0 10px 0;
+    position: relative;
+    display: inline-block;
+    background-color: rgba(255, 255, 255, 1);
+  }
+
+  .panel.align-top {
+    align-items: flex-start;
+  }
+
+  .panel h1 {
+    font-size: 1.8em;
+    color: white;
+    font-weight: 300;
+    margin: 0 auto;
+  }
+
+  .panel.description {
+    padding-bottom: 60px;
+  }
+
+  .panel p,
+  .panel li {
+    color: black;
+    font-weight: 400;
+    text-align: left;
+    font-size: 0.8em;
+    line-height: 1.5em;
+    margin: 0.3em 0 1em 0;
+  }
+
+  .panel p strong,
+  .panel li strong {
+    color: white;
+    font-weight: 400;
+  }
+
+  .panel p code,
+  .panel li code {
+    background-color: rgba(255, 255, 255, 0.15);
+    padding: 2px 4px;
+    border-radius: 5px;
+  }
+
+  .panel li {
+    margin: 0;
+  }
+
+  .gray {
+    background-color: #777;
+    background-image: radial-gradient(circle at 47% 14%, rgba(205, 205, 205, 0.04) 0%, rgba(205, 205, 205, 0.04) 43%, transparent 43%, transparent 100%), radial-gradient(circle at 35% 12%, rgba(215, 215, 215, 0.04) 0%, rgba(215, 215, 215, 0.04) 4%, transparent 4%, transparent 100%), radial-gradient(circle at 1% 35%, rgba(24, 24, 24, 0.04) 0%, rgba(24, 24, 24, 0.04) 37%, transparent 37%, transparent 100%), radial-gradient(circle at 21% 1%, rgba(0, 0, 0, 0.04) 0%, rgba(0, 0, 0, 0.04) 26%, transparent 26%, transparent 100%), radial-gradient(circle at 23% 82%, rgba(249, 249, 249, 0.04) 0%, rgba(249, 249, 249, 0.04) 60%, transparent 60%, transparent 100%), radial-gradient(circle at 11% 54%, rgba(251, 251, 251, 0.04) 0%, rgba(251, 251, 251, 0.04) 23%, transparent 23%, transparent 100%), radial-gradient(circle at 69% 68%, rgba(234, 234, 234, 0.04) 0%, rgba(234, 234, 234, 0.04) 10%, transparent 10%, transparent 100%), linear-gradient(90deg, #777, #606060);
+  }
+
+  .blue {
+    background-color: #2c7ad2;
+    background-image: radial-gradient(circle at 47% 14%, rgba(205, 205, 205, 0.04) 0%, rgba(205, 205, 205, 0.04) 43%, transparent 43%, transparent 100%), radial-gradient(circle at 35% 12%, rgba(215, 215, 215, 0.04) 0%, rgba(215, 215, 215, 0.04) 4%, transparent 4%, transparent 100%), radial-gradient(circle at 1% 35%, rgba(24, 24, 24, 0.04) 0%, rgba(24, 24, 24, 0.04) 37%, transparent 37%, transparent 100%), radial-gradient(circle at 21% 1%, rgba(0, 0, 0, 0.04) 0%, rgba(0, 0, 0, 0.04) 26%, transparent 26%, transparent 100%), radial-gradient(circle at 23% 82%, rgba(249, 249, 249, 0.04) 0%, rgba(249, 249, 249, 0.04) 60%, transparent 60%, transparent 100%), radial-gradient(circle at 11% 54%, rgba(251, 251, 251, 0.04) 0%, rgba(251, 251, 251, 0.04) 23%, transparent 23%, transparent 100%), radial-gradient(circle at 69% 68%, rgba(234, 234, 234, 0.04) 0%, rgba(234, 234, 234, 0.04) 10%, transparent 10%, transparent 100%), linear-gradient(90deg, #2c7ad2, #1568c6);
+  }
+
+  .orange {
+    background-color: #e77614;
+    background-image: radial-gradient(circle at 46% 40%, rgba(228, 228, 228, 0.06) 0%, rgba(228, 228, 228, 0.06) 13%, transparent 13%, transparent 100%), radial-gradient(circle at 11% 41%, rgba(198, 198, 198, 0.06) 0%, rgba(198, 198, 198, 0.06) 19%, transparent 19%, transparent 100%), radial-gradient(circle at 52% 23%, rgba(14, 14, 14, 0.06) 0%, rgba(14, 14, 14, 0.06) 69%, transparent 69%, transparent 100%), radial-gradient(circle at 13% 85%, rgba(148, 148, 148, 0.06) 0%, rgba(148, 148, 148, 0.06) 44%, transparent 44%, transparent 100%), radial-gradient(circle at 57% 74%, rgba(232, 232, 232, 0.06) 0%, rgba(232, 232, 232, 0.06) 21%, transparent 21%, transparent 100%), radial-gradient(circle at 59% 54%, rgba(39, 39, 39, 0.06) 0%, rgba(39, 39, 39, 0.06) 49%, transparent 49%, transparent 100%), radial-gradient(circle at 98% 38%, rgba(157, 157, 157, 0.06) 0%, rgba(157, 157, 157, 0.06) 24%, transparent 24%, transparent 100%), radial-gradient(circle at 8% 6%, rgba(60, 60, 60, 0.06) 0%, rgba(60, 60, 60, 0.06) 12%, transparent 12%, transparent 100%), linear-gradient(90deg, #ff7600, #ff7600);
+  }
+
+  .red {
+    background-color: #c82736;
+    background-image: radial-gradient(circle at 19% 90%, rgba(190, 190, 190, 0.04) 0%, rgba(190, 190, 190, 0.04) 17%, transparent 17%, transparent 100%), radial-gradient(circle at 73% 2%, rgba(78, 78, 78, 0.04) 0%, rgba(78, 78, 78, 0.04) 94%, transparent 94%, transparent 100%), radial-gradient(circle at 45% 2%, rgba(18, 18, 18, 0.04) 0%, rgba(18, 18, 18, 0.04) 55%, transparent 55%, transparent 100%), radial-gradient(circle at 76% 60%, rgba(110, 110, 110, 0.04) 0%, rgba(110, 110, 110, 0.04) 34%, transparent 34%, transparent 100%), radial-gradient(circle at 68% 56%, rgba(246, 246, 246, 0.04) 0%, rgba(246, 246, 246, 0.04) 16%, transparent 16%, transparent 100%), radial-gradient(circle at 71% 42%, rgba(156, 156, 156, 0.04) 0%, rgba(156, 156, 156, 0.04) 47%, transparent 47%, transparent 100%), radial-gradient(circle at 46% 82%, rgba(247, 247, 247, 0.04) 0%, rgba(247, 247, 247, 0.04) 39%, transparent 39%, transparent 100%), radial-gradient(circle at 50% 47%, rgba(209, 209, 209, 0.04) 0%, rgba(209, 209, 209, 0.04) 45%, transparent 45%, transparent 100%), linear-gradient(90deg, #e53949, #cc2232);
+  }
+
+  .purple {
+    background-color: #8d3dae;
+    background-image: radial-gradient(circle at 47% 14%, rgba(205, 205, 205, 0.04) 0%, rgba(205, 205, 205, 0.04) 43%, transparent 43%, transparent 100%), radial-gradient(circle at 35% 12%, rgba(215, 215, 215, 0.04) 0%, rgba(215, 215, 215, 0.04) 4%, transparent 4%, transparent 100%), radial-gradient(circle at 1% 35%, rgba(24, 24, 24, 0.04) 0%, rgba(24, 24, 24, 0.04) 37%, transparent 37%, transparent 100%), radial-gradient(circle at 21% 1%, rgba(0, 0, 0, 0.04) 0%, rgba(0, 0, 0, 0.04) 26%, transparent 26%, transparent 100%), radial-gradient(circle at 23% 82%, rgba(249, 249, 249, 0.04) 0%, rgba(249, 249, 249, 0.04) 60%, transparent 60%, transparent 100%), radial-gradient(circle at 11% 54%, rgba(251, 251, 251, 0.04) 0%, rgba(251, 251, 251, 0.04) 23%, transparent 23%, transparent 100%), radial-gradient(circle at 69% 68%, rgba(234, 234, 234, 0.04) 0%, rgba(234, 234, 234, 0.04) 10%, transparent 10%, transparent 100%), linear-gradient(90deg, #8d3dae, #8d3dae);
+  }
+
+  .green {
+    background-color: #28a92b;
+    background-image: radial-gradient(circle at 46% 40%, rgba(228, 228, 228, 0.06) 0%, rgba(228, 228, 228, 0.06) 13%, transparent 13%, transparent 100%), radial-gradient(circle at 11% 41%, rgba(198, 198, 198, 0.06) 0%, rgba(198, 198, 198, 0.06) 19%, transparent 19%, transparent 100%), radial-gradient(circle at 52% 23%, rgba(14, 14, 14, 0.06) 0%, rgba(14, 14, 14, 0.06) 69%, transparent 69%, transparent 100%), radial-gradient(circle at 13% 85%, rgba(148, 148, 148, 0.06) 0%, rgba(148, 148, 148, 0.06) 44%, transparent 44%, transparent 100%), radial-gradient(circle at 57% 74%, rgba(232, 232, 232, 0.06) 0%, rgba(232, 232, 232, 0.06) 21%, transparent 21%, transparent 100%), radial-gradient(circle at 59% 54%, rgba(39, 39, 39, 0.06) 0%, rgba(39, 39, 39, 0.06) 49%, transparent 49%, transparent 100%), radial-gradient(circle at 98% 38%, rgba(157, 157, 157, 0.06) 0%, rgba(157, 157, 157, 0.06) 24%, transparent 24%, transparent 100%), radial-gradient(circle at 8% 6%, rgba(60, 60, 60, 0.06) 0%, rgba(60, 60, 60, 0.06) 12%, transparent 12%, transparent 100%), linear-gradient(90deg, #28a92b, #10a614);
+  }
+
+  html,
+  body {
+    margin: 0;
+    height: 100%;
+    -webkit-overflow-scrolling: touch;
+    overflow-scrolling: touch;
+    font-family: "Signika Negative", sans-serif, Arial;
+  }
+
+  .panel {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    font-size: 1.5em;
+    text-align: center;
+    color: white;
+    position: relative;
+    box-sizing: border-box;
+    padding: 10px;
+  }
+
+  body {
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
+
+  h1,
+  h2,
+  p,
+  li {
+    max-width: 800px;
+  }
+
+  /* HEADER */
+  header {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    padding: 6px 10px 10px 10px;
+    border-bottom-right-radius: 26px;
+    z-index: 100;
+    background-color: rgba(0, 0, 0, 0.5);
+    will-change: transform;
+  }
+
+  /* HEADINGS */
+  .header-section {
+    padding: 0 15px;
+    text-align: center;
+    margin: 40vh auto 50vh;
+  }
+
+  /* SCROLL DOWN */
+  .scroll-down {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    color: black;
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: 16px;
+    overflow: visible;
+  }
+
+  .scroll-down .arrow {
+    position: relative;
+    top: -4px;
+    margin: 0 auto;
+    width: 20px;
+    height: 20px;
+    background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj4KPHBhdGggZmlsbD0iYmxhY2siIGQ9Ik00ODMuMiwxOTIuMmMtMjAuNS0yMC41LTUzLjUtMjAuOC03My43LTAuNkwyNTcsMzQ0LjFMMTA0LjUsMTkxLjZjLTIwLjItMjAuMi01My4yLTE5LjktNzMuNywwLjYKCWMtMjAuNSwyMC41LTIwLjgsNTMuNS0wLjYsNzMuN2wxOTAsMTkwYzEwLjEsMTAuMSwyMy40LDE1LjEsMzYuOCwxNWMxMy4zLDAuMSwyNi43LTQuOSwzNi44LTE1bDE5MC0xOTAKCUM1MDMuOSwyNDUuNyw1MDMuNywyMTIuNyw0ODMuMiwxOTIuMnoiLz4KPC9zdmc+);
+    background-size: contain;
+  }
+
+  .arrow-right {
+    transform: rotate(-90deg);
+    position: relative;
+    top: -4px;
+    margin: 1rem auto;
+    width: 20px;
+    height: 20px;
+    background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj4KPHBhdGggZmlsbD0iYmxhY2siIGQ9Ik00ODMuMiwxOTIuMmMtMjAuNS0yMC41LTUzLjUtMjAuOC03My43LTAuNkwyNTcsMzQ0LjFMMTA0LjUsMTkxLjZjLTIwLjItMjAuMi01My4yLTE5LjktNzMuNywwLjYKCWMtMjAuNSwyMC41LTIwLjgsNTMuNS0wLjYsNzMuN2wxOTAsMTkwYzEwLjEsMTAuMSwyMy40LDE1LjEsMzYuOCwxNWMxMy4zLDAuMSwyNi43LTQuOSwzNi44LTE1bDE5MC0xOTAKCUM1MDMuOSwyNDUuNyw1MDMuNywyMTIuNyw0ODMuMiwxOTIuMnoiLz4KPC9zdmc+);
+    background-size: contain;
+  }
+</style>
+
+<style>
+  body {
+    background-color: #222;
+    color: #ddd;
+    font-size: 18px;
+    line-height: 1.4;
+    font-weight: 300;
+  }
+
+  h1,
+  h2 {
+    color: white;
+    font-weight: 400;
+    margin-bottom: 0;
+  }
+
+  .panel pre.prettyprint {
+    font-size: 20px;
+    text-align: left;
+    width: auto;
+    font-weight: normal;
+    margin: 10px;
+    border: none;
+  }
+
+  .prettyprint .linenums {
+    padding: 0;
+    list-style: none;
+  }
+
+  .prettyprint ol li {
+    background-color: black;
+  }
+
+  .panel.red .prettyprint .linenums>li:nth-child(n+7):nth-child(-n+9),
+  .panel.gray .prettyprint .linenums>li:nth-child(10),
+  .panel.purple .prettyprint .linenums>li:nth-child(4),
+  .panel.green .prettyprint .linenums>li:nth-child(n+6):nth-child(-n+10) {
+    background-color: #222;
+  }
+
+  .box {
+    width: 100px;
+    height: 80px;
+    text-align: center;
+    line-height: 80px;
+    background-color: white;
+    border-radius: 8px;
+    color: #222;
+    font-weight: 700;
+    margin-left: 20px;
+    will-change: transform;
+  }
+
+  .box.active {
+    background-color: orange;
+    border: 2px solid white;
+  }
+
+  .description,
+  .final {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    min-height: 80vh;
+  }
+
+  .container {
+    width: 500%;
+    height: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+  }
+
+  .panel {
+    font-weight: 300;
+  }
+</style>
+
+<body>
+  <div class="description">
+    <div>
+      <h1>Horizontal "<code>containerAnimation</code>"</h1>
+      <p>Scroll this page vertically and you'll see a horizontal fake-scrolling section where a container is animated on
+        the x-axis using a ScrollTrigger animation. With <code>containerAnimation</code> you can trigger animations when
+        certain elements <i>inside</i> that container enter the viewport horizontally! It's like a ScrollTrigger inside
+        of a ScrollTrigger. 🤯
+      </p>
+    </div>
+    <div class="scroll-down">Scroll down<div class="arrow"></div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <div class="panel blue">
+      Scroll down to animate horizontally &gt;
+    </div>
+
+    <section class="panel red">
+      <div>
+        <pre class="code-block prettyprint lang-js linenums">gsap.to(".box-1", {
+    y: -130,
+    duration: 2,
+    ease: "elastic",
+    scrollTrigger: {
+      trigger: ".box-1",
+      containerAnimation: scrollTween,
+      start: "left center",
+      toggleActions: "play none none reset"
+    }
+  });</pre>
+        Fire an animation at a particular spot...
+      </div>
+      <div class="box-1 box">box-1</div>
+    </section>
+
+    <section class="panel gray">
+      <div>
+        <pre class="code-block prettyprint lang-js linenums">gsap.to(".box-2", {
+    y: -120,
+    backgroundColor: "#1e90ff",
+    ease: "none",
+    scrollTrigger: {
+      trigger: ".box-2",
+      containerAnimation: scrollTween,
+      start: "center 80%",
+      end: "center 20%",
+      scrub: true
+    }
+  });</pre>
+        ...or scrub it back &amp; forth with the scrollbar
+      </div>
+      <div class="box-2 box">box-2</div>
+    </section>
+
+    <section class="panel purple">
+      <div>
+        <pre class="code-block prettyprint lang-js linenums">ScrollTrigger.create({
+    trigger: ".box-3",
+    containerAnimation: scrollTween,
+    toggleClass: "active",
+    start: "center 60%"
+  });</pre>
+        Toggle a CSS class
+      </div>
+      <div class="box-3 box">box-3</div>
+    </section>
+
+    <section class="panel green">
+      <div>
+        <pre class="code-block prettyprint lang-js linenums">ScrollTrigger.create({
+    trigger: ".green",
+    containerAnimation: scrollTween,
+    start: "center 65%",
+    end: "center 51%",
+    onEnter: () => console.log("enter"),
+    onLeave: () => console.log("leave"),
+    onEnterBack: () => console.log("enterBack"),
+    onLeaveBack: () => console.log("leaveBack"),
+    onToggle: self => console.log("active", self.isActive)
+  });</pre>
+        Use the rich callback system
+      </div>
+    </section>
+  </div>
+
+  <div class="final">
+    <div>
+      <h1>Wasn't that fun?</h1>
+      <p>Here are a few caveats to keep in mind:</p>
+      <ul>
+        <li>The fake-scrolling animation (just the part that's moving the container horizontally) must have no easing
+          (<code>ease: "none"</code>).</li>
+        <li>Pinning and snapping won't work on ScrollTriggers with a <code>containerAnimation</code>.</li>
+        <li>The mapping of scroll position trigger points are based on the trigger element itself not being animated
+          horizontally (inside the container). If you need to animate the trigger, you can either wrap it in a
+          &lt;div&gt; and use that as the trigger instead or just factor the trigger's movement into your end position.
+          For example, if you animate it left 100px, make the <code>end</code> 100px further to the left.</li>
+        <li>Requires ScrollTrigger 3.8.0 or later</li>
+      </ul>
+    </div>
+  </div>
+
+</body>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+<script>
+  gsap.registerPlugin(ScrollTrigger);
+
+  let sections = gsap.utils.toArray(".panel");
+
+  let scrollTween = gsap.to(sections, {
+    xPercent: -100 * (sections.length - 1),
+    ease: "none", // <-- IMPORTANT!
+    scrollTrigger: {
+      trigger: ".container",
+      pin: true,
+      scrub: 0.1,
+      //snap: directionalSnap(1 / (sections.length - 1)),
+      end: "+=3000"
+    }
+  });
+
+  // gsap.set(".box-1, .box-2", { y: 100 });
+  ScrollTrigger.defaults({ markers: { startColor: "white", endColor: "white" } });
+
+  // red section
+  // gsap.to(".box-1", {
+  //   y: -130,
+  //   duration: 2,
+  //   ease: "elastic",
+  //   scrollTrigger: {
+  //     trigger: ".box-1",
+  //     containerAnimation: scrollTween,
+  //     start: "left center",
+  //     toggleActions: "play none none reset",
+  //     id: "1",
+  //   }
+  // });
+
+
+  // // gray section
+  // gsap.to(".box-2", {
+  //   y: -120,
+  //   backgroundColor: "#1e90ff",
+  //   ease: "none",
+  //   scrollTrigger: {
+  //     trigger: ".box-2",
+  //     containerAnimation: scrollTween,
+  //     start: "center 80%",
+  //     end: "center 20%",
+  //     scrub: true,
+  //     id: "2"
+  //   }
+  // });
+
+  // purple section
+  ScrollTrigger.create({
+    trigger: ".box-3",
+    containerAnimation: scrollTween,
+    toggleClass: "active",
+    start: "center 60%",
+    id: "3"
+  });
+
+  // green section
+  ScrollTrigger.create({
+    trigger: ".green",
+    containerAnimation: scrollTween,
+    start: "center 65%",
+    end: "center 51%",
+    onEnter: () => console.log("enter"),
+    onLeave: () => console.log("leave"),
+    onEnterBack: () => console.log("enterBack"),
+    onLeaveBack: () => console.log("leaveBack"),
+    onToggle: self => console.log("active", self.isActive),
+    id: "4"
+  });
+
+  // only show the relevant section's markers at any given time
+  gsap.set(".gsap-marker-start, .gsap-marker-end, .gsap-marker-scroller-start, .gsap-marker-scroller-end", { autoAlpha: 0 });
+  ["red", "gray", "purple", "green"].forEach((triggerClass, i) => {
+    ScrollTrigger.create({
+      trigger: "." + triggerClass,
+      containerAnimation: scrollTween,
+      start: "left 30%",
+      end: i === 3 ? "right right" : "right 30%",
+      markers: false,
+      onToggle: self => gsap.to(".marker-" + (i + 1), { duration: 0.25, autoAlpha: self.isActive ? 1 : 0 })
+    });
+  });
+
+  // helper function for causing the sections to always snap in the direction of the scroll (next section) rather than whichever section is "closest" when scrolling stops.
+  // function directionalSnap(increment) {
+  //   let snapFunc = gsap.utils.snap(increment);
+  //   return (raw, self) => {
+  //     let n = snapFunc(raw);
+  //     return Math.abs(n - raw) < 1e-4 || (n < raw) === self.direction < 0 ? n : self.direction < 0 ? n - increment : n + increment;
+  //   };
+  // }
+
+  // making the code pretty/formatted.
+  PR.prettyPrint();
+</script>
+
+</html>
