@@ -20,7 +20,7 @@ console.log('start')
  *  检查 当前微任务队列是否还有任务， 没有执行下一个宏任务
  *  打印 'setTimeout1'
  *  遇到 promise.resolve 在当前 宏任务 队列尾部塞入微任务队列
- *  检查 微任务 打印 'setTimeout1'
+ *  检查 微任务 打印 'Promise2'
  *  检查 微任务， 没有，执行宏任务 打印 'setTimeout2'
  *
  * */

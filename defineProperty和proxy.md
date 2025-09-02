@@ -9,7 +9,7 @@
 
 通过数据修饰符set，get 达到双向数据绑定目的
 个人理解； defineProperty 加通知和订阅实现 vue的双向数据绑定，
-defineProperty 对数组不好用，push操作和直接通过下标修改数组等只可以只会触发get方法，而不是set方法
+defineProperty 对数组不好用，push 操作和直接通过下标修改数组等只会触发 get 方法，而不是 set 方法
 
 ```js
 (1)
@@ -43,7 +43,7 @@ function target() {
   total = num * price
 }
 let storage = []
-record() {
+function record() {
   storage.push(target)
 }
 function reply() {
@@ -59,8 +59,8 @@ reply()
 console.log(total) // 4
 
 
-(4)  首次初始化赋值， target 改为匿名函数,
-record 改为depend, replay 改为 notify, 该用独立的 class设计模式
+(4)  首次初始化赋值，target 改为匿名函数，
+record 改为 depend，reply 改为 notify，改用独立的 class 设计
 
 class Dep {
   constructor() {

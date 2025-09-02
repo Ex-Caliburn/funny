@@ -61,6 +61,57 @@ data = new Proxy(data_without_proxy, {
 })
 ```
 
+#### Composition API 示例（基础用法）
+
+一个最小可用的计数器示例（包含 `ref`、`reactive`、`computed`、`watch` 与生命周期钩子）：
+
+```html
+<template>
+  <div>
+    <div>{{ count }}（x2：{{ double }}）</div>
+    <button @click="increment">+1</button>
+  </div>
+</template>
+
+<script>
+import { ref, reactive, computed, watch, onMounted, onBeforeUnmount } from 'vue'
+
+export default {
+  setup(props, ctx) {
+    const count = ref(0)
+    const state = reactive({ list: [1, 2, 3] })
+    const double = computed(() => count.value * 2)
+
+    function increment() {
+      count.value++
+    }
+
+    watch(
+      () => count.value,
+      (val, oldVal) => {
+        console.log('count change', oldVal, '->', val)
+      }
+    )
+
+    onMounted(() => {
+      console.log('mounted')
+    })
+
+    onBeforeUnmount(() => {
+      console.log('cleanup')
+    })
+
+    return {
+      count,
+      double,
+      state,
+      increment
+    }
+  }
+}
+</script>
+```
+
 ### 参考文献
 
 1. <https://zhuanlan.zhihu.com/p/68477600>

@@ -135,6 +135,241 @@ temp.forEach((item) => {
 })
 ```
 
+## Symbol 的应用场景
+
+### 1. 私有属性
+
+Symbol 可以用来创建真正的私有属性，因为 `Object.keys()`、`for...in` 等遍历方法无法获取到 Symbol 属性：
+
+```js
+const _name = Symbol('name');
+const _age = Symbol('age');
+
+class Person {
+  constructor(name, age) {
+    this[_name] = name;
+    this[_age] = age;
+  }
+  
+  getName() {
+    return this[_name];
+  }
+  
+  getAge() {
+    return this[_age];
+  }
+}
+
+const person = new Person('Alice', 25);
+console.log(person.getName()); // 'Alice'
+console.log(Object.keys(person)); // []
+console.log(Object.getOwnPropertySymbols(person)); // [Symbol(name), Symbol(age)]
+```
+
+### 2. 避免属性名冲突
+
+在 mixin 模式中，使用 Symbol 可以避免属性名冲突：
+
+```js
+const eventEmitter = Symbol('eventEmitter');
+
+class MyClass {
+  constructor() {
+    this[eventEmitter] = new EventEmitter();
+  }
+  
+  addListener(event, callback) {
+    this[eventEmitter].on(event, callback);
+  }
+}
+
+// 即使 MyClass 的原型链上有 eventEmitter 属性，也不会冲突
+MyClass.prototype.eventEmitter = 'some value';
+```
+
+### 3. 元编程和元数据
+
+Symbol 可以用于存储对象的元数据：
+
+```js
+const metadata = Symbol('metadata');
+
+class User {
+  constructor(name) {
+    this.name = name;
+    this[metadata] = {
+      createdAt: new Date(),
+      version: '1.0.0'
+    };
+  }
+  
+  getMetadata() {
+    return this[metadata];
+  }
+}
+```
+
+### 4. 内置 Symbol 值
+
+ES6 提供了多个内置的 Symbol 值，用于改变 JavaScript 对象的行为：
+
+#### Symbol.iterator
+
+定义对象的默认迭代器：
+
+```js
+const collection = {
+  items: ['a', 'b', 'c'],
+  [Symbol.iterator]() {
+    let index = 0;
+    return {
+      next: () => {
+        if (index < this.items.length) {
+          return { value: this.items[index++], done: false };
+        }
+        return { done: true };
+      }
+    };
+  }
+};
+
+for (const item of collection) {
+  console.log(item); // 'a', 'b', 'c'
+}
+```
+
+#### Symbol.toStringTag
+
+自定义对象的字符串表示：
+
+```js
+class MyArray {
+  get [Symbol.toStringTag]() {
+    return 'MyArray';
+  }
+}
+
+const arr = new MyArray();
+console.log(Object.prototype.toString.call(arr)); // '[object MyArray]'
+```
+
+#### Symbol.toPrimitive
+
+控制对象转换为原始值的行为：
+
+```js
+const obj = {
+  [Symbol.toPrimitive](hint) {
+    switch (hint) {
+      case 'number':
+        return 42;
+      case 'string':
+        return 'hello';
+      default:
+        return 'default';
+    }
+  }
+};
+
+console.log(+obj); // 42
+console.log(`${obj}`); // 'hello'
+console.log(obj + ''); // 'default'
+```
+
+#### Symbol.species
+
+控制继承对象的构造函数：
+
+```js
+class MyArray extends Array {
+  static get [Symbol.species]() {
+    return Array;
+  }
+}
+
+const myArr = new MyArray(1, 2, 3);
+const mapped = myArr.map(x => x * 2);
+console.log(mapped instanceof MyArray); // false
+console.log(mapped instanceof Array); // true
+```
+
+### 5. 单例模式
+
+使用 Symbol 可以创建真正的单例：
+
+```js
+const instance = Symbol('instance');
+
+class Singleton {
+  static getInstance() {
+    if (!this[instance]) {
+      this[instance] = new Singleton();
+    }
+    return this[instance];
+  }
+  
+  constructor() {
+    if (Singleton[instance]) {
+      return Singleton[instance];
+    }
+  }
+}
+
+const s1 = Singleton.getInstance();
+const s2 = Singleton.getInstance();
+console.log(s1 === s2); // true
+```
+
+### 6. 接口和契约
+
+Symbol 可以用于定义接口和契约：
+
+```js
+const render = Symbol('render');
+const update = Symbol('update');
+
+class Component {
+  [render]() {
+    console.log('Rendering component');
+  }
+  
+  [update]() {
+    console.log('Updating component');
+  }
+}
+
+// 外部无法直接调用这些方法，只能通过特定的接口
+const component = new Component();
+// component[render](); // 需要知道 Symbol 才能调用
+```
+
+### 7. 配置对象
+
+Symbol 可以用于创建配置对象，避免键名冲突：
+
+```js
+const config = {
+  [Symbol('api')]: 'https://api.example.com',
+  [Symbol('timeout')]: 5000,
+  [Symbol('retries')]: 3
+};
+
+// 外部无法通过 Object.keys 获取这些配置
+console.log(Object.keys(config)); // []
+```
+
 ## 总结
+
+Symbol 的主要应用场景包括：
+
+1. **私有属性**：创建真正的私有属性，避免被外部访问
+2. **避免冲突**：在 mixin 和库开发中避免属性名冲突
+3. **元编程**：存储元数据和改变对象行为
+4. **内置 Symbol**：使用 ES6 提供的内置 Symbol 值
+5. **单例模式**：创建真正的单例实例
+6. **接口契约**：定义内部接口和契约
+7. **配置对象**：创建不可枚举的配置项
+
+Symbol 为 JavaScript 提供了更强大的元编程能力，使得我们可以更好地控制对象的行为和属性访问。
 
 ### 参考文献

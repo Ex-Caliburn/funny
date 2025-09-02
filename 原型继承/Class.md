@@ -305,6 +305,34 @@ class Lion extends Cat {
 }
 ```
 
+#### super 关键点
+
+- 在构造函数中：必须先调用 `super()` 才能使用 `this`，并可把参数传给父类构造函数。
+- 在实例方法中：用 `super.method()` 调用父类同名方法，常用于覆写时复用父类逻辑。
+- 在静态方法中：用 `super.staticMethod()` 调用父类静态方法。
+- 在访问器中：可通过 `super.prop` 访问父类的 getter/setter。
+- 子类不写 constructor 时，等价于 `constructor(...args) { super(...args) }`。
+- `super` 只能在类的方法内部使用，不能在普通函数或类体外使用。
+
+```js
+class Base {
+  static hello() { return 'hello'; }
+  get info() { return 'base'; }
+}
+
+class Sub extends Base {
+  static hello() {
+    return super.hello() + ' world'; // 调用父类静态方法
+  }
+  get info() {
+    return super.info + ' sub'; // 访问父类 getter
+  }
+}
+
+Sub.hello();        // 'hello world'
+new Sub().info;     // 'base sub'
+```
+
 ### Mix-ins / 混入
 
 抽象子类或者 mix-ins 是类的模板。 一个 ECMAScript 类只能有一个单超类，所以想要从工具类来多重继承的行为是不可能的。子类继承的只能是父类提供的功能性。因此，例如，从工具类的多重继承是不可能的。该功能必须由超类提供。

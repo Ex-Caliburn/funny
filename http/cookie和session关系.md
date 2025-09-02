@@ -24,7 +24,28 @@ Set-Cookie: logcookie=3qjj; expires=Wed, 13-Mar-2019 12:08:53 GMT; Max-Age=31536
 3. path 是限制指定Cookie 的发送范围的文件目录。不过另有办法可避开这项限制，看来对其作为安全机制的效果不能抱有期待。
 4. domain 通过domain属性指定的域名可以做到与结尾匹配一致。比如，指定domain是fafa.com，除了fafa.com那么www.fafa.com等都可以发送Cookie。
 5. secure 设置web页面只有在HTTPS安全连接时，才可以发送Cookie。HHTP则不可以进行回收。
-6. HttpOnly 它使JavaScript 脚本无法获得Cookie，通过上述设置，通常从Web 页面内还可以对Cookie 进行读取操作。但使用JavaScript 的document.cookie 就无法读取附加HttpOnly 属性后的Cookie 的内容了
+6. HttpOnly 它使JavaScript 脚本无法获得Cookie，通过上述设置，通常从Web 页面内还可以对Cookie 进行读取操作。但使用JavaScript 的document.cookie 就无法读取附加HttpOnly 属性后的Cookie 的内容了，不会影响请求携带 Cookie：设置了 HttpOnly 的 Cookie 仍会在浏览器发起的请求中自动携带（包括 XHR/fetch），只要同站或跨站时满足 withCredentials=true 且服务端 CORS 允许携带凭据。
+
+7. Max-Age 设置从现在开始的存活秒数。优先级高于expires（两者同时存在时以Max-Age为准）。设置为0或负数可让浏览器删除该Cookie。
+8. SameSite 用来限制第三方上下文携带Cookie，降低CSRF风险。可选值：
+   - Lax 大多数跨站导航不会携带（如a链接、GET表单提交在现代浏览器通常会携带，具体实现有差异），同站请求总是携带。
+   - Strict 仅同站请求携带，最安全但兼容性影响大。
+   - None 表示允许第三方上下文携带，但必须同时设置Secure（否则会被浏览器丢弃）。
+9. Partitioned 将Cookie分区存储（CHIPS），同一顶级站点下不同第三方来源各自有独立的Cookie分区，缓解跨站跟踪。示例：`Partitioned`。需要与`Secure; SameSite=None`配合，具体受浏览器支持情况影响。
+
+附加说明：
+
+- Domain 前导点（.example.com）在RFC 6265后已被忽略，写与不写前导点效果一致；未设置Domain表示“主机专属Cookie”。
+- Path 默认为设置该Cookie的响应路径的目录部分。
+- 删除Cookie通常通过设置过期时间到过去（expires）或`Max-Age=0`并保持相同的`Name/Path/Domain`组合。
+
+示例：
+
+```http
+Set-Cookie: sessionId=abc123; Path=/; Domain=example.com; Max-Age=1800; Secure; HttpOnly; SameSite=Lax
+Set-Cookie: ads=optout; Path=/; SameSite=None; Secure; Partitioned
+Set-Cookie: __Host-pref=dark; Path=/; Secure; HttpOnly; SameSite=Strict
+```
 
 ### Session
 

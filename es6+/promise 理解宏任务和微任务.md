@@ -14,7 +14,7 @@ new Promise((resolve) => {
 }).then(() => {
     console.log(4)
 })
-// 3 4 1 2
+// 输出顺序：3 4 1 2
  ```
 
 ```js
@@ -45,54 +45,82 @@ new Promise((resolve) => {
 }).then(() => {
     console.log(4)
 })
+// 输出顺序：3 4 1 6 7 8 9 2 5
 ```
 
-我的理解:
-多个微任务会在宏任务结尾处执行
-消息队列每个消息对应相对应的回调函数，当定时器1，定时器2 把其回调队列塞到回调队列，碰到promise.then 微任务，会把promise.then的回调函数塞在执行栈的最后，所以promise.then 会在定时器任务之前，多个promise.then也会将回调函数按顺序塞进执行栈，因为执行栈有任务了，事件轮询机制在处理完当前任务优先处理执行栈中任务，执行完去轮询消息队列（回调队列）
+## 事件循环机制理解
 
-## promise
+JavaScript的事件循环机制遵循以下规则：
 
-Promise 对象是一个代理对象（代理一个值），被代理的值在Promise对象创建时可能是未知的。它允许你为异步操作的成功和失败分别绑定相应的处理方法（handlers）。 这让异步方法可以像同步方法那样返回值，但并不是立即返回最终执行结果，而是一个能代表未来出现的结果的promise对象
+1. **同步代码**：在主线程上立即执行
+2. **宏任务（Macro Task）**：包括setTimeout、setInterval、setImmediate、I/O操作、UI渲染等
+3. **微任务（Micro Task）**：包括Promise.then、process.nextTick、MutationObserver等
 
-一个 Promise有以下几种状态:
+**执行顺序**：
 
-pending: 初始状态，既不是成功，也不是失败状态。
-fulfilled: 意味着操作成功完成。
-rejected: 意味着操作失败。
+- 执行完当前宏任务后，会检查微任务队列
+- 执行完所有微任务后，才会执行下一个宏任务
+- 微任务可以添加新的微任务，这些新微任务会在当前事件循环中执行完
+
+## Promise
+
+Promise 对象是一个代理对象（代理一个值），被代理的值在Promise对象创建时可能是未知的。它允许你为异步操作的成功和失败分别绑定相应的处理方法（handlers）。这让异步方法可以像同步方法那样返回值，但并不是立即返回最终执行结果，而是一个能代表未来出现的结果的promise对象。
+
+一个 Promise有以下几种状态：
+
+- **pending**: 初始状态，既不是成功，也不是失败状态。
+- **fulfilled**: 意味着操作成功完成。
+- **rejected**: 意味着操作失败。
 
 ### 链式调用
 
-因为 Promise.prototype.then 和  Promise.prototype.catch 方法返回promise 对象， 所以它们可以被链式调用。
+因为 `Promise.prototype.then` 和 `Promise.prototype.catch` 方法返回promise对象，所以它们可以被链式调用。
 
-#### 宏任务 Tasks
+## 任务类型详解
 
-XHR回调、事件回调（鼠标键盘事件）、setImmediate、setTimeout、setInterval、requestAnimationFrame、indexedDB数据库操作等I/O以及UI rendering
+### 宏任务（Macro Tasks）
 
-#### 微任务 microtasks
+- XHR回调
+- 事件回调（鼠标键盘事件）
+- setImmediate（Node.js）
+- setTimeout
+- setInterval
+- requestAnimationFrame
+- indexedDB数据库操作等I/O
+- UI rendering
 
-process.nextTick（nodejs）、Promise.then、Object.observer(已经被废弃)、MutationObserver(html5新特性)
-为了突破单线程的限制
+### 微任务（Micro Tasks）
 
-每个宏任务都有一个微任务列表
+- process.nextTick（Node.js）
+- Promise.then/catch/finally
+- Object.observer（已被废弃）
+- MutationObserver（HTML5新特性）
+- queueMicrotask（现代浏览器API）
 
-区别
-hen executing tasks from the task queue, the runtime executes each task that is in the queue at the moment a new iteration of the event loop begins. Tasks added to the queue after the iteration begins will not run until the next iteration.
+## 事件循环执行机制
 
-1. 当执行回调队列，执行队列执行每一个在回调队列中的任务同时事件循环开始新的循环，在循环开始之后回调队列新添加的任务，直到下一次事件轮询开始才会运行
-2. 当任务退出，当执行栈为空，每一个微任务队列的微任务都会执行，一个接一个 微任务队列会执行到微任务队列为空为止，即使有新队列加入， 微任务队列能加入新的微任务，这些新的微任务会在下一个宏任务开始之前执行，而且在当前事件事件轮询结束之前
+1. **执行同步代码**：在主线程上立即执行
+2. **执行微任务队列**：清空所有微任务
+3. **执行宏任务**：从宏任务队列中取出一个任务执行
+4. **重复步骤2-3**：形成事件循环
 
-### 新解决方案
+**重要特点**：
 
-通过引入 queueMicrotask()，由晦涩地使用 promise 去创建微任务而带来的风险就可以被避免了。举例来说，当使用 promise 创建微任务时，由回调抛出的异常被报告为 rejected promises 而不是标准异常。同时，创建和销毁 promise 带来了事件和内存方面的额外开销，这是正确入列微任务的函数应该避免的。
+- 微任务在当前事件循环中执行完
+- 宏任务在下一个事件循环中执行
+- 微任务可以添加新的微任务，这些新微任务会在当前事件循环中执行完
 
-queueMacrotask 除了 IE都支持
+## 新解决方案
+
+通过引入 `queueMicrotask()`，由晦涩地使用 promise 去创建微任务而带来的风险就可以被避免了。举例来说，当使用 promise 创建微任务时，由回调抛出的异常被报告为 rejected promises 而不是标准异常。同时，创建和销毁 promise 带来了事件和内存方面的额外开销，这是正确入列微任务的函数应该避免的。
+
+`queueMicrotask` 除了 IE 都支持：
 
 ```js
 queueMicrotask(function);
 ```
 
-A function to be executed when the browser engine determines it is safe to call your code. Enqueued microtasks are executed after all pending tasks have completed but before yielding control to the browser's event loop.
+一个函数，当浏览器引擎确定调用你的代码是安全的时候，它就会被执行。入队的微任务会在所有待处理的任务完成后执行，但在将控制权交给浏览器的事件循环之前执行。
 
 ```js
 let queuePromisetask = f => Promise.resolve().then(f);
@@ -102,10 +130,18 @@ queueMicrotask(() => console.log('Microtask 1'));
 queueMacrotask(() => console.log('Macro task'));
 queuePromisetask(() => console.log('Promise task'));
 queueMicrotask(() => console.log('Microtask 2'));
+
+// 输出顺序：Microtask 1, Promise task, Microtask 2, Macro task
 ```
 
-因为微任务自身可以入列更多的微任务，且事件循环会持续处理微任务直至队列为空，那么就存在一种使得事件循环无尽处理微任务的真实风险。如何处理递归增加微任务是要谨慎而行的
+**注意事项**：因为微任务自身可以入列更多的微任务，且事件循环会持续处理微任务直至队列为空，那么就存在一种使得事件循环无尽处理微任务的真实风险。如何处理递归增加微任务是要谨慎而行的。
 
+## 常见误区
+
+1. **setTimeout(fn, 0)** 不是立即执行，而是将回调放入宏任务队列
+2. **Promise.then** 是微任务，会在当前事件循环中执行完
+3. **微任务优先级高于宏任务**，但不是绝对的"先执行"
+4. **事件循环是循环的**，不是线性的
 
 ### 参考文献
 

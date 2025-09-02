@@ -74,29 +74,8 @@ realPromise5
 // Promise 函数体 是同步语句
 // 等待执行resolve，或者reject， 如果一直不执行，就一直处于pending状态
 // resolve/reject 触发回调，不会立即执行，会push到微任务队列中，
-// 如果多个then 生成promiseReaction链表，并且反转，遍历 promiseReaction链表，放入 microtask 队列
+// 如果多个then 生成promiseReaction链表，并且反转，遍历 promiseReaction链表，依次处理，并放入 microtask 队列
 
-
-function fetch(url) {
-  return new Promise((resolve, reject) => {
-    let xhr = new XMLHttpRequest() || new ActiveXObject('Microsoft.XMLHTTP')
-    xhr.open('GET', url)
-    xhr.send()
-    xhr.onreadystatechange = () => {
-      console.log(xhr.readyState, xhr.status)
-      if (xhr.readyState === 4) {
-        if (xhr.status === 200) {
-          resolve(xhr.response)
-        } else {
-          reject(new Error('Network Error'))
-        }
-      }
-    }
-  })
-}
-fetch('https://www.baidu.com').then(res => {
-  console.log(res)
-})
 
 // 关于 then 中定时器 return 的行为演示
 console.log('=== then 中定时器 return 的行为演示 ===')
@@ -139,6 +118,124 @@ promiseWithTimer
 // 2. 只有 then 回调函数直接 return 的值才会传递给下一个 then
 // 3. 如果要在异步操作后传递值，需要 return 一个新的 Promise
 // 4. Promise 链会等待这个新 Promise 完成后再继续
+
+// ===== Promise 底层机制更准确的说明 =====
+
+// PromiseReaction 链表机制详解：
+// 1. 每次调用 then() 都会创建一个 PromiseReaction 对象
+// 2. 这些对象通过 next 指针连接成链表
+// 3. 新创建的 PromiseReaction 会插入到链表头部
+// 4. 执行时需要按照 then 的调用顺序，所以需要反转链表
+
+// 示例演示：
+let demoPromise = new Promise((resolve) => {
+  resolve('demo')
+})
+
+// 调用顺序：then1 -> then2 -> then3
+demoPromise.then(() => console.log('then1'))  // 创建 PromiseReaction1
+demoPromise.then(() => console.log('then2'))  // 创建 PromiseReaction2，next = PromiseReaction1
+demoPromise.then(() => console.log('then3'))  // 创建 PromiseReaction3，next = PromiseReaction2
+
+// 链表结构：PromiseReaction3 -> PromiseReaction2 -> PromiseReaction1
+// 反转后：PromiseReaction1 -> PromiseReaction2 -> PromiseReaction3
+// 执行顺序：then1 -> then2 -> then3
+
+// 关于 microtask 队列的补充说明：
+// 1. Promise 的回调函数确实会进入微任务队列
+// 2. 但这不是 Promise 特有的，而是 JavaScript 事件循环的机制
+// 3. Promise 的 then/catch/finally 回调都是微任务
+// 4. 微任务会在当前宏任务执行完毕后、下一个宏任务开始前执行
+
+// 执行时机对比：
+console.log('同步代码开始')
+setTimeout(() => console.log('宏任务'), 0)
+Promise.resolve().then(() => console.log('微任务'))
+console.log('同步代码结束')
+
+// 输出顺序：同步代码开始 -> 同步代码结束 -> 微任务 -> 宏任务
+
+// ===== then 的 return 与 resolve 的关系详解 =====
+
+// 1. 基本相似性：都会创建 fulfilled 状态的 Promise
+let promise1 = Promise.resolve('原始值')
+  .then(value => {
+    console.log('收到值:', value)
+    return 'then 返回值'  // 相当于 Promise.resolve('then 返回值')
+  })
+
+let promise2 = Promise.resolve('原始值')
+  .then(value => {
+    console.log('收到值:', value)
+    return Promise.resolve('then 返回值')  // 显式返回 Promise
+  })
+
+// 2. 关键区别：return 的隐式包装
+let demo1 = Promise.resolve('hello')
+  .then(value => {
+    console.log('demo1:', value)
+    return 'world'  // 隐式被包装成 Promise.resolve('world')
+  })
+  .then(value => {
+    console.log('demo1 结果:', value)  // 输出: world
+  })
+
+// 3. 特殊情况：return undefined
+let demo2 = Promise.resolve('hello')
+  .then(value => {
+    console.log('demo2:', value)
+    // 没有 return，相当于 return undefined
+  })
+  .then(value => {
+    console.log('demo2 结果:', value)  // 输出: undefined
+  })
+
+// 4. return 与 resolve 的等价性验证
+let promise3 = new Promise((resolve) => {
+  resolve('直接 resolve')
+})
+
+let promise4 = Promise.resolve().then(() => {
+  return 'then return'
+})
+
+// 这两个 Promise 在行为上是等价的
+promise3.then(value => console.log('promise3:', value))
+promise4.then(value => console.log('promise4:', value))
+
+// 5. 但 return 不能替代 resolve 的所有功能
+let promise5 = new Promise((resolve, reject) => {
+  // resolve 可以设置 Promise 状态
+  resolve('成功')
+  // reject('失败')  // 可以设置失败状态
+})
+
+// then 的 return 只能设置成功状态，无法设置失败状态
+let promise6 = Promise.resolve()
+  .then(() => {
+    // return 无法模拟 reject
+    // 只能抛出错误来触发失败
+    throw new Error('then 中的错误')
+  })
+
+// 6. 总结对比：
+// return 的优势：
+// - 语法简洁，自动包装成 Promise
+// - 在 then 链中自然传递值
+// - 适合简单的值传递
+
+// resolve 的优势：
+// - 可以显式控制 Promise 状态
+// - 可以设置成功或失败状态
+// - 更灵活的状态控制
+
+// 7. 实际使用建议：
+// 在 then 回调中：
+// - 简单返回值用 return
+// - 需要控制状态用 Promise.resolve/reject
+// - 异步操作用 return new Promise()
+
+console.log('=== 测试开始 ===')
 
 
 
