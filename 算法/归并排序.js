@@ -27,8 +27,8 @@ const merge = (arr1, arr2) => {
       arr1.splice(i + 1, 0, arr2.shift())
     } else if (arr2[0] > arr1[i] && !arr1[i + 1]) {
       // arr1.splice(i + 1, 0, arr2.shift())
-       // 换一种写法 提前break
-       arr1 = arr1.concat(arr2)
+      // 换一种写法 提前break
+      arr1 = arr1.concat(arr2)
       break
     }
   }
@@ -72,8 +72,8 @@ function sort(arr) {
   //     return [arr[0], arr[1]]
   //   }
   // }
-  let leftArr = arr.splice(0,  Math.ceil(arr.length / 2))
-  return mergeSort(sort(arr.splice(0,  Math.ceil(arr.length / 2))), sort(arr))
+  let leftArr = arr.splice(0, Math.ceil(arr.length / 2))
+  return mergeSort(sort(arr.splice(0, Math.ceil(arr.length / 2))), sort(arr))
 }
 
 function mergeSort(arr1, arr2) {
@@ -106,7 +106,6 @@ console.timeEnd(1)
 
 // [1,1,1,2,2,3,5,8]
 
-
 // 平均时间复杂度：O(nlogn)
 // 最佳时间复杂度：O(n)
 // 最差时间复杂度：O(nlogn)
@@ -124,3 +123,29 @@ console.timeEnd(1)
 // 所以8个元素共需要运行 8log8 次指令，那么对于 n 个元素，时间复杂度为 O(nlogn)。
 
 // 归并排序算法中，归并最后到底都是相邻元素之间的比较交换，并不会发生相同元素的相对位置发生变化，故是稳定性算法。
+
+// 示例：
+// console.log(mergeSortStd([5, 2, 4, 6, 1, 3]))
+
+function mergeSort(arr) {
+  if (arr.length <= 1) return arr
+  const mid = Math.floor(arr.length / 2)
+  const left = mergeSort(arr.slice(0, mid))
+  const right = mergeSort(arr.slice(mid))
+  return merge(left, right)
+}
+
+// 这一步需要改成有序数组
+function merge(left, right) {
+  let result = []
+  while (left.length && right.length) {
+    if (left[0] <= right[0]) {
+      result.push(left.shift())
+    } else {
+      result.push(right.shift())
+    }
+  }
+  return result.concat(left, right)
+}
+
+console.log(merge([1, 2, 5], [1, 3]))

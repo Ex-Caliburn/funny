@@ -103,3 +103,30 @@ for (let i = 0; i < arr5.length - 1; i++) {
     }
   }
 }
+
+
+// 鸡尾酒排序（双向冒泡）：一趟从左到右把最大值沉底，接着从右到左把最小值上浮，适合“近乎有序”的数组。
+var arr = [7, 6, 5, 123, 3, 9];
+let start = 0, end = arr.length - 1;
+while (start < end) {
+  let swapped = false;
+  for (let j = start; j < end; j++) {
+    if (arr[j] > arr[j + 1]) {
+      [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+      swapped = true;
+    }
+  }
+  if (!swapped) break;
+  end--;
+  swapped = false;
+  for (let j = end; j > start; j--) {
+    if (arr[j - 1] > arr[j]) {
+      [arr[j - 1], arr[j]] = [arr[j], arr[j - 1]];
+      swapped = true;
+    }
+  }
+  if (!swapped) break;
+  start++;
+}
+
+
