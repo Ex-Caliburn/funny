@@ -1,0 +1,1032 @@
+﻿<html><head><meta charset="utf-8" /><style>table{border-collapse:collapse;}td,th{border:1px solid #333;padding:4px;white-space:nowrap;}</style></head><body><table class="MsoNormalTable" style="border-top: medium none; border-right: medium none; border-collapse: collapse; border-bottom: medium none; border-left: medium none" border="1" cellspacing="0" cellpadding="0">
+    <thead>
+        <tr style="height: 1cm">
+            <td width="341" style="border-top: black 1.5pt solid; height: 1cm; border-right: windowtext 1pt solid; width: 255.45pt; border-bottom: black 1pt solid; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="center" class="MsoNormal" style="text-align: center; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体"><font size="2">产品名称</font></span></p>
+            </td>
+            <td width="61" style="border-top: black 1.5pt solid; height: 1cm; border-right: windowtext 1pt solid; width: 45.9pt; border-bottom: black 1pt solid; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="center" class="MsoNormal" style="text-align: center; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体"><font size="2">单位</font></span></p>
+            </td>
+            <td width="80" style="border-top: black 1.5pt solid; height: 1cm; border-right: windowtext 1pt solid; width: 60.15pt; border-bottom: black 1pt solid; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="center" class="MsoNormal" style="text-align: center; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体"><font size="2">本期价格（元）</font></span></p>
+            </td>
+            <td width="78" style="border-top: black 1.5pt solid; height: 1cm; border-right: windowtext 1pt solid; width: 58.5pt; border-bottom: black 1pt solid; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="center" class="MsoNormal" style="text-align: center; margin: 0cm 2.85pt 0pt; line-height: 12pt"><font size="2"><span style="font-family: 宋体">比上期</span><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><br>
+            </span><span style="font-family: 宋体">价格涨跌（元）</span></font></p>
+            </td>
+            <td width="83" style="border-top: black 1.5pt solid; height: 1cm; border-right: medium none; width: 61.9pt; border-bottom: black 1pt solid; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="center" class="MsoNormal" style="text-align: center; margin: 0cm 2.85pt 0pt; line-height: 12pt"><font size="2"><span style="font-family: 宋体">涨跌幅</span><span style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"> </span><span style="font-family: 宋体">（</span><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;">%</span><span style="font-family: 宋体">）</span></font></p>
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr style="height: 14.15pt">
+            <td width="341" nowrap="nowrap" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 255.45pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="left" class="MsoNormal" style="text-align: left; margin: 0cm 2.85pt 0pt; line-height: 12pt"><b><span style="font-family: 宋体"><font size="2">一、黑色金属</font></span></b></p>
+            </td>
+            <td width="61" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 45.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="center" class="MsoNormal" style="text-align: center; margin: 0cm 2.85pt 0pt; line-height: 12pt"><b><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">&nbsp;</font></span></b></p>
+            </td>
+            <td width="80" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 60.15pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><b><span style="font-family: 宋体; color: #333333"><font size="2">　</font></span></b></p>
+            </td>
+            <td width="78" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 58.5pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><b><span style="font-family: 宋体; color: #333333"><font size="2">　</font></span></b></p>
+            </td>
+            <td width="83" style="border-top: medium none; height: 14.15pt; border-right: medium none; width: 61.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><b><span style="font-family: 宋体; color: #333333"><font size="2">　</font></span></b></p>
+            </td>
+        </tr>
+        <tr style="height: 14.15pt">
+            <td width="341" nowrap="nowrap" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 255.45pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 34pt; border-left: medium none; padding-right: 0cm">
+            <p align="left" class="MsoNormal" style="text-align: left; margin: 0cm 2.85pt 0pt; line-height: 12pt"><font size="2"><span style="font-family: 宋体">螺纹钢（Φ</span><span lang="EN" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;">20</span><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;">mm</span><span style="font-family: 宋体">，</span><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;">HRB400E</span><span style="font-family: 宋体">）</span></font></p>
+            </td>
+            <td width="61" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 45.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="center" class="MsoNormal" style="text-align: center; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体"><font size="2">吨</font></span></p>
+            </td>
+            <td width="80" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 60.15pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">3925.1</font></span></p>
+            </td>
+            <td width="78" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 58.5pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">19.4</font></span></p>
+            </td>
+            <td width="83" style="border-top: medium none; height: 14.15pt; border-right: medium none; width: 61.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">0.5</font></span></p>
+            </td>
+        </tr>
+        <tr style="height: 14.15pt">
+            <td width="341" nowrap="nowrap" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 255.45pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 34pt; border-left: medium none; padding-right: 0cm">
+            <p align="left" class="MsoNormal" style="text-align: left; margin: 0cm 2.85pt 0pt; line-height: 12pt"><font size="2"><span style="font-family: 宋体">线材（Φ</span><span lang="EN" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;">8-10</span><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;">mm</span><span style="font-family: 宋体">，</span><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;">HPB300</span><span style="font-family: 宋体">）</span></font></p>
+            </td>
+            <td width="61" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 45.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="center" class="MsoNormal" style="text-align: center; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体"><font size="2">吨</font></span></p>
+            </td>
+            <td width="80" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 60.15pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">4133.4</font></span></p>
+            </td>
+            <td width="78" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 58.5pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">16.8</font></span></p>
+            </td>
+            <td width="83" style="border-top: medium none; height: 14.15pt; border-right: medium none; width: 61.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">0.4</font></span></p>
+            </td>
+        </tr>
+        <tr style="height: 14.15pt">
+            <td width="341" nowrap="nowrap" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 255.45pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 34pt; border-left: medium none; padding-right: 0cm">
+            <p align="left" class="MsoNormal" style="text-align: left; margin: 0cm 2.85pt 0pt; line-height: 12pt"><font size="2"><span style="font-family: 宋体">普通中板（</span><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;">20mm</span><span style="font-family: 宋体">，</span><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;">Q235</span><span style="font-family: 宋体">）</span></font></p>
+            </td>
+            <td width="61" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 45.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="center" class="MsoNormal" style="text-align: center; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体"><font size="2">吨</font></span></p>
+            </td>
+            <td width="80" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 60.15pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">4125.5</font></span></p>
+            </td>
+            <td width="78" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 58.5pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">41.3</font></span></p>
+            </td>
+            <td width="83" style="border-top: medium none; height: 14.15pt; border-right: medium none; width: 61.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">1.0</font></span></p>
+            </td>
+        </tr>
+        <tr style="height: 14.15pt">
+            <td width="341" nowrap="nowrap" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 255.45pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 34pt; border-left: medium none; padding-right: 0cm">
+            <p align="left" class="MsoNormal" style="text-align: left; margin: 0cm 2.85pt 0pt; line-height: 12pt"><font size="2"><span style="font-family: 宋体">热轧普通板卷（</span><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;">4.75-11.5mm</span><span style="font-family: 宋体">，</span><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;">Q235</span><span style="font-family: 宋体">）</span></font></p>
+            </td>
+            <td width="61" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 45.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="center" class="MsoNormal" style="text-align: center; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体"><font size="2">吨</font></span></p>
+            </td>
+            <td width="80" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 60.15pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">4074.4</font></span></p>
+            </td>
+            <td width="78" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 58.5pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">23.9</font></span></p>
+            </td>
+            <td width="83" style="border-top: medium none; height: 14.15pt; border-right: medium none; width: 61.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">0.6</font></span></p>
+            </td>
+        </tr>
+        <tr style="height: 14.15pt">
+            <td width="341" nowrap="nowrap" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 255.45pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 34pt; border-left: medium none; padding-right: 0cm">
+            <p align="left" class="MsoNormal" style="text-align: left; margin: 0cm 2.85pt 0pt; line-height: 12pt"><font size="2"><span style="font-family: 宋体">无缝钢管（</span><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;">219*6</span><span style="font-family: 宋体">，</span><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;">20#</span><span style="font-family: 宋体">）</span></font></p>
+            </td>
+            <td width="61" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 45.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="center" class="MsoNormal" style="text-align: center; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体"><font size="2">吨</font></span></p>
+            </td>
+            <td width="80" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 60.15pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">4676.9</font></span></p>
+            </td>
+            <td width="78" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 58.5pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">73.4</font></span></p>
+            </td>
+            <td width="83" style="border-top: medium none; height: 14.15pt; border-right: medium none; width: 61.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">1.6</font></span></p>
+            </td>
+        </tr>
+        <tr style="height: 14.15pt">
+            <td width="341" nowrap="nowrap" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 255.45pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 34pt; border-left: medium none; padding-right: 0cm">
+            <p align="left" class="MsoNormal" style="text-align: left; margin: 0cm 2.85pt 0pt; line-height: 12pt"><font size="2"><span style="font-family: 宋体">角钢（</span><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;">5#</span><span style="font-family: 宋体">）</span></font></p>
+            </td>
+            <td width="61" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 45.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="center" class="MsoNormal" style="text-align: center; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体"><font size="2">吨</font></span></p>
+            </td>
+            <td width="80" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 60.15pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">4178.0</font></span></p>
+            </td>
+            <td width="78" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 58.5pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">14.8</font></span></p>
+            </td>
+            <td width="83" style="border-top: medium none; height: 14.15pt; border-right: medium none; width: 61.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">0.4</font></span></p>
+            </td>
+        </tr>
+        <tr style="height: 14.15pt">
+            <td width="341" nowrap="nowrap" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 255.45pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="left" class="MsoNormal" style="text-align: left; margin: 0cm 2.85pt 0pt; line-height: 12pt"><b><span style="font-family: 宋体"><font size="2">二、有色金属</font></span></b></p>
+            </td>
+            <td width="61" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 45.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="center" class="MsoNormal" style="text-align: center; margin: 0cm 2.85pt 0pt; line-height: 12pt"><b><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">&nbsp;</font></span></b></p>
+            </td>
+            <td width="80" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 60.15pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><b><span style="font-family: 宋体"><font size="2">　</font></span></b></p>
+            </td>
+            <td width="78" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 58.5pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><b><span style="font-family: 宋体"><font size="2">　</font></span></b></p>
+            </td>
+            <td width="83" style="border-top: medium none; height: 14.15pt; border-right: medium none; width: 61.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><b><span style="font-family: 宋体"><font size="2">　</font></span></b></p>
+            </td>
+        </tr>
+        <tr style="height: 14.15pt">
+            <td width="341" nowrap="nowrap" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 255.45pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 34pt; border-left: medium none; padding-right: 0cm">
+            <p align="left" class="MsoNormal" style="text-align: left; margin: 0cm 2.85pt 0pt; line-height: 12pt"><font size="2"><span style="font-family: 宋体">电解铜（</span><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;">1#</span><span style="font-family: 宋体">）</span></font></p>
+            </td>
+            <td width="61" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 45.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="center" class="MsoNormal" style="text-align: center; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体"><font size="2">吨</font></span></p>
+            </td>
+            <td width="80" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 60.15pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">68585.0</font></span></p>
+            </td>
+            <td width="78" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 58.5pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">577.9</font></span></p>
+            </td>
+            <td width="83" style="border-top: medium none; height: 14.15pt; border-right: medium none; width: 61.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">0.8</font></span></p>
+            </td>
+        </tr>
+        <tr style="height: 14.15pt">
+            <td width="341" nowrap="nowrap" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 255.45pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 34pt; border-left: medium none; padding-right: 0cm">
+            <p align="left" class="MsoNormal" style="text-align: left; margin: 0cm 2.85pt 0pt; line-height: 12pt; tab-stops: -.5pt"><font size="2"><span style="font-family: 宋体">铝锭（</span><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;">A00</span><span style="font-family: 宋体">）</span></font></p>
+            </td>
+            <td width="61" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 45.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="center" class="MsoNormal" style="text-align: center; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体"><font size="2">吨</font></span></p>
+            </td>
+            <td width="80" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 60.15pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">18955.0</font></span></p>
+            </td>
+            <td width="78" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 58.5pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">-27.9</font></span></p>
+            </td>
+            <td width="83" style="border-top: medium none; height: 14.15pt; border-right: medium none; width: 61.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">-0.1</font></span></p>
+            </td>
+        </tr>
+        <tr style="height: 14.15pt">
+            <td width="341" nowrap="nowrap" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 255.45pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 34pt; border-left: medium none; padding-right: 0cm">
+            <p align="left" class="MsoNormal" style="text-align: left; margin: 0cm 2.85pt 0pt; line-height: 12pt; tab-stops: -.5pt"><font size="2"><span style="font-family: 宋体">铅锭（</span><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;">1#</span><span style="font-family: 宋体">）</span></font></p>
+            </td>
+            <td width="61" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 45.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="center" class="MsoNormal" style="text-align: center; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体"><font size="2">吨</font></span></p>
+            </td>
+            <td width="80" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 60.15pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">16228.1</font></span></p>
+            </td>
+            <td width="78" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 58.5pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">153.1</font></span></p>
+            </td>
+            <td width="83" style="border-top: medium none; height: 14.15pt; border-right: medium none; width: 61.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">1.0</font></span></p>
+            </td>
+        </tr>
+        <tr style="height: 14.15pt">
+            <td width="341" nowrap="nowrap" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 255.45pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 34pt; border-left: medium none; padding-right: 0cm">
+            <p align="left" class="MsoNormal" style="text-align: left; margin: 0cm 2.85pt 0pt; line-height: 12pt; tab-stops: -.5pt"><font size="2"><span style="font-family: 宋体">锌锭（</span><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;">0#</span><span style="font-family: 宋体">）</span></font></p>
+            </td>
+            <td width="61" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 45.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="center" class="MsoNormal" style="text-align: center; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体"><font size="2">吨</font></span></p>
+            </td>
+            <td width="80" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 60.15pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">21217.5</font></span></p>
+            </td>
+            <td width="78" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 58.5pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">4.6</font></span></p>
+            </td>
+            <td width="83" style="border-top: medium none; height: 14.15pt; border-right: medium none; width: 61.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">0.0</font></span></p>
+            </td>
+        </tr>
+        <tr style="height: 14.15pt">
+            <td width="341" nowrap="nowrap" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 255.45pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="left" class="MsoNormal" style="text-align: left; margin: 0cm 2.85pt 0pt; line-height: 12pt"><b><span style="font-family: 宋体"><font size="2">三、化工产品</font></span></b></p>
+            </td>
+            <td width="61" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 45.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="center" class="MsoNormal" style="text-align: center; margin: 0cm 2.85pt 0pt; line-height: 12pt"><b><span style="font-family: 宋体"><font size="2">　</font></span></b></p>
+            </td>
+            <td width="80" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 60.15pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><b><span style="font-family: 宋体"><font size="2">　</font></span></b></p>
+            </td>
+            <td width="78" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 58.5pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><b><span style="font-family: 宋体"><font size="2">　</font></span></b></p>
+            </td>
+            <td width="83" style="border-top: medium none; height: 14.15pt; border-right: medium none; width: 61.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><b><span style="font-family: 宋体"><font size="2">　</font></span></b></p>
+            </td>
+        </tr>
+        <tr style="height: 14.15pt">
+            <td width="341" nowrap="nowrap" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 255.45pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 34pt; border-left: medium none; padding-right: 0cm">
+            <p align="left" class="MsoNormal" style="text-align: left; margin: 0cm 2.85pt 0pt; line-height: 12pt"><font size="2"><span style="font-family: 宋体">硫酸（</span><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;">98%</span><span style="font-family: 宋体">）</span></font></p>
+            </td>
+            <td width="61" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 45.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="center" class="MsoNormal" style="text-align: center; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体"><font size="2">吨</font></span></p>
+            </td>
+            <td width="80" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 60.15pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">228.5</font></span></p>
+            </td>
+            <td width="78" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 58.5pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">-6.7</font></span></p>
+            </td>
+            <td width="83" style="border-top: medium none; height: 14.15pt; border-right: medium none; width: 61.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">-2.8</font></span></p>
+            </td>
+        </tr>
+        <tr style="height: 14.15pt">
+            <td width="341" nowrap="nowrap" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 255.45pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 34pt; border-left: medium none; padding-right: 0cm">
+            <p align="left" class="MsoNormal" style="text-align: left; margin: 0cm 2.85pt 0pt; line-height: 12pt"><font size="2"><span style="font-family: 宋体">烧碱（液碱，</span><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;">32%</span><span style="font-family: 宋体">）</span></font></p>
+            </td>
+            <td width="61" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 45.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="center" class="MsoNormal" style="text-align: center; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体"><font size="2">吨</font></span></p>
+            </td>
+            <td width="80" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 60.15pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">790.0</font></span></p>
+            </td>
+            <td width="78" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 58.5pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">20.8</font></span></p>
+            </td>
+            <td width="83" style="border-top: medium none; height: 14.15pt; border-right: medium none; width: 61.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">2.7</font></span></p>
+            </td>
+        </tr>
+        <tr style="height: 14.15pt">
+            <td width="341" nowrap="nowrap" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 255.45pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 34pt; border-left: medium none; padding-right: 0cm">
+            <p align="left" class="MsoNormal" style="text-align: left; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体"><font size="2">甲醇（优等品）</font></span></p>
+            </td>
+            <td width="61" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 45.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="center" class="MsoNormal" style="text-align: center; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体"><font size="2">吨</font></span></p>
+            </td>
+            <td width="80" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 60.15pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">2368.1</font></span></p>
+            </td>
+            <td width="78" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 58.5pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">44.6</font></span></p>
+            </td>
+            <td width="83" style="border-top: medium none; height: 14.15pt; border-right: medium none; width: 61.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">1.9</font></span></p>
+            </td>
+        </tr>
+        <tr style="height: 14.15pt">
+            <td width="341" nowrap="nowrap" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 255.45pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 34pt; border-left: medium none; padding-right: 0cm">
+            <p align="left" class="MsoNormal" style="text-align: left; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体"><font size="2">纯苯（石油苯，工业级）</font></span></p>
+            </td>
+            <td width="61" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 45.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="center" class="MsoNormal" style="text-align: center; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体"><font size="2">吨</font></span></p>
+            </td>
+            <td width="80" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 60.15pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">8027.3</font></span></p>
+            </td>
+            <td width="78" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 58.5pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">354.0</font></span></p>
+            </td>
+            <td width="83" style="border-top: medium none; height: 14.15pt; border-right: medium none; width: 61.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">4.6</font></span></p>
+            </td>
+        </tr>
+        <tr style="height: 14.15pt">
+            <td width="341" nowrap="nowrap" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 255.45pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 34pt; border-left: medium none; padding-right: 0cm">
+            <p align="left" class="MsoNormal" style="text-align: left; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体"><font size="2">苯乙烯（一级品）</font></span></p>
+            </td>
+            <td width="61" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 45.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="center" class="MsoNormal" style="text-align: center; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体"><font size="2">吨</font></span></p>
+            </td>
+            <td width="80" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 60.15pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">8758.3</font></span></p>
+            </td>
+            <td width="78" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 58.5pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">224.3</font></span></p>
+            </td>
+            <td width="83" style="border-top: medium none; height: 14.15pt; border-right: medium none; width: 61.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">2.6</font></span></p>
+            </td>
+        </tr>
+        <tr style="height: 14.15pt">
+            <td width="341" nowrap="nowrap" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 255.45pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 34pt; border-left: medium none; padding-right: 0cm">
+            <p align="left" class="MsoNormal" style="text-align: left; margin: 0cm 2.85pt 0pt; line-height: 12pt"><font size="2"><span style="font-family: 宋体">聚乙烯（</span><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;">LLDPE</span><span style="font-family: 宋体">，熔融指数</span><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;">2</span><span style="font-family: 宋体">薄膜料）</span></font></p>
+            </td>
+            <td width="61" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 45.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="center" class="MsoNormal" style="text-align: center; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体"><font size="2">吨</font></span></p>
+            </td>
+            <td width="80" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 60.15pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">8298.1</font></span></p>
+            </td>
+            <td width="78" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 58.5pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">114.1</font></span></p>
+            </td>
+            <td width="83" style="border-top: medium none; height: 14.15pt; border-right: medium none; width: 61.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">1.4</font></span></p>
+            </td>
+        </tr>
+        <tr style="height: 14.15pt">
+            <td width="341" nowrap="nowrap" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 255.45pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 34pt; border-left: medium none; padding-right: 0cm">
+            <p align="left" class="MsoNormal" style="text-align: left; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体"><font size="2">聚丙烯（拉丝料）</font></span></p>
+            </td>
+            <td width="61" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 45.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="center" class="MsoNormal" style="text-align: center; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体"><font size="2">吨</font></span></p>
+            </td>
+            <td width="80" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 60.15pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">7369.8</font></span></p>
+            </td>
+            <td width="78" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 58.5pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">30.0</font></span></p>
+            </td>
+            <td width="83" style="border-top: medium none; height: 14.15pt; border-right: medium none; width: 61.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">0.4</font></span></p>
+            </td>
+        </tr>
+        <tr style="height: 14.15pt">
+            <td width="341" nowrap="nowrap" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 255.45pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 34pt; border-left: medium none; padding-right: 0cm">
+            <p align="left" class="MsoNormal" style="text-align: left; margin: 0cm 2.85pt 0pt; line-height: 12pt"><font size="2"><span style="font-family: 宋体">聚氯乙烯（</span><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;">SG5</span><span style="font-family: 宋体">）</span></font></p>
+            </td>
+            <td width="61" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 45.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="center" class="MsoNormal" style="text-align: center; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体"><font size="2">吨</font></span></p>
+            </td>
+            <td width="80" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 60.15pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">5677.2</font></span></p>
+            </td>
+            <td width="78" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 58.5pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">27.5</font></span></p>
+            </td>
+            <td width="83" style="border-top: medium none; height: 14.15pt; border-right: medium none; width: 61.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">0.5</font></span></p>
+            </td>
+        </tr>
+        <tr style="height: 14.15pt">
+            <td width="341" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 255.45pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 34pt; border-left: medium none; padding-right: 0cm">
+            <p align="left" class="MsoNormal" style="text-align: left; margin: 0cm 2.85pt 0pt; line-height: 12pt"><font size="2"><span style="font-family: 宋体">顺丁胶（</span><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;">BR9000</span><span style="font-family: 宋体">）</span></font></p>
+            </td>
+            <td width="61" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 45.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="center" class="MsoNormal" style="text-align: center; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体"><font size="2">吨</font></span></p>
+            </td>
+            <td width="80" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 60.15pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">12114.6</font></span></p>
+            </td>
+            <td width="78" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 58.5pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">78.9</font></span></p>
+            </td>
+            <td width="83" style="border-top: medium none; height: 14.15pt; border-right: medium none; width: 61.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">0.7</font></span></p>
+            </td>
+        </tr>
+        <tr style="height: 14.15pt">
+            <td width="341" nowrap="nowrap" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 255.45pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 34pt; border-left: medium none; padding-right: 0cm">
+            <p align="left" class="MsoNormal" style="text-align: left; margin: 0cm 2.85pt 0pt; line-height: 12pt"><font size="2"><span style="font-family: 宋体">涤纶长丝（</span><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;">POY150D/48F</span><span style="font-family: 宋体">）</span></font></p>
+            </td>
+            <td width="61" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 45.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="center" class="MsoNormal" style="text-align: center; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体"><font size="2">吨</font></span></p>
+            </td>
+            <td width="80" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 60.15pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">7681.3</font></span></p>
+            </td>
+            <td width="78" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 58.5pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">156.3</font></span></p>
+            </td>
+            <td width="83" style="border-top: medium none; height: 14.15pt; border-right: medium none; width: 61.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">2.1</font></span></p>
+            </td>
+        </tr>
+        <tr style="height: 14.15pt">
+            <td width="341" nowrap="nowrap" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 255.45pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="left" class="MsoNormal" style="text-align: left; margin: 0cm 2.85pt 0pt; line-height: 12pt"><b><span style="font-family: 宋体"><font size="2">四、石油天然气</font></span></b></p>
+            </td>
+            <td width="61" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 45.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="center" class="MsoNormal" style="text-align: center; margin: 0cm 2.85pt 0pt; line-height: 12pt"><b><span style="font-family: 宋体"><font size="2">　</font></span></b></p>
+            </td>
+            <td width="80" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 60.15pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><b><span style="font-family: 宋体"><font size="2">　</font></span></b></p>
+            </td>
+            <td width="78" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 58.5pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><b><span style="font-family: 宋体"><font size="2">　</font></span></b></p>
+            </td>
+            <td width="83" style="border-top: medium none; height: 14.15pt; border-right: medium none; width: 61.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><b><span style="font-family: 宋体"><font size="2">　</font></span></b></p>
+            </td>
+        </tr>
+        <tr style="height: 14.15pt">
+            <td width="341" nowrap="nowrap" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 255.45pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 34pt; border-left: medium none; padding-right: 0cm">
+            <p align="left" class="MsoNormal" style="text-align: left; margin: 0cm 2.85pt 0pt; line-height: 12pt"><font size="2"><span style="font-family: 宋体">液化天然气（</span><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;">LNG</span><span style="font-family: 宋体">）</span></font></p>
+            </td>
+            <td width="61" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 45.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="center" class="MsoNormal" style="text-align: center; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体"><font size="2">吨</font></span></p>
+            </td>
+            <td width="80" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 60.15pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">4954.8</font></span></p>
+            </td>
+            <td width="78" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 58.5pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">78.9</font></span></p>
+            </td>
+            <td width="83" style="border-top: medium none; height: 14.15pt; border-right: medium none; width: 61.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">1.6</font></span></p>
+            </td>
+        </tr>
+        <tr style="height: 14.15pt">
+            <td width="341" nowrap="nowrap" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 255.45pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 34pt; border-left: medium none; padding-right: 0cm">
+            <p align="left" class="MsoNormal" style="text-align: left; margin: 0cm 2.85pt 0pt; line-height: 12pt"><font size="2"><span style="font-family: 宋体">液化石油气（</span><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;">LPG</span><span style="font-family: 宋体">）</span></font></p>
+            </td>
+            <td width="61" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 45.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="center" class="MsoNormal" style="text-align: center; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体"><font size="2">吨</font></span></p>
+            </td>
+            <td width="80" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 60.15pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">4753.1</font></span></p>
+            </td>
+            <td width="78" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 58.5pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">-70.4</font></span></p>
+            </td>
+            <td width="83" style="border-top: medium none; height: 14.15pt; border-right: medium none; width: 61.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">-1.5</font></span></p>
+            </td>
+        </tr>
+        <tr style="height: 14.15pt">
+            <td width="341" nowrap="nowrap" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 255.45pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 34pt; border-left: medium none; padding-right: 0cm">
+            <p align="left" class="MsoNormal" style="text-align: left; margin: 0cm 2.85pt 0pt; line-height: 12pt"><font size="2"><span style="font-family: 宋体">汽油（</span><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;">95#</span><span style="font-family: 宋体">国</span><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;">VI</span><span style="font-family: 宋体">）</span></font></p>
+            </td>
+            <td width="61" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 45.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="center" class="MsoNormal" style="text-align: center; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体"><font size="2">吨</font></span></p>
+            </td>
+            <td width="80" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 60.15pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">9251.4</font></span></p>
+            </td>
+            <td width="78" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 58.5pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">30.2</font></span></p>
+            </td>
+            <td width="83" style="border-top: medium none; height: 14.15pt; border-right: medium none; width: 61.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">0.3</font></span></p>
+            </td>
+        </tr>
+        <tr style="height: 14.15pt">
+            <td width="341" nowrap="nowrap" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 255.45pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 34pt; border-left: medium none; padding-right: 0cm">
+            <p align="left" class="MsoNormal" style="text-align: left; margin: 0cm 2.85pt 0pt; line-height: 12pt"><font size="2"><span style="font-family: 宋体">汽油（</span><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;">92#</span><span style="font-family: 宋体">国</span><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;">VI</span><span style="font-family: 宋体">）</span></font></p>
+            </td>
+            <td width="61" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 45.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="center" class="MsoNormal" style="text-align: center; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体"><font size="2">吨</font></span></p>
+            </td>
+            <td width="80" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 60.15pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">8945.4</font></span></p>
+            </td>
+            <td width="78" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 58.5pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">29.3</font></span></p>
+            </td>
+            <td width="83" style="border-top: medium none; height: 14.15pt; border-right: medium none; width: 61.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">0.3</font></span></p>
+            </td>
+        </tr>
+        <tr style="height: 14.15pt">
+            <td width="341" nowrap="nowrap" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 255.45pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 34pt; border-left: medium none; padding-right: 0cm">
+            <p align="left" class="MsoNormal" style="text-align: left; margin: 0cm 2.85pt 0pt; line-height: 12pt"><font size="2"><span style="font-family: 宋体">柴油（</span><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;">0#</span><span style="font-family: 宋体">国</span><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;">VI</span><span style="font-family: 宋体">）</span></font></p>
+            </td>
+            <td width="61" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 45.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="center" class="MsoNormal" style="text-align: center; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体"><font size="2">吨</font></span></p>
+            </td>
+            <td width="80" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 60.15pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">7641.5</font></span></p>
+            </td>
+            <td width="78" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 58.5pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">-2.3</font></span></p>
+            </td>
+            <td width="83" style="border-top: medium none; height: 14.15pt; border-right: medium none; width: 61.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">0.0</font></span></p>
+            </td>
+        </tr>
+        <tr style="height: 14.15pt">
+            <td width="341" nowrap="nowrap" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 255.45pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 34pt; border-left: medium none; padding-right: 0cm">
+            <p align="left" class="MsoNormal" style="text-align: left; margin: 0cm 2.85pt 0pt; line-height: 12pt"><font size="2"><span style="font-family: 宋体">石蜡（</span><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;; color: black">58#</span><span style="font-family: 宋体; color: black">半</span><span style="font-family: 宋体">）</span></font></p>
+            </td>
+            <td width="61" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 45.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="center" class="MsoNormal" style="text-align: center; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体"><font size="2">吨</font></span></p>
+            </td>
+            <td width="80" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 60.15pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">8220.0</font></span></p>
+            </td>
+            <td width="78" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 58.5pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">0.0</font></span></p>
+            </td>
+            <td width="83" style="border-top: medium none; height: 14.15pt; border-right: medium none; width: 61.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">0.0</font></span></p>
+            </td>
+        </tr>
+        <tr style="height: 14.15pt">
+            <td width="341" nowrap="nowrap" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 255.45pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="left" class="MsoNormal" style="text-align: left; margin: 0cm 2.85pt 0pt; line-height: 12pt"><b><span style="font-family: 宋体"><font size="2">五、煤炭</font></span></b></p>
+            </td>
+            <td width="61" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 45.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="center" class="MsoNormal" style="text-align: center; margin: 0cm 2.85pt 0pt; line-height: 12pt"><b><span style="font-family: 宋体"><font size="2">　</font></span></b></p>
+            </td>
+            <td width="80" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 60.15pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><b><span style="font-family: 宋体"><font size="2">　</font></span></b></p>
+            </td>
+            <td width="78" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 58.5pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><b><span style="font-family: 宋体"><font size="2">　</font></span></b></p>
+            </td>
+            <td width="83" style="border-top: medium none; height: 14.15pt; border-right: medium none; width: 61.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><b><span style="font-family: 宋体"><font size="2">　</font></span></b></p>
+            </td>
+        </tr>
+        <tr style="height: 14.15pt">
+            <td width="341" nowrap="nowrap" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 255.45pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 34pt; border-left: medium none; padding-right: 0cm">
+            <p align="left" class="MsoNormal" style="text-align: left; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体"><font size="2">无烟煤（洗中块）</font></span></p>
+            </td>
+            <td width="61" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 45.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="center" class="MsoNormal" style="text-align: center; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体"><font size="2">吨</font></span></p>
+            </td>
+            <td width="80" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 60.15pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">995.0</font></span></p>
+            </td>
+            <td width="78" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 58.5pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">-17.1</font></span></p>
+            </td>
+            <td width="83" style="border-top: medium none; height: 14.15pt; border-right: medium none; width: 61.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">-1.7</font></span></p>
+            </td>
+        </tr>
+        <tr style="height: 14.15pt">
+            <td width="341" nowrap="nowrap" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 255.45pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 34pt; border-left: medium none; padding-right: 0cm">
+            <p align="left" class="MsoNormal" style="text-align: left; margin: 0cm 2.85pt 0pt; line-height: 12pt"><font size="2"><span style="font-family: 宋体">普通混煤（</span><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;">4500</span><span style="font-family: 宋体; color: black">大卡</span><span style="font-family: 宋体">）</span></font></p>
+            </td>
+            <td width="61" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 45.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="center" class="MsoNormal" style="text-align: center; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体"><font size="2">吨</font></span></p>
+            </td>
+            <td width="80" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 60.15pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">696.3</font></span></p>
+            </td>
+            <td width="78" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 58.5pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">-6.4</font></span></p>
+            </td>
+            <td width="83" style="border-top: medium none; height: 14.15pt; border-right: medium none; width: 61.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">-0.9</font></span></p>
+            </td>
+        </tr>
+        <tr style="height: 14.15pt">
+            <td width="341" nowrap="nowrap" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 255.45pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 34pt; border-left: medium none; padding-right: 0cm">
+            <p align="left" class="MsoNormal" style="text-align: left; margin: 0cm 2.85pt 0pt; line-height: 12pt"><font size="2"><span style="font-family: 宋体">山西大混（</span><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;">5000</span><span style="font-family: 宋体; color: black">大卡</span><span style="font-family: 宋体">）</span></font></p>
+            </td>
+            <td width="61" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 45.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="center" class="MsoNormal" style="text-align: center; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体"><font size="2">吨</font></span></p>
+            </td>
+            <td width="80" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 60.15pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">800.8</font></span></p>
+            </td>
+            <td width="78" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 58.5pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">-4.9</font></span></p>
+            </td>
+            <td width="83" style="border-top: medium none; height: 14.15pt; border-right: medium none; width: 61.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">-0.6</font></span></p>
+            </td>
+        </tr>
+        <tr style="height: 14.15pt">
+            <td width="341" nowrap="nowrap" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 255.45pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 34pt; border-left: medium none; padding-right: 0cm">
+            <p align="left" class="MsoNormal" style="text-align: left; margin: 0cm 2.85pt 0pt; line-height: 12pt"><font size="2"><span style="font-family: 宋体">山西优混（</span><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;">5500</span><span style="font-family: 宋体; color: black">大卡</span><span style="font-family: 宋体">）</span></font></p>
+            </td>
+            <td width="61" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 45.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="center" class="MsoNormal" style="text-align: center; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体"><font size="2">吨</font></span></p>
+            </td>
+            <td width="80" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 60.15pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">910.8</font></span></p>
+            </td>
+            <td width="78" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 58.5pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">-4.9</font></span></p>
+            </td>
+            <td width="83" style="border-top: medium none; height: 14.15pt; border-right: medium none; width: 61.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">-0.5</font></span></p>
+            </td>
+        </tr>
+        <tr style="height: 14.15pt">
+            <td width="341" nowrap="nowrap" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 255.45pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 34pt; border-left: medium none; padding-right: 0cm">
+            <p align="left" class="MsoNormal" style="text-align: left; margin: 0cm 2.85pt 0pt; line-height: 12pt"><font size="2"><span style="font-family: 宋体">大同混煤（</span><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;">5800</span><span style="font-family: 宋体; color: black">大卡</span><span style="font-family: 宋体">）</span></font></p>
+            </td>
+            <td width="61" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 45.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="center" class="MsoNormal" style="text-align: center; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体"><font size="2">吨</font></span></p>
+            </td>
+            <td width="80" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 60.15pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">960.4</font></span></p>
+            </td>
+            <td width="78" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 58.5pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">-5.3</font></span></p>
+            </td>
+            <td width="83" style="border-top: medium none; height: 14.15pt; border-right: medium none; width: 61.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">-0.5</font></span></p>
+            </td>
+        </tr>
+        <tr style="height: 14.15pt">
+            <td width="341" nowrap="nowrap" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 255.45pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 34pt; border-left: medium none; padding-right: 0cm">
+            <p align="left" class="MsoNormal" style="text-align: left; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体"><font size="2">焦煤（主焦煤）</font></span></p>
+            </td>
+            <td width="61" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 45.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="center" class="MsoNormal" style="text-align: center; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体"><font size="2">吨</font></span></p>
+            </td>
+            <td width="80" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 60.15pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">2375.0</font></span></p>
+            </td>
+            <td width="78" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 58.5pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">0.0</font></span></p>
+            </td>
+            <td width="83" style="border-top: medium none; height: 14.15pt; border-right: medium none; width: 61.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">0.0</font></span></p>
+            </td>
+        </tr>
+        <tr style="height: 14.15pt">
+            <td width="341" nowrap="nowrap" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 255.45pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 34pt; border-left: medium none; padding-right: 0cm">
+            <p align="left" class="MsoNormal" style="text-align: left; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体"><font size="2">焦炭（准一级冶金焦）</font></span></p>
+            </td>
+            <td width="61" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 45.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="center" class="MsoNormal" style="text-align: center; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体"><font size="2">吨</font></span></p>
+            </td>
+            <td width="80" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 60.15pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">2212.9</font></span></p>
+            </td>
+            <td width="78" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 58.5pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">0.0</font></span></p>
+            </td>
+            <td width="83" style="border-top: medium none; height: 14.15pt; border-right: medium none; width: 61.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">0.0</font></span></p>
+            </td>
+        </tr>
+        <tr style="height: 14.15pt">
+            <td width="341" nowrap="nowrap" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 255.45pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="left" class="MsoNormal" style="text-align: left; margin: 0cm 2.85pt 0pt; line-height: 12pt"><b><span style="font-family: 宋体"><font size="2">六、非金属建材</font></span></b></p>
+            </td>
+            <td width="61" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 45.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="center" class="MsoNormal" style="text-align: center; margin: 0cm 2.85pt 0pt; line-height: 12pt"><b><span style="font-family: 宋体"><font size="2">　</font></span></b></p>
+            </td>
+            <td width="80" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 60.15pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><b><span style="font-family: 宋体"><font size="2">　</font></span></b></p>
+            </td>
+            <td width="78" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 58.5pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><b><span style="font-family: 宋体"><font size="2">　</font></span></b></p>
+            </td>
+            <td width="83" style="border-top: medium none; height: 14.15pt; border-right: medium none; width: 61.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><b><span style="font-family: 宋体"><font size="2">　</font></span></b></p>
+            </td>
+        </tr>
+        <tr style="height: 14.15pt">
+            <td width="341" nowrap="nowrap" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 255.45pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 34pt; border-left: medium none; padding-right: 0cm">
+            <p align="left" class="MsoNormal" style="text-align: left; margin: 0cm 2.85pt 0pt; line-height: 12pt"><font size="2"><span style="font-family: 宋体">普通硅酸盐水泥（</span><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;">P.O 42.5</span><span style="font-family: 宋体">袋装）</span></font></p>
+            </td>
+            <td width="61" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 45.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="center" class="MsoNormal" style="text-align: center; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体"><font size="2">吨</font></span></p>
+            </td>
+            <td width="80" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 60.15pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">370.6</font></span></p>
+            </td>
+            <td width="78" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 58.5pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">3.2</font></span></p>
+            </td>
+            <td width="83" style="border-top: medium none; height: 14.15pt; border-right: medium none; width: 61.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">0.9</font></span></p>
+            </td>
+        </tr>
+        <tr style="height: 14.15pt">
+            <td width="341" nowrap="nowrap" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 255.45pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 34pt; border-left: medium none; padding-right: 0cm">
+            <p align="left" class="MsoNormal" style="text-align: left; margin: 0cm 2.85pt 0pt; line-height: 12pt"><font size="2"><span style="font-family: 宋体">普通硅酸盐水泥（</span><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;">P.O 42.5</span><span style="font-family: 宋体">散装）</span></font></p>
+            </td>
+            <td width="61" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 45.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="center" class="MsoNormal" style="text-align: center; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体"><font size="2">吨</font></span></p>
+            </td>
+            <td width="80" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 60.15pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">321.0</font></span></p>
+            </td>
+            <td width="78" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 58.5pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">-2.2</font></span></p>
+            </td>
+            <td width="83" style="border-top: medium none; height: 14.15pt; border-right: medium none; width: 61.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">-0.7</font></span></p>
+            </td>
+        </tr>
+        <tr style="height: 14.15pt">
+            <td width="341" nowrap="nowrap" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 255.45pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 34pt; border-left: medium none; padding-right: 0cm">
+            <p align="left" class="MsoNormal" style="text-align: left; margin: 0cm 2.85pt 0pt; line-height: 12pt"><font size="2"><span style="font-family: 宋体">浮法平板玻璃（</span><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;; color: black">4.8</span><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;">/</span><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;; color: black">5mm</span><span style="font-family: 宋体">）</span></font></p>
+            </td>
+            <td width="61" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 45.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="center" class="MsoNormal" style="text-align: center; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体"><font size="2">吨</font></span></p>
+            </td>
+            <td width="80" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 60.15pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">2045.1</font></span></p>
+            </td>
+            <td width="78" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 58.5pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">4.7</font></span></p>
+            </td>
+            <td width="83" style="border-top: medium none; height: 14.15pt; border-right: medium none; width: 61.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">0.2</font></span></p>
+            </td>
+        </tr>
+        <tr style="height: 14.15pt">
+            <td width="341" nowrap="nowrap" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 255.45pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="left" class="MsoNormal" style="text-align: left; margin: 0cm 2.85pt 0pt; line-height: 12pt"><b><span style="font-family: 宋体"><font size="2">七、农产品（主要用于加工）</font></span></b></p>
+            </td>
+            <td width="61" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 45.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="center" class="MsoNormal" style="text-align: center; margin: 0cm 2.85pt 0pt; line-height: 12pt"><b><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">&nbsp;</font></span></b></p>
+            </td>
+            <td width="80" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 60.15pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><b><span style="font-family: 宋体"><font size="2">　</font></span></b></p>
+            </td>
+            <td width="78" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 58.5pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><b><span style="font-family: 宋体"><font size="2">　</font></span></b></p>
+            </td>
+            <td width="83" style="border-top: medium none; height: 14.15pt; border-right: medium none; width: 61.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><b><span style="font-family: 宋体"><font size="2">　</font></span></b></p>
+            </td>
+        </tr>
+        <tr style="height: 14.15pt">
+            <td width="341" nowrap="nowrap" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 255.45pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 34pt; border-left: medium none; padding-right: 0cm">
+            <p align="left" class="MsoNormal" style="text-align: left; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体"><font size="2">稻米（<span style="color: black">粳稻米</span>）</font></span></p>
+            </td>
+            <td width="61" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 45.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="center" class="MsoNormal" style="text-align: center; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体"><font size="2">吨</font></span></p>
+            </td>
+            <td width="80" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 60.15pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">4074.3</font></span></p>
+            </td>
+            <td width="78" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 58.5pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">-1.7</font></span></p>
+            </td>
+            <td width="83" style="border-top: medium none; height: 14.15pt; border-right: medium none; width: 61.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">0.0</font></span></p>
+            </td>
+        </tr>
+        <tr style="height: 14.15pt">
+            <td width="341" nowrap="nowrap" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 255.45pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 34pt; border-left: medium none; padding-right: 0cm">
+            <p align="left" class="MsoNormal" style="text-align: left; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体"><font size="2">小麦（<span style="color: black">国标三等</span>）</font></span></p>
+            </td>
+            <td width="61" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 45.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="center" class="MsoNormal" style="text-align: center; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体"><font size="2">吨</font></span></p>
+            </td>
+            <td width="80" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 60.15pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">2737.5</font></span></p>
+            </td>
+            <td width="78" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 58.5pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">-81.0</font></span></p>
+            </td>
+            <td width="83" style="border-top: medium none; height: 14.15pt; border-right: medium none; width: 61.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">-2.9</font></span></p>
+            </td>
+        </tr>
+        <tr style="height: 14.15pt">
+            <td width="341" nowrap="nowrap" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 255.45pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 34pt; border-left: medium none; padding-right: 0cm">
+            <p align="left" class="MsoNormal" style="text-align: left; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体"><font size="2">玉米（<span style="color: black">黄玉米二等</span>）</font></span></p>
+            </td>
+            <td width="61" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 45.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="center" class="MsoNormal" style="text-align: center; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体"><font size="2">吨</font></span></p>
+            </td>
+            <td width="80" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 60.15pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">2272.6</font></span></p>
+            </td>
+            <td width="78" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 58.5pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">-67.4</font></span></p>
+            </td>
+            <td width="83" style="border-top: medium none; height: 14.15pt; border-right: medium none; width: 61.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">-2.9</font></span></p>
+            </td>
+        </tr>
+        <tr style="height: 14.15pt">
+            <td width="341" nowrap="nowrap" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 255.45pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 34pt; border-left: medium none; padding-right: 0cm">
+            <p align="left" class="MsoNormal" style="text-align: left; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体"><font size="2">棉花（皮棉，<span style="color: black">白棉三级</span>）</font></span></p>
+            </td>
+            <td width="61" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 45.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="center" class="MsoNormal" style="text-align: center; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体"><font size="2">吨</font></span></p>
+            </td>
+            <td width="80" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 60.15pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">16466.1</font></span></p>
+            </td>
+            <td width="78" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 58.5pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">378.2</font></span></p>
+            </td>
+            <td width="83" style="border-top: medium none; height: 14.15pt; border-right: medium none; width: 61.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">2.4</font></span></p>
+            </td>
+        </tr>
+        <tr style="height: 14.15pt">
+            <td width="341" nowrap="nowrap" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 255.45pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 34pt; border-left: medium none; padding-right: 0cm">
+            <p align="left" class="MsoNormal" style="text-align: left; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体"><font size="2">生猪（<span style="color: black">外三元</span>）</font></span></p>
+            </td>
+            <td width="61" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 45.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="center" class="MsoNormal" style="text-align: center; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体"><font size="2">千克</font></span></p>
+            </td>
+            <td width="80" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 60.15pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">15.0</font></span></p>
+            </td>
+            <td width="78" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 58.5pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">1.3</font></span></p>
+            </td>
+            <td width="83" style="border-top: medium none; height: 14.15pt; border-right: medium none; width: 61.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">9.5</font></span></p>
+            </td>
+        </tr>
+        <tr style="height: 14.15pt">
+            <td width="341" nowrap="nowrap" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 255.45pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 34pt; border-left: medium none; padding-right: 0cm">
+            <p align="left" class="MsoNormal" style="text-align: left; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体"><font size="2">大豆（<span style="color: black">黄豆</span>）</font></span></p>
+            </td>
+            <td width="61" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 45.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="center" class="MsoNormal" style="text-align: center; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体"><font size="2">吨</font></span></p>
+            </td>
+            <td width="80" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 60.15pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">4502.4</font></span></p>
+            </td>
+            <td width="78" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 58.5pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">-53.4</font></span></p>
+            </td>
+            <td width="83" style="border-top: medium none; height: 14.15pt; border-right: medium none; width: 61.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">-1.2</font></span></p>
+            </td>
+        </tr>
+        <tr style="height: 14.15pt">
+            <td width="341" nowrap="nowrap" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 255.45pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 34pt; border-left: medium none; padding-right: 0cm">
+            <p align="left" class="MsoNormal" style="text-align: left; margin: 0cm 2.85pt 0pt; line-height: 12pt"><font size="2"><span style="font-family: 宋体">豆粕（<span style="color: black">粗蛋白含量≥</span></span><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;; color: black">43%</span><span style="font-family: 宋体">）</span></font></p>
+            </td>
+            <td width="61" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 45.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="center" class="MsoNormal" style="text-align: center; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体; color: black"><font size="2">吨</font></span></p>
+            </td>
+            <td width="80" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 60.15pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">3433.5</font></span></p>
+            </td>
+            <td width="78" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 58.5pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">-124.4</font></span></p>
+            </td>
+            <td width="83" style="border-top: medium none; height: 14.15pt; border-right: medium none; width: 61.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">-3.5</font></span></p>
+            </td>
+        </tr>
+        <tr style="height: 14.15pt">
+            <td width="341" nowrap="nowrap" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 255.45pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 34pt; border-left: medium none; padding-right: 0cm">
+            <p align="left" class="MsoNormal" style="text-align: left; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体"><font size="2">花生（<span style="color: black">油料花生米</span>）</font></span></p>
+            </td>
+            <td width="61" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 45.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="center" class="MsoNormal" style="text-align: center; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体"><font size="2">吨</font></span></p>
+            </td>
+            <td width="80" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 60.15pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">8416.7</font></span></p>
+            </td>
+            <td width="78" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 58.5pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">-45.2</font></span></p>
+            </td>
+            <td width="83" style="border-top: medium none; height: 14.15pt; border-right: medium none; width: 61.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">-0.5</font></span></p>
+            </td>
+        </tr>
+        <tr style="height: 14.15pt">
+            <td width="341" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 255.45pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="left" class="MsoNormal" style="text-align: left; margin: 0cm 2.85pt 0pt; line-height: 12pt"><b><span style="font-family: 宋体"><font size="2">八、农业生产资料</font></span></b></p>
+            </td>
+            <td width="61" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 45.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="center" class="MsoNormal" style="text-align: center; margin: 0cm 2.85pt 0pt; line-height: 12pt"><b><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">&nbsp;</font></span></b></p>
+            </td>
+            <td width="80" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 60.15pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><b><span style="font-family: 宋体"><font size="2">　</font></span></b></p>
+            </td>
+            <td width="78" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 58.5pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><b><span style="font-family: 宋体"><font size="2">　</font></span></b></p>
+            </td>
+            <td width="83" style="border-top: medium none; height: 14.15pt; border-right: medium none; width: 61.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><b><span style="font-family: 宋体"><font size="2">　</font></span></b></p>
+            </td>
+        </tr>
+        <tr style="height: 14.15pt">
+            <td width="341" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 255.45pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 34pt; border-left: medium none; padding-right: 0cm">
+            <p align="left" class="MsoNormal" style="text-align: left; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体"><font size="2">尿素（中小颗粒）</font></span></p>
+            </td>
+            <td width="61" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 45.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="center" class="MsoNormal" style="text-align: center; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体; color: black"><font size="2">吨</font></span></p>
+            </td>
+            <td width="80" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 60.15pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">2240.4</font></span></p>
+            </td>
+            <td width="78" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 58.5pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">-69.3</font></span></p>
+            </td>
+            <td width="83" style="border-top: medium none; height: 14.15pt; border-right: medium none; width: 61.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">-3.0</font></span></p>
+            </td>
+        </tr>
+        <tr style="height: 14.15pt">
+            <td width="341" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 255.45pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 34pt; border-left: medium none; padding-right: 0cm">
+            <p align="left" class="MsoNormal" style="text-align: left; margin: 0cm 2.85pt 0pt; line-height: 12pt"><font size="2"><span style="font-family: 宋体">复合肥（硫酸钾复合肥，氮磷钾含量</span><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;">45%</span><span style="font-family: 宋体">）</span></font></p>
+            </td>
+            <td width="61" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 45.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="center" class="MsoNormal" style="text-align: center; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体; color: black"><font size="2">吨</font></span></p>
+            </td>
+            <td width="80" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 60.15pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">3163.9</font></span></p>
+            </td>
+            <td width="78" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 58.5pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">-11.5</font></span></p>
+            </td>
+            <td width="83" style="border-top: medium none; height: 14.15pt; border-right: medium none; width: 61.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">-0.4</font></span></p>
+            </td>
+        </tr>
+        <tr style="height: 14.15pt">
+            <td width="341" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 255.45pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 34pt; border-left: medium none; padding-right: 0cm">
+            <p align="left" class="MsoNormal" style="text-align: left; margin: 0cm 2.85pt 0pt; line-height: 12pt"><font size="2"><span style="font-family: 宋体">农药（草甘膦，</span><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;">95%</span><span style="font-family: 宋体">原药）</span></font></p>
+            </td>
+            <td width="61" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 45.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="center" class="MsoNormal" style="text-align: center; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体; color: black"><font size="2">吨</font></span></p>
+            </td>
+            <td width="80" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 60.15pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">25912.5</font></span></p>
+            </td>
+            <td width="78" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 58.5pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">-187.5</font></span></p>
+            </td>
+            <td width="83" style="border-top: medium none; height: 14.15pt; border-right: medium none; width: 61.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">-0.7</font></span></p>
+            </td>
+        </tr>
+        <tr style="height: 14.15pt">
+            <td width="341" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 255.45pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="left" class="MsoNormal" style="text-align: left; margin: 0cm 2.85pt 0pt; line-height: 12pt"><b><span style="font-family: 宋体"><font size="2">九、林产品</font></span></b></p>
+            </td>
+            <td width="61" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 45.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="center" class="MsoNormal" style="text-align: center; margin: 0cm 2.85pt 0pt; line-height: 12pt"><b><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">&nbsp;</font></span></b></p>
+            </td>
+            <td width="80" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 60.15pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><b><span style="font-family: 宋体"><font size="2">　</font></span></b></p>
+            </td>
+            <td width="78" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 58.5pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><b><span style="font-family: 宋体"><font size="2">　</font></span></b></p>
+            </td>
+            <td width="83" style="border-top: medium none; height: 14.15pt; border-right: medium none; width: 61.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><b><span style="font-family: 宋体"><font size="2">　</font></span></b></p>
+            </td>
+        </tr>
+        <tr style="height: 14.15pt">
+            <td width="341" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 255.45pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 34pt; border-left: medium none; padding-right: 0cm">
+            <p align="left" class="MsoNormal" style="text-align: left; margin: 0cm 2.85pt 0pt; line-height: 12pt"><font size="2"><span style="font-family: 宋体">天然橡胶（标准胶</span><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;">SCRWF</span><span style="font-family: 宋体">）</span></font></p>
+            </td>
+            <td width="61" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 45.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="center" class="MsoNormal" style="text-align: center; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体; color: black"><font size="2">吨</font></span></p>
+            </td>
+            <td width="80" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 60.15pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">12708.3</font></span></p>
+            </td>
+            <td width="78" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 58.5pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">-107.2</font></span></p>
+            </td>
+            <td width="83" style="border-top: medium none; height: 14.15pt; border-right: medium none; width: 61.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">-0.8</font></span></p>
+            </td>
+        </tr>
+        <tr style="height: 14.15pt">
+            <td width="341" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 255.45pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 34pt; border-left: medium none; padding-right: 0cm">
+            <p align="left" class="MsoNormal" style="text-align: left; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体"><font size="2">纸浆（进口针叶浆）</font></span></p>
+            </td>
+            <td width="61" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 45.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="center" class="MsoNormal" style="text-align: center; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体; color: black"><font size="2">吨</font></span></p>
+            </td>
+            <td width="80" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 60.15pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">5833.4</font></span></p>
+            </td>
+            <td width="78" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 58.5pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">17.6</font></span></p>
+            </td>
+            <td width="83" style="border-top: medium none; height: 14.15pt; border-right: medium none; width: 61.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">0.3</font></span></p>
+            </td>
+        </tr>
+        <tr style="height: 14.15pt">
+            <td width="341" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 255.45pt; border-bottom: windowtext 1.5pt solid; padding-bottom: 0cm; padding-top: 0cm; padding-left: 34pt; border-left: medium none; padding-right: 0cm">
+            <p align="left" class="MsoNormal" style="text-align: left; margin: 0cm 2.85pt 0pt; line-height: 12pt"><font size="2"><span style="font-family: 宋体">瓦楞纸（</span><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;">AA</span><span style="font-family: 宋体">级</span><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;">120g</span><span style="font-family: 宋体">）</span></font></p>
+            </td>
+            <td width="61" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 45.9pt; border-bottom: windowtext 1.5pt solid; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="center" class="MsoNormal" style="text-align: center; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span style="font-family: 宋体; color: black"><font size="2">吨</font></span></p>
+            </td>
+            <td width="80" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 60.15pt; border-bottom: windowtext 1.5pt solid; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">2858.4</font></span></p>
+            </td>
+            <td width="78" style="border-top: medium none; height: 14.15pt; border-right: windowtext 1pt solid; width: 58.5pt; border-bottom: windowtext 1.5pt solid; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">-4.0</font></span></p>
+            </td>
+            <td width="83" style="border-top: medium none; height: 14.15pt; border-right: medium none; width: 61.9pt; border-bottom: windowtext 1.5pt solid; padding-bottom: 0cm; padding-top: 0cm; padding-left: 0cm; border-left: medium none; padding-right: 0cm">
+            <p align="right" class="MsoNormal" style="text-align: right; margin: 0cm 2.85pt 0pt; line-height: 12pt"><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;"><font size="2">-0.1</font></span></p>
+            </td>
+        </tr>
+        <tr style="height: 14.15pt">
+            <td width="643" style="border-top: medium none; height: 14.15pt; border-right: medium none; width: 481.9pt; border-bottom: medium none; padding-bottom: 0cm; padding-top: 0cm; padding-left: 34pt; border-left: medium none; padding-right: 0cm" colspan="5">
+            <p align="left" class="MsoNormal" style="text-align: left; margin: 0cm 2.85pt 0pt -34pt; line-height: 12pt"><font size="2"><span style="font-family: 楷体">注：上期为</span><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;">2024</span><span style="font-family: 楷体">年</span><span lang="EN-US" style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;">1</span><span style="font-family: 楷体">月中旬。</span></font></p>
+            </td>
+        </tr>
+    </tbody>
+</table></body></html>

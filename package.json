@@ -7,7 +7,23 @@
     "lib": "lib"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "retail:parse": "node scripts/retail_parse.js",
+    "profits:parse": "node scripts/profits_parse.js",
+    "industry:parse": "node scripts/industry_profits_parse.js",
+    "energy:parse": "node scripts/energy_parser.js",
+    "goods:parse": "node scripts/goods_price_parse.js",
+    "invest:parse": "node scripts/invest_parse.js",
+    "house:parse": "node scripts/house_parse.js",
+    "crawl:goods": "node scripts/crawler_main.js goodsPrice",
+    "crawl:retail": "node scripts/crawler_main.js retail",
+    "crawl:invest": "node scripts/crawler_main.js invest",
+    "crawl:house": "node scripts/crawler_main.js house",
+    "crawl:energy": "node scripts/crawler_main.js energy",
+    "crawl:profits": "node scripts/crawler_main.js profits",
+    "crawl:industry": "node scripts/crawler_main.js industryProfits",
+    "crawl": "node scripts/crawler_main.js",
+    "crawl:all": "node scripts/crawler_main.js all"
   },
   "repository": {
     "type": "git",
@@ -29,6 +45,12 @@
     "multiparty": "^4.2.1"
   },
   "dependencies": {
-    "multipassify": "^1.1.0"
+    "axios": "^1.6.0",
+    "cheerio": "^1.0.0-rc.12",
+    "dayjs": "1.11.18",
+    "echarts": "5.5.0",
+    "multipassify": "^1.1.0",
+    "number-precision": "^1.6.0",
+    "xlsx": "0.18.5"
   }
 }

@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "统计局零售数据导出（多页批量）",
+  "version": "1.3.1",
+  "description": "采集统计局页面中的“社会消费品零售总额主要数据”表格，支持单页导出、跨页批量合并导出、原样下载。",
+  "host_permissions": [
+    "https://www.stats.gov.cn/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.stats.gov.cn/*"
+      ],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_idle"
+    }
+  ]
+}

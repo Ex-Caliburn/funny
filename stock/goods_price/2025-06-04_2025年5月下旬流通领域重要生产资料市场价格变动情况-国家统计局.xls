@@ -1,0 +1,666 @@
+﻿<html><head><meta charset="utf-8" /><style>table{border-collapse:collapse;}td,th{border:1px solid #333;padding:4px;white-space:nowrap;}</style></head><body><table class="trs_word_table" style="margin-right: auto; margin-left: auto; border-collapse: collapse; -aw-border-insidev: 0.5pt single #000000;"><thead>
+<tr class="firstRow" style="height: 28.35pt;">
+<td style="width: 251.68pt; border-top-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-top-width: 1.5pt; border-right-width: 0.75pt; border-bottom-width: 0.75pt; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; -aw-border-bottom: 0.25pt single; -aw-border-right: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: center; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">产品名称</span></p></td>
+<td style="border-width: 1.5pt 0.75pt 0.75pt; border-style: solid; border-color: rgb(0, 0, 0); width: 30.4pt; -aw-border-bottom: 0.25pt single; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: center; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">单位</span></p></td>
+<td style="border-width: 1.5pt 0.75pt 0.75pt; border-style: solid; border-color: rgb(0, 0, 0); width: 68.15pt; -aw-border-bottom: 0.25pt single; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: center; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">本期价格（元）</span></p></td>
+<td style="border-width: 1.5pt 0.75pt 0.75pt; border-style: solid; border-color: rgb(0, 0, 0); width: 72.3pt; -aw-border-bottom: 0.25pt single; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: center; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">比上期</span></p>
+<p style="margin: 0pt 2.85pt; text-align: center; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">价格涨跌（元）</span></p></td>
+<td style="width: 56.38pt; border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-top-width: 1.5pt; border-bottom-width: 0.75pt; border-left-width: 0.75pt; border-top-style: solid; border-bottom-style: solid; border-left-style: solid; -aw-border-bottom: 0.25pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: center; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">涨跌幅</span>(%)</p></td></tr></thead>
+<tbody>
+<tr style="height: 14.15pt;">
+<td style="width: 251.68pt; border-top-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-width: 0.75pt; border-right-width: 0.75pt; border-top-style: solid; border-right-style: solid; -aw-border-right: 0.5pt single; -aw-border-top: 0.25pt single;">
+<p style="margin: 0pt 2.85pt; text-align: left; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体; font-weight: bold;">一、黑色金属</span></p></td>
+<td style="width: 30.4pt; border-top-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-top-width: 0.75pt; border-right-width: 0.75pt; border-left-width: 0.75pt; border-top-style: solid; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single; -aw-border-top: 0.25pt single;">
+<p style="margin: 0pt 2.85pt; text-align: center; line-height: 12pt;"><span style="font-weight: bold; -aw-import: ignore;"> </span></p></td>
+<td style="width: 68.15pt; border-top-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-top-width: 0.75pt; border-right-width: 0.75pt; border-left-width: 0.75pt; border-top-style: solid; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single; -aw-border-top: 0.25pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-weight: bold; -aw-import: ignore;"> </span></p></td>
+<td style="width: 72.3pt; border-top-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-top-width: 0.75pt; border-right-width: 0.75pt; border-left-width: 0.75pt; border-top-style: solid; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single; -aw-border-top: 0.25pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt;"><span style="font-weight: bold; -aw-import: ignore;"> </span></p></td>
+<td style="width: 56.38pt; border-top-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-top-width: 0.75pt; border-left-width: 0.75pt; border-top-style: solid; border-left-style: solid; -aw-border-left: 0.5pt single; -aw-border-top: 0.25pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt;"><span style="font-weight: bold; -aw-import: ignore;"> </span></p></td></tr>
+<tr style="height: 14.15pt;">
+<td style="width: 217.68pt; padding-left: 34pt; border-right-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-right-style: solid; -aw-border-right: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: left; line-height: 12pt;">螺纹钢（Φ20mm，HRB400E）</p></td>
+<td style="width: 30.4pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: center; line-height: 12pt;"><span style="font-family: 宋体;">吨</span></p></td>
+<td style="width: 68.15pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">3143.7</span></p></td>
+<td style="width: 72.3pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-45.8</span></p></td>
+<td style="width: 56.38pt; border-left-color: rgb(0, 0, 0); border-left-width: 0.75pt; border-left-style: solid; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-1.4</span></p></td></tr>
+<tr style="height: 14.15pt;">
+<td style="width: 217.68pt; padding-left: 34pt; border-right-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-right-style: solid; -aw-border-right: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: left; line-height: 12pt;"><span style="font-family: 宋体;">线材（Φ</span>8<span style="font-family: 宋体;">—</span>10mm<span style="font-family: 宋体;">，</span>HPB300<span style="font-family: 宋体;">）</span></p></td>
+<td style="width: 30.4pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: center; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">吨</span></p></td>
+<td style="width: 68.15pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">3307.2</span></p></td>
+<td style="width: 72.3pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-58.0</span></p></td>
+<td style="width: 56.38pt; border-left-color: rgb(0, 0, 0); border-left-width: 0.75pt; border-left-style: solid; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-1.7</span></p></td></tr>
+<tr style="height: 14.15pt;">
+<td style="width: 217.68pt; padding-left: 34pt; border-right-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-right-style: solid; -aw-border-right: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: left; line-height: 12pt;"><span style="font-family: 宋体;">普通中板（</span>20mm<span style="font-family: 宋体;">，</span>Q235<span style="font-family: 宋体;">）</span></p></td>
+<td style="width: 30.4pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: center; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">吨</span></p></td>
+<td style="width: 68.15pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">3496.5</span></p></td>
+<td style="width: 72.3pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-41.5</span></p></td>
+<td style="width: 56.38pt; border-left-color: rgb(0, 0, 0); border-left-width: 0.75pt; border-left-style: solid; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-1.2</span></p></td></tr>
+<tr style="height: 14.15pt;">
+<td style="width: 217.68pt; padding-left: 34pt; border-right-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-right-style: solid; -aw-border-right: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: left; line-height: 12pt;"><span style="font-family: 宋体;">热轧普通板卷（</span>4.75<span style="font-family: 宋体;">—</span>11.5mm<span style="font-family: 宋体;">，</span>Q235<span style="font-family: 宋体;">）</span></p></td>
+<td style="width: 30.4pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: center; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">吨</span></p></td>
+<td style="width: 68.15pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">3263.8</span></p></td>
+<td style="width: 72.3pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-44.7</span></p></td>
+<td style="width: 56.38pt; border-left-color: rgb(0, 0, 0); border-left-width: 0.75pt; border-left-style: solid; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-1.4</span></p></td></tr>
+<tr style="height: 14.15pt;">
+<td style="width: 217.68pt; padding-left: 34pt; border-right-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-right-style: solid; -aw-border-right: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: left; line-height: 12pt;"><span style="font-family: 宋体;">无缝钢管（</span>219*6<span style="font-family: 宋体;">，</span>20#<span style="font-family: 宋体;">）</span></p></td>
+<td style="width: 30.4pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: center; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">吨</span></p></td>
+<td style="width: 68.15pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">4134.6</span></p></td>
+<td style="width: 72.3pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-9.7</span></p></td>
+<td style="width: 56.38pt; border-left-color: rgb(0, 0, 0); border-left-width: 0.75pt; border-left-style: solid; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-0.2</span></p></td></tr>
+<tr style="height: 14.15pt;">
+<td style="width: 217.68pt; padding-left: 34pt; border-right-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-right-style: solid; -aw-border-right: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: left; line-height: 12pt;"><span style="font-family: 宋体;">角钢（</span>5#<span style="font-family: 宋体;">）</span></p></td>
+<td style="width: 30.4pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: center; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">吨</span></p></td>
+<td style="width: 68.15pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">3440.2</span></p></td>
+<td style="width: 72.3pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-35.2</span></p></td>
+<td style="width: 56.38pt; border-left-color: rgb(0, 0, 0); border-left-width: 0.75pt; border-left-style: solid; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-1.0</span></p></td></tr>
+<tr style="height: 14.15pt;">
+<td style="width: 251.68pt; border-right-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-right-style: solid; -aw-border-right: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: left; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体; font-weight: bold;">二、有色金属</span></p></td>
+<td style="width: 30.4pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: center; line-height: 12pt;"><span style="font-weight: bold; -aw-import: ignore;"> </span></p></td>
+<td style="width: 68.15pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt;"><span style="font-weight: bold; -aw-import: ignore;"> </span></p></td>
+<td style="width: 72.3pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt;"><span style="font-weight: bold; -aw-import: ignore;"> </span></p></td>
+<td style="width: 56.38pt; border-left-color: rgb(0, 0, 0); border-left-width: 0.75pt; border-left-style: solid; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt;"><span style="font-weight: bold; -aw-import: ignore;"> </span></p></td></tr>
+<tr style="height: 14.15pt;">
+<td style="width: 217.68pt; padding-left: 34pt; border-right-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-right-style: solid; -aw-border-right: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: left; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">电解铜（</span>1#<span style="font-family: 宋体;">）</span></p></td>
+<td style="width: 30.4pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: center; line-height: 12pt;"><span style="font-family: 宋体;">吨</span></p></td>
+<td style="width: 68.15pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">78398.6</span></p></td>
+<td style="width: 72.3pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-109.3</span></p></td>
+<td style="width: 56.38pt; border-left-color: rgb(0, 0, 0); border-left-width: 0.75pt; border-left-style: solid; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-0.1</span></p></td></tr>
+<tr style="height: 14.15pt;">
+<td style="width: 217.68pt; padding-left: 34pt; border-right-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-right-style: solid; -aw-border-right: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: left; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">铝锭（</span>A00<span style="font-family: 宋体;">）</span></p></td>
+<td style="width: 30.4pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: center; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">吨</span></p></td>
+<td style="width: 68.15pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">20330.0</span></p></td>
+<td style="width: 72.3pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">177.1</span></p></td>
+<td style="width: 56.38pt; border-left-color: rgb(0, 0, 0); border-left-width: 0.75pt; border-left-style: solid; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">0.9</span></p></td></tr>
+<tr style="height: 14.15pt;">
+<td style="width: 217.68pt; padding-left: 34pt; border-right-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-right-style: solid; -aw-border-right: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: left; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">铅锭（</span>1#<span style="font-family: 宋体;">）</span></p></td>
+<td style="width: 30.4pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: center; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">吨</span></p></td>
+<td style="width: 68.15pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">16642.9</span></p></td>
+<td style="width: 72.3pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-85.7</span></p></td>
+<td style="width: 56.38pt; border-left-color: rgb(0, 0, 0); border-left-width: 0.75pt; border-left-style: solid; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-0.5</span></p></td></tr>
+<tr style="height: 14.15pt;">
+<td style="width: 217.68pt; padding-left: 34pt; border-right-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-right-style: solid; -aw-border-right: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: left; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">锌锭（</span>0#<span style="font-family: 宋体;">）</span></p></td>
+<td style="width: 30.4pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: center; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">吨</span></p></td>
+<td style="width: 68.15pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">22730.0</span></p></td>
+<td style="width: 72.3pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-30.0</span></p></td>
+<td style="width: 56.38pt; border-left-color: rgb(0, 0, 0); border-left-width: 0.75pt; border-left-style: solid; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-0.1</span></p></td></tr>
+<tr style="height: 14.15pt;">
+<td style="width: 251.68pt; border-right-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-right-style: solid; -aw-border-right: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: left; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体; font-weight: bold;">三、化工产品</span></p></td>
+<td style="width: 30.4pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: center; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-weight: bold; -aw-import: ignore;"> </span></p></td>
+<td style="width: 68.15pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt;"><span style="font-weight: bold; -aw-import: ignore;"> </span></p></td>
+<td style="width: 72.3pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt;"><span style="font-weight: bold; -aw-import: ignore;"> </span></p></td>
+<td style="width: 56.38pt; border-left-color: rgb(0, 0, 0); border-left-width: 0.75pt; border-left-style: solid; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt;"><span style="font-weight: bold; -aw-import: ignore;"> </span></p></td></tr>
+<tr style="height: 14.15pt;">
+<td style="width: 217.68pt; padding-left: 34pt; border-right-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-right-style: solid; -aw-border-right: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: left; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">硫酸（</span>98%<span style="font-family: 宋体;">）</span></p></td>
+<td style="width: 30.4pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: center; line-height: 12pt;"><span style="font-family: 宋体;">吨</span></p></td>
+<td style="width: 68.15pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">621.8</span></p></td>
+<td style="width: 72.3pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">4.6</span></p></td>
+<td style="width: 56.38pt; border-left-color: rgb(0, 0, 0); border-left-width: 0.75pt; border-left-style: solid; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">0.7</span></p></td></tr>
+<tr style="height: 14.15pt;">
+<td style="width: 217.68pt; padding-left: 34pt; border-right-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-right-style: solid; -aw-border-right: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: left; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">烧碱（液碱，</span>32%<span style="font-family: 宋体;">）</span></p></td>
+<td style="width: 30.4pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: center; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">吨</span></p></td>
+<td style="width: 68.15pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">896.0</span></p></td>
+<td style="width: 72.3pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">22.3</span></p></td>
+<td style="width: 56.38pt; border-left-color: rgb(0, 0, 0); border-left-width: 0.75pt; border-left-style: solid; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">2.6</span></p></td></tr>
+<tr style="height: 14.15pt;">
+<td style="width: 217.68pt; padding-left: 34pt; border-right-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-right-style: solid; -aw-border-right: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: left; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">甲醇（优等品）</span></p></td>
+<td style="width: 30.4pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: center; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">吨</span></p></td>
+<td style="width: 68.15pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: bottom; orphans: 2; widows: 2;"><span style="vertical-align: bottom;">2191.9</span></p></td>
+<td style="width: 72.3pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: bottom; orphans: 2; widows: 2;"><span style="vertical-align: bottom;">-104.8</span></p></td>
+<td style="width: 56.38pt; border-left-color: rgb(0, 0, 0); border-left-width: 0.75pt; border-left-style: solid; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: bottom; orphans: 2; widows: 2;"><span style="vertical-align: bottom;">-4.6</span></p></td></tr>
+<tr style="height: 14.15pt;">
+<td style="width: 217.68pt; padding-left: 34pt; border-right-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-right-style: solid; -aw-border-right: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: left; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">纯苯（石油苯，工业级）</span></p></td>
+<td style="width: 30.4pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: center; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">吨</span></p></td>
+<td style="width: 68.15pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">5907.3</span></p></td>
+<td style="width: 72.3pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-194.3</span></p></td>
+<td style="width: 56.38pt; border-left-color: rgb(0, 0, 0); border-left-width: 0.75pt; border-left-style: solid; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-3.2</span></p></td></tr>
+<tr style="height: 14.15pt;">
+<td style="width: 217.68pt; padding-left: 34pt; border-right-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-right-style: solid; -aw-border-right: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: left; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">苯乙烯（一级品）</span></p></td>
+<td style="width: 30.4pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: center; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">吨</span></p></td>
+<td style="width: 68.15pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">7755.7</span></p></td>
+<td style="width: 72.3pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-49.5</span></p></td>
+<td style="width: 56.38pt; border-left-color: rgb(0, 0, 0); border-left-width: 0.75pt; border-left-style: solid; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-0.6</span></p></td></tr>
+<tr style="height: 14.15pt;">
+<td style="width: 217.68pt; padding-left: 34pt; border-right-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-right-style: solid; -aw-border-right: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: left; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">聚乙烯（</span>LLDPE<span style="font-family: 宋体;">，熔融指数</span>2<span style="font-family: 宋体;">薄膜料）</span></p></td>
+<td style="width: 30.4pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: center; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">吨</span></p></td>
+<td style="width: 68.15pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">7430.5</span></p></td>
+<td style="width: 72.3pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-128.1</span></p></td>
+<td style="width: 56.38pt; border-left-color: rgb(0, 0, 0); border-left-width: 0.75pt; border-left-style: solid; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-1.7</span></p></td></tr>
+<tr style="height: 14.15pt;">
+<td style="width: 217.68pt; padding-left: 34pt; border-right-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-right-style: solid; -aw-border-right: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: left; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">聚丙烯（拉丝料）</span></p></td>
+<td style="width: 30.4pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: center; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">吨</span></p></td>
+<td style="width: 68.15pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">7149.3</span></p></td>
+<td style="width: 72.3pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-82.6</span></p></td>
+<td style="width: 56.38pt; border-left-color: rgb(0, 0, 0); border-left-width: 0.75pt; border-left-style: solid; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-1.1</span></p></td></tr>
+<tr style="height: 14.15pt;">
+<td style="width: 217.68pt; padding-left: 34pt; border-right-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-right-style: solid; -aw-border-right: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: left; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">聚氯乙烯（</span>SG5<span style="font-family: 宋体;">）</span></p></td>
+<td style="width: 30.4pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: center; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">吨</span></p></td>
+<td style="width: 68.15pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">4784.7</span></p></td>
+<td style="width: 72.3pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-47.9</span></p></td>
+<td style="width: 56.38pt; border-left-color: rgb(0, 0, 0); border-left-width: 0.75pt; border-left-style: solid; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-1.0</span></p></td></tr>
+<tr style="height: 14.15pt;">
+<td style="width: 217.68pt; padding-left: 34pt; border-right-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-right-style: solid; -aw-border-right: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: left; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">顺丁胶（</span>BR9000<span style="font-family: 宋体;">）</span></p></td>
+<td style="width: 30.4pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: center; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">吨</span></p></td>
+<td style="width: 68.15pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">11800.0</span></p></td>
+<td style="width: 72.3pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-392.9</span></p></td>
+<td style="width: 56.38pt; border-left-color: rgb(0, 0, 0); border-left-width: 0.75pt; border-left-style: solid; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-3.2</span></p></td></tr>
+<tr style="height: 14.15pt;">
+<td style="width: 217.68pt; padding-left: 34pt; border-right-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-right-style: solid; -aw-border-right: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: left; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">涤纶长丝（</span>POY150D/48F<span style="font-family: 宋体;">）</span></p></td>
+<td style="width: 30.4pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: center; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">吨</span></p></td>
+<td style="width: 68.15pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">7035.7</span></p></td>
+<td style="width: 72.3pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">71.4</span></p></td>
+<td style="width: 56.38pt; border-left-color: rgb(0, 0, 0); border-left-width: 0.75pt; border-left-style: solid; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">1.0</span></p></td></tr>
+<tr style="height: 14.15pt;">
+<td style="width: 251.68pt; border-right-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-right-style: solid; -aw-border-right: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: left; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体; font-weight: bold;">四、石油天然气</span></p></td>
+<td style="width: 30.4pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: center; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-weight: bold; -aw-import: ignore;"> </span></p></td>
+<td style="width: 68.15pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt;"><span style="font-weight: bold; -aw-import: ignore;"> </span></p></td>
+<td style="width: 72.3pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt;"><span style="font-weight: bold; -aw-import: ignore;"> </span></p></td>
+<td style="width: 56.38pt; border-left-color: rgb(0, 0, 0); border-left-width: 0.75pt; border-left-style: solid; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt;"><span style="font-weight: bold; -aw-import: ignore;"> </span></p></td></tr>
+<tr style="height: 14.15pt;">
+<td style="width: 217.68pt; padding-left: 34pt; border-right-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-right-style: solid; -aw-border-right: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: left; line-height: 12pt;"><span style="font-family: 宋体;">液化天然气（</span>LNG<span style="font-family: 宋体;">）</span></p></td>
+<td style="width: 30.4pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: center; line-height: 12pt;"><span style="font-family: 宋体;">吨</span></p></td>
+<td style="width: 68.15pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">4310.4</span></p></td>
+<td style="width: 72.3pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-90.7</span></p></td>
+<td style="width: 56.38pt; border-left-color: rgb(0, 0, 0); border-left-width: 0.75pt; border-left-style: solid; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-2.1</span></p></td></tr>
+<tr style="height: 14.15pt;">
+<td style="width: 217.68pt; padding-left: 34pt; border-right-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-right-style: solid; -aw-border-right: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: left; line-height: 12pt;"><span style="font-family: 宋体;">液化石油气（</span>LPG<span style="font-family: 宋体;">）</span></p></td>
+<td style="width: 30.4pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: center; line-height: 12pt;"><span style="font-family: 宋体;">吨</span></p></td>
+<td style="width: 68.15pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">4563.5</span></p></td>
+<td style="width: 72.3pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-225.7</span></p></td>
+<td style="width: 56.38pt; border-left-color: rgb(0, 0, 0); border-left-width: 0.75pt; border-left-style: solid; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-4.7</span></p></td></tr>
+<tr style="height: 14.15pt;">
+<td style="width: 217.68pt; padding-left: 34pt; border-right-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-right-style: solid; -aw-border-right: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: left; line-height: 12pt;"><span style="font-family: 宋体;">汽油（</span>95#<span style="font-family: 宋体;">国</span>VI<span style="font-family: 宋体;">）</span></p></td>
+<td style="width: 30.4pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: center; line-height: 12pt;"><span style="font-family: 宋体;">吨</span></p></td>
+<td style="width: 68.15pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">8280.8</span></p></td>
+<td style="width: 72.3pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-42.3</span></p></td>
+<td style="width: 56.38pt; border-left-color: rgb(0, 0, 0); border-left-width: 0.75pt; border-left-style: solid; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-0.5</span></p></td></tr>
+<tr style="height: 14.15pt;">
+<td style="width: 217.68pt; padding-left: 34pt; border-right-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-right-style: solid; -aw-border-right: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: left; line-height: 12pt;"><span style="font-family: 宋体;">汽油（</span>92#<span style="font-family: 宋体;">国</span>VI<span style="font-family: 宋体;">）</span></p></td>
+<td style="width: 30.4pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: center; line-height: 12pt;"><span style="font-family: 宋体;">吨</span></p></td>
+<td style="width: 68.15pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">8005.7</span></p></td>
+<td style="width: 72.3pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-41.7</span></p></td>
+<td style="width: 56.38pt; border-left-color: rgb(0, 0, 0); border-left-width: 0.75pt; border-left-style: solid; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-0.5</span></p></td></tr>
+<tr style="height: 14.15pt;">
+<td style="width: 217.68pt; padding-left: 34pt; border-right-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-right-style: solid; -aw-border-right: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: left; line-height: 12pt;"><span style="font-family: 宋体;">柴油（</span>0#<span style="font-family: 宋体;">国</span>VI<span style="font-family: 宋体;">）</span></p></td>
+<td style="width: 30.4pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: center; line-height: 12pt;"><span style="font-family: 宋体;">吨</span></p></td>
+<td style="width: 68.15pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">6968.7</span></p></td>
+<td style="width: 72.3pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">47.5</span></p></td>
+<td style="width: 56.38pt; border-left-color: rgb(0, 0, 0); border-left-width: 0.75pt; border-left-style: solid; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">0.7</span></p></td></tr>
+<tr style="height: 14.15pt;">
+<td style="width: 217.68pt; padding-left: 34pt; border-right-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-right-style: solid; -aw-border-right: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: left; line-height: 12pt;"><span style="font-family: 宋体;">石蜡（</span>58#<span style="font-family: 宋体;">半）</span></p></td>
+<td style="width: 30.4pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: center; line-height: 12pt;"><span style="font-family: 宋体;">吨</span></p></td>
+<td style="width: 68.15pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">7372.5</span></p></td>
+<td style="width: 72.3pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">0.0</span></p></td>
+<td style="width: 56.38pt; border-left-color: rgb(0, 0, 0); border-left-width: 0.75pt; border-left-style: solid; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">0.0</span></p></td></tr>
+<tr style="height: 14.15pt;">
+<td style="width: 251.68pt; border-right-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-right-style: solid; -aw-border-right: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: left; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体; font-weight: bold;">五、煤炭</span></p></td>
+<td style="width: 30.4pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: center; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-weight: bold; -aw-import: ignore;"> </span></p></td>
+<td style="width: 68.15pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt;"><span style="font-weight: bold; -aw-import: ignore;"> </span></p></td>
+<td style="width: 72.3pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt;"><span style="font-weight: bold; -aw-import: ignore;"> </span></p></td>
+<td style="width: 56.38pt; border-left-color: rgb(0, 0, 0); border-left-width: 0.75pt; border-left-style: solid; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt;"><span style="font-weight: bold; -aw-import: ignore;"> </span></p></td></tr>
+<tr style="height: 14.15pt;">
+<td style="width: 217.68pt; padding-left: 34pt; border-right-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-right-style: solid; -aw-border-right: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: left; line-height: 12pt; orphans: 2; widows: 2;">无烟煤（洗中块）</p></td>
+<td style="width: 30.4pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: center; line-height: 12pt;"><span style="font-family: 宋体;">吨</span></p></td>
+<td style="width: 68.15pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">948.5</span></p></td>
+<td style="width: 72.3pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-12.0</span></p></td>
+<td style="width: 56.38pt; border-left-color: rgb(0, 0, 0); border-left-width: 0.75pt; border-left-style: solid; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-1.2</span></p></td></tr>
+<tr style="height: 14.15pt;">
+<td style="width: 217.68pt; padding-left: 34pt; border-right-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-right-style: solid; -aw-border-right: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: left; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">普通混煤（</span>4500<span style="font-family: 宋体;">大卡）</span></p></td>
+<td style="width: 30.4pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: center; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">吨</span></p></td>
+<td style="width: 68.15pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">473.0</span></p></td>
+<td style="width: 72.3pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-11.9</span></p></td>
+<td style="width: 56.38pt; border-left-color: rgb(0, 0, 0); border-left-width: 0.75pt; border-left-style: solid; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-2.5</span></p></td></tr>
+<tr style="height: 14.15pt;">
+<td style="width: 217.68pt; padding-left: 34pt; border-right-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-right-style: solid; -aw-border-right: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: left; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">山西大混（</span>5000<span style="font-family: 宋体;">大卡）</span></p></td>
+<td style="width: 30.4pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: center; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">吨</span></p></td>
+<td style="width: 68.15pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">538.0</span></p></td>
+<td style="width: 72.3pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-11.0</span></p></td>
+<td style="width: 56.38pt; border-left-color: rgb(0, 0, 0); border-left-width: 0.75pt; border-left-style: solid; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-2.0</span></p></td></tr>
+<tr style="height: 14.15pt;">
+<td style="width: 217.68pt; padding-left: 34pt; border-right-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-right-style: solid; -aw-border-right: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: left; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">山西优混（</span>5500<span style="font-family: 宋体;">大卡）</span></p></td>
+<td style="width: 30.4pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: center; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">吨</span></p></td>
+<td style="width: 68.15pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">620.0</span></p></td>
+<td style="width: 72.3pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-10.0</span></p></td>
+<td style="width: 56.38pt; border-left-color: rgb(0, 0, 0); border-left-width: 0.75pt; border-left-style: solid; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-1.6</span></p></td></tr>
+<tr style="height: 14.15pt;">
+<td style="width: 217.68pt; padding-left: 34pt; border-right-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-right-style: solid; -aw-border-right: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: left; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">大同混煤（</span>5800<span style="font-family: 宋体;">大卡）</span></p></td>
+<td style="width: 30.4pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: center; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">吨</span></p></td>
+<td style="width: 68.15pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">654.0</span></p></td>
+<td style="width: 72.3pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-10.4</span></p></td>
+<td style="width: 56.38pt; border-left-color: rgb(0, 0, 0); border-left-width: 0.75pt; border-left-style: solid; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-1.6</span></p></td></tr>
+<tr style="height: 14.15pt;">
+<td style="width: 217.68pt; padding-left: 34pt; border-right-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-right-style: solid; -aw-border-right: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: left; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">焦煤（主焦煤）</span></p></td>
+<td style="width: 30.4pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: center; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">吨</span></p></td>
+<td style="width: 68.15pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">1167.9</span></p></td>
+<td style="width: 72.3pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-42.8</span></p></td>
+<td style="width: 56.38pt; border-left-color: rgb(0, 0, 0); border-left-width: 0.75pt; border-left-style: solid; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-3.5</span></p></td></tr>
+<tr style="height: 14.15pt;">
+<td style="width: 217.68pt; padding-left: 34pt; border-right-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-right-style: solid; -aw-border-right: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: left; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">焦炭（准一级冶金焦）</span></p></td>
+<td style="width: 30.4pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: center; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">吨</span></p></td>
+<td style="width: 68.15pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">1252.1</span></p></td>
+<td style="width: 72.3pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-42.9</span></p></td>
+<td style="width: 56.38pt; border-left-color: rgb(0, 0, 0); border-left-width: 0.75pt; border-left-style: solid; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-3.3</span></p></td></tr>
+<tr style="height: 14.15pt;">
+<td style="width: 251.68pt; border-right-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-right-style: solid; -aw-border-right: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: left; line-height: 12pt; orphans: 2; widows: 2;"><span style="-aw-bookmark-end: OLE_LINK2;"></span><span style="-aw-bookmark-end: OLE_LINK3;"></span><span style="font-family: 宋体; font-weight: bold;">六、非金属建材</span></p></td>
+<td style="width: 30.4pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: center; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-weight: bold; -aw-import: ignore;"> </span></p></td>
+<td style="width: 68.15pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt;"><span style="font-weight: bold; -aw-import: ignore;"> </span></p></td>
+<td style="width: 72.3pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt;"><span style="font-weight: bold; -aw-import: ignore;"> </span></p></td>
+<td style="width: 56.38pt; border-left-color: rgb(0, 0, 0); border-left-width: 0.75pt; border-left-style: solid; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt;"><span style="font-weight: bold; -aw-import: ignore;"> </span></p></td></tr>
+<tr style="height: 14.15pt;">
+<td style="width: 217.68pt; padding-left: 34pt; border-right-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-right-style: solid; -aw-border-right: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: left; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">普通硅酸盐水泥（</span>P.O 42.5<span style="font-family: 宋体;">袋装）</span></p></td>
+<td style="width: 30.4pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: center; line-height: 12pt;"><span style="font-family: 宋体;">吨</span></p></td>
+<td style="width: 68.15pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">370.1</span></p></td>
+<td style="width: 72.3pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-0.8</span></p></td>
+<td style="width: 56.38pt; border-left-color: rgb(0, 0, 0); border-left-width: 0.75pt; border-left-style: solid; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-0.2</span></p></td></tr>
+<tr style="height: 14.15pt;">
+<td style="width: 217.68pt; padding-left: 34pt; border-right-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-right-style: solid; -aw-border-right: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: left; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">普通硅酸盐水泥（</span>P.O 42.5<span style="font-family: 宋体;">散装）</span></p></td>
+<td style="width: 30.4pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: center; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">吨</span></p></td>
+<td style="width: 68.15pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">308.1</span></p></td>
+<td style="width: 72.3pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-7.9</span></p></td>
+<td style="width: 56.38pt; border-left-color: rgb(0, 0, 0); border-left-width: 0.75pt; border-left-style: solid; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-2.5</span></p></td></tr>
+<tr style="height: 14.15pt;">
+<td style="width: 217.68pt; padding-left: 34pt; border-right-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-right-style: solid; -aw-border-right: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: left; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">浮法平板玻璃（</span>4.8/5mm<span style="font-family: 宋体;">）</span></p></td>
+<td style="width: 30.4pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: center; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">吨</span></p></td>
+<td style="width: 68.15pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">1271.4</span></p></td>
+<td style="width: 72.3pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-22.6</span></p></td>
+<td style="width: 56.38pt; border-left-color: rgb(0, 0, 0); border-left-width: 0.75pt; border-left-style: solid; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-1.7</span></p></td></tr>
+<tr style="height: 14.15pt;">
+<td style="width: 251.68pt; border-right-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-right-style: solid; -aw-border-right: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: left; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体; font-weight: bold;">七、农产品（主要用于加工）</span></p></td>
+<td style="width: 30.4pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: center; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-weight: bold; -aw-import: ignore;"> </span></p></td>
+<td style="width: 68.15pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt;"><span style="font-weight: bold; -aw-import: ignore;"> </span></p></td>
+<td style="width: 72.3pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt;"><span style="font-weight: bold; -aw-import: ignore;"> </span></p></td>
+<td style="width: 56.38pt; border-left-color: rgb(0, 0, 0); border-left-width: 0.75pt; border-left-style: solid; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt;"><span style="font-weight: bold; -aw-import: ignore;"> </span></p></td></tr>
+<tr style="height: 14.15pt;">
+<td style="width: 217.68pt; padding-left: 34pt; border-right-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-right-style: solid; -aw-border-right: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: left; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">稻米（粳稻米）</span></p></td>
+<td style="width: 30.4pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: center; line-height: 12pt;"><span style="font-family: 宋体;">吨</span></p></td>
+<td style="width: 68.15pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">4027.6</span></p></td>
+<td style="width: 72.3pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">32.7</span></p></td>
+<td style="width: 56.38pt; border-left-color: rgb(0, 0, 0); border-left-width: 0.75pt; border-left-style: solid; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">0.8</span></p></td></tr>
+<tr style="height: 14.15pt;">
+<td style="width: 217.68pt; padding-left: 34pt; border-right-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-right-style: solid; -aw-border-right: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: left; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">小麦（国标三等）</span></p></td>
+<td style="width: 30.4pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: center; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">吨</span></p></td>
+<td style="width: 68.15pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">2429.9</span></p></td>
+<td style="width: 72.3pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-3.9</span></p></td>
+<td style="width: 56.38pt; border-left-color: rgb(0, 0, 0); border-left-width: 0.75pt; border-left-style: solid; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-0.2</span></p></td></tr>
+<tr style="height: 14.15pt;">
+<td style="width: 217.68pt; padding-left: 34pt; border-right-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-right-style: solid; -aw-border-right: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: left; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">玉米（黄玉米二等）</span></p></td>
+<td style="width: 30.4pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: center; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">吨</span></p></td>
+<td style="width: 68.15pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">2303.0</span></p></td>
+<td style="width: 72.3pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-13.4</span></p></td>
+<td style="width: 56.38pt; border-left-color: rgb(0, 0, 0); border-left-width: 0.75pt; border-left-style: solid; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-0.6</span></p></td></tr>
+<tr style="height: 14.15pt;">
+<td style="width: 217.68pt; padding-left: 34pt; border-right-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-right-style: solid; -aw-border-right: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: left; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">棉花（皮棉，白棉三级）</span></p></td>
+<td style="width: 30.4pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: center; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">吨</span></p></td>
+<td style="width: 68.15pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">14048.5</span></p></td>
+<td style="width: 72.3pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">43.3</span></p></td>
+<td style="width: 56.38pt; border-left-color: rgb(0, 0, 0); border-left-width: 0.75pt; border-left-style: solid; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">0.3</span></p></td></tr>
+<tr style="height: 14.15pt;">
+<td style="width: 217.68pt; padding-left: 34pt; border-right-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-right-style: solid; -aw-border-right: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: left; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">生猪（外三元）</span></p></td>
+<td style="width: 30.4pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: center; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">千克</span></p></td>
+<td style="width: 68.15pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">14.4</span></p></td>
+<td style="width: 72.3pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-0.3</span></p></td>
+<td style="width: 56.38pt; border-left-color: rgb(0, 0, 0); border-left-width: 0.75pt; border-left-style: solid; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-2.0</span></p></td></tr>
+<tr style="height: 14.15pt;">
+<td style="width: 217.68pt; padding-left: 34pt; border-right-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-right-style: solid; -aw-border-right: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: left; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">大豆（黄豆）</span></p></td>
+<td style="width: 30.4pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: center; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">吨</span></p></td>
+<td style="width: 68.15pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">4321.6</span></p></td>
+<td style="width: 72.3pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">28.0</span></p></td>
+<td style="width: 56.38pt; border-left-color: rgb(0, 0, 0); border-left-width: 0.75pt; border-left-style: solid; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">0.7</span></p></td></tr>
+<tr style="height: 14.15pt;">
+<td style="width: 217.68pt; padding-left: 34pt; border-right-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-right-style: solid; -aw-border-right: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: left; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">豆粕（粗蛋白含量≥</span>43%<span style="font-family: 宋体;">）</span></p></td>
+<td style="width: 30.4pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: center; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">吨</span></p></td>
+<td style="width: 68.15pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">2944.4</span></p></td>
+<td style="width: 72.3pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-82.2</span></p></td>
+<td style="width: 56.38pt; border-left-color: rgb(0, 0, 0); border-left-width: 0.75pt; border-left-style: solid; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-2.7</span></p></td></tr>
+<tr style="height: 14.15pt;">
+<td style="width: 217.68pt; padding-left: 34pt; border-right-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-right-style: solid; -aw-border-right: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: left; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">花生（油料花生米）</span></p></td>
+<td style="width: 30.4pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: center; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">吨</span></p></td>
+<td style="width: 68.15pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">7566.7</span></p></td>
+<td style="width: 72.3pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">4.8</span></p></td>
+<td style="width: 56.38pt; border-left-color: rgb(0, 0, 0); border-left-width: 0.75pt; border-left-style: solid; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">0.1</span></p></td></tr>
+<tr style="height: 14.15pt;">
+<td style="width: 251.68pt; border-right-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-right-style: solid; -aw-border-right: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: left; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体; font-weight: bold;">八、农业生产资料</span></p></td>
+<td style="width: 30.4pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: center; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-weight: bold; -aw-import: ignore;"> </span></p></td>
+<td style="width: 68.15pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt;"><span style="font-weight: bold; -aw-import: ignore;"> </span></p></td>
+<td style="width: 72.3pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt;"><span style="font-weight: bold; -aw-import: ignore;"> </span></p></td>
+<td style="width: 56.38pt; border-left-color: rgb(0, 0, 0); border-left-width: 0.75pt; border-left-style: solid; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt;"><span style="font-weight: bold; -aw-import: ignore;"> </span></p></td></tr>
+<tr style="height: 14.15pt;">
+<td style="width: 217.68pt; padding-left: 34pt; border-right-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-right-style: solid; -aw-border-right: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: left; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">尿素（中小颗粒）</span></p></td>
+<td style="width: 30.4pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: center; line-height: 12pt;"><span style="font-family: 宋体;">吨</span></p></td>
+<td style="width: 68.15pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">1890.0</span></p></td>
+<td style="width: 72.3pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-47.8</span></p></td>
+<td style="width: 56.38pt; border-left-color: rgb(0, 0, 0); border-left-width: 0.75pt; border-left-style: solid; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-2.5</span></p></td></tr>
+<tr style="height: 14.15pt;">
+<td style="width: 217.68pt; padding-left: 34pt; border-right-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-right-style: solid; -aw-border-right: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: left; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">复合肥（硫酸钾复合肥，氮磷钾含量</span>45%<span style="font-family: 宋体;">）</span></p></td>
+<td style="width: 30.4pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: center; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">吨</span></p></td>
+<td style="width: 68.15pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">3186.7</span></p></td>
+<td style="width: 72.3pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-2.3</span></p></td>
+<td style="width: 56.38pt; border-left-color: rgb(0, 0, 0); border-left-width: 0.75pt; border-left-style: solid; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-0.1</span></p></td></tr>
+<tr style="height: 14.15pt;">
+<td style="width: 217.68pt; padding-left: 34pt; border-right-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-right-style: solid; -aw-border-right: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: left; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">农药（草甘膦，</span>95%<span style="font-family: 宋体;">原药）</span></p></td>
+<td style="width: 30.4pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: center; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">吨</span></p></td>
+<td style="width: 68.15pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">23771.4</span></p></td>
+<td style="width: 72.3pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">250.0</span></p></td>
+<td style="width: 56.38pt; border-left-color: rgb(0, 0, 0); border-left-width: 0.75pt; border-left-style: solid; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">1.1</span></p></td></tr>
+<tr style="height: 14.15pt;">
+<td style="width: 251.68pt; border-right-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-right-style: solid; -aw-border-right: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: left; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体; font-weight: bold;">九、林产品</span></p></td>
+<td style="width: 30.4pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: center; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-weight: bold; -aw-import: ignore;"> </span></p></td>
+<td style="width: 68.15pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt;"><span style="font-weight: bold; -aw-import: ignore;"> </span></p></td>
+<td style="width: 72.3pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt;"><span style="font-weight: bold; -aw-import: ignore;"> </span></p></td>
+<td style="width: 56.38pt; border-left-color: rgb(0, 0, 0); border-left-width: 0.75pt; border-left-style: solid; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt;"><span style="font-weight: bold; -aw-import: ignore;"> </span></p></td></tr>
+<tr style="height: 14.15pt;">
+<td style="width: 217.68pt; padding-left: 34pt; border-right-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-right-style: solid; -aw-border-right: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: left; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">天然橡胶（标准胶</span>SCRWF<span style="font-family: 宋体;">）</span></p></td>
+<td style="width: 30.4pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: center; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">吨</span></p></td>
+<td style="width: 68.15pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">14283.3</span></p></td>
+<td style="width: 72.3pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-533.4</span></p></td>
+<td style="width: 56.38pt; border-left-color: rgb(0, 0, 0); border-left-width: 0.75pt; border-left-style: solid; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-3.6</span></p></td></tr>
+<tr style="height: 14.15pt;">
+<td style="width: 217.68pt; padding-left: 34pt; border-right-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-right-style: solid; -aw-border-right: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: left; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">纸浆（进口针叶浆）</span></p></td>
+<td style="width: 30.4pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: center; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">吨</span></p></td>
+<td style="width: 68.15pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">6034.8</span></p></td>
+<td style="width: 72.3pt; border-right-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-left-width: 0.75pt; border-right-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-23.9</span></p></td>
+<td style="width: 56.38pt; border-left-color: rgb(0, 0, 0); border-left-width: 0.75pt; border-left-style: solid; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">-0.4</span></p></td></tr>
+<tr style="height: 14.15pt;">
+<td style="width: 217.68pt; padding-left: 34pt; border-right-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-bottom-width: 1.5pt; border-right-style: solid; border-bottom-style: solid; -aw-border-right: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: left; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">瓦楞纸（</span>AA<span style="font-family: 宋体;">级</span>120g<span style="font-family: 宋体;">）</span></p></td>
+<td style="width: 30.4pt; border-right-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-bottom-width: 1.5pt; border-left-width: 0.75pt; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: center; line-height: 12pt; orphans: 2; widows: 2;"><span style="font-family: 宋体;">吨</span></p></td>
+<td style="width: 68.15pt; border-right-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-bottom-width: 1.5pt; border-left-width: 0.75pt; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">2564.4</span></p></td>
+<td style="width: 72.3pt; border-right-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-width: 0.75pt; border-bottom-width: 1.5pt; border-left-width: 0.75pt; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; -aw-border-right: 0.5pt single; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">50.6</span></p></td>
+<td style="width: 56.38pt; border-bottom-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-bottom-width: 1.5pt; border-left-width: 0.75pt; border-bottom-style: solid; border-left-style: solid; -aw-border-left: 0.5pt single;">
+<p style="margin: 0pt 2.85pt; text-align: right; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="vertical-align: middle;">2.0</span></p></td></tr>
+<tr style="height: 14.15pt;">
+<td style="width: 481.9pt; border-top-color: rgb(0, 0, 0); border-top-width: 1.5pt; border-top-style: solid;" colspan="5">
+<p style="margin: 0pt 2.85pt; text-align: left; line-height: 12pt; vertical-align: middle; orphans: 2; widows: 2;"><span style="font-family: 楷体; vertical-align: middle;">注：上期为</span><span style="vertical-align: middle;">2025</span><span style="font-family: 楷体; vertical-align: middle;">年</span><span style="vertical-align: middle;">5</span><span style="font-family: 楷体; vertical-align: middle;">月中旬。</span></p></td></tr></tbody></table></body></html>

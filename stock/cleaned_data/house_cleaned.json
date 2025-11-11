@@ -1,0 +1,6677 @@
+{
+  "metadata": {
+    "totalFiles": 19,
+    "totalMetrics": 34,
+    "dateRange": {
+      "start": 2024,
+      "end": 2025
+    },
+    "processedAt": "2025-11-11T11:33:09.288Z",
+    "description": "全国房地产市场基本情况数据，包含开发投资、施工面积、销售等指标。累积数据已转换为当月数据（1-2月为合并数据）"
+  },
+  "files": [
+    {
+      "filename": "2024-03-18_2024年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+      "publishDate": "2024-03-18",
+      "year": "2024",
+      "endMonth": 2,
+      "sheetName": "表1"
+    },
+    {
+      "filename": "2024-04-16_2024年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+      "publishDate": "2024-04-16",
+      "year": "2024",
+      "endMonth": 3,
+      "sheetName": "表1"
+    },
+    {
+      "filename": "2024-05-17_2024年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+      "publishDate": "2024-05-17",
+      "year": "2024",
+      "endMonth": 4,
+      "sheetName": "表1"
+    },
+    {
+      "filename": "2024-06-17_2024年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+      "publishDate": "2024-06-17",
+      "year": "2024",
+      "endMonth": 5,
+      "sheetName": "表1"
+    },
+    {
+      "filename": "2024-07-15_2024年1—6月份全国房地产市场基本情况-国家统计局.xlsx",
+      "publishDate": "2024-07-15",
+      "year": "2024",
+      "endMonth": 6,
+      "sheetName": "表1"
+    },
+    {
+      "filename": "2024-08-15_2024年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+      "publishDate": "2024-08-15",
+      "year": "2024",
+      "endMonth": 7,
+      "sheetName": "表1"
+    },
+    {
+      "filename": "2024-09-14_2024年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+      "publishDate": "2024-09-14",
+      "year": "2024",
+      "endMonth": 8,
+      "sheetName": "表1"
+    },
+    {
+      "filename": "2024-10-18_2024年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+      "publishDate": "2024-10-18",
+      "year": "2024",
+      "endMonth": 9,
+      "sheetName": "表1"
+    },
+    {
+      "filename": "2024-11-15_2024年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+      "publishDate": "2024-11-15",
+      "year": "2024",
+      "endMonth": 10,
+      "sheetName": "表1"
+    },
+    {
+      "filename": "2024-12-16_2024年1—11月份全国房地产市场基本情况-国家统计局.xlsx",
+      "publishDate": "2024-12-16",
+      "year": "2024",
+      "endMonth": 11,
+      "sheetName": "表1"
+    },
+    {
+      "filename": "2025-01-17_2024年全国房地产市场基本情况-国家统计局.xlsx",
+      "publishDate": "2025-01-17",
+      "year": "2024",
+      "endMonth": 12,
+      "sheetName": "表1"
+    },
+    {
+      "filename": "2025-03-17_2025年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+      "publishDate": "2025-03-17",
+      "year": "2025",
+      "endMonth": 2,
+      "sheetName": "表1"
+    },
+    {
+      "filename": "2025-04-16_2025年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+      "publishDate": "2025-04-16",
+      "year": "2025",
+      "endMonth": 3,
+      "sheetName": "表1"
+    },
+    {
+      "filename": "2025-05-19_2025年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+      "publishDate": "2025-05-19",
+      "year": "2025",
+      "endMonth": 4,
+      "sheetName": "表1"
+    },
+    {
+      "filename": "2025-06-16_2025年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+      "publishDate": "2025-06-16",
+      "year": "2025",
+      "endMonth": 5,
+      "sheetName": "表1"
+    },
+    {
+      "filename": "2025-07-15_2025年上半年全国房地产市场基本情况-国家统计局.xlsx",
+      "publishDate": "2025-07-15",
+      "year": "2025",
+      "endMonth": 6,
+      "sheetName": "表1"
+    },
+    {
+      "filename": "2025-08-15_2025年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+      "publishDate": "2025-08-15",
+      "year": "2025",
+      "endMonth": 7,
+      "sheetName": "表1"
+    },
+    {
+      "filename": "2025-09-15_2025年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+      "publishDate": "2025-09-15",
+      "year": "2025",
+      "endMonth": 8,
+      "sheetName": "表1"
+    },
+    {
+      "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+      "publishDate": "2025-10-20",
+      "year": "2025",
+      "endMonth": 9,
+      "sheetName": "表1"
+    }
+  ],
+  "metrics": {
+    "房地产开发投资": [
+      {
+        "yearMonth": "2024-02",
+        "publishDate": "2024-03-18",
+        "value": 11842,
+        "yoy": -9,
+        "mom": null,
+        "filename": "2024-03-18_2024年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 11842
+      },
+      {
+        "yearMonth": "2024-03",
+        "publishDate": "2024-04-16",
+        "value": 22082,
+        "yoy": -9.5,
+        "mom": -13.5,
+        "filename": "2024-04-16_2024年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 10240
+      },
+      {
+        "yearMonth": "2024-04",
+        "publishDate": "2024-05-17",
+        "value": 30928,
+        "yoy": -9.8,
+        "mom": -13.6,
+        "filename": "2024-05-17_2024年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 8846
+      },
+      {
+        "yearMonth": "2024-05",
+        "publishDate": "2024-06-17",
+        "value": 40632,
+        "yoy": -10.1,
+        "mom": 9.7,
+        "filename": "2024-06-17_2024年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 9704
+      },
+      {
+        "yearMonth": "2024-06",
+        "publishDate": "2024-07-15",
+        "value": 52529,
+        "yoy": -10.1,
+        "mom": 22.6,
+        "filename": "2024-07-15_2024年1—6月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 11897
+      },
+      {
+        "yearMonth": "2024-07",
+        "publishDate": "2024-08-15",
+        "value": 60877,
+        "yoy": -10.2,
+        "mom": -29.8,
+        "filename": "2024-08-15_2024年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 8348
+      },
+      {
+        "yearMonth": "2024-08",
+        "publishDate": "2024-09-14",
+        "value": 69284,
+        "yoy": -10.2,
+        "mom": 0.7,
+        "filename": "2024-09-14_2024年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 8407
+      },
+      {
+        "yearMonth": "2024-09",
+        "publishDate": "2024-10-18",
+        "value": 78680,
+        "yoy": -10.1,
+        "mom": 11.8,
+        "filename": "2024-10-18_2024年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 9396
+      },
+      {
+        "yearMonth": "2024-10",
+        "publishDate": "2024-11-15",
+        "value": 86309,
+        "yoy": -10.3,
+        "mom": -18.8,
+        "filename": "2024-11-15_2024年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 7629
+      },
+      {
+        "yearMonth": "2024-11",
+        "publishDate": "2024-12-16",
+        "value": 93634,
+        "yoy": -10.4,
+        "mom": -4,
+        "filename": "2024-12-16_2024年1—11月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 7325
+      },
+      {
+        "yearMonth": "2024-12",
+        "publishDate": "2025-01-17",
+        "value": 100280,
+        "yoy": -10.6,
+        "mom": -9.3,
+        "filename": "2025-01-17_2024年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 6646
+      },
+      {
+        "yearMonth": "2025-02",
+        "publishDate": "2025-03-17",
+        "value": 10720,
+        "yoy": -9.8,
+        "mom": 61.3,
+        "filename": "2025-03-17_2025年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 10720
+      },
+      {
+        "yearMonth": "2025-03",
+        "publishDate": "2025-04-16",
+        "value": 19904,
+        "yoy": -9.9,
+        "mom": -14.3,
+        "filename": "2025-04-16_2025年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 9184
+      },
+      {
+        "yearMonth": "2025-04",
+        "publishDate": "2025-05-19",
+        "value": 27730,
+        "yoy": -10.3,
+        "mom": -14.8,
+        "filename": "2025-05-19_2025年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 7826
+      },
+      {
+        "yearMonth": "2025-05",
+        "publishDate": "2025-06-16",
+        "value": 36234,
+        "yoy": -10.7,
+        "mom": 8.7,
+        "filename": "2025-06-16_2025年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 8504
+      },
+      {
+        "yearMonth": "2025-06",
+        "publishDate": "2025-07-15",
+        "value": 46658,
+        "yoy": -11.2,
+        "mom": 22.6,
+        "filename": "2025-07-15_2025年上半年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 10424
+      },
+      {
+        "yearMonth": "2025-07",
+        "publishDate": "2025-08-15",
+        "value": 53580,
+        "yoy": -12,
+        "mom": -33.6,
+        "filename": "2025-08-15_2025年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 6922
+      },
+      {
+        "yearMonth": "2025-08",
+        "publishDate": "2025-09-15",
+        "value": 60309,
+        "yoy": -12.9,
+        "mom": -2.8,
+        "filename": "2025-09-15_2025年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 6729
+      },
+      {
+        "yearMonth": "2025-09",
+        "publishDate": "2025-10-20",
+        "value": 67706,
+        "yoy": -13.9,
+        "mom": 9.9,
+        "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 7397
+      }
+    ],
+    "房地产开发投资 - 住宅": [
+      {
+        "yearMonth": "2024-02",
+        "publishDate": "2024-03-18",
+        "value": 8823,
+        "yoy": -9.7,
+        "mom": null,
+        "filename": "2024-03-18_2024年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 8823
+      },
+      {
+        "yearMonth": "2024-03",
+        "publishDate": "2024-04-16",
+        "value": 16585,
+        "yoy": -10.5,
+        "mom": -12,
+        "filename": "2024-04-16_2024年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 7762
+      },
+      {
+        "yearMonth": "2024-04",
+        "publishDate": "2024-05-17",
+        "value": 23392,
+        "yoy": -10.5,
+        "mom": -12.3,
+        "filename": "2024-05-17_2024年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 6807
+      },
+      {
+        "yearMonth": "2024-05",
+        "publishDate": "2024-06-17",
+        "value": 30824,
+        "yoy": -10.6,
+        "mom": 9.2,
+        "filename": "2024-06-17_2024年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 7432
+      },
+      {
+        "yearMonth": "2024-06",
+        "publishDate": "2024-07-15",
+        "value": 39883,
+        "yoy": -10.4,
+        "mom": 21.9,
+        "filename": "2024-07-15_2024年1—6月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 9059
+      },
+      {
+        "yearMonth": "2024-07",
+        "publishDate": "2024-08-15",
+        "value": 46230,
+        "yoy": -10.6,
+        "mom": -29.9,
+        "filename": "2024-08-15_2024年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 6347
+      },
+      {
+        "yearMonth": "2024-08",
+        "publishDate": "2024-09-14",
+        "value": 52627,
+        "yoy": -10.5,
+        "mom": 0.8,
+        "filename": "2024-09-14_2024年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 6397
+      },
+      {
+        "yearMonth": "2024-09",
+        "publishDate": "2024-10-18",
+        "value": 59701,
+        "yoy": -10.5,
+        "mom": 10.6,
+        "filename": "2024-10-18_2024年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 7074
+      },
+      {
+        "yearMonth": "2024-10",
+        "publishDate": "2024-11-15",
+        "value": 65644,
+        "yoy": -10.4,
+        "mom": -16,
+        "filename": "2024-11-15_2024年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 5943
+      },
+      {
+        "yearMonth": "2024-11",
+        "publishDate": "2024-12-16",
+        "value": 71190,
+        "yoy": -10.5,
+        "mom": -6.7,
+        "filename": "2024-12-16_2024年1—11月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 5546
+      },
+      {
+        "yearMonth": "2024-12",
+        "publishDate": "2025-01-17",
+        "value": 76040,
+        "yoy": -10.5,
+        "mom": -12.5,
+        "filename": "2025-01-17_2024年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 4850
+      },
+      {
+        "yearMonth": "2025-02",
+        "publishDate": "2025-03-17",
+        "value": 8056,
+        "yoy": -9.2,
+        "mom": 66.1,
+        "filename": "2025-03-17_2025年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 8056
+      },
+      {
+        "yearMonth": "2025-03",
+        "publishDate": "2025-04-16",
+        "value": 15133,
+        "yoy": -9,
+        "mom": -12.2,
+        "filename": "2025-04-16_2025年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 7077
+      },
+      {
+        "yearMonth": "2025-04",
+        "publishDate": "2025-05-19",
+        "value": 21179,
+        "yoy": -9.6,
+        "mom": -14.6,
+        "filename": "2025-05-19_2025年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 6046
+      },
+      {
+        "yearMonth": "2025-05",
+        "publishDate": "2025-06-16",
+        "value": 27731,
+        "yoy": -10,
+        "mom": 8.4,
+        "filename": "2025-06-16_2025年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 6552
+      },
+      {
+        "yearMonth": "2025-06",
+        "publishDate": "2025-07-15",
+        "value": 35770,
+        "yoy": -10.4,
+        "mom": 22.7,
+        "filename": "2025-07-15_2025年上半年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 8039
+      },
+      {
+        "yearMonth": "2025-07",
+        "publishDate": "2025-08-15",
+        "value": 41208,
+        "yoy": -10.9,
+        "mom": -32.4,
+        "filename": "2025-08-15_2025年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 5438
+      },
+      {
+        "yearMonth": "2025-08",
+        "publishDate": "2025-09-15",
+        "value": 46382,
+        "yoy": -11.9,
+        "mom": -4.9,
+        "filename": "2025-09-15_2025年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 5174
+      },
+      {
+        "yearMonth": "2025-09",
+        "publishDate": "2025-10-20",
+        "value": 52046,
+        "yoy": -12.9,
+        "mom": 9.5,
+        "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 5664
+      }
+    ],
+    "房地产开发投资 - 办公楼": [
+      {
+        "yearMonth": "2024-02",
+        "publishDate": "2024-03-18",
+        "value": 579,
+        "yoy": -3.2,
+        "mom": null,
+        "filename": "2024-03-18_2024年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 579
+      },
+      {
+        "yearMonth": "2024-03",
+        "publishDate": "2024-04-16",
+        "value": 990,
+        "yoy": -0.4,
+        "mom": -29,
+        "filename": "2024-04-16_2024年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 411
+      },
+      {
+        "yearMonth": "2024-04",
+        "publishDate": "2024-05-17",
+        "value": 1336,
+        "yoy": -0.8,
+        "mom": -15.8,
+        "filename": "2024-05-17_2024年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 346
+      },
+      {
+        "yearMonth": "2024-05",
+        "publishDate": "2024-06-17",
+        "value": 1693,
+        "yoy": -5.1,
+        "mom": 3.2,
+        "filename": "2024-06-17_2024年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 357
+      },
+      {
+        "yearMonth": "2024-06",
+        "publishDate": "2024-07-15",
+        "value": 2160,
+        "yoy": -5.6,
+        "mom": 30.8,
+        "filename": "2024-07-15_2024年1—6月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 467
+      },
+      {
+        "yearMonth": "2024-07",
+        "publishDate": "2024-08-15",
+        "value": 2493,
+        "yoy": -5.7,
+        "mom": -28.7,
+        "filename": "2024-08-15_2024年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 333
+      },
+      {
+        "yearMonth": "2024-08",
+        "publishDate": "2024-09-14",
+        "value": 2807,
+        "yoy": -6.4,
+        "mom": -5.7,
+        "filename": "2024-09-14_2024年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 314
+      },
+      {
+        "yearMonth": "2024-09",
+        "publishDate": "2024-10-18",
+        "value": 3178,
+        "yoy": -6.5,
+        "mom": 18.2,
+        "filename": "2024-10-18_2024年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 371
+      },
+      {
+        "yearMonth": "2024-10",
+        "publishDate": "2024-11-15",
+        "value": 3487,
+        "yoy": -7,
+        "mom": -16.7,
+        "filename": "2024-11-15_2024年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 309
+      },
+      {
+        "yearMonth": "2024-11",
+        "publishDate": "2024-12-16",
+        "value": 3803,
+        "yoy": -7.4,
+        "mom": 2.3,
+        "filename": "2024-12-16_2024年1—11月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 316
+      },
+      {
+        "yearMonth": "2024-12",
+        "publishDate": "2025-01-17",
+        "value": 4160,
+        "yoy": -9,
+        "mom": 13,
+        "filename": "2025-01-17_2024年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 357
+      },
+      {
+        "yearMonth": "2025-02",
+        "publishDate": "2025-03-17",
+        "value": 492,
+        "yoy": -14.9,
+        "mom": 37.8,
+        "filename": "2025-03-17_2025年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 492
+      },
+      {
+        "yearMonth": "2025-03",
+        "publishDate": "2025-04-16",
+        "value": 819,
+        "yoy": -17,
+        "mom": -33.5,
+        "filename": "2025-04-16_2025年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 327
+      },
+      {
+        "yearMonth": "2025-04",
+        "publishDate": "2025-05-19",
+        "value": 1108,
+        "yoy": -16.7,
+        "mom": -11.6,
+        "filename": "2025-05-19_2025年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 289
+      },
+      {
+        "yearMonth": "2025-05",
+        "publishDate": "2025-06-16",
+        "value": 1412,
+        "yoy": -16.3,
+        "mom": 5.2,
+        "filename": "2025-06-16_2025年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 304
+      },
+      {
+        "yearMonth": "2025-06",
+        "publishDate": "2025-07-15",
+        "value": 1792,
+        "yoy": -16.8,
+        "mom": 25,
+        "filename": "2025-07-15_2025年上半年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 380
+      },
+      {
+        "yearMonth": "2025-07",
+        "publishDate": "2025-08-15",
+        "value": 2043,
+        "yoy": -17.8,
+        "mom": -33.9,
+        "filename": "2025-08-15_2025年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 251
+      },
+      {
+        "yearMonth": "2025-08",
+        "publishDate": "2025-09-15",
+        "value": 2301,
+        "yoy": -17.8,
+        "mom": 2.8,
+        "filename": "2025-09-15_2025年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 258
+      },
+      {
+        "yearMonth": "2025-09",
+        "publishDate": "2025-10-20",
+        "value": 2564,
+        "yoy": -19.1,
+        "mom": 1.9,
+        "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 263
+      }
+    ],
+    "房地产开发投资 - 商业营业用房": [
+      {
+        "yearMonth": "2024-02",
+        "publishDate": "2024-03-18",
+        "value": 894,
+        "yoy": -7,
+        "mom": null,
+        "filename": "2024-03-18_2024年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 894
+      },
+      {
+        "yearMonth": "2024-03",
+        "publishDate": "2024-04-16",
+        "value": 1597,
+        "yoy": -10.5,
+        "mom": -21.4,
+        "filename": "2024-04-16_2024年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 703
+      },
+      {
+        "yearMonth": "2024-04",
+        "publishDate": "2024-05-17",
+        "value": 2172,
+        "yoy": -11.9,
+        "mom": -18.2,
+        "filename": "2024-05-17_2024年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 575
+      },
+      {
+        "yearMonth": "2024-05",
+        "publishDate": "2024-06-17",
+        "value": 2800,
+        "yoy": -12.2,
+        "mom": 9.2,
+        "filename": "2024-06-17_2024年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 628
+      },
+      {
+        "yearMonth": "2024-06",
+        "publishDate": "2024-07-15",
+        "value": 3611,
+        "yoy": -13.2,
+        "mom": 29.1,
+        "filename": "2024-07-15_2024年1—6月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 811
+      },
+      {
+        "yearMonth": "2024-07",
+        "publishDate": "2024-08-15",
+        "value": 4175,
+        "yoy": -12.8,
+        "mom": -30.5,
+        "filename": "2024-08-15_2024年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 564
+      },
+      {
+        "yearMonth": "2024-08",
+        "publishDate": "2024-09-14",
+        "value": 4731,
+        "yoy": -13.2,
+        "mom": -1.4,
+        "filename": "2024-09-14_2024年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 556
+      },
+      {
+        "yearMonth": "2024-09",
+        "publishDate": "2024-10-18",
+        "value": 5389,
+        "yoy": -13.4,
+        "mom": 18.3,
+        "filename": "2024-10-18_2024年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 658
+      },
+      {
+        "yearMonth": "2024-10",
+        "publishDate": "2024-11-15",
+        "value": 5895,
+        "yoy": -13.9,
+        "mom": -23.1,
+        "filename": "2024-11-15_2024年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 506
+      },
+      {
+        "yearMonth": "2024-11",
+        "publishDate": "2024-12-16",
+        "value": 6430,
+        "yoy": -13.6,
+        "mom": 5.7,
+        "filename": "2024-12-16_2024年1—11月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 535
+      },
+      {
+        "yearMonth": "2024-12",
+        "publishDate": "2025-01-17",
+        "value": 6944,
+        "yoy": -13.9,
+        "mom": -3.9,
+        "filename": "2025-01-17_2024年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 514
+      },
+      {
+        "yearMonth": "2025-02",
+        "publishDate": "2025-03-17",
+        "value": 782,
+        "yoy": -12.3,
+        "mom": 52.1,
+        "filename": "2025-03-17_2025年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 782
+      },
+      {
+        "yearMonth": "2025-03",
+        "publishDate": "2025-04-16",
+        "value": 1438,
+        "yoy": -9.4,
+        "mom": -16.1,
+        "filename": "2025-04-16_2025年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 656
+      },
+      {
+        "yearMonth": "2025-04",
+        "publishDate": "2025-05-19",
+        "value": 1982,
+        "yoy": -8.3,
+        "mom": -17.1,
+        "filename": "2025-05-19_2025年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 544
+      },
+      {
+        "yearMonth": "2025-05",
+        "publishDate": "2025-06-16",
+        "value": 2573,
+        "yoy": -7.6,
+        "mom": 8.6,
+        "filename": "2025-06-16_2025年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 591
+      },
+      {
+        "yearMonth": "2025-06",
+        "publishDate": "2025-07-15",
+        "value": 3294,
+        "yoy": -8.4,
+        "mom": 22,
+        "filename": "2025-07-15_2025年上半年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 721
+      },
+      {
+        "yearMonth": "2025-07",
+        "publishDate": "2025-08-15",
+        "value": 3790,
+        "yoy": -8.8,
+        "mom": -31.2,
+        "filename": "2025-08-15_2025年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 496
+      },
+      {
+        "yearMonth": "2025-08",
+        "publishDate": "2025-09-15",
+        "value": 4264,
+        "yoy": -9.5,
+        "mom": -4.4,
+        "filename": "2025-09-15_2025年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 474
+      },
+      {
+        "yearMonth": "2025-09",
+        "publishDate": "2025-10-20",
+        "value": 4806,
+        "yoy": -10.4,
+        "mom": 14.3,
+        "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 542
+      }
+    ],
+    "房屋施工面积": [
+      {
+        "yearMonth": "2024-02",
+        "publishDate": "2024-03-18",
+        "value": 666902,
+        "yoy": -11,
+        "mom": null,
+        "filename": "2024-03-18_2024年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 666902
+      },
+      {
+        "yearMonth": "2024-03",
+        "publishDate": "2024-04-16",
+        "value": 678501,
+        "yoy": -11.1,
+        "mom": 1.7,
+        "filename": "2024-04-16_2024年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 678501
+      },
+      {
+        "yearMonth": "2024-04",
+        "publishDate": "2024-05-17",
+        "value": 687544,
+        "yoy": -10.8,
+        "mom": 1.3,
+        "filename": "2024-05-17_2024年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 687544
+      },
+      {
+        "yearMonth": "2024-05",
+        "publishDate": "2024-06-17",
+        "value": 688896,
+        "yoy": -11.6,
+        "mom": 0.2,
+        "filename": "2024-06-17_2024年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 688896
+      },
+      {
+        "yearMonth": "2024-06",
+        "publishDate": "2024-07-15",
+        "value": 696818,
+        "yoy": -12,
+        "mom": 1.1,
+        "filename": "2024-07-15_2024年1—6月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 696818
+      },
+      {
+        "yearMonth": "2024-07",
+        "publishDate": "2024-08-15",
+        "value": 703286,
+        "yoy": -12.1,
+        "mom": 0.9,
+        "filename": "2024-08-15_2024年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 703286
+      },
+      {
+        "yearMonth": "2024-08",
+        "publishDate": "2024-09-14",
+        "value": 709420,
+        "yoy": -12,
+        "mom": 0.9,
+        "filename": "2024-09-14_2024年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 709420
+      },
+      {
+        "yearMonth": "2024-09",
+        "publishDate": "2024-10-18",
+        "value": 715968,
+        "yoy": -12.2,
+        "mom": 0.9,
+        "filename": "2024-10-18_2024年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 715968
+      },
+      {
+        "yearMonth": "2024-10",
+        "publishDate": "2024-11-15",
+        "value": 720660,
+        "yoy": -12.4,
+        "mom": 0.7,
+        "filename": "2024-11-15_2024年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 720660
+      },
+      {
+        "yearMonth": "2024-11",
+        "publishDate": "2024-12-16",
+        "value": 726014,
+        "yoy": -12.7,
+        "mom": 0.7,
+        "filename": "2024-12-16_2024年1—11月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 726014
+      },
+      {
+        "yearMonth": "2024-12",
+        "publishDate": "2025-01-17",
+        "value": 733247,
+        "yoy": -12.7,
+        "mom": 1,
+        "filename": "2025-01-17_2024年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 733247
+      },
+      {
+        "yearMonth": "2025-02",
+        "publishDate": "2025-03-17",
+        "value": 605972,
+        "yoy": -9.1,
+        "mom": -17.4,
+        "filename": "2025-03-17_2025年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 605972
+      },
+      {
+        "yearMonth": "2025-03",
+        "publishDate": "2025-04-16",
+        "value": 613705,
+        "yoy": -9.5,
+        "mom": 1.3,
+        "filename": "2025-04-16_2025年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 613705
+      },
+      {
+        "yearMonth": "2025-04",
+        "publishDate": "2025-05-19",
+        "value": 620315,
+        "yoy": -9.7,
+        "mom": 1.1,
+        "filename": "2025-05-19_2025年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 620315
+      },
+      {
+        "yearMonth": "2025-05",
+        "publishDate": "2025-06-16",
+        "value": 625020,
+        "yoy": -9.2,
+        "mom": 0.8,
+        "filename": "2025-06-16_2025年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 625020
+      },
+      {
+        "yearMonth": "2025-06",
+        "publishDate": "2025-07-15",
+        "value": 633321,
+        "yoy": -9.1,
+        "mom": 1.3,
+        "filename": "2025-07-15_2025年上半年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 633321
+      },
+      {
+        "yearMonth": "2025-07",
+        "publishDate": "2025-08-15",
+        "value": 638731,
+        "yoy": -9.2,
+        "mom": 0.9,
+        "filename": "2025-08-15_2025年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 638731
+      },
+      {
+        "yearMonth": "2025-08",
+        "publishDate": "2025-09-15",
+        "value": 643109,
+        "yoy": -9.3,
+        "mom": 0.7,
+        "filename": "2025-09-15_2025年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 643109
+      },
+      {
+        "yearMonth": "2025-09",
+        "publishDate": "2025-10-20",
+        "value": 648580,
+        "yoy": -9.4,
+        "mom": 0.9,
+        "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 648580
+      }
+    ],
+    "房屋施工面积 - 住宅": [
+      {
+        "yearMonth": "2024-02",
+        "publishDate": "2024-03-18",
+        "value": 466636,
+        "yoy": -11.4,
+        "mom": null,
+        "filename": "2024-03-18_2024年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 466636
+      },
+      {
+        "yearMonth": "2024-03",
+        "publishDate": "2024-04-16",
+        "value": 474580,
+        "yoy": -11.7,
+        "mom": 1.7,
+        "filename": "2024-04-16_2024年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 474580
+      },
+      {
+        "yearMonth": "2024-04",
+        "publishDate": "2024-05-17",
+        "value": 480647,
+        "yoy": -11.4,
+        "mom": 1.3,
+        "filename": "2024-05-17_2024年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 480647
+      },
+      {
+        "yearMonth": "2024-05",
+        "publishDate": "2024-06-17",
+        "value": 481557,
+        "yoy": -12.2,
+        "mom": 0.2,
+        "filename": "2024-06-17_2024年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 481557
+      },
+      {
+        "yearMonth": "2024-06",
+        "publishDate": "2024-07-15",
+        "value": 487437,
+        "yoy": -12.5,
+        "mom": 1.2,
+        "filename": "2024-07-15_2024年1—6月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 487437
+      },
+      {
+        "yearMonth": "2024-07",
+        "publishDate": "2024-08-15",
+        "value": 491532,
+        "yoy": -12.7,
+        "mom": 0.8,
+        "filename": "2024-08-15_2024年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 491532
+      },
+      {
+        "yearMonth": "2024-08",
+        "publishDate": "2024-09-14",
+        "value": 496052,
+        "yoy": -12.6,
+        "mom": 0.9,
+        "filename": "2024-09-14_2024年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 496052
+      },
+      {
+        "yearMonth": "2024-09",
+        "publishDate": "2024-10-18",
+        "value": 501051,
+        "yoy": -12.7,
+        "mom": 1,
+        "filename": "2024-10-18_2024年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 501051
+      },
+      {
+        "yearMonth": "2024-10",
+        "publishDate": "2024-11-15",
+        "value": 504493,
+        "yoy": -12.9,
+        "mom": 0.7,
+        "filename": "2024-11-15_2024年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 504493
+      },
+      {
+        "yearMonth": "2024-11",
+        "publishDate": "2024-12-16",
+        "value": 508389,
+        "yoy": -13.1,
+        "mom": 0.8,
+        "filename": "2024-12-16_2024年1—11月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 508389
+      },
+      {
+        "yearMonth": "2024-12",
+        "publishDate": "2025-01-17",
+        "value": 513330,
+        "yoy": -13.1,
+        "mom": 1,
+        "filename": "2025-01-17_2024年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 513330
+      },
+      {
+        "yearMonth": "2025-02",
+        "publishDate": "2025-03-17",
+        "value": 421351,
+        "yoy": -9.7,
+        "mom": -17.9,
+        "filename": "2025-03-17_2025年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 421351
+      },
+      {
+        "yearMonth": "2025-03",
+        "publishDate": "2025-04-16",
+        "value": 427237,
+        "yoy": -9.9,
+        "mom": 1.4,
+        "filename": "2025-04-16_2025年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 427237
+      },
+      {
+        "yearMonth": "2025-04",
+        "publishDate": "2025-05-19",
+        "value": 431937,
+        "yoy": -10.1,
+        "mom": 1.1,
+        "filename": "2025-05-19_2025年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 431937
+      },
+      {
+        "yearMonth": "2025-05",
+        "publishDate": "2025-06-16",
+        "value": 435354,
+        "yoy": -9.6,
+        "mom": 0.8,
+        "filename": "2025-06-16_2025年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 435354
+      },
+      {
+        "yearMonth": "2025-06",
+        "publishDate": "2025-07-15",
+        "value": 441240,
+        "yoy": -9.4,
+        "mom": 1.4,
+        "filename": "2025-07-15_2025年上半年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 441240
+      },
+      {
+        "yearMonth": "2025-07",
+        "publishDate": "2025-08-15",
+        "value": 445107,
+        "yoy": -9.4,
+        "mom": 0.9,
+        "filename": "2025-08-15_2025年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 445107
+      },
+      {
+        "yearMonth": "2025-08",
+        "publishDate": "2025-09-15",
+        "value": 448460,
+        "yoy": -9.6,
+        "mom": 0.8,
+        "filename": "2025-09-15_2025年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 448460
+      },
+      {
+        "yearMonth": "2025-09",
+        "publishDate": "2025-10-20",
+        "value": 452165,
+        "yoy": -9.7,
+        "mom": 0.8,
+        "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 452165
+      }
+    ],
+    "房屋施工面积 - 办公楼": [
+      {
+        "yearMonth": "2024-02",
+        "publishDate": "2024-03-18",
+        "value": 27574,
+        "yoy": -9.7,
+        "mom": null,
+        "filename": "2024-03-18_2024年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 27574
+      },
+      {
+        "yearMonth": "2024-03",
+        "publishDate": "2024-04-16",
+        "value": 28114,
+        "yoy": -8.6,
+        "mom": 2,
+        "filename": "2024-04-16_2024年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 28114
+      },
+      {
+        "yearMonth": "2024-04",
+        "publishDate": "2024-05-17",
+        "value": 28473,
+        "yoy": -8,
+        "mom": 1.3,
+        "filename": "2024-05-17_2024年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 28473
+      },
+      {
+        "yearMonth": "2024-05",
+        "publishDate": "2024-06-17",
+        "value": 28470,
+        "yoy": -9.1,
+        "mom": 0,
+        "filename": "2024-06-17_2024年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 28470
+      },
+      {
+        "yearMonth": "2024-06",
+        "publishDate": "2024-07-15",
+        "value": 28595,
+        "yoy": -9.3,
+        "mom": 0.4,
+        "filename": "2024-07-15_2024年1—6月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 28595
+      },
+      {
+        "yearMonth": "2024-07",
+        "publishDate": "2024-08-15",
+        "value": 28977,
+        "yoy": -8.7,
+        "mom": 1.3,
+        "filename": "2024-08-15_2024年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 28977
+      },
+      {
+        "yearMonth": "2024-08",
+        "publishDate": "2024-09-14",
+        "value": 29084,
+        "yoy": -9,
+        "mom": 0.4,
+        "filename": "2024-09-14_2024年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 29084
+      },
+      {
+        "yearMonth": "2024-09",
+        "publishDate": "2024-10-18",
+        "value": 29317,
+        "yoy": -9.1,
+        "mom": 0.8,
+        "filename": "2024-10-18_2024年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 29317
+      },
+      {
+        "yearMonth": "2024-10",
+        "publishDate": "2024-11-15",
+        "value": 29371,
+        "yoy": -9.5,
+        "mom": 0.2,
+        "filename": "2024-11-15_2024年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 29371
+      },
+      {
+        "yearMonth": "2024-11",
+        "publishDate": "2024-12-16",
+        "value": 29521,
+        "yoy": -9.6,
+        "mom": 0.5,
+        "filename": "2024-12-16_2024年1—11月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 29521
+      },
+      {
+        "yearMonth": "2024-12",
+        "publishDate": "2025-01-17",
+        "value": 29858,
+        "yoy": -10.1,
+        "mom": 1.1,
+        "filename": "2025-01-17_2024年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 29858
+      },
+      {
+        "yearMonth": "2025-02",
+        "publishDate": "2025-03-17",
+        "value": 26444,
+        "yoy": -4.1,
+        "mom": -11.4,
+        "filename": "2025-03-17_2025年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 26444
+      },
+      {
+        "yearMonth": "2025-03",
+        "publishDate": "2025-04-16",
+        "value": 26570,
+        "yoy": -5.5,
+        "mom": 0.5,
+        "filename": "2025-04-16_2025年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 26570
+      },
+      {
+        "yearMonth": "2025-04",
+        "publishDate": "2025-05-19",
+        "value": 26864,
+        "yoy": -5.6,
+        "mom": 1.1,
+        "filename": "2025-05-19_2025年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 26864
+      },
+      {
+        "yearMonth": "2025-05",
+        "publishDate": "2025-06-16",
+        "value": 26941,
+        "yoy": -5.3,
+        "mom": 0.3,
+        "filename": "2025-06-16_2025年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 26941
+      },
+      {
+        "yearMonth": "2025-06",
+        "publishDate": "2025-07-15",
+        "value": 27122,
+        "yoy": -5.1,
+        "mom": 0.7,
+        "filename": "2025-07-15_2025年上半年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 27122
+      },
+      {
+        "yearMonth": "2025-07",
+        "publishDate": "2025-08-15",
+        "value": 27350,
+        "yoy": -5.6,
+        "mom": 0.8,
+        "filename": "2025-08-15_2025年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 27350
+      },
+      {
+        "yearMonth": "2025-08",
+        "publishDate": "2025-09-15",
+        "value": 27465,
+        "yoy": -5.5,
+        "mom": 0.4,
+        "filename": "2025-09-15_2025年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 27465
+      },
+      {
+        "yearMonth": "2025-09",
+        "publishDate": "2025-10-20",
+        "value": 27569,
+        "yoy": -5.9,
+        "mom": 0.4,
+        "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 27569
+      }
+    ],
+    "房屋施工面积 - 商业营业用房": [
+      {
+        "yearMonth": "2024-02",
+        "publishDate": "2024-03-18",
+        "value": 58618,
+        "yoy": -11.5,
+        "mom": null,
+        "filename": "2024-03-18_2024年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 58618
+      },
+      {
+        "yearMonth": "2024-03",
+        "publishDate": "2024-04-16",
+        "value": 59247,
+        "yoy": -11.8,
+        "mom": 1.1,
+        "filename": "2024-04-16_2024年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 59247
+      },
+      {
+        "yearMonth": "2024-04",
+        "publishDate": "2024-05-17",
+        "value": 60227,
+        "yoy": -11,
+        "mom": 1.7,
+        "filename": "2024-05-17_2024年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 60227
+      },
+      {
+        "yearMonth": "2024-05",
+        "publishDate": "2024-06-17",
+        "value": 60142,
+        "yoy": -12,
+        "mom": -0.1,
+        "filename": "2024-06-17_2024年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 60142
+      },
+      {
+        "yearMonth": "2024-06",
+        "publishDate": "2024-07-15",
+        "value": 60690,
+        "yoy": -12.3,
+        "mom": 0.9,
+        "filename": "2024-07-15_2024年1—6月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 60690
+      },
+      {
+        "yearMonth": "2024-07",
+        "publishDate": "2024-08-15",
+        "value": 61284,
+        "yoy": -12.1,
+        "mom": 1,
+        "filename": "2024-08-15_2024年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 61284
+      },
+      {
+        "yearMonth": "2024-08",
+        "publishDate": "2024-09-14",
+        "value": 61734,
+        "yoy": -12.1,
+        "mom": 0.7,
+        "filename": "2024-09-14_2024年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 61734
+      },
+      {
+        "yearMonth": "2024-09",
+        "publishDate": "2024-10-18",
+        "value": 61908,
+        "yoy": -12.6,
+        "mom": 0.3,
+        "filename": "2024-10-18_2024年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 61908
+      },
+      {
+        "yearMonth": "2024-10",
+        "publishDate": "2024-11-15",
+        "value": 62210,
+        "yoy": -12.9,
+        "mom": 0.5,
+        "filename": "2024-11-15_2024年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 62210
+      },
+      {
+        "yearMonth": "2024-11",
+        "publishDate": "2024-12-16",
+        "value": 62553,
+        "yoy": -13.1,
+        "mom": 0.6,
+        "filename": "2024-12-16_2024年1—11月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 62553
+      },
+      {
+        "yearMonth": "2024-12",
+        "publishDate": "2025-01-17",
+        "value": 63195,
+        "yoy": -12.6,
+        "mom": 1,
+        "filename": "2025-01-17_2024年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 63195
+      },
+      {
+        "yearMonth": "2025-02",
+        "publishDate": "2025-03-17",
+        "value": 53578,
+        "yoy": -8.6,
+        "mom": -15.2,
+        "filename": "2025-03-17_2025年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 53578
+      },
+      {
+        "yearMonth": "2025-03",
+        "publishDate": "2025-04-16",
+        "value": 53982,
+        "yoy": -8.9,
+        "mom": 0.8,
+        "filename": "2025-04-16_2025年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 53982
+      },
+      {
+        "yearMonth": "2025-04",
+        "publishDate": "2025-05-19",
+        "value": 54420,
+        "yoy": -9.6,
+        "mom": 0.8,
+        "filename": "2025-05-19_2025年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 54420
+      },
+      {
+        "yearMonth": "2025-05",
+        "publishDate": "2025-06-16",
+        "value": 54694,
+        "yoy": -9,
+        "mom": 0.5,
+        "filename": "2025-06-16_2025年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 54694
+      },
+      {
+        "yearMonth": "2025-06",
+        "publishDate": "2025-07-15",
+        "value": 55337,
+        "yoy": -8.8,
+        "mom": 1.2,
+        "filename": "2025-07-15_2025年上半年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 55337
+      },
+      {
+        "yearMonth": "2025-07",
+        "publishDate": "2025-08-15",
+        "value": 55679,
+        "yoy": -9.1,
+        "mom": 0.6,
+        "filename": "2025-08-15_2025年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 55679
+      },
+      {
+        "yearMonth": "2025-08",
+        "publishDate": "2025-09-15",
+        "value": 55847,
+        "yoy": -9.5,
+        "mom": 0.3,
+        "filename": "2025-09-15_2025年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 55847
+      },
+      {
+        "yearMonth": "2025-09",
+        "publishDate": "2025-10-20",
+        "value": 56362,
+        "yoy": -8.9,
+        "mom": 0.9,
+        "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 56362
+      }
+    ],
+    "房屋新开工面积": [
+      {
+        "yearMonth": "2024-02",
+        "publishDate": "2024-03-18",
+        "value": 9429,
+        "yoy": -29.7,
+        "mom": null,
+        "filename": "2024-03-18_2024年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 9429
+      },
+      {
+        "yearMonth": "2024-03",
+        "publishDate": "2024-04-16",
+        "value": 17283,
+        "yoy": -27.8,
+        "mom": -16.7,
+        "filename": "2024-04-16_2024年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 7854
+      },
+      {
+        "yearMonth": "2024-04",
+        "publishDate": "2024-05-17",
+        "value": 23510,
+        "yoy": -24.6,
+        "mom": -20.7,
+        "filename": "2024-05-17_2024年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 6227
+      },
+      {
+        "yearMonth": "2024-05",
+        "publishDate": "2024-06-17",
+        "value": 30090,
+        "yoy": -24.2,
+        "mom": 5.7,
+        "filename": "2024-06-17_2024年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 6580
+      },
+      {
+        "yearMonth": "2024-06",
+        "publishDate": "2024-07-15",
+        "value": 38023,
+        "yoy": -23.7,
+        "mom": 20.6,
+        "filename": "2024-07-15_2024年1—6月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 7933
+      },
+      {
+        "yearMonth": "2024-07",
+        "publishDate": "2024-08-15",
+        "value": 43733,
+        "yoy": -23.2,
+        "mom": -28,
+        "filename": "2024-08-15_2024年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 5710
+      },
+      {
+        "yearMonth": "2024-08",
+        "publishDate": "2024-09-14",
+        "value": 49465,
+        "yoy": -22.5,
+        "mom": 0.4,
+        "filename": "2024-09-14_2024年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 5732
+      },
+      {
+        "yearMonth": "2024-09",
+        "publishDate": "2024-10-18",
+        "value": 56051,
+        "yoy": -22.2,
+        "mom": 14.9,
+        "filename": "2024-10-18_2024年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 6586
+      },
+      {
+        "yearMonth": "2024-10",
+        "publishDate": "2024-11-15",
+        "value": 61227,
+        "yoy": -22.6,
+        "mom": -21.4,
+        "filename": "2024-11-15_2024年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 5176
+      },
+      {
+        "yearMonth": "2024-11",
+        "publishDate": "2024-12-16",
+        "value": 67308,
+        "yoy": -23,
+        "mom": 17.5,
+        "filename": "2024-12-16_2024年1—11月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 6081
+      },
+      {
+        "yearMonth": "2024-12",
+        "publishDate": "2025-01-17",
+        "value": 73893,
+        "yoy": -23,
+        "mom": 8.3,
+        "filename": "2025-01-17_2024年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 6585
+      },
+      {
+        "yearMonth": "2025-02",
+        "publishDate": "2025-03-17",
+        "value": 6614,
+        "yoy": -29.6,
+        "mom": 0.4,
+        "filename": "2025-03-17_2025年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 6614
+      },
+      {
+        "yearMonth": "2025-03",
+        "publishDate": "2025-04-16",
+        "value": 12996,
+        "yoy": -24.4,
+        "mom": -3.5,
+        "filename": "2025-04-16_2025年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 6382
+      },
+      {
+        "yearMonth": "2025-04",
+        "publishDate": "2025-05-19",
+        "value": 17836,
+        "yoy": -23.8,
+        "mom": -24.2,
+        "filename": "2025-05-19_2025年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 4840
+      },
+      {
+        "yearMonth": "2025-05",
+        "publishDate": "2025-06-16",
+        "value": 23184,
+        "yoy": -22.8,
+        "mom": 10.5,
+        "filename": "2025-06-16_2025年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 5348
+      },
+      {
+        "yearMonth": "2025-06",
+        "publishDate": "2025-07-15",
+        "value": 30364,
+        "yoy": -20,
+        "mom": 34.3,
+        "filename": "2025-07-15_2025年上半年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 7180
+      },
+      {
+        "yearMonth": "2025-07",
+        "publishDate": "2025-08-15",
+        "value": 35206,
+        "yoy": -19.4,
+        "mom": -32.6,
+        "filename": "2025-08-15_2025年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 4842
+      },
+      {
+        "yearMonth": "2025-08",
+        "publishDate": "2025-09-15",
+        "value": 39801,
+        "yoy": -19.5,
+        "mom": -5.1,
+        "filename": "2025-09-15_2025年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 4595
+      },
+      {
+        "yearMonth": "2025-09",
+        "publishDate": "2025-10-20",
+        "value": 45399,
+        "yoy": -18.9,
+        "mom": 21.8,
+        "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 5598
+      }
+    ],
+    "房屋新开工面积 - 住宅": [
+      {
+        "yearMonth": "2024-02",
+        "publishDate": "2024-03-18",
+        "value": 6796,
+        "yoy": -30.6,
+        "mom": null,
+        "filename": "2024-03-18_2024年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 6796
+      },
+      {
+        "yearMonth": "2024-03",
+        "publishDate": "2024-04-16",
+        "value": 12534,
+        "yoy": -28.7,
+        "mom": -15.6,
+        "filename": "2024-04-16_2024年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 5738
+      },
+      {
+        "yearMonth": "2024-04",
+        "publishDate": "2024-05-17",
+        "value": 17006,
+        "yoy": -25.6,
+        "mom": -22.1,
+        "filename": "2024-05-17_2024年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 4472
+      },
+      {
+        "yearMonth": "2024-05",
+        "publishDate": "2024-06-17",
+        "value": 21760,
+        "yoy": -25,
+        "mom": 6.3,
+        "filename": "2024-06-17_2024年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 4754
+      },
+      {
+        "yearMonth": "2024-06",
+        "publishDate": "2024-07-15",
+        "value": 27748,
+        "yoy": -23.6,
+        "mom": 26,
+        "filename": "2024-07-15_2024年1—6月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 5988
+      },
+      {
+        "yearMonth": "2024-07",
+        "publishDate": "2024-08-15",
+        "value": 31684,
+        "yoy": -23.7,
+        "mom": -34.3,
+        "filename": "2024-08-15_2024年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 3936
+      },
+      {
+        "yearMonth": "2024-08",
+        "publishDate": "2024-09-14",
+        "value": 35909,
+        "yoy": -23,
+        "mom": 7.3,
+        "filename": "2024-09-14_2024年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 4225
+      },
+      {
+        "yearMonth": "2024-09",
+        "publishDate": "2024-10-18",
+        "value": 40745,
+        "yoy": -22.4,
+        "mom": 14.5,
+        "filename": "2024-10-18_2024年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 4836
+      },
+      {
+        "yearMonth": "2024-10",
+        "publishDate": "2024-11-15",
+        "value": 44569,
+        "yoy": -22.7,
+        "mom": -20.9,
+        "filename": "2024-11-15_2024年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 3824
+      },
+      {
+        "yearMonth": "2024-11",
+        "publishDate": "2024-12-16",
+        "value": 48989,
+        "yoy": -23.1,
+        "mom": 15.6,
+        "filename": "2024-12-16_2024年1—11月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 4420
+      },
+      {
+        "yearMonth": "2024-12",
+        "publishDate": "2025-01-17",
+        "value": 53660,
+        "yoy": -23,
+        "mom": 5.7,
+        "filename": "2025-01-17_2024年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 4671
+      },
+      {
+        "yearMonth": "2025-02",
+        "publishDate": "2025-03-17",
+        "value": 4821,
+        "yoy": -28.9,
+        "mom": 3.2,
+        "filename": "2025-03-17_2025年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 4821
+      },
+      {
+        "yearMonth": "2025-03",
+        "publishDate": "2025-04-16",
+        "value": 9492,
+        "yoy": -23.9,
+        "mom": -3.1,
+        "filename": "2025-04-16_2025年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 4671
+      },
+      {
+        "yearMonth": "2025-04",
+        "publishDate": "2025-05-19",
+        "value": 13164,
+        "yoy": -22.3,
+        "mom": -21.4,
+        "filename": "2025-05-19_2025年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 3672
+      },
+      {
+        "yearMonth": "2025-05",
+        "publishDate": "2025-06-16",
+        "value": 17089,
+        "yoy": -21.4,
+        "mom": 6.9,
+        "filename": "2025-06-16_2025年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 3925
+      },
+      {
+        "yearMonth": "2025-06",
+        "publishDate": "2025-07-15",
+        "value": 22288,
+        "yoy": -19.6,
+        "mom": 32.5,
+        "filename": "2025-07-15_2025年上半年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 5199
+      },
+      {
+        "yearMonth": "2025-07",
+        "publishDate": "2025-08-15",
+        "value": 25881,
+        "yoy": -18.3,
+        "mom": -30.9,
+        "filename": "2025-08-15_2025年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 3593
+      },
+      {
+        "yearMonth": "2025-08",
+        "publishDate": "2025-09-15",
+        "value": 29304,
+        "yoy": -18.3,
+        "mom": -4.7,
+        "filename": "2025-09-15_2025年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 3423
+      },
+      {
+        "yearMonth": "2025-09",
+        "publishDate": "2025-10-20",
+        "value": 33273,
+        "yoy": -18.3,
+        "mom": 16,
+        "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 3969
+      }
+    ],
+    "房屋新开工面积 - 办公楼": [
+      {
+        "yearMonth": "2024-02",
+        "publishDate": "2024-03-18",
+        "value": 327,
+        "yoy": -12.2,
+        "mom": null,
+        "filename": "2024-03-18_2024年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 327
+      },
+      {
+        "yearMonth": "2024-03",
+        "publishDate": "2024-04-16",
+        "value": 546,
+        "yoy": -10.9,
+        "mom": -33,
+        "filename": "2024-04-16_2024年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 219
+      },
+      {
+        "yearMonth": "2024-04",
+        "publishDate": "2024-05-17",
+        "value": 708,
+        "yoy": -14.3,
+        "mom": -26,
+        "filename": "2024-05-17_2024年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 162
+      },
+      {
+        "yearMonth": "2024-05",
+        "publishDate": "2024-06-17",
+        "value": 822,
+        "yoy": -24.9,
+        "mom": -29.6,
+        "filename": "2024-06-17_2024年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 114
+      },
+      {
+        "yearMonth": "2024-06",
+        "publishDate": "2024-07-15",
+        "value": 964,
+        "yoy": -28.7,
+        "mom": 24.6,
+        "filename": "2024-07-15_2024年1—6月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 142
+      },
+      {
+        "yearMonth": "2024-07",
+        "publishDate": "2024-08-15",
+        "value": 1179,
+        "yoy": -22.1,
+        "mom": 51.4,
+        "filename": "2024-08-15_2024年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 215
+      },
+      {
+        "yearMonth": "2024-08",
+        "publishDate": "2024-09-14",
+        "value": 1279,
+        "yoy": -23,
+        "mom": -53.5,
+        "filename": "2024-09-14_2024年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 100
+      },
+      {
+        "yearMonth": "2024-09",
+        "publishDate": "2024-10-18",
+        "value": 1454,
+        "yoy": -25,
+        "mom": 75,
+        "filename": "2024-10-18_2024年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 175
+      },
+      {
+        "yearMonth": "2024-10",
+        "publishDate": "2024-11-15",
+        "value": 1577,
+        "yoy": -26.4,
+        "mom": -29.7,
+        "filename": "2024-11-15_2024年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 123
+      },
+      {
+        "yearMonth": "2024-11",
+        "publishDate": "2024-12-16",
+        "value": 1724,
+        "yoy": -25.6,
+        "mom": 19.5,
+        "filename": "2024-12-16_2024年1—11月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 147
+      },
+      {
+        "yearMonth": "2024-12",
+        "publishDate": "2025-01-17",
+        "value": 1893,
+        "yoy": -27.7,
+        "mom": 15,
+        "filename": "2025-01-17_2024年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 169
+      },
+      {
+        "yearMonth": "2025-02",
+        "publishDate": "2025-03-17",
+        "value": 217,
+        "yoy": -31.4,
+        "mom": 28.4,
+        "filename": "2025-03-17_2025年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 217
+      },
+      {
+        "yearMonth": "2025-03",
+        "publishDate": "2025-04-16",
+        "value": 348,
+        "yoy": -34.9,
+        "mom": -39.6,
+        "filename": "2025-04-16_2025年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 131
+      },
+      {
+        "yearMonth": "2025-04",
+        "publishDate": "2025-05-19",
+        "value": 483,
+        "yoy": -30.6,
+        "mom": 3.1,
+        "filename": "2025-05-19_2025年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 135
+      },
+      {
+        "yearMonth": "2025-05",
+        "publishDate": "2025-06-16",
+        "value": 615,
+        "yoy": -24.1,
+        "mom": -2.2,
+        "filename": "2025-06-16_2025年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 132
+      },
+      {
+        "yearMonth": "2025-06",
+        "publishDate": "2025-07-15",
+        "value": 753,
+        "yoy": -21,
+        "mom": 4.5,
+        "filename": "2025-07-15_2025年上半年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 138
+      },
+      {
+        "yearMonth": "2025-07",
+        "publishDate": "2025-08-15",
+        "value": 898,
+        "yoy": -23.1,
+        "mom": 5.1,
+        "filename": "2025-08-15_2025年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 145
+      },
+      {
+        "yearMonth": "2025-08",
+        "publishDate": "2025-09-15",
+        "value": 991,
+        "yoy": -21.9,
+        "mom": -35.9,
+        "filename": "2025-09-15_2025年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 93
+      },
+      {
+        "yearMonth": "2025-09",
+        "publishDate": "2025-10-20",
+        "value": 1122,
+        "yoy": -22.3,
+        "mom": 40.9,
+        "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 131
+      }
+    ],
+    "房屋新开工面积 - 商业营业用房": [
+      {
+        "yearMonth": "2024-02",
+        "publishDate": "2024-03-18",
+        "value": 602,
+        "yoy": -30.6,
+        "mom": null,
+        "filename": "2024-03-18_2024年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 602
+      },
+      {
+        "yearMonth": "2024-03",
+        "publishDate": "2024-04-16",
+        "value": 1043,
+        "yoy": -32.8,
+        "mom": -26.7,
+        "filename": "2024-04-16_2024年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 441
+      },
+      {
+        "yearMonth": "2024-04",
+        "publishDate": "2024-05-17",
+        "value": 1442,
+        "yoy": -31.4,
+        "mom": -9.5,
+        "filename": "2024-05-17_2024年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 399
+      },
+      {
+        "yearMonth": "2024-05",
+        "publishDate": "2024-06-17",
+        "value": 1919,
+        "yoy": -27,
+        "mom": 19.5,
+        "filename": "2024-06-17_2024年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 477
+      },
+      {
+        "yearMonth": "2024-06",
+        "publishDate": "2024-07-15",
+        "value": 2381,
+        "yoy": -29.3,
+        "mom": -3.1,
+        "filename": "2024-07-15_2024年1—6月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 462
+      },
+      {
+        "yearMonth": "2024-07",
+        "publishDate": "2024-08-15",
+        "value": 2883,
+        "yoy": -25,
+        "mom": 8.7,
+        "filename": "2024-08-15_2024年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 502
+      },
+      {
+        "yearMonth": "2024-08",
+        "publishDate": "2024-09-14",
+        "value": 3288,
+        "yoy": -24.4,
+        "mom": -19.3,
+        "filename": "2024-09-14_2024年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 405
+      },
+      {
+        "yearMonth": "2024-09",
+        "publishDate": "2024-10-18",
+        "value": 3716,
+        "yoy": -24.3,
+        "mom": 5.7,
+        "filename": "2024-10-18_2024年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 428
+      },
+      {
+        "yearMonth": "2024-10",
+        "publishDate": "2024-11-15",
+        "value": 4058,
+        "yoy": -24.4,
+        "mom": -20.1,
+        "filename": "2024-11-15_2024年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 342
+      },
+      {
+        "yearMonth": "2024-11",
+        "publishDate": "2024-12-16",
+        "value": 4517,
+        "yoy": -23.3,
+        "mom": 34.2,
+        "filename": "2024-12-16_2024年1—11月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 459
+      },
+      {
+        "yearMonth": "2024-12",
+        "publishDate": "2025-01-17",
+        "value": 4980,
+        "yoy": -23.3,
+        "mom": 0.9,
+        "filename": "2025-01-17_2024年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 463
+      },
+      {
+        "yearMonth": "2025-02",
+        "publishDate": "2025-03-17",
+        "value": 412,
+        "yoy": -31.4,
+        "mom": -11,
+        "filename": "2025-03-17_2025年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 412
+      },
+      {
+        "yearMonth": "2025-03",
+        "publishDate": "2025-04-16",
+        "value": 893,
+        "yoy": -14.2,
+        "mom": 16.7,
+        "filename": "2025-04-16_2025年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 481
+      },
+      {
+        "yearMonth": "2025-04",
+        "publishDate": "2025-05-19",
+        "value": 1118,
+        "yoy": -22.2,
+        "mom": -53.2,
+        "filename": "2025-05-19_2025年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 225
+      },
+      {
+        "yearMonth": "2025-05",
+        "publishDate": "2025-06-16",
+        "value": 1434,
+        "yoy": -25.2,
+        "mom": 40.4,
+        "filename": "2025-06-16_2025年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 316
+      },
+      {
+        "yearMonth": "2025-06",
+        "publishDate": "2025-07-15",
+        "value": 1956,
+        "yoy": -17.7,
+        "mom": 65.2,
+        "filename": "2025-07-15_2025年上半年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 522
+      },
+      {
+        "yearMonth": "2025-07",
+        "publishDate": "2025-08-15",
+        "value": 2284,
+        "yoy": -20.7,
+        "mom": -37.2,
+        "filename": "2025-08-15_2025年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 328
+      },
+      {
+        "yearMonth": "2025-08",
+        "publishDate": "2025-09-15",
+        "value": 2583,
+        "yoy": -21.3,
+        "mom": -8.8,
+        "filename": "2025-09-15_2025年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 299
+      },
+      {
+        "yearMonth": "2025-09",
+        "publishDate": "2025-10-20",
+        "value": 2950,
+        "yoy": -20.5,
+        "mom": 22.7,
+        "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 367
+      }
+    ],
+    "房屋竣工面积": [
+      {
+        "yearMonth": "2024-02",
+        "publishDate": "2024-03-18",
+        "value": 10395,
+        "yoy": -20.2,
+        "mom": null,
+        "filename": "2024-03-18_2024年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 10395
+      },
+      {
+        "yearMonth": "2024-03",
+        "publishDate": "2024-04-16",
+        "value": 15259,
+        "yoy": -20.7,
+        "mom": 46.8,
+        "filename": "2024-04-16_2024年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 15259
+      },
+      {
+        "yearMonth": "2024-04",
+        "publishDate": "2024-05-17",
+        "value": 18860,
+        "yoy": -20.4,
+        "mom": 23.6,
+        "filename": "2024-05-17_2024年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 18860
+      },
+      {
+        "yearMonth": "2024-05",
+        "publishDate": "2024-06-17",
+        "value": 22245,
+        "yoy": -20.1,
+        "mom": 17.9,
+        "filename": "2024-06-17_2024年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 22245
+      },
+      {
+        "yearMonth": "2024-06",
+        "publishDate": "2024-07-15",
+        "value": 26519,
+        "yoy": -21.8,
+        "mom": 19.2,
+        "filename": "2024-07-15_2024年1—6月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 26519
+      },
+      {
+        "yearMonth": "2024-07",
+        "publishDate": "2024-08-15",
+        "value": 30017,
+        "yoy": -21.8,
+        "mom": 13.2,
+        "filename": "2024-08-15_2024年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 30017
+      },
+      {
+        "yearMonth": "2024-08",
+        "publishDate": "2024-09-14",
+        "value": 33394,
+        "yoy": -23.6,
+        "mom": 11.3,
+        "filename": "2024-09-14_2024年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 33394
+      },
+      {
+        "yearMonth": "2024-09",
+        "publishDate": "2024-10-18",
+        "value": 36816,
+        "yoy": -24.4,
+        "mom": 10.2,
+        "filename": "2024-10-18_2024年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 36816
+      },
+      {
+        "yearMonth": "2024-10",
+        "publishDate": "2024-11-15",
+        "value": 41995,
+        "yoy": -23.9,
+        "mom": 14.1,
+        "filename": "2024-11-15_2024年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 41995
+      },
+      {
+        "yearMonth": "2024-11",
+        "publishDate": "2024-12-16",
+        "value": 48152,
+        "yoy": -26.2,
+        "mom": 14.7,
+        "filename": "2024-12-16_2024年1—11月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 48152
+      },
+      {
+        "yearMonth": "2024-12",
+        "publishDate": "2025-01-17",
+        "value": 73743,
+        "yoy": -27.7,
+        "mom": 53.1,
+        "filename": "2025-01-17_2024年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 73743
+      },
+      {
+        "yearMonth": "2025-02",
+        "publishDate": "2025-03-17",
+        "value": 8764,
+        "yoy": -15.6,
+        "mom": -88.1,
+        "filename": "2025-03-17_2025年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 8764
+      },
+      {
+        "yearMonth": "2025-03",
+        "publishDate": "2025-04-16",
+        "value": 13060,
+        "yoy": -14.3,
+        "mom": 49,
+        "filename": "2025-04-16_2025年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 13060
+      },
+      {
+        "yearMonth": "2025-04",
+        "publishDate": "2025-05-19",
+        "value": 15648,
+        "yoy": -16.9,
+        "mom": 19.8,
+        "filename": "2025-05-19_2025年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 15648
+      },
+      {
+        "yearMonth": "2025-05",
+        "publishDate": "2025-06-16",
+        "value": 18385,
+        "yoy": -17.3,
+        "mom": 17.5,
+        "filename": "2025-06-16_2025年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 18385
+      },
+      {
+        "yearMonth": "2025-06",
+        "publishDate": "2025-07-15",
+        "value": 22567,
+        "yoy": -14.8,
+        "mom": 22.7,
+        "filename": "2025-07-15_2025年上半年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 22567
+      },
+      {
+        "yearMonth": "2025-07",
+        "publishDate": "2025-08-15",
+        "value": 25034,
+        "yoy": -16.5,
+        "mom": 10.9,
+        "filename": "2025-08-15_2025年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 25034
+      },
+      {
+        "yearMonth": "2025-08",
+        "publishDate": "2025-09-15",
+        "value": 27694,
+        "yoy": -17,
+        "mom": 10.6,
+        "filename": "2025-09-15_2025年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 27694
+      },
+      {
+        "yearMonth": "2025-09",
+        "publishDate": "2025-10-20",
+        "value": 31129,
+        "yoy": -15.3,
+        "mom": 12.4,
+        "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 31129
+      }
+    ],
+    "房屋竣工面积 - 住宅": [
+      {
+        "yearMonth": "2024-02",
+        "publishDate": "2024-03-18",
+        "value": 7694,
+        "yoy": -20.2,
+        "mom": null,
+        "filename": "2024-03-18_2024年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 7694
+      },
+      {
+        "yearMonth": "2024-03",
+        "publishDate": "2024-04-16",
+        "value": 11148,
+        "yoy": -21.9,
+        "mom": 44.9,
+        "filename": "2024-04-16_2024年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 11148
+      },
+      {
+        "yearMonth": "2024-04",
+        "publishDate": "2024-05-17",
+        "value": 13746,
+        "yoy": -21,
+        "mom": 23.3,
+        "filename": "2024-05-17_2024年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 13746
+      },
+      {
+        "yearMonth": "2024-05",
+        "publishDate": "2024-06-17",
+        "value": 16199,
+        "yoy": -19.8,
+        "mom": 17.8,
+        "filename": "2024-06-17_2024年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 16199
+      },
+      {
+        "yearMonth": "2024-06",
+        "publishDate": "2024-07-15",
+        "value": 19259,
+        "yoy": -21.7,
+        "mom": 18.9,
+        "filename": "2024-07-15_2024年1—6月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 19259
+      },
+      {
+        "yearMonth": "2024-07",
+        "publishDate": "2024-08-15",
+        "value": 21867,
+        "yoy": -21.8,
+        "mom": 13.5,
+        "filename": "2024-08-15_2024年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 21867
+      },
+      {
+        "yearMonth": "2024-08",
+        "publishDate": "2024-09-14",
+        "value": 24393,
+        "yoy": -23.2,
+        "mom": 11.6,
+        "filename": "2024-09-14_2024年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 24393
+      },
+      {
+        "yearMonth": "2024-09",
+        "publishDate": "2024-10-18",
+        "value": 26871,
+        "yoy": -23.9,
+        "mom": 10.2,
+        "filename": "2024-10-18_2024年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 26871
+      },
+      {
+        "yearMonth": "2024-10",
+        "publishDate": "2024-11-15",
+        "value": 30702,
+        "yoy": -23.4,
+        "mom": 14.3,
+        "filename": "2024-11-15_2024年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 30702
+      },
+      {
+        "yearMonth": "2024-11",
+        "publishDate": "2024-12-16",
+        "value": 35197,
+        "yoy": -26,
+        "mom": 14.6,
+        "filename": "2024-12-16_2024年1—11月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 35197
+      },
+      {
+        "yearMonth": "2024-12",
+        "publishDate": "2025-01-17",
+        "value": 53741,
+        "yoy": -27.4,
+        "mom": 52.7,
+        "filename": "2025-01-17_2024年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 53741
+      },
+      {
+        "yearMonth": "2025-02",
+        "publishDate": "2025-03-17",
+        "value": 6328,
+        "yoy": -17.7,
+        "mom": -88.2,
+        "filename": "2025-03-17_2025年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 6328
+      },
+      {
+        "yearMonth": "2025-03",
+        "publishDate": "2025-04-16",
+        "value": 9502,
+        "yoy": -14.7,
+        "mom": 50.2,
+        "filename": "2025-04-16_2025年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 9502
+      },
+      {
+        "yearMonth": "2025-04",
+        "publishDate": "2025-05-19",
+        "value": 11424,
+        "yoy": -16.8,
+        "mom": 20.2,
+        "filename": "2025-05-19_2025年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 11424
+      },
+      {
+        "yearMonth": "2025-05",
+        "publishDate": "2025-06-16",
+        "value": 13337,
+        "yoy": -17.6,
+        "mom": 16.7,
+        "filename": "2025-06-16_2025年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 13337
+      },
+      {
+        "yearMonth": "2025-06",
+        "publishDate": "2025-07-15",
+        "value": 16266,
+        "yoy": -15.5,
+        "mom": 22,
+        "filename": "2025-07-15_2025年上半年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 16266
+      },
+      {
+        "yearMonth": "2025-07",
+        "publishDate": "2025-08-15",
+        "value": 18067,
+        "yoy": -17.3,
+        "mom": 11.1,
+        "filename": "2025-08-15_2025年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 18067
+      },
+      {
+        "yearMonth": "2025-08",
+        "publishDate": "2025-09-15",
+        "value": 19876,
+        "yoy": -18.5,
+        "mom": 10,
+        "filename": "2025-09-15_2025年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 19876
+      },
+      {
+        "yearMonth": "2025-09",
+        "publishDate": "2025-10-20",
+        "value": 22228,
+        "yoy": -17.1,
+        "mom": 11.8,
+        "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 22228
+      }
+    ],
+    "房屋竣工面积 - 办公楼": [
+      {
+        "yearMonth": "2024-02",
+        "publishDate": "2024-03-18",
+        "value": 275,
+        "yoy": -14.5,
+        "mom": null,
+        "filename": "2024-03-18_2024年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 275
+      },
+      {
+        "yearMonth": "2024-03",
+        "publishDate": "2024-04-16",
+        "value": 448,
+        "yoy": -6.8,
+        "mom": 62.9,
+        "filename": "2024-04-16_2024年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 448
+      },
+      {
+        "yearMonth": "2024-04",
+        "publishDate": "2024-05-17",
+        "value": 521,
+        "yoy": -19.5,
+        "mom": 16.3,
+        "filename": "2024-05-17_2024年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 521
+      },
+      {
+        "yearMonth": "2024-05",
+        "publishDate": "2024-06-17",
+        "value": 598,
+        "yoy": -32.2,
+        "mom": 14.8,
+        "filename": "2024-06-17_2024年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 598
+      },
+      {
+        "yearMonth": "2024-06",
+        "publishDate": "2024-07-15",
+        "value": 733,
+        "yoy": -28.1,
+        "mom": 22.6,
+        "filename": "2024-07-15_2024年1—6月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 733
+      },
+      {
+        "yearMonth": "2024-07",
+        "publishDate": "2024-08-15",
+        "value": 799,
+        "yoy": -31.4,
+        "mom": 9,
+        "filename": "2024-08-15_2024年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 799
+      },
+      {
+        "yearMonth": "2024-08",
+        "publishDate": "2024-09-14",
+        "value": 854,
+        "yoy": -33.7,
+        "mom": 6.9,
+        "filename": "2024-09-14_2024年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 854
+      },
+      {
+        "yearMonth": "2024-09",
+        "publishDate": "2024-10-18",
+        "value": 945,
+        "yoy": -35.3,
+        "mom": 10.7,
+        "filename": "2024-10-18_2024年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 945
+      },
+      {
+        "yearMonth": "2024-10",
+        "publishDate": "2024-11-15",
+        "value": 1030,
+        "yoy": -34.6,
+        "mom": 9,
+        "filename": "2024-11-15_2024年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 1030
+      },
+      {
+        "yearMonth": "2024-11",
+        "publishDate": "2024-12-16",
+        "value": 1200,
+        "yoy": -33.5,
+        "mom": 16.5,
+        "filename": "2024-12-16_2024年1—11月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 1200
+      },
+      {
+        "yearMonth": "2024-12",
+        "publishDate": "2025-01-17",
+        "value": 1940,
+        "yoy": -35.2,
+        "mom": 61.7,
+        "filename": "2025-01-17_2024年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 1940
+      },
+      {
+        "yearMonth": "2025-02",
+        "publishDate": "2025-03-17",
+        "value": 280,
+        "yoy": 1.9,
+        "mom": -85.6,
+        "filename": "2025-03-17_2025年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 280
+      },
+      {
+        "yearMonth": "2025-03",
+        "publishDate": "2025-04-16",
+        "value": 397,
+        "yoy": -11.3,
+        "mom": 41.8,
+        "filename": "2025-04-16_2025年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 397
+      },
+      {
+        "yearMonth": "2025-04",
+        "publishDate": "2025-05-19",
+        "value": 471,
+        "yoy": -9.5,
+        "mom": 18.6,
+        "filename": "2025-05-19_2025年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 471
+      },
+      {
+        "yearMonth": "2025-05",
+        "publishDate": "2025-06-16",
+        "value": 558,
+        "yoy": -6.7,
+        "mom": 18.5,
+        "filename": "2025-06-16_2025年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 558
+      },
+      {
+        "yearMonth": "2025-06",
+        "publishDate": "2025-07-15",
+        "value": 734,
+        "yoy": 0.2,
+        "mom": 31.5,
+        "filename": "2025-07-15_2025年上半年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 734
+      },
+      {
+        "yearMonth": "2025-07",
+        "publishDate": "2025-08-15",
+        "value": 790,
+        "yoy": -1,
+        "mom": 7.6,
+        "filename": "2025-08-15_2025年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 790
+      },
+      {
+        "yearMonth": "2025-08",
+        "publishDate": "2025-09-15",
+        "value": 933,
+        "yoy": 9.3,
+        "mom": 18.1,
+        "filename": "2025-09-15_2025年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 933
+      },
+      {
+        "yearMonth": "2025-09",
+        "publishDate": "2025-10-20",
+        "value": 1100,
+        "yoy": 16.5,
+        "mom": 17.9,
+        "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 1100
+      }
+    ],
+    "房屋竣工面积 - 商业营业用房": [
+      {
+        "yearMonth": "2024-02",
+        "publishDate": "2024-03-18",
+        "value": 741,
+        "yoy": -23.4,
+        "mom": null,
+        "filename": "2024-03-18_2024年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 741
+      },
+      {
+        "yearMonth": "2024-03",
+        "publishDate": "2024-04-16",
+        "value": 1103,
+        "yoy": -23.6,
+        "mom": 48.9,
+        "filename": "2024-04-16_2024年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 1103
+      },
+      {
+        "yearMonth": "2024-04",
+        "publishDate": "2024-05-17",
+        "value": 1375,
+        "yoy": -23.1,
+        "mom": 24.7,
+        "filename": "2024-05-17_2024年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 1375
+      },
+      {
+        "yearMonth": "2024-05",
+        "publishDate": "2024-06-17",
+        "value": 1653,
+        "yoy": -20.5,
+        "mom": 20.2,
+        "filename": "2024-06-17_2024年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 1653
+      },
+      {
+        "yearMonth": "2024-06",
+        "publishDate": "2024-07-15",
+        "value": 2007,
+        "yoy": -18.9,
+        "mom": 21.4,
+        "filename": "2024-07-15_2024年1—6月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 2007
+      },
+      {
+        "yearMonth": "2024-07",
+        "publishDate": "2024-08-15",
+        "value": 2246,
+        "yoy": -20,
+        "mom": 11.9,
+        "filename": "2024-08-15_2024年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 2246
+      },
+      {
+        "yearMonth": "2024-08",
+        "publishDate": "2024-09-14",
+        "value": 2408,
+        "yoy": -24.4,
+        "mom": 7.2,
+        "filename": "2024-09-14_2024年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 2408
+      },
+      {
+        "yearMonth": "2024-09",
+        "publishDate": "2024-10-18",
+        "value": 2618,
+        "yoy": -24.5,
+        "mom": 8.7,
+        "filename": "2024-10-18_2024年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 2618
+      },
+      {
+        "yearMonth": "2024-10",
+        "publishDate": "2024-11-15",
+        "value": 2924,
+        "yoy": -24.7,
+        "mom": 11.7,
+        "filename": "2024-11-15_2024年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 2924
+      },
+      {
+        "yearMonth": "2024-11",
+        "publishDate": "2024-12-16",
+        "value": 3272,
+        "yoy": -27.9,
+        "mom": 11.9,
+        "filename": "2024-12-16_2024年1—11月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 3272
+      },
+      {
+        "yearMonth": "2024-12",
+        "publishDate": "2025-01-17",
+        "value": 4894,
+        "yoy": -31.6,
+        "mom": 49.6,
+        "filename": "2025-01-17_2024年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 4894
+      },
+      {
+        "yearMonth": "2025-02",
+        "publishDate": "2025-03-17",
+        "value": 638,
+        "yoy": -13.9,
+        "mom": -87,
+        "filename": "2025-03-17_2025年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 638
+      },
+      {
+        "yearMonth": "2025-03",
+        "publishDate": "2025-04-16",
+        "value": 943,
+        "yoy": -14.3,
+        "mom": 47.8,
+        "filename": "2025-04-16_2025年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 943
+      },
+      {
+        "yearMonth": "2025-04",
+        "publishDate": "2025-05-19",
+        "value": 1120,
+        "yoy": -18.4,
+        "mom": 18.8,
+        "filename": "2025-05-19_2025年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 1120
+      },
+      {
+        "yearMonth": "2025-05",
+        "publishDate": "2025-06-16",
+        "value": 1332,
+        "yoy": -19.3,
+        "mom": 18.9,
+        "filename": "2025-06-16_2025年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 1332
+      },
+      {
+        "yearMonth": "2025-06",
+        "publishDate": "2025-07-15",
+        "value": 1590,
+        "yoy": -20.7,
+        "mom": 19.4,
+        "filename": "2025-07-15_2025年上半年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 1590
+      },
+      {
+        "yearMonth": "2025-07",
+        "publishDate": "2025-08-15",
+        "value": 1773,
+        "yoy": -20.9,
+        "mom": 11.5,
+        "filename": "2025-08-15_2025年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 1773
+      },
+      {
+        "yearMonth": "2025-08",
+        "publishDate": "2025-09-15",
+        "value": 2001,
+        "yoy": -16.8,
+        "mom": 12.9,
+        "filename": "2025-09-15_2025年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 2001
+      },
+      {
+        "yearMonth": "2025-09",
+        "publishDate": "2025-10-20",
+        "value": 2232,
+        "yoy": -14.6,
+        "mom": 11.5,
+        "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 2232
+      }
+    ],
+    "新建商品房销售面积": [
+      {
+        "yearMonth": "2024-02",
+        "publishDate": "2024-03-18",
+        "value": 11369,
+        "yoy": -20.5,
+        "mom": null,
+        "filename": "2024-03-18_2024年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 11369
+      },
+      {
+        "yearMonth": "2024-03",
+        "publishDate": "2024-04-16",
+        "value": 22668,
+        "yoy": -19.4,
+        "mom": -0.6,
+        "filename": "2024-04-16_2024年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 11299
+      },
+      {
+        "yearMonth": "2024-04",
+        "publishDate": "2024-05-17",
+        "value": 29252,
+        "yoy": -20.2,
+        "mom": -41.7,
+        "filename": "2024-05-17_2024年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 6584
+      },
+      {
+        "yearMonth": "2024-05",
+        "publishDate": "2024-06-17",
+        "value": 36642,
+        "yoy": -20.3,
+        "mom": 12.2,
+        "filename": "2024-06-17_2024年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 7390
+      },
+      {
+        "yearMonth": "2024-06",
+        "publishDate": "2024-07-15",
+        "value": 47916,
+        "yoy": -19,
+        "mom": 52.6,
+        "filename": "2024-07-15_2024年1—6月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 11274
+      },
+      {
+        "yearMonth": "2024-07",
+        "publishDate": "2024-08-15",
+        "value": 54149,
+        "yoy": -18.6,
+        "mom": -44.7,
+        "filename": "2024-08-15_2024年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 6233
+      },
+      {
+        "yearMonth": "2024-08",
+        "publishDate": "2024-09-14",
+        "value": 60602,
+        "yoy": -18,
+        "mom": 3.5,
+        "filename": "2024-09-14_2024年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 6453
+      },
+      {
+        "yearMonth": "2024-09",
+        "publishDate": "2024-10-18",
+        "value": 70284,
+        "yoy": -17.1,
+        "mom": 50,
+        "filename": "2024-10-18_2024年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 9682
+      },
+      {
+        "yearMonth": "2024-10",
+        "publishDate": "2024-11-15",
+        "value": 77930,
+        "yoy": -15.8,
+        "mom": -21,
+        "filename": "2024-11-15_2024年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 7646
+      },
+      {
+        "yearMonth": "2024-11",
+        "publishDate": "2024-12-16",
+        "value": 86118,
+        "yoy": -14.3,
+        "mom": 7.1,
+        "filename": "2024-12-16_2024年1—11月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 8188
+      },
+      {
+        "yearMonth": "2024-12",
+        "publishDate": "2025-01-17",
+        "value": 97385,
+        "yoy": -12.9,
+        "mom": 37.6,
+        "filename": "2025-01-17_2024年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 11267
+      },
+      {
+        "yearMonth": "2025-02",
+        "publishDate": "2025-03-17",
+        "value": 10746,
+        "yoy": -5.1,
+        "mom": -4.6,
+        "filename": "2025-03-17_2025年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 10746
+      },
+      {
+        "yearMonth": "2025-03",
+        "publishDate": "2025-04-16",
+        "value": 21869,
+        "yoy": -3,
+        "mom": 3.5,
+        "filename": "2025-04-16_2025年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 11123
+      },
+      {
+        "yearMonth": "2025-04",
+        "publishDate": "2025-05-19",
+        "value": 28262,
+        "yoy": -2.8,
+        "mom": -42.5,
+        "filename": "2025-05-19_2025年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 6393
+      },
+      {
+        "yearMonth": "2025-05",
+        "publishDate": "2025-06-16",
+        "value": 35315,
+        "yoy": -2.9,
+        "mom": 10.3,
+        "filename": "2025-06-16_2025年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 7053
+      },
+      {
+        "yearMonth": "2025-06",
+        "publishDate": "2025-07-15",
+        "value": 45851,
+        "yoy": -3.5,
+        "mom": 49.4,
+        "filename": "2025-07-15_2025年上半年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 10536
+      },
+      {
+        "yearMonth": "2025-07",
+        "publishDate": "2025-08-15",
+        "value": 51560,
+        "yoy": -4,
+        "mom": -45.8,
+        "filename": "2025-08-15_2025年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 5709
+      },
+      {
+        "yearMonth": "2025-08",
+        "publishDate": "2025-09-15",
+        "value": 57304,
+        "yoy": -4.7,
+        "mom": 0.6,
+        "filename": "2025-09-15_2025年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 5744
+      },
+      {
+        "yearMonth": "2025-09",
+        "publishDate": "2025-10-20",
+        "value": 65835,
+        "yoy": -5.5,
+        "mom": 48.5,
+        "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 8531
+      }
+    ],
+    "新建商品房销售面积 - 住宅": [
+      {
+        "yearMonth": "2024-02",
+        "publishDate": "2024-03-18",
+        "value": 9559,
+        "yoy": -24.8,
+        "mom": null,
+        "filename": "2024-03-18_2024年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 9559
+      },
+      {
+        "yearMonth": "2024-03",
+        "publishDate": "2024-04-16",
+        "value": 18942,
+        "yoy": -23.4,
+        "mom": -1.8,
+        "filename": "2024-04-16_2024年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 9383
+      },
+      {
+        "yearMonth": "2024-04",
+        "publishDate": "2024-05-17",
+        "value": 24507,
+        "yoy": -23.8,
+        "mom": -40.7,
+        "filename": "2024-05-17_2024年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 5565
+      },
+      {
+        "yearMonth": "2024-05",
+        "publishDate": "2024-06-17",
+        "value": 30744,
+        "yoy": -23.6,
+        "mom": 12.1,
+        "filename": "2024-06-17_2024年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 6237
+      },
+      {
+        "yearMonth": "2024-06",
+        "publishDate": "2024-07-15",
+        "value": 40114,
+        "yoy": -21.9,
+        "mom": 50.2,
+        "filename": "2024-07-15_2024年1—6月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 9370
+      },
+      {
+        "yearMonth": "2024-07",
+        "publishDate": "2024-08-15",
+        "value": 45401,
+        "yoy": -21.1,
+        "mom": -43.6,
+        "filename": "2024-08-15_2024年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 5287
+      },
+      {
+        "yearMonth": "2024-08",
+        "publishDate": "2024-09-14",
+        "value": 50812,
+        "yoy": -20.4,
+        "mom": 2.3,
+        "filename": "2024-09-14_2024年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 5411
+      },
+      {
+        "yearMonth": "2024-09",
+        "publishDate": "2024-10-18",
+        "value": 58788,
+        "yoy": -19.2,
+        "mom": 47.4,
+        "filename": "2024-10-18_2024年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 7976
+      },
+      {
+        "yearMonth": "2024-10",
+        "publishDate": "2024-11-15",
+        "value": 65368,
+        "yoy": -17.7,
+        "mom": -17.5,
+        "filename": "2024-11-15_2024年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 6580
+      },
+      {
+        "yearMonth": "2024-11",
+        "publishDate": "2024-12-16",
+        "value": 72224,
+        "yoy": -16,
+        "mom": 4.2,
+        "filename": "2024-12-16_2024年1—11月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 6856
+      },
+      {
+        "yearMonth": "2024-12",
+        "publishDate": "2025-01-17",
+        "value": 81450,
+        "yoy": -14.1,
+        "mom": 34.6,
+        "filename": "2025-01-17_2024年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 9226
+      },
+      {
+        "yearMonth": "2025-02",
+        "publishDate": "2025-03-17",
+        "value": 9207,
+        "yoy": -3.4,
+        "mom": -0.2,
+        "filename": "2025-03-17_2025年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 9207
+      },
+      {
+        "yearMonth": "2025-03",
+        "publishDate": "2025-04-16",
+        "value": 18481,
+        "yoy": -2,
+        "mom": 0.7,
+        "filename": "2025-04-16_2025年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 9274
+      },
+      {
+        "yearMonth": "2025-04",
+        "publishDate": "2025-05-19",
+        "value": 23853,
+        "yoy": -2.1,
+        "mom": -42.1,
+        "filename": "2025-05-19_2025年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 5372
+      },
+      {
+        "yearMonth": "2025-05",
+        "publishDate": "2025-06-16",
+        "value": 29745,
+        "yoy": -2.6,
+        "mom": 9.7,
+        "filename": "2025-06-16_2025年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 5892
+      },
+      {
+        "yearMonth": "2025-06",
+        "publishDate": "2025-07-15",
+        "value": 38358,
+        "yoy": -3.7,
+        "mom": 46.2,
+        "filename": "2025-07-15_2025年上半年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 8613
+      },
+      {
+        "yearMonth": "2025-07",
+        "publishDate": "2025-08-15",
+        "value": 43218,
+        "yoy": -4.1,
+        "mom": -43.6,
+        "filename": "2025-08-15_2025年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 4860
+      },
+      {
+        "yearMonth": "2025-08",
+        "publishDate": "2025-09-15",
+        "value": 48086,
+        "yoy": -4.7,
+        "mom": 0.2,
+        "filename": "2025-09-15_2025年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 4868
+      },
+      {
+        "yearMonth": "2025-09",
+        "publishDate": "2025-10-20",
+        "value": 55063,
+        "yoy": -5.6,
+        "mom": 43.3,
+        "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 6977
+      }
+    ],
+    "新建商品房销售面积 - 办公楼": [
+      {
+        "yearMonth": "2024-02",
+        "publishDate": "2024-03-18",
+        "value": 268,
+        "yoy": 14.9,
+        "mom": null,
+        "filename": "2024-03-18_2024年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 268
+      },
+      {
+        "yearMonth": "2024-03",
+        "publishDate": "2024-04-16",
+        "value": 581,
+        "yoy": 11.9,
+        "mom": 16.8,
+        "filename": "2024-04-16_2024年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 313
+      },
+      {
+        "yearMonth": "2024-04",
+        "publishDate": "2024-05-17",
+        "value": 715,
+        "yoy": 0.5,
+        "mom": -57.2,
+        "filename": "2024-05-17_2024年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 134
+      },
+      {
+        "yearMonth": "2024-05",
+        "publishDate": "2024-06-17",
+        "value": 879,
+        "yoy": -2.5,
+        "mom": 22.4,
+        "filename": "2024-06-17_2024年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 164
+      },
+      {
+        "yearMonth": "2024-06",
+        "publishDate": "2024-07-15",
+        "value": 1202,
+        "yoy": -4.8,
+        "mom": 97,
+        "filename": "2024-07-15_2024年1—6月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 323
+      },
+      {
+        "yearMonth": "2024-07",
+        "publishDate": "2024-08-15",
+        "value": 1327,
+        "yoy": -6.9,
+        "mom": -61.3,
+        "filename": "2024-08-15_2024年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 125
+      },
+      {
+        "yearMonth": "2024-08",
+        "publishDate": "2024-09-14",
+        "value": 1490,
+        "yoy": -9.2,
+        "mom": 30.4,
+        "filename": "2024-09-14_2024年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 163
+      },
+      {
+        "yearMonth": "2024-09",
+        "publishDate": "2024-10-18",
+        "value": 1757,
+        "yoy": -9.8,
+        "mom": 63.8,
+        "filename": "2024-10-18_2024年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 267
+      },
+      {
+        "yearMonth": "2024-10",
+        "publishDate": "2024-11-15",
+        "value": 1891,
+        "yoy": -9.9,
+        "mom": -49.8,
+        "filename": "2024-11-15_2024年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 134
+      },
+      {
+        "yearMonth": "2024-11",
+        "publishDate": "2024-12-16",
+        "value": 2081,
+        "yoy": -8.8,
+        "mom": 41.8,
+        "filename": "2024-12-16_2024年1—11月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 190
+      },
+      {
+        "yearMonth": "2024-12",
+        "publishDate": "2025-01-17",
+        "value": 2403,
+        "yoy": -11.5,
+        "mom": 69.5,
+        "filename": "2025-01-17_2024年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 322
+      },
+      {
+        "yearMonth": "2025-02",
+        "publishDate": "2025-03-17",
+        "value": 189,
+        "yoy": -29.5,
+        "mom": -41.3,
+        "filename": "2025-03-17_2025年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 189
+      },
+      {
+        "yearMonth": "2025-03",
+        "publishDate": "2025-04-16",
+        "value": 516,
+        "yoy": -10.6,
+        "mom": 73,
+        "filename": "2025-04-16_2025年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 327
+      },
+      {
+        "yearMonth": "2025-04",
+        "publishDate": "2025-05-19",
+        "value": 664,
+        "yoy": -6.7,
+        "mom": -54.7,
+        "filename": "2025-05-19_2025年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 148
+      },
+      {
+        "yearMonth": "2025-05",
+        "publishDate": "2025-06-16",
+        "value": 810,
+        "yoy": -7.4,
+        "mom": -1.4,
+        "filename": "2025-06-16_2025年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 146
+      },
+      {
+        "yearMonth": "2025-06",
+        "publishDate": "2025-07-15",
+        "value": 1160,
+        "yoy": -3,
+        "mom": 139.7,
+        "filename": "2025-07-15_2025年上半年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 350
+      },
+      {
+        "yearMonth": "2025-07",
+        "publishDate": "2025-08-15",
+        "value": 1278,
+        "yoy": -3,
+        "mom": -66.3,
+        "filename": "2025-08-15_2025年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 118
+      },
+      {
+        "yearMonth": "2025-08",
+        "publishDate": "2025-09-15",
+        "value": 1400,
+        "yoy": -5.4,
+        "mom": 3.4,
+        "filename": "2025-09-15_2025年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 122
+      },
+      {
+        "yearMonth": "2025-09",
+        "publishDate": "2025-10-20",
+        "value": 1642,
+        "yoy": -6,
+        "mom": 98.4,
+        "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 242
+      }
+    ],
+    "新建商品房销售面积 - 商业营业用房": [
+      {
+        "yearMonth": "2024-02",
+        "publishDate": "2024-03-18",
+        "value": 697,
+        "yoy": 17.3,
+        "mom": null,
+        "filename": "2024-03-18_2024年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 697
+      },
+      {
+        "yearMonth": "2024-03",
+        "publishDate": "2024-04-16",
+        "value": 1378,
+        "yoy": 4.8,
+        "mom": -2.3,
+        "filename": "2024-04-16_2024年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 681
+      },
+      {
+        "yearMonth": "2024-04",
+        "publishDate": "2024-05-17",
+        "value": 1767,
+        "yoy": 2.9,
+        "mom": -42.9,
+        "filename": "2024-05-17_2024年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 389
+      },
+      {
+        "yearMonth": "2024-05",
+        "publishDate": "2024-06-17",
+        "value": 2192,
+        "yoy": 1.8,
+        "mom": 9.3,
+        "filename": "2024-06-17_2024年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 425
+      },
+      {
+        "yearMonth": "2024-06",
+        "publishDate": "2024-07-15",
+        "value": 2853,
+        "yoy": -3.5,
+        "mom": 55.5,
+        "filename": "2024-07-15_2024年1—6月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 661
+      },
+      {
+        "yearMonth": "2024-07",
+        "publishDate": "2024-08-15",
+        "value": 3220,
+        "yoy": -5.7,
+        "mom": -44.5,
+        "filename": "2024-08-15_2024年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 367
+      },
+      {
+        "yearMonth": "2024-08",
+        "publishDate": "2024-09-14",
+        "value": 3601,
+        "yoy": -6.2,
+        "mom": 3.8,
+        "filename": "2024-09-14_2024年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 381
+      },
+      {
+        "yearMonth": "2024-09",
+        "publishDate": "2024-10-18",
+        "value": 4286,
+        "yoy": -4.8,
+        "mom": 79.8,
+        "filename": "2024-10-18_2024年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 685
+      },
+      {
+        "yearMonth": "2024-10",
+        "publishDate": "2024-11-15",
+        "value": 4673,
+        "yoy": -6,
+        "mom": -43.5,
+        "filename": "2024-11-15_2024年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 387
+      },
+      {
+        "yearMonth": "2024-11",
+        "publishDate": "2024-12-16",
+        "value": 5204,
+        "yoy": -5.3,
+        "mom": 37.2,
+        "filename": "2024-12-16_2024年1—11月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 531
+      },
+      {
+        "yearMonth": "2024-12",
+        "publishDate": "2025-01-17",
+        "value": 5986,
+        "yoy": -5.9,
+        "mom": 47.3,
+        "filename": "2025-01-17_2024年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 782
+      },
+      {
+        "yearMonth": "2025-02",
+        "publishDate": "2025-03-17",
+        "value": 585,
+        "yoy": -15.8,
+        "mom": -25.2,
+        "filename": "2025-03-17_2025年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 585
+      },
+      {
+        "yearMonth": "2025-03",
+        "publishDate": "2025-04-16",
+        "value": 1262,
+        "yoy": -8.1,
+        "mom": 15.7,
+        "filename": "2025-04-16_2025年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 677
+      },
+      {
+        "yearMonth": "2025-04",
+        "publishDate": "2025-05-19",
+        "value": 1644,
+        "yoy": -6.4,
+        "mom": -43.6,
+        "filename": "2025-05-19_2025年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 382
+      },
+      {
+        "yearMonth": "2025-05",
+        "publishDate": "2025-06-16",
+        "value": 2050,
+        "yoy": -6,
+        "mom": 6.3,
+        "filename": "2025-06-16_2025年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 406
+      },
+      {
+        "yearMonth": "2025-06",
+        "publishDate": "2025-07-15",
+        "value": 2697,
+        "yoy": -4.8,
+        "mom": 59.4,
+        "filename": "2025-07-15_2025年上半年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 647
+      },
+      {
+        "yearMonth": "2025-07",
+        "publishDate": "2025-08-15",
+        "value": 3000,
+        "yoy": -6.1,
+        "mom": -53.2,
+        "filename": "2025-08-15_2025年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 303
+      },
+      {
+        "yearMonth": "2025-08",
+        "publishDate": "2025-09-15",
+        "value": 3319,
+        "yoy": -7.1,
+        "mom": 5.3,
+        "filename": "2025-09-15_2025年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 319
+      },
+      {
+        "yearMonth": "2025-09",
+        "publishDate": "2025-10-20",
+        "value": 3869,
+        "yoy": -8.7,
+        "mom": 72.4,
+        "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 550
+      }
+    ],
+    "新建商品房销售额": [
+      {
+        "yearMonth": "2024-02",
+        "publishDate": "2024-03-18",
+        "value": 10566,
+        "yoy": -29.3,
+        "mom": null,
+        "filename": "2024-03-18_2024年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 10566
+      },
+      {
+        "yearMonth": "2024-03",
+        "publishDate": "2024-04-16",
+        "value": 21355,
+        "yoy": -27.6,
+        "mom": 2.1,
+        "filename": "2024-04-16_2024年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 10789
+      },
+      {
+        "yearMonth": "2024-04",
+        "publishDate": "2024-05-17",
+        "value": 28067,
+        "yoy": -28.3,
+        "mom": -37.8,
+        "filename": "2024-05-17_2024年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 6712
+      },
+      {
+        "yearMonth": "2024-05",
+        "publishDate": "2024-06-17",
+        "value": 35665,
+        "yoy": -27.9,
+        "mom": 13.2,
+        "filename": "2024-06-17_2024年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 7598
+      },
+      {
+        "yearMonth": "2024-06",
+        "publishDate": "2024-07-15",
+        "value": 47133,
+        "yoy": -25,
+        "mom": 50.9,
+        "filename": "2024-07-15_2024年1—6月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 11468
+      },
+      {
+        "yearMonth": "2024-07",
+        "publishDate": "2024-08-15",
+        "value": 53330,
+        "yoy": -24.3,
+        "mom": -46,
+        "filename": "2024-08-15_2024年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 6197
+      },
+      {
+        "yearMonth": "2024-08",
+        "publishDate": "2024-09-14",
+        "value": 59723,
+        "yoy": -23.6,
+        "mom": 3.2,
+        "filename": "2024-09-14_2024年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 6393
+      },
+      {
+        "yearMonth": "2024-09",
+        "publishDate": "2024-10-18",
+        "value": 68880,
+        "yoy": -22.7,
+        "mom": 43.2,
+        "filename": "2024-10-18_2024年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 9157
+      },
+      {
+        "yearMonth": "2024-10",
+        "publishDate": "2024-11-15",
+        "value": 76855,
+        "yoy": -20.9,
+        "mom": -12.9,
+        "filename": "2024-11-15_2024年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 7975
+      },
+      {
+        "yearMonth": "2024-11",
+        "publishDate": "2024-12-16",
+        "value": 85125,
+        "yoy": -19.2,
+        "mom": 3.7,
+        "filename": "2024-12-16_2024年1—11月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 8270
+      },
+      {
+        "yearMonth": "2024-12",
+        "publishDate": "2025-01-17",
+        "value": 96750,
+        "yoy": -17.1,
+        "mom": 40.6,
+        "filename": "2025-01-17_2024年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 11625
+      },
+      {
+        "yearMonth": "2025-02",
+        "publishDate": "2025-03-17",
+        "value": 10259,
+        "yoy": -2.6,
+        "mom": -11.8,
+        "filename": "2025-03-17_2025年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 10259
+      },
+      {
+        "yearMonth": "2025-03",
+        "publishDate": "2025-04-16",
+        "value": 20798,
+        "yoy": -2.1,
+        "mom": 2.7,
+        "filename": "2025-04-16_2025年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 10539
+      },
+      {
+        "yearMonth": "2025-04",
+        "publishDate": "2025-05-19",
+        "value": 27035,
+        "yoy": -3.2,
+        "mom": -40.8,
+        "filename": "2025-05-19_2025年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 6237
+      },
+      {
+        "yearMonth": "2025-05",
+        "publishDate": "2025-06-16",
+        "value": 34091,
+        "yoy": -3.8,
+        "mom": 13.1,
+        "filename": "2025-06-16_2025年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 7056
+      },
+      {
+        "yearMonth": "2025-06",
+        "publishDate": "2025-07-15",
+        "value": 44241,
+        "yoy": -5.5,
+        "mom": 43.8,
+        "filename": "2025-07-15_2025年上半年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 10150
+      },
+      {
+        "yearMonth": "2025-07",
+        "publishDate": "2025-08-15",
+        "value": 49566,
+        "yoy": -6.5,
+        "mom": -47.5,
+        "filename": "2025-08-15_2025年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 5325
+      },
+      {
+        "yearMonth": "2025-08",
+        "publishDate": "2025-09-15",
+        "value": 55015,
+        "yoy": -7.3,
+        "mom": 2.3,
+        "filename": "2025-09-15_2025年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 5449
+      },
+      {
+        "yearMonth": "2025-09",
+        "publishDate": "2025-10-20",
+        "value": 63040,
+        "yoy": -7.9,
+        "mom": 47.3,
+        "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 8025
+      }
+    ],
+    "新建商品房销售额 - 住宅": [
+      {
+        "yearMonth": "2024-02",
+        "publishDate": "2024-03-18",
+        "value": 9227,
+        "yoy": -32.7,
+        "mom": null,
+        "filename": "2024-03-18_2024年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 9227
+      },
+      {
+        "yearMonth": "2024-03",
+        "publishDate": "2024-04-16",
+        "value": 18523,
+        "yoy": -30.7,
+        "mom": 0.7,
+        "filename": "2024-04-16_2024年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 9296
+      },
+      {
+        "yearMonth": "2024-04",
+        "publishDate": "2024-05-17",
+        "value": 24453,
+        "yoy": -31.1,
+        "mom": -36.2,
+        "filename": "2024-05-17_2024年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 5930
+      },
+      {
+        "yearMonth": "2024-05",
+        "publishDate": "2024-06-17",
+        "value": 31163,
+        "yoy": -30.5,
+        "mom": 13.2,
+        "filename": "2024-06-17_2024年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 6710
+      },
+      {
+        "yearMonth": "2024-06",
+        "publishDate": "2024-07-15",
+        "value": 41270,
+        "yoy": -26.9,
+        "mom": 50.6,
+        "filename": "2024-07-15_2024年1—6月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 10107
+      },
+      {
+        "yearMonth": "2024-07",
+        "publishDate": "2024-08-15",
+        "value": 46787,
+        "yoy": -25.9,
+        "mom": -45.4,
+        "filename": "2024-08-15_2024年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 5517
+      },
+      {
+        "yearMonth": "2024-08",
+        "publishDate": "2024-09-14",
+        "value": 52425,
+        "yoy": -25,
+        "mom": 2.2,
+        "filename": "2024-09-14_2024年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 5638
+      },
+      {
+        "yearMonth": "2024-09",
+        "publishDate": "2024-10-18",
+        "value": 60240,
+        "yoy": -24,
+        "mom": 38.6,
+        "filename": "2024-10-18_2024年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 7815
+      },
+      {
+        "yearMonth": "2024-10",
+        "publishDate": "2024-11-15",
+        "value": 67486,
+        "yoy": -22,
+        "mom": -7.3,
+        "filename": "2024-11-15_2024年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 7246
+      },
+      {
+        "yearMonth": "2024-11",
+        "publishDate": "2024-12-16",
+        "value": 74871,
+        "yoy": -20,
+        "mom": 1.9,
+        "filename": "2024-12-16_2024年1—11月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 7385
+      },
+      {
+        "yearMonth": "2024-12",
+        "publishDate": "2025-01-17",
+        "value": 84864,
+        "yoy": -17.6,
+        "mom": 35.3,
+        "filename": "2025-01-17_2024年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 9993
+      },
+      {
+        "yearMonth": "2025-02",
+        "publishDate": "2025-03-17",
+        "value": 9160,
+        "yoy": -0.4,
+        "mom": -8.3,
+        "filename": "2025-03-17_2025年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 9160
+      },
+      {
+        "yearMonth": "2025-03",
+        "publishDate": "2025-04-16",
+        "value": 18362,
+        "yoy": -0.4,
+        "mom": 0.5,
+        "filename": "2025-04-16_2025年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 9202
+      },
+      {
+        "yearMonth": "2025-04",
+        "publishDate": "2025-05-19",
+        "value": 23866,
+        "yoy": -1.9,
+        "mom": -40.2,
+        "filename": "2025-05-19_2025年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 5504
+      },
+      {
+        "yearMonth": "2025-05",
+        "publishDate": "2025-06-16",
+        "value": 30119,
+        "yoy": -2.8,
+        "mom": 13.6,
+        "filename": "2025-06-16_2025年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 6253
+      },
+      {
+        "yearMonth": "2025-06",
+        "publishDate": "2025-07-15",
+        "value": 38849,
+        "yoy": -5.2,
+        "mom": 39.6,
+        "filename": "2025-07-15_2025年上半年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 8730
+      },
+      {
+        "yearMonth": "2025-07",
+        "publishDate": "2025-08-15",
+        "value": 43593,
+        "yoy": -6.2,
+        "mom": -45.7,
+        "filename": "2025-08-15_2025年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 4744
+      },
+      {
+        "yearMonth": "2025-08",
+        "publishDate": "2025-09-15",
+        "value": 48447,
+        "yoy": -7,
+        "mom": 2.3,
+        "filename": "2025-09-15_2025年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 4854
+      },
+      {
+        "yearMonth": "2025-09",
+        "publishDate": "2025-10-20",
+        "value": 55329,
+        "yoy": -7.6,
+        "mom": 41.8,
+        "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 6882
+      }
+    ],
+    "新建商品房销售额 - 办公楼": [
+      {
+        "yearMonth": "2024-02",
+        "publishDate": "2024-03-18",
+        "value": 332,
+        "yoy": 9.9,
+        "mom": null,
+        "filename": "2024-03-18_2024年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 332
+      },
+      {
+        "yearMonth": "2024-03",
+        "publishDate": "2024-04-16",
+        "value": 759,
+        "yoy": 6.3,
+        "mom": 28.6,
+        "filename": "2024-04-16_2024年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 427
+      },
+      {
+        "yearMonth": "2024-04",
+        "publishDate": "2024-05-17",
+        "value": 958,
+        "yoy": 0.6,
+        "mom": -53.4,
+        "filename": "2024-05-17_2024年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 199
+      },
+      {
+        "yearMonth": "2024-05",
+        "publishDate": "2024-06-17",
+        "value": 1160,
+        "yoy": -4.8,
+        "mom": 1.5,
+        "filename": "2024-06-17_2024年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 202
+      },
+      {
+        "yearMonth": "2024-06",
+        "publishDate": "2024-07-15",
+        "value": 1567,
+        "yoy": -9,
+        "mom": 101.5,
+        "filename": "2024-07-15_2024年1—6月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 407
+      },
+      {
+        "yearMonth": "2024-07",
+        "publishDate": "2024-08-15",
+        "value": 1722,
+        "yoy": -10.4,
+        "mom": -61.9,
+        "filename": "2024-08-15_2024年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 155
+      },
+      {
+        "yearMonth": "2024-08",
+        "publishDate": "2024-09-14",
+        "value": 1934,
+        "yoy": -13,
+        "mom": 36.8,
+        "filename": "2024-09-14_2024年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 212
+      },
+      {
+        "yearMonth": "2024-09",
+        "publishDate": "2024-10-18",
+        "value": 2304,
+        "yoy": -12.7,
+        "mom": 74.5,
+        "filename": "2024-10-18_2024年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 370
+      },
+      {
+        "yearMonth": "2024-10",
+        "publishDate": "2024-11-15",
+        "value": 2469,
+        "yoy": -12.8,
+        "mom": -55.4,
+        "filename": "2024-11-15_2024年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 165
+      },
+      {
+        "yearMonth": "2024-11",
+        "publishDate": "2024-12-16",
+        "value": 2688,
+        "yoy": -13,
+        "mom": 32.7,
+        "filename": "2024-12-16_2024年1—11月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 219
+      },
+      {
+        "yearMonth": "2024-12",
+        "publishDate": "2025-01-17",
+        "value": 3208,
+        "yoy": -14.3,
+        "mom": 137.4,
+        "filename": "2025-01-17_2024年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 520
+      },
+      {
+        "yearMonth": "2025-02",
+        "publishDate": "2025-03-17",
+        "value": 247,
+        "yoy": -25.5,
+        "mom": -52.5,
+        "filename": "2025-03-17_2025年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 247
+      },
+      {
+        "yearMonth": "2025-03",
+        "publishDate": "2025-04-16",
+        "value": 661,
+        "yoy": -12.6,
+        "mom": 67.6,
+        "filename": "2025-04-16_2025年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 414
+      },
+      {
+        "yearMonth": "2025-04",
+        "publishDate": "2025-05-19",
+        "value": 839,
+        "yoy": -12.3,
+        "mom": -57,
+        "filename": "2025-05-19_2025年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 178
+      },
+      {
+        "yearMonth": "2025-05",
+        "publishDate": "2025-06-16",
+        "value": 1033,
+        "yoy": -10.8,
+        "mom": 9,
+        "filename": "2025-06-16_2025年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 194
+      },
+      {
+        "yearMonth": "2025-06",
+        "publishDate": "2025-07-15",
+        "value": 1497,
+        "yoy": -4.2,
+        "mom": 139.2,
+        "filename": "2025-07-15_2025年上半年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 464
+      },
+      {
+        "yearMonth": "2025-07",
+        "publishDate": "2025-08-15",
+        "value": 1637,
+        "yoy": -4.6,
+        "mom": -69.8,
+        "filename": "2025-08-15_2025年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 140
+      },
+      {
+        "yearMonth": "2025-08",
+        "publishDate": "2025-09-15",
+        "value": 1776,
+        "yoy": -7.9,
+        "mom": -0.7,
+        "filename": "2025-09-15_2025年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 139
+      },
+      {
+        "yearMonth": "2025-09",
+        "publishDate": "2025-10-20",
+        "value": 2111,
+        "yoy": -8.1,
+        "mom": 141,
+        "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 335
+      }
+    ],
+    "新建商品房销售额 - 商业营业用房": [
+      {
+        "yearMonth": "2024-02",
+        "publishDate": "2024-03-18",
+        "value": 689,
+        "yoy": 12.5,
+        "mom": null,
+        "filename": "2024-03-18_2024年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 689
+      },
+      {
+        "yearMonth": "2024-03",
+        "publishDate": "2024-04-16",
+        "value": 1386,
+        "yoy": 1.5,
+        "mom": 1.2,
+        "filename": "2024-04-16_2024年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 697
+      },
+      {
+        "yearMonth": "2024-04",
+        "publishDate": "2024-05-17",
+        "value": 1762,
+        "yoy": -2.3,
+        "mom": -46.1,
+        "filename": "2024-05-17_2024年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 376
+      },
+      {
+        "yearMonth": "2024-05",
+        "publishDate": "2024-06-17",
+        "value": 2220,
+        "yoy": -2.2,
+        "mom": 21.8,
+        "filename": "2024-06-17_2024年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 458
+      },
+      {
+        "yearMonth": "2024-06",
+        "publishDate": "2024-07-15",
+        "value": 2833,
+        "yoy": -9.7,
+        "mom": 33.8,
+        "filename": "2024-07-15_2024年1—6月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 613
+      },
+      {
+        "yearMonth": "2024-07",
+        "publishDate": "2024-08-15",
+        "value": 3181,
+        "yoy": -12,
+        "mom": -43.2,
+        "filename": "2024-08-15_2024年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 348
+      },
+      {
+        "yearMonth": "2024-08",
+        "publishDate": "2024-09-14",
+        "value": 3528,
+        "yoy": -13.1,
+        "mom": -0.3,
+        "filename": "2024-09-14_2024年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 347
+      },
+      {
+        "yearMonth": "2024-09",
+        "publishDate": "2024-10-18",
+        "value": 4200,
+        "yoy": -12.2,
+        "mom": 93.7,
+        "filename": "2024-10-18_2024年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 672
+      },
+      {
+        "yearMonth": "2024-10",
+        "publishDate": "2024-11-15",
+        "value": 4543,
+        "yoy": -13.7,
+        "mom": -49,
+        "filename": "2024-11-15_2024年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 343
+      },
+      {
+        "yearMonth": "2024-11",
+        "publishDate": "2024-12-16",
+        "value": 4996,
+        "yoy": -13.4,
+        "mom": 32.1,
+        "filename": "2024-12-16_2024年1—11月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 453
+      },
+      {
+        "yearMonth": "2024-12",
+        "publishDate": "2025-01-17",
+        "value": 5728,
+        "yoy": -13.6,
+        "mom": 61.6,
+        "filename": "2025-01-17_2024年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 732
+      },
+      {
+        "yearMonth": "2025-02",
+        "publishDate": "2025-03-17",
+        "value": 551,
+        "yoy": -19.8,
+        "mom": -24.7,
+        "filename": "2025-03-17_2025年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 551
+      },
+      {
+        "yearMonth": "2025-03",
+        "publishDate": "2025-04-16",
+        "value": 1160,
+        "yoy": -16,
+        "mom": 10.5,
+        "filename": "2025-04-16_2025年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 609
+      },
+      {
+        "yearMonth": "2025-04",
+        "publishDate": "2025-05-19",
+        "value": 1521,
+        "yoy": -13.3,
+        "mom": -40.7,
+        "filename": "2025-05-19_2025年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 361
+      },
+      {
+        "yearMonth": "2025-05",
+        "publishDate": "2025-06-16",
+        "value": 1903,
+        "yoy": -13.9,
+        "mom": 5.8,
+        "filename": "2025-06-16_2025年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 382
+      },
+      {
+        "yearMonth": "2025-06",
+        "publishDate": "2025-07-15",
+        "value": 2524,
+        "yoy": -10.4,
+        "mom": 62.6,
+        "filename": "2025-07-15_2025年上半年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 621
+      },
+      {
+        "yearMonth": "2025-07",
+        "publishDate": "2025-08-15",
+        "value": 2804,
+        "yoy": -11.4,
+        "mom": -54.9,
+        "filename": "2025-08-15_2025年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 280
+      },
+      {
+        "yearMonth": "2025-08",
+        "publishDate": "2025-09-15",
+        "value": 3094,
+        "yoy": -11.8,
+        "mom": 3.6,
+        "filename": "2025-09-15_2025年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 290
+      },
+      {
+        "yearMonth": "2025-09",
+        "publishDate": "2025-10-20",
+        "value": 3627,
+        "yoy": -12.8,
+        "mom": 83.8,
+        "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 533
+      }
+    ],
+    "商品房待售面积": [
+      {
+        "yearMonth": "2024-02",
+        "publishDate": "2024-03-18",
+        "value": 75969,
+        "yoy": 15.9,
+        "mom": null,
+        "filename": "2024-03-18_2024年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 75969
+      },
+      {
+        "yearMonth": "2024-03",
+        "publishDate": "2024-04-16",
+        "value": 74833,
+        "yoy": 15.6,
+        "mom": -1.5,
+        "filename": "2024-04-16_2024年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 74833
+      },
+      {
+        "yearMonth": "2024-04",
+        "publishDate": "2024-05-17",
+        "value": 74553,
+        "yoy": 15.7,
+        "mom": -0.4,
+        "filename": "2024-05-17_2024年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 74553
+      },
+      {
+        "yearMonth": "2024-05",
+        "publishDate": "2024-06-17",
+        "value": 74256,
+        "yoy": 15.8,
+        "mom": -0.4,
+        "filename": "2024-06-17_2024年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 74256
+      },
+      {
+        "yearMonth": "2024-06",
+        "publishDate": "2024-07-15",
+        "value": 73894,
+        "yoy": 15.2,
+        "mom": -0.5,
+        "filename": "2024-07-15_2024年1—6月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 73894
+      },
+      {
+        "yearMonth": "2024-07",
+        "publishDate": "2024-08-15",
+        "value": 73926,
+        "yoy": 14.5,
+        "mom": 0,
+        "filename": "2024-08-15_2024年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 73926
+      },
+      {
+        "yearMonth": "2024-08",
+        "publishDate": "2024-09-14",
+        "value": 73783,
+        "yoy": 13.9,
+        "mom": -0.2,
+        "filename": "2024-09-14_2024年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 73783
+      },
+      {
+        "yearMonth": "2024-09",
+        "publishDate": "2024-10-18",
+        "value": 73177,
+        "yoy": 13.4,
+        "mom": -0.8,
+        "filename": "2024-10-18_2024年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 73177
+      },
+      {
+        "yearMonth": "2024-10",
+        "publishDate": "2024-11-15",
+        "value": 73057,
+        "yoy": 12.7,
+        "mom": -0.2,
+        "filename": "2024-11-15_2024年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 73057
+      },
+      {
+        "yearMonth": "2024-11",
+        "publishDate": "2024-12-16",
+        "value": 73286,
+        "yoy": 12.1,
+        "mom": 0.3,
+        "filename": "2024-12-16_2024年1—11月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 73286
+      },
+      {
+        "yearMonth": "2024-12",
+        "publishDate": "2025-01-17",
+        "value": 75327,
+        "yoy": 10.6,
+        "mom": 2.8,
+        "filename": "2025-01-17_2024年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 75327
+      },
+      {
+        "yearMonth": "2025-02",
+        "publishDate": "2025-03-17",
+        "value": 79891,
+        "yoy": 5.1,
+        "mom": 6.1,
+        "filename": "2025-03-17_2025年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 79891
+      },
+      {
+        "yearMonth": "2025-03",
+        "publishDate": "2025-04-16",
+        "value": 78664,
+        "yoy": 5.1,
+        "mom": -1.5,
+        "filename": "2025-04-16_2025年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 78664
+      },
+      {
+        "yearMonth": "2025-04",
+        "publishDate": "2025-05-19",
+        "value": 78142,
+        "yoy": 4.8,
+        "mom": -0.7,
+        "filename": "2025-05-19_2025年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 78142
+      },
+      {
+        "yearMonth": "2025-05",
+        "publishDate": "2025-06-16",
+        "value": 77427,
+        "yoy": 4.2,
+        "mom": -0.9,
+        "filename": "2025-06-16_2025年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 77427
+      },
+      {
+        "yearMonth": "2025-06",
+        "publishDate": "2025-07-15",
+        "value": 76948,
+        "yoy": 4.1,
+        "mom": -0.6,
+        "filename": "2025-07-15_2025年上半年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 76948
+      },
+      {
+        "yearMonth": "2025-07",
+        "publishDate": "2025-08-15",
+        "value": 76486,
+        "yoy": 3.4,
+        "mom": -0.6,
+        "filename": "2025-08-15_2025年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 76486
+      },
+      {
+        "yearMonth": "2025-08",
+        "publishDate": "2025-09-15",
+        "value": 76169,
+        "yoy": 3.1,
+        "mom": -0.4,
+        "filename": "2025-09-15_2025年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 76169
+      },
+      {
+        "yearMonth": "2025-09",
+        "publishDate": "2025-10-20",
+        "value": 75928,
+        "yoy": 3.6,
+        "mom": -0.3,
+        "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 75928
+      }
+    ],
+    "商品房待售面积 - 住宅": [
+      {
+        "yearMonth": "2024-02",
+        "publishDate": "2024-03-18",
+        "value": 40500,
+        "yoy": 23.8,
+        "mom": null,
+        "filename": "2024-03-18_2024年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 40500
+      },
+      {
+        "yearMonth": "2024-03",
+        "publishDate": "2024-04-16",
+        "value": 39458,
+        "yoy": 23.9,
+        "mom": -2.6,
+        "filename": "2024-04-16_2024年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 39458
+      },
+      {
+        "yearMonth": "2024-04",
+        "publishDate": "2024-05-17",
+        "value": 39088,
+        "yoy": 24.5,
+        "mom": -0.9,
+        "filename": "2024-05-17_2024年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 39088
+      },
+      {
+        "yearMonth": "2024-05",
+        "publishDate": "2024-06-17",
+        "value": 38712,
+        "yoy": 24.6,
+        "mom": -1,
+        "filename": "2024-06-17_2024年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 38712
+      },
+      {
+        "yearMonth": "2024-06",
+        "publishDate": "2024-07-15",
+        "value": 38287,
+        "yoy": 23.5,
+        "mom": -1.1,
+        "filename": "2024-07-15_2024年1—6月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 38287
+      },
+      {
+        "yearMonth": "2024-07",
+        "publishDate": "2024-08-15",
+        "value": 38238,
+        "yoy": 22.5,
+        "mom": -0.1,
+        "filename": "2024-08-15_2024年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 38238
+      },
+      {
+        "yearMonth": "2024-08",
+        "publishDate": "2024-09-14",
+        "value": 38103,
+        "yoy": 21.5,
+        "mom": -0.4,
+        "filename": "2024-09-14_2024年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 38103
+      },
+      {
+        "yearMonth": "2024-09",
+        "publishDate": "2024-10-18",
+        "value": 37679,
+        "yoy": 20.8,
+        "mom": -1.1,
+        "filename": "2024-10-18_2024年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 37679
+      },
+      {
+        "yearMonth": "2024-10",
+        "publishDate": "2024-11-15",
+        "value": 37523,
+        "yoy": 19.6,
+        "mom": -0.4,
+        "filename": "2024-11-15_2024年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 37523
+      },
+      {
+        "yearMonth": "2024-11",
+        "publishDate": "2024-12-16",
+        "value": 37652,
+        "yoy": 18.4,
+        "mom": 0.3,
+        "filename": "2024-12-16_2024年1—11月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 37652
+      },
+      {
+        "yearMonth": "2024-12",
+        "publishDate": "2025-01-17",
+        "value": 39088,
+        "yoy": 16.2,
+        "mom": 3.8,
+        "filename": "2025-01-17_2024年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 39088
+      },
+      {
+        "yearMonth": "2025-02",
+        "publishDate": "2025-03-17",
+        "value": 43174,
+        "yoy": 6.6,
+        "mom": 10.5,
+        "filename": "2025-03-17_2025年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 43174
+      },
+      {
+        "yearMonth": "2025-03",
+        "publishDate": "2025-04-16",
+        "value": 42158,
+        "yoy": 6.8,
+        "mom": -2.4,
+        "filename": "2025-04-16_2025年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 42158
+      },
+      {
+        "yearMonth": "2025-04",
+        "publishDate": "2025-05-19",
+        "value": 41703,
+        "yoy": 6.6,
+        "mom": -1.1,
+        "filename": "2025-05-19_2025年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 41703
+      },
+      {
+        "yearMonth": "2025-05",
+        "publishDate": "2025-06-16",
+        "value": 41264,
+        "yoy": 6.5,
+        "mom": -1.1,
+        "filename": "2025-06-16_2025年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 41264
+      },
+      {
+        "yearMonth": "2025-06",
+        "publishDate": "2025-07-15",
+        "value": 40821,
+        "yoy": 6.5,
+        "mom": -1.1,
+        "filename": "2025-07-15_2025年上半年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 40821
+      },
+      {
+        "yearMonth": "2025-07",
+        "publishDate": "2025-08-15",
+        "value": 40536,
+        "yoy": 5.9,
+        "mom": -0.7,
+        "filename": "2025-08-15_2025年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 40536
+      },
+      {
+        "yearMonth": "2025-08",
+        "publishDate": "2025-09-15",
+        "value": 40229,
+        "yoy": 5.4,
+        "mom": -0.8,
+        "filename": "2025-09-15_2025年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 40229
+      },
+      {
+        "yearMonth": "2025-09",
+        "publishDate": "2025-10-20",
+        "value": 39937,
+        "yoy": 5.8,
+        "mom": -0.7,
+        "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 39937
+      }
+    ],
+    "商品房待售面积 - 办公楼": [
+      {
+        "yearMonth": "2024-02",
+        "publishDate": "2024-03-18",
+        "value": 5113,
+        "yoy": 8.4,
+        "mom": null,
+        "filename": "2024-03-18_2024年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 5113
+      },
+      {
+        "yearMonth": "2024-03",
+        "publishDate": "2024-04-16",
+        "value": 5204,
+        "yoy": 11.1,
+        "mom": 1.8,
+        "filename": "2024-04-16_2024年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 5204
+      },
+      {
+        "yearMonth": "2024-04",
+        "publishDate": "2024-05-17",
+        "value": 5217,
+        "yoy": 10.5,
+        "mom": 0.2,
+        "filename": "2024-05-17_2024年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 5217
+      },
+      {
+        "yearMonth": "2024-05",
+        "publishDate": "2024-06-17",
+        "value": 5214,
+        "yoy": 9.3,
+        "mom": -0.1,
+        "filename": "2024-06-17_2024年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 5214
+      },
+      {
+        "yearMonth": "2024-06",
+        "publishDate": "2024-07-15",
+        "value": 5211,
+        "yoy": 9.6,
+        "mom": -0.1,
+        "filename": "2024-07-15_2024年1—6月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 5211
+      },
+      {
+        "yearMonth": "2024-07",
+        "publishDate": "2024-08-15",
+        "value": 5242,
+        "yoy": 10.1,
+        "mom": 0.6,
+        "filename": "2024-08-15_2024年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 5242
+      },
+      {
+        "yearMonth": "2024-08",
+        "publishDate": "2024-09-14",
+        "value": 5215,
+        "yoy": 10.1,
+        "mom": -0.5,
+        "filename": "2024-09-14_2024年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 5215
+      },
+      {
+        "yearMonth": "2024-09",
+        "publishDate": "2024-10-18",
+        "value": 5175,
+        "yoy": 9.4,
+        "mom": -0.8,
+        "filename": "2024-10-18_2024年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 5175
+      },
+      {
+        "yearMonth": "2024-10",
+        "publishDate": "2024-11-15",
+        "value": 5180,
+        "yoy": 9,
+        "mom": 0.1,
+        "filename": "2024-11-15_2024年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 5180
+      },
+      {
+        "yearMonth": "2024-11",
+        "publishDate": "2024-12-16",
+        "value": 5197,
+        "yoy": 9.1,
+        "mom": 0.3,
+        "filename": "2024-12-16_2024年1—11月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 5197
+      },
+      {
+        "yearMonth": "2024-12",
+        "publishDate": "2025-01-17",
+        "value": 5313,
+        "yoy": 8.6,
+        "mom": 2.2,
+        "filename": "2025-01-17_2024年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 5313
+      },
+      {
+        "yearMonth": "2025-02",
+        "publishDate": "2025-03-17",
+        "value": 5241,
+        "yoy": 2.5,
+        "mom": -1.4,
+        "filename": "2025-03-17_2025年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 5241
+      },
+      {
+        "yearMonth": "2025-03",
+        "publishDate": "2025-04-16",
+        "value": 5233,
+        "yoy": 0.5,
+        "mom": -0.2,
+        "filename": "2025-04-16_2025年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 5233
+      },
+      {
+        "yearMonth": "2025-04",
+        "publishDate": "2025-05-19",
+        "value": 5172,
+        "yoy": -0.9,
+        "mom": -1.2,
+        "filename": "2025-05-19_2025年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 5172
+      },
+      {
+        "yearMonth": "2025-05",
+        "publishDate": "2025-06-16",
+        "value": 5139,
+        "yoy": -1.5,
+        "mom": -0.6,
+        "filename": "2025-06-16_2025年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 5139
+      },
+      {
+        "yearMonth": "2025-06",
+        "publishDate": "2025-07-15",
+        "value": 5153,
+        "yoy": -1.1,
+        "mom": 0.3,
+        "filename": "2025-07-15_2025年上半年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 5153
+      },
+      {
+        "yearMonth": "2025-07",
+        "publishDate": "2025-08-15",
+        "value": 5118,
+        "yoy": -2.4,
+        "mom": -0.7,
+        "filename": "2025-08-15_2025年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 5118
+      },
+      {
+        "yearMonth": "2025-08",
+        "publishDate": "2025-09-15",
+        "value": 5135,
+        "yoy": -1.6,
+        "mom": 0.3,
+        "filename": "2025-09-15_2025年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 5135
+      },
+      {
+        "yearMonth": "2025-09",
+        "publishDate": "2025-10-20",
+        "value": 5209,
+        "yoy": 0.6,
+        "mom": 1.4,
+        "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 5209
+      }
+    ],
+    "商品房待售面积 - 商业营业用房": [
+      {
+        "yearMonth": "2024-02",
+        "publishDate": "2024-03-18",
+        "value": 14437,
+        "yoy": 3.6,
+        "mom": null,
+        "filename": "2024-03-18_2024年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 14437
+      },
+      {
+        "yearMonth": "2024-03",
+        "publishDate": "2024-04-16",
+        "value": 14246,
+        "yoy": 1.5,
+        "mom": -1.3,
+        "filename": "2024-04-16_2024年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 14246
+      },
+      {
+        "yearMonth": "2024-04",
+        "publishDate": "2024-05-17",
+        "value": 14219,
+        "yoy": 1,
+        "mom": -0.2,
+        "filename": "2024-05-17_2024年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 14219
+      },
+      {
+        "yearMonth": "2024-05",
+        "publishDate": "2024-06-17",
+        "value": 14308,
+        "yoy": 2,
+        "mom": 0.6,
+        "filename": "2024-06-17_2024年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 14308
+      },
+      {
+        "yearMonth": "2024-06",
+        "publishDate": "2024-07-15",
+        "value": 14273,
+        "yoy": 2,
+        "mom": -0.2,
+        "filename": "2024-07-15_2024年1—6月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 14273
+      },
+      {
+        "yearMonth": "2024-07",
+        "publishDate": "2024-08-15",
+        "value": 14311,
+        "yoy": 1.7,
+        "mom": 0.3,
+        "filename": "2024-08-15_2024年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 14311
+      },
+      {
+        "yearMonth": "2024-08",
+        "publishDate": "2024-09-14",
+        "value": 14270,
+        "yoy": 1.5,
+        "mom": -0.3,
+        "filename": "2024-09-14_2024年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 14270
+      },
+      {
+        "yearMonth": "2024-09",
+        "publishDate": "2024-10-18",
+        "value": 14234,
+        "yoy": 1.5,
+        "mom": -0.3,
+        "filename": "2024-10-18_2024年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 14234
+      },
+      {
+        "yearMonth": "2024-10",
+        "publishDate": "2024-11-15",
+        "value": 14232,
+        "yoy": 1.5,
+        "mom": 0,
+        "filename": "2024-11-15_2024年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 14232
+      },
+      {
+        "yearMonth": "2024-11",
+        "publishDate": "2024-12-16",
+        "value": 14269,
+        "yoy": 1.4,
+        "mom": 0.3,
+        "filename": "2024-12-16_2024年1—11月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 14269
+      },
+      {
+        "yearMonth": "2024-12",
+        "publishDate": "2025-01-17",
+        "value": 14437,
+        "yoy": 0.6,
+        "mom": 1.2,
+        "filename": "2025-01-17_2024年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 14437
+      },
+      {
+        "yearMonth": "2025-02",
+        "publishDate": "2025-03-17",
+        "value": 14524,
+        "yoy": 0.6,
+        "mom": 0.6,
+        "filename": "2025-03-17_2025年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 14524
+      },
+      {
+        "yearMonth": "2025-03",
+        "publishDate": "2025-04-16",
+        "value": 14508,
+        "yoy": 1.8,
+        "mom": -0.1,
+        "filename": "2025-04-16_2025年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 14508
+      },
+      {
+        "yearMonth": "2025-04",
+        "publishDate": "2025-05-19",
+        "value": 14510,
+        "yoy": 2.1,
+        "mom": 0,
+        "filename": "2025-05-19_2025年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 14510
+      },
+      {
+        "yearMonth": "2025-05",
+        "publishDate": "2025-06-16",
+        "value": 14371,
+        "yoy": 0.5,
+        "mom": -1,
+        "filename": "2025-06-16_2025年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 14371
+      },
+      {
+        "yearMonth": "2025-06",
+        "publishDate": "2025-07-15",
+        "value": 14340,
+        "yoy": 0.5,
+        "mom": -0.2,
+        "filename": "2025-07-15_2025年上半年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 14340
+      },
+      {
+        "yearMonth": "2025-07",
+        "publishDate": "2025-08-15",
+        "value": 14256,
+        "yoy": -0.4,
+        "mom": -0.6,
+        "filename": "2025-08-15_2025年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 14256
+      },
+      {
+        "yearMonth": "2025-08",
+        "publishDate": "2025-09-15",
+        "value": 14211,
+        "yoy": -0.5,
+        "mom": -0.3,
+        "filename": "2025-09-15_2025年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 14211
+      },
+      {
+        "yearMonth": "2025-09",
+        "publishDate": "2025-10-20",
+        "value": 14224,
+        "yoy": -0.2,
+        "mom": 0.1,
+        "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 14224
+      }
+    ],
+    "房地产开发企业本年到位资金": [
+      {
+        "yearMonth": "2024-02",
+        "publishDate": "2024-03-18",
+        "value": 16193,
+        "yoy": -24.1,
+        "mom": null,
+        "filename": "2024-03-18_2024年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 16193
+      },
+      {
+        "yearMonth": "2024-03",
+        "publishDate": "2024-04-16",
+        "value": 25689,
+        "yoy": -26,
+        "mom": -41.4,
+        "filename": "2024-04-16_2024年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 9496
+      },
+      {
+        "yearMonth": "2024-04",
+        "publishDate": "2024-05-17",
+        "value": 34036,
+        "yoy": -24.9,
+        "mom": -12.1,
+        "filename": "2024-05-17_2024年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 8347
+      },
+      {
+        "yearMonth": "2024-05",
+        "publishDate": "2024-06-17",
+        "value": 42571,
+        "yoy": -24.3,
+        "mom": 2.3,
+        "filename": "2024-06-17_2024年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 8535
+      },
+      {
+        "yearMonth": "2024-06",
+        "publishDate": "2024-07-15",
+        "value": 53538,
+        "yoy": -22.6,
+        "mom": 28.5,
+        "filename": "2024-07-15_2024年1—6月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 10967
+      },
+      {
+        "yearMonth": "2024-07",
+        "publishDate": "2024-08-15",
+        "value": 61901,
+        "yoy": -21.3,
+        "mom": -23.7,
+        "filename": "2024-08-15_2024年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 8363
+      },
+      {
+        "yearMonth": "2024-08",
+        "publishDate": "2024-09-14",
+        "value": 69932,
+        "yoy": -20.2,
+        "mom": -4,
+        "filename": "2024-09-14_2024年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 8031
+      },
+      {
+        "yearMonth": "2024-09",
+        "publishDate": "2024-10-18",
+        "value": 78898,
+        "yoy": -20,
+        "mom": 11.6,
+        "filename": "2024-10-18_2024年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 8966
+      },
+      {
+        "yearMonth": "2024-10",
+        "publishDate": "2024-11-15",
+        "value": 87235,
+        "yoy": -19.2,
+        "mom": -7,
+        "filename": "2024-11-15_2024年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 8337
+      },
+      {
+        "yearMonth": "2024-11",
+        "publishDate": "2024-12-16",
+        "value": 96575,
+        "yoy": -18,
+        "mom": 12,
+        "filename": "2024-12-16_2024年1—11月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 9340
+      },
+      {
+        "yearMonth": "2024-12",
+        "publishDate": "2025-01-17",
+        "value": 107661,
+        "yoy": -17,
+        "mom": 18.7,
+        "filename": "2025-01-17_2024年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 11086
+      },
+      {
+        "yearMonth": "2025-02",
+        "publishDate": "2025-03-17",
+        "value": 15577,
+        "yoy": -3.6,
+        "mom": 40.5,
+        "filename": "2025-03-17_2025年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 15577
+      },
+      {
+        "yearMonth": "2025-03",
+        "publishDate": "2025-04-16",
+        "value": 24729,
+        "yoy": -3.7,
+        "mom": -41.2,
+        "filename": "2025-04-16_2025年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 9152
+      },
+      {
+        "yearMonth": "2025-04",
+        "publishDate": "2025-05-19",
+        "value": 32596,
+        "yoy": -4.1,
+        "mom": -14,
+        "filename": "2025-05-19_2025年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 7867
+      },
+      {
+        "yearMonth": "2025-05",
+        "publishDate": "2025-06-16",
+        "value": 40232,
+        "yoy": -5.3,
+        "mom": -2.9,
+        "filename": "2025-06-16_2025年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 7636
+      },
+      {
+        "yearMonth": "2025-06",
+        "publishDate": "2025-07-15",
+        "value": 50202,
+        "yoy": -6.2,
+        "mom": 30.6,
+        "filename": "2025-07-15_2025年上半年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 9970
+      },
+      {
+        "yearMonth": "2025-07",
+        "publishDate": "2025-08-15",
+        "value": 57287,
+        "yoy": -7.5,
+        "mom": -28.9,
+        "filename": "2025-08-15_2025年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 7085
+      },
+      {
+        "yearMonth": "2025-08",
+        "publishDate": "2025-09-15",
+        "value": 64318,
+        "yoy": -8,
+        "mom": -0.8,
+        "filename": "2025-09-15_2025年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 7031
+      },
+      {
+        "yearMonth": "2025-09",
+        "publishDate": "2025-10-20",
+        "value": 72299,
+        "yoy": -8.4,
+        "mom": 13.5,
+        "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 7981
+      }
+    ],
+    "房地产开发企业本年到位资金 - 国内贷款": [
+      {
+        "yearMonth": "2024-02",
+        "publishDate": "2024-03-18",
+        "value": 3144,
+        "yoy": -10.3,
+        "mom": null,
+        "filename": "2024-03-18_2024年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 3144
+      },
+      {
+        "yearMonth": "2024-03",
+        "publishDate": "2024-04-16",
+        "value": 4554,
+        "yoy": -9.1,
+        "mom": -55.2,
+        "filename": "2024-04-16_2024年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 1410
+      },
+      {
+        "yearMonth": "2024-04",
+        "publishDate": "2024-05-17",
+        "value": 5583,
+        "yoy": -10.1,
+        "mom": -27,
+        "filename": "2024-05-17_2024年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 1029
+      },
+      {
+        "yearMonth": "2024-05",
+        "publishDate": "2024-06-17",
+        "value": 6810,
+        "yoy": -6.2,
+        "mom": 19.2,
+        "filename": "2024-06-17_2024年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 1227
+      },
+      {
+        "yearMonth": "2024-06",
+        "publishDate": "2024-07-15",
+        "value": 8207,
+        "yoy": -6.6,
+        "mom": 13.9,
+        "filename": "2024-07-15_2024年1—6月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 1397
+      },
+      {
+        "yearMonth": "2024-07",
+        "publishDate": "2024-08-15",
+        "value": 9216,
+        "yoy": -6.3,
+        "mom": -27.8,
+        "filename": "2024-08-15_2024年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 1009
+      },
+      {
+        "yearMonth": "2024-08",
+        "publishDate": "2024-09-14",
+        "value": 10229,
+        "yoy": -5.1,
+        "mom": 0.4,
+        "filename": "2024-09-14_2024年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 1013
+      },
+      {
+        "yearMonth": "2024-09",
+        "publishDate": "2024-10-18",
+        "value": 11466,
+        "yoy": -6.2,
+        "mom": 22.1,
+        "filename": "2024-10-18_2024年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 1237
+      },
+      {
+        "yearMonth": "2024-10",
+        "publishDate": "2024-11-15",
+        "value": 12400,
+        "yoy": -6.4,
+        "mom": -24.5,
+        "filename": "2024-11-15_2024年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 934
+      },
+      {
+        "yearMonth": "2024-11",
+        "publishDate": "2024-12-16",
+        "value": 13476,
+        "yoy": -6.2,
+        "mom": 15.2,
+        "filename": "2024-12-16_2024年1—11月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 1076
+      },
+      {
+        "yearMonth": "2024-12",
+        "publishDate": "2025-01-17",
+        "value": 15217,
+        "yoy": -6.1,
+        "mom": 61.8,
+        "filename": "2025-01-17_2024年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 1741
+      },
+      {
+        "yearMonth": "2025-02",
+        "publishDate": "2025-03-17",
+        "value": 2954,
+        "yoy": -6.1,
+        "mom": 69.7,
+        "filename": "2025-03-17_2025年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 2954
+      },
+      {
+        "yearMonth": "2025-03",
+        "publishDate": "2025-04-16",
+        "value": 4441,
+        "yoy": -2.3,
+        "mom": -49.7,
+        "filename": "2025-04-16_2025年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 1487
+      },
+      {
+        "yearMonth": "2025-04",
+        "publishDate": "2025-05-19",
+        "value": 5619,
+        "yoy": 0.8,
+        "mom": -20.8,
+        "filename": "2025-05-19_2025年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 1178
+      },
+      {
+        "yearMonth": "2025-05",
+        "publishDate": "2025-06-16",
+        "value": 6679,
+        "yoy": -1.7,
+        "mom": -10,
+        "filename": "2025-06-16_2025年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 1060
+      },
+      {
+        "yearMonth": "2025-06",
+        "publishDate": "2025-07-15",
+        "value": 8245,
+        "yoy": 0.6,
+        "mom": 47.7,
+        "filename": "2025-07-15_2025年上半年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 1566
+      },
+      {
+        "yearMonth": "2025-07",
+        "publishDate": "2025-08-15",
+        "value": 9207,
+        "yoy": 0.1,
+        "mom": -38.6,
+        "filename": "2025-08-15_2025年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 962
+      },
+      {
+        "yearMonth": "2025-08",
+        "publishDate": "2025-09-15",
+        "value": 10232,
+        "yoy": 0.2,
+        "mom": 6.5,
+        "filename": "2025-09-15_2025年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 1025
+      },
+      {
+        "yearMonth": "2025-09",
+        "publishDate": "2025-10-20",
+        "value": 11294,
+        "yoy": -1.4,
+        "mom": 3.6,
+        "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 1062
+      }
+    ],
+    "房地产开发企业本年到位资金 - 利用外资": [
+      {
+        "yearMonth": "2024-02",
+        "publishDate": "2024-03-18",
+        "value": 5,
+        "yoy": 7.4,
+        "mom": null,
+        "filename": "2024-03-18_2024年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 5
+      },
+      {
+        "yearMonth": "2024-03",
+        "publishDate": "2024-04-16",
+        "value": 7,
+        "yoy": -11.9,
+        "mom": -60,
+        "filename": "2024-04-16_2024年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 2
+      },
+      {
+        "yearMonth": "2024-04",
+        "publishDate": "2024-05-17",
+        "value": 9,
+        "yoy": -46.7,
+        "mom": 0,
+        "filename": "2024-05-17_2024年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 2
+      },
+      {
+        "yearMonth": "2024-05",
+        "publishDate": "2024-06-17",
+        "value": 11,
+        "yoy": -20.3,
+        "mom": 0,
+        "filename": "2024-06-17_2024年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 2
+      },
+      {
+        "yearMonth": "2024-06",
+        "publishDate": "2024-07-15",
+        "value": 13,
+        "yoy": -51.7,
+        "mom": 0,
+        "filename": "2024-07-15_2024年1—6月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 2
+      },
+      {
+        "yearMonth": "2024-07",
+        "publishDate": "2024-08-15",
+        "value": 17,
+        "yoy": -45,
+        "mom": 100,
+        "filename": "2024-08-15_2024年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 4
+      },
+      {
+        "yearMonth": "2024-08",
+        "publishDate": "2024-09-14",
+        "value": 20,
+        "yoy": -42.4,
+        "mom": -25,
+        "filename": "2024-09-14_2024年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 3
+      },
+      {
+        "yearMonth": "2024-09",
+        "publishDate": "2024-10-18",
+        "value": 29,
+        "yoy": -19.9,
+        "mom": 200,
+        "filename": "2024-10-18_2024年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 9
+      },
+      {
+        "yearMonth": "2024-10",
+        "publishDate": "2024-11-15",
+        "value": 30,
+        "yoy": -19.1,
+        "mom": -88.9,
+        "filename": "2024-11-15_2024年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 1
+      },
+      {
+        "yearMonth": "2024-11",
+        "publishDate": "2024-12-16",
+        "value": 30,
+        "yoy": -29.2,
+        "mom": -100,
+        "filename": "2024-12-16_2024年1—11月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 0
+      },
+      {
+        "yearMonth": "2024-12",
+        "publishDate": "2025-01-17",
+        "value": 32,
+        "yoy": -26.7,
+        "mom": null,
+        "filename": "2025-01-17_2024年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 2
+      },
+      {
+        "yearMonth": "2025-02",
+        "publishDate": "2025-03-17",
+        "value": 1,
+        "yoy": -90.6,
+        "mom": -50,
+        "filename": "2025-03-17_2025年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 1
+      },
+      {
+        "yearMonth": "2025-03",
+        "publishDate": "2025-04-16",
+        "value": 1,
+        "yoy": -83.2,
+        "mom": -100,
+        "filename": "2025-04-16_2025年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 0
+      },
+      {
+        "yearMonth": "2025-04",
+        "publishDate": "2025-05-19",
+        "value": 16,
+        "yoy": 82,
+        "mom": null,
+        "filename": "2025-05-19_2025年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 15
+      },
+      {
+        "yearMonth": "2025-05",
+        "publishDate": "2025-06-16",
+        "value": 16,
+        "yoy": 49,
+        "mom": -100,
+        "filename": "2025-06-16_2025年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 0
+      },
+      {
+        "yearMonth": "2025-06",
+        "publishDate": "2025-07-15",
+        "value": 17,
+        "yoy": 25.4,
+        "mom": null,
+        "filename": "2025-07-15_2025年上半年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 1
+      },
+      {
+        "yearMonth": "2025-07",
+        "publishDate": "2025-08-15",
+        "value": 17,
+        "yoy": 3.2,
+        "mom": -100,
+        "filename": "2025-08-15_2025年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 0
+      },
+      {
+        "yearMonth": "2025-08",
+        "publishDate": "2025-09-15",
+        "value": 18,
+        "yoy": -11.5,
+        "mom": null,
+        "filename": "2025-09-15_2025年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 1
+      },
+      {
+        "yearMonth": "2025-09",
+        "publishDate": "2025-10-20",
+        "value": 18,
+        "yoy": -37.3,
+        "mom": -100,
+        "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 0
+      }
+    ],
+    "房地产开发企业本年到位资金 - 自筹资金": [
+      {
+        "yearMonth": "2024-02",
+        "publishDate": "2024-03-18",
+        "value": 5374,
+        "yoy": -15.2,
+        "mom": null,
+        "filename": "2024-03-18_2024年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 5374
+      },
+      {
+        "yearMonth": "2024-03",
+        "publishDate": "2024-04-16",
+        "value": 8681,
+        "yoy": -14.6,
+        "mom": -38.5,
+        "filename": "2024-04-16_2024年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 3307
+      },
+      {
+        "yearMonth": "2024-04",
+        "publishDate": "2024-05-17",
+        "value": 11736,
+        "yoy": -10.1,
+        "mom": -7.6,
+        "filename": "2024-05-17_2024年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 3055
+      },
+      {
+        "yearMonth": "2024-05",
+        "publishDate": "2024-06-17",
+        "value": 14816,
+        "yoy": -9.8,
+        "mom": 0.8,
+        "filename": "2024-06-17_2024年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 3080
+      },
+      {
+        "yearMonth": "2024-06",
+        "publishDate": "2024-07-15",
+        "value": 18862,
+        "yoy": -9.1,
+        "mom": 31.4,
+        "filename": "2024-07-15_2024年1—6月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 4046
+      },
+      {
+        "yearMonth": "2024-07",
+        "publishDate": "2024-08-15",
+        "value": 22057,
+        "yoy": -8.7,
+        "mom": -21,
+        "filename": "2024-08-15_2024年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 3195
+      },
+      {
+        "yearMonth": "2024-08",
+        "publishDate": "2024-09-14",
+        "value": 25150,
+        "yoy": -8.4,
+        "mom": -3.2,
+        "filename": "2024-09-14_2024年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 3093
+      },
+      {
+        "yearMonth": "2024-09",
+        "publishDate": "2024-10-18",
+        "value": 28680,
+        "yoy": -9.1,
+        "mom": 14.1,
+        "filename": "2024-10-18_2024年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 3530
+      },
+      {
+        "yearMonth": "2024-10",
+        "publishDate": "2024-11-15",
+        "value": 31483,
+        "yoy": -10.5,
+        "mom": -20.6,
+        "filename": "2024-11-15_2024年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 2803
+      },
+      {
+        "yearMonth": "2024-11",
+        "publishDate": "2024-12-16",
+        "value": 34676,
+        "yoy": -11,
+        "mom": 13.9,
+        "filename": "2024-12-16_2024年1—11月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 3193
+      },
+      {
+        "yearMonth": "2024-12",
+        "publishDate": "2025-01-17",
+        "value": 37746,
+        "yoy": -11.6,
+        "mom": -3.9,
+        "filename": "2025-01-17_2024年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 3070
+      },
+      {
+        "yearMonth": "2025-02",
+        "publishDate": "2025-03-17",
+        "value": 5233,
+        "yoy": -2.1,
+        "mom": 70.5,
+        "filename": "2025-03-17_2025年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 5233
+      },
+      {
+        "yearMonth": "2025-03",
+        "publishDate": "2025-04-16",
+        "value": 8168,
+        "yoy": -5.8,
+        "mom": -43.9,
+        "filename": "2025-04-16_2025年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 2935
+      },
+      {
+        "yearMonth": "2025-04",
+        "publishDate": "2025-05-19",
+        "value": 10953,
+        "yoy": -6.8,
+        "mom": -5.1,
+        "filename": "2025-05-19_2025年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 2785
+      },
+      {
+        "yearMonth": "2025-05",
+        "publishDate": "2025-06-16",
+        "value": 13743,
+        "yoy": -7.2,
+        "mom": 0.2,
+        "filename": "2025-06-16_2025年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 2790
+      },
+      {
+        "yearMonth": "2025-06",
+        "publishDate": "2025-07-15",
+        "value": 17544,
+        "yoy": -7.2,
+        "mom": 36.2,
+        "filename": "2025-07-15_2025年上半年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 3801
+      },
+      {
+        "yearMonth": "2025-07",
+        "publishDate": "2025-08-15",
+        "value": 20230,
+        "yoy": -8.5,
+        "mom": -29.3,
+        "filename": "2025-08-15_2025年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 2686
+      },
+      {
+        "yearMonth": "2025-08",
+        "publishDate": "2025-09-15",
+        "value": 22974,
+        "yoy": -8.9,
+        "mom": 2.2,
+        "filename": "2025-09-15_2025年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 2744
+      },
+      {
+        "yearMonth": "2025-09",
+        "publishDate": "2025-10-20",
+        "value": 26111,
+        "yoy": -9.3,
+        "mom": 14.3,
+        "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 3137
+      }
+    ],
+    "房地产开发企业本年到位资金 - 定金及预收款": [
+      {
+        "yearMonth": "2024-02",
+        "publishDate": "2024-03-18",
+        "value": 4630,
+        "yoy": -34.8,
+        "mom": null,
+        "filename": "2024-03-18_2024年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 4630
+      },
+      {
+        "yearMonth": "2024-03",
+        "publishDate": "2024-04-16",
+        "value": 7435,
+        "yoy": -37.5,
+        "mom": -39.4,
+        "filename": "2024-04-16_2024年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 2805
+      },
+      {
+        "yearMonth": "2024-04",
+        "publishDate": "2024-05-17",
+        "value": 10002,
+        "yoy": -37.2,
+        "mom": -8.5,
+        "filename": "2024-05-17_2024年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 2567
+      },
+      {
+        "yearMonth": "2024-05",
+        "publishDate": "2024-06-17",
+        "value": 12584,
+        "yoy": -36.7,
+        "mom": 0.6,
+        "filename": "2024-06-17_2024年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 2582
+      },
+      {
+        "yearMonth": "2024-06",
+        "publishDate": "2024-07-15",
+        "value": 15999,
+        "yoy": -34.1,
+        "mom": 32.3,
+        "filename": "2024-07-15_2024年1—6月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 3415
+      },
+      {
+        "yearMonth": "2024-07",
+        "publishDate": "2024-08-15",
+        "value": 18693,
+        "yoy": -31.7,
+        "mom": -21.1,
+        "filename": "2024-08-15_2024年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 2694
+      },
+      {
+        "yearMonth": "2024-08",
+        "publishDate": "2024-09-14",
+        "value": 21078,
+        "yoy": -30.2,
+        "mom": -11.5,
+        "filename": "2024-09-14_2024年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 2385
+      },
+      {
+        "yearMonth": "2024-09",
+        "publishDate": "2024-10-18",
+        "value": 23593,
+        "yoy": -29.8,
+        "mom": 5.5,
+        "filename": "2024-10-18_2024年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 2515
+      },
+      {
+        "yearMonth": "2024-10",
+        "publishDate": "2024-11-15",
+        "value": 26444,
+        "yoy": -27.7,
+        "mom": 13.4,
+        "filename": "2024-11-15_2024年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 2851
+      },
+      {
+        "yearMonth": "2024-11",
+        "publishDate": "2024-12-16",
+        "value": 29624,
+        "yoy": -25.2,
+        "mom": 11.5,
+        "filename": "2024-12-16_2024年1—11月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 3180
+      },
+      {
+        "yearMonth": "2024-12",
+        "publishDate": "2025-01-17",
+        "value": 33571,
+        "yoy": -23,
+        "mom": 24.1,
+        "filename": "2025-01-17_2024年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 3947
+      },
+      {
+        "yearMonth": "2025-02",
+        "publishDate": "2025-03-17",
+        "value": 4577,
+        "yoy": -0.9,
+        "mom": 16,
+        "filename": "2025-03-17_2025年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 4577
+      },
+      {
+        "yearMonth": "2025-03",
+        "publishDate": "2025-04-16",
+        "value": 7335,
+        "yoy": -1.1,
+        "mom": -39.7,
+        "filename": "2025-04-16_2025年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 2758
+      },
+      {
+        "yearMonth": "2025-04",
+        "publishDate": "2025-05-19",
+        "value": 9683,
+        "yoy": -3,
+        "mom": -14.9,
+        "filename": "2025-05-19_2025年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 2348
+      },
+      {
+        "yearMonth": "2025-05",
+        "publishDate": "2025-06-16",
+        "value": 11931,
+        "yoy": -5,
+        "mom": -4.3,
+        "filename": "2025-06-16_2025年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 2248
+      },
+      {
+        "yearMonth": "2025-06",
+        "publishDate": "2025-07-15",
+        "value": 14781,
+        "yoy": -7.5,
+        "mom": 26.8,
+        "filename": "2025-07-15_2025年上半年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 2850
+      },
+      {
+        "yearMonth": "2025-07",
+        "publishDate": "2025-08-15",
+        "value": 16815,
+        "yoy": -9.9,
+        "mom": -28.6,
+        "filename": "2025-08-15_2025年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 2034
+      },
+      {
+        "yearMonth": "2025-08",
+        "publishDate": "2025-09-15",
+        "value": 18844,
+        "yoy": -10.5,
+        "mom": -0.2,
+        "filename": "2025-09-15_2025年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 2029
+      },
+      {
+        "yearMonth": "2025-09",
+        "publishDate": "2025-10-20",
+        "value": 21138,
+        "yoy": -10.3,
+        "mom": 13.1,
+        "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 2294
+      }
+    ],
+    "房地产开发企业本年到位资金 - 个人按揭贷款": [
+      {
+        "yearMonth": "2024-02",
+        "publishDate": "2024-03-18",
+        "value": 2214,
+        "yoy": -36.6,
+        "mom": null,
+        "filename": "2024-03-18_2024年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 2214
+      },
+      {
+        "yearMonth": "2024-03",
+        "publishDate": "2024-04-16",
+        "value": 3643,
+        "yoy": -41,
+        "mom": -35.5,
+        "filename": "2024-04-16_2024年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 1429
+      },
+      {
+        "yearMonth": "2024-04",
+        "publishDate": "2024-05-17",
+        "value": 4953,
+        "yoy": -39.7,
+        "mom": -8.3,
+        "filename": "2024-05-17_2024年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 1310
+      },
+      {
+        "yearMonth": "2024-05",
+        "publishDate": "2024-06-17",
+        "value": 6191,
+        "yoy": -40.2,
+        "mom": -5.5,
+        "filename": "2024-06-17_2024年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 1238
+      },
+      {
+        "yearMonth": "2024-06",
+        "publishDate": "2024-07-15",
+        "value": 7749,
+        "yoy": -37.7,
+        "mom": 25.8,
+        "filename": "2024-07-15_2024年1—6月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 1558
+      },
+      {
+        "yearMonth": "2024-07",
+        "publishDate": "2024-08-15",
+        "value": 8748,
+        "yoy": -37.3,
+        "mom": -35.9,
+        "filename": "2024-08-15_2024年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 999
+      },
+      {
+        "yearMonth": "2024-08",
+        "publishDate": "2024-09-14",
+        "value": 9920,
+        "yoy": -35.8,
+        "mom": 17.3,
+        "filename": "2024-09-14_2024年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 1172
+      },
+      {
+        "yearMonth": "2024-09",
+        "publishDate": "2024-10-18",
+        "value": 11079,
+        "yoy": -34.9,
+        "mom": -1.1,
+        "filename": "2024-10-18_2024年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 1159
+      },
+      {
+        "yearMonth": "2024-10",
+        "publishDate": "2024-11-15",
+        "value": 12436,
+        "yoy": -32.8,
+        "mom": 17.1,
+        "filename": "2024-11-15_2024年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 1357
+      },
+      {
+        "yearMonth": "2024-11",
+        "publishDate": "2024-12-16",
+        "value": 13911,
+        "yoy": -30.4,
+        "mom": 8.7,
+        "filename": "2024-12-16_2024年1—11月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 1475
+      },
+      {
+        "yearMonth": "2024-12",
+        "publishDate": "2025-01-17",
+        "value": 15661,
+        "yoy": -27.9,
+        "mom": 18.6,
+        "filename": "2025-01-17_2024年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 1750
+      },
+      {
+        "yearMonth": "2025-02",
+        "publishDate": "2025-03-17",
+        "value": 1945,
+        "yoy": -11.7,
+        "mom": 11.1,
+        "filename": "2025-03-17_2025年1—2月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 1945
+      },
+      {
+        "yearMonth": "2025-03",
+        "publishDate": "2025-04-16",
+        "value": 3373,
+        "yoy": -7,
+        "mom": -26.6,
+        "filename": "2025-04-16_2025年1—3月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 1428
+      },
+      {
+        "yearMonth": "2025-04",
+        "publishDate": "2025-05-19",
+        "value": 4518,
+        "yoy": -8.5,
+        "mom": -19.8,
+        "filename": "2025-05-19_2025年1—4月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 1145
+      },
+      {
+        "yearMonth": "2025-05",
+        "publishDate": "2025-06-16",
+        "value": 5645,
+        "yoy": -8.5,
+        "mom": -1.6,
+        "filename": "2025-06-16_2025年1—5月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 1127
+      },
+      {
+        "yearMonth": "2025-06",
+        "publishDate": "2025-07-15",
+        "value": 6847,
+        "yoy": -11.4,
+        "mom": 6.7,
+        "filename": "2025-07-15_2025年上半年全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 1202
+      },
+      {
+        "yearMonth": "2025-07",
+        "publishDate": "2025-08-15",
+        "value": 7918,
+        "yoy": -9.3,
+        "mom": -10.9,
+        "filename": "2025-08-15_2025年1—7月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 1071
+      },
+      {
+        "yearMonth": "2025-08",
+        "publishDate": "2025-09-15",
+        "value": 8857,
+        "yoy": -10.5,
+        "mom": -12.3,
+        "filename": "2025-09-15_2025年1—8月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 939
+      },
+      {
+        "yearMonth": "2025-09",
+        "publishDate": "2025-10-20",
+        "value": 9884,
+        "yoy": -10.6,
+        "mom": 9.4,
+        "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 1027
+      }
+    ]
+  }
+}
