@@ -15,6 +15,7 @@
     "goods:parse": "node scripts/goods_price_parse.js",
     "invest:parse": "node scripts/invest_parse.js",
     "house:parse": "node scripts/house_parse.js",
+    "capacity:parse": "node scripts/capacity_utilization_parser.js",
     "crawl:goods": "node scripts/crawler_main.js goodsPrice",
     "crawl:retail": "node scripts/crawler_main.js retail",
     "crawl:invest": "node scripts/crawler_main.js invest",
@@ -22,6 +23,7 @@
     "crawl:energy": "node scripts/crawler_main.js energy",
     "crawl:profits": "node scripts/crawler_main.js profits",
     "crawl:industry": "node scripts/crawler_main.js industryProfits",
+    "crawl:capacity": "node scripts/crawler_main.js capacityUtilization",
     "crawl": "node scripts/crawler_main.js",
     "crawl:all": "node scripts/crawler_main.js all"
   },

@@ -11,6 +11,14 @@ module.exports = {
     maxRetries: 3,
     timeout: 30000, // 请求超时(毫秒)
     
+    // 分页区间配置
+    pagination: {
+      defaultStartPage: 1,
+      defaultEndPage: 3,
+      maxAllowedPages: 100,
+      pageRangePattern: /^(\d+)-(\d+)$/  // 验证格式 "1-5"
+    },
+    
     // 目标数据配置
     targets: {
       goodsPrice: {
@@ -61,6 +69,13 @@ module.exports = {
         downloadDir: 'industry_profits',
         extractor: 'industry_profits_extractor.js',
         parseScript: 'industry_profits_parse.js'
+      },
+      capacityUtilization: {
+        name: '全国规模以上工业产能利用率',
+        keywords: ['全国规模以上工业产能利用率', '产能利用率', '工业产能利用率'],
+        downloadDir: 'capacity_utilization',
+        extractor: 'capacity_utilization_extractor.js',
+        parseScript: 'capacity_utilization_parser.js'
       }
     }
   },

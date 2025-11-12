@@ -77,12 +77,26 @@ class GenericCrawler {
 
   /**
    * 获取分页URL列表
+   * @param {number|null} startPage - 起始页码（默认为1）
+   * @param {number|null} endPage - 结束页码（默认使用配置的maxPages）
    */
-  getPageUrls(maxPages = null) {
-    const pages = maxPages || this.config.maxPages;
+  getPageUrls(startPage = null, endPage = null) {
+    const start = startPage || this.config.pagination?.defaultStartPage || 1;
+    const end = endPage || this.config.maxPages;
     const urls = [];
     
-    for (let page = 1; page <= pages; page++) {
+    // 验证页码范围
+    if (start < 1) {
+      throw new Error('起始页码必须大于等于1');
+    }
+    if (end < start) {
+      throw new Error('结束页码不能小于起始页码');
+    }
+    if (end > this.config.pagination?.maxAllowedPages) {
+      throw new Error(`结束页码不能超过 ${this.config.pagination?.maxAllowedPages}`);
+    }
+    
+    for (let page = start; page <= end; page++) {
       let url;
       if (page === 1) {
         url = this.config.baseUrl;
@@ -228,6 +242,9 @@ class GenericCrawler {
       const response = await this.fetchWithRetry(detailUrl);
       const $ = cheerio.load(response.data);
       
+      // 生成标准文件名
+      const standardFilename = await this.getStandardFilename(detailUrl, $);
+      
       // 首先查找直接的Excel下载链接
       const excelLinks = [];
       
@@ -253,7 +270,7 @@ class GenericCrawler {
           excelLinks.push({
             url: fullUrl,
             text: text,
-            filename: this.generateFilename(text, detailUrl)
+            filename: standardFilename  // 使用标准文件名
           });
         }
       });
@@ -300,7 +317,7 @@ class GenericCrawler {
           excelLinks.push({
             url: fullUrl,
             text: text,
-            filename: this.generateFilename(text, detailUrl)
+            filename: standardFilename  // 使用标准文件名
           });
         }
       });
@@ -468,17 +485,54 @@ class GenericCrawler {
   }
 
   /**
-   * 生成文件名
+   * 生成文件名（标准格式）
+   * 格式：YYYY-MM-DD_文章标题-国家统计局.xlsx
    */
   generateFilename(linkText, detailUrl) {
-    const dateMatch = detailUrl.match(/(\d{4}-\d{2}-\d{2})/);
-    const dateStr = dateMatch ? dateMatch[1] : new Date().toISOString().split('T')[0];
+    // 从URL提取发布日期（格式：tYYYYMMDD）
+    const match = detailUrl.match(/\/t(\d{4})(\d{2})(\d{2})_/);
+    let dateStr;
+    if (match) {
+      dateStr = `${match[1]}-${match[2]}-${match[3]}`;
+    } else {
+      // 备用方案：匹配8位连续数字
+      const match2 = detailUrl.match(/(\d{4})(\d{2})(\d{2})/);
+      if (match2) {
+        dateStr = `${match2[1]}-${match2[2]}-${match2[3]}`;
+      } else {
+        dateStr = new Date().toISOString().split('T')[0];
+      }
+    }
     
-    // 清理文件名
-    const cleanText = linkText.replace(/[^\u4e00-\u9fa5a-zA-Z0-9]/g, '_').slice(0, 30);
-    const filename = `${dateStr}_${cleanText}`;
+    // 如果linkText是"相关数据表"等通用词，需要获取页面标题
+    // 这里先返回一个占位符，实际标题会在downloadExcelFromDetailPage中设置
+    return `${dateStr}_PLACEHOLDER`;
+  }
+
+  /**
+   * 从URL提取发布日期（格式：YYYY-MM-DD）
+   */
+  extractPublishDateFromUrl(url) {
+    const match = url.match(/\/t(\d{4})(\d{2})(\d{2})_/);
+    if (match) {
+      return `${match[1]}-${match[2]}-${match[3]}`;
+    }
     
-    return filename;
+    const match2 = url.match(/(\d{4})(\d{2})(\d{2})/);
+    if (match2) {
+      return `${match2[1]}-${match2[2]}-${match2[3]}`;
+    }
+    
+    return new Date().toISOString().split('T')[0];
+  }
+
+  /**
+   * 从页面获取标题并生成标准文件名
+   */
+  async getStandardFilename(detailUrl, $) {
+    const title = $('h1, .title, .article-title').first().text().trim();
+    const publishDate = this.extractPublishDateFromUrl(detailUrl);
+    return `${publishDate}_${title}-国家统计局.xlsx`;
   }
 
   /**
@@ -491,15 +545,20 @@ class GenericCrawler {
         responseType: 'stream'
       });
       
-      // 确定文件扩展名
-      let extension = '.xls';
-      if (url.includes('.xlsx')) {
-        extension = '.xlsx';
-      } else if (response.headers['content-type']?.includes('xlsx')) {
-        extension = '.xlsx';
+      // 检查 filename 是否已经有扩展名
+      let finalFilename = filename;
+      if (!filename.endsWith('.xls') && !filename.endsWith('.xlsx')) {
+        // 确定文件扩展名
+        let extension = '.xls';
+        if (url.includes('.xlsx')) {
+          extension = '.xlsx';
+        } else if (response.headers['content-type']?.includes('xlsx')) {
+          extension = '.xlsx';
+        }
+        finalFilename = `${filename}${extension}`;
       }
       
-      const filePath = path.join(this.downloadDir, `${filename}${extension}`);
+      const filePath = path.join(this.downloadDir, finalFilename);
       
       // 检查文件是否已存在
       if (fs.existsSync(filePath)) {
@@ -571,14 +630,17 @@ class GenericCrawler {
 
   /**
    * 主流程：抓取数据并解析
+   * @param {number|null} startPage - 起始页码
+   * @param {number|null} endPage - 结束页码
    */
-  async crawlAndParse(maxPages = null) {
+  async crawlAndParse(startPage = null, endPage = null) {
     console.log(`开始自动化爬取流程 - 目标: ${this.target.name}`);
     
     try {
       // 1. 获取所有分页URL
-      const pageUrls = this.getPageUrls(maxPages);
-      console.log(`将爬取 ${pageUrls.length} 个分页`);
+      const pageUrls = this.getPageUrls(startPage, endPage);
+      const displayRange = startPage && endPage ? `第${startPage}-${endPage}页` : `${pageUrls.length}个分页`;
+      console.log(`将爬取 ${displayRange} (共${pageUrls.length}个页面)`);
       
       // 2. 提取所有相关链接
       const allLinks = [];

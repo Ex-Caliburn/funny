@@ -37,7 +37,7 @@ class CrawlerMain {
 统计局数据自动爬虫系统
 
 使用方法:
-  node crawler_main.js [targetType] [maxPages]
+  node crawler_main.js [targetType] [pageRange]
 
 支持的目标类型:
 ${this.supportedTargets.map((target, index) => {
@@ -47,12 +47,16 @@ ${this.supportedTargets.map((target, index) => {
 
 参数说明:
   targetType  目标数据类型 (默认: goodsPrice)
-  maxPages    最大爬取页数 (默认: 3)
+  pageRange   分页范围，支持以下格式:
+              - 单个数字: 5          (爬取第1-5页)
+              - 区间范围: 2-5        (爬取第2-5页)
+              - 带前缀:   --page-range 2-5
 
 示例:
-  node crawler_main.js goodsPrice 5    # 爬取商品价格数据，最多5页
-  node crawler_main.js energy 3        # 爬取能源数据，最多3页
-  node crawler_main.js all             # 爬取所有类型数据
+  node crawler_main.js goodsPrice 5              # 爬取第1-5页
+  node crawler_main.js goodsPrice 2-5            # 爬取第2-5页
+  node crawler_main.js energy --page-range 3-8   # 爬取第3-8页
+  node crawler_main.js all 3                     # 爬取所有类型数据的前3页
 
 注意事项:
   - 爬取过程会有延迟，避免对服务器造成压力
@@ -74,28 +78,70 @@ ${this.supportedTargets.map((target, index) => {
   }
 
   /**
-   * 验证页数参数
+   * 解析分页参数
+   * 支持格式: 
+   *   - 单个数字: "5" -> {start: 1, end: 5}
+   *   - 区间范围: "2-5" -> {start: 2, end: 5}
+   * @returns {Object|false} {start, end} 或 false（如果无效）
    */
-  validateMaxPages(maxPages) {
-    const pages = parseInt(maxPages);
-    if (isNaN(pages) || pages < 1 || pages > 20) {
-      console.error(`错误: 页数参数无效 "${maxPages}"`);
-      console.log('页数必须是1-20之间的数字');
+  parsePageRange(pageRangeStr) {
+    const pagination = config.statsGov.pagination;
+    
+    // 检查是否是区间格式 "2-5"
+    const rangeMatch = pageRangeStr.match(pagination.pageRangePattern);
+    if (rangeMatch) {
+      const start = parseInt(rangeMatch[1]);
+      const end = parseInt(rangeMatch[2]);
+      
+      if (start < 1) {
+        console.error(`错误: 起始页码必须大于等于1`);
+        return false;
+      }
+      if (end < start) {
+        console.error(`错误: 结束页码(${end})不能小于起始页码(${start})`);
+        return false;
+      }
+      if (end > pagination.maxAllowedPages) {
+        console.error(`错误: 结束页码不能超过 ${pagination.maxAllowedPages}`);
+        return false;
+      }
+      
+      return { start, end };
+    }
+    
+    // 如果不是区间格式，尝试解析为单个数字（表示从第1页到该页）
+    const pages = parseInt(pageRangeStr);
+    if (isNaN(pages) || pages < 1 || pages > pagination.maxAllowedPages) {
+      console.error(`错误: 页数参数无效 "${pageRangeStr}"`);
+      console.log(`页数必须是1-${pagination.maxAllowedPages}之间的数字，或使用区间格式如 "2-5"`);
       return false;
     }
-    return pages;
+    
+    return { start: 1, end: pages };
+  }
+  
+  /**
+   * 验证页数参数（保持向后兼容）
+   * @deprecated 使用 parsePageRange 代替
+   */
+  validateMaxPages(maxPages) {
+    return this.parsePageRange(maxPages);
   }
 
   /**
    * 爬取单个目标类型
+   * @param {string} targetType - 目标类型
+   * @param {number} startPage - 起始页码
+   * @param {number} endPage - 结束页码
    */
-  async crawlSingle(targetType, maxPages) {
+  async crawlSingle(targetType, startPage, endPage) {
     try {
-      console.log(`\n开始爬取: ${targetType} (最多${maxPages}页)`);
+      const pageInfo = startPage === 1 ? `前${endPage}页` : `第${startPage}-${endPage}页`;
+      console.log(`\n开始爬取: ${targetType} (${pageInfo})`);
       console.log('='.repeat(50));
       
       const crawler = new GenericCrawler(targetType);
-      const result = await crawler.crawlAndParse(maxPages);
+      const result = await crawler.crawlAndParse(startPage, endPage);
       
       console.log('\n爬取结果:');
       console.log(`- 目标类型: ${result.target}`);
@@ -118,9 +164,12 @@ ${this.supportedTargets.map((target, index) => {
 
   /**
    * 爬取所有支持的目标类型
+   * @param {number} startPage - 起始页码
+   * @param {number} endPage - 结束页码
    */
-  async crawlAll(maxPages) {
-    console.log(`\n开始爬取所有类型数据 (最多${maxPages}页)`);
+  async crawlAll(startPage, endPage) {
+    const pageInfo = startPage === 1 ? `前${endPage}页` : `第${startPage}-${endPage}页`;
+    console.log(`\n开始爬取所有类型数据 (${pageInfo})`);
     console.log('='.repeat(50));
     
     const results = {};
@@ -129,7 +178,7 @@ ${this.supportedTargets.map((target, index) => {
     for (const targetType of this.supportedTargets) {
       try {
         console.log(`\n正在处理: ${targetType}`);
-        const result = await this.crawlSingle(targetType, maxPages);
+        const result = await this.crawlSingle(targetType, startPage, endPage);
         results[targetType] = result;
         
         // 在每个类型之间添加延迟
@@ -177,32 +226,40 @@ ${this.supportedTargets.map((target, index) => {
     
     // 解析参数
     const targetType = args[0] || 'goodsPrice';
-    const maxPagesStr = args[1] || '3';
     
-    // 处理特殊情况
-    if (targetType === 'all') {
-      const maxPages = this.validateMaxPages(maxPagesStr);
-      if (!maxPages) {
-        process.exit(1);
-      }
-      
-      await this.crawlAll(maxPages);
-      return;
+    // 解析分页参数
+    let pageRangeStr;
+    if (args.includes('--page-range')) {
+      // 处理 --page-range 2-5 格式
+      const rangeIndex = args.indexOf('--page-range');
+      pageRangeStr = args[rangeIndex + 1] || '3';
+    } else {
+      // 处理简化格式: node crawler_main.js goodsPrice 5 或 2-5
+      pageRangeStr = args[1] || '3';
     }
     
-    // 验证参数
-    if (!this.validateTarget(targetType)) {
+    // 解析页码范围
+    const pageRange = this.parsePageRange(pageRangeStr);
+    if (!pageRange) {
       process.exit(1);
     }
     
-    const maxPages = this.validateMaxPages(maxPagesStr);
-    if (!maxPages) {
+    const { start, end } = pageRange;
+    
+    // 处理特殊情况：爬取所有类型
+    if (targetType === 'all') {
+      await this.crawlAll(start, end);
+      return;
+    }
+    
+    // 验证目标类型
+    if (!this.validateTarget(targetType)) {
       process.exit(1);
     }
     
     // 开始爬取
     try {
-      await this.crawlSingle(targetType, maxPages);
+      await this.crawlSingle(targetType, start, end);
       console.log('\n✅ 爬取任务完成!');
     } catch (error) {
       console.error('\n❌ 爬取任务失败:', error.message);

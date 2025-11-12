@@ -22,11 +22,55 @@
       opacity: .7;
       font-size: 12px;
     }
+
+    .title-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .copy-title-btn {
+      background: #1e293b;
+      border: 1px solid #334155;
+      color: #9aa4b2;
+      padding: 6px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .copy-title-btn:hover {
+      background: #334155;
+      color: #e2e8f0;
+      border-color: #3b82f6;
+    }
+    .copy-title-btn:active {
+      transform: scale(0.95);
+    }
+    .copy-ok {
+      font-size: 12px;
+      opacity: 0.7;
+      color: #10b981;
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 0.7; }
+    }
   </style>
 </head>
 
 <body>
-<h2>规模以上工业企业财务指标 - 月度趋势</h2>
+<div class="title-wrapper">
+  <h2 style="margin:0;">规模以上工业企业财务指标 - 月度趋势</h2>
+  <button id="copyTitleBtn" class="copy-title-btn" title="复制标题">
+    📋 复制
+  </button>
+  <span id="copyTitleOk" class="copy-ok">✓ 已复制</span>
+</div>
 <div class="legend-note">展示营业收入、营业成本、利润总额的绝对值（左轴），以及同比增速（右轴，单位%）。</div>
   <div style="margin:16px 0; display:flex; gap:4px; align-items:center; flex-wrap:wrap;">
     <div style="display:flex; background:#1e293b; border-radius:10px; padding:4px; gap:2px;">
@@ -80,6 +124,65 @@
   </div>
   <script src="../vendor/echarts.min.js"></script>
 <script>
+    // ==================== 颜色配置 ====================
+    // 年份曲线颜色（5种完全不同色系，避开绿色）
+    const YEAR_COLORS = ['#ef4444', '#f59e0b', '#3b82f6', '#8b5cf6', '#ec4899'];
+    // 说明：红色、橙色、蓝色、紫色、粉色 - 完全避开绿色系
+    
+    // 增长率曲线颜色
+    const YOY_COLOR = '#10b981';  // 同比：绿色（独占绿色系）
+    const MOM_COLOR = '#fbbf24';  // 环比：亮黄色
+    
+    // 单指标视图颜色
+    const SINGLE_VALUE_COLOR = '#06b6d4';  // 青色：当月值（避免与年份蓝冲突）
+    const SINGLE_MOM_COLOR = '#f59e0b';    // 橙色：环比
+    const SINGLE_YOY_COLOR = '#ec4899';    // 粉色：同比
+    // ==================================================
+
+    // 标题复制功能
+    document.addEventListener('DOMContentLoaded', function() {
+      const copyTitleBtn = document.getElementById('copyTitleBtn');
+      const copyTitleOk = document.getElementById('copyTitleOk');
+      const h2 = document.querySelector('h2');
+      
+      if (copyTitleBtn && h2) {
+        copyTitleBtn.addEventListener('click', function() {
+          const title = h2.textContent.trim();
+          
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(title).then(function() {
+              showCopySuccess();
+            }).catch(function(err) {
+              console.error('复制失败:', err);
+            });
+          } else {
+            // 备用方法
+            const ta = document.createElement('textarea');
+            ta.value = title;
+            ta.style.position = 'fixed';
+            ta.style.left = '-9999px';
+            document.body.appendChild(ta);
+            ta.select();
+            try {
+              document.execCommand('copy');
+              showCopySuccess();
+            } catch (err) {
+              console.error('复制失败:', err);
+            }
+            document.body.removeChild(ta);
+          }
+        });
+      }
+      
+      function showCopySuccess() {
+        if (copyTitleOk) {
+          copyTitleOk.style.display = 'inline';
+          setTimeout(function() {
+            copyTitleOk.style.display = 'none';
+          }, 1500);
+        }
+      }
+    });
     document.addEventListener('click', function (e) {
       var t = e.target; if (t && t.id === 'copyMetricBtn') {
         try {
@@ -287,9 +390,9 @@
       { type: "value", name: "%", position: "right", axisLabel: { color: "#9aa4b2" }, splitLine: { show: false } }
     ],
     series: [
-            { name: displayName + "-当月值", type: "line", yAxisIndex: 0, data: abs, smooth: true, lineStyle: { width: 3, color: '#3b82f6' }, symbol: "circle", symbolSize: 6, itemStyle: { color: '#3b82f6' } },
-            { name: displayName + "-环比%", type: "line", yAxisIndex: 1, data: mom, smooth: true, lineStyle: { width: 2.5, type: 'dashed', color: '#f59e0b' }, symbol: "triangle", symbolSize: 6, itemStyle: { color: '#f59e0b' } },
-            { name: displayName + "-同比%", type: "line", yAxisIndex: 1, data: yoy, smooth: true, lineStyle: { width: 2.5, type: 'solid', color: '#ec4899' }, symbol: "diamond", symbolSize: 6, itemStyle: { color: '#ec4899' } }
+            { name: displayName + "-当月值", type: "line", yAxisIndex: 0, data: abs, smooth: true, lineStyle: { width: 3, color: SINGLE_VALUE_COLOR }, symbol: "circle", symbolSize: 6, itemStyle: { color: SINGLE_VALUE_COLOR } },
+            { name: displayName + "-环比%", type: "line", yAxisIndex: 1, data: mom, smooth: true, lineStyle: { width: 2.5, type: 'dashed', color: SINGLE_MOM_COLOR }, symbol: "triangle", symbolSize: 6, itemStyle: { color: SINGLE_MOM_COLOR } },
+            { name: displayName + "-同比%", type: "line", yAxisIndex: 1, data: yoy, smooth: true, lineStyle: { width: 2.5, type: 'solid', color: SINGLE_YOY_COLOR }, symbol: "diamond", symbolSize: 6, itemStyle: { color: SINGLE_YOY_COLOR } }
           ]
         };
         chart.setOption(option, true);
@@ -323,10 +426,14 @@
           const card = document.createElement('div'); card.style.background = '#0f172a'; card.style.border = '1px solid #1f2937'; card.style.borderRadius = '12px'; card.style.padding = '12px'; card.style.transition = 'all 0.3s ease'; card.style.boxShadow = '0 2px 8px rgba(0,0,0,0.3)'; card.style.position = 'relative';
           const titleWrapper = document.createElement('div'); titleWrapper.style.display = 'flex'; titleWrapper.style.justifyContent = 'space-between'; titleWrapper.style.alignItems = 'center'; titleWrapper.style.margin = '0 0 8px 0';
           const title = document.createElement('div'); title.textContent = name; title.style.fontSize = '14px'; title.style.opacity = '0.95'; title.style.fontWeight = 'bold'; title.style.color = '#e2e8f0'; title.style.flex = '1'; title.style.textAlign = 'center';
+          const copyBtn = document.createElement('button'); copyBtn.innerHTML = '📋'; copyBtn.style.background = 'none'; copyBtn.style.border = 'none'; copyBtn.style.color = '#9aa4b2'; copyBtn.style.fontSize = '14px'; copyBtn.style.cursor = 'pointer'; copyBtn.style.padding = '4px'; copyBtn.style.borderRadius = '4px'; copyBtn.style.transition = 'all 0.2s'; copyBtn.title = '复制名称';
+          copyBtn.onmouseenter = function () { copyBtn.style.background = '#1f2937'; copyBtn.style.color = '#10b981'; };
+          copyBtn.onmouseleave = function () { copyBtn.style.background = 'none'; copyBtn.style.color = '#9aa4b2'; };
+          copyBtn.onclick = function (e) { e.stopPropagation(); const text = name; if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(function () { copyBtn.innerHTML = '✓'; copyBtn.style.color = '#10b981'; setTimeout(function () { copyBtn.innerHTML = '📋'; copyBtn.style.color = '#9aa4b2'; }, 1000); }); } else { const ta = document.createElement('textarea'); ta.value = text; ta.style.position = 'fixed'; ta.style.left = '-9999px'; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); copyBtn.innerHTML = '✓'; copyBtn.style.color = '#10b981'; setTimeout(function () { copyBtn.innerHTML = '📋'; copyBtn.style.color = '#9aa4b2'; }, 1000); } catch (err) {} document.body.removeChild(ta); } };
           const zoomBtn = document.createElement('button'); zoomBtn.innerHTML = '🔍'; zoomBtn.style.background = 'none'; zoomBtn.style.border = 'none'; zoomBtn.style.color = '#9aa4b2'; zoomBtn.style.fontSize = '16px'; zoomBtn.style.cursor = 'pointer'; zoomBtn.style.padding = '4px'; zoomBtn.style.borderRadius = '4px'; zoomBtn.style.transition = 'all 0.2s'; zoomBtn.title = '放大查看';
           zoomBtn.onmouseenter = function () { zoomBtn.style.background = '#1f2937'; zoomBtn.style.color = '#3b82f6'; };
           zoomBtn.onmouseleave = function () { zoomBtn.style.background = 'none'; zoomBtn.style.color = '#9aa4b2'; };
-          titleWrapper.appendChild(title); titleWrapper.appendChild(zoomBtn);
+          titleWrapper.appendChild(title); titleWrapper.appendChild(copyBtn); titleWrapper.appendChild(zoomBtn);
           const div = document.createElement('div'); div.style.height = '200px';
           card.appendChild(titleWrapper); card.appendChild(div); grid.appendChild(card);
           const rows = (json.metrics && json.metrics[name]) || [];
@@ -388,7 +495,6 @@
               } 
             } 
           };
-          const colors = ['#ef4444', '#3b82f6', '#10b981', '#8b5cf6', '#06b6d4'];
           const years = Object.keys(yearData).sort();
           const latestYear = years[years.length - 1]; // 获取最新年份
           
@@ -460,15 +566,15 @@
             });
             
             // 添加绝对值曲线
-            option.series.push({ type: 'line', name: y + '年', yAxisIndex: 0, data: data, smooth: true, symbol: 'circle', symbolSize: 4, lineStyle: { color: colors[idx % colors.length], width: 2 }, itemStyle: { color: colors[idx % colors.length] } });
+            option.series.push({ type: 'line', name: y + '年', yAxisIndex: 0, data: data, smooth: true, symbol: 'circle', symbolSize: 4, lineStyle: { color: YEAR_COLORS[idx % YEAR_COLORS.length], width: 2 }, itemStyle: { color: YEAR_COLORS[idx % YEAR_COLORS.length] } });
             
             // 只为最新年份添加同比和环比曲线
             if (isLatestYear) {
               if (showYoyCurve) {
-                option.series.push({ type: 'line', name: y + '年同比', yAxisIndex: 1, data: yoyDataArray, smooth: true, symbol: 'diamond', symbolSize: 3, lineStyle: { color: '#4ade80', width: 2, type: 'solid' }, itemStyle: { color: '#4ade80' } });
+                option.series.push({ type: 'line', name: y + '年同比', yAxisIndex: 1, data: yoyDataArray, smooth: true, symbol: 'diamond', symbolSize: 3, lineStyle: { color: YOY_COLOR, width: 2, type: 'solid' }, itemStyle: { color: YOY_COLOR } });
               }
               if (showMomCurve) {
-                option.series.push({ type: 'line', name: y + '年环比', yAxisIndex: 1, data: momDataArray, smooth: true, symbol: 'triangle', symbolSize: 3, lineStyle: { color: '#f59e0b', width: 2, type: 'dashed' }, itemStyle: { color: '#f59e0b' } });
+                option.series.push({ type: 'line', name: y + '年环比', yAxisIndex: 1, data: momDataArray, smooth: true, symbol: 'triangle', symbolSize: 3, lineStyle: { color: MOM_COLOR, width: 2, type: 'dashed' }, itemStyle: { color: MOM_COLOR } });
               }
             }
           });
@@ -738,7 +844,6 @@
           ]
         };
 
-        const colors = ['#ef4444', '#3b82f6', '#10b981', '#8b5cf6', '#06b6d4'];
         Object.keys(yearData).sort().forEach(function (y, idx) {
           const data = new Array(11).fill(null);
           const yoyDataArray = new Array(11).fill(null);
@@ -776,8 +881,8 @@
             
             if (idx >= 0) { yoyDataArray[idx] = it.yoy; }
           });
-          option.series.push({ type: 'line', name: y + '年', yAxisIndex: 0, data: data, smooth: true, symbol: 'circle', symbolSize: 8, lineStyle: { color: colors[idx % colors.length], width: 3.5 }, itemStyle: { color: colors[idx % colors.length] } });
-          option.series.push({ type: 'line', name: y + '年同比', yAxisIndex: 1, data: yoyDataArray, smooth: true, symbol: 'diamond', symbolSize: 6, lineStyle: { color: '#4ade80', width: 2.5, type: 'solid' }, itemStyle: { color: '#4ade80' } });
+          option.series.push({ type: 'line', name: y + '年', yAxisIndex: 0, data: data, smooth: true, symbol: 'circle', symbolSize: 8, lineStyle: { color: YEAR_COLORS[idx % YEAR_COLORS.length], width: 3.5 }, itemStyle: { color: YEAR_COLORS[idx % YEAR_COLORS.length] } });
+          option.series.push({ type: 'line', name: y + '年同比', yAxisIndex: 1, data: yoyDataArray, smooth: true, symbol: 'diamond', symbolSize: 6, lineStyle: { color: YOY_COLOR, width: 2.5, type: 'solid' }, itemStyle: { color: YOY_COLOR } });
         });
 
           currentZoomChart.setOption(option);
