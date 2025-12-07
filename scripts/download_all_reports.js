@@ -1,0 +1,726 @@
+/**
+ * 上市公司财报下载工具 - 全功能版
+ * 支持：年度报告、半年度报告、季度报告
+ * 
+ * 使用方法：
+ * # 下载所有类型报告
+ * node download_all_reports.js --code 600348 --name 华阳股份 --years 2023 --type all
+ * 
+ * # 只下载年报
+ * node download_all_reports.js --code 600348 --name 华阳股份 --years 2023 --type annual
+ * 
+ * # 只下载半年报
+ * node download_all_reports.js --code 600348 --name 华阳股份 --years 2023 --type semi
+ * 
+ * # 只下载季报
+ * node download_all_reports.js --code 600348 --name 华阳股份 --years 2023 --type quarterly
+ */
+
+const http = require('http');
+const https = require('https');
+const fs = require('fs');
+const path = require('path');
+const querystring = require('querystring');
+const { PDFParse } = require('pdf-parse');
+
+// 配置
+const CONFIG = {
+  SEARCH_API: 'http://www.cninfo.com.cn/new/fulltextSearch/full',
+  DOWNLOAD_BASE: 'http://static.cninfo.com.cn/',
+  
+  HEADERS: {
+    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36',
+    'Accept': '*/*',
+    'Accept-Language': 'zh-CN,zh;q=0.9',
+    'Referer': 'http://www.cninfo.com.cn/',
+    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+    'X-Requested-With': 'XMLHttpRequest'
+  },
+  
+  // 报告类型
+  REPORT_TYPES: {
+    annual: { name: '年度报告', keywords: ['年度报告', '年报'], quarter: null },
+    semi: { name: '半年度报告', keywords: ['半年度报告', '半年报'], quarter: null },
+    q1: { name: '第一季度报告', keywords: ['第一季度', '一季报', '第一季度报告', '一季度报告', '一季度'], quarter: 1 },
+    q3: { name: '第三季度报告', keywords: ['第三季度', '三季报', '第三季度报告', '三季度报告', '三季度'], quarter: 3 }
+  }
+};
+
+/**
+ * 解析命令行参数
+ */
+function parseArgs() {
+  const args = process.argv.slice(2);
+  const params = { 
+    code: '', 
+    name: '', 
+    years: [], 
+    outputDir: '',
+    reportType: 'annual' // 默认只下载年报
+  };
+
+  for (let i = 0; i < args.length; i++) {
+    switch (args[i]) {
+      case '--code':
+        params.code = args[++i];
+        break;
+      case '--name':
+        params.name = args[++i];
+        break;
+      case '--years':
+        params.years = args[++i].split(',').map(y => parseInt(y.trim()));
+        break;
+      case '--start':
+        params.start = parseInt(args[++i]);
+        break;
+      case '--end':
+        params.end = parseInt(args[++i]);
+        if (params.start) {
+          params.years = [];
+          for (let y = params.start; y <= params.end; y++) {
+            params.years.push(y);
+          }
+        }
+        break;
+      case '--output':
+        params.outputDir = args[++i];
+        break;
+      case '--type':
+        params.reportType = args[++i]; // annual, semi, quarterly, all
+        break;
+    }
+  }
+
+  return params;
+}
+
+/**
+ * 验证参数
+ */
+function validateParams(params) {
+  if (!params.code) throw new Error('请提供股票代码 (--code)');
+  if (!params.name) throw new Error('请提供公司名称 (--name)');
+  if (params.years.length === 0) throw new Error('请提供年份');
+  
+  const validTypes = ['annual', 'semi', 'quarterly', 'q1', 'q3', 'all'];
+  if (!validTypes.includes(params.reportType)) {
+    throw new Error(`报告类型必须是: ${validTypes.join(', ')}`);
+  }
+  
+  return true;
+}
+
+/**
+ * 创建输出目录
+ */
+function ensureOutputDir(params) {
+  if (!params.outputDir) {
+    params.outputDir = path.join(__dirname, '..', 'stock', 'report_analysis', params.name);
+  }
+  
+  if (!fs.existsSync(params.outputDir)) {
+    fs.mkdirSync(params.outputDir, { recursive: true });
+    console.log(`✓ 创建目录: ${params.outputDir}`);
+  }
+  
+  return params.outputDir;
+}
+
+/**
+ * 搜索特定类型的报告
+ */
+function searchReport(stockCode, year, reportType) {
+  return new Promise((resolve, reject) => {
+    const typeConfig = CONFIG.REPORT_TYPES[reportType];
+    
+    // 对于季度报告，尝试多种搜索关键词
+    let searchKeys = [];
+    if (reportType === 'q1') {
+      searchKeys = [
+        `${stockCode} ${year}年一季度报告`,
+        `${stockCode} ${year}年第一季度报告`,
+        `${stockCode} ${year}年一季报`,
+        `${stockCode} ${year}年第一季度`,
+        `${year}年一季度报告 ${stockCode}`,
+        `${year}年第一季度报告 ${stockCode}`,
+        `${year}年一季报 ${stockCode}`
+      ];
+    } else if (reportType === 'q3') {
+      searchKeys = [
+        `${stockCode} ${year}年三季度报告`,
+        `${stockCode} ${year}年第三季度报告`,
+        `${stockCode} ${year}年三季报`,
+        `${stockCode} ${year}年第三季度`,
+        `${year}年三季度报告 ${stockCode}`,
+        `${year}年第三季度报告 ${stockCode}`,
+        `${year}年三季报 ${stockCode}`
+      ];
+    } else {
+      searchKeys = [`${stockCode} ${year}年${typeConfig.name}`];
+    }
+    
+    // 使用第一个搜索关键词（最常用的格式）
+    const searchKey = searchKeys[0];
+    
+    // 调整搜索时间范围：对于季度报告，扩大搜索范围
+    let sdate, edate;
+    if (reportType === 'q1') {
+      // Q1通常在4月发布，搜索范围从当年1月到次年6月
+      sdate = `${year}-01-01`;
+      edate = `${year + 1}-06-30`;
+    } else if (reportType === 'q3') {
+      // Q3通常在10月发布，搜索范围从当年7月到次年3月
+      sdate = `${year}-07-01`;
+      edate = `${year + 1}-03-31`;
+    } else {
+      sdate = `${year}-01-01`;
+      edate = `${year + 1}-12-31`;
+    }
+    
+    const postData = querystring.stringify({
+      searchkey: searchKey,
+      sdate: sdate,
+      edate: edate,
+      isfulltext: 'false',
+      sortName: 'nothing',
+      sortType: 'desc',
+      pageNum: 1
+    });
+
+    const options = {
+      hostname: 'www.cninfo.com.cn',
+      port: 80,
+      path: '/new/fulltextSearch/full',
+      method: 'POST',
+      headers: {
+        ...CONFIG.HEADERS,
+        'Content-Length': Buffer.byteLength(postData)
+      }
+    };
+
+    const req = http.request(options, (res) => {
+      let data = '';
+      
+      res.on('data', (chunk) => {
+        data += chunk;
+      });
+      
+      res.on('end', () => {
+        try {
+          const json = JSON.parse(data);
+          
+          if (json.announcements && json.announcements.length > 0) {
+            // 筛选最匹配的报告
+            const report = json.announcements.find(item => {
+              const title = item.announcementTitle || '';
+              
+              // 检查年份
+              const yearMatch = title.includes(`${year}年`);
+              if (!yearMatch) return false;
+              
+              // 检查关键词（支持多种变体）
+              // 重要：需要精确匹配，避免"年度报告"匹配到"半年度报告"
+              let hasKeyword = false;
+              if (reportType === 'annual') {
+                // 年度报告：必须包含"年度报告"或"年报"，但不能是"半年度报告"
+                hasKeyword = (title.includes('年度报告') || title.includes('年报')) && 
+                            !title.includes('半年度报告') && !title.includes('半年报');
+              } else if (reportType === 'semi') {
+                // 半年度报告：必须包含"半年度报告"或"半年报"
+                hasKeyword = title.includes('半年度报告') || title.includes('半年报');
+              } else {
+                // 季度报告：使用原有逻辑
+                hasKeyword = typeConfig.keywords.some(kw => title.includes(kw));
+              }
+              if (!hasKeyword) return false;
+              
+              // 排除不需要的（但允许"一季度报告"这种格式）
+              const excludeWords = ['摘要', '更正', '取消', '补充', '修订', '业绩快报', '预告', '说明'];
+              const hasExclude = excludeWords.some(word => title.includes(word));
+              if (hasExclude) return false;
+              
+              // 对于季度报告，确保标题包含"报告"或"报"（"一季度报告"、"一季报"都符合）
+              if (reportType === 'q1' || reportType === 'q3') {
+                // 检查是否包含"报告"、"报"或季度关键词本身已包含
+                const hasReport = title.includes('报告') || title.includes('报');
+                // 如果关键词是"一季度"、"三季度"这种，本身就不需要"报告"后缀
+                const isQuarterOnly = (reportType === 'q1' && title.includes('一季度')) || 
+                                     (reportType === 'q3' && title.includes('三季度'));
+                if (!hasReport && !isQuarterOnly) {
+                  return false;
+                }
+              }
+              
+              return true;
+            });
+            
+            if (report) {
+              resolve({ report, type: reportType, typeConfig });
+            } else {
+              // 如果第一次搜索没找到，且是季度报告，尝试更简单的搜索
+              if ((reportType === 'q1' || reportType === 'q3') && json.announcements.length > 0) {
+                // 尝试更宽松的匹配：只要包含年份和季度关键词即可
+                const fallbackReport = json.announcements.find(item => {
+                  const title = item.announcementTitle || '';
+                  const yearMatch = title.includes(`${year}年`);
+                  if (!yearMatch) return false;
+                  
+                  // 检查季度关键词（更宽松）
+                  let quarterMatch = false;
+                  if (reportType === 'q1') {
+                    quarterMatch = title.includes('一季度') || title.includes('第一季度') || title.includes('一季报');
+                  } else if (reportType === 'q3') {
+                    quarterMatch = title.includes('三季度') || title.includes('第三季度') || title.includes('三季报');
+                  }
+                  
+                  if (!quarterMatch) return false;
+                  
+                  // 排除不需要的
+                  const excludeWords = ['摘要', '更正', '取消', '补充', '修订', '业绩快报', '预告', '说明'];
+                  const hasExclude = excludeWords.some(word => title.includes(word));
+                  if (hasExclude) return false;
+                  
+                  return true;
+                });
+                
+                if (fallbackReport) {
+                  resolve({ report: fallbackReport, type: reportType, typeConfig });
+                  return;
+                }
+              }
+              resolve(null);
+            }
+          } else {
+            resolve(null);
+          }
+        } catch (err) {
+          reject(new Error(`解析失败: ${err.message}`));
+        }
+      });
+    });
+
+    req.on('error', (err) => {
+      reject(new Error(`搜索失败: ${err.message}`));
+    });
+
+    req.write(postData);
+    req.end();
+  });
+}
+
+/**
+ * 下载文件
+ */
+function downloadFile(url, outputPath, title) {
+  return new Promise((resolve, reject) => {
+    const file = fs.createWriteStream(outputPath);
+    const protocol = url.startsWith('https') ? https : http;
+    
+    protocol.get(url, { headers: CONFIG.HEADERS }, (response) => {
+      if (response.statusCode === 301 || response.statusCode === 302) {
+        file.close();
+        fs.unlinkSync(outputPath);
+        return downloadFile(response.headers.location, outputPath, title)
+          .then(resolve)
+          .catch(reject);
+      }
+      
+      if (response.statusCode !== 200) {
+        file.close();
+        fs.unlinkSync(outputPath);
+        return reject(new Error(`HTTP ${response.statusCode}`));
+      }
+      
+      const totalSize = parseInt(response.headers['content-length'], 10);
+      let downloadedSize = 0;
+      let lastPercent = 0;
+      
+      response.on('data', (chunk) => {
+        downloadedSize += chunk.length;
+        if (totalSize) {
+          const percent = Math.floor((downloadedSize / totalSize) * 100);
+          if (percent > lastPercent && percent % 20 === 0) {
+            process.stdout.write(`\r     进度: ${percent}%`);
+            lastPercent = percent;
+          }
+        }
+      });
+      
+      response.pipe(file);
+      
+      file.on('finish', () => {
+        file.close();
+        process.stdout.write(`\r     进度: 100%\n`);
+        resolve(outputPath);
+      });
+    }).on('error', (err) => {
+      file.close();
+      if (fs.existsSync(outputPath)) fs.unlinkSync(outputPath);
+      reject(err);
+    });
+  });
+}
+
+/**
+ * 从PDF文本中提取报告信息
+ */
+async function extractReportInfoFromPDF(filePath) {
+  try {
+    const dataBuffer = fs.readFileSync(filePath);
+    const parser = new PDFParse({ data: dataBuffer });
+    const textData = await parser.getText();
+    const text = textData.text;
+    
+    // 提取年份 - 在前5000字符中查找，匹配"YYYY年"或"YYYY 年"格式（支持空格）
+    const preview = text.substring(0, 5000);
+    // 匹配 "2024年" 或 "2024 年" 格式
+    const yearMatches = preview.match(/(\d{4})\s*年/g);
+    let year = null;
+    if (yearMatches) {
+      // 取最常见的年份（通常是报告年份）
+      const yearCounts = {};
+      yearMatches.forEach(m => {
+        const y = m.match(/(\d{4})/)[1];
+        // 只考虑合理的年份（2000-2099）
+        if (parseInt(y) >= 2000 && parseInt(y) <= 2099) {
+          yearCounts[y] = (yearCounts[y] || 0) + 1;
+        }
+      });
+      if (Object.keys(yearCounts).length > 0) {
+        const sorted = Object.entries(yearCounts).sort((a, b) => b[1] - a[1]);
+        year = sorted[0][0];
+      }
+    }
+    
+    // 如果还没找到，尝试在整个文本的前10000字符中查找
+    if (!year && text.length > 5000) {
+      const extendedPreview = text.substring(0, 10000);
+      const extendedMatches = extendedPreview.match(/(\d{4})\s*年/g);
+      if (extendedMatches) {
+        const yearCounts = {};
+        extendedMatches.forEach(m => {
+          const y = m.match(/(\d{4})/)[1];
+          if (parseInt(y) >= 2000 && parseInt(y) <= 2099) {
+            yearCounts[y] = (yearCounts[y] || 0) + 1;
+          }
+        });
+        if (Object.keys(yearCounts).length > 0) {
+          const sorted = Object.entries(yearCounts).sort((a, b) => b[1] - a[1]);
+          year = sorted[0][0];
+        }
+      }
+    }
+    
+    // 提取报告类型
+    // 注意：必须先检查更具体的类型（半年度、季度），再检查年度报告
+    // 因为"半年度报告"包含"年度报告"字符串
+    const patterns = [
+      { type: '半年度报告', regex: /半年度报告|半年报/g },
+      { type: '第一季度报告', regex: /第一季度报告|一季报|第一季度/g },
+      { type: '第三季度报告', regex: /第三季度报告|三季报|第三季度/g },
+      { type: '年度报告', regex: /年度报告|年报/g }
+    ];
+    
+    const counts = {};
+    for (const pattern of patterns) {
+      const matches = preview.match(pattern.regex);
+      if (matches) {
+        counts[pattern.type] = matches.length;
+      }
+    }
+    
+    let reportType = null;
+    if (Object.keys(counts).length > 0) {
+      // 优先选择更具体的类型（半年度、季度），避免"半年度报告"被识别为"年度报告"
+      if (counts['半年度报告']) {
+        reportType = '半年度报告';
+      } else if (counts['第一季度报告']) {
+        reportType = '第一季度报告';
+      } else if (counts['第三季度报告']) {
+        reportType = '第三季度报告';
+      } else if (counts['年度报告']) {
+        reportType = '年度报告';
+      }
+    }
+    
+    return { year, reportType, success: true };
+  } catch (error) {
+    return { year: null, reportType: null, success: false, error: error.message };
+  }
+}
+
+/**
+ * 验证下载的PDF文件内容
+ */
+async function verifyDownloadedPDF(filePath, expectedYear, expectedType) {
+  const info = await extractReportInfoFromPDF(filePath);
+  
+  if (!info.success) {
+    return {
+      valid: false,
+      reason: `无法解析PDF: ${info.error}`,
+      actualYear: null,
+      actualType: null
+    };
+  }
+  
+  // 年份和类型都转换为字符串进行比较
+  const yearMatch = String(info.year) === String(expectedYear);
+  const typeMatch = info.reportType === expectedType;
+  
+  return {
+    valid: yearMatch && typeMatch,
+    yearMatch,
+    typeMatch,
+    actualYear: info.year,
+    actualType: info.reportType,
+    expectedYear,
+    expectedType,
+    reason: !yearMatch && !typeMatch 
+      ? `年份不匹配(${info.year} ≠ ${expectedYear}) 且 类型不匹配(${info.reportType} ≠ ${expectedType})`
+      : !yearMatch 
+      ? `年份不匹配(${info.year} ≠ ${expectedYear})`
+      : !typeMatch 
+      ? `类型不匹配(${info.reportType} ≠ ${expectedType})`
+      : '验证通过'
+  };
+}
+
+/**
+ * 下载某年某类型的报告
+ */
+async function downloadReportByType(params, year, reportType) {
+  const typeConfig = CONFIG.REPORT_TYPES[reportType];
+  
+  console.log(`   📄 查找${typeConfig.name}...`);
+  
+  try {
+    const result = await searchReport(params.code, year, reportType);
+    
+    if (!result) {
+      console.log(`      ⚠ 未找到`);
+      return { year, type: reportType, success: false, reason: '未找到' };
+    }
+    
+    const { report, typeConfig: tc } = result;
+    
+    // 生成文件名
+    let fileName = `${params.name}${year}年${tc.name}.pdf`;
+    const outputPath = path.join(params.outputDir, fileName);
+    
+    // 检查是否已存在
+    if (fs.existsSync(outputPath) && fs.statSync(outputPath).size > 10000) {
+      console.log(`      ✓ 已存在`);
+      // 即使已存在，也进行验证
+      console.log(`      🔍 验证文件内容...`);
+      const verification = await verifyDownloadedPDF(outputPath, year, tc.name);
+      if (verification.valid) {
+        console.log(`      ✅ 验证通过`);
+      } else {
+        console.log(`      ⚠️  验证失败: ${verification.reason}`);
+        console.log(`         实际内容: ${verification.actualYear}年${verification.actualType || '未知'}`);
+      }
+      return { year, type: reportType, success: true, cached: true, path: outputPath, verification };
+    }
+    
+    // 下载
+    console.log(`      ⬇️  下载中...`);
+    const downloadUrl = CONFIG.DOWNLOAD_BASE + report.adjunctUrl;
+    await downloadFile(downloadUrl, outputPath, report.announcementTitle);
+    
+    // 下载后自动验证
+    console.log(`      🔍 验证文件内容...`);
+    const verification = await verifyDownloadedPDF(outputPath, year, tc.name);
+    
+    if (verification.valid) {
+      console.log(`      ✅ 下载完成，验证通过`);
+      return { year, type: reportType, success: true, path: outputPath, verification };
+    } else {
+      console.log(`      ⚠️  验证失败: ${verification.reason}`);
+      console.log(`         实际内容: ${verification.actualYear}年${verification.actualType || '未知'}`);
+      console.log(`         期望内容: ${verification.expectedYear}年${verification.expectedType}`);
+      
+      // 如果验证失败，重命名文件以反映实际内容
+      if (verification.actualYear && verification.actualType) {
+        const correctFileName = `${params.name}${verification.actualYear}年${verification.actualType}.pdf`;
+        const correctPath = path.join(params.outputDir, correctFileName);
+        
+        // 检查目标文件是否已存在
+        if (fs.existsSync(correctPath)) {
+          console.log(`      ⚠️  目标文件已存在，删除错误文件`);
+          fs.unlinkSync(outputPath);
+        } else {
+          console.log(`      🔄 自动重命名为: ${correctFileName}`);
+          fs.renameSync(outputPath, correctPath);
+        }
+      } else {
+        // 如果无法识别内容，移动到错误目录
+        const errorDir = path.join(params.outputDir, '_errors');
+        if (!fs.existsSync(errorDir)) {
+          fs.mkdirSync(errorDir, { recursive: true });
+        }
+        const errorPath = path.join(errorDir, fileName);
+        console.log(`      🗑️  移动到错误目录: ${errorPath}`);
+        fs.renameSync(outputPath, errorPath);
+      }
+      
+      return { 
+        year, 
+        type: reportType, 
+        success: false, 
+        reason: verification.reason,
+        verification 
+      };
+    }
+    
+  } catch (error) {
+    console.log(`      ❌ 失败: ${error.message}`);
+    return { year, type: reportType, success: false, reason: error.message };
+  }
+}
+
+/**
+ * 下载某年的报告
+ */
+async function downloadYearReports(params, year) {
+  console.log(`\n${'='.repeat(60)}`);
+  console.log(`📊 ${params.name} ${year} 年`);
+  console.log(`${'='.repeat(60)}`);
+  
+  const results = [];
+  
+  // 根据类型参数决定下载哪些报告
+  const typesToDownload = [];
+  
+  if (params.reportType === 'all') {
+    typesToDownload.push('annual', 'semi', 'q1', 'q3');
+  } else if (params.reportType === 'quarterly') {
+    typesToDownload.push('q1', 'q3');
+  } else {
+    typesToDownload.push(params.reportType);
+  }
+  
+  // 按顺序下载各类型报告
+  for (const type of typesToDownload) {
+    const result = await downloadReportByType(params, year, type);
+    results.push(result);
+    
+    // 每个报告之间延迟1秒
+    if (typesToDownload.indexOf(type) < typesToDownload.length - 1) {
+      await delay(1000);
+    }
+  }
+  
+  return results;
+}
+
+/**
+ * 延迟
+ */
+function delay(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+/**
+ * 主函数
+ */
+async function main() {
+  console.log('\n' + '='.repeat(60));
+  console.log('📥 上市公司财报下载工具 - 全功能版');
+  console.log('🔗 支持: 年报 / 半年报 / 季报');
+  console.log('='.repeat(60) + '\n');
+  
+  try {
+    const params = parseArgs();
+    validateParams(params);
+    ensureOutputDir(params);
+    
+    // 显示报告类型说明
+    let typeDesc = '';
+    if (params.reportType === 'all') {
+      typeDesc = '年报 + 半年报 + 季报';
+    } else if (params.reportType === 'annual') {
+      typeDesc = '年度报告';
+    } else if (params.reportType === 'semi') {
+      typeDesc = '半年度报告';
+    } else if (params.reportType === 'quarterly') {
+      typeDesc = '季度报告(Q1+Q3)';
+    } else {
+      typeDesc = CONFIG.REPORT_TYPES[params.reportType].name;
+    }
+    
+    console.log(`📋 下载配置:`);
+    console.log(`   公司: ${params.name} (${params.code})`);
+    console.log(`   年份: ${params.years.join(', ')}`);
+    console.log(`   类型: ${typeDesc}`);
+    console.log(`   目录: ${params.outputDir}`);
+    
+    const allResults = [];
+    
+    for (let i = 0; i < params.years.length; i++) {
+      const results = await downloadYearReports(params, params.years[i]);
+      allResults.push(...results);
+      
+      if (i < params.years.length - 1) {
+        await delay(2000);
+      }
+    }
+    
+    // 总结
+    console.log('\n' + '='.repeat(60));
+    console.log('📊 下载总结');
+    console.log('='.repeat(60));
+    
+    const successful = allResults.filter(r => r.success);
+    const cached = allResults.filter(r => r.cached);
+    const failed = allResults.filter(r => !r.success);
+    
+    console.log(`✅ 成功: ${successful.length} 份 (其中 ${cached.length} 份已存在)`);
+    console.log(`❌ 失败: ${failed.length} 份`);
+    
+    // 按类型统计
+    const byType = {};
+    allResults.forEach(r => {
+      const typeName = CONFIG.REPORT_TYPES[r.type].name;
+      if (!byType[typeName]) byType[typeName] = { success: 0, failed: 0 };
+      if (r.success) byType[typeName].success++;
+      else byType[typeName].failed++;
+    });
+    
+    console.log(`\n按类型统计:`);
+    Object.keys(byType).forEach(typeName => {
+      const stat = byType[typeName];
+      console.log(`   ${typeName}: ${stat.success}✓ / ${stat.failed}✗`);
+    });
+    
+    if (failed.length > 0) {
+      console.log(`\n未找到的报告:`);
+      failed.forEach(f => {
+        const typeName = CONFIG.REPORT_TYPES[f.type].name;
+        console.log(`   - ${f.year}年 ${typeName}: ${f.reason}`);
+      });
+    }
+    
+    console.log('\n' + '='.repeat(60) + '\n');
+    
+  } catch (error) {
+    console.error(`\n❌ 错误: ${error.message}\n`);
+    console.log('使用方法:');
+    console.log('  # 下载所有类型报告');
+    console.log('  node download_all_reports.js --code 600348 --name 华阳股份 --years 2023 --type all\n');
+    console.log('  # 只下载年报');
+    console.log('  node download_all_reports.js --code 600348 --name 华阳股份 --years 2023 --type annual\n');
+    console.log('  # 只下载半年报');
+    console.log('  node download_all_reports.js --code 600348 --name 华阳股份 --years 2023 --type semi\n');
+    console.log('  # 只下载季报');
+    console.log('  node download_all_reports.js --code 600348 --name 华阳股份 --years 2023 --type quarterly\n');
+    process.exit(1);
+  }
+}
+
+if (require.main === module) {
+  main();
+}
+
+module.exports = { searchReport, downloadFile };
+
