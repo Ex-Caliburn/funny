@@ -150,7 +150,7 @@ class RetailDataExtractor {
         publishDate: dateInfo.publishDate,
         periodInfo: dateInfo.periodInfo,
         dataRows: rows.length,
-        excelFile: excelFile,
+        file: excelFile,
         source: 'page_table',
         title: pageTitle
       };

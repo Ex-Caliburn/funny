@@ -388,7 +388,7 @@ class GoodsPriceExtractor {
         publishDate: extractedData.publishDate,
         periodInfo: extractedData.periodInfo,
         dataRows: extractedData.rows.length,
-        excelFile: excelFile
+        file: excelFile
       };
       
     } catch (error) {

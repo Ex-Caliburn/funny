@@ -147,7 +147,7 @@ class EnergyDataExtractor {
         publishDate: dateStr,
         periodInfo: ym ? `${ym.year}年${ym.period}月` : '',
         dataRows: mainRows.length - 1,
-        excelFile: excelFile,
+        file: excelFile,
         source: 'text_extraction'
       };
       

@@ -759,7 +759,7 @@ function main() {
     '</body>\n</html>\n';
 
   try {
-    if (!fs.existsSync(OUTPUT_HTML)) {
+     if (!fs.existsSync(OUTPUT_HTML)) {
       fs.writeFileSync(OUTPUT_HTML, html, 'utf8');
       console.log('Wrote', OUTPUT_HTML);
     } else {

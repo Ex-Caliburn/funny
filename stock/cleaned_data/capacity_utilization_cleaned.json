@@ -1,19 +1,13 @@
 {
-  "lastUpdated": "2025-11-11T15:53:08.446Z",
-  "dataCount": 399,
+  "lastUpdated": "2025-12-08T10:27:40.654Z",
+  "dataCount": 361,
   "metrics": {
     "工业": [
-      {
-        "yearMonth": "2022-Q4",
-        "value": 75.7,
-        "yoy": -1.7,
-        "mom": null
-      },
       {
         "yearMonth": "2023-Q1",
         "value": 74.3,
         "yoy": -1.5,
-        "mom": -1.4
+        "mom": null
       },
       {
         "yearMonth": "2023-Q2",
@@ -58,56 +52,12 @@
         "mom": 0.6
       }
     ],
-    "工业-累计": [
-      {
-        "yearMonth": "2022-YTD-Q4",
-        "value": 75.6,
-        "yoy": -1.9,
-        "mom": null
-      },
-      {
-        "yearMonth": "2023-YTD-Q2",
-        "value": 74.4,
-        "yoy": -1,
-        "mom": -1.2
-      },
-      {
-        "yearMonth": "2023-YTD-Q3",
-        "value": 74.8,
-        "yoy": -0.7,
-        "mom": 0.4
-      },
-      {
-        "yearMonth": "2023-YTD-Q4",
-        "value": 75.0990383242402,
-        "yoy": -0.5,
-        "mom": 0.3
-      },
-      {
-        "yearMonth": "2025-YTD-Q2",
-        "value": 74,
-        "yoy": -0.3,
-        "mom": -1.1
-      },
-      {
-        "yearMonth": "2025-YTD-Q3",
-        "value": 74.2,
-        "yoy": -0.4,
-        "mom": 0.2
-      }
-    ],
     "其中：采矿业": [
-      {
-        "yearMonth": "2022-Q4",
-        "value": 76.5,
-        "yoy": -0.5,
-        "mom": null
-      },
       {
         "yearMonth": "2023-Q1",
         "value": 75.2,
         "yoy": -1.8,
-        "mom": -1.3
+        "mom": null
       },
       {
         "yearMonth": "2023-Q2",
@@ -170,74 +120,12 @@
         "mom": -0.2
       }
     ],
-    "其中：采矿业-累计": [
-      {
-        "yearMonth": "2022-YTD-Q4",
-        "value": 76.8,
-        "yoy": 0.6,
-        "mom": null
-      },
-      {
-        "yearMonth": "2023-YTD-Q2",
-        "value": 75,
-        "yoy": -1.9,
-        "mom": -1.8
-      },
-      {
-        "yearMonth": "2023-YTD-Q3",
-        "value": 75.1,
-        "yoy": -1.8,
-        "mom": 0.1
-      },
-      {
-        "yearMonth": "2023-YTD-Q4",
-        "value": 75.6274408203307,
-        "yoy": -1.2,
-        "mom": 0.53
-      },
-      {
-        "yearMonth": "2024-YTD-Q2",
-        "value": 75.5,
-        "yoy": 0.5,
-        "mom": -0.13
-      },
-      {
-        "yearMonth": "2024-YTD-Q3",
-        "value": 75.2,
-        "yoy": 0.1,
-        "mom": -0.3
-      },
-      {
-        "yearMonth": "2024-YTD-Q4",
-        "value": 75.3,
-        "yoy": -0.3,
-        "mom": 0.1
-      },
-      {
-        "yearMonth": "2025-YTD-Q2",
-        "value": 73.6,
-        "yoy": -1.9,
-        "mom": -1.7
-      },
-      {
-        "yearMonth": "2025-YTD-Q3",
-        "value": 73.3,
-        "yoy": -1.9,
-        "mom": -0.3
-      }
-    ],
     "制造业": [
-      {
-        "yearMonth": "2022-Q4",
-        "value": 75.8,
-        "yoy": -1.8,
-        "mom": null
-      },
       {
         "yearMonth": "2023-Q1",
         "value": 74.5,
         "yoy": -1.4,
-        "mom": -1.3
+        "mom": null
       },
       {
         "yearMonth": "2023-Q2",
@@ -300,74 +188,12 @@
         "mom": 0.5
       }
     ],
-    "制造业-累计": [
-      {
-        "yearMonth": "2022-YTD-Q4",
-        "value": 75.8,
-        "yoy": -2,
-        "mom": null
-      },
-      {
-        "yearMonth": "2023-YTD-Q2",
-        "value": 74.7,
-        "yoy": -1,
-        "mom": -1.1
-      },
-      {
-        "yearMonth": "2023-YTD-Q3",
-        "value": 75,
-        "yoy": -0.7,
-        "mom": 0.3
-      },
-      {
-        "yearMonth": "2023-YTD-Q4",
-        "value": 75.2834316953585,
-        "yoy": -0.5,
-        "mom": 0.28
-      },
-      {
-        "yearMonth": "2024-YTD-Q2",
-        "value": 74.5,
-        "yoy": -0.2,
-        "mom": -0.78
-      },
-      {
-        "yearMonth": "2024-YTD-Q3",
-        "value": 74.8,
-        "yoy": -0.2,
-        "mom": 0.3
-      },
-      {
-        "yearMonth": "2024-YTD-Q4",
-        "value": 75.2,
-        "yoy": -0.1,
-        "mom": 0.4
-      },
-      {
-        "yearMonth": "2025-YTD-Q2",
-        "value": 74.2,
-        "yoy": -0.3,
-        "mom": -1
-      },
-      {
-        "yearMonth": "2025-YTD-Q3",
-        "value": 74.4,
-        "yoy": -0.4,
-        "mom": 0.2
-      }
-    ],
     "电力、热力、燃气及水生产和供应业": [
-      {
-        "yearMonth": "2022-Q4",
-        "value": 74,
-        "yoy": -1.4,
-        "mom": null
-      },
       {
         "yearMonth": "2023-Q1",
         "value": 71.9,
         "yoy": -1.9,
-        "mom": -2.1
+        "mom": null
       },
       {
         "yearMonth": "2023-Q2",
@@ -430,74 +256,12 @@
         "mom": 2.8
       }
     ],
-    "电力、热力、燃气及水生产和供应业-累计": [
-      {
-        "yearMonth": "2022-YTD-Q4",
-        "value": 72.8,
-        "yoy": -2.2,
-        "mom": null
-      },
-      {
-        "yearMonth": "2023-YTD-Q2",
-        "value": 71.7,
-        "yoy": -0.5,
-        "mom": -1.1
-      },
-      {
-        "yearMonth": "2023-YTD-Q3",
-        "value": 72.5,
-        "yoy": 0.1,
-        "mom": 0.8
-      },
-      {
-        "yearMonth": "2023-YTD-Q4",
-        "value": 73.0189448747767,
-        "yoy": 0.200000000000003,
-        "mom": 0.52
-      },
-      {
-        "yearMonth": "2024-YTD-Q2",
-        "value": 71.3,
-        "yoy": -0.4,
-        "mom": -1.72
-      },
-      {
-        "yearMonth": "2024-YTD-Q3",
-        "value": 72.3,
-        "yoy": -0.2,
-        "mom": 1
-      },
-      {
-        "yearMonth": "2024-YTD-Q4",
-        "value": 73,
-        "yoy": 0,
-        "mom": 0.7
-      },
-      {
-        "yearMonth": "2025-YTD-Q2",
-        "value": 72.6,
-        "yoy": 1.3,
-        "mom": -0.4
-      },
-      {
-        "yearMonth": "2025-YTD-Q3",
-        "value": 73.2,
-        "yoy": 0.9,
-        "mom": 0.6
-      }
-    ],
     "其中：煤炭开采和洗选业": [
-      {
-        "yearMonth": "2022-Q4",
-        "value": 75.4,
-        "yoy": -1,
-        "mom": null
-      },
       {
         "yearMonth": "2023-Q1",
         "value": 73.8,
         "yoy": -1.1,
-        "mom": -1.6
+        "mom": null
       },
       {
         "yearMonth": "2023-Q2",
@@ -560,74 +324,12 @@
         "mom": -0.4
       }
     ],
-    "其中：煤炭开采和洗选业-累计": [
-      {
-        "yearMonth": "2022-YTD-Q4",
-        "value": 74.9,
-        "yoy": 0.4,
-        "mom": null
-      },
-      {
-        "yearMonth": "2023-YTD-Q2",
-        "value": 74.1,
-        "yoy": -0.5,
-        "mom": -0.8
-      },
-      {
-        "yearMonth": "2023-YTD-Q3",
-        "value": 74,
-        "yoy": -0.7,
-        "mom": -0.1
-      },
-      {
-        "yearMonth": "2023-YTD-Q4",
-        "value": 74.4290990464453,
-        "yoy": -0.5,
-        "mom": 0.43
-      },
-      {
-        "yearMonth": "2024-YTD-Q2",
-        "value": 72.2,
-        "yoy": -1.9,
-        "mom": -2.23
-      },
-      {
-        "yearMonth": "2024-YTD-Q3",
-        "value": 72.3,
-        "yoy": -1.7,
-        "mom": 0.1
-      },
-      {
-        "yearMonth": "2024-YTD-Q4",
-        "value": 72.8,
-        "yoy": -1.6,
-        "mom": 0.5
-      },
-      {
-        "yearMonth": "2025-YTD-Q2",
-        "value": 70.6,
-        "yoy": -1.6,
-        "mom": -2.2
-      },
-      {
-        "yearMonth": "2025-YTD-Q3",
-        "value": 70,
-        "yoy": -2.3,
-        "mom": -0.6
-      }
-    ],
     "石油和天然气开采业": [
-      {
-        "yearMonth": "2022-Q4",
-        "value": 91.3,
-        "yoy": 2.3,
-        "mom": null
-      },
       {
         "yearMonth": "2023-Q1",
         "value": 91.2,
         "yoy": -1.2,
-        "mom": -0.1
+        "mom": null
       },
       {
         "yearMonth": "2023-Q2",
@@ -690,74 +392,12 @@
         "mom": 0.3
       }
     ],
-    "石油和天然气开采业-累计": [
-      {
-        "yearMonth": "2022-YTD-Q4",
-        "value": 92,
-        "yoy": 2.2,
-        "mom": null
-      },
-      {
-        "yearMonth": "2023-YTD-Q2",
-        "value": 91,
-        "yoy": -1.4,
-        "mom": -1
-      },
-      {
-        "yearMonth": "2023-YTD-Q3",
-        "value": 91.1,
-        "yoy": -1.1,
-        "mom": 0.1
-      },
-      {
-        "yearMonth": "2023-YTD-Q4",
-        "value": 91.3564732756832,
-        "yoy": -0.599999999999994,
-        "mom": 0.26
-      },
-      {
-        "yearMonth": "2024-YTD-Q2",
-        "value": 91.8,
-        "yoy": 0.8,
-        "mom": 0.44
-      },
-      {
-        "yearMonth": "2024-YTD-Q3",
-        "value": 91.3,
-        "yoy": 0.2,
-        "mom": -0.5
-      },
-      {
-        "yearMonth": "2024-YTD-Q4",
-        "value": 91.4,
-        "yoy": 0,
-        "mom": 0.1
-      },
-      {
-        "yearMonth": "2025-YTD-Q2",
-        "value": 91.7,
-        "yoy": -0.1,
-        "mom": 0.3
-      },
-      {
-        "yearMonth": "2025-YTD-Q3",
-        "value": 91.5,
-        "yoy": 0.2,
-        "mom": -0.2
-      }
-    ],
     "食品制造业": [
-      {
-        "yearMonth": "2022-Q4",
-        "value": 71.9,
-        "yoy": -2.6,
-        "mom": null
-      },
       {
         "yearMonth": "2023-Q1",
         "value": 70.7,
         "yoy": -0.9,
-        "mom": -1.2
+        "mom": null
       },
       {
         "yearMonth": "2023-Q2",
@@ -820,74 +460,12 @@
         "mom": 1
       }
     ],
-    "食品制造业-累计": [
-      {
-        "yearMonth": "2022-YTD-Q4",
-        "value": 71.7,
-        "yoy": -2.2,
-        "mom": null
-      },
-      {
-        "yearMonth": "2023-YTD-Q2",
-        "value": 69.4,
-        "yoy": -2.1,
-        "mom": -2.3
-      },
-      {
-        "yearMonth": "2023-YTD-Q3",
-        "value": 69.9,
-        "yoy": -1.7,
-        "mom": 0.5
-      },
-      {
-        "yearMonth": "2023-YTD-Q4",
-        "value": 70.2584207484223,
-        "yoy": -1.40000000000001,
-        "mom": 0.36
-      },
-      {
-        "yearMonth": "2024-YTD-Q2",
-        "value": 68.9,
-        "yoy": -0.5,
-        "mom": -1.36
-      },
-      {
-        "yearMonth": "2024-YTD-Q3",
-        "value": 69.5,
-        "yoy": -0.4,
-        "mom": 0.6
-      },
-      {
-        "yearMonth": "2024-YTD-Q4",
-        "value": 69.8,
-        "yoy": -0.5,
-        "mom": 0.3
-      },
-      {
-        "yearMonth": "2025-YTD-Q2",
-        "value": 69.2,
-        "yoy": 0.3,
-        "mom": -0.6
-      },
-      {
-        "yearMonth": "2025-YTD-Q3",
-        "value": 69.5,
-        "yoy": 0,
-        "mom": 0.3
-      }
-    ],
     "纺织业": [
-      {
-        "yearMonth": "2022-Q4",
-        "value": 76.2,
-        "yoy": -3,
-        "mom": null
-      },
       {
         "yearMonth": "2023-Q1",
         "value": 75.5,
         "yoy": -2.7,
-        "mom": -0.7
+        "mom": null
       },
       {
         "yearMonth": "2023-Q2",
@@ -950,74 +528,12 @@
         "mom": -0.6
       }
     ],
-    "纺织业-累计": [
-      {
-        "yearMonth": "2022-YTD-Q4",
-        "value": 77.2,
-        "yoy": -2.3,
-        "mom": null
-      },
-      {
-        "yearMonth": "2023-YTD-Q2",
-        "value": 76.2,
-        "yoy": -1.8,
-        "mom": -1
-      },
-      {
-        "yearMonth": "2023-YTD-Q3",
-        "value": 76.4,
-        "yoy": -1.2,
-        "mom": 0.2
-      },
-      {
-        "yearMonth": "2023-YTD-Q4",
-        "value": 76.3676675601944,
-        "yoy": -0.799999999999997,
-        "mom": -0.03
-      },
-      {
-        "yearMonth": "2024-YTD-Q2",
-        "value": 78.6,
-        "yoy": 2.4,
-        "mom": 2.23
-      },
-      {
-        "yearMonth": "2024-YTD-Q3",
-        "value": 78.3,
-        "yoy": 1.9,
-        "mom": -0.3
-      },
-      {
-        "yearMonth": "2024-YTD-Q4",
-        "value": 78.5,
-        "yoy": 2.1,
-        "mom": 0.2
-      },
-      {
-        "yearMonth": "2025-YTD-Q2",
-        "value": 77.8,
-        "yoy": -0.8,
-        "mom": -0.7
-      },
-      {
-        "yearMonth": "2025-YTD-Q3",
-        "value": 77.6,
-        "yoy": -0.7,
-        "mom": -0.2
-      }
-    ],
     "化学原料和化学制品制造业": [
-      {
-        "yearMonth": "2022-Q4",
-        "value": 76,
-        "yoy": -1.6,
-        "mom": null
-      },
       {
         "yearMonth": "2023-Q1",
         "value": 75.5,
         "yoy": -2.4,
-        "mom": -0.5
+        "mom": null
       },
       {
         "yearMonth": "2023-Q2",
@@ -1080,74 +596,12 @@
         "mom": 0.6
       }
     ],
-    "化学原料和化学制品制造业-累计": [
-      {
-        "yearMonth": "2022-YTD-Q4",
-        "value": 76.7,
-        "yoy": -1.4,
-        "mom": null
-      },
-      {
-        "yearMonth": "2023-YTD-Q2",
-        "value": 74.9,
-        "yoy": -2.9,
-        "mom": -1.8
-      },
-      {
-        "yearMonth": "2023-YTD-Q3",
-        "value": 74.8,
-        "yoy": -2.2,
-        "mom": -0.1
-      },
-      {
-        "yearMonth": "2023-YTD-Q4",
-        "value": 75.3067112100393,
-        "yoy": -1.40000000000001,
-        "mom": 0.51
-      },
-      {
-        "yearMonth": "2024-YTD-Q2",
-        "value": 76.4,
-        "yoy": 1.5,
-        "mom": 1.09
-      },
-      {
-        "yearMonth": "2024-YTD-Q3",
-        "value": 76.3,
-        "yoy": 1.5,
-        "mom": -0.1
-      },
-      {
-        "yearMonth": "2024-YTD-Q4",
-        "value": 76.3,
-        "yoy": 1,
-        "mom": 0
-      },
-      {
-        "yearMonth": "2025-YTD-Q2",
-        "value": 72.7,
-        "yoy": -3.7,
-        "mom": -3.6
-      },
-      {
-        "yearMonth": "2025-YTD-Q3",
-        "value": 72.6,
-        "yoy": -3.7,
-        "mom": -0.1
-      }
-    ],
     "医药制造业": [
-      {
-        "yearMonth": "2022-Q4",
-        "value": 77.6,
-        "yoy": 0.2,
-        "mom": null
-      },
       {
         "yearMonth": "2023-Q1",
         "value": 75.2,
         "yoy": 0.6,
-        "mom": -2.4
+        "mom": null
       },
       {
         "yearMonth": "2023-Q2",
@@ -1210,74 +664,12 @@
         "mom": -0.7
       }
     ],
-    "医药制造业-累计": [
-      {
-        "yearMonth": "2022-YTD-Q4",
-        "value": 75.6,
-        "yoy": -1.8,
-        "mom": null
-      },
-      {
-        "yearMonth": "2023-YTD-Q2",
-        "value": 75.7,
-        "yoy": 0.8,
-        "mom": 0.1
-      },
-      {
-        "yearMonth": "2023-YTD-Q3",
-        "value": 74.8,
-        "yoy": -0.1,
-        "mom": -0.9
-      },
-      {
-        "yearMonth": "2023-YTD-Q4",
-        "value": 74.9030530694065,
-        "yoy": -0.699999999999989,
-        "mom": 0.1
-      },
-      {
-        "yearMonth": "2024-YTD-Q2",
-        "value": 75.6,
-        "yoy": -0.1,
-        "mom": 0.7
-      },
-      {
-        "yearMonth": "2024-YTD-Q3",
-        "value": 75.1,
-        "yoy": 0.3,
-        "mom": -0.5
-      },
-      {
-        "yearMonth": "2024-YTD-Q4",
-        "value": 75.3,
-        "yoy": 0.4,
-        "mom": 0.2
-      },
-      {
-        "yearMonth": "2025-YTD-Q2",
-        "value": 72.6,
-        "yoy": -3,
-        "mom": -2.7
-      },
-      {
-        "yearMonth": "2025-YTD-Q3",
-        "value": 72.4,
-        "yoy": -2.7,
-        "mom": -0.2
-      }
-    ],
     "化学纤维制造业": [
-      {
-        "yearMonth": "2022-Q4",
-        "value": 79.2,
-        "yoy": -3.3,
-        "mom": null
-      },
       {
         "yearMonth": "2023-Q1",
         "value": 82.1,
         "yoy": -2.1,
-        "mom": 2.9
+        "mom": null
       },
       {
         "yearMonth": "2023-Q2",
@@ -1340,74 +732,12 @@
         "mom": 0
       }
     ],
-    "化学纤维制造业-累计": [
-      {
-        "yearMonth": "2022-YTD-Q4",
-        "value": 82.3,
-        "yoy": -2.2,
-        "mom": null
-      },
-      {
-        "yearMonth": "2023-YTD-Q2",
-        "value": 83.2,
-        "yoy": -0.8,
-        "mom": 0.9
-      },
-      {
-        "yearMonth": "2023-YTD-Q3",
-        "value": 83.8,
-        "yoy": 0.5,
-        "mom": 0.6
-      },
-      {
-        "yearMonth": "2023-YTD-Q4",
-        "value": 84.3047204641103,
-        "yoy": 2,
-        "mom": 0.5
-      },
-      {
-        "yearMonth": "2024-YTD-Q2",
-        "value": 85.3,
-        "yoy": 2.1,
-        "mom": 1
-      },
-      {
-        "yearMonth": "2024-YTD-Q3",
-        "value": 85.4,
-        "yoy": 1.6,
-        "mom": 0.1
-      },
-      {
-        "yearMonth": "2024-YTD-Q4",
-        "value": 85.4,
-        "yoy": 1.1,
-        "mom": 0
-      },
-      {
-        "yearMonth": "2025-YTD-Q2",
-        "value": 86,
-        "yoy": 0.7,
-        "mom": 0.6
-      },
-      {
-        "yearMonth": "2025-YTD-Q3",
-        "value": 85.8,
-        "yoy": 0.4,
-        "mom": -0.2
-      }
-    ],
     "非金属矿物制品业": [
-      {
-        "yearMonth": "2022-Q4",
-        "value": 67.2,
-        "yoy": -2.9,
-        "mom": null
-      },
       {
         "yearMonth": "2023-Q1",
         "value": 63.9,
         "yoy": -1.9,
-        "mom": -3.3
+        "mom": null
       },
       {
         "yearMonth": "2023-Q2",
@@ -1470,74 +800,12 @@
         "mom": -0.3
       }
     ],
-    "非金属矿物制品业-累计": [
-      {
-        "yearMonth": "2022-YTD-Q4",
-        "value": 67,
-        "yoy": -2.9,
-        "mom": null
-      },
-      {
-        "yearMonth": "2023-YTD-Q2",
-        "value": 64.5,
-        "yoy": -1.8,
-        "mom": -2.5
-      },
-      {
-        "yearMonth": "2023-YTD-Q3",
-        "value": 64.7,
-        "yoy": -2.2,
-        "mom": 0.2
-      },
-      {
-        "yearMonth": "2023-YTD-Q4",
-        "value": 64.6696573480686,
-        "yoy": -2.3,
-        "mom": -0.03
-      },
-      {
-        "yearMonth": "2024-YTD-Q2",
-        "value": 63.1,
-        "yoy": -1.4,
-        "mom": -1.57
-      },
-      {
-        "yearMonth": "2024-YTD-Q3",
-        "value": 62.6,
-        "yoy": -2.1,
-        "mom": -0.5
-      },
-      {
-        "yearMonth": "2024-YTD-Q4",
-        "value": 62.2,
-        "yoy": -2.5,
-        "mom": -0.4
-      },
-      {
-        "yearMonth": "2025-YTD-Q2",
-        "value": 61.6,
-        "yoy": -1.5,
-        "mom": -0.6
-      },
-      {
-        "yearMonth": "2025-YTD-Q3",
-        "value": 61.8,
-        "yoy": -0.8,
-        "mom": 0.2
-      }
-    ],
     "黑色金属冶炼和压延加工业": [
-      {
-        "yearMonth": "2022-Q4",
-        "value": 73.5,
-        "yoy": -1.1,
-        "mom": null
-      },
       {
         "yearMonth": "2023-Q1",
         "value": 78.1,
         "yoy": 1.1,
-        "mom": 4.6
+        "mom": null
       },
       {
         "yearMonth": "2023-Q2",
@@ -1600,74 +868,12 @@
         "mom": -0.7
       }
     ],
-    "黑色金属冶炼和压延加工业-累计": [
-      {
-        "yearMonth": "2022-YTD-Q4",
-        "value": 76.3,
-        "yoy": -2.9,
-        "mom": null
-      },
-      {
-        "yearMonth": "2023-YTD-Q2",
-        "value": 78.5,
-        "yoy": 0.4,
-        "mom": 2.2
-      },
-      {
-        "yearMonth": "2023-YTD-Q3",
-        "value": 78.7,
-        "yoy": 1.6,
-        "mom": 0.2
-      },
-      {
-        "yearMonth": "2023-YTD-Q4",
-        "value": 78.1630484158688,
-        "yoy": 1.90000000000001,
-        "mom": -0.54
-      },
-      {
-        "yearMonth": "2024-YTD-Q2",
-        "value": 78.5,
-        "yoy": 0,
-        "mom": 0.34
-      },
-      {
-        "yearMonth": "2024-YTD-Q3",
-        "value": 78.2,
-        "yoy": -0.5,
-        "mom": -0.3
-      },
-      {
-        "yearMonth": "2024-YTD-Q4",
-        "value": 78.1,
-        "yoy": -0.1,
-        "mom": -0.1
-      },
-      {
-        "yearMonth": "2025-YTD-Q2",
-        "value": 80.1,
-        "yoy": 1.6,
-        "mom": 2
-      },
-      {
-        "yearMonth": "2025-YTD-Q3",
-        "value": 80.1,
-        "yoy": 1.9,
-        "mom": 0
-      }
-    ],
     "有色金属冶炼和压延加工业": [
-      {
-        "yearMonth": "2022-Q4",
-        "value": 79.4,
-        "yoy": 2.5,
-        "mom": null
-      },
       {
         "yearMonth": "2023-Q1",
         "value": 77.8,
         "yoy": -1.2,
-        "mom": -1.6
+        "mom": null
       },
       {
         "yearMonth": "2023-Q2",
@@ -1730,74 +936,12 @@
         "mom": 0.1
       }
     ],
-    "有色金属冶炼和压延加工业-累计": [
-      {
-        "yearMonth": "2022-YTD-Q4",
-        "value": 79.3,
-        "yoy": -0.2,
-        "mom": null
-      },
-      {
-        "yearMonth": "2023-YTD-Q2",
-        "value": 79,
-        "yoy": 0,
-        "mom": -0.3
-      },
-      {
-        "yearMonth": "2023-YTD-Q3",
-        "value": 79.4,
-        "yoy": 0.2,
-        "mom": 0.4
-      },
-      {
-        "yearMonth": "2023-YTD-Q4",
-        "value": 79.4778420087732,
-        "yoy": 0.200000000000003,
-        "mom": 0.08
-      },
-      {
-        "yearMonth": "2024-YTD-Q2",
-        "value": 78.7,
-        "yoy": -0.3,
-        "mom": -0.78
-      },
-      {
-        "yearMonth": "2024-YTD-Q3",
-        "value": 78.6,
-        "yoy": -0.8,
-        "mom": -0.1
-      },
-      {
-        "yearMonth": "2024-YTD-Q4",
-        "value": 78.8,
-        "yoy": -0.7,
-        "mom": 0.2
-      },
-      {
-        "yearMonth": "2025-YTD-Q2",
-        "value": 77.6,
-        "yoy": -1.1,
-        "mom": -1.2
-      },
-      {
-        "yearMonth": "2025-YTD-Q3",
-        "value": 77.7,
-        "yoy": -0.9,
-        "mom": 0.1
-      }
-    ],
     "通用设备制造业": [
-      {
-        "yearMonth": "2022-Q4",
-        "value": 79.3,
-        "yoy": -1.8,
-        "mom": null
-      },
       {
         "yearMonth": "2023-Q1",
         "value": 79.1,
         "yoy": -0.1,
-        "mom": -0.2
+        "mom": null
       },
       {
         "yearMonth": "2023-Q2",
@@ -1860,74 +1004,12 @@
         "mom": 0.6
       }
     ],
-    "通用设备制造业-累计": [
-      {
-        "yearMonth": "2022-YTD-Q4",
-        "value": 79.2,
-        "yoy": -1.8,
-        "mom": null
-      },
-      {
-        "yearMonth": "2023-YTD-Q2",
-        "value": 79.4,
-        "yoy": 0.6,
-        "mom": 0.2
-      },
-      {
-        "yearMonth": "2023-YTD-Q3",
-        "value": 79.2,
-        "yoy": 0.1,
-        "mom": -0.2
-      },
-      {
-        "yearMonth": "2023-YTD-Q4",
-        "value": 79.1943628023578,
-        "yoy": 0,
-        "mom": -0.01
-      },
-      {
-        "yearMonth": "2024-YTD-Q2",
-        "value": 78.8,
-        "yoy": -0.6,
-        "mom": -0.39
-      },
-      {
-        "yearMonth": "2024-YTD-Q3",
-        "value": 78.8,
-        "yoy": -0.4,
-        "mom": 0
-      },
-      {
-        "yearMonth": "2024-YTD-Q4",
-        "value": 79,
-        "yoy": -0.2,
-        "mom": 0.2
-      },
-      {
-        "yearMonth": "2025-YTD-Q2",
-        "value": 78.2,
-        "yoy": -0.6,
-        "mom": -0.8
-      },
-      {
-        "yearMonth": "2025-YTD-Q3",
-        "value": 78.4,
-        "yoy": -0.4,
-        "mom": 0.2
-      }
-    ],
     "专用设备制造业": [
-      {
-        "yearMonth": "2022-Q4",
-        "value": 77.5,
-        "yoy": -1.1,
-        "mom": null
-      },
       {
         "yearMonth": "2023-Q1",
         "value": 77,
         "yoy": -0.8,
-        "mom": -0.5
+        "mom": null
       },
       {
         "yearMonth": "2023-Q2",
@@ -1990,74 +1072,12 @@
         "mom": -1
       }
     ],
-    "专用设备制造业-累计": [
-      {
-        "yearMonth": "2022-YTD-Q4",
-        "value": 77.6,
-        "yoy": -2.4,
-        "mom": null
-      },
-      {
-        "yearMonth": "2023-YTD-Q2",
-        "value": 77.5,
-        "yoy": -0.2,
-        "mom": -0.1
-      },
-      {
-        "yearMonth": "2023-YTD-Q3",
-        "value": 77.5,
-        "yoy": -0.1,
-        "mom": 0
-      },
-      {
-        "yearMonth": "2023-YTD-Q4",
-        "value": 77.5148962051124,
-        "yoy": -0.0999999999999943,
-        "mom": 0.01
-      },
-      {
-        "yearMonth": "2024-YTD-Q2",
-        "value": 76.7,
-        "yoy": -0.8,
-        "mom": -0.81
-      },
-      {
-        "yearMonth": "2024-YTD-Q3",
-        "value": 76.4,
-        "yoy": -1.1,
-        "mom": -0.3
-      },
-      {
-        "yearMonth": "2024-YTD-Q4",
-        "value": 76.5,
-        "yoy": -1,
-        "mom": 0.1
-      },
-      {
-        "yearMonth": "2025-YTD-Q2",
-        "value": 76,
-        "yoy": -0.7,
-        "mom": -0.5
-      },
-      {
-        "yearMonth": "2025-YTD-Q3",
-        "value": 75.9,
-        "yoy": -0.5,
-        "mom": -0.1
-      }
-    ],
     "汽车制造业": [
-      {
-        "yearMonth": "2022-Q4",
-        "value": 73.2,
-        "yoy": -2.3,
-        "mom": null
-      },
       {
         "yearMonth": "2023-Q1",
         "value": 72,
         "yoy": -0.1,
-        "mom": -1.2
+        "mom": null
       },
       {
         "yearMonth": "2023-Q2",
@@ -2120,74 +1140,12 @@
         "mom": 2
       }
     ],
-    "汽车制造业-累计": [
-      {
-        "yearMonth": "2022-YTD-Q4",
-        "value": 72.7,
-        "yoy": -2,
-        "mom": null
-      },
-      {
-        "yearMonth": "2023-YTD-Q2",
-        "value": 72.7,
-        "yoy": 2,
-        "mom": 0
-      },
-      {
-        "yearMonth": "2023-YTD-Q3",
-        "value": 73.7,
-        "yoy": 1.2,
-        "mom": 1
-      },
-      {
-        "yearMonth": "2023-YTD-Q4",
-        "value": 74.5749660556065,
-        "yoy": 1.89999999999999,
-        "mom": 0.87
-      },
-      {
-        "yearMonth": "2024-YTD-Q2",
-        "value": 68.8,
-        "yoy": -3.9,
-        "mom": -5.77
-      },
-      {
-        "yearMonth": "2024-YTD-Q3",
-        "value": 70.3,
-        "yoy": -3.4,
-        "mom": 1.5
-      },
-      {
-        "yearMonth": "2024-YTD-Q4",
-        "value": 72.2,
-        "yoy": -2.4,
-        "mom": 1.9
-      },
-      {
-        "yearMonth": "2025-YTD-Q2",
-        "value": 71.6,
-        "yoy": 2.8,
-        "mom": -0.6
-      },
-      {
-        "yearMonth": "2025-YTD-Q3",
-        "value": 72.2,
-        "yoy": 1.9,
-        "mom": 0.6
-      }
-    ],
     "电气机械和器材制造业": [
-      {
-        "yearMonth": "2022-Q4",
-        "value": 79,
-        "yoy": -1.5,
-        "mom": null
-      },
       {
         "yearMonth": "2023-Q1",
         "value": 75.8,
         "yoy": -1.5,
-        "mom": -3.2
+        "mom": null
       },
       {
         "yearMonth": "2023-Q2",
@@ -2250,74 +1208,12 @@
         "mom": 1.4
       }
     ],
-    "电气机械和器材制造业-累计": [
-      {
-        "yearMonth": "2022-YTD-Q4",
-        "value": 77.3,
-        "yoy": -3.7,
-        "mom": null
-      },
-      {
-        "yearMonth": "2023-YTD-Q2",
-        "value": 76.5,
-        "yoy": -0.1,
-        "mom": -0.8
-      },
-      {
-        "yearMonth": "2023-YTD-Q3",
-        "value": 76.9,
-        "yoy": 0.3,
-        "mom": 0.4
-      },
-      {
-        "yearMonth": "2023-YTD-Q4",
-        "value": 76.9908453110035,
-        "yoy": -0.299999999999997,
-        "mom": 0.09
-      },
-      {
-        "yearMonth": "2024-YTD-Q2",
-        "value": 73.8,
-        "yoy": -2.7,
-        "mom": -3.19
-      },
-      {
-        "yearMonth": "2024-YTD-Q3",
-        "value": 74.4,
-        "yoy": -2.5,
-        "mom": 0.6
-      },
-      {
-        "yearMonth": "2024-YTD-Q4",
-        "value": 75.1,
-        "yoy": -1.9,
-        "mom": 0.7
-      },
-      {
-        "yearMonth": "2025-YTD-Q2",
-        "value": 72.7,
-        "yoy": -1.1,
-        "mom": -2.4
-      },
-      {
-        "yearMonth": "2025-YTD-Q3",
-        "value": 73.4,
-        "yoy": -1,
-        "mom": 0.7
-      }
-    ],
     "计算机、通信和其他电子设备制造业": [
-      {
-        "yearMonth": "2022-Q4",
-        "value": 78.5,
-        "yoy": -3.1,
-        "mom": null
-      },
       {
         "yearMonth": "2023-Q1",
         "value": 73.7,
         "yoy": -3.3,
-        "mom": -4.8
+        "mom": null
       },
       {
         "yearMonth": "2023-Q2",
@@ -2380,18 +1276,894 @@
         "mom": 1.7
       }
     ],
-    "计算机、通信和其他电子设备制造业-累计": [
+    "工业-累计": [
       {
-        "yearMonth": "2022-YTD-Q4",
-        "value": 77.8,
-        "yoy": -2.5,
+        "yearMonth": "2023-YTD-Q2",
+        "value": 74.4,
+        "yoy": -1,
         "mom": null
       },
+      {
+        "yearMonth": "2023-YTD-Q3",
+        "value": 74.8,
+        "yoy": -0.7,
+        "mom": 0.4
+      },
+      {
+        "yearMonth": "2023-YTD-Q4",
+        "value": 75.0990383242402,
+        "yoy": -0.5,
+        "mom": 0.3
+      },
+      {
+        "yearMonth": "2025-YTD-Q2",
+        "value": 74,
+        "yoy": -0.3,
+        "mom": -1.1
+      },
+      {
+        "yearMonth": "2025-YTD-Q3",
+        "value": 74.2,
+        "yoy": -0.4,
+        "mom": 0.2
+      }
+    ],
+    "其中：采矿业-累计": [
+      {
+        "yearMonth": "2023-YTD-Q2",
+        "value": 75,
+        "yoy": -1.9,
+        "mom": null
+      },
+      {
+        "yearMonth": "2023-YTD-Q3",
+        "value": 75.1,
+        "yoy": -1.8,
+        "mom": 0.1
+      },
+      {
+        "yearMonth": "2023-YTD-Q4",
+        "value": 75.6274408203307,
+        "yoy": -1.2,
+        "mom": 0.53
+      },
+      {
+        "yearMonth": "2024-YTD-Q2",
+        "value": 75.5,
+        "yoy": 0.5,
+        "mom": -0.13
+      },
+      {
+        "yearMonth": "2024-YTD-Q3",
+        "value": 75.2,
+        "yoy": 0.1,
+        "mom": -0.3
+      },
+      {
+        "yearMonth": "2024-YTD-Q4",
+        "value": 75.3,
+        "yoy": -0.3,
+        "mom": 0.1
+      },
+      {
+        "yearMonth": "2025-YTD-Q2",
+        "value": 73.6,
+        "yoy": -1.9,
+        "mom": -1.7
+      },
+      {
+        "yearMonth": "2025-YTD-Q3",
+        "value": 73.3,
+        "yoy": -1.9,
+        "mom": -0.3
+      }
+    ],
+    "制造业-累计": [
+      {
+        "yearMonth": "2023-YTD-Q2",
+        "value": 74.7,
+        "yoy": -1,
+        "mom": null
+      },
+      {
+        "yearMonth": "2023-YTD-Q3",
+        "value": 75,
+        "yoy": -0.7,
+        "mom": 0.3
+      },
+      {
+        "yearMonth": "2023-YTD-Q4",
+        "value": 75.2834316953585,
+        "yoy": -0.5,
+        "mom": 0.28
+      },
+      {
+        "yearMonth": "2024-YTD-Q2",
+        "value": 74.5,
+        "yoy": -0.2,
+        "mom": -0.78
+      },
+      {
+        "yearMonth": "2024-YTD-Q3",
+        "value": 74.8,
+        "yoy": -0.2,
+        "mom": 0.3
+      },
+      {
+        "yearMonth": "2024-YTD-Q4",
+        "value": 75.2,
+        "yoy": -0.1,
+        "mom": 0.4
+      },
+      {
+        "yearMonth": "2025-YTD-Q2",
+        "value": 74.2,
+        "yoy": -0.3,
+        "mom": -1
+      },
+      {
+        "yearMonth": "2025-YTD-Q3",
+        "value": 74.4,
+        "yoy": -0.4,
+        "mom": 0.2
+      }
+    ],
+    "电力、热力、燃气及水生产和供应业-累计": [
+      {
+        "yearMonth": "2023-YTD-Q2",
+        "value": 71.7,
+        "yoy": -0.5,
+        "mom": null
+      },
+      {
+        "yearMonth": "2023-YTD-Q3",
+        "value": 72.5,
+        "yoy": 0.1,
+        "mom": 0.8
+      },
+      {
+        "yearMonth": "2023-YTD-Q4",
+        "value": 73.0189448747767,
+        "yoy": 0.200000000000003,
+        "mom": 0.52
+      },
+      {
+        "yearMonth": "2024-YTD-Q2",
+        "value": 71.3,
+        "yoy": -0.4,
+        "mom": -1.72
+      },
+      {
+        "yearMonth": "2024-YTD-Q3",
+        "value": 72.3,
+        "yoy": -0.2,
+        "mom": 1
+      },
+      {
+        "yearMonth": "2024-YTD-Q4",
+        "value": 73,
+        "yoy": 0,
+        "mom": 0.7
+      },
+      {
+        "yearMonth": "2025-YTD-Q2",
+        "value": 72.6,
+        "yoy": 1.3,
+        "mom": -0.4
+      },
+      {
+        "yearMonth": "2025-YTD-Q3",
+        "value": 73.2,
+        "yoy": 0.9,
+        "mom": 0.6
+      }
+    ],
+    "其中：煤炭开采和洗选业-累计": [
+      {
+        "yearMonth": "2023-YTD-Q2",
+        "value": 74.1,
+        "yoy": -0.5,
+        "mom": null
+      },
+      {
+        "yearMonth": "2023-YTD-Q3",
+        "value": 74,
+        "yoy": -0.7,
+        "mom": -0.1
+      },
+      {
+        "yearMonth": "2023-YTD-Q4",
+        "value": 74.4290990464453,
+        "yoy": -0.5,
+        "mom": 0.43
+      },
+      {
+        "yearMonth": "2024-YTD-Q2",
+        "value": 72.2,
+        "yoy": -1.9,
+        "mom": -2.23
+      },
+      {
+        "yearMonth": "2024-YTD-Q3",
+        "value": 72.3,
+        "yoy": -1.7,
+        "mom": 0.1
+      },
+      {
+        "yearMonth": "2024-YTD-Q4",
+        "value": 72.8,
+        "yoy": -1.6,
+        "mom": 0.5
+      },
+      {
+        "yearMonth": "2025-YTD-Q2",
+        "value": 70.6,
+        "yoy": -1.6,
+        "mom": -2.2
+      },
+      {
+        "yearMonth": "2025-YTD-Q3",
+        "value": 70,
+        "yoy": -2.3,
+        "mom": -0.6
+      }
+    ],
+    "石油和天然气开采业-累计": [
+      {
+        "yearMonth": "2023-YTD-Q2",
+        "value": 91,
+        "yoy": -1.4,
+        "mom": null
+      },
+      {
+        "yearMonth": "2023-YTD-Q3",
+        "value": 91.1,
+        "yoy": -1.1,
+        "mom": 0.1
+      },
+      {
+        "yearMonth": "2023-YTD-Q4",
+        "value": 91.3564732756832,
+        "yoy": -0.599999999999994,
+        "mom": 0.26
+      },
+      {
+        "yearMonth": "2024-YTD-Q2",
+        "value": 91.8,
+        "yoy": 0.8,
+        "mom": 0.44
+      },
+      {
+        "yearMonth": "2024-YTD-Q3",
+        "value": 91.3,
+        "yoy": 0.2,
+        "mom": -0.5
+      },
+      {
+        "yearMonth": "2024-YTD-Q4",
+        "value": 91.4,
+        "yoy": 0,
+        "mom": 0.1
+      },
+      {
+        "yearMonth": "2025-YTD-Q2",
+        "value": 91.7,
+        "yoy": -0.1,
+        "mom": 0.3
+      },
+      {
+        "yearMonth": "2025-YTD-Q3",
+        "value": 91.5,
+        "yoy": 0.2,
+        "mom": -0.2
+      }
+    ],
+    "食品制造业-累计": [
+      {
+        "yearMonth": "2023-YTD-Q2",
+        "value": 69.4,
+        "yoy": -2.1,
+        "mom": null
+      },
+      {
+        "yearMonth": "2023-YTD-Q3",
+        "value": 69.9,
+        "yoy": -1.7,
+        "mom": 0.5
+      },
+      {
+        "yearMonth": "2023-YTD-Q4",
+        "value": 70.2584207484223,
+        "yoy": -1.40000000000001,
+        "mom": 0.36
+      },
+      {
+        "yearMonth": "2024-YTD-Q2",
+        "value": 68.9,
+        "yoy": -0.5,
+        "mom": -1.36
+      },
+      {
+        "yearMonth": "2024-YTD-Q3",
+        "value": 69.5,
+        "yoy": -0.4,
+        "mom": 0.6
+      },
+      {
+        "yearMonth": "2024-YTD-Q4",
+        "value": 69.8,
+        "yoy": -0.5,
+        "mom": 0.3
+      },
+      {
+        "yearMonth": "2025-YTD-Q2",
+        "value": 69.2,
+        "yoy": 0.3,
+        "mom": -0.6
+      },
+      {
+        "yearMonth": "2025-YTD-Q3",
+        "value": 69.5,
+        "yoy": 0,
+        "mom": 0.3
+      }
+    ],
+    "纺织业-累计": [
+      {
+        "yearMonth": "2023-YTD-Q2",
+        "value": 76.2,
+        "yoy": -1.8,
+        "mom": null
+      },
+      {
+        "yearMonth": "2023-YTD-Q3",
+        "value": 76.4,
+        "yoy": -1.2,
+        "mom": 0.2
+      },
+      {
+        "yearMonth": "2023-YTD-Q4",
+        "value": 76.3676675601944,
+        "yoy": -0.799999999999997,
+        "mom": -0.03
+      },
+      {
+        "yearMonth": "2024-YTD-Q2",
+        "value": 78.6,
+        "yoy": 2.4,
+        "mom": 2.23
+      },
+      {
+        "yearMonth": "2024-YTD-Q3",
+        "value": 78.3,
+        "yoy": 1.9,
+        "mom": -0.3
+      },
+      {
+        "yearMonth": "2024-YTD-Q4",
+        "value": 78.5,
+        "yoy": 2.1,
+        "mom": 0.2
+      },
+      {
+        "yearMonth": "2025-YTD-Q2",
+        "value": 77.8,
+        "yoy": -0.8,
+        "mom": -0.7
+      },
+      {
+        "yearMonth": "2025-YTD-Q3",
+        "value": 77.6,
+        "yoy": -0.7,
+        "mom": -0.2
+      }
+    ],
+    "化学原料和化学制品制造业-累计": [
+      {
+        "yearMonth": "2023-YTD-Q2",
+        "value": 74.9,
+        "yoy": -2.9,
+        "mom": null
+      },
+      {
+        "yearMonth": "2023-YTD-Q3",
+        "value": 74.8,
+        "yoy": -2.2,
+        "mom": -0.1
+      },
+      {
+        "yearMonth": "2023-YTD-Q4",
+        "value": 75.3067112100393,
+        "yoy": -1.40000000000001,
+        "mom": 0.51
+      },
+      {
+        "yearMonth": "2024-YTD-Q2",
+        "value": 76.4,
+        "yoy": 1.5,
+        "mom": 1.09
+      },
+      {
+        "yearMonth": "2024-YTD-Q3",
+        "value": 76.3,
+        "yoy": 1.5,
+        "mom": -0.1
+      },
+      {
+        "yearMonth": "2024-YTD-Q4",
+        "value": 76.3,
+        "yoy": 1,
+        "mom": 0
+      },
+      {
+        "yearMonth": "2025-YTD-Q2",
+        "value": 72.7,
+        "yoy": -3.7,
+        "mom": -3.6
+      },
+      {
+        "yearMonth": "2025-YTD-Q3",
+        "value": 72.6,
+        "yoy": -3.7,
+        "mom": -0.1
+      }
+    ],
+    "医药制造业-累计": [
+      {
+        "yearMonth": "2023-YTD-Q2",
+        "value": 75.7,
+        "yoy": 0.8,
+        "mom": null
+      },
+      {
+        "yearMonth": "2023-YTD-Q3",
+        "value": 74.8,
+        "yoy": -0.1,
+        "mom": -0.9
+      },
+      {
+        "yearMonth": "2023-YTD-Q4",
+        "value": 74.9030530694065,
+        "yoy": -0.699999999999989,
+        "mom": 0.1
+      },
+      {
+        "yearMonth": "2024-YTD-Q2",
+        "value": 75.6,
+        "yoy": -0.1,
+        "mom": 0.7
+      },
+      {
+        "yearMonth": "2024-YTD-Q3",
+        "value": 75.1,
+        "yoy": 0.3,
+        "mom": -0.5
+      },
+      {
+        "yearMonth": "2024-YTD-Q4",
+        "value": 75.3,
+        "yoy": 0.4,
+        "mom": 0.2
+      },
+      {
+        "yearMonth": "2025-YTD-Q2",
+        "value": 72.6,
+        "yoy": -3,
+        "mom": -2.7
+      },
+      {
+        "yearMonth": "2025-YTD-Q3",
+        "value": 72.4,
+        "yoy": -2.7,
+        "mom": -0.2
+      }
+    ],
+    "化学纤维制造业-累计": [
+      {
+        "yearMonth": "2023-YTD-Q2",
+        "value": 83.2,
+        "yoy": -0.8,
+        "mom": null
+      },
+      {
+        "yearMonth": "2023-YTD-Q3",
+        "value": 83.8,
+        "yoy": 0.5,
+        "mom": 0.6
+      },
+      {
+        "yearMonth": "2023-YTD-Q4",
+        "value": 84.3047204641103,
+        "yoy": 2,
+        "mom": 0.5
+      },
+      {
+        "yearMonth": "2024-YTD-Q2",
+        "value": 85.3,
+        "yoy": 2.1,
+        "mom": 1
+      },
+      {
+        "yearMonth": "2024-YTD-Q3",
+        "value": 85.4,
+        "yoy": 1.6,
+        "mom": 0.1
+      },
+      {
+        "yearMonth": "2024-YTD-Q4",
+        "value": 85.4,
+        "yoy": 1.1,
+        "mom": 0
+      },
+      {
+        "yearMonth": "2025-YTD-Q2",
+        "value": 86,
+        "yoy": 0.7,
+        "mom": 0.6
+      },
+      {
+        "yearMonth": "2025-YTD-Q3",
+        "value": 85.8,
+        "yoy": 0.4,
+        "mom": -0.2
+      }
+    ],
+    "非金属矿物制品业-累计": [
+      {
+        "yearMonth": "2023-YTD-Q2",
+        "value": 64.5,
+        "yoy": -1.8,
+        "mom": null
+      },
+      {
+        "yearMonth": "2023-YTD-Q3",
+        "value": 64.7,
+        "yoy": -2.2,
+        "mom": 0.2
+      },
+      {
+        "yearMonth": "2023-YTD-Q4",
+        "value": 64.6696573480686,
+        "yoy": -2.3,
+        "mom": -0.03
+      },
+      {
+        "yearMonth": "2024-YTD-Q2",
+        "value": 63.1,
+        "yoy": -1.4,
+        "mom": -1.57
+      },
+      {
+        "yearMonth": "2024-YTD-Q3",
+        "value": 62.6,
+        "yoy": -2.1,
+        "mom": -0.5
+      },
+      {
+        "yearMonth": "2024-YTD-Q4",
+        "value": 62.2,
+        "yoy": -2.5,
+        "mom": -0.4
+      },
+      {
+        "yearMonth": "2025-YTD-Q2",
+        "value": 61.6,
+        "yoy": -1.5,
+        "mom": -0.6
+      },
+      {
+        "yearMonth": "2025-YTD-Q3",
+        "value": 61.8,
+        "yoy": -0.8,
+        "mom": 0.2
+      }
+    ],
+    "黑色金属冶炼和压延加工业-累计": [
+      {
+        "yearMonth": "2023-YTD-Q2",
+        "value": 78.5,
+        "yoy": 0.4,
+        "mom": null
+      },
+      {
+        "yearMonth": "2023-YTD-Q3",
+        "value": 78.7,
+        "yoy": 1.6,
+        "mom": 0.2
+      },
+      {
+        "yearMonth": "2023-YTD-Q4",
+        "value": 78.1630484158688,
+        "yoy": 1.90000000000001,
+        "mom": -0.54
+      },
+      {
+        "yearMonth": "2024-YTD-Q2",
+        "value": 78.5,
+        "yoy": 0,
+        "mom": 0.34
+      },
+      {
+        "yearMonth": "2024-YTD-Q3",
+        "value": 78.2,
+        "yoy": -0.5,
+        "mom": -0.3
+      },
+      {
+        "yearMonth": "2024-YTD-Q4",
+        "value": 78.1,
+        "yoy": -0.1,
+        "mom": -0.1
+      },
+      {
+        "yearMonth": "2025-YTD-Q2",
+        "value": 80.1,
+        "yoy": 1.6,
+        "mom": 2
+      },
+      {
+        "yearMonth": "2025-YTD-Q3",
+        "value": 80.1,
+        "yoy": 1.9,
+        "mom": 0
+      }
+    ],
+    "有色金属冶炼和压延加工业-累计": [
+      {
+        "yearMonth": "2023-YTD-Q2",
+        "value": 79,
+        "yoy": 0,
+        "mom": null
+      },
+      {
+        "yearMonth": "2023-YTD-Q3",
+        "value": 79.4,
+        "yoy": 0.2,
+        "mom": 0.4
+      },
+      {
+        "yearMonth": "2023-YTD-Q4",
+        "value": 79.4778420087732,
+        "yoy": 0.200000000000003,
+        "mom": 0.08
+      },
+      {
+        "yearMonth": "2024-YTD-Q2",
+        "value": 78.7,
+        "yoy": -0.3,
+        "mom": -0.78
+      },
+      {
+        "yearMonth": "2024-YTD-Q3",
+        "value": 78.6,
+        "yoy": -0.8,
+        "mom": -0.1
+      },
+      {
+        "yearMonth": "2024-YTD-Q4",
+        "value": 78.8,
+        "yoy": -0.7,
+        "mom": 0.2
+      },
+      {
+        "yearMonth": "2025-YTD-Q2",
+        "value": 77.6,
+        "yoy": -1.1,
+        "mom": -1.2
+      },
+      {
+        "yearMonth": "2025-YTD-Q3",
+        "value": 77.7,
+        "yoy": -0.9,
+        "mom": 0.1
+      }
+    ],
+    "通用设备制造业-累计": [
+      {
+        "yearMonth": "2023-YTD-Q2",
+        "value": 79.4,
+        "yoy": 0.6,
+        "mom": null
+      },
+      {
+        "yearMonth": "2023-YTD-Q3",
+        "value": 79.2,
+        "yoy": 0.1,
+        "mom": -0.2
+      },
+      {
+        "yearMonth": "2023-YTD-Q4",
+        "value": 79.1943628023578,
+        "yoy": 0,
+        "mom": -0.01
+      },
+      {
+        "yearMonth": "2024-YTD-Q2",
+        "value": 78.8,
+        "yoy": -0.6,
+        "mom": -0.39
+      },
+      {
+        "yearMonth": "2024-YTD-Q3",
+        "value": 78.8,
+        "yoy": -0.4,
+        "mom": 0
+      },
+      {
+        "yearMonth": "2024-YTD-Q4",
+        "value": 79,
+        "yoy": -0.2,
+        "mom": 0.2
+      },
+      {
+        "yearMonth": "2025-YTD-Q2",
+        "value": 78.2,
+        "yoy": -0.6,
+        "mom": -0.8
+      },
+      {
+        "yearMonth": "2025-YTD-Q3",
+        "value": 78.4,
+        "yoy": -0.4,
+        "mom": 0.2
+      }
+    ],
+    "专用设备制造业-累计": [
+      {
+        "yearMonth": "2023-YTD-Q2",
+        "value": 77.5,
+        "yoy": -0.2,
+        "mom": null
+      },
+      {
+        "yearMonth": "2023-YTD-Q3",
+        "value": 77.5,
+        "yoy": -0.1,
+        "mom": 0
+      },
+      {
+        "yearMonth": "2023-YTD-Q4",
+        "value": 77.5148962051124,
+        "yoy": -0.0999999999999943,
+        "mom": 0.01
+      },
+      {
+        "yearMonth": "2024-YTD-Q2",
+        "value": 76.7,
+        "yoy": -0.8,
+        "mom": -0.81
+      },
+      {
+        "yearMonth": "2024-YTD-Q3",
+        "value": 76.4,
+        "yoy": -1.1,
+        "mom": -0.3
+      },
+      {
+        "yearMonth": "2024-YTD-Q4",
+        "value": 76.5,
+        "yoy": -1,
+        "mom": 0.1
+      },
+      {
+        "yearMonth": "2025-YTD-Q2",
+        "value": 76,
+        "yoy": -0.7,
+        "mom": -0.5
+      },
+      {
+        "yearMonth": "2025-YTD-Q3",
+        "value": 75.9,
+        "yoy": -0.5,
+        "mom": -0.1
+      }
+    ],
+    "汽车制造业-累计": [
+      {
+        "yearMonth": "2023-YTD-Q2",
+        "value": 72.7,
+        "yoy": 2,
+        "mom": null
+      },
+      {
+        "yearMonth": "2023-YTD-Q3",
+        "value": 73.7,
+        "yoy": 1.2,
+        "mom": 1
+      },
+      {
+        "yearMonth": "2023-YTD-Q4",
+        "value": 74.5749660556065,
+        "yoy": 1.89999999999999,
+        "mom": 0.87
+      },
+      {
+        "yearMonth": "2024-YTD-Q2",
+        "value": 68.8,
+        "yoy": -3.9,
+        "mom": -5.77
+      },
+      {
+        "yearMonth": "2024-YTD-Q3",
+        "value": 70.3,
+        "yoy": -3.4,
+        "mom": 1.5
+      },
+      {
+        "yearMonth": "2024-YTD-Q4",
+        "value": 72.2,
+        "yoy": -2.4,
+        "mom": 1.9
+      },
+      {
+        "yearMonth": "2025-YTD-Q2",
+        "value": 71.6,
+        "yoy": 2.8,
+        "mom": -0.6
+      },
+      {
+        "yearMonth": "2025-YTD-Q3",
+        "value": 72.2,
+        "yoy": 1.9,
+        "mom": 0.6
+      }
+    ],
+    "电气机械和器材制造业-累计": [
+      {
+        "yearMonth": "2023-YTD-Q2",
+        "value": 76.5,
+        "yoy": -0.1,
+        "mom": null
+      },
+      {
+        "yearMonth": "2023-YTD-Q3",
+        "value": 76.9,
+        "yoy": 0.3,
+        "mom": 0.4
+      },
+      {
+        "yearMonth": "2023-YTD-Q4",
+        "value": 76.9908453110035,
+        "yoy": -0.299999999999997,
+        "mom": 0.09
+      },
+      {
+        "yearMonth": "2024-YTD-Q2",
+        "value": 73.8,
+        "yoy": -2.7,
+        "mom": -3.19
+      },
+      {
+        "yearMonth": "2024-YTD-Q3",
+        "value": 74.4,
+        "yoy": -2.5,
+        "mom": 0.6
+      },
+      {
+        "yearMonth": "2024-YTD-Q4",
+        "value": 75.1,
+        "yoy": -1.9,
+        "mom": 0.7
+      },
+      {
+        "yearMonth": "2025-YTD-Q2",
+        "value": 72.7,
+        "yoy": -1.1,
+        "mom": -2.4
+      },
+      {
+        "yearMonth": "2025-YTD-Q3",
+        "value": 73.4,
+        "yoy": -1,
+        "mom": 0.7
+      }
+    ],
+    "计算机、通信和其他电子设备制造业-累计": [
       {
         "yearMonth": "2023-YTD-Q2",
         "value": 74.2,
         "yoy": -3,
-        "mom": -3.6
+        "mom": null
       },
       {
         "yearMonth": "2023-YTD-Q3",
@@ -2478,348 +2250,6 @@
     ]
   },
   "rawData": [
-    {
-      "yearMonth": "2022-Q4",
-      "industry": "工业",
-      "period": "quarter",
-      "periodName": "四季度",
-      "value": 75.7,
-      "yoy": -1.7,
-      "unit": "%"
-    },
-    {
-      "yearMonth": "2022-YTD-Q4",
-      "industry": "工业",
-      "period": "ytd",
-      "periodName": "前四季度",
-      "value": 75.6,
-      "yoy": -1.9,
-      "unit": "%"
-    },
-    {
-      "yearMonth": "2022-Q4",
-      "industry": "其中：采矿业",
-      "period": "quarter",
-      "periodName": "四季度",
-      "value": 76.5,
-      "yoy": -0.5,
-      "unit": "%"
-    },
-    {
-      "yearMonth": "2022-YTD-Q4",
-      "industry": "其中：采矿业",
-      "period": "ytd",
-      "periodName": "前四季度",
-      "value": 76.8,
-      "yoy": 0.6,
-      "unit": "%"
-    },
-    {
-      "yearMonth": "2022-Q4",
-      "industry": "制造业",
-      "period": "quarter",
-      "periodName": "四季度",
-      "value": 75.8,
-      "yoy": -1.8,
-      "unit": "%"
-    },
-    {
-      "yearMonth": "2022-YTD-Q4",
-      "industry": "制造业",
-      "period": "ytd",
-      "periodName": "前四季度",
-      "value": 75.8,
-      "yoy": -2,
-      "unit": "%"
-    },
-    {
-      "yearMonth": "2022-Q4",
-      "industry": "电力、热力、燃气及水生产和供应业",
-      "period": "quarter",
-      "periodName": "四季度",
-      "value": 74,
-      "yoy": -1.4,
-      "unit": "%"
-    },
-    {
-      "yearMonth": "2022-YTD-Q4",
-      "industry": "电力、热力、燃气及水生产和供应业",
-      "period": "ytd",
-      "periodName": "前四季度",
-      "value": 72.8,
-      "yoy": -2.2,
-      "unit": "%"
-    },
-    {
-      "yearMonth": "2022-Q4",
-      "industry": "其中：煤炭开采和洗选业",
-      "period": "quarter",
-      "periodName": "四季度",
-      "value": 75.4,
-      "yoy": -1,
-      "unit": "%"
-    },
-    {
-      "yearMonth": "2022-YTD-Q4",
-      "industry": "其中：煤炭开采和洗选业",
-      "period": "ytd",
-      "periodName": "前四季度",
-      "value": 74.9,
-      "yoy": 0.4,
-      "unit": "%"
-    },
-    {
-      "yearMonth": "2022-Q4",
-      "industry": "石油和天然气开采业",
-      "period": "quarter",
-      "periodName": "四季度",
-      "value": 91.3,
-      "yoy": 2.3,
-      "unit": "%"
-    },
-    {
-      "yearMonth": "2022-YTD-Q4",
-      "industry": "石油和天然气开采业",
-      "period": "ytd",
-      "periodName": "前四季度",
-      "value": 92,
-      "yoy": 2.2,
-      "unit": "%"
-    },
-    {
-      "yearMonth": "2022-Q4",
-      "industry": "食品制造业",
-      "period": "quarter",
-      "periodName": "四季度",
-      "value": 71.9,
-      "yoy": -2.6,
-      "unit": "%"
-    },
-    {
-      "yearMonth": "2022-YTD-Q4",
-      "industry": "食品制造业",
-      "period": "ytd",
-      "periodName": "前四季度",
-      "value": 71.7,
-      "yoy": -2.2,
-      "unit": "%"
-    },
-    {
-      "yearMonth": "2022-Q4",
-      "industry": "纺织业",
-      "period": "quarter",
-      "periodName": "四季度",
-      "value": 76.2,
-      "yoy": -3,
-      "unit": "%"
-    },
-    {
-      "yearMonth": "2022-YTD-Q4",
-      "industry": "纺织业",
-      "period": "ytd",
-      "periodName": "前四季度",
-      "value": 77.2,
-      "yoy": -2.3,
-      "unit": "%"
-    },
-    {
-      "yearMonth": "2022-Q4",
-      "industry": "化学原料和化学制品制造业",
-      "period": "quarter",
-      "periodName": "四季度",
-      "value": 76,
-      "yoy": -1.6,
-      "unit": "%"
-    },
-    {
-      "yearMonth": "2022-YTD-Q4",
-      "industry": "化学原料和化学制品制造业",
-      "period": "ytd",
-      "periodName": "前四季度",
-      "value": 76.7,
-      "yoy": -1.4,
-      "unit": "%"
-    },
-    {
-      "yearMonth": "2022-Q4",
-      "industry": "医药制造业",
-      "period": "quarter",
-      "periodName": "四季度",
-      "value": 77.6,
-      "yoy": 0.2,
-      "unit": "%"
-    },
-    {
-      "yearMonth": "2022-YTD-Q4",
-      "industry": "医药制造业",
-      "period": "ytd",
-      "periodName": "前四季度",
-      "value": 75.6,
-      "yoy": -1.8,
-      "unit": "%"
-    },
-    {
-      "yearMonth": "2022-Q4",
-      "industry": "化学纤维制造业",
-      "period": "quarter",
-      "periodName": "四季度",
-      "value": 79.2,
-      "yoy": -3.3,
-      "unit": "%"
-    },
-    {
-      "yearMonth": "2022-YTD-Q4",
-      "industry": "化学纤维制造业",
-      "period": "ytd",
-      "periodName": "前四季度",
-      "value": 82.3,
-      "yoy": -2.2,
-      "unit": "%"
-    },
-    {
-      "yearMonth": "2022-Q4",
-      "industry": "非金属矿物制品业",
-      "period": "quarter",
-      "periodName": "四季度",
-      "value": 67.2,
-      "yoy": -2.9,
-      "unit": "%"
-    },
-    {
-      "yearMonth": "2022-YTD-Q4",
-      "industry": "非金属矿物制品业",
-      "period": "ytd",
-      "periodName": "前四季度",
-      "value": 67,
-      "yoy": -2.9,
-      "unit": "%"
-    },
-    {
-      "yearMonth": "2022-Q4",
-      "industry": "黑色金属冶炼和压延加工业",
-      "period": "quarter",
-      "periodName": "四季度",
-      "value": 73.5,
-      "yoy": -1.1,
-      "unit": "%"
-    },
-    {
-      "yearMonth": "2022-YTD-Q4",
-      "industry": "黑色金属冶炼和压延加工业",
-      "period": "ytd",
-      "periodName": "前四季度",
-      "value": 76.3,
-      "yoy": -2.9,
-      "unit": "%"
-    },
-    {
-      "yearMonth": "2022-Q4",
-      "industry": "有色金属冶炼和压延加工业",
-      "period": "quarter",
-      "periodName": "四季度",
-      "value": 79.4,
-      "yoy": 2.5,
-      "unit": "%"
-    },
-    {
-      "yearMonth": "2022-YTD-Q4",
-      "industry": "有色金属冶炼和压延加工业",
-      "period": "ytd",
-      "periodName": "前四季度",
-      "value": 79.3,
-      "yoy": -0.2,
-      "unit": "%"
-    },
-    {
-      "yearMonth": "2022-Q4",
-      "industry": "通用设备制造业",
-      "period": "quarter",
-      "periodName": "四季度",
-      "value": 79.3,
-      "yoy": -1.8,
-      "unit": "%"
-    },
-    {
-      "yearMonth": "2022-YTD-Q4",
-      "industry": "通用设备制造业",
-      "period": "ytd",
-      "periodName": "前四季度",
-      "value": 79.2,
-      "yoy": -1.8,
-      "unit": "%"
-    },
-    {
-      "yearMonth": "2022-Q4",
-      "industry": "专用设备制造业",
-      "period": "quarter",
-      "periodName": "四季度",
-      "value": 77.5,
-      "yoy": -1.1,
-      "unit": "%"
-    },
-    {
-      "yearMonth": "2022-YTD-Q4",
-      "industry": "专用设备制造业",
-      "period": "ytd",
-      "periodName": "前四季度",
-      "value": 77.6,
-      "yoy": -2.4,
-      "unit": "%"
-    },
-    {
-      "yearMonth": "2022-Q4",
-      "industry": "汽车制造业",
-      "period": "quarter",
-      "periodName": "四季度",
-      "value": 73.2,
-      "yoy": -2.3,
-      "unit": "%"
-    },
-    {
-      "yearMonth": "2022-YTD-Q4",
-      "industry": "汽车制造业",
-      "period": "ytd",
-      "periodName": "前四季度",
-      "value": 72.7,
-      "yoy": -2,
-      "unit": "%"
-    },
-    {
-      "yearMonth": "2022-Q4",
-      "industry": "电气机械和器材制造业",
-      "period": "quarter",
-      "periodName": "四季度",
-      "value": 79,
-      "yoy": -1.5,
-      "unit": "%"
-    },
-    {
-      "yearMonth": "2022-YTD-Q4",
-      "industry": "电气机械和器材制造业",
-      "period": "ytd",
-      "periodName": "前四季度",
-      "value": 77.3,
-      "yoy": -3.7,
-      "unit": "%"
-    },
-    {
-      "yearMonth": "2022-Q4",
-      "industry": "计算机、通信和其他电子设备制造业",
-      "period": "quarter",
-      "periodName": "四季度",
-      "value": 78.5,
-      "yoy": -3.1,
-      "unit": "%"
-    },
-    {
-      "yearMonth": "2022-YTD-Q4",
-      "industry": "计算机、通信和其他电子设备制造业",
-      "period": "ytd",
-      "periodName": "前四季度",
-      "value": 77.8,
-      "yoy": -2.5,
-      "unit": "%"
-    },
     {
       "yearMonth": "2023-Q1",
       "industry": "工业",

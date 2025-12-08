@@ -142,7 +142,7 @@ class HouseDataExtractor {
         publishDate: dateInfo.publishDate,
         periodInfo: dateInfo.periodInfo,
         dataRows: tables.reduce((sum, t) => sum + t.rows.length, 0),
-        excelFile: excelFile,
+        file: excelFile,
         source: 'page_table',
         title: pageTitle
       };

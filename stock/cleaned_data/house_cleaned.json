@@ -1,12 +1,12 @@
 {
   "metadata": {
-    "totalFiles": 19,
+    "totalFiles": 20,
     "totalMetrics": 34,
     "dateRange": {
       "start": 2024,
       "end": 2025
     },
-    "processedAt": "2025-11-11T11:33:09.288Z",
+    "processedAt": "2025-11-24T08:14:17.952Z",
     "description": "全国房地产市场基本情况数据，包含开发投资、施工面积、销售等指标。累积数据已转换为当月数据（1-2月为合并数据）"
   },
   "files": [
@@ -141,6 +141,13 @@
       "publishDate": "2025-10-20",
       "year": "2025",
       "endMonth": 9,
+      "sheetName": "表1"
+    },
+    {
+      "filename": "2025-11-14_2025年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+      "publishDate": "2025-11-14",
+      "year": "2025",
+      "endMonth": 10,
       "sheetName": "表1"
     }
   ],
@@ -335,6 +342,16 @@
         "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
         "isStockData": false,
         "valueMonthly": 7397
+      },
+      {
+        "yearMonth": "2025-10",
+        "publishDate": "2025-11-14",
+        "value": 73563,
+        "yoy": -14.7,
+        "mom": -20.8,
+        "filename": "2025-11-14_2025年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 5857
       }
     ],
     "房地产开发投资 - 住宅": [
@@ -527,6 +544,16 @@
         "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
         "isStockData": false,
         "valueMonthly": 5664
+      },
+      {
+        "yearMonth": "2025-10",
+        "publishDate": "2025-11-14",
+        "value": 56595,
+        "yoy": -13.8,
+        "mom": -19.7,
+        "filename": "2025-11-14_2025年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 4549
       }
     ],
     "房地产开发投资 - 办公楼": [
@@ -719,6 +746,16 @@
         "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
         "isStockData": false,
         "valueMonthly": 263
+      },
+      {
+        "yearMonth": "2025-10",
+        "publishDate": "2025-11-14",
+        "value": 2775,
+        "yoy": -20.2,
+        "mom": -19.8,
+        "filename": "2025-11-14_2025年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 211
       }
     ],
     "房地产开发投资 - 商业营业用房": [
@@ -911,6 +948,16 @@
         "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
         "isStockData": false,
         "valueMonthly": 542
+      },
+      {
+        "yearMonth": "2025-10",
+        "publishDate": "2025-11-14",
+        "value": 5211,
+        "yoy": -11.2,
+        "mom": -25.3,
+        "filename": "2025-11-14_2025年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 405
       }
     ],
     "房屋施工面积": [
@@ -1103,6 +1150,16 @@
         "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
         "isStockData": true,
         "valueMonthly": 648580
+      },
+      {
+        "yearMonth": "2025-10",
+        "publishDate": "2025-11-14",
+        "value": 652939,
+        "yoy": -9.4,
+        "mom": 0.7,
+        "filename": "2025-11-14_2025年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 652939
       }
     ],
     "房屋施工面积 - 住宅": [
@@ -1295,6 +1352,16 @@
         "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
         "isStockData": true,
         "valueMonthly": 452165
+      },
+      {
+        "yearMonth": "2025-10",
+        "publishDate": "2025-11-14",
+        "value": 455253,
+        "yoy": -9.7,
+        "mom": 0.7,
+        "filename": "2025-11-14_2025年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 455253
       }
     ],
     "房屋施工面积 - 办公楼": [
@@ -1487,6 +1554,16 @@
         "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
         "isStockData": true,
         "valueMonthly": 27569
+      },
+      {
+        "yearMonth": "2025-10",
+        "publishDate": "2025-11-14",
+        "value": 27672,
+        "yoy": -5.7,
+        "mom": 0.4,
+        "filename": "2025-11-14_2025年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 27672
       }
     ],
     "房屋施工面积 - 商业营业用房": [
@@ -1679,6 +1756,16 @@
         "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
         "isStockData": true,
         "valueMonthly": 56362
+      },
+      {
+        "yearMonth": "2025-10",
+        "publishDate": "2025-11-14",
+        "value": 56611,
+        "yoy": -9,
+        "mom": 0.4,
+        "filename": "2025-11-14_2025年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 56611
       }
     ],
     "房屋新开工面积": [
@@ -1871,6 +1958,16 @@
         "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
         "isStockData": false,
         "valueMonthly": 5598
+      },
+      {
+        "yearMonth": "2025-10",
+        "publishDate": "2025-11-14",
+        "value": 49061,
+        "yoy": -19.8,
+        "mom": -34.6,
+        "filename": "2025-11-14_2025年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 3662
       }
     ],
     "房屋新开工面积 - 住宅": [
@@ -2063,6 +2160,16 @@
         "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
         "isStockData": false,
         "valueMonthly": 3969
+      },
+      {
+        "yearMonth": "2025-10",
+        "publishDate": "2025-11-14",
+        "value": 35952,
+        "yoy": -19.3,
+        "mom": -32.5,
+        "filename": "2025-11-14_2025年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 2679
       }
     ],
     "房屋新开工面积 - 办公楼": [
@@ -2255,6 +2362,16 @@
         "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
         "isStockData": false,
         "valueMonthly": 131
+      },
+      {
+        "yearMonth": "2025-10",
+        "publishDate": "2025-11-14",
+        "value": 1209,
+        "yoy": -22.8,
+        "mom": -33.6,
+        "filename": "2025-11-14_2025年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 87
       }
     ],
     "房屋新开工面积 - 商业营业用房": [
@@ -2447,6 +2564,16 @@
         "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
         "isStockData": false,
         "valueMonthly": 367
+      },
+      {
+        "yearMonth": "2025-10",
+        "publishDate": "2025-11-14",
+        "value": 3184,
+        "yoy": -21.4,
+        "mom": -36.2,
+        "filename": "2025-11-14_2025年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 234
       }
     ],
     "房屋竣工面积": [
@@ -2639,6 +2766,16 @@
         "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
         "isStockData": true,
         "valueMonthly": 31129
+      },
+      {
+        "yearMonth": "2025-10",
+        "publishDate": "2025-11-14",
+        "value": 34861,
+        "yoy": -16.9,
+        "mom": 12,
+        "filename": "2025-11-14_2025年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 34861
       }
     ],
     "房屋竣工面积 - 住宅": [
@@ -2831,6 +2968,16 @@
         "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
         "isStockData": true,
         "valueMonthly": 22228
+      },
+      {
+        "yearMonth": "2025-10",
+        "publishDate": "2025-11-14",
+        "value": 24866,
+        "yoy": -18.9,
+        "mom": 11.9,
+        "filename": "2025-11-14_2025年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 24866
       }
     ],
     "房屋竣工面积 - 办公楼": [
@@ -3023,6 +3170,16 @@
         "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
         "isStockData": true,
         "valueMonthly": 1100
+      },
+      {
+        "yearMonth": "2025-10",
+        "publishDate": "2025-11-14",
+        "value": 1208,
+        "yoy": 17.2,
+        "mom": 9.8,
+        "filename": "2025-11-14_2025年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 1208
       }
     ],
     "房屋竣工面积 - 商业营业用房": [
@@ -3215,6 +3372,16 @@
         "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
         "isStockData": true,
         "valueMonthly": 2232
+      },
+      {
+        "yearMonth": "2025-10",
+        "publishDate": "2025-11-14",
+        "value": 2454,
+        "yoy": -16,
+        "mom": 9.9,
+        "filename": "2025-11-14_2025年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 2454
       }
     ],
     "新建商品房销售面积": [
@@ -3407,6 +3574,16 @@
         "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
         "isStockData": false,
         "valueMonthly": 8531
+      },
+      {
+        "yearMonth": "2025-10",
+        "publishDate": "2025-11-14",
+        "value": 71982,
+        "yoy": -6.8,
+        "mom": -27.9,
+        "filename": "2025-11-14_2025年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 6147
       }
     ],
     "新建商品房销售面积 - 住宅": [
@@ -3599,6 +3776,16 @@
         "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
         "isStockData": false,
         "valueMonthly": 6977
+      },
+      {
+        "yearMonth": "2025-10",
+        "publishDate": "2025-11-14",
+        "value": 60272,
+        "yoy": -7,
+        "mom": -25.3,
+        "filename": "2025-11-14_2025年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 5209
       }
     ],
     "新建商品房销售面积 - 办公楼": [
@@ -3791,6 +3978,16 @@
         "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
         "isStockData": false,
         "valueMonthly": 242
+      },
+      {
+        "yearMonth": "2025-10",
+        "publishDate": "2025-11-14",
+        "value": 1744,
+        "yoy": -7.2,
+        "mom": -57.9,
+        "filename": "2025-11-14_2025年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 102
       }
     ],
     "新建商品房销售面积 - 商业营业用房": [
@@ -3983,6 +4180,16 @@
         "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
         "isStockData": false,
         "valueMonthly": 550
+      },
+      {
+        "yearMonth": "2025-10",
+        "publishDate": "2025-11-14",
+        "value": 4225,
+        "yoy": -8.6,
+        "mom": -35.3,
+        "filename": "2025-11-14_2025年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 356
       }
     ],
     "新建商品房销售额": [
@@ -4175,6 +4382,16 @@
         "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
         "isStockData": false,
         "valueMonthly": 8025
+      },
+      {
+        "yearMonth": "2025-10",
+        "publishDate": "2025-11-14",
+        "value": 69017,
+        "yoy": -9.6,
+        "mom": -25.5,
+        "filename": "2025-11-14_2025年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 5977
       }
     ],
     "新建商品房销售额 - 住宅": [
@@ -4367,6 +4584,16 @@
         "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
         "isStockData": false,
         "valueMonthly": 6882
+      },
+      {
+        "yearMonth": "2025-10",
+        "publishDate": "2025-11-14",
+        "value": 60687,
+        "yoy": -9.4,
+        "mom": -22.1,
+        "filename": "2025-11-14_2025年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 5358
       }
     ],
     "新建商品房销售额 - 办公楼": [
@@ -4559,6 +4786,16 @@
         "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
         "isStockData": false,
         "valueMonthly": 335
+      },
+      {
+        "yearMonth": "2025-10",
+        "publishDate": "2025-11-14",
+        "value": 2234,
+        "yoy": -9.2,
+        "mom": -63.3,
+        "filename": "2025-11-14_2025年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 123
       }
     ],
     "新建商品房销售额 - 商业营业用房": [
@@ -4751,6 +4988,16 @@
         "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
         "isStockData": false,
         "valueMonthly": 533
+      },
+      {
+        "yearMonth": "2025-10",
+        "publishDate": "2025-11-14",
+        "value": 3948,
+        "yoy": -12.3,
+        "mom": -39.8,
+        "filename": "2025-11-14_2025年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 321
       }
     ],
     "商品房待售面积": [
@@ -4943,6 +5190,16 @@
         "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
         "isStockData": true,
         "valueMonthly": 75928
+      },
+      {
+        "yearMonth": "2025-10",
+        "publishDate": "2025-11-14",
+        "value": 75606,
+        "yoy": 3.3,
+        "mom": -0.4,
+        "filename": "2025-11-14_2025年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 75606
       }
     ],
     "商品房待售面积 - 住宅": [
@@ -5135,6 +5392,16 @@
         "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
         "isStockData": true,
         "valueMonthly": 39937
+      },
+      {
+        "yearMonth": "2025-10",
+        "publishDate": "2025-11-14",
+        "value": 39645,
+        "yoy": 5.4,
+        "mom": -0.7,
+        "filename": "2025-11-14_2025年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 39645
       }
     ],
     "商品房待售面积 - 办公楼": [
@@ -5327,6 +5594,16 @@
         "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
         "isStockData": true,
         "valueMonthly": 5209
+      },
+      {
+        "yearMonth": "2025-10",
+        "publishDate": "2025-11-14",
+        "value": 5195,
+        "yoy": 0.2,
+        "mom": -0.3,
+        "filename": "2025-11-14_2025年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 5195
       }
     ],
     "商品房待售面积 - 商业营业用房": [
@@ -5519,6 +5796,16 @@
         "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
         "isStockData": true,
         "valueMonthly": 14224
+      },
+      {
+        "yearMonth": "2025-10",
+        "publishDate": "2025-11-14",
+        "value": 14150,
+        "yoy": -0.7,
+        "mom": -0.5,
+        "filename": "2025-11-14_2025年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": true,
+        "valueMonthly": 14150
       }
     ],
     "房地产开发企业本年到位资金": [
@@ -5711,6 +5998,16 @@
         "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
         "isStockData": false,
         "valueMonthly": 7981
+      },
+      {
+        "yearMonth": "2025-10",
+        "publishDate": "2025-11-14",
+        "value": 78853,
+        "yoy": -9.7,
+        "mom": -17.9,
+        "filename": "2025-11-14_2025年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 6554
       }
     ],
     "房地产开发企业本年到位资金 - 国内贷款": [
@@ -5903,6 +6200,16 @@
         "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
         "isStockData": false,
         "valueMonthly": 1062
+      },
+      {
+        "yearMonth": "2025-10",
+        "publishDate": "2025-11-14",
+        "value": 12160,
+        "yoy": -1.8,
+        "mom": -18.5,
+        "filename": "2025-11-14_2025年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 866
       }
     ],
     "房地产开发企业本年到位资金 - 利用外资": [
@@ -6095,6 +6402,16 @@
         "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
         "isStockData": false,
         "valueMonthly": 0
+      },
+      {
+        "yearMonth": "2025-10",
+        "publishDate": "2025-11-14",
+        "value": 19,
+        "yoy": -37.5,
+        "mom": null,
+        "filename": "2025-11-14_2025年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 1
       }
     ],
     "房地产开发企业本年到位资金 - 自筹资金": [
@@ -6287,6 +6604,16 @@
         "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
         "isStockData": false,
         "valueMonthly": 3137
+      },
+      {
+        "yearMonth": "2025-10",
+        "publishDate": "2025-11-14",
+        "value": 28419,
+        "yoy": -10,
+        "mom": -26.4,
+        "filename": "2025-11-14_2025年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 2308
       }
     ],
     "房地产开发企业本年到位资金 - 定金及预收款": [
@@ -6479,6 +6806,16 @@
         "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
         "isStockData": false,
         "valueMonthly": 2294
+      },
+      {
+        "yearMonth": "2025-10",
+        "publishDate": "2025-11-14",
+        "value": 23257,
+        "yoy": -12,
+        "mom": -7.6,
+        "filename": "2025-11-14_2025年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 2119
       }
     ],
     "房地产开发企业本年到位资金 - 个人按揭贷款": [
@@ -6671,6 +7008,16 @@
         "filename": "2025-10-20_2025年1—9月份全国房地产市场基本情况-国家统计局.xlsx",
         "isStockData": false,
         "valueMonthly": 1027
+      },
+      {
+        "yearMonth": "2025-10",
+        "publishDate": "2025-11-14",
+        "value": 10834,
+        "yoy": -12.8,
+        "mom": -7.5,
+        "filename": "2025-11-14_2025年1—10月份全国房地产市场基本情况-国家统计局.xlsx",
+        "isStockData": false,
+        "valueMonthly": 950
       }
     ]
   }
