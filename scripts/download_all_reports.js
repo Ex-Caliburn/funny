@@ -235,7 +235,7 @@ function searchReport(stockCode, year, reportType) {
               if (!hasKeyword) return false;
               
               // 排除不需要的（但允许"一季度报告"这种格式）
-              const excludeWords = ['摘要', '更正', '取消', '补充', '修订', '业绩快报', '预告', '说明'];
+              const excludeWords = ['摘要', '更正', '取消', '补充', '修订', '业绩快报', '预告', '说明', '独立董事', '监事会', '问询函', '回复', '反馈意见', '专项说明'];
               const hasExclude = excludeWords.some(word => title.includes(word));
               if (hasExclude) return false;
               
@@ -276,7 +276,7 @@ function searchReport(stockCode, year, reportType) {
                   if (!quarterMatch) return false;
                   
                   // 排除不需要的
-                  const excludeWords = ['摘要', '更正', '取消', '补充', '修订', '业绩快报', '预告', '说明'];
+                  const excludeWords = ['摘要', '更正', '取消', '补充', '修订', '业绩快报', '预告', '说明', '独立董事', '监事会', '问询函', '回复', '反馈意见', '专项说明'];
                   const hasExclude = excludeWords.some(word => title.includes(word));
                   if (hasExclude) return false;
                   
@@ -351,7 +351,13 @@ function downloadFile(url, outputPath, title) {
       file.on('finish', () => {
         file.close();
         process.stdout.write(`\r     进度: 100%\n`);
-        resolve(outputPath);
+        
+        // 检查文件大小
+        const stats = fs.statSync(outputPath);
+        const fileSizeKB = Math.round(stats.size / 1024);
+        console.log(`      📦 文件大小: ${fileSizeKB} KB`);
+        
+        resolve({ path: outputPath, size: stats.size });
       });
     }).on('error', (err) => {
       file.close();
@@ -359,6 +365,33 @@ function downloadFile(url, outputPath, title) {
       reject(err);
     });
   });
+}
+
+/**
+ * 验证文件大小是否合理
+ */
+function validateFileSize(filePath, reportType) {
+  const stats = fs.statSync(filePath);
+  const fileSizeKB = Math.round(stats.size / 1024);
+  
+  // 定义各类型报告的最小文件大小（KB）
+  const minSizes = {
+    'annual': 500,      // 年报通常 > 500KB
+    'semi': 300,        // 半年报通常 > 300KB
+    'q1': 200,          // 季报通常 > 200KB
+    'q3': 200           // 季报通常 > 200KB
+  };
+  
+  const minSize = minSizes[reportType] || 200;
+  const isValid = fileSizeKB >= minSize;
+  
+  return {
+    valid: isValid,
+    size: stats.size,
+    sizeKB: fileSizeKB,
+    minSizeKB: minSize,
+    reason: isValid ? '文件大小正常' : `文件过小 (${fileSizeKB} KB < ${minSize} KB)`
+  };
 }
 
 /**
@@ -509,26 +542,56 @@ async function downloadReportByType(params, year, reportType) {
     const outputPath = path.join(params.outputDir, fileName);
     
     // 检查是否已存在
-    if (fs.existsSync(outputPath) && fs.statSync(outputPath).size > 10000) {
-      console.log(`      ✓ 已存在`);
-      // 即使已存在，也进行验证
-      console.log(`      🔍 验证文件内容...`);
-      const verification = await verifyDownloadedPDF(outputPath, year, tc.name);
-      if (verification.valid) {
-        console.log(`      ✅ 验证通过`);
+    if (fs.existsSync(outputPath)) {
+      const sizeCheck = validateFileSize(outputPath, reportType);
+      
+      if (!sizeCheck.valid) {
+        console.log(`      ⚠️  已存在但${sizeCheck.reason}，重新下载...`);
+        // 备份旧文件
+        const backupPath = outputPath.replace('.pdf', '_backup_small.pdf');
+        fs.renameSync(outputPath, backupPath);
       } else {
-        console.log(`      ⚠️  验证失败: ${verification.reason}`);
-        console.log(`         实际内容: ${verification.actualYear}年${verification.actualType || '未知'}`);
+        console.log(`      ✓ 已存在 (${sizeCheck.sizeKB} KB)`);
+        // 即使已存在，也进行验证
+        console.log(`      🔍 验证文件内容...`);
+        const verification = await verifyDownloadedPDF(outputPath, year, tc.name);
+        if (verification.valid) {
+          console.log(`      ✅ 验证通过`);
+        } else {
+          console.log(`      ⚠️  验证失败: ${verification.reason}`);
+          console.log(`         实际内容: ${verification.actualYear}年${verification.actualType || '未知'}`);
+        }
+        return { year, type: reportType, success: true, cached: true, path: outputPath, verification };
       }
-      return { year, type: reportType, success: true, cached: true, path: outputPath, verification };
     }
     
     // 下载
     console.log(`      ⬇️  下载中...`);
     const downloadUrl = CONFIG.DOWNLOAD_BASE + report.adjunctUrl;
-    await downloadFile(downloadUrl, outputPath, report.announcementTitle);
+    const downloadResult = await downloadFile(downloadUrl, outputPath, report.announcementTitle);
     
-    // 下载后自动验证
+    // 验证文件大小
+    const sizeCheck = validateFileSize(outputPath, reportType);
+    if (!sizeCheck.valid) {
+      console.log(`      ⚠️  ${sizeCheck.reason}`);
+      // 移动到错误目录
+      const errorDir = path.join(params.outputDir, '_errors');
+      if (!fs.existsSync(errorDir)) {
+        fs.mkdirSync(errorDir, { recursive: true });
+      }
+      const errorPath = path.join(errorDir, fileName);
+      fs.renameSync(outputPath, errorPath);
+      
+      return { 
+        year, 
+        type: reportType, 
+        success: false, 
+        reason: sizeCheck.reason,
+        sizeCheck 
+      };
+    }
+    
+    // 下载后自动验证内容
     console.log(`      🔍 验证文件内容...`);
     const verification = await verifyDownloadedPDF(outputPath, year, tc.name);
     
