@@ -1,0 +1,127 @@
+# Cursor Rules for Funny Project
+
+## 项目概述
+这是一个前端学习和实践项目，包含大量前端知识点、示例代码、学习笔记、算法实现、设计模式示例，以及股票数据分析工具。
+
+## 技术栈
+- **前端框架**: Vue 2/3, React (部分示例)
+- **构建工具**: Webpack, Vite (部分示例)
+- **语言**: JavaScript (ES6+), TypeScript
+- **样式**: CSS, SCSS, Less
+- **后端**: Node.js (用于爬虫和数据处理)
+- **数据可视化**: ECharts
+- **其他**: Lit, Petite-Vue (学习示例)
+
+## 代码风格规范
+
+### 命名规范
+- **文件命名**: 使用小写字母、连字符或下划线，如 `goods_price_parse.js`
+- **变量命名**: 使用 camelCase，如 `stockCode`, `reportType`
+- **常量命名**: 使用 UPPER_SNAKE_CASE，如 `MAX_RETRY_COUNT`
+- **类命名**: 使用 PascalCase，如 `DataExtractor`
+- **函数命名**: 使用 camelCase，动词开头，如 `downloadReport`, `parseData`
+
+### 注释规范
+- **优先使用中文注释**，因为项目包含大量学习笔记和中文文档
+- 复杂逻辑必须添加注释说明
+- 函数注释使用 JSDoc 格式，包含参数说明和返回值
+- 示例：
+  ```javascript
+  /**
+   * 下载上市公司财报
+   * @param {string} code - 股票代码（6位数字）
+   * @param {string} name - 公司名称
+   * @param {number[]} years - 年份数组
+   * @returns {Promise<void>}
+   */
+  async function downloadReport(code, name, years) {
+    // 实现逻辑
+  }
+  ```
+
+### 代码组织
+- **模块化**: 使用 ES6 模块 (`import/export`) 或 CommonJS (`require/module.exports`)
+- **目录结构**: 
+  - `scripts/` - 爬虫和数据解析脚本
+  - `webpack/` - Webpack 学习示例
+  - `vue3/`, `vue基础/` - Vue 学习示例
+  - `算法/` - 算法实现
+  - `设计模式/` - 设计模式示例
+  - `stock/` - 股票数据分析相关
+- **工具函数**: 放在 `工具类/` 目录，按功能分类
+
+## 特殊模块说明
+
+### 股票数据分析模块 (`scripts/`, `stock/`)
+- 使用 Node.js 进行数据爬取和解析
+- 数据源：巨潮资讯网、国家统计局等
+- 文件格式：Excel (.xlsx, .xls), PDF, JSON
+- 关键依赖：`cheerio`, `xlsx`, `pdf-parse`, `axios`
+- 脚本命名：`*_parse.js`, `*_extractor.js`, `*_parser.js`
+
+### Webpack 学习示例 (`webpack/`)
+- 每个子目录是一个独立的 Webpack 配置示例
+- 包含完整的 `package.json` 和 `webpack.config.js`
+- 示例命名：`数字. 功能描述/`
+
+### Vue 学习示例
+- `vue基础/` - Vue 2 基础示例
+- `vue3/` - Vue 3 相关学习和迁移指南
+- `vue高级和源码研究/` - 高级特性和源码分析
+
+## Git 提交规范
+遵循项目中的 `.cursorcommit` 配置：
+- 使用 Conventional Commits 格式：`<type>(<scope>): <subject>`
+- Type: feat, fix, docs, style, refactor, test, chore, perf, ci
+- Scope: 根据文件路径自动识别（component, api, router, store 等）
+- Subject: 使用中文，动词开头，50字符以内
+
+## 开发建议
+
+### 添加新功能
+1. **学习示例**: 在对应目录下创建新的示例文件，添加 README 说明
+2. **工具脚本**: 在 `scripts/` 目录下创建，遵循现有命名规范
+3. **算法实现**: 在 `算法/` 目录下，包含测试用例和说明
+
+### 代码质量
+- **错误处理**: 使用 try-catch 处理异步操作
+- **数据验证**: 对用户输入和外部数据进行验证
+- **性能考虑**: 大数据处理时注意内存和性能优化
+- **可读性**: 代码应该清晰易懂，便于学习
+
+### 文档要求
+- 新功能需要添加 README 或注释说明
+- 复杂算法需要添加示例和说明
+- API 使用需要提供使用示例
+
+## 依赖管理
+- 主要依赖在根目录 `package.json`
+- Webpack 示例有独立的 `package.json`
+- 使用 `npm` 或 `yarn` 管理依赖
+- 关键依赖：
+  - `axios` - HTTP 请求
+  - `cheerio` - HTML 解析
+  - `xlsx` - Excel 处理
+  - `pdf-parse` - PDF 解析
+  - `dayjs` - 日期处理
+  - `echarts` - 数据可视化
+
+## 测试和调试
+- 学习示例可以直接在浏览器中运行
+- Node.js 脚本使用 `node script.js` 运行
+- 使用 `console.log` 进行调试（学习项目，不强制使用测试框架）
+
+## 注意事项
+1. **中文支持**: 项目大量使用中文，确保文件编码为 UTF-8
+2. **路径处理**: 注意 Windows 和 macOS/Linux 的路径差异
+3. **异步处理**: 爬虫脚本需要适当的延迟，避免请求过快
+4. **数据安全**: 爬取数据时遵守网站使用条款
+5. **文件大小**: 注意大文件（PDF、Excel）的处理和存储
+
+## AI 助手工作原则
+- 理解这是一个**学习项目**，代码应该清晰易懂，便于学习
+- 优先使用**中文注释和文档**
+- 遵循项目的**现有代码风格和目录结构**
+- 添加新功能时，考虑是否需要添加**示例和说明文档**
+- 对于股票数据分析相关代码，注意**数据格式和错误处理**
+- 保持代码的**可读性和可维护性**
