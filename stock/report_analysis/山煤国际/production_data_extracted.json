@@ -1,0 +1,231 @@
+[
+  {
+    "year": "2020",
+    "quarter": "Q1",
+    "filename": "山煤国际_2021Q1_生产经营数据.pdf(去年同期)",
+    "data": {
+      "production": 857.6
+    },
+    "source": "lastYearFromPDF"
+  },
+  {
+    "year": "2020",
+    "quarter": "Q2",
+    "filename": "山煤国际_2021Q2_生产经营数据.pdf(去年同期)",
+    "data": {
+      "production": 1099.24
+    },
+    "source": "lastYearFromPDF"
+  },
+  {
+    "year": "2020",
+    "quarter": "Q3",
+    "filename": "山煤国际_2021Q3_生产经营数据.pdf(去年同期)",
+    "data": {
+      "production": 1022.45
+    },
+    "source": "lastYearFromPDF"
+  },
+  {
+    "year": "2021",
+    "quarter": "Q1",
+    "filename": "山煤国际_2021Q1_生产经营数据.pdf",
+    "data": {
+      "production": 1003.32
+    }
+  },
+  {
+    "year": "2021",
+    "quarter": "Q2",
+    "filename": "山煤国际_2021Q2_生产经营数据.pdf",
+    "data": {
+      "production": 1026.48
+    }
+  },
+  {
+    "year": "2021",
+    "quarter": "Q3",
+    "filename": "山煤国际_2021Q3_生产经营数据.pdf",
+    "data": {
+      "production": 908.05
+    }
+  },
+  {
+    "year": "2022",
+    "quarter": "Q1",
+    "filename": "山煤国际_2022Q1_生产经营数据.pdf",
+    "data": {
+      "production": 912.67
+    }
+  },
+  {
+    "year": "2022",
+    "quarter": "Q2",
+    "filename": "山煤国际_2022Q2_生产经营数据.pdf",
+    "data": {
+      "production": 1107.01,
+      "revenue": 72.97958100000001,
+      "revenueType": "ownCoal",
+      "cost": 24.980193,
+      "costType": "ownCoal",
+      "sales": 971.5,
+      "salesType": "ownCoal"
+    }
+  },
+  {
+    "year": "2022",
+    "quarter": "Q3",
+    "filename": "山煤国际_2022Q3_生产经营数据.pdf",
+    "data": {
+      "production": 1085.41,
+      "revenue": 79.747961,
+      "revenueType": "ownCoal",
+      "cost": 24.905424,
+      "costType": "ownCoal",
+      "sales": 987.75,
+      "salesType": "ownCoal"
+    }
+  },
+  {
+    "year": "2023",
+    "quarter": "Q1",
+    "filename": "山煤国际_2023Q1_生产经营数据.pdf",
+    "data": {
+      "production": 1062.83,
+      "revenue": 77.561607,
+      "revenueType": "ownCoal",
+      "cost": 29.23667,
+      "costType": "ownCoal",
+      "sales": 970.73,
+      "salesType": "ownCoal"
+    }
+  },
+  {
+    "year": "2023",
+    "quarter": "Q2",
+    "filename": "山煤国际_2023Q2_生产经营数据.pdf",
+    "data": {
+      "production": 1055.92,
+      "sales": 967.52,
+      "salesType": "ownCoal",
+      "revenue": 64.037971,
+      "revenueType": "ownCoal",
+      "cost": 25.004307,
+      "costType": "ownCoal",
+      "price": 661.88,
+      "unitCost": 258.44
+    }
+  },
+  {
+    "year": "2023",
+    "quarter": "Q3",
+    "filename": "山煤国际_2023Q3_生产经营数据.pdf",
+    "data": {
+      "production": 895.96,
+      "sales": 757.39,
+      "salesType": "ownCoal",
+      "revenue": 48.5138,
+      "revenueType": "ownCoal",
+      "cost": 21.603908999999998,
+      "costType": "ownCoal",
+      "price": 640.54,
+      "unitCost": 285.24
+    }
+  },
+  {
+    "year": "2024",
+    "quarter": "Q1",
+    "filename": "山煤国际_2024Q1_生产经营数据.pdf",
+    "data": {
+      "production": 751.46,
+      "sales": 546.15,
+      "salesType": "ownCoal",
+      "revenue": 36.17223,
+      "revenueType": "ownCoal",
+      "cost": 16.841735,
+      "costType": "ownCoal",
+      "price": 662.31,
+      "unitCost": 308.37
+    }
+  },
+  {
+    "year": "2024",
+    "quarter": "Q2",
+    "filename": "山煤国际_2024Q2_生产经营数据.pdf",
+    "data": {
+      "production": 786.66,
+      "sales": 645.6,
+      "salesType": "ownCoal",
+      "revenue": 45.57251,
+      "revenueType": "ownCoal",
+      "cost": 19.738343,
+      "costType": "ownCoal",
+      "price": 705.89,
+      "unitCost": 305.74
+    }
+  },
+  {
+    "year": "2024",
+    "quarter": "Q3",
+    "filename": "山煤国际_2024Q3_生产经营数据.pdf",
+    "data": {
+      "production": 912.18,
+      "sales": 690.33,
+      "salesType": "ownCoal",
+      "revenue": 45.582233,
+      "revenueType": "ownCoal",
+      "cost": 18.523644,
+      "costType": "ownCoal",
+      "price": 660.3,
+      "unitCost": 268.33
+    }
+  },
+  {
+    "year": "2025",
+    "quarter": "Q1",
+    "filename": "山煤国际_2025Q1_生产经营数据.pdf",
+    "data": {
+      "production": 908.64,
+      "sales": 441.55,
+      "salesType": "ownCoal",
+      "revenue": 26.244778000000004,
+      "revenueType": "ownCoal",
+      "cost": 11.978635,
+      "costType": "ownCoal",
+      "price": 594.38,
+      "unitCost": 271.29
+    }
+  },
+  {
+    "year": "2025",
+    "quarter": "Q2",
+    "filename": "山煤国际_2025Q2_生产经营数据.pdf",
+    "data": {
+      "production": 873.48,
+      "sales": 593.01,
+      "salesType": "ownCoal",
+      "revenue": 31.311773,
+      "revenueType": "ownCoal",
+      "cost": 16.472171,
+      "costType": "ownCoal",
+      "price": 528.01,
+      "unitCost": 277.77
+    }
+  },
+  {
+    "year": "2025",
+    "quarter": "Q3",
+    "filename": "山煤国际_2025Q3_生产经营数据.pdf",
+    "data": {
+      "production": 882.02,
+      "sales": 947.43,
+      "salesType": "ownCoal",
+      "revenue": 43.3886,
+      "revenueType": "ownCoal",
+      "cost": 21.858917,
+      "costType": "ownCoal",
+      "price": 457.96,
+      "unitCost": 230.72
+    }
+  }
+]
