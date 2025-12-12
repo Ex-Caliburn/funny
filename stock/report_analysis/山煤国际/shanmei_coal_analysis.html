@@ -494,8 +494,8 @@
                         <thead>
                             <tr>
                                 <th rowspan="3">报告期</th>
-                                <th colspan="8">冶金煤</th>
-                                <th colspan="8">动力煤</th>
+                                <th colspan="12">冶金煤</th>
+                                <th colspan="12">动力煤</th>
                                 <th colspan="5">贸易煤</th>
                             </tr>
                             <tr>
@@ -503,10 +503,14 @@
                                 <th colspan="2">销量</th>
                                 <th colspan="2">收入</th>
                                 <th colspan="2">单价</th>
+                                <th colspan="2">单位成本</th>
+                                <th colspan="2">毛利率</th>
                                 <th colspan="2">产量</th>
                                 <th colspan="2">销量</th>
                                 <th colspan="2">收入</th>
                                 <th colspan="2">单价</th>
+                                <th colspan="2">单位成本</th>
+                                <th colspan="2">毛利率</th>
                                 <th colspan="2">销量</th>
                                 <th colspan="2">收入</th>
                                 <th rowspan="2">毛利率</th>
@@ -520,6 +524,10 @@
                                 <th>同比</th>
                                 <th>元/吨</th>
                                 <th>同比</th>
+                                <th>元/吨</th>
+                                <th>同比</th>
+                                <th>%</th>
+                                <th>同比</th>
                                 <th>万吨</th>
                                 <th>同比</th>
                                 <th>万吨</th>
@@ -527,6 +535,10 @@
                                 <th>亿元</th>
                                 <th>同比</th>
                                 <th>元/吨</th>
+                                <th>同比</th>
+                                <th>元/吨</th>
+                                <th>同比</th>
+                                <th>%</th>
                                 <th>同比</th>
                                 <th>万吨</th>
                                 <th>同比</th>
@@ -2138,7 +2150,7 @@
                     }
 
                     if (productDataList.length === 0) {
-                        tbody.innerHTML = '<tr><td colspan="21" style="text-align:center;color:#999;padding:20px;">暂无分产品数据（PDF中可能未包含详细的冶金煤/动力煤分产品数据）</td></tr>';
+                        tbody.innerHTML = '<tr><td colspan="30" style="text-align:center;color:#999;padding:20px;">暂无分产品数据（PDF中可能未包含详细的冶金煤/动力煤分产品数据）</td></tr>';
                         return;
                     }
 
@@ -2168,27 +2180,62 @@
                             return null;
                         };
 
+                        // 计算单位成本（亿元 / 万吨 * 10000 = 元/吨）
+                        const calcUnitCost = (cost, sales) => {
+                            if (cost && sales && sales > 0) {
+                                return (cost / sales * 10000).toFixed(2);
+                            }
+                            return null;
+                        };
+
+                        // 计算毛利率（(收入 - 成本) / 收入 * 100）
+                        const calcGrossMargin = (revenue, cost) => {
+                            if (revenue && cost && revenue > 0) {
+                                return (((revenue - cost) / revenue) * 100).toFixed(2);
+                            }
+                            return null;
+                        };
+
                         // 冶金煤数据
                         const met = item.metallurgicalCoal;
                         const metPrice = calcPrice(met?.revenue, met?.sales);
+                        const metUnitCost = calcUnitCost(met?.cost, met?.sales);
+                        const metGrossMargin = calcGrossMargin(met?.revenue, met?.cost);
                         const metProdYoY = calcYoY(met?.production, lastYear?.metallurgicalCoal?.production);
                         const metSalesYoY = calcYoY(met?.sales, lastYear?.metallurgicalCoal?.sales);
                         const metRevYoY = calcYoY(met?.revenue, lastYear?.metallurgicalCoal?.revenue);
                         const metPriceYoY = calcYoY(parseFloat(metPrice), parseFloat(calcPrice(lastYear?.metallurgicalCoal?.revenue, lastYear?.metallurgicalCoal?.sales)));
+                        const metUnitCostYoY = calcYoY(parseFloat(metUnitCost), parseFloat(calcUnitCost(lastYear?.metallurgicalCoal?.cost, lastYear?.metallurgicalCoal?.sales)));
+                        const lastMetGrossMargin = calcGrossMargin(lastYear?.metallurgicalCoal?.revenue, lastYear?.metallurgicalCoal?.cost);
+                        const metGrossMarginDiff = (metGrossMargin && lastMetGrossMargin) ? (parseFloat(metGrossMargin) - parseFloat(lastMetGrossMargin)).toFixed(2) : null;
 
                         // 动力煤数据
                         const ther = item.thermalCoal;
                         const therPrice = calcPrice(ther?.revenue, ther?.sales);
+                        const therUnitCost = calcUnitCost(ther?.cost, ther?.sales);
+                        const therGrossMargin = calcGrossMargin(ther?.revenue, ther?.cost);
                         const therProdYoY = calcYoY(ther?.production, lastYear?.thermalCoal?.production);
                         const therSalesYoY = calcYoY(ther?.sales, lastYear?.thermalCoal?.sales);
                         const therRevYoY = calcYoY(ther?.revenue, lastYear?.thermalCoal?.revenue);
                         const therPriceYoY = calcYoY(parseFloat(therPrice), parseFloat(calcPrice(lastYear?.thermalCoal?.revenue, lastYear?.thermalCoal?.sales)));
+                        const therUnitCostYoY = calcYoY(parseFloat(therUnitCost), parseFloat(calcUnitCost(lastYear?.thermalCoal?.cost, lastYear?.thermalCoal?.sales)));
+                        const lastTherGrossMargin = calcGrossMargin(lastYear?.thermalCoal?.revenue, lastYear?.thermalCoal?.cost);
+                        const therGrossMarginDiff = (therGrossMargin && lastTherGrossMargin) ? (parseFloat(therGrossMargin) - parseFloat(lastTherGrossMargin)).toFixed(2) : null;
 
                         // 贸易煤数据
                         const trade = item.tradeCoal;
                         const tradeSalesYoY = calcYoY(trade?.sales, lastYear?.tradeCoal?.sales);
                         const tradeRevYoY = calcYoY(trade?.revenue, lastYear?.tradeCoal?.revenue);
-                        const tradeGrossMargin = trade?.grossMargin || '-';
+                        const tradeGrossMargin = trade?.grossMargin ? trade.grossMargin.toFixed(2) : calcGrossMargin(trade?.revenue, trade?.cost) || '-';
+
+                        // 格式化毛利率变化（百分点）
+                        const formatMarginDiff = (diff) => {
+                            if (diff === null) return '-';
+                            const val = parseFloat(diff);
+                            if (val > 0) return `<span class="change positive">+${val}pp</span>`;
+                            if (val < 0) return `<span class="change negative">${val}pp</span>`;
+                            return `<span class="change">0pp</span>`;
+                        };
 
                         row.innerHTML = `
                             <td class="period">${item.period}</td>
@@ -2200,6 +2247,10 @@
                             <td>${formatChange(metRevYoY)}</td>
                             <td class="value">${metPrice || '-'}</td>
                             <td>${formatChange(metPriceYoY)}</td>
+                            <td class="value">${metUnitCost || '-'}</td>
+                            <td>${formatChange(metUnitCostYoY)}</td>
+                            <td class="value">${metGrossMargin || '-'}</td>
+                            <td>${formatMarginDiff(metGrossMarginDiff)}</td>
                             <td class="value">${formatValue(ther?.production)}</td>
                             <td>${formatChange(therProdYoY)}</td>
                             <td class="value">${formatValue(ther?.sales)}</td>
@@ -2208,6 +2259,10 @@
                             <td>${formatChange(therRevYoY)}</td>
                             <td class="value">${therPrice || '-'}</td>
                             <td>${formatChange(therPriceYoY)}</td>
+                            <td class="value">${therUnitCost || '-'}</td>
+                            <td>${formatChange(therUnitCostYoY)}</td>
+                            <td class="value">${therGrossMargin || '-'}</td>
+                            <td>${formatMarginDiff(therGrossMarginDiff)}</td>
                             <td class="value">${formatValue(trade?.sales)}</td>
                             <td>${formatChange(tradeSalesYoY)}</td>
                             <td class="value">${formatValue(trade?.revenue)}</td>
@@ -2221,7 +2276,7 @@
                     console.error('渲染分产品数据失败:', error);
                     const tbody = document.getElementById('productSalesTableBody');
                     if (tbody) {
-                        tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;color:#999;">数据加载失败: ' + error.message + '</td></tr>';
+                        tbody.innerHTML = '<tr><td colspan="30" style="text-align:center;color:#999;">数据加载失败: ' + error.message + '</td></tr>';
                     }
                 }
             }
