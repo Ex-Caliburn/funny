@@ -751,13 +751,11 @@ async function downloadReportByType(params, year, reportType) {
     const sizeCheck = validateFileSize(outputPath, reportType);
     if (!sizeCheck.valid) {
       console.log(`      ⚠️  ${sizeCheck.reason}`);
-      // 移动到错误目录
-      const errorDir = path.join(params.outputDir, '_errors');
-      if (!fs.existsSync(errorDir)) {
-        fs.mkdirSync(errorDir, { recursive: true });
+      // 删除错误文件
+      if (fs.existsSync(outputPath)) {
+        fs.unlinkSync(outputPath);
+        console.log(`      🗑️  已删除错误文件: ${fileName}`);
       }
-      const errorPath = path.join(errorDir, fileName);
-      fs.renameSync(outputPath, errorPath);
       
       return { 
         year, 
@@ -794,14 +792,11 @@ async function downloadReportByType(params, year, reportType) {
           fs.renameSync(outputPath, correctPath);
         }
       } else {
-        // 如果无法识别内容，移动到错误目录
-        const errorDir = path.join(params.outputDir, '_errors');
-        if (!fs.existsSync(errorDir)) {
-          fs.mkdirSync(errorDir, { recursive: true });
+        // 如果无法识别内容，删除错误文件
+        if (fs.existsSync(outputPath)) {
+          fs.unlinkSync(outputPath);
+          console.log(`      🗑️  已删除错误文件: ${fileName} (无法识别内容)`);
         }
-        const errorPath = path.join(errorDir, fileName);
-        console.log(`      🗑️  移动到错误目录: ${errorPath}`);
-        fs.renameSync(outputPath, errorPath);
       }
       
       return { 
