@@ -1,0 +1,264 @@
+{
+  "rawData": [
+    {
+      "period": "2023年上半年",
+      "year": 2023,
+      "month": 6,
+      "type": "cumulative",
+      "silver": {
+        "revenue": null,
+        "cost": null,
+        "production": null,
+        "sales": null,
+        "lastYearProduction": null
+      },
+      "tin": {
+        "revenue": 2.7472879252999998,
+        "cost": 1.4571910542,
+        "production": null,
+        "sales": null,
+        "lastYearProduction": null
+      }
+    },
+    {
+      "period": "2023年全年",
+      "year": 2023,
+      "month": 12,
+      "type": "cumulative",
+      "silver": {
+        "revenue": null,
+        "cost": null,
+        "production": 199.62,
+        "sales": null,
+        "lastYearProduction": null
+      },
+      "tin": {
+        "revenue": 10.8504992678,
+        "cost": 3.9419973672000004,
+        "production": 7769.25,
+        "sales": null,
+        "lastYearProduction": null
+      }
+    },
+    {
+      "period": "2023年1-3月",
+      "year": 2023,
+      "month": 3,
+      "type": "cumulative",
+      "silver": {
+        "revenue": null,
+        "cost": null,
+        "production": null,
+        "sales": null,
+        "lastYearProduction": null
+      },
+      "tin": {
+        "revenue": null,
+        "cost": null,
+        "production": null,
+        "sales": null,
+        "lastYearProduction": null
+      }
+    },
+    {
+      "period": "2023年1-9月",
+      "year": 2023,
+      "month": 9,
+      "type": "cumulative",
+      "silver": {
+        "revenue": null,
+        "cost": null,
+        "production": null,
+        "sales": null,
+        "lastYearProduction": null
+      },
+      "tin": {
+        "revenue": null,
+        "cost": null,
+        "production": null,
+        "sales": null,
+        "lastYearProduction": null
+      }
+    },
+    {
+      "period": "2024年上半年",
+      "year": 2024,
+      "month": 6,
+      "type": "cumulative",
+      "silver": {
+        "revenue": null,
+        "cost": null,
+        "production": 125.58,
+        "sales": null,
+        "lastYearProduction": null
+      },
+      "tin": {
+        "revenue": 5.9102500585,
+        "cost": 1.5924048071999999,
+        "production": 4523.23,
+        "sales": null,
+        "lastYearProduction": null
+      }
+    },
+    {
+      "period": "2024年全年",
+      "year": 2024,
+      "month": 12,
+      "type": "cumulative",
+      "silver": {
+        "revenue": 11.65409,
+        "cost": 3.9647535445999997,
+        "production": 228.93,
+        "sales": 209.81907999999999,
+        "lastYearProduction": 199.62
+      },
+      "tin": {
+        "revenue": 14.1539062747,
+        "cost": 3.892351104,
+        "production": 8901.85,
+        "sales": 7611.8,
+        "lastYearProduction": 7769.25
+      }
+    },
+    {
+      "period": "2024年1-3月",
+      "year": 2024,
+      "month": 3,
+      "type": "cumulative",
+      "silver": {
+        "revenue": null,
+        "cost": null,
+        "production": null,
+        "sales": null,
+        "lastYearProduction": null
+      },
+      "tin": {
+        "revenue": null,
+        "cost": null,
+        "production": null,
+        "sales": null,
+        "lastYearProduction": null
+      }
+    },
+    {
+      "period": "2024年1-9月",
+      "year": 2024,
+      "month": 9,
+      "type": "cumulative",
+      "silver": {
+        "revenue": null,
+        "cost": null,
+        "production": 178.32,
+        "sales": null,
+        "lastYearProduction": null
+      },
+      "tin": {
+        "revenue": null,
+        "cost": null,
+        "production": 6504.77,
+        "sales": null,
+        "lastYearProduction": null
+      }
+    },
+    {
+      "period": "2025年上半年",
+      "year": 2025,
+      "month": 6,
+      "type": "cumulative",
+      "silver": {
+        "revenue": 8.6070440826,
+        "cost": 3.9026542656,
+        "production": 131.32,
+        "sales": null,
+        "lastYearProduction": 125.58
+      },
+      "tin": {
+        "revenue": 7.6196530625,
+        "cost": 2.4083964447999997,
+        "production": 3589.82,
+        "sales": null,
+        "lastYearProduction": 4523.23
+      }
+    },
+    {
+      "period": "2025年1-3月",
+      "year": 2025,
+      "month": 3,
+      "type": "cumulative",
+      "silver": {
+        "revenue": null,
+        "cost": null,
+        "production": null,
+        "sales": null,
+        "lastYearProduction": null
+      },
+      "tin": {
+        "revenue": null,
+        "cost": null,
+        "production": null,
+        "sales": null,
+        "lastYearProduction": null
+      }
+    },
+    {
+      "period": "2025年1-9月",
+      "year": 2025,
+      "month": 9,
+      "type": "cumulative",
+      "silver": {
+        "revenue": 14.891824,
+        "cost": null,
+        "production": 212.16,
+        "sales": null,
+        "lastYearProduction": 178.32
+      },
+      "tin": {
+        "revenue": 13.544360999999997,
+        "cost": null,
+        "production": 5651.48,
+        "sales": null,
+        "lastYearProduction": 6504.77
+      }
+    },
+    {
+      "period": "2022年全年",
+      "year": 2022,
+      "month": 12,
+      "type": "cumulative",
+      "silver": {
+        "revenue": null,
+        "cost": null,
+        "production": 147.87,
+        "sales": null,
+        "lastYearProduction": null
+      },
+      "tin": {
+        "revenue": null,
+        "cost": null,
+        "production": 3042.19,
+        "sales": null,
+        "lastYearProduction": null
+      }
+    },
+    {
+      "period": "2025年全年",
+      "year": 2025,
+      "month": 12,
+      "type": "cumulative",
+      "silver": {
+        "revenue": null,
+        "cost": null,
+        "production": 125.58,
+        "sales": null,
+        "lastYearProduction": null
+      },
+      "tin": {
+        "revenue": null,
+        "cost": null,
+        "production": 4523.23,
+        "sales": null,
+        "lastYearProduction": null
+      }
+    }
+  ]
+}

@@ -1140,22 +1140,34 @@
                 // 注意：如果季度数据已经包含price和unitCost（从半年度报告提取），则优先使用
                 quarterlyData.forEach(item => {
                     // 如果已经有从半年度报告提取的price和unitCost，则优先使用，否则计算
-                    if (!item.price && item.revenue && item.sales && item.sales > 0) {
+                    if (!item.price && item.revenue && item.sales && item.sales > 0 && !isNaN(item.revenue) && !isNaN(item.sales)) {
                         // 售价(元/吨) = 营收(亿元) / 销量(万吨) × 10000
-                        item.price = (item.revenue / item.sales) * 10000;
+                        const calculatedPrice = (item.revenue / item.sales) * 10000;
+                        item.price = !isNaN(calculatedPrice) ? calculatedPrice : null;
+                    } else if (!item.price) {
+                        item.price = null;
                     }
 
-                    if (!item.unitCost && item.cost && item.sales && item.sales > 0) {
+                    if (!item.unitCost && item.cost && item.sales && item.sales > 0 && !isNaN(item.cost) && !isNaN(item.sales)) {
                         // 成本(元/吨) = 成本(亿元) / 销量(万吨) × 10000
-                        item.unitCost = (item.cost / item.sales) * 10000;
+                        const calculatedCost = (item.cost / item.sales) * 10000;
+                        item.unitCost = !isNaN(calculatedCost) ? calculatedCost : null;
+                    } else if (!item.unitCost) {
+                        item.unitCost = null;
                     }
 
-                    if (item.price && item.unitCost) {
+                    if (item.price !== null && item.unitCost !== null && !isNaN(item.price) && !isNaN(item.unitCost)) {
                         // 毛利(元/吨) = 售价(元/吨) - 成本(元/吨)
-                        item.unitGrossProfit = item.price - item.unitCost;
+                        const calculatedProfit = item.price - item.unitCost;
+                        item.unitGrossProfit = !isNaN(calculatedProfit) ? calculatedProfit : null;
 
                         // 毛利率 = 毛利(元/吨) / 售价(元/吨) × 100%
-                        item.grossMargin = ((item.unitGrossProfit / item.price) * 100).toFixed(2);
+                        if (item.price > 0) {
+                            const calculatedMargin = (item.unitGrossProfit / item.price) * 100;
+                            item.grossMargin = !isNaN(calculatedMargin) ? calculatedMargin.toFixed(2) : null;
+                        } else {
+                            item.grossMargin = null;
+                        }
                     }
                 });
 
@@ -1183,10 +1195,14 @@
 
             // 格式化数字（不显示单位，单位在表头显示）
             function formatValue(value, unit = '') {
-                if (value === null || value === undefined || value === 0) {
+                if (value === null || value === undefined || isNaN(value) || value === 0) {
                     return '<span class="no-data">-</span>';
                 }
-                const formattedValue = value.toFixed(2);
+                const numValue = typeof value === 'string' ? parseFloat(value) : value;
+                if (isNaN(numValue)) {
+                    return '<span class="no-data">-</span>';
+                }
+                const formattedValue = numValue.toFixed(2);
                 return unit ? `${formattedValue} ${unit}` : formattedValue;
             }
 
@@ -1411,7 +1427,8 @@
                     // 10. 毛利率
                     const grossMarginYoYChange = baseYoY && baseYoY.grossMargin !== null && item.grossMargin !== null ? calculateChange(parseFloat(item.grossMargin), parseFloat(baseYoY.grossMargin)) : null;
                     const grossMarginQoQChange = !isCumulative && baseQoQ && baseQoQ.grossMargin !== null && item.grossMargin !== null ? calculateChange(parseFloat(item.grossMargin), parseFloat(baseQoQ.grossMargin)) : null;
-                    row.innerHTML += `<td class="value">${item.grossMargin ? item.grossMargin + '%' : '-'}</td>`;
+                    const grossMarginValue = item.grossMargin !== null && item.grossMargin !== undefined && !isNaN(item.grossMargin) ? parseFloat(item.grossMargin) : null;
+                    row.innerHTML += `<td class="value">${grossMarginValue !== null ? grossMarginValue.toFixed(2) + '%' : '<span class="no-data">-</span>'}</td>`;
                     row.innerHTML += `<td>${formatChange(grossMarginYoYChange)}</td>`;
                     if (!isCumulative) {
                         row.innerHTML += `<td>${formatChange(grossMarginQoQChange)}</td>`;
@@ -1543,29 +1560,46 @@
 
                 // 计算售价、成本(元/吨)、毛利(元/吨)和毛利率（生产煤）
                 productionData.forEach(item => {
-                    if (item.revenue && item.sales && item.sales > 0 && !item.price) {
+                    if (item.revenue && item.sales && item.sales > 0 && !item.price && !isNaN(item.revenue) && !isNaN(item.sales)) {
                         // 售价(元/吨) = 营收(亿元) / 销量(万吨) × 10000
-                        item.price = (item.revenue / item.sales) * 10000;
+                        const calculatedPrice = (item.revenue / item.sales) * 10000;
+                        item.price = !isNaN(calculatedPrice) ? calculatedPrice : null;
+                    } else if (!item.price) {
+                        item.price = null;
                     }
 
-                    if (item.cost && item.sales && item.sales > 0 && !item.unitCost) {
+                    if (item.cost && item.sales && item.sales > 0 && !item.unitCost && !isNaN(item.cost) && !isNaN(item.sales)) {
                         // 成本(元/吨) = 成本(亿元) / 销量(万吨) × 10000
-                        item.unitCost = (item.cost / item.sales) * 10000;
+                        const calculatedCost = (item.cost / item.sales) * 10000;
+                        item.unitCost = !isNaN(calculatedCost) ? calculatedCost : null;
+                    } else if (!item.unitCost) {
+                        item.unitCost = null;
                     }
 
-                    if (item.price && item.unitCost) {
+                    if (item.price !== null && item.unitCost !== null && !isNaN(item.price) && !isNaN(item.unitCost)) {
                         // 毛利(元/吨) = 售价(元/吨) - 成本(元/吨)
-                        item.unitGrossProfit = item.price - item.unitCost;
+                        const calculatedProfit = item.price - item.unitCost;
+                        item.unitGrossProfit = !isNaN(calculatedProfit) ? calculatedProfit : null;
 
                         // 毛利率 = 毛利(元/吨) / 售价(元/吨) × 100%
-                        item.grossMargin = ((item.unitGrossProfit / item.price) * 100).toFixed(2);
+                        if (item.price > 0) {
+                            const calculatedMargin = (item.unitGrossProfit / item.price) * 100;
+                            item.grossMargin = !isNaN(calculatedMargin) ? calculatedMargin.toFixed(2) : null;
+                        } else {
+                            item.grossMargin = null;
+                        }
+                    } else {
+                        item.unitGrossProfit = null;
                     }
                 });
 
                 // 计算贸易煤的售价等
                 tradeData.forEach(item => {
-                    if (item.revenue && item.sales && item.sales > 0 && !item.price) {
-                        item.price = (item.revenue / item.sales) * 10000;
+                    if (item.revenue && item.sales && item.sales > 0 && !item.price && !isNaN(item.revenue) && !isNaN(item.sales)) {
+                        const calculatedPrice = (item.revenue / item.sales) * 10000;
+                        item.price = !isNaN(calculatedPrice) ? calculatedPrice : null;
+                    } else if (!item.price) {
+                        item.price = null;
                     }
                 });
 
@@ -1740,22 +1774,34 @@
                 // 注意：如果季度数据已经包含price和unitCost（从半年度报告提取），则优先使用
                 quarterlyData.forEach(item => {
                     // 如果已经有从半年度报告提取的price和unitCost，则优先使用，否则计算
-                    if (!item.price && item.revenue && item.sales && item.sales > 0) {
+                    if (!item.price && item.revenue && item.sales && item.sales > 0 && !isNaN(item.revenue) && !isNaN(item.sales)) {
                         // 售价(元/吨) = 营收(亿元) / 销量(万吨) × 10000
-                        item.price = (item.revenue / item.sales) * 10000;
+                        const calculatedPrice = (item.revenue / item.sales) * 10000;
+                        item.price = !isNaN(calculatedPrice) ? calculatedPrice : null;
+                    } else if (!item.price) {
+                        item.price = null;
                     }
 
-                    if (!item.unitCost && item.cost && item.sales && item.sales > 0) {
+                    if (!item.unitCost && item.cost && item.sales && item.sales > 0 && !isNaN(item.cost) && !isNaN(item.sales)) {
                         // 成本(元/吨) = 成本(亿元) / 销量(万吨) × 10000
-                        item.unitCost = (item.cost / item.sales) * 10000;
+                        const calculatedCost = (item.cost / item.sales) * 10000;
+                        item.unitCost = !isNaN(calculatedCost) ? calculatedCost : null;
+                    } else if (!item.unitCost) {
+                        item.unitCost = null;
                     }
 
-                    if (item.price && item.unitCost) {
+                    if (item.price !== null && item.unitCost !== null && !isNaN(item.price) && !isNaN(item.unitCost)) {
                         // 毛利(元/吨) = 售价(元/吨) - 成本(元/吨)
-                        item.unitGrossProfit = item.price - item.unitCost;
+                        const calculatedProfit = item.price - item.unitCost;
+                        item.unitGrossProfit = !isNaN(calculatedProfit) ? calculatedProfit : null;
 
                         // 毛利率 = 毛利(元/吨) / 售价(元/吨) × 100%
-                        item.grossMargin = ((item.unitGrossProfit / item.price) * 100).toFixed(2);
+                        if (item.price > 0) {
+                            const calculatedMargin = (item.unitGrossProfit / item.price) * 100;
+                            item.grossMargin = !isNaN(calculatedMargin) ? calculatedMargin.toFixed(2) : null;
+                        } else {
+                            item.grossMargin = null;
+                        }
                     }
                 });
 
@@ -1783,10 +1829,14 @@
 
             // 格式化数字（显示单位）
             function formatValue(value, unit = '') {
-                if (value === null || value === undefined) {
+                if (value === null || value === undefined || isNaN(value)) {
                     return '<span class="no-data">-</span>';
                 }
-                const formattedValue = value.toFixed(2);
+                const numValue = typeof value === 'string' ? parseFloat(value) : value;
+                if (isNaN(numValue)) {
+                    return '<span class="no-data">-</span>';
+                }
+                const formattedValue = numValue.toFixed(2);
                 return unit ? `${formattedValue} ${unit}` : formattedValue;
             }
 
@@ -2015,7 +2065,8 @@
                     // 10. 毛利率
                     const grossMarginYoYChange = baseYoY && baseYoY.grossMargin !== null && item.grossMargin !== null ? calculateChange(parseFloat(item.grossMargin), parseFloat(baseYoY.grossMargin)) : null;
                     const grossMarginQoQChange = !isCumulative && baseQoQ && baseQoQ.grossMargin !== null && item.grossMargin !== null ? calculateChange(parseFloat(item.grossMargin), parseFloat(baseQoQ.grossMargin)) : null;
-                    row.innerHTML += `<td class="value">${item.grossMargin ? item.grossMargin + '%' : '-'}</td>`;
+                    const grossMarginValue = item.grossMargin !== null && item.grossMargin !== undefined && !isNaN(item.grossMargin) ? parseFloat(item.grossMargin) : null;
+                    row.innerHTML += `<td class="value">${grossMarginValue !== null ? grossMarginValue.toFixed(2) + '%' : '<span class="no-data">-</span>'}</td>`;
                     row.innerHTML += `<td>${formatChange(grossMarginYoYChange)}</td>`;
                     if (!isCumulative) {
                         row.innerHTML += `<td>${formatChange(grossMarginQoQChange)}</td>`;
@@ -2226,7 +2277,8 @@
                         const trade = item.tradeCoal;
                         const tradeSalesYoY = calcYoY(trade?.sales, lastYear?.tradeCoal?.sales);
                         const tradeRevYoY = calcYoY(trade?.revenue, lastYear?.tradeCoal?.revenue);
-                        const tradeGrossMargin = trade?.grossMargin ? trade.grossMargin.toFixed(2) : calcGrossMargin(trade?.revenue, trade?.cost) || '-';
+                        const tradeGrossMarginValue = trade?.grossMargin && !isNaN(trade.grossMargin) ? parseFloat(trade.grossMargin) : (calcGrossMargin(trade?.revenue, trade?.cost));
+                        const tradeGrossMargin = tradeGrossMarginValue !== null && !isNaN(tradeGrossMarginValue) ? tradeGrossMarginValue.toFixed(2) : '-';
 
                         // 格式化毛利率变化（百分点）
                         const formatMarginDiff = (diff) => {

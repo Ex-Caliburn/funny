@@ -427,12 +427,12 @@ function validateFileSize(filePath, reportType) {
   const minSizes = {
     'annual': 500,      // 年报通常 > 500KB
     'semi': 300,        // 半年报通常 > 300KB
-    'q1': 200,          // 季报通常 > 200KB
-    'q3': 200,          // 季报通常 > 200KB
+    'q1': 100,          // 季报通常 > 100KB
+    'q3': 100,          // 季报通常 > 100KB
     'production': 50    // 生产经营数据公告通常较小
   };
   
-  const minSize = minSizes[reportType] || 200;
+  const minSize = minSizes[reportType] || 100;
   const isValid = fileSizeKB >= minSize;
   
   return {

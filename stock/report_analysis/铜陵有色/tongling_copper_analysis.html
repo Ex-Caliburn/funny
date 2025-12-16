@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>华阳煤炭数据对比分析 - 成本、外购、营收、库存</title>
+    <title>铜陵有色铜产品数据对比分析 - 成本、营收、产量、销量</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <style>
         * {
@@ -388,20 +388,12 @@
             display: block;
         }
 
-        /* 隐藏列的样式 */
-        .hide-qoq {
-            display: none;
-        }
-
-        .hide-inventory {
-            display: none;
-        }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <h1>华阳煤炭数据对比分析</h1>
+        <h1>铜陵有色铜产品数据对比分析</h1>
         <div class="controls">
             <div class="btn-group">
                 <button class="btn active" onclick="switchView('quarterly', event)">单季度数据</button>
@@ -413,71 +405,7 @@
             <div class="table-wrapper">
                 <table id="dataTable">
                     <thead>
-                        <tr>
-                            <th rowspan="2">报告期</th>
-                            <th colspan="3" class="selectable" data-column="revenue" data-name="营收" data-unit="亿元"
-                                onclick="selectColumn('revenue', '营收', '亿元', event)">营收<br><span
-                                    style="font-size:9px;font-weight:normal">(亿元)</span></th>
-                            <th colspan="3" class="selectable" data-column="production" data-name="产量" data-unit="万吨"
-                                onclick="selectColumn('production', '产量', '万吨', event)">产量<br><span
-                                    style="font-size:9px;font-weight:normal">(万吨)</span></th>
-                            <th colspan="3" class="selectable" data-column="purchase" data-name="外购" data-unit="万吨"
-                                onclick="selectColumn('purchase', '外购', '万吨', event)">外购<br><span
-                                    style="font-size:9px;font-weight:normal">(万吨)</span></th>
-                            <th colspan="3" class="selectable" data-column="sales" data-name="销量" data-unit="万吨"
-                                onclick="selectColumn('sales', '销量', '万吨', event)">销量<br><span
-                                    style="font-size:9px;font-weight:normal">(万吨)</span></th>
-                            <th colspan="3" class="selectable" data-column="cost" data-name="成本" data-unit="亿元"
-                                onclick="selectColumn('cost', '成本', '亿元', event)">成本<br><span
-                                    style="font-size:9px;font-weight:normal">(亿元)</span></th>
-                            <th colspan="3" class="selectable" data-column="inventory" data-name="库存" data-unit="万吨"
-                                onclick="selectColumn('inventory', '库存', '万吨', event)">库存<br><span
-                                    style="font-size:9px;font-weight:normal">(万吨)</span></th>
-                            <th colspan="3" class="selectable" data-column="price" data-name="售价" data-unit="元/吨"
-                                onclick="selectColumn('price', '售价', '元/吨', event)">售价<br><span
-                                    style="font-size:9px;font-weight:normal">(元/吨)</span></th>
-                            <th colspan="3" class="selectable" data-column="unitCost" data-name="成本" data-unit="元/吨"
-                                onclick="selectColumn('unitCost', '成本', '元/吨', event)">成本<br><span
-                                    style="font-size:9px;font-weight:normal">(元/吨)</span></th>
-                            <th colspan="3" class="selectable" data-column="unitGrossProfit" data-name="毛利"
-                                data-unit="元/吨" onclick="selectColumn('unitGrossProfit', '毛利', '元/吨', event)">
-                                毛利<br><span style="font-size:9px;font-weight:normal">(元/吨)</span></th>
-                            <th colspan="3" class="selectable" data-column="grossMargin" data-name="毛利率" data-unit="%"
-                                onclick="selectColumn('grossMargin', '毛利率', '%', event)">毛利率<br><span
-                                    style="font-size:9px;font-weight:normal">(%)</span></th>
-                        </tr>
-                        <tr>
-                            <th>数值</th>
-                            <th>同比</th>
-                            <th>环比</th>
-                            <th>数值</th>
-                            <th>同比</th>
-                            <th>环比</th>
-                            <th>数值</th>
-                            <th>同比</th>
-                            <th>环比</th>
-                            <th>数值</th>
-                            <th>同比</th>
-                            <th>环比</th>
-                            <th>数值</th>
-                            <th>同比</th>
-                            <th>环比</th>
-                            <th>数值</th>
-                            <th>同比</th>
-                            <th>环比</th>
-                            <th>数值</th>
-                            <th>同比</th>
-                            <th>环比</th>
-                            <th>数值</th>
-                            <th>同比</th>
-                            <th>环比</th>
-                            <th>数值</th>
-                            <th>同比</th>
-                            <th>环比</th>
-                            <th>数值</th>
-                            <th>同比</th>
-                            <th>环比</th>
-                        </tr>
+                        <!-- 表头由JavaScript动态生成 -->
                     </thead>
                     <tbody id="tableBody">
                     </tbody>
@@ -486,36 +414,34 @@
 
             <!-- 分产品销量表格（只在累计数据视图显示） -->
             <div id="productSalesSection" style="display: none;">
-                <h2 style="margin-top: 20px; margin-bottom: 12px; color: #333; font-size: 18px;">分产品销量统计</h2>
+                <h2 style="margin-top: 20px; margin-bottom: 12px; color: #333; font-size: 18px;">分产品数据统计</h2>
                 <div class="table-wrapper">
                     <table>
                         <thead>
                             <tr>
                                 <th rowspan="2">报告期</th>
-                                <th colspan="2">块煤<br><span style="font-size:9px;font-weight:normal">(万吨)</span></th>
-                                <th colspan="2">洗块煤<br><span style="font-size:9px;font-weight:normal">(万吨)</span></th>
-                                <th colspan="2">喷粉煤<br><span style="font-size:9px;font-weight:normal">(万吨)</span></th>
-                                <th colspan="2">洗粉煤<br><span style="font-size:9px;font-weight:normal">(万吨)</span></th>
-                                <th colspan="2">选末煤<br><span style="font-size:9px;font-weight:normal">(万吨)</span></th>
-                                <th colspan="2">洗末煤<br><span style="font-size:9px;font-weight:normal">(万吨)</span></th>
-                                <th colspan="2">末煤<br><span style="font-size:9px;font-weight:normal">(万吨)</span></th>
-                                <th colspan="2">煤泥<br><span style="font-size:9px;font-weight:normal">(万吨)</span></th>
+                                <th colspan="3">黄金等副产品营收<br><span style="font-size:9px;font-weight:normal">(亿元)</span></th>
+                                <th colspan="3">黄金等副产品成本<br><span style="font-size:9px;font-weight:normal">(亿元)</span></th>
+                                <th colspan="2">黄金等副产品毛利率<br><span style="font-size:9px;font-weight:normal">(%)</span></th>
+                                <th colspan="3">化工及其他产品营收<br><span style="font-size:9px;font-weight:normal">(亿元)</span></th>
+                                <th colspan="3">化工及其他产品成本<br><span style="font-size:9px;font-weight:normal">(亿元)</span></th>
+                                <th colspan="2">化工及其他产品毛利率<br><span style="font-size:9px;font-weight:normal">(%)</span></th>
                             </tr>
                             <tr>
                                 <th>数值</th>
                                 <th>同比</th>
+                                <th>环比</th>
+                                <th>数值</th>
+                                <th>同比</th>
+                                <th>环比</th>
                                 <th>数值</th>
                                 <th>同比</th>
                                 <th>数值</th>
                                 <th>同比</th>
+                                <th>环比</th>
                                 <th>数值</th>
                                 <th>同比</th>
-                                <th>数值</th>
-                                <th>同比</th>
-                                <th>数值</th>
-                                <th>同比</th>
-                                <th>数值</th>
-                                <th>同比</th>
+                                <th>环比</th>
                                 <th>数值</th>
                                 <th>同比</th>
                             </tr>
@@ -530,7 +456,7 @@
                     <div class="legend-item"><span class="legend-color negative"></span>下降</div>
                     <div class="legend-item">同比：与上一年同期相比</div>
                     <div class="legend-item">环比：与上一个报告期相比</div>
-                    <div class="legend-item">注：库存为煤炭库存（万吨），仅半年报和年报披露</div>
+                    <div class="legend-item">注：库存为铜产品库存（万吨），仅半年报和年报披露</div>
                     <div class="legend-item">提示：点击表头列名可查看该数据的曲线图</div>
                 </div>
             </div>
@@ -558,12 +484,50 @@
             // 从JSON文件加载数据
             async function loadCorrectedData() {
                 try {
-                    const response = await fetch('huayang_data_corrected.json');
+                    const response = await fetch('tongling_data.json');
                     if (!response.ok) {
                         throw new Error(`HTTP error! status: ${response.status}`);
                     }
                     const jsonData = await response.json();
-                    rawData = jsonData.rawData || [];
+                    // 从summary数据转换为rawData格式
+                    if (jsonData.summary) {
+                        rawData = jsonData.summary.map(item => {
+                            // 根据文件名确定报告期
+                            let period = '';
+                            let year = parseInt(item.year);
+                            let month = 0;
+                            
+                            if (item.filename.includes('第一季度')) {
+                                period = `${year}年1-3月`;
+                                month = 3;
+                            } else if (item.filename.includes('半年度') || item.filename.includes('半年')) {
+                                period = `${year}年上半年`;
+                                month = 6;
+                            } else if (item.filename.includes('第三季度')) {
+                                period = `${year}年1-9月`;
+                                month = 9;
+                            } else if ((item.filename.includes('年度报告') || item.filename.includes('年报')) && !item.filename.includes('半年度')) {
+                                period = `${year}年全年`;
+                                month = 12;
+                            }
+                            
+                            return {
+                                period: period,
+                                year: year,
+                                month: month,
+                                type: 'cumulative',
+                                cost: item.cost ? item.cost / 100000000 : null, // 转换为亿元
+                                revenue: item.revenue ? item.revenue / 100000000 : null, // 转换为亿元
+                                production: item.production || null,
+                                sales: item.sales || null,
+                                inventory: item.inventory || null,
+                                grossMargin: item.grossMargin !== null && item.grossMargin !== undefined ? item.grossMargin : null,
+                                productSales: item.productSales || {}
+                            };
+                        }).filter(item => item.period); // 过滤掉没有period的数据
+                    } else {
+                        rawData = jsonData.rawData || [];
+                    }
                     console.log('已加载修正后的数据，共', rawData.length, '条记录');
                 } catch (error) {
                     console.error('加载修正后的数据失败:', error);
@@ -869,7 +833,6 @@
                             quarter: 1,
                             type: 'quarterly',
                             cost: q1.cost,
-                            purchase: q1.purchase,
                             revenue: q1.revenue,
                             production: q1.production,
                             sales: q1.sales,
@@ -887,58 +850,59 @@
                             month: 6,
                             quarter: 2,
                             type: 'quarterly',
-                            cost: h1.cost - (q1Data.cost || 0),
-                            purchase: (h1.purchase !== null && q1Data.purchase !== null) ? (h1.purchase - q1Data.purchase) : null,
-                            revenue: (h1.revenue || 0) - (q1Data.revenue || 0),
-                            production: (h1.production || 0) - (q1Data.production || 0),
-                            sales: (h1.sales || 0) - (q1Data.sales || 0),
+                            cost: (h1.cost !== null && q1Data.cost !== null) ? (h1.cost - q1Data.cost) : null,
+                            revenue: (h1.revenue !== null && q1Data.revenue !== null) ? (h1.revenue - q1Data.revenue) : null,
+                            production: (h1.production !== null && q1Data.production !== null) ? (h1.production - q1Data.production) : null,
+                            sales: (h1.sales !== null && q1Data.sales !== null) ? (h1.sales - q1Data.sales) : null,
                             inventory: null  // 单季度不计算库存
                         });
                     }
 
                     // Q3 = 1-9月 - 上半年
                     const q3Cum = yearData.find(d => d.period.includes('1-9月'));
-                    // 2021年Q3数据全部清除
-                    if (year === 2021) {
-                        quarterlyData.push({
-                            period: `${year}年Q3`,
-                            year: year,
-                            month: 9,
-                            quarter: 3,
-                            type: 'quarterly',
-                            cost: null,
-                            purchase: null,
-                            revenue: null,
-                            production: null,
-                            sales: null,
-                            inventory: null
-                        });
-                    } else if (q3Cum && h1) {
-                        // 如果1-9月的产量或销量为null，或者数据异常，Q3数据全部设置为null
-                        const hasValidData = q3Cum.production !== null && q3Cum.sales !== null &&
-                            h1.production !== null && h1.sales !== null;
+                    // 2021年Q3数据跳过，不创建
+                    if (year !== 2021) {
+                        // 如果1-9月和上半年都存在，尝试计算Q3数据
+                        if (q3Cum && h1) {
+                            // 如果1-9月的产量或销量为null，或者数据异常，Q3数据全部设置为null
+                            const hasValidData = q3Cum.production !== null && q3Cum.sales !== null &&
+                                h1.production !== null && h1.sales !== null;
 
-                        if (hasValidData) {
-                            const q3Production = q3Cum.production - h1.production;
-                            const q3Sales = q3Cum.sales - h1.sales;
+                            if (hasValidData) {
+                                const q3Production = q3Cum.production - h1.production;
+                                const q3Sales = q3Cum.sales - h1.sales;
 
-                            // 验证计算出的Q3数据是否合理（产量和销量应该大于0）
-                            if (q3Production > 0 && q3Sales > 0) {
-                                quarterlyData.push({
-                                    period: `${year}年Q3`,
-                                    year: year,
-                                    month: 9,
-                                    quarter: 3,
-                                    type: 'quarterly',
-                                    cost: q3Cum.cost !== null && h1.cost !== null ? (q3Cum.cost - h1.cost) : null,
-                                    purchase: (q3Cum.purchase !== null && h1.purchase !== null) ? (q3Cum.purchase - h1.purchase) : null,
-                                    revenue: (q3Cum.revenue !== null && h1.revenue !== null) ? (q3Cum.revenue - h1.revenue) : null,
-                                    production: q3Production,
-                                    sales: q3Sales,
-                                    inventory: null  // 单季度不计算库存
-                                });
+                                // 验证计算出的Q3数据是否合理（产量和销量应该大于0）
+                                if (q3Production > 0 && q3Sales > 0) {
+                                    quarterlyData.push({
+                                        period: `${year}年Q3`,
+                                        year: year,
+                                        month: 9,
+                                        quarter: 3,
+                                        type: 'quarterly',
+                                        cost: (q3Cum.cost !== null && h1.cost !== null) ? (q3Cum.cost - h1.cost) : null,
+                                        revenue: (q3Cum.revenue !== null && h1.revenue !== null) ? (q3Cum.revenue - h1.revenue) : null,
+                                        production: q3Production,
+                                        sales: q3Sales,
+                                        inventory: null  // 单季度不计算库存
+                                    });
+                                } else {
+                                    // 数据异常，Q3全部设置为null
+                                    quarterlyData.push({
+                                        period: `${year}年Q3`,
+                                        year: year,
+                                        month: 9,
+                                        quarter: 3,
+                                        type: 'quarterly',
+                                        cost: null,
+                                        revenue: null,
+                                        production: null,
+                                        sales: null,
+                                        inventory: null
+                                    });
+                                }
                             } else {
-                                // 数据异常，Q3全部设置为null
+                                // 1-9月或上半年的产量/销量数据缺失，Q3全部设置为null
                                 quarterlyData.push({
                                     period: `${year}年Q3`,
                                     year: year,
@@ -946,7 +910,6 @@
                                     quarter: 3,
                                     type: 'quarterly',
                                     cost: null,
-                                    purchase: null,
                                     revenue: null,
                                     production: null,
                                     sales: null,
@@ -954,7 +917,7 @@
                                 });
                             }
                         } else {
-                            // 1-9月或上半年的产量/销量数据缺失，Q3全部设置为null
+                            // 如果1-9月或上半年数据不存在，也要创建Q3条目（数据为null）
                             quarterlyData.push({
                                 period: `${year}年Q3`,
                                 year: year,
@@ -962,7 +925,6 @@
                                 quarter: 3,
                                 type: 'quarterly',
                                 cost: null,
-                                purchase: null,
                                 revenue: null,
                                 production: null,
                                 sales: null,
@@ -980,11 +942,10 @@
                             month: 12,
                             quarter: 4,
                             type: 'quarterly',
-                            cost: fullYear.cost - (q3Cum.cost || 0),
-                            purchase: (fullYear.purchase !== null && q3Cum.purchase !== null) ? (fullYear.purchase - q3Cum.purchase) : null,
-                            revenue: (fullYear.revenue || 0) - (q3Cum.revenue || 0),
-                            production: (fullYear.production || 0) - (q3Cum.production || 0),
-                            sales: (fullYear.sales || 0) - (q3Cum.sales || 0),
+                            cost: (fullYear.cost !== null && q3Cum.cost !== null) ? (fullYear.cost - q3Cum.cost) : null,
+                            revenue: (fullYear.revenue !== null && q3Cum.revenue !== null) ? (fullYear.revenue - q3Cum.revenue) : null,
+                            production: (fullYear.production !== null && q3Cum.production !== null) ? (fullYear.production - q3Cum.production) : null,
+                            sales: (fullYear.sales !== null && q3Cum.sales !== null) ? (fullYear.sales - q3Cum.sales) : null,
                             inventory: null  // 单季度不计算库存
                         });
                     }
@@ -1033,8 +994,10 @@
                 let data = [];
 
                 if (viewType === 'quarterly') {
-                    // 单季度数据
-                    data = calculateQuarterlyData();
+                    // 单季度数据，过滤掉2021年、2022年、2023年Q3
+                    data = calculateQuarterlyData().filter(item => {
+                        return !((item.year === 2021 || item.year === 2022 || item.year === 2023) && item.quarter === 3);
+                    });
                 } else {
                     // 累计数据
                     data = rawData.map(d => ({ ...d, isCumulative: true }));
@@ -1121,14 +1084,13 @@
                 const columns = [
                     { key: 'revenue', name: '营收', unit: '亿元' },
                     { key: 'production', name: '产量', unit: '万吨' },
-                    { key: 'purchase', name: '外购', unit: '万吨' },
                     { key: 'sales', name: '销量', unit: '万吨' },
                     { key: 'cost', name: '成本', unit: '亿元' },
                     { key: 'inventory', name: '库存', unit: '万吨', hideInQuarterly: true },
                     { key: 'price', name: '售价', unit: '元/吨' },
                     { key: 'unitCost', name: '成本', unit: '元/吨' },
                     { key: 'unitGrossProfit', name: '毛利', unit: '元/吨' },
-                    { key: 'grossMargin', name: '毛利率', unit: '%' }
+                    { key: 'grossMargin', name: '毛利率', unit: '%', isPercentage: true }
                 ];
 
                 columns.forEach(col => {
@@ -1144,8 +1106,6 @@
                     headerRow2 += '<th>数值</th><th>同比</th>';
                     if (!isCumulative) {
                         headerRow2 += '<th>环比</th>';
-                    } else {
-                        // 累计视图不显示环比列，但不需要添加hide-qoq类，因为根本没有生成这个th元素
                     }
                 });
 
@@ -1169,11 +1129,11 @@
                 let lastYear = null;
 
                 // 计算总列数（用于分隔行的colspan）
-                // 累计视图：1(报告期) + 10列 × 2(数值、同比) = 21
-                // 单季度视图：1(报告期) + 9列 × 3(数值、同比、环比，不含库存) = 28
+                // 累计视图：1(报告期) + 9列 × 2(数值、同比) = 19 (不含库存时) 或 21 (含库存时)
+                // 单季度视图：1(报告期) + 8列 × 3(数值、同比、环比，不含库存) = 25
                 let totalCols = 1; // 报告期列
                 const columns = [
-                    { key: 'revenue' }, { key: 'production' }, { key: 'purchase' },
+                    { key: 'revenue' }, { key: 'production' },
                     { key: 'sales' }, { key: 'cost' }, { key: 'inventory', hideInQuarterly: true },
                     { key: 'price' }, { key: 'unitCost' }, { key: 'unitGrossProfit' }, { key: 'grossMargin' }
                 ];
@@ -1226,16 +1186,7 @@
                         row.innerHTML += `<td>${formatChange(productionQoQChange)}</td>`;
                     }
 
-                    // 3. 外购
-                    const purchaseYoYChange = baseYoY && baseYoY.purchase !== null ? calculateChange(item.purchase, baseYoY.purchase) : null;
-                    const purchaseQoQChange = !isCumulative && baseQoQ && baseQoQ.purchase !== null ? calculateChange(item.purchase, baseQoQ.purchase) : null;
-                    row.innerHTML += `<td class="value">${formatValue(item.purchase, '万吨')}</td>`;
-                    row.innerHTML += `<td>${formatChange(purchaseYoYChange)}</td>`;
-                    if (!isCumulative) {
-                        row.innerHTML += `<td>${formatChange(purchaseQoQChange)}</td>`;
-                    }
-
-                    // 4. 销量
+                    // 3. 销量
                     const salesYoYChange = baseYoY && baseYoY.sales !== null ? calculateChange(item.sales, baseYoY.sales) : null;
                     const salesQoQChange = !isCumulative && baseQoQ && baseQoQ.sales !== null ? calculateChange(item.sales, baseQoQ.sales) : null;
                     row.innerHTML += `<td class="value">${formatValue(item.sales, '万吨')}</td>`;
@@ -1256,12 +1207,9 @@
                     // 6. 库存（单季度视图不显示）
                     if (!isQuarterly) {
                         const inventoryYoYChange = baseYoY && baseYoY.inventory !== null && item.inventory !== null ? calculateChange(item.inventory, baseYoY.inventory) : null;
-                        const inventoryQoQChange = !isCumulative && baseQoQ && baseQoQ.inventory !== null && item.inventory !== null ? calculateChange(item.inventory, baseQoQ.inventory) : null;
                         row.innerHTML += `<td class="value">${formatValue(item.inventory, '万吨')}</td>`;
                         row.innerHTML += `<td>${formatChange(inventoryYoYChange)}</td>`;
-                        if (!isCumulative) {
-                            row.innerHTML += `<td>${formatChange(inventoryQoQChange)}</td>`;
-                        }
+                        // 累计视图不显示环比
                     }
 
                     // 7. 售价
@@ -1292,9 +1240,9 @@
                     }
 
                     // 10. 毛利率
-                    const grossMarginYoYChange = baseYoY && baseYoY.grossMargin !== null && item.grossMargin !== null ? calculateChange(parseFloat(item.grossMargin), parseFloat(baseYoY.grossMargin)) : null;
-                    const grossMarginQoQChange = !isCumulative && baseQoQ && baseQoQ.grossMargin !== null && item.grossMargin !== null ? calculateChange(parseFloat(item.grossMargin), parseFloat(baseQoQ.grossMargin)) : null;
                     const grossMarginValue = item.grossMargin !== null && item.grossMargin !== undefined && !isNaN(item.grossMargin) ? parseFloat(item.grossMargin) : null;
+                    const grossMarginYoYChange = baseYoY && baseYoY.grossMargin !== null && grossMarginValue !== null ? calculateChange(grossMarginValue, parseFloat(baseYoY.grossMargin)) : null;
+                    const grossMarginQoQChange = !isCumulative && baseQoQ && baseQoQ.grossMargin !== null && grossMarginValue !== null ? calculateChange(grossMarginValue, parseFloat(baseQoQ.grossMargin)) : null;
                     row.innerHTML += `<td class="value">${grossMarginValue !== null ? grossMarginValue.toFixed(2) + '%' : '<span class="no-data">-</span>'}</td>`;
                     row.innerHTML += `<td>${formatChange(grossMarginYoYChange)}</td>`;
                     if (!isCumulative) {
@@ -1339,12 +1287,19 @@
                         const calculatedProfit = item.price - item.unitCost;
                         item.unitGrossProfit = !isNaN(calculatedProfit) ? calculatedProfit : null;
 
-                        // 毛利率 = 毛利(元/吨) / 售价(元/吨) × 100%
-                        if (item.price > 0) {
-                            const calculatedMargin = (item.unitGrossProfit / item.price) * 100;
-                            item.grossMargin = !isNaN(calculatedMargin) ? calculatedMargin.toFixed(2) : null;
+                        // 如果已经有从PDF提取的毛利率，使用它；否则计算
+                        if (item.grossMargin === null || item.grossMargin === undefined) {
+                            // 毛利率 = 毛利(元/吨) / 售价(元/吨) × 100%
+                            if (item.unitGrossProfit !== null && item.price > 0) {
+                                const calculatedMargin = (item.unitGrossProfit / item.price) * 100;
+                                item.grossMargin = !isNaN(calculatedMargin) ? calculatedMargin.toFixed(2) : null;
+                            } else {
+                                item.grossMargin = null;
+                            }
                         } else {
-                            item.grossMargin = null;
+                            // 使用从PDF提取的毛利率，转换为字符串格式
+                            const marginValue = parseFloat(item.grossMargin);
+                            item.grossMargin = !isNaN(marginValue) ? marginValue.toFixed(2) : null;
                         }
                     } else {
                         item.unitGrossProfit = null;
@@ -1363,11 +1318,6 @@
                 }
             }
 
-
-            // selectColumn函数已在全局作用域定义，这里不再重复定义
-
-            // 保存原始的switchView函数
-            const originalSwitchView = window.switchView;
 
             // 重写switchView函数，保持选中状态
             window.switchView = function (viewType, event) {
@@ -1411,13 +1361,11 @@
                 renderTable(viewType);
             };
 
-            // closeChartModal函数已在全局作用域定义，这里不再重复定义
-
             // 渲染分产品销量表格
             async function renderProductSalesTable() {
                 try {
                     // 从JSON文件读取数据
-                    const response = await fetch('huayang_data.json');
+                    const response = await fetch('tongling_data.json');
                     if (!response.ok) {
                         throw new Error(`HTTP error! status: ${response.status}`);
                     }
@@ -1439,53 +1387,39 @@
                             return; // 跳过单季度数据
                         }
 
-                        // 根据文件名确定报告期（只处理累计数据）
+                        // 根据文件名确定报告期（只处理年报和半年报）
                         let period = '';
                         let year = parseInt(item.year);
                         let month = 0;
 
-                        if (item.filename.includes('第一季度')) {
-                            period = `${year}年1-3月`;
-                            month = 3;
-                        } else if (item.filename.includes('半年度') || item.filename.includes('半年')) {
+                        // 只处理年报和半年报
+                        if (item.filename.includes('半年度') || item.filename.includes('半年')) {
                             period = `${year}年上半年`;
                             month = 6;
-                        } else if (item.filename.includes('第三季度')) {
-                            period = `${year}年1-9月`;
-                            month = 9;
                         } else if ((item.filename.includes('年度报告') || item.filename.includes('年报')) && !item.filename.includes('半年度')) {
                             period = `${year}年全年`;
                             month = 12;
                         }
 
-                        // 只处理累计数据，不处理单季度数据
-                        if (period && !period.includes('Q') && item.productSales) {
-                            // 检查是否有任何分产品销量数据
-                            const hasData = item.productSales.lumpCoal !== null ||
-                                item.productSales.washedLumpCoal !== null ||
-                                item.productSales.pulverizedCoal !== null ||
-                                item.productSales.washedPulverizedCoal !== null ||
-                                item.productSales.selectedFineCoal !== null ||
-                                item.productSales.washedFineCoal !== null ||
-                                item.productSales.fineCoal !== null ||
-                                item.productSales.slime !== null;
-
-                            if (hasData) {
-                                productSalesData.push({
-                                    period: period,
-                                    year: year,
-                                    month: month,
-                                    type: 'cumulative',
-                                    lumpCoal: item.productSales.lumpCoal || null,
-                                    washedLumpCoal: item.productSales.washedLumpCoal || null,
-                                    pulverizedCoal: item.productSales.pulverizedCoal || null,
-                                    washedPulverizedCoal: item.productSales.washedPulverizedCoal || null,
-                                    selectedFineCoal: item.productSales.selectedFineCoal || null,
-                                    washedFineCoal: item.productSales.washedFineCoal || null,
-                                    fineCoal: item.productSales.fineCoal || null,
-                                    slime: item.productSales.slime || null
-                                });
-                            }
+                        // 只处理年报和半年报
+                        if (period && (period.includes('全年') || period.includes('上半年'))) {
+                            // 所有累计数据都添加到表格中，即使数据为null也显示（显示为"-"）
+                            productSalesData.push({
+                                period: period,
+                                year: year,
+                                month: month,
+                                type: 'cumulative',
+                                goldByproduct: item.otherProducts && item.otherProducts.goldByproduct ? {
+                                    revenue: item.otherProducts.goldByproduct.revenue ? item.otherProducts.goldByproduct.revenue / 100000000 : null,
+                                    cost: item.otherProducts.goldByproduct.cost ? item.otherProducts.goldByproduct.cost / 100000000 : null,
+                                    grossMargin: item.otherProducts.goldByproduct.grossMargin !== null ? item.otherProducts.goldByproduct.grossMargin : null
+                                } : { revenue: null, cost: null, grossMargin: null },
+                                chemical: item.otherProducts && item.otherProducts.chemical ? {
+                                    revenue: item.otherProducts.chemical.revenue ? item.otherProducts.chemical.revenue / 100000000 : null,
+                                    cost: item.otherProducts.chemical.cost ? item.otherProducts.chemical.cost / 100000000 : null,
+                                    grossMargin: item.otherProducts.chemical.grossMargin !== null ? item.otherProducts.chemical.grossMargin : null
+                                } : { revenue: null, cost: null, grossMargin: null }
+                            });
                         }
                     });
 
@@ -1507,61 +1441,62 @@
                     const tbody = document.getElementById('productSalesTableBody');
                     tbody.innerHTML = '';
 
-                    filteredData.forEach(item => {
+                    filteredData.forEach((item, index) => {
                         const row = document.createElement('tr');
                         row.innerHTML = `<td class="period">${item.period}</td>`;
 
-                        // 查找同比数据（只在累计数据中查找，不查找环比）
+                        // 查找同比和环比数据
                         const baseYoY = filteredData.find(d => d.year === item.year - 1 && d.month === item.month);
+                        const baseQoQ = index > 0 ? filteredData[index - 1] : null;
 
-                        // 块煤
-                        const lumpCoalYoY = baseYoY && baseYoY.lumpCoal !== null && item.lumpCoal !== null ? calculateChange(item.lumpCoal, baseYoY.lumpCoal) : null;
-                        row.innerHTML += `<td class="value">${formatValue(item.lumpCoal, '万吨')}</td>`;
-                        row.innerHTML += `<td>${formatChange(lumpCoalYoY)}</td>`;
+                        // 1. 黄金等副产品营收
+                        const goldRevenueYoY = baseYoY && baseYoY.goldByproduct && baseYoY.goldByproduct.revenue !== null && item.goldByproduct.revenue !== null ? calculateChange(item.goldByproduct.revenue, baseYoY.goldByproduct.revenue) : null;
+                        const goldRevenueQoQ = baseQoQ && baseQoQ.goldByproduct && baseQoQ.goldByproduct.revenue !== null && item.goldByproduct.revenue !== null ? calculateChange(item.goldByproduct.revenue, baseQoQ.goldByproduct.revenue) : null;
+                        row.innerHTML += `<td class="value">${formatValue(item.goldByproduct.revenue, '亿元')}</td>`;
+                        row.innerHTML += `<td>${formatChange(goldRevenueYoY)}</td>`;
+                        row.innerHTML += `<td>${formatChange(goldRevenueQoQ)}</td>`;
 
-                        // 洗块煤
-                        const washedLumpCoalYoY = baseYoY && baseYoY.washedLumpCoal !== null && item.washedLumpCoal !== null ? calculateChange(item.washedLumpCoal, baseYoY.washedLumpCoal) : null;
-                        row.innerHTML += `<td class="value">${formatValue(item.washedLumpCoal, '万吨')}</td>`;
-                        row.innerHTML += `<td>${formatChange(washedLumpCoalYoY)}</td>`;
+                        // 2. 黄金等副产品成本
+                        const goldCostYoY = baseYoY && baseYoY.goldByproduct && baseYoY.goldByproduct.cost !== null && item.goldByproduct.cost !== null ? calculateChange(item.goldByproduct.cost, baseYoY.goldByproduct.cost) : null;
+                        const goldCostQoQ = baseQoQ && baseQoQ.goldByproduct && baseQoQ.goldByproduct.cost !== null && item.goldByproduct.cost !== null ? calculateChange(item.goldByproduct.cost, baseQoQ.goldByproduct.cost) : null;
+                        row.innerHTML += `<td class="value">${formatValue(item.goldByproduct.cost, '亿元')}</td>`;
+                        row.innerHTML += `<td>${formatChange(goldCostYoY)}</td>`;
+                        row.innerHTML += `<td>${formatChange(goldCostQoQ)}</td>`;
 
-                        // 喷粉煤
-                        const pulverizedCoalYoY = baseYoY && baseYoY.pulverizedCoal !== null && item.pulverizedCoal !== null ? calculateChange(item.pulverizedCoal, baseYoY.pulverizedCoal) : null;
-                        row.innerHTML += `<td class="value">${formatValue(item.pulverizedCoal, '万吨')}</td>`;
-                        row.innerHTML += `<td>${formatChange(pulverizedCoalYoY)}</td>`;
+                        // 3. 黄金等副产品毛利率
+                        const goldGrossMarginYoY = baseYoY && baseYoY.goldByproduct && baseYoY.goldByproduct.grossMargin !== null && item.goldByproduct.grossMargin !== null ? calculateChange(item.goldByproduct.grossMargin, baseYoY.goldByproduct.grossMargin) : null;
+                        const goldGrossMarginValue = item.goldByproduct.grossMargin !== null && !isNaN(item.goldByproduct.grossMargin) ? item.goldByproduct.grossMargin : null;
+                        row.innerHTML += `<td class="value">${goldGrossMarginValue !== null ? goldGrossMarginValue.toFixed(2) + '%' : '<span class="no-data">-</span>'}</td>`;
+                        row.innerHTML += `<td>${formatChange(goldGrossMarginYoY)}</td>`;
 
-                        // 洗粉煤
-                        const washedPulverizedCoalYoY = baseYoY && baseYoY.washedPulverizedCoal !== null && item.washedPulverizedCoal !== null ? calculateChange(item.washedPulverizedCoal, baseYoY.washedPulverizedCoal) : null;
-                        row.innerHTML += `<td class="value">${formatValue(item.washedPulverizedCoal, '万吨')}</td>`;
-                        row.innerHTML += `<td>${formatChange(washedPulverizedCoalYoY)}</td>`;
+                        // 4. 化工及其他产品营收
+                        const chemicalRevenueYoY = baseYoY && baseYoY.chemical && baseYoY.chemical.revenue !== null && item.chemical.revenue !== null ? calculateChange(item.chemical.revenue, baseYoY.chemical.revenue) : null;
+                        const chemicalRevenueQoQ = baseQoQ && baseQoQ.chemical && baseQoQ.chemical.revenue !== null && item.chemical.revenue !== null ? calculateChange(item.chemical.revenue, baseQoQ.chemical.revenue) : null;
+                        row.innerHTML += `<td class="value">${formatValue(item.chemical.revenue, '亿元')}</td>`;
+                        row.innerHTML += `<td>${formatChange(chemicalRevenueYoY)}</td>`;
+                        row.innerHTML += `<td>${formatChange(chemicalRevenueQoQ)}</td>`;
 
-                        // 选末煤
-                        const selectedFineCoalYoY = baseYoY && baseYoY.selectedFineCoal !== null && item.selectedFineCoal !== null ? calculateChange(item.selectedFineCoal, baseYoY.selectedFineCoal) : null;
-                        row.innerHTML += `<td class="value">${formatValue(item.selectedFineCoal, '万吨')}</td>`;
-                        row.innerHTML += `<td>${formatChange(selectedFineCoalYoY)}</td>`;
+                        // 5. 化工及其他产品成本
+                        const chemicalCostYoY = baseYoY && baseYoY.chemical && baseYoY.chemical.cost !== null && item.chemical.cost !== null ? calculateChange(item.chemical.cost, baseYoY.chemical.cost) : null;
+                        const chemicalCostQoQ = baseQoQ && baseQoQ.chemical && baseQoQ.chemical.cost !== null && item.chemical.cost !== null ? calculateChange(item.chemical.cost, baseQoQ.chemical.cost) : null;
+                        row.innerHTML += `<td class="value">${formatValue(item.chemical.cost, '亿元')}</td>`;
+                        row.innerHTML += `<td>${formatChange(chemicalCostYoY)}</td>`;
+                        row.innerHTML += `<td>${formatChange(chemicalCostQoQ)}</td>`;
 
-                        // 洗末煤
-                        const washedFineCoalYoY = baseYoY && baseYoY.washedFineCoal !== null && item.washedFineCoal !== null ? calculateChange(item.washedFineCoal, baseYoY.washedFineCoal) : null;
-                        row.innerHTML += `<td class="value">${formatValue(item.washedFineCoal, '万吨')}</td>`;
-                        row.innerHTML += `<td>${formatChange(washedFineCoalYoY)}</td>`;
-
-                        // 末煤
-                        const fineCoalYoY = baseYoY && baseYoY.fineCoal !== null && item.fineCoal !== null ? calculateChange(item.fineCoal, baseYoY.fineCoal) : null;
-                        row.innerHTML += `<td class="value">${formatValue(item.fineCoal, '万吨')}</td>`;
-                        row.innerHTML += `<td>${formatChange(fineCoalYoY)}</td>`;
-
-                        // 煤泥
-                        const slimeYoY = baseYoY && baseYoY.slime !== null && item.slime !== null ? calculateChange(item.slime, baseYoY.slime) : null;
-                        row.innerHTML += `<td class="value">${formatValue(item.slime, '万吨')}</td>`;
-                        row.innerHTML += `<td>${formatChange(slimeYoY)}</td>`;
+                        // 6. 化工及其他产品毛利率
+                        const chemicalGrossMarginYoY = baseYoY && baseYoY.chemical && baseYoY.chemical.grossMargin !== null && item.chemical.grossMargin !== null ? calculateChange(item.chemical.grossMargin, baseYoY.chemical.grossMargin) : null;
+                        const chemicalGrossMarginValue = item.chemical.grossMargin !== null && !isNaN(item.chemical.grossMargin) ? item.chemical.grossMargin : null;
+                        row.innerHTML += `<td class="value">${chemicalGrossMarginValue !== null ? chemicalGrossMarginValue.toFixed(2) + '%' : '<span class="no-data">-</span>'}</td>`;
+                        row.innerHTML += `<td>${formatChange(chemicalGrossMarginYoY)}</td>`;
 
                         tbody.appendChild(row);
                     });
 
-                    if (productSalesData.length === 0) {
-                        tbody.innerHTML = '<tr><td colspan="17" style="text-align:center;color:#999;">暂无分产品销量数据</td></tr>';
+                    if (filteredData.length === 0) {
+                        tbody.innerHTML = '<tr><td colspan="17" style="text-align:center;color:#999;">暂无分产品数据</td></tr>';
                     }
                 } catch (error) {
-                    console.error('加载分产品销量数据失败:', error);
+                    console.error('加载分产品数据失败:', error);
                     const tbody = document.getElementById('productSalesTableBody');
                     if (tbody) {
                         tbody.innerHTML = '<tr><td colspan="17" style="text-align:center;color:#999;">数据加载失败: ' + error.message + '</td></tr>';
