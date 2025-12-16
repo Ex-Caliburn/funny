@@ -5,12 +5,12 @@ const path = require('path');
 const fs = require('fs');
 
 /**
- * 零售数据提取器
- * 参考 stats-export-extension 的逻辑
+ * 固定资产投资数据提取器
+ * 参考 stats-export-extension 和其他提取器的逻辑
  */
-class RetailDataExtractor {
+class InvestDataExtractor {
   constructor() {
-    this.downloadDir = path.join(__dirname, '../stock/retail');
+    this.downloadDir = path.join(__dirname, '../../../stock/invest');
     this.ensureDownloadDir();
   }
 
@@ -21,11 +21,11 @@ class RetailDataExtractor {
   }
 
   /**
-   * 处理详情页面，提取零售数据
+   * 处理详情页面，提取固定资产投资数据
    */
   async processDetailPage(detailUrl) {
     try {
-      console.log(`正在提取零售数据: ${detailUrl}`);
+      console.log(`正在提取固定资产投资数据: ${detailUrl}`);
       
       const response = await this.fetchWithRetry(detailUrl);
       const $ = cheerio.load(response.data);
@@ -34,7 +34,7 @@ class RetailDataExtractor {
       const relatedDatasetLink = this.findRelatedDatasetLink($, detailUrl);
       if (relatedDatasetLink) {
         console.log(`找到相关数据表链接: ${relatedDatasetLink}`);
-        return await this.downloadRelatedDataset(relatedDatasetLink, detailUrl);
+        return await this.downloadRelatedDataset(relatedDatasetLink, detailUrl, $);
       }
       
       // 2. 如果没有相关数据表，从页面表格中提取
@@ -42,7 +42,7 @@ class RetailDataExtractor {
       return await this.extractFromPageTable($, detailUrl);
       
     } catch (error) {
-      console.error(`处理零售数据失败 ${detailUrl}:`, error.message);
+      console.error(`处理固定资产投资数据失败 ${detailUrl}:`, error.message);
       return null;
     }
   }
@@ -80,25 +80,24 @@ class RetailDataExtractor {
   /**
    * 下载相关数据表
    */
-  async downloadRelatedDataset(relatedUrl, detailUrl) {
+  async downloadRelatedDataset(relatedUrl, detailUrl, detailPageDoc) {
     try {
       console.log(`正在下载相关数据表: ${relatedUrl}`);
       
-      // 先获取页面标题
-      const pageResponse = await this.fetchWithRetry(detailUrl);
-      const $ = cheerio.load(pageResponse.data);
-      const pageTitle = this.extractPageTitle($);
+      // 从详情页文档提取页面标题（而不是从相关数据表页面）
+      const pageTitle = this.extractPageTitle(detailPageDoc);
       
-      // 下载Excel文件（使用arraybuffer以正确处理二进制数据）
-      const response = await this.fetchWithRetry(relatedUrl, { responseType: 'arraybuffer' });
+      // 下载Excel文件
+      const response = await this.fetchWithRetry(relatedUrl, 3, { responseType: 'arraybuffer' });
       
       // 生成文件名（使用页面标题）
       const dateInfo = this.extractDateInfo(detailUrl);
-      const filename = this.buildRawFilename(dateInfo.publishDate, pageTitle, 'xls');
+      const ext = this.guessExtFromUrl(relatedUrl) || 'xlsx';
+      const filename = this.buildRawFilename(dateInfo.publishDate, pageTitle, ext);
       const filePath = path.join(this.downloadDir, filename);
       
-      // 保存文件（确保使用Buffer）
-      fs.writeFileSync(filePath, Buffer.from(response.data));
+      // 保存文件
+      fs.writeFileSync(filePath, response.data);
       console.log(`相关数据表已保存: ${filePath}`);
       
       return {
@@ -122,9 +121,9 @@ class RetailDataExtractor {
   async extractFromPageTable($, detailUrl) {
     try {
       // 查找最大的表格
-      const table = this.findRetailTable($);
+      const table = this.findInvestTable($);
       if (!table) {
-        console.log('未找到零售数据表格');
+        console.log('未找到固定资产投资数据表格');
         return null;
       }
       
@@ -142,7 +141,7 @@ class RetailDataExtractor {
       const pageTitle = this.extractPageTitle($);
       
       // 生成Excel文件（使用页面标题）
-      const filename = this.buildRawFilename(dateInfo.publishDate, pageTitle, 'xls');
+      const filename = this.buildRawFilename(dateInfo.publishDate, pageTitle, 'xlsx');
       const excelFile = await this.generateExcelFile(rows, filename);
       
       return {
@@ -162,9 +161,9 @@ class RetailDataExtractor {
   }
 
   /**
-   * 查找零售数据表格（参考扩展逻辑）
+   * 查找固定资产投资数据表格
    */
-  findRetailTable($) {
+  findInvestTable($) {
     const tables = $('table');
     let best = null;
     let bestScore = -1;
@@ -285,16 +284,15 @@ class RetailDataExtractor {
   }
 
   /**
-   * 生成文件名（已废弃，保留为兼容）
+   * 从URL猜测文件扩展名
    */
-  generateFilename(dateInfo, url) {
-    const publishDate = dateInfo.publishDate || new Date().toISOString().split('T')[0];
-    const periodInfo = dateInfo.periodInfo || '';
-    
-    if (periodInfo) {
-      return `${publishDate}_${periodInfo}社会消费品零售总额主要数据-国家统计局`;
-    } else {
-      return `${publishDate}_社会消费品零售总额主要数据-国家统计局`;
+  guessExtFromUrl(url) {
+    try {
+      const u = new URL(url);
+      const m = (u.pathname || '').match(/\.([a-z0-9]+)$/i);
+      return m && m[1] ? m[1].toLowerCase() : '';
+    } catch (e) {
+      return '';
     }
   }
 
@@ -328,10 +326,7 @@ class RetailDataExtractor {
   /**
    * 带重试的请求
    */
-  async fetchWithRetry(url, options = {}) {
-    const maxRetries = options.maxRetries || 3;
-    const config = options.responseType ? { responseType: options.responseType } : {};
-    
+  async fetchWithRetry(url, maxRetries = 3, config = {}) {
     for (let i = 0; i < maxRetries; i++) {
       try {
         console.log(`正在请求: ${url} (尝试 ${i + 1}/${maxRetries})`);
@@ -377,11 +372,11 @@ class RetailDataExtractor {
 
 // 如果直接运行此文件，执行测试
 if (require.main === module) {
-  const extractor = new RetailDataExtractor();
+  const extractor = new InvestDataExtractor();
   
   // 测试URL
   const testUrls = [
-    'https://www.stats.gov.cn/sj/zxfb/202510/t20251009_1961456.html'
+    'https://www.stats.gov.cn/sj/zxfb/202509/t20250915_1961177.html'
   ];
   
   extractor.processMultiplePages(testUrls).then(results => {
@@ -391,4 +386,4 @@ if (require.main === module) {
   });
 }
 
-module.exports = RetailDataExtractor;
+module.exports = InvestDataExtractor;

@@ -10,7 +10,7 @@ const fs = require('fs');
  */
 class CapacityUtilizationExtractor {
   constructor() {
-    this.downloadDir = path.join(__dirname, '../stock/capacity_utilization');
+    this.downloadDir = path.join(__dirname, '../../../stock/capacity_utilization');
     this.ensureDownloadDir();
   }
 

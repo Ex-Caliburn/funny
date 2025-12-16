@@ -11,7 +11,7 @@ const xlsx = require('xlsx');
 
 class GoodsPriceExtractor {
   constructor() {
-    this.dataDir = path.join(__dirname, '../stock');
+    this.dataDir = path.join(__dirname, '../../../stock');
     this.downloadDir = path.join(this.dataDir, 'goods_price');
     this.maxRetries = 3;
     this.delayBetweenRequests = 1000;

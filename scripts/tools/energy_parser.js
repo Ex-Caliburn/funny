@@ -4,7 +4,7 @@ const xlsx = require('xlsx');
 
 // 解析能源数据
 function parseEnergyData() {
-    const dataDir = path.join(__dirname, '../stock/energy');
+    const dataDir = path.join(__dirname, '../../stock/energy');
     
     // 自动获取目录下所有 .xls 文件
     const files = fs.readdirSync(dataDir).filter(file => 
@@ -413,7 +413,7 @@ try {
     const result = parseEnergyData();
     
     // 保存为JSON文件
-    const outputPath = path.join(__dirname, '../stock/cleaned_data/energy_cleaned.json');
+    const outputPath = path.join(__dirname, '../../stock/cleaned_data/energy_cleaned.json');
     fs.writeFileSync(outputPath, JSON.stringify(result, null, 2));
     
     console.log(`Data saved to ${outputPath}`);

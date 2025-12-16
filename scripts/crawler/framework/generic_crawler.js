@@ -19,7 +19,7 @@ class GenericCrawler {
       throw new Error(`不支持的目标类型: ${targetType}`);
     }
     
-    this.dataDir = path.join(__dirname, '../stock');
+    this.dataDir = path.join(__dirname, '../../../stock');
     this.downloadDir = path.join(this.dataDir, this.target.downloadDir);
     
     // 确保目录存在
@@ -349,7 +349,7 @@ class GenericCrawler {
    */
   async extractGoodsPriceData(detailUrl) {
     try {
-      const GoodsPriceExtractor = require('./goods_price_extractor');
+      const GoodsPriceExtractor = require('../extractors/goods_price_extractor');
       const extractor = new GoodsPriceExtractor();
       
       // 提取数据并生成Excel文件
@@ -371,7 +371,7 @@ class GenericCrawler {
    */
   async extractEnergyData(detailUrl) {
     try {
-      const EnergyDataExtractor = require('./energy_data_extractor');
+      const EnergyDataExtractor = require('../extractors/energy_data_extractor');
       const extractor = new EnergyDataExtractor();
       
       // 提取数据并生成Excel文件
@@ -393,7 +393,7 @@ class GenericCrawler {
    */
   async extractRetailData(detailUrl) {
     try {
-      const RetailDataExtractor = require('./retail_data_extractor');
+      const RetailDataExtractor = require('../extractors/retail_data_extractor');
       const extractor = new RetailDataExtractor();
       
       // 提取数据并生成Excel文件
@@ -418,9 +418,9 @@ class GenericCrawler {
       // 根据配置选择合适的提取器
       let ExtractorClass;
       if (this.target.extractor === 'industry_profits_extractor.js') {
-        ExtractorClass = require('./industry_profits_extractor');
+        ExtractorClass = require('../extractors/industry_profits_extractor');
       } else {
-        ExtractorClass = require('./profits_data_extractor');
+        ExtractorClass = require('../extractors/profits_data_extractor');
       }
       
       const extractor = new ExtractorClass();
@@ -445,7 +445,7 @@ class GenericCrawler {
    */
   async extractInvestData(detailUrl) {
     try {
-      const InvestDataExtractor = require('./invest_data_extractor');
+      const InvestDataExtractor = require('../extractors/invest_data_extractor');
       const extractor = new InvestDataExtractor();
       
       // 提取数据并生成Excel文件
@@ -467,7 +467,7 @@ class GenericCrawler {
    */
   async extractHouseData(detailUrl) {
     try {
-      const HouseDataExtractor = require('./house_data_extractor');
+      const HouseDataExtractor = require('../extractors/house_data_extractor');
       const extractor = new HouseDataExtractor();
       
       // 提取数据并生成Excel文件
@@ -595,7 +595,7 @@ class GenericCrawler {
       throw new Error('未配置解析脚本');
     }
     
-    const scriptPath = path.join(__dirname, scriptName);
+    const scriptPath = path.join(__dirname, '../../tools', scriptName);
     
     return new Promise((resolve, reject) => {
       console.log(`开始运行解析脚本: ${scriptName}`);

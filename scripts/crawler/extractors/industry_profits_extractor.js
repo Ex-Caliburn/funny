@@ -8,7 +8,7 @@ const path = require('path');
 class IndustryProfitsExtractor extends ProfitsDataExtractor {
   constructor() {
     super();
-    this.downloadDir = path.join(__dirname, '../stock/industry_profits');
+    this.downloadDir = path.join(__dirname, '../../../stock/industry_profits');
     this.ensureDownloadDir();
   }
 }

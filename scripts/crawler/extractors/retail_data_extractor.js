@@ -5,12 +5,12 @@ const path = require('path');
 const fs = require('fs');
 
 /**
- * 房地产数据提取器
+ * 零售数据提取器
  * 参考 stats-export-extension 的逻辑
  */
-class HouseDataExtractor {
+class RetailDataExtractor {
   constructor() {
-    this.downloadDir = path.join(__dirname, '../stock/house');
+    this.downloadDir = path.join(__dirname, '../../../stock/retail');
     this.ensureDownloadDir();
   }
 
@@ -21,11 +21,11 @@ class HouseDataExtractor {
   }
 
   /**
-   * 处理详情页面，提取房地产数据
+   * 处理详情页面，提取零售数据
    */
   async processDetailPage(detailUrl) {
     try {
-      console.log(`正在提取房地产数据: ${detailUrl}`);
+      console.log(`正在提取零售数据: ${detailUrl}`);
       
       const response = await this.fetchWithRetry(detailUrl);
       const $ = cheerio.load(response.data);
@@ -34,7 +34,7 @@ class HouseDataExtractor {
       const relatedDatasetLink = this.findRelatedDatasetLink($, detailUrl);
       if (relatedDatasetLink) {
         console.log(`找到相关数据表链接: ${relatedDatasetLink}`);
-        return await this.downloadRelatedDataset(relatedDatasetLink, detailUrl, $);
+        return await this.downloadRelatedDataset(relatedDatasetLink, detailUrl);
       }
       
       // 2. 如果没有相关数据表，从页面表格中提取
@@ -42,7 +42,7 @@ class HouseDataExtractor {
       return await this.extractFromPageTable($, detailUrl);
       
     } catch (error) {
-      console.error(`处理房地产数据失败 ${detailUrl}:`, error.message);
+      console.error(`处理零售数据失败 ${detailUrl}:`, error.message);
       return null;
     }
   }
@@ -80,24 +80,25 @@ class HouseDataExtractor {
   /**
    * 下载相关数据表
    */
-  async downloadRelatedDataset(relatedUrl, detailUrl, detailPageDoc) {
+  async downloadRelatedDataset(relatedUrl, detailUrl) {
     try {
       console.log(`正在下载相关数据表: ${relatedUrl}`);
       
-      // 从详情页文档提取页面标题
-      const pageTitle = this.extractPageTitle(detailPageDoc);
+      // 先获取页面标题
+      const pageResponse = await this.fetchWithRetry(detailUrl);
+      const $ = cheerio.load(pageResponse.data);
+      const pageTitle = this.extractPageTitle($);
       
-      // 下载Excel文件
-      const response = await this.fetchWithRetry(relatedUrl, 3, { responseType: 'arraybuffer' });
+      // 下载Excel文件（使用arraybuffer以正确处理二进制数据）
+      const response = await this.fetchWithRetry(relatedUrl, { responseType: 'arraybuffer' });
       
       // 生成文件名（使用页面标题）
       const dateInfo = this.extractDateInfo(detailUrl);
-      const ext = this.guessExtFromUrl(relatedUrl) || 'xlsx';
-      const filename = this.buildRawFilename(dateInfo.publishDate, pageTitle, ext);
+      const filename = this.buildRawFilename(dateInfo.publishDate, pageTitle, 'xls');
       const filePath = path.join(this.downloadDir, filename);
       
-      // 保存文件
-      fs.writeFileSync(filePath, response.data);
+      // 保存文件（确保使用Buffer）
+      fs.writeFileSync(filePath, Buffer.from(response.data));
       console.log(`相关数据表已保存: ${filePath}`);
       
       return {
@@ -120,28 +121,35 @@ class HouseDataExtractor {
    */
   async extractFromPageTable($, detailUrl) {
     try {
-      // 查找所有表格
-      const tables = this.findHouseTables($);
-      if (!tables || tables.length === 0) {
-        console.log('未找到房地产数据表格');
+      // 查找最大的表格
+      const table = this.findRetailTable($);
+      if (!table) {
+        console.log('未找到零售数据表格');
         return null;
       }
       
-      console.log(`找到 ${tables.length} 个表格`);
+      // 提取表格数据
+      const rows = this.tableToRowsArray($, table);
+      if (rows.length === 0) {
+        console.log('表格数据为空');
+        return null;
+      }
+      
+      console.log(`提取到 ${rows.length} 行数据`);
       
       // 提取日期信息和页面标题
       const dateInfo = this.extractDateInfo(detailUrl);
       const pageTitle = this.extractPageTitle($);
       
       // 生成Excel文件（使用页面标题）
-      const filename = this.buildRawFilename(dateInfo.publishDate, pageTitle, 'xlsx');
-      const excelFile = await this.generateExcelFile(tables, filename);
+      const filename = this.buildRawFilename(dateInfo.publishDate, pageTitle, 'xls');
+      const excelFile = await this.generateExcelFile(rows, filename);
       
       return {
         url: detailUrl,
         publishDate: dateInfo.publishDate,
         periodInfo: dateInfo.periodInfo,
-        dataRows: tables.reduce((sum, t) => sum + t.rows.length, 0),
+        dataRows: rows.length,
         file: excelFile,
         source: 'page_table',
         title: pageTitle
@@ -154,31 +162,37 @@ class HouseDataExtractor {
   }
 
   /**
-   * 查找房地产数据表格
+   * 查找零售数据表格（参考扩展逻辑）
    */
-  findHouseTables($) {
-    const tables = [];
+  findRetailTable($) {
+    const tables = $('table');
+    let best = null;
+    let bestScore = -1;
     
-    $('table').each((i, table) => {
+    tables.each((i, table) => {
       const $table = $(table);
-      const rows = this.tableToRowsArray($, table);
+      const rows = $table.find('tr').length;
+      const score = rows * 100; // 按行数评分
       
-      if (rows.length > 0) {
-        // 提取表格标题（通常在第一行或表格前的标题）
-        let title = '';
-        const firstRow = rows[0];
-        if (firstRow && firstRow.length === 1) {
-          title = firstRow[0];
-        }
-        
-        tables.push({
-          title: title || `表${i + 1}`,
-          rows: rows
-        });
+      if (score > bestScore) {
+        bestScore = score;
+        best = table;
       }
     });
     
-    return tables;
+    if (best) return best;
+    
+    // 如果没找到，尝试在标题附近查找
+    const headings = $('h1, h2, h3, h4, h5, h6');
+    if (headings.length > 0) {
+      const firstHeading = headings.first();
+      const nearbyTable = firstHeading.nextAll('table').first();
+      if (nearbyTable.length > 0) {
+        return nearbyTable[0];
+      }
+    }
+    
+    return null;
   }
 
   /**
@@ -197,6 +211,7 @@ class HouseDataExtractor {
         const $cell = $(cell);
         let text = $cell.text().replace(/\r?\n/g, ' ').replace(/\s+/g, ' ').trim();
         
+        // 如果单元格为空，检查子元素
         if (!text && $cell.children().length > 0) {
           const childTexts = [];
           $cell.children().each((k, child) => {
@@ -221,6 +236,7 @@ class HouseDataExtractor {
    * 提取日期信息
    */
   extractDateInfo(url) {
+    // 从URL中提取日期
     const urlMatch = url.match(/(\d{4})(\d{2})(\d{2})/);
     let publishDate = '';
     let periodInfo = '';
@@ -239,12 +255,15 @@ class HouseDataExtractor {
    * 提取页面标题
    */
   extractPageTitle($) {
+    // 尝试从页面获取标题
     let title = $('title').text().trim();
     
+    // 如果没有title标签，尝试从h1获取
     if (!title) {
       title = $('h1').first().text().trim();
     }
     
+    // 如果还没有，尝试从h2获取
     if (!title) {
       title = $('h2').first().text().trim();
     }
@@ -253,40 +272,47 @@ class HouseDataExtractor {
   }
 
   /**
-   * 构建文件名（参考 stats-export-extension）
+   * 构建文件名（参考扩展逻辑）
    */
   buildRawFilename(dateStr, title, ext) {
+    // 日期只保留数字和横杠
     const base = (dateStr || '').replace(/[^0-9-]/g, '');
+    
+    // 标题移除所有空格，截取前40个字符
     const t = (title || '').replace(/\s+/g, '').slice(0, 40) || '相关数据表';
+    
     return (base ? base + '_' : '') + t + '.' + ext;
   }
 
   /**
-   * 从URL猜测文件扩展名
+   * 生成文件名（已废弃，保留为兼容）
    */
-  guessExtFromUrl(url) {
-    try {
-      const u = new URL(url);
-      const m = (u.pathname || '').match(/\.([a-z0-9]+)$/i);
-      return m && m[1] ? m[1].toLowerCase() : '';
-    } catch (e) {
-      return '';
+  generateFilename(dateInfo, url) {
+    const publishDate = dateInfo.publishDate || new Date().toISOString().split('T')[0];
+    const periodInfo = dateInfo.periodInfo || '';
+    
+    if (periodInfo) {
+      return `${publishDate}_${periodInfo}社会消费品零售总额主要数据-国家统计局`;
+    } else {
+      return `${publishDate}_社会消费品零售总额主要数据-国家统计局`;
     }
   }
 
   /**
-   * 生成Excel文件（多个工作表）
+   * 生成Excel文件
    */
-  async generateExcelFile(tables, filename) {
+  async generateExcelFile(rows, filename) {
     try {
+      // 创建工作簿
       const workbook = xlsx.utils.book_new();
       
-      tables.forEach((table, index) => {
-        const sheetName = table.title || `表${index + 1}`;
-        const worksheet = xlsx.utils.aoa_to_sheet(table.rows);
-        xlsx.utils.book_append_sheet(workbook, worksheet, sheetName.slice(0, 31));
-      });
+      // 创建工作表
+      const worksheet = xlsx.utils.aoa_to_sheet(rows);
       
+      // 添加工作表到工作簿
+      xlsx.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
+      
+      // 保存文件（filename已经包含扩展名）
       const filePath = path.join(this.downloadDir, filename);
       xlsx.writeFile(workbook, filePath);
       
@@ -302,7 +328,10 @@ class HouseDataExtractor {
   /**
    * 带重试的请求
    */
-  async fetchWithRetry(url, maxRetries = 3, config = {}) {
+  async fetchWithRetry(url, options = {}) {
+    const maxRetries = options.maxRetries || 3;
+    const config = options.responseType ? { responseType: options.responseType } : {};
+    
     for (let i = 0; i < maxRetries; i++) {
       try {
         console.log(`正在请求: ${url} (尝试 ${i + 1}/${maxRetries})`);
@@ -321,6 +350,45 @@ class HouseDataExtractor {
       }
     }
   }
+
+  /**
+   * 批量处理多个详情页面
+   */
+  async processMultiplePages(detailUrls) {
+    console.log(`开始处理 ${detailUrls.length} 个详情页面...`);
+    
+    const results = [];
+    
+    for (const detailUrl of detailUrls) {
+      try {
+        const result = await this.processDetailPage(detailUrl);
+        if (result) {
+          results.push(result);
+        }
+      } catch (error) {
+        console.error(`处理页面失败 ${detailUrl}:`, error.message);
+      }
+    }
+    
+    console.log(`处理完成，成功处理 ${results.length} 个页面`);
+    return results;
+  }
 }
 
-module.exports = HouseDataExtractor;
+// 如果直接运行此文件，执行测试
+if (require.main === module) {
+  const extractor = new RetailDataExtractor();
+  
+  // 测试URL
+  const testUrls = [
+    'https://www.stats.gov.cn/sj/zxfb/202510/t20251009_1961456.html'
+  ];
+  
+  extractor.processMultiplePages(testUrls).then(results => {
+    console.log('提取结果:', results);
+  }).catch(error => {
+    console.error('测试失败:', error);
+  });
+}
+
+module.exports = RetailDataExtractor;

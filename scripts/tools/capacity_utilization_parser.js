@@ -7,7 +7,7 @@ const xlsx = require('xlsx');
  * 数据格式：包含各行业的产能利用率（%）及同比变化（百分点）
  */
 function parseCapacityUtilizationData() {
-    const dataDir = path.join(__dirname, '../stock/capacity_utilization');
+    const dataDir = path.join(__dirname, '../../stock/capacity_utilization');
     
     // 获取目录下所有 Excel 文件
     const files = fs.readdirSync(dataDir).filter(file => 
@@ -50,7 +50,7 @@ function parseCapacityUtilizationData() {
     calculateMoM(metrics);
     
     // 保存清洗后的数据
-    const outputPath = path.join(__dirname, '../stock/cleaned_data/capacity_utilization_cleaned.json');
+    const outputPath = path.join(__dirname, '../../stock/cleaned_data/capacity_utilization_cleaned.json');
     const output = {
         lastUpdated: new Date().toISOString(),
         dataCount: allData.length,

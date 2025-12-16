@@ -13,7 +13,7 @@ const { spawn } = require('child_process');
 class AutomatedCrawler {
   constructor() {
     this.baseUrl = 'https://www.stats.gov.cn/sj/zxfb/index.html';
-    this.dataDir = path.join(__dirname, '../stock');
+    this.dataDir = path.join(__dirname, '../../../stock');
     this.downloadDir = path.join(this.dataDir, 'goods_price');
     this.maxRetries = 3;
     this.delayBetweenRequests = 1000; // 1秒延迟
@@ -283,7 +283,7 @@ class AutomatedCrawler {
   async runParsingScript() {
     return new Promise((resolve, reject) => {
       console.log('开始运行商品价格解析脚本...');
-      const scriptPath = path.join(__dirname, 'goods_price_parse.js');
+      const scriptPath = path.join(__dirname, '../../tools/goods_price_parse.js');
       
       if (!fs.existsSync(scriptPath)) {
         console.error(`解析脚本不存在: ${scriptPath}`);

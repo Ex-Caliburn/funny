@@ -747,7 +747,7 @@ async function parsePDF(filePath) {
  * 处理所有PDF文件
  */
 async function processAllPDFs() {
-  const reportDir = path.join(__dirname, '../stock/report_analysis/兴业银锡');
+  const reportDir = path.join(__dirname, '../../stock/report_analysis/兴业银锡');
   
   if (!fs.existsSync(reportDir)) {
     console.error(`目录不存在: ${reportDir}`);

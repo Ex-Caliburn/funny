@@ -4,7 +4,7 @@
 
 ### 1. `huayang_data.json` - 原始数据
 
-- **来源**：从 PDF 文件自动解析生成（`scripts/huayang_report_parse.js`）
+- **来源**：从 PDF 文件自动解析生成（`scripts/stock-reports/huayang_report_parse.js`）
 - **内容**：
   - `allData`：详细的提取数据，包含所有匹配项和上下文信息
   - `summary`：汇总数据，但单位不统一

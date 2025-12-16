@@ -149,7 +149,7 @@ function validateParams(params) {
  */
 function ensureOutputDir(params) {
   if (!params.outputDir) {
-    params.outputDir = path.join(__dirname, '..', 'stock', 'report_analysis', params.name);
+    params.outputDir = path.join(__dirname, '../..', 'stock', 'report_analysis', params.name);
   }
   
   if (!fs.existsSync(params.outputDir)) {

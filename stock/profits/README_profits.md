@@ -4,8 +4,8 @@
 
 - `html/profits_chart.html` - 规模以上工业增加值数据可视化页面
 - `cleaned_data/profits_cleaned.json` - 清洗后的数据文件
-- `../scripts/profits_parse.js` - 数据解析脚本
-- `../scripts/profits_data_extractor.js` - 数据提取器
+- `../scripts/tools/profits_parse.js` - 数据解析脚本
+- `../scripts/crawler/extractors/profits_data_extractor.js` - 数据提取器
 
 ## 数据说明
 

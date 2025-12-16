@@ -9,7 +9,7 @@ const path = require('path');
  */
 
 function parseHouseData() {
-  const houseDir = path.join(__dirname, '../stock/house');
+  const houseDir = path.join(__dirname, '../../stock/house');
   const files = fs.readdirSync(houseDir)
     .filter(f => f.endsWith('.xlsx'))
     .sort();
@@ -307,7 +307,7 @@ function parseHouseData() {
   });
 
   // 保存到JSON文件
-  const outputPath = path.join(__dirname, '../stock/cleaned_data/house_cleaned.json');
+  const outputPath = path.join(__dirname, '../../stock/cleaned_data/house_cleaned.json');
   fs.writeFileSync(outputPath, JSON.stringify(result, null, 2), 'utf8');
   console.log(`\n数据已保存到: ${outputPath}`);
 

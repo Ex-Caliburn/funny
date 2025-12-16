@@ -1726,7 +1726,7 @@ async function parsePDF(filePath) {
  * 处理所有PDF文件
  */
 async function processAllPDFs() {
-  const reportDir = path.join(__dirname, '../stock/report_analysis/山煤国际');
+  const reportDir = path.join(__dirname, '../../stock/report_analysis/山煤国际');
   const files = fs.readdirSync(reportDir)
     .filter(f => f.endsWith('.pdf'))
     .filter(f => !f.includes('生产经营数据')); // 跳过生产经营数据PDF（由parse_production_data.js处理）
@@ -2384,7 +2384,7 @@ async function parseProductionDataPDF(filePath) {
 async function parseAllProductionDataPDFs() {
   console.log('\n📊 解析生产经营数据PDF...\n');
   
-  const reportDir = path.join(__dirname, '../stock/report_analysis/山煤国际');
+  const reportDir = path.join(__dirname, '../../stock/report_analysis/山煤国际');
   const files = fs.readdirSync(reportDir)
     .filter(f => f.includes('生产经营数据.pdf'))
     .sort();
@@ -2481,7 +2481,7 @@ async function parseAllProductionDataPDFs() {
  * 加载生产经营数据PDF的数据（2024年之前优先使用）
  */
 function loadProductionDataPDF() {
-  const baseDir = path.join(__dirname, '../stock/report_analysis/山煤国际');
+  const baseDir = path.join(__dirname, '../../stock/report_analysis/山煤国际');
   const productionDataPath = path.join(baseDir, 'production_data_extracted.json');
   
   if (!fs.existsSync(productionDataPath)) {
@@ -2510,7 +2510,7 @@ function loadProductionDataPDF() {
 function mergeQuarterlyData() {
   console.log('\n🔄 整合季度数据到主数据文件...\n');
   
-  const baseDir = path.join(__dirname, '../stock/report_analysis/山煤国际');
+  const baseDir = path.join(__dirname, '../../stock/report_analysis/山煤国际');
   const shanmeiDataPath = path.join(baseDir, 'shanmei_data.json');
   
   if (!fs.existsSync(shanmeiDataPath)) {
@@ -2677,7 +2677,7 @@ function mergeQuarterlyData() {
 function testDataIntegrity() {
   console.log('\n🧪 测试数据完整性...\n');
   
-  const dataPath = path.join(__dirname, '../stock/report_analysis/山煤国际/shanmei_data.json');
+  const dataPath = path.join(__dirname, '../../stock/report_analysis/山煤国际/shanmei_data.json');
   
   if (!fs.existsSync(dataPath)) {
     console.error('❌ shanmei_data.json 不存在');

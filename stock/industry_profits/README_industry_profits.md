@@ -4,7 +4,7 @@
 
 - `html/industry_profits_chart.html` - 工业企业财务指标数据可视化页面
 - `cleaned_data/industry_profits_cleaned.json` - 清洗后的数据文件
-- `../scripts/industry_profits_parse.js` - 数据解析脚本
+- `../scripts/tools/industry_profits_parse.js` - 数据解析脚本
 
 ## 功能特性
 

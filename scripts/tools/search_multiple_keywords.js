@@ -102,7 +102,7 @@ async function searchKeywordsInPDF(filePath, keywords) {
 }
 
 async function main() {
-  const reportDir = path.join(__dirname, '../stock/report_analysis/华阳股份');
+  const reportDir = path.join(__dirname, '../../stock/report_analysis/华阳股份');
   
   if (!fs.existsSync(reportDir)) {
     console.error(`目录不存在: ${reportDir}`);

@@ -85,8 +85,8 @@ npm run capacity:parse
 
 ## 技术实现
 
-- **爬虫**：`scripts/capacity_utilization_extractor.js`
-- **解析器**：`scripts/capacity_utilization_parser.js`
+- **爬虫**：`scripts/crawler/extractors/capacity_utilization_extractor.js`
+- **解析器**：`scripts/tools/capacity_utilization_parser.js`
 - **图表**：`stock/html/capacity_utilization_chart.html`
 - **配置**：在 `scripts/crawler_config.js` 中的 `capacityUtilization` 配置项
 

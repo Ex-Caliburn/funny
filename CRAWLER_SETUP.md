@@ -142,7 +142,7 @@ targets: {
 DEBUG=* node scripts/crawler_main.js goodsPrice 1
 
 # 测试单个功能
-node scripts/test_crawler.js
+node scripts/crawler/framework/crawler_main.js
 ```
 
 ### 手动检查

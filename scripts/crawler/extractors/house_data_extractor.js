@@ -5,12 +5,12 @@ const path = require('path');
 const fs = require('fs');
 
 /**
- * 固定资产投资数据提取器
- * 参考 stats-export-extension 和其他提取器的逻辑
+ * 房地产数据提取器
+ * 参考 stats-export-extension 的逻辑
  */
-class InvestDataExtractor {
+class HouseDataExtractor {
   constructor() {
-    this.downloadDir = path.join(__dirname, '../stock/invest');
+    this.downloadDir = path.join(__dirname, '../../../stock/house');
     this.ensureDownloadDir();
   }
 
@@ -21,11 +21,11 @@ class InvestDataExtractor {
   }
 
   /**
-   * 处理详情页面，提取固定资产投资数据
+   * 处理详情页面，提取房地产数据
    */
   async processDetailPage(detailUrl) {
     try {
-      console.log(`正在提取固定资产投资数据: ${detailUrl}`);
+      console.log(`正在提取房地产数据: ${detailUrl}`);
       
       const response = await this.fetchWithRetry(detailUrl);
       const $ = cheerio.load(response.data);
@@ -42,7 +42,7 @@ class InvestDataExtractor {
       return await this.extractFromPageTable($, detailUrl);
       
     } catch (error) {
-      console.error(`处理固定资产投资数据失败 ${detailUrl}:`, error.message);
+      console.error(`处理房地产数据失败 ${detailUrl}:`, error.message);
       return null;
     }
   }
@@ -84,7 +84,7 @@ class InvestDataExtractor {
     try {
       console.log(`正在下载相关数据表: ${relatedUrl}`);
       
-      // 从详情页文档提取页面标题（而不是从相关数据表页面）
+      // 从详情页文档提取页面标题
       const pageTitle = this.extractPageTitle(detailPageDoc);
       
       // 下载Excel文件
@@ -120,21 +120,14 @@ class InvestDataExtractor {
    */
   async extractFromPageTable($, detailUrl) {
     try {
-      // 查找最大的表格
-      const table = this.findInvestTable($);
-      if (!table) {
-        console.log('未找到固定资产投资数据表格');
+      // 查找所有表格
+      const tables = this.findHouseTables($);
+      if (!tables || tables.length === 0) {
+        console.log('未找到房地产数据表格');
         return null;
       }
       
-      // 提取表格数据
-      const rows = this.tableToRowsArray($, table);
-      if (rows.length === 0) {
-        console.log('表格数据为空');
-        return null;
-      }
-      
-      console.log(`提取到 ${rows.length} 行数据`);
+      console.log(`找到 ${tables.length} 个表格`);
       
       // 提取日期信息和页面标题
       const dateInfo = this.extractDateInfo(detailUrl);
@@ -142,13 +135,13 @@ class InvestDataExtractor {
       
       // 生成Excel文件（使用页面标题）
       const filename = this.buildRawFilename(dateInfo.publishDate, pageTitle, 'xlsx');
-      const excelFile = await this.generateExcelFile(rows, filename);
+      const excelFile = await this.generateExcelFile(tables, filename);
       
       return {
         url: detailUrl,
         publishDate: dateInfo.publishDate,
         periodInfo: dateInfo.periodInfo,
-        dataRows: rows.length,
+        dataRows: tables.reduce((sum, t) => sum + t.rows.length, 0),
         file: excelFile,
         source: 'page_table',
         title: pageTitle
@@ -161,37 +154,31 @@ class InvestDataExtractor {
   }
 
   /**
-   * 查找固定资产投资数据表格
+   * 查找房地产数据表格
    */
-  findInvestTable($) {
-    const tables = $('table');
-    let best = null;
-    let bestScore = -1;
+  findHouseTables($) {
+    const tables = [];
     
-    tables.each((i, table) => {
+    $('table').each((i, table) => {
       const $table = $(table);
-      const rows = $table.find('tr').length;
-      const score = rows * 100; // 按行数评分
+      const rows = this.tableToRowsArray($, table);
       
-      if (score > bestScore) {
-        bestScore = score;
-        best = table;
+      if (rows.length > 0) {
+        // 提取表格标题（通常在第一行或表格前的标题）
+        let title = '';
+        const firstRow = rows[0];
+        if (firstRow && firstRow.length === 1) {
+          title = firstRow[0];
+        }
+        
+        tables.push({
+          title: title || `表${i + 1}`,
+          rows: rows
+        });
       }
     });
     
-    if (best) return best;
-    
-    // 如果没找到，尝试在标题附近查找
-    const headings = $('h1, h2, h3, h4, h5, h6');
-    if (headings.length > 0) {
-      const firstHeading = headings.first();
-      const nearbyTable = firstHeading.nextAll('table').first();
-      if (nearbyTable.length > 0) {
-        return nearbyTable[0];
-      }
-    }
-    
-    return null;
+    return tables;
   }
 
   /**
@@ -210,7 +197,6 @@ class InvestDataExtractor {
         const $cell = $(cell);
         let text = $cell.text().replace(/\r?\n/g, ' ').replace(/\s+/g, ' ').trim();
         
-        // 如果单元格为空，检查子元素
         if (!text && $cell.children().length > 0) {
           const childTexts = [];
           $cell.children().each((k, child) => {
@@ -235,7 +221,6 @@ class InvestDataExtractor {
    * 提取日期信息
    */
   extractDateInfo(url) {
-    // 从URL中提取日期
     const urlMatch = url.match(/(\d{4})(\d{2})(\d{2})/);
     let publishDate = '';
     let periodInfo = '';
@@ -254,15 +239,12 @@ class InvestDataExtractor {
    * 提取页面标题
    */
   extractPageTitle($) {
-    // 尝试从页面获取标题
     let title = $('title').text().trim();
     
-    // 如果没有title标签，尝试从h1获取
     if (!title) {
       title = $('h1').first().text().trim();
     }
     
-    // 如果还没有，尝试从h2获取
     if (!title) {
       title = $('h2').first().text().trim();
     }
@@ -271,15 +253,11 @@ class InvestDataExtractor {
   }
 
   /**
-   * 构建文件名（参考扩展逻辑）
+   * 构建文件名（参考 stats-export-extension）
    */
   buildRawFilename(dateStr, title, ext) {
-    // 日期只保留数字和横杠
     const base = (dateStr || '').replace(/[^0-9-]/g, '');
-    
-    // 标题移除所有空格，截取前40个字符
     const t = (title || '').replace(/\s+/g, '').slice(0, 40) || '相关数据表';
-    
     return (base ? base + '_' : '') + t + '.' + ext;
   }
 
@@ -297,20 +275,18 @@ class InvestDataExtractor {
   }
 
   /**
-   * 生成Excel文件
+   * 生成Excel文件（多个工作表）
    */
-  async generateExcelFile(rows, filename) {
+  async generateExcelFile(tables, filename) {
     try {
-      // 创建工作簿
       const workbook = xlsx.utils.book_new();
       
-      // 创建工作表
-      const worksheet = xlsx.utils.aoa_to_sheet(rows);
+      tables.forEach((table, index) => {
+        const sheetName = table.title || `表${index + 1}`;
+        const worksheet = xlsx.utils.aoa_to_sheet(table.rows);
+        xlsx.utils.book_append_sheet(workbook, worksheet, sheetName.slice(0, 31));
+      });
       
-      // 添加工作表到工作簿
-      xlsx.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
-      
-      // 保存文件（filename已经包含扩展名）
       const filePath = path.join(this.downloadDir, filename);
       xlsx.writeFile(workbook, filePath);
       
@@ -345,45 +321,6 @@ class InvestDataExtractor {
       }
     }
   }
-
-  /**
-   * 批量处理多个详情页面
-   */
-  async processMultiplePages(detailUrls) {
-    console.log(`开始处理 ${detailUrls.length} 个详情页面...`);
-    
-    const results = [];
-    
-    for (const detailUrl of detailUrls) {
-      try {
-        const result = await this.processDetailPage(detailUrl);
-        if (result) {
-          results.push(result);
-        }
-      } catch (error) {
-        console.error(`处理页面失败 ${detailUrl}:`, error.message);
-      }
-    }
-    
-    console.log(`处理完成，成功处理 ${results.length} 个页面`);
-    return results;
-  }
 }
 
-// 如果直接运行此文件，执行测试
-if (require.main === module) {
-  const extractor = new InvestDataExtractor();
-  
-  // 测试URL
-  const testUrls = [
-    'https://www.stats.gov.cn/sj/zxfb/202509/t20250915_1961177.html'
-  ];
-  
-  extractor.processMultiplePages(testUrls).then(results => {
-    console.log('提取结果:', results);
-  }).catch(error => {
-    console.error('测试失败:', error);
-  });
-}
-
-module.exports = InvestDataExtractor;
+module.exports = HouseDataExtractor;

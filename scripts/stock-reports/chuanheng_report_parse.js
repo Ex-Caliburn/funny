@@ -1044,7 +1044,7 @@ async function parsePDF(filePath) {
  * 处理所有PDF文件
  */
 async function processAllPDFs() {
-  const reportDir = path.join(__dirname, '../stock/report_analysis/川恒股份');
+  const reportDir = path.join(__dirname, '../../stock/report_analysis/川恒股份');
   const files = fs.readdirSync(reportDir)
     .filter(f => f.toLowerCase().endsWith('.pdf'))
     .sort();
@@ -1369,7 +1369,7 @@ async function main() {
   });
   
   // 保存为JSON文件
-  const outputPath = path.join(__dirname, '../stock/report_analysis/川恒股份/chuanheng_data.json');
+  const outputPath = path.join(__dirname, '../../stock/report_analysis/川恒股份/chuanheng_data.json');
   fs.writeFileSync(outputPath, JSON.stringify({ allData, summary }, null, 2), 'utf8');
   console.log(`\n数据已保存到: ${outputPath}`);
   

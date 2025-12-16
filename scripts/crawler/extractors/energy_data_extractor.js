@@ -11,7 +11,7 @@ const fs = require('fs');
  */
 class EnergyDataExtractor {
   constructor() {
-    this.downloadDir = path.join(__dirname, '../stock/energy');
+    this.downloadDir = path.join(__dirname, '../../../stock/energy');
     this.ensureDownloadDir();
   }
 

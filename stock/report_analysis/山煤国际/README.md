@@ -10,12 +10,12 @@
 
 ## 🚀 快速开始
 
-- 一键全流程：`node scripts/shanmei_report_parse.js all`
+- 一键全流程：`node scripts/stock-reports/shanmei_report_parse.js all`
 - 常用分步：
-  - `node scripts/shanmei_report_parse.js production` 生产经营数据
-  - `node scripts/shanmei_report_parse.js parse` 年报/季报解析
-  - `node scripts/shanmei_report_parse.js merge` 合并季度数据
-  - `node scripts/shanmei_report_parse.js test` 数据验证
+  - `node scripts/stock-reports/shanmei_report_parse.js production` 生产经营数据
+  - `node scripts/stock-reports/shanmei_report_parse.js parse` 年报/季报解析
+  - `node scripts/stock-reports/shanmei_report_parse.js merge` 合并季度数据
+  - `node scripts/stock-reports/shanmei_report_parse.js test` 数据验证
 
 ---
 
@@ -135,8 +135,8 @@ if (salesMatch) {
 ## 🔄 更新流程
 
 1. 下载新 PDF，按约定命名放入 `stock/report_analysis/山煤国际/`。  
-2. 运行 `node scripts/shanmei_report_parse.js all`。  
-3. 验证：`node scripts/shanmei_report_parse.js test`。  
+2. 运行 `node scripts/stock-reports/shanmei_report_parse.js all`。  
+3. 验证：`node scripts/stock-reports/shanmei_report_parse.js test`。  
 4. 查看 `shanmei_data.json` 或打开 `shanmei_coal_analysis.html`。
 
 ---
@@ -245,7 +245,7 @@ if (salesMatch) {
 - **为何 2021-2022 销量是总量？** 年报无自产/贸易细分，只能用合计；标记为 `total`。  
 - **为何早期季度只有产量？** 运营报缺“自产煤”字段，按策略不回退总量。  
 - **售价缺失原因？** 需同时有收入和销量才能算，任一为空则无法计算。  
-- **调整提取逻辑？** 修改 `scripts/shanmei_report_parse.js` 后重新运行 `parse`/`all`。
+- **调整提取逻辑？** 修改 `scripts/stock-reports/shanmei_report_parse.js` 后重新运行 `parse`/`all`。
 
 ---
 

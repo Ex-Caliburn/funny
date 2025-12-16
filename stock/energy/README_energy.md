@@ -142,7 +142,7 @@ http://localhost:8086/html/energy_chart.html
 ## 🔄 数据更新流程
 
 1. **获取新数据**：将新的Excel文件放入 `stock/energy/` 目录
-2. **更新解析脚本**：如需要，修改 `scripts/energy_parser.js` 中的文件列表
+2. **更新解析脚本**：如需要，修改 `scripts/tools/energy_parser.js` 中的文件列表
 3. **运行解析**：执行 `npm run energy:parse`
 4. **验证结果**：检查生成的 `energy_cleaned.json` 文件
 5. **刷新页面**：重新加载图表页面查看更新

@@ -10,7 +10,7 @@ const fs = require('fs');
  */
 class ProfitsDataExtractor {
   constructor() {
-    this.downloadDir = path.join(__dirname, '../stock/profits');
+    this.downloadDir = path.join(__dirname, '../../../stock/profits');
     this.ensureDownloadDir();
   }
 

@@ -67,7 +67,7 @@ function downloadCompanyReports(company, years, outputBase, reportTypes, keyword
     const typesArray = Array.isArray(reportTypes) ? reportTypes : [reportTypes];
     
     const args = [
-      path.join(__dirname, 'download_all_reports.js'), // 使用全功能版本
+      path.join(__dirname, './download_all_reports.js'), // 使用全功能版本
       '--code', company.code,
       '--name', company.name,
       '--years', years.join(','),
