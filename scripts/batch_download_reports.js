@@ -1,6 +1,26 @@
 /**
- * 批量下载多个公司的年报
+ * 批量下载多个公司的财报
+ * 支持：年度报告、半年度报告、季度报告、生产经营数据公告
  * 使用配置文件或命令行参数
+ * 
+ * 使用方法：
+ * # 使用默认配置（下载所有类型报告）
+ * node batch_download_reports.js
+ * 
+ * # 使用配置文件
+ * node batch_download_reports.js --config config.json
+ * 
+ * 配置文件示例 (config.json):
+ * {
+ *   "companies": [
+ *     { "code": "600348", "name": "华阳股份" },
+ *     { "code": "600546", "name": "山煤国际" }
+ *   ],
+ *   "years": [2023, 2024],
+ *   "outputBase": "../stock/report_analysis",
+ *   "reportType": "all",
+ *   "keywords": []
+ * }
  */
 
 const { spawn } = require('child_process');
@@ -10,29 +30,49 @@ const path = require('path');
 // 默认配置：可以修改这里来批量下载
 const DEFAULT_CONFIG = {
   companies: [
-    { code: '600348', name: '华阳股份' },
-    { code: '600519', name: '贵州茅台' },
-    { code: '000858', name: '五粮液' }
+    {
+      "code": "00883",
+      "name": "中国海洋石油"
+    },
+    {
+      "code": "601899",
+      "name": "紫金矿业"
+    },
+    {
+      "code": "002895",
+      "name": "川恒股份"
+    }
   ],
-  years: [2022, 2023, 2024],
-  outputBase: '../stock/report_analysis'
+  years: [2022, 2023, 2024, 2025],
+  outputBase: '../stock/report_analysis',
+  // 报告类型：'all' | 'annual' | 'semi' | 'quarterly' | 'q1' | 'q3' | 'production'
+  // 'all' 表示下载所有类型（年报+半年报+季报）
+  reportType: 'all',
+  // 自定义关键词（仅用于生产经营数据公告类型）
+  keywords: []
 };
 
 /**
  * 执行单个下载任务
  */
-function downloadCompanyReports(company, years, outputBase) {
+function downloadCompanyReports(company, years, outputBase, reportType, keywords = []) {
   return new Promise((resolve, reject) => {
     const args = [
       path.join(__dirname, 'download_all_reports.js'), // 使用全功能版本
       '--code', company.code,
       '--name', company.name,
-      '--years', years.join(',')
+      '--years', years.join(','),
+      '--type', reportType
     ];
 
     if (outputBase) {
       const outputDir = path.join(__dirname, outputBase, company.name);
       args.push('--output', outputDir);
+    }
+
+    // 如果是生产经营数据公告类型，且提供了关键词，则传递关键词参数
+    if (reportType === 'production' && keywords.length > 0) {
+      args.push('--keywords', keywords.join(','));
     }
 
     console.log(`\n${'='.repeat(70)}`);
@@ -99,12 +139,35 @@ async function main() {
     }
   }
 
+  // 确保配置有默认值
+  if (!config.reportType) {
+    config.reportType = 'all';
+  }
+  if (!config.keywords) {
+    config.keywords = [];
+  }
+
+  // 报告类型描述
+  const typeDescriptions = {
+    'all': '年报 + 半年报 + 季报',
+    'annual': '年度报告',
+    'semi': '半年度报告',
+    'quarterly': '季度报告(Q1+Q3)',
+    'q1': '第一季度报告',
+    'q3': '第三季度报告',
+    'production': '生产经营数据公告'
+  };
+
   console.log('\n' + '='.repeat(70));
-  console.log('📦 批量下载年报工具');
+  console.log('📦 批量下载财报工具');
   console.log('='.repeat(70));
   console.log(`\n📋 下载配置:`);
   console.log(`   公司数量: ${config.companies.length} 家`);
   console.log(`   年份: ${config.years.join(', ')}`);
+  console.log(`   报告类型: ${typeDescriptions[config.reportType] || config.reportType}`);
+  if (config.reportType === 'production' && config.keywords.length > 0) {
+    console.log(`   关键词: ${config.keywords.join(', ')}`);
+  }
   console.log(`   公司列表:`);
   config.companies.forEach((company, index) => {
     console.log(`     ${index + 1}. ${company.name} (${company.code})`);
@@ -113,7 +176,7 @@ async function main() {
 
   const results = [];
 
-  // 串行下载每个公司的年报
+  // 串行下载每个公司的财报
   for (let i = 0; i < config.companies.length; i++) {
     const company = config.companies[i];
     
@@ -121,7 +184,9 @@ async function main() {
       const result = await downloadCompanyReports(
         company,
         config.years,
-        config.outputBase
+        config.outputBase,
+        config.reportType,
+        config.keywords
       );
       results.push(result);
     } catch (error) {
