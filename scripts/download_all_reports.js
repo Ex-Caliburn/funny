@@ -9,6 +9,12 @@
  * # 只下载年报
  * node download_all_reports.js --code 600348 --name 华阳股份 --years 2023 --type annual
  * 
+ * # 同时下载年报和运营报告（推荐）
+ * node download_all_reports.js --code 600348 --name 华阳股份 --years 2023 --types annual,production --keywords "生产经营数据公告"
+ * 
+ * # 同时下载多个类型（用逗号分隔）
+ * node download_all_reports.js --code 600348 --name 华阳股份 --years 2023 --types annual,semi,production --keywords "生产经营数据公告"
+ * 
  * # 只下载半年报
  * node download_all_reports.js --code 600348 --name 华阳股份 --years 2023 --type semi
  * 
@@ -61,7 +67,7 @@ function parseArgs() {
     name: '', 
     years: [], 
     outputDir: '',
-    reportType: 'annual', // 默认只下载年报
+    reportTypes: ['annual'], // 默认只下载年报，支持数组
     customKeywords: [] // 自定义关键词
   };
 
@@ -92,7 +98,12 @@ function parseArgs() {
         params.outputDir = args[++i];
         break;
       case '--type':
-        params.reportType = args[++i]; // annual, semi, quarterly, all, production
+        // 向后兼容：单个类型
+        params.reportTypes = [args[++i]];
+        break;
+      case '--types':
+        // 支持多个类型，用逗号分隔
+        params.reportTypes = args[++i].split(',').map(t => t.trim());
         break;
       case '--keywords':
         params.customKeywords = args[++i].split(',').map(k => k.trim());
@@ -111,13 +122,20 @@ function validateParams(params) {
   if (!params.name) throw new Error('请提供公司名称 (--name)');
   if (params.years.length === 0) throw new Error('请提供年份');
   
+  // 确保 reportTypes 是数组
+  if (!Array.isArray(params.reportTypes)) {
+    params.reportTypes = [params.reportTypes];
+  }
+  
   const validTypes = ['annual', 'semi', 'quarterly', 'q1', 'q3', 'all', 'production'];
-  if (!validTypes.includes(params.reportType)) {
-    throw new Error(`报告类型必须是: ${validTypes.join(', ')}`);
+  for (const reportType of params.reportTypes) {
+    if (!validTypes.includes(reportType)) {
+      throw new Error(`报告类型必须是: ${validTypes.join(', ')}，当前值: ${reportType}`);
+    }
   }
   
   // 如果是生产经营数据类型，检查是否提供了关键词
-  if (params.reportType === 'production' && params.customKeywords.length === 0) {
+  if (params.reportTypes.includes('production') && params.customKeywords.length === 0) {
     // 使用默认关键词（更宽泛的匹配）
     params.customKeywords = ['生产经营数据'];
     console.log(`   ℹ️  未提供关键词，使用默认关键词: ${params.customKeywords.join(', ')}`);
@@ -454,6 +472,16 @@ async function extractReportInfoFromPDF(filePath) {
     const textData = await parser.getText();
     const text = textData.text;
     
+    // 检查文本长度，如果太短可能是扫描版PDF（图片格式），无法提取文本
+    if (!text || text.trim().length < 100) {
+      return { 
+        year: null, 
+        reportType: null, 
+        success: false, 
+        error: `PDF可能是扫描版（图片格式），无法提取文本（文本长度: ${text ? text.length : 0}）` 
+      };
+    }
+    
     // 提取年份 - 在前5000字符中查找，匹配"YYYY年"或"YYYY 年"格式（支持空格）
     const preview = text.substring(0, 5000);
     // 匹配 "2024年" 或 "2024 年" 格式
@@ -463,10 +491,13 @@ async function extractReportInfoFromPDF(filePath) {
       // 取最常见的年份（通常是报告年份）
       const yearCounts = {};
       yearMatches.forEach(m => {
-        const y = m.match(/(\d{4})/)[1];
-        // 只考虑合理的年份（2000-2099）
-        if (parseInt(y) >= 2000 && parseInt(y) <= 2099) {
-          yearCounts[y] = (yearCounts[y] || 0) + 1;
+        const y = m.match(/(\d{4})/);
+        if (y && y[1]) {
+          const yearStr = y[1];
+          // 只考虑合理的年份（2000-2099）
+          if (parseInt(yearStr) >= 2000 && parseInt(yearStr) <= 2099) {
+            yearCounts[yearStr] = (yearCounts[yearStr] || 0) + 1;
+          }
         }
       });
       if (Object.keys(yearCounts).length > 0) {
@@ -482,9 +513,12 @@ async function extractReportInfoFromPDF(filePath) {
       if (extendedMatches) {
         const yearCounts = {};
         extendedMatches.forEach(m => {
-          const y = m.match(/(\d{4})/)[1];
-          if (parseInt(y) >= 2000 && parseInt(y) <= 2099) {
-            yearCounts[y] = (yearCounts[y] || 0) + 1;
+          const y = m.match(/(\d{4})/);
+          if (y && y[1]) {
+            const yearStr = y[1];
+            if (parseInt(yearStr) >= 2000 && parseInt(yearStr) <= 2099) {
+              yearCounts[yearStr] = (yearCounts[yearStr] || 0) + 1;
+            }
           }
         });
         if (Object.keys(yearCounts).length > 0) {
@@ -558,6 +592,20 @@ async function verifyDownloadedPDF(filePath, expectedYear, expectedType, reportT
       reason: `无法解析PDF: ${info.error}`,
       actualYear: null,
       actualType: null
+    };
+  }
+  
+  // 如果成功解析但无法提取年份和类型，可能是扫描版PDF或格式特殊
+  if (info.success && !info.year && !info.reportType) {
+    return {
+      valid: false,
+      yearMatch: false,
+      typeMatch: false,
+      actualYear: null,
+      actualType: null,
+      expectedYear,
+      expectedType,
+      reason: 'PDF可能是扫描版（图片格式）或格式特殊，无法提取年份和类型信息。建议手动检查文件内容。'
     };
   }
   
@@ -792,10 +840,23 @@ async function downloadReportByType(params, year, reportType) {
           fs.renameSync(outputPath, correctPath);
         }
       } else {
-        // 如果无法识别内容，删除错误文件
-        if (fs.existsSync(outputPath)) {
-          fs.unlinkSync(outputPath);
-          console.log(`      🗑️  已删除错误文件: ${fileName} (无法识别内容)`);
+        // 如果无法识别内容，检查是否是扫描版PDF
+        const isScannedPDF = verification.reason && verification.reason.includes('扫描版');
+        if (isScannedPDF) {
+          // 对于扫描版PDF，保留文件但添加标记
+          const markedFileName = fileName.replace('.pdf', '_[扫描版需手动验证].pdf');
+          const markedPath = path.join(params.outputDir, markedFileName);
+          if (fs.existsSync(outputPath)) {
+            fs.renameSync(outputPath, markedPath);
+            console.log(`      ⚠️  保留文件但标记为扫描版: ${markedFileName}`);
+            console.log(`      💡 提示: 该PDF可能是扫描版（图片格式），无法自动验证，请手动检查内容`);
+          }
+        } else {
+          // 如果无法识别内容且不是扫描版，删除错误文件
+          if (fs.existsSync(outputPath)) {
+            fs.unlinkSync(outputPath);
+            console.log(`      🗑️  已删除错误文件: ${fileName} (无法识别内容)`);
+          }
         }
       }
       
@@ -827,21 +888,28 @@ async function downloadYearReports(params, year) {
   // 根据类型参数决定下载哪些报告
   const typesToDownload = [];
   
-  if (params.reportType === 'all') {
-    typesToDownload.push('annual', 'semi', 'q1', 'q3');
-  } else if (params.reportType === 'quarterly') {
-    typesToDownload.push('q1', 'q3');
-  } else {
-    typesToDownload.push(params.reportType);
+  // 处理多个报告类型
+  for (const reportType of params.reportTypes) {
+    if (reportType === 'all') {
+      typesToDownload.push('annual', 'semi', 'q1', 'q3');
+    } else if (reportType === 'quarterly') {
+      typesToDownload.push('q1', 'q3');
+    } else {
+      typesToDownload.push(reportType);
+    }
   }
   
+  // 去重（避免重复下载）
+  const uniqueTypes = [...new Set(typesToDownload)];
+  
   // 按顺序下载各类型报告
-  for (const type of typesToDownload) {
+  for (let i = 0; i < uniqueTypes.length; i++) {
+    const type = uniqueTypes[i];
     const result = await downloadReportByType(params, year, type);
     results.push(result);
     
     // 每个报告之间延迟1秒
-    if (typesToDownload.indexOf(type) < typesToDownload.length - 1) {
+    if (i < uniqueTypes.length - 1) {
       await delay(1000);
     }
   }
@@ -871,23 +939,24 @@ async function main() {
     ensureOutputDir(params);
     
     // 显示报告类型说明
-    let typeDesc = '';
-    if (params.reportType === 'all') {
-      typeDesc = '年报 + 半年报 + 季报';
-    } else if (params.reportType === 'annual') {
-      typeDesc = '年度报告';
-    } else if (params.reportType === 'semi') {
-      typeDesc = '半年度报告';
-    } else if (params.reportType === 'quarterly') {
-      typeDesc = '季度报告(Q1+Q3)';
-    } else if (params.reportType === 'production') {
-      typeDesc = '生产经营数据公告';
-      if (params.customKeywords.length > 0) {
-        typeDesc += ` (关键词: ${params.customKeywords.join(', ')})`;
+    const typeDescriptions = {
+      'all': '年报 + 半年报 + 季报',
+      'annual': '年度报告',
+      'semi': '半年度报告',
+      'quarterly': '季度报告(Q1+Q3)',
+      'q1': '第一季度报告',
+      'q3': '第三季度报告',
+      'production': '生产经营数据公告'
+    };
+    
+    const typeDescList = params.reportTypes.map(type => {
+      let desc = typeDescriptions[type] || CONFIG.REPORT_TYPES[type]?.name || type;
+      if (type === 'production' && params.customKeywords.length > 0) {
+        desc += ` (关键词: ${params.customKeywords.join(', ')})`;
       }
-    } else {
-      typeDesc = CONFIG.REPORT_TYPES[params.reportType].name;
-    }
+      return desc;
+    });
+    const typeDesc = typeDescList.join(' + ');
     
     console.log(`📋 下载配置:`);
     console.log(`   公司: ${params.name} (${params.code})`);
@@ -950,6 +1019,10 @@ async function main() {
     console.log('  node download_all_reports.js --code 600348 --name 华阳股份 --years 2023 --type all\n');
     console.log('  # 只下载年报');
     console.log('  node download_all_reports.js --code 600348 --name 华阳股份 --years 2023 --type annual\n');
+    console.log('  # 同时下载年报和运营报告（推荐）');
+    console.log('  node download_all_reports.js --code 600348 --name 华阳股份 --years 2023 --types annual,production --keywords "生产经营数据公告"\n');
+    console.log('  # 同时下载多个类型');
+    console.log('  node download_all_reports.js --code 600348 --name 华阳股份 --years 2023 --types annual,semi,production --keywords "生产经营数据公告"\n');
     console.log('  # 只下载半年报');
     console.log('  node download_all_reports.js --code 600348 --name 华阳股份 --years 2023 --type semi\n');
     console.log('  # 只下载季报');

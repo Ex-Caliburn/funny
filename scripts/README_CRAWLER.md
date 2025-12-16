@@ -60,7 +60,94 @@ node scripts/crawler_main.js all 5
 node scripts/crawler_main.js --help
 ```
 
-### 3. 单独运行解析脚本
+### 3. 分页区间功能 ⭐ 新功能
+
+爬虫系统支持**分页区间选择**功能，可以灵活指定要爬取的页码范围，而不仅限于从第1页开始。
+
+#### 支持的格式
+
+**单个数字（从第1页开始）**：
+
+```bash
+node crawler_main.js goodsPrice 5
+# 爬取第1-5页
+```
+
+**区间范围（简化格式）⭐ 推荐**：
+
+```bash
+node crawler_main.js goodsPrice 2-5
+# 爬取第2-5页
+```
+
+**区间范围（带前缀）**：
+
+```bash
+node crawler_main.js goodsPrice --page-range 2-5
+# 爬取第2-5页
+```
+
+#### 使用示例
+
+```bash
+# 示例 1: 爬取商品价格数据（第1-5页）
+node crawler_main.js goodsPrice 5
+
+# 示例 2: 爬取能源数据（第2-5页）
+node crawler_main.js energy 2-5
+
+# 示例 3: 爬取房地产数据（第3-8页）
+node crawler_main.js house --page-range 3-8
+
+# 示例 4: 爬取所有类型数据（前3页）
+node crawler_main.js all 3
+
+# 示例 5: 爬取所有类型数据（第2-4页）
+node crawler_main.js all 2-4
+
+# 示例 6: 只爬取单页
+node crawler_main.js retail 3-3
+# 只爬取第3页
+```
+
+#### 参数验证
+
+系统会自动验证以下规则：
+
+1. ✓ 起始页码必须 ≥ 1
+2. ✓ 结束页码必须 ≥ 起始页码
+3. ✓ 结束页码不能超过最大允许页数（默认100）
+4. ✓ 参数格式必须正确（数字或 "数字-数字"）
+
+**错误示例**：
+
+```bash
+# ❌ 起始页码小于1
+node crawler_main.js goodsPrice 0
+
+# ❌ 结束页码小于起始页码
+node crawler_main.js goodsPrice 5-2
+
+# ❌ 超过最大允许页数
+node crawler_main.js goodsPrice 1-200
+
+# ❌ 非数字格式
+node crawler_main.js goodsPrice abc
+```
+
+#### 向后兼容
+
+新功能**完全向后兼容**旧版本的使用方式：
+
+```bash
+# 旧版本写法（仍然支持）
+node crawler_main.js goodsPrice 5
+
+# 等同于新版本
+node crawler_main.js goodsPrice 1-5
+```
+
+### 4. 单独运行解析脚本
 
 ```bash
 # 解析商品价格数据
@@ -112,6 +199,12 @@ stock/
     delayBetweenRequests: 1000,     // 请求间延迟(毫秒)
     maxRetries: 3,                  // 最大重试次数
     timeout: 30000,                 // 请求超时(毫秒)
+  },
+  pagination: {
+    defaultStartPage: 1,            // 默认起始页码
+    defaultEndPage: 3,              // 默认结束页码
+    maxAllowedPages: 100,           // 最大允许页数
+    pageRangePattern: /^(\d+)-(\d+)$/  // 区间格式验证正则
   }
 }
 ```
@@ -122,6 +215,7 @@ stock/
 
 - 修改 `maxPages` 来调整默认爬取页数
 - 修改 `delayBetweenRequests` 来调整请求延迟
+- 修改 `pagination.maxAllowedPages` 来调整最大允许页数
 - 添加新的目标类型或关键词
 
 ## 注意事项
@@ -154,6 +248,52 @@ stock/
 # 查看详细的执行日志
 DEBUG=* node scripts/crawler_main.js goodsPrice 2
 ```
+
+### 分页区间功能技术实现
+
+#### 修改的文件
+
+1. **crawler_config.js** - 添加分页区间配置
+2. **generic_crawler.js** - 修改 `getPageUrls()` 方法支持起始页和结束页
+3. **crawler_main.js** - 添加 `parsePageRange()` 方法解析新参数格式
+
+#### 核心方法
+
+**parsePageRange(pageRangeStr)**
+
+```javascript
+/**
+ * 解析分页参数
+ * @param {string} pageRangeStr - 页码范围字符串
+ * @returns {Object|false} {start, end} 或 false（如果无效）
+ * 
+ * 支持格式:
+ * - "5" → {start: 1, end: 5}
+ * - "2-5" → {start: 2, end: 5}
+ */
+```
+
+**getPageUrls(startPage, endPage)**
+
+```javascript
+/**
+ * 获取分页URL列表
+ * @param {number} startPage - 起始页码
+ * @param {number} endPage - 结束页码
+ * @returns {Array} URL列表
+ */
+```
+
+#### 测试结果
+
+所有测试用例均已通过 ✅
+
+- ✅ 单个数字解析
+- ✅ 区间格式解析
+- ✅ 单页区间
+- ✅ 无效参数识别
+- ✅ 边界值验证
+- ✅ 格式错误处理
 
 ## 扩展开发
 

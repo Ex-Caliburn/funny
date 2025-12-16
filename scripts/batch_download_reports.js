@@ -18,9 +18,20 @@
  *   ],
  *   "years": [2023, 2024],
  *   "outputBase": "../stock/report_analysis",
- *   "reportType": "all",
- *   "keywords": []
+ *   "reportTypes": ["annual", "production"],  // 支持数组，同时下载年报和运营报告
+ *   "keywords": ["生产经营数据公告"]  // 用于生产经营数据公告的关键词
  * }
+ * 
+ * reportTypes 支持的值：
+ * - "all": 年报 + 半年报 + 季报
+ * - "annual": 年度报告
+ * - "semi": 半年度报告
+ * - "quarterly": 季度报告(Q1+Q3)
+ * - "q1": 第一季度报告
+ * - "q3": 第三季度报告
+ * - "production": 生产经营数据公告
+ * 
+ * 可以同时指定多个类型，如：["annual", "production"] 表示同时下载年报和运营报告
  */
 
 const { spawn } = require('child_process');
@@ -31,38 +42,36 @@ const path = require('path');
 const DEFAULT_CONFIG = {
   companies: [
     {
-      "code": "00883",
+      "code": "600938",
       "name": "中国海洋石油"
     },
-    {
-      "code": "601899",
-      "name": "紫金矿业"
-    },
-    {
-      "code": "002895",
-      "name": "川恒股份"
-    }
   ],
   years: [2022, 2023, 2024, 2025],
   outputBase: '../stock/report_analysis',
-  // 报告类型：'all' | 'annual' | 'semi' | 'quarterly' | 'q1' | 'q3' | 'production'
+  // 报告类型：支持字符串或数组
+  // 字符串：'all' | 'annual' | 'semi' | 'quarterly' | 'q1' | 'q3' | 'production'
+  // 数组：可以同时指定多个类型，如 ['annual', 'production'] 表示同时下载年报和运营报告
   // 'all' 表示下载所有类型（年报+半年报+季报）
-  reportType: 'all',
+  reportTypes: ['annual', 'production'],  // 默认同时下载年报和运营报告
   // 自定义关键词（仅用于生产经营数据公告类型）
-  keywords: []
+  keywords: ['生产经营数据公告']
 };
 
 /**
- * 执行单个下载任务
+ * 执行单个公司的所有报告类型下载任务
+ * 使用 --types 参数一次性下载所有类型
  */
-function downloadCompanyReports(company, years, outputBase, reportType, keywords = []) {
+function downloadCompanyReports(company, years, outputBase, reportTypes, keywords = []) {
   return new Promise((resolve, reject) => {
+    // 将 reportTypes 标准化为数组
+    const typesArray = Array.isArray(reportTypes) ? reportTypes : [reportTypes];
+    
     const args = [
       path.join(__dirname, 'download_all_reports.js'), // 使用全功能版本
       '--code', company.code,
       '--name', company.name,
       '--years', years.join(','),
-      '--type', reportType
+      '--types', typesArray.join(',')  // 使用 --types 参数，一次性下载所有类型
     ];
 
     if (outputBase) {
@@ -70,8 +79,8 @@ function downloadCompanyReports(company, years, outputBase, reportType, keywords
       args.push('--output', outputDir);
     }
 
-    // 如果是生产经营数据公告类型，且提供了关键词，则传递关键词参数
-    if (reportType === 'production' && keywords.length > 0) {
+    // 如果包含生产经营数据公告类型，且提供了关键词，则传递关键词参数
+    if (typesArray.includes('production') && keywords.length > 0) {
       args.push('--keywords', keywords.join(','));
     }
 
@@ -139,13 +148,23 @@ async function main() {
     }
   }
 
+  // 兼容旧配置：如果使用 reportType（单数），转换为 reportTypes（复数）
+  if (config.reportType && !config.reportTypes) {
+    config.reportTypes = config.reportType;
+  }
+  
   // 确保配置有默认值
-  if (!config.reportType) {
-    config.reportType = 'all';
+  if (!config.reportTypes) {
+    config.reportTypes = 'all';
   }
   if (!config.keywords) {
     config.keywords = [];
   }
+
+  // 将 reportTypes 标准化为数组
+  const reportTypesArray = Array.isArray(config.reportTypes) 
+    ? config.reportTypes 
+    : [config.reportTypes];
 
   // 报告类型描述
   const typeDescriptions = {
@@ -158,14 +177,19 @@ async function main() {
     'production': '生产经营数据公告'
   };
 
+  // 生成报告类型描述
+  const reportTypesDesc = reportTypesArray
+    .map(type => typeDescriptions[type] || type)
+    .join(' + ');
+
   console.log('\n' + '='.repeat(70));
   console.log('📦 批量下载财报工具');
   console.log('='.repeat(70));
   console.log(`\n📋 下载配置:`);
   console.log(`   公司数量: ${config.companies.length} 家`);
   console.log(`   年份: ${config.years.join(', ')}`);
-  console.log(`   报告类型: ${typeDescriptions[config.reportType] || config.reportType}`);
-  if (config.reportType === 'production' && config.keywords.length > 0) {
+  console.log(`   报告类型: ${reportTypesDesc}`);
+  if (reportTypesArray.includes('production') && config.keywords.length > 0) {
     console.log(`   关键词: ${config.keywords.join(', ')}`);
   }
   console.log(`   公司列表:`);
@@ -185,7 +209,7 @@ async function main() {
         company,
         config.years,
         config.outputBase,
-        config.reportType,
+        config.reportTypes,
         config.keywords
       );
       results.push(result);
