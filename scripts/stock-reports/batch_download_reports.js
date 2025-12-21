@@ -42,17 +42,18 @@ const path = require('path');
 const DEFAULT_CONFIG = {
   companies: [
     {
-      "code": "600938",
-      "name": "中国海洋石油"
+      "code": "601899",
+      "name": "紫金矿业"
     },
   ],
+  // years: [ 2025],
   years: [2022, 2023, 2024, 2025],
   outputBase: '../stock/report_analysis',
   // 报告类型：支持字符串或数组
   // 字符串：'all' | 'annual' | 'semi' | 'quarterly' | 'q1' | 'q3' | 'production'
   // 数组：可以同时指定多个类型，如 ['annual', 'production'] 表示同时下载年报和运营报告
   // 'all' 表示下载所有类型（年报+半年报+季报）
-  reportTypes: ['annual', 'production'],  // 默认同时下载年报和运营报告
+  reportTypes: ['annual', 'production', 'quarterly', 'semi', 'q1', 'q3'],  // 默认同时下载年报和运营报告
   // 自定义关键词（仅用于生产经营数据公告类型）
   keywords: ['生产经营数据公告']
 };
@@ -75,7 +76,20 @@ function downloadCompanyReports(company, years, outputBase, reportTypes, keyword
     ];
 
     if (outputBase) {
-      const outputDir = path.join(__dirname, outputBase, company.name);
+      // 修复路径：从 scripts/stock-reports 到项目根目录
+      // outputBase 如果是相对路径（如 '../stock/report_analysis'），需要从项目根目录开始计算
+      let outputDir;
+      if (path.isAbsolute(outputBase)) {
+        // 绝对路径直接使用
+        outputDir = path.join(outputBase, company.name);
+      } else if (outputBase.startsWith('../')) {
+        // 相对路径（如 '../stock/report_analysis'），从项目根目录开始
+        const relativePath = outputBase.replace(/^\.\.\//, '');
+        outputDir = path.join(__dirname, '..', '..', relativePath, company.name);
+      } else {
+        // 其他相对路径，从当前目录开始
+        outputDir = path.join(__dirname, outputBase, company.name);
+      }
       args.push('--output', outputDir);
     }
 

@@ -161,6 +161,18 @@ function ensureOutputDir(params) {
 }
 
 /**
+ * 检查标题是否为扫描版
+ * @param {string} title - 公告标题
+ * @returns {boolean} - 如果是扫描版返回true，否则返回false
+ */
+function isScannedVersion(title) {
+  if (!title) return false;
+  // 扫描版常见标识：扫描版、扫描、需手动验证、手动验证
+  const scanKeywords = ['扫描版', '扫描', '需手动验证', '手动验证'];
+  return scanKeywords.some(keyword => title.includes(keyword));
+}
+
+/**
  * 搜索特定类型的报告
  */
 function searchReport(stockCode, year, reportType, customKeywords = []) {
@@ -257,6 +269,8 @@ function searchReport(stockCode, year, reportType, customKeywords = []) {
             if (reportType === 'production') {
               const allReports = json.announcements.filter(item => {
                 const title = (item.announcementTitle || '').replace(/<\/?em>/g, '');
+                // 排除扫描版，只保留文字版
+                if (isScannedVersion(title)) return false;
                 const keywords = customKeywords.length > 0 ? customKeywords : typeConfig.keywords;
                 const hasKeyword = keywords.some(kw => title.includes(kw));
                 if (!hasKeyword) return false;
@@ -280,6 +294,9 @@ function searchReport(stockCode, year, reportType, customKeywords = []) {
             // 筛选最匹配的报告
             const report = json.announcements.find(item => {
               const title = item.announcementTitle || '';
+              
+              // 排除扫描版，只保留文字版
+              if (isScannedVersion(title)) return false;
               
               // 检查年份
               const yearMatch = title.includes(`${year}年`);
@@ -329,6 +346,8 @@ function searchReport(stockCode, year, reportType, customKeywords = []) {
                 // 尝试更宽松的匹配：只要包含年份和季度关键词即可
                 const fallbackReport = json.announcements.find(item => {
                   const title = item.announcementTitle || '';
+                  // 排除扫描版，只保留文字版
+                  if (isScannedVersion(title)) return false;
                   const yearMatch = title.includes(`${year}年`);
                   if (!yearMatch) return false;
                   
@@ -482,48 +501,91 @@ async function extractReportInfoFromPDF(filePath) {
       };
     }
     
-    // 提取年份 - 在前5000字符中查找，匹配"YYYY年"或"YYYY 年"格式（支持空格）
-    const preview = text.substring(0, 5000);
-    // 匹配 "2024年" 或 "2024 年" 格式
-    const yearMatches = preview.match(/(\d{4})\s*年/g);
+    // 提取年份 - 尝试多种格式和多个位置
     let year = null;
-    if (yearMatches) {
-      // 取最常见的年份（通常是报告年份）
-      const yearCounts = {};
-      yearMatches.forEach(m => {
-        const y = m.match(/(\d{4})/);
-        if (y && y[1]) {
-          const yearStr = y[1];
-          // 只考虑合理的年份（2000-2099）
-          if (parseInt(yearStr) >= 2000 && parseInt(yearStr) <= 2099) {
-            yearCounts[yearStr] = (yearCounts[yearStr] || 0) + 1;
-          }
-        }
-      });
-      if (Object.keys(yearCounts).length > 0) {
-        const sorted = Object.entries(yearCounts).sort((a, b) => b[1] - a[1]);
-        year = sorted[0][0];
-      }
-    }
+    const yearPatterns = [
+      /(\d{4})\s*年/g,           // "2024年" 或 "2024 年"
+      /(\d{4})\/(\d{1,2})\/(\d{1,2})/g,  // "2024/01/01" 格式，提取年份
+      /(\d{4})-(\d{1,2})-(\d{1,2})/g,    // "2024-01-01" 格式，提取年份
+      /20\d{2}/g                  // 直接匹配 2000-2099 的年份
+    ];
     
-    // 如果还没找到，尝试在整个文本的前10000字符中查找
-    if (!year && text.length > 5000) {
-      const extendedPreview = text.substring(0, 10000);
-      const extendedMatches = extendedPreview.match(/(\d{4})\s*年/g);
-      if (extendedMatches) {
+    // 优先在前20000字符中查找（扩大搜索范围）
+    const searchLength = Math.min(20000, text.length);
+    const preview = text.substring(0, searchLength);
+    
+    // 尝试所有年份模式
+    for (const pattern of yearPatterns) {
+      const matches = preview.match(pattern);
+      if (matches) {
         const yearCounts = {};
-        extendedMatches.forEach(m => {
-          const y = m.match(/(\d{4})/);
-          if (y && y[1]) {
-            const yearStr = y[1];
-            if (parseInt(yearStr) >= 2000 && parseInt(yearStr) <= 2099) {
+        matches.forEach(m => {
+          let yearStr = null;
+          if (pattern === yearPatterns[0]) {
+            // "YYYY年" 格式
+            const y = m.match(/(\d{4})/);
+            if (y && y[1]) yearStr = y[1];
+          } else if (pattern === yearPatterns[1] || pattern === yearPatterns[2]) {
+            // "YYYY/MM/DD" 或 "YYYY-MM-DD" 格式，提取第一个数字组（年份）
+            const y = m.match(/(\d{4})/);
+            if (y && y[1]) yearStr = y[1];
+          } else {
+            // 直接匹配年份
+            yearStr = m;
+          }
+          
+          if (yearStr) {
+            const yearNum = parseInt(yearStr);
+            // 只考虑合理的年份（2000-2099）
+            if (yearNum >= 2000 && yearNum <= 2099) {
               yearCounts[yearStr] = (yearCounts[yearStr] || 0) + 1;
             }
           }
         });
+        
         if (Object.keys(yearCounts).length > 0) {
+          // 取最常见的年份（通常是报告年份）
           const sorted = Object.entries(yearCounts).sort((a, b) => b[1] - a[1]);
           year = sorted[0][0];
+          break; // 找到年份就退出
+        }
+      }
+    }
+    
+    // 如果还没找到，尝试在整个文本中查找（但限制搜索范围，避免太慢）
+    if (!year && text.length > searchLength) {
+      const extendedLength = Math.min(50000, text.length);
+      const extendedPreview = text.substring(0, extendedLength);
+      
+      for (const pattern of yearPatterns) {
+        const matches = extendedPreview.match(pattern);
+        if (matches) {
+          const yearCounts = {};
+          matches.forEach(m => {
+            let yearStr = null;
+            if (pattern === yearPatterns[0]) {
+              const y = m.match(/(\d{4})/);
+              if (y && y[1]) yearStr = y[1];
+            } else if (pattern === yearPatterns[1] || pattern === yearPatterns[2]) {
+              const y = m.match(/(\d{4})/);
+              if (y && y[1]) yearStr = y[1];
+            } else {
+              yearStr = m;
+            }
+            
+            if (yearStr) {
+              const yearNum = parseInt(yearStr);
+              if (yearNum >= 2000 && yearNum <= 2099) {
+                yearCounts[yearStr] = (yearCounts[yearStr] || 0) + 1;
+              }
+            }
+          });
+          
+          if (Object.keys(yearCounts).length > 0) {
+            const sorted = Object.entries(yearCounts).sort((a, b) => b[1] - a[1]);
+            year = sorted[0][0];
+            break;
+          }
         }
       }
     }
@@ -531,6 +593,10 @@ async function extractReportInfoFromPDF(filePath) {
     // 提取报告类型
     // 注意：必须先检查更具体的类型（半年度、季度），再检查年度报告
     // 因为"半年度报告"包含"年度报告"字符串
+    // 扩大搜索范围，使用更大的文本范围来查找报告类型
+    const reportTypeSearchLength = Math.min(30000, text.length);
+    const reportTypePreview = text.substring(0, reportTypeSearchLength);
+    
     const patterns = [
       { type: '半年度报告', regex: /半年度报告|半年报/g },
       { type: '第一季度报告', regex: /第一季度报告|一季报|第一季度/g },
@@ -540,7 +606,7 @@ async function extractReportInfoFromPDF(filePath) {
     
     const counts = {};
     for (const pattern of patterns) {
-      const matches = preview.match(pattern.regex);
+      const matches = reportTypePreview.match(pattern.regex);
       if (matches) {
         counts[pattern.type] = matches.length;
       }
@@ -556,7 +622,108 @@ async function extractReportInfoFromPDF(filePath) {
       } else if (counts['第三季度报告']) {
         reportType = '第三季度报告';
       } else if (counts['年度报告']) {
+        // 如果只匹配到"年度报告"，需要检查是否实际上是"半年度报告"
+        // 因为"半年度报告"包含"年度报告"，可能被错误匹配
+        // 检查文本中是否包含"半年度"或"半年报"关键词
+        const hasSemiKeyword = reportTypePreview.includes('半年度') || reportTypePreview.includes('半年报');
+        if (hasSemiKeyword) {
+          reportType = '半年度报告';
+          console.log(`      💡 PDF文本包含"半年度"关键词，识别为半年度报告（而非年度报告）`);
+        } else {
+          reportType = '年度报告';
+        }
+      }
+    } else {
+      // 如果正则匹配失败，尝试直接查找关键词
+      // 优先检查"半年度"（因为可能被分割）
+      if (reportTypePreview.includes('半年度') || reportTypePreview.includes('半年报')) {
+        reportType = '半年度报告';
+        console.log(`      💡 通过关键词匹配识别为: ${reportType}`);
+      } else if (reportTypePreview.includes('第一季度') || reportTypePreview.includes('一季报')) {
+        reportType = '第一季度报告';
+        console.log(`      💡 通过关键词匹配识别为: ${reportType}`);
+      } else if (reportTypePreview.includes('第三季度') || reportTypePreview.includes('三季报')) {
+        reportType = '第三季度报告';
+        console.log(`      💡 通过关键词匹配识别为: ${reportType}`);
+      } else if (reportTypePreview.includes('年度报告') || reportTypePreview.includes('年报')) {
         reportType = '年度报告';
+        console.log(`      💡 通过关键词匹配识别为: ${reportType}`);
+      }
+    }
+    
+    // 如果无法从PDF文本中提取年份或报告类型，尝试从文件名中提取
+    const fileName = path.basename(filePath);
+    
+    // 从文件名提取年份（如果PDF文本提取失败）
+    if (!year) {
+      const fileNameYearMatch = fileName.match(/(\d{4})年/);
+      if (fileNameYearMatch && fileNameYearMatch[1]) {
+        const fileNameYear = parseInt(fileNameYearMatch[1]);
+        if (fileNameYear >= 2000 && fileNameYear <= 2099) {
+          year = fileNameYearMatch[1];
+          console.log(`      💡 从文件名提取年份: ${year}`);
+        }
+      }
+    }
+    
+    // 从文件名提取报告类型（如果PDF文本提取失败）
+    // 注意：文件名可能错误，所以优先检查更具体的类型
+    if (!reportType) {
+      // 优先检查"半年度报告"（因为文件名可能错误写成"年度报告"）
+      if (fileName.includes('半年度报告') || fileName.includes('半年报')) {
+        reportType = '半年度报告';
+        console.log(`      💡 从文件名提取报告类型: ${reportType}`);
+      } else if (fileName.includes('第一季度报告') || fileName.includes('一季报') || fileName.includes('第一季度')) {
+        reportType = '第一季度报告';
+        console.log(`      💡 从文件名提取报告类型: ${reportType}`);
+      } else if (fileName.includes('第三季度报告') || fileName.includes('三季报') || fileName.includes('第三季度')) {
+        reportType = '第三季度报告';
+        console.log(`      💡 从文件名提取报告类型: ${reportType}`);
+      } else if (fileName.includes('年度报告') || fileName.includes('年报')) {
+        // 最后检查"年度报告"（因为文件名可能错误）
+        // 如果PDF文本中找到了"半年度报告"关键词，即使文件名是"年度报告"，也应该优先使用PDF内容
+        const hasSemiInText = reportTypePreview.includes('半年度') || reportTypePreview.includes('半年报');
+        if (hasSemiInText) {
+          reportType = '半年度报告';
+          console.log(`      💡 文件名是"年度报告"但PDF内容包含"半年度"，使用: ${reportType}`);
+        } else {
+          reportType = '年度报告';
+          console.log(`      💡 从文件名提取报告类型: ${reportType}`);
+        }
+      }
+    }
+    
+    // 如果仍然无法提取年份或报告类型，添加调试信息
+    if (!year || !reportType) {
+      const textPreview = preview.replace(/\s+/g, ' ').trim();
+      if (!year) {
+        console.log(`      ⚠️  无法提取年份 - 文本预览（前300字符）: ${textPreview.substring(0, 300)}...`);
+        // 尝试查找所有可能的年份数字
+        const allYearMatches = preview.match(/\d{4}/g);
+        if (allYearMatches) {
+          const uniqueYears = [...new Set(allYearMatches)].filter(y => {
+            const num = parseInt(y);
+            return num >= 2000 && num <= 2099;
+          });
+          if (uniqueYears.length > 0) {
+            console.log(`      💡 发现可能的年份: ${uniqueYears.join(', ')}`);
+          }
+        }
+      }
+      if (!reportType) {
+        const reportTypePreviewText = reportTypePreview.replace(/\s+/g, ' ').trim();
+        console.log(`      ⚠️  无法提取报告类型 - 文本预览（前500字符）: ${reportTypePreviewText.substring(0, 500)}...`);
+        // 检查是否包含报告类型关键词
+        const reportKeywords = ['半年度报告', '半年报', '年度报告', '年报', '第一季度', '一季报', '第三季度', '三季报'];
+        const foundKeywords = reportKeywords.filter(kw => reportTypePreview.includes(kw));
+        if (foundKeywords.length > 0) {
+          console.log(`      💡 发现报告类型关键词: ${foundKeywords.join(', ')}`);
+        } else {
+          console.log(`      💡 未发现任何报告类型关键词`);
+        }
+        // 输出匹配结果
+        console.log(`      💡 匹配结果: ${JSON.stringify(counts)}`);
+        console.log(`      💡 文件名: ${fileName}`);
       }
     }
     
@@ -597,6 +764,18 @@ async function verifyDownloadedPDF(filePath, expectedYear, expectedType, reportT
   
   // 如果成功解析但无法提取年份和类型，可能是扫描版PDF或格式特殊
   if (info.success && !info.year && !info.reportType) {
+    // 添加调试信息：输出前500字符以便排查问题
+    try {
+      const dataBuffer = fs.readFileSync(filePath);
+      const parser = new PDFParse({ data: dataBuffer });
+      const textData = await parser.getText();
+      const text = textData.text || '';
+      const preview = text.substring(0, 500).replace(/\s+/g, ' ').trim();
+      console.log(`      🔍 调试信息 - PDF文本预览（前500字符）: ${preview.substring(0, 200)}...`);
+    } catch (e) {
+      // 忽略调试信息提取错误
+    }
+    
     return {
       valid: false,
       yearMatch: false,
@@ -799,10 +978,13 @@ async function downloadReportByType(params, year, reportType) {
     const sizeCheck = validateFileSize(outputPath, reportType);
     if (!sizeCheck.valid) {
       console.log(`      ⚠️  ${sizeCheck.reason}`);
-      // 删除错误文件
+      // 保留文件但添加标记，不删除
+      const markedFileName = fileName.replace('.pdf', '_[文件过小需手动检查].pdf');
+      const markedPath = path.join(params.outputDir, markedFileName);
       if (fs.existsSync(outputPath)) {
-        fs.unlinkSync(outputPath);
-        console.log(`      🗑️  已删除错误文件: ${fileName}`);
+        fs.renameSync(outputPath, markedPath);
+        console.log(`      ⚠️  保留文件但标记为文件过小: ${markedFileName}`);
+        console.log(`      💡 提示: 文件大小异常，请手动检查文件`);
       }
       
       return { 
@@ -826,15 +1008,21 @@ async function downloadReportByType(params, year, reportType) {
       console.log(`         实际内容: ${verification.actualYear}年${verification.actualType || '未知'}`);
       console.log(`         期望内容: ${verification.expectedYear}年${verification.expectedType}`);
       
-      // 如果验证失败，重命名文件以反映实际内容
+      // 如果验证失败，保留文件并添加标记，不删除
       if (verification.actualYear && verification.actualType) {
         const correctFileName = `${params.name}${verification.actualYear}年${verification.actualType}.pdf`;
         const correctPath = path.join(params.outputDir, correctFileName);
         
         // 检查目标文件是否已存在
         if (fs.existsSync(correctPath)) {
-          console.log(`      ⚠️  目标文件已存在，删除错误文件`);
-          fs.unlinkSync(outputPath);
+          // 保留文件但添加验证失败标记
+          const markedFileName = fileName.replace('.pdf', '_[验证失败需手动检查].pdf');
+          const markedPath = path.join(params.outputDir, markedFileName);
+          if (fs.existsSync(outputPath)) {
+            fs.renameSync(outputPath, markedPath);
+            console.log(`      ⚠️  保留文件但标记为验证失败: ${markedFileName}`);
+            console.log(`      💡 提示: 验证失败，请手动检查文件内容`);
+          }
         } else {
           console.log(`      🔄 自动重命名为: ${correctFileName}`);
           fs.renameSync(outputPath, correctPath);
@@ -852,10 +1040,13 @@ async function downloadReportByType(params, year, reportType) {
             console.log(`      💡 提示: 该PDF可能是扫描版（图片格式），无法自动验证，请手动检查内容`);
           }
         } else {
-          // 如果无法识别内容且不是扫描版，删除错误文件
+          // 如果无法识别内容且不是扫描版，保留文件但添加标记
+          const markedFileName = fileName.replace('.pdf', '_[验证失败需手动检查].pdf');
+          const markedPath = path.join(params.outputDir, markedFileName);
           if (fs.existsSync(outputPath)) {
-            fs.unlinkSync(outputPath);
-            console.log(`      🗑️  已删除错误文件: ${fileName} (无法识别内容)`);
+            fs.renameSync(outputPath, markedPath);
+            console.log(`      ⚠️  保留文件但标记为验证失败: ${markedFileName}`);
+            console.log(`      💡 提示: 无法识别内容，请手动检查文件`);
           }
         }
       }
