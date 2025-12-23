@@ -983,6 +983,15 @@
                         }
                     } else {
                         item.unitGrossProfit = null;
+                        // 如果没有销量数据，但有营收和成本，可以直接计算毛利率
+                        // 毛利率 = (营收 - 成本) / 营收 × 100%
+                        if (item.revenue !== null && item.cost !== null && 
+                            !isNaN(item.revenue) && !isNaN(item.cost) && item.revenue > 0) {
+                            const calculatedMargin = ((item.revenue - item.cost) / item.revenue) * 100;
+                            item.grossMargin = !isNaN(calculatedMargin) ? calculatedMargin.toFixed(2) : null;
+                        } else {
+                            item.grossMargin = null;
+                        }
                     }
                 });
 
@@ -1287,22 +1296,24 @@
                         const calculatedProfit = item.price - item.unitCost;
                         item.unitGrossProfit = !isNaN(calculatedProfit) ? calculatedProfit : null;
 
-                        // 如果已经有从PDF提取的毛利率，使用它；否则计算
-                        if (item.grossMargin === null || item.grossMargin === undefined) {
-                            // 毛利率 = 毛利(元/吨) / 售价(元/吨) × 100%
-                            if (item.unitGrossProfit !== null && item.price > 0) {
-                                const calculatedMargin = (item.unitGrossProfit / item.price) * 100;
-                                item.grossMargin = !isNaN(calculatedMargin) ? calculatedMargin.toFixed(2) : null;
-                            } else {
-                                item.grossMargin = null;
-                            }
+                        // 毛利率 = 毛利(元/吨) / 售价(元/吨) × 100%
+                        if (item.unitGrossProfit !== null && item.price > 0) {
+                            const calculatedMargin = (item.unitGrossProfit / item.price) * 100;
+                            item.grossMargin = !isNaN(calculatedMargin) ? calculatedMargin.toFixed(2) : null;
                         } else {
-                            // 使用从PDF提取的毛利率，转换为字符串格式
-                            const marginValue = parseFloat(item.grossMargin);
-                            item.grossMargin = !isNaN(marginValue) ? marginValue.toFixed(2) : null;
+                            item.grossMargin = null;
                         }
                     } else {
                         item.unitGrossProfit = null;
+                        // 如果没有销量数据，但有营收和成本，可以直接计算毛利率
+                        // 毛利率 = (营收 - 成本) / 营收 × 100%
+                        if (item.revenue !== null && item.cost !== null && 
+                            !isNaN(item.revenue) && !isNaN(item.cost) && item.revenue > 0) {
+                            const calculatedMargin = ((item.revenue - item.cost) / item.revenue) * 100;
+                            item.grossMargin = !isNaN(calculatedMargin) ? calculatedMargin.toFixed(2) : null;
+                        } else {
+                            item.grossMargin = null;
+                        }
                     }
                 });
 

@@ -29,15 +29,15 @@
         "revenue": null,
         "cost": null,
         "production": 199.62,
-        "sales": null,
-        "lastYearProduction": null
+        "sales": 232.05057,
+        "lastYearProduction": 147.87
       },
       "tin": {
         "revenue": 10.8504992678,
         "cost": 3.9419973672000004,
         "production": 7769.25,
-        "sales": null,
-        "lastYearProduction": null
+        "sales": 8637.73,
+        "lastYearProduction": 3042.19
       }
     },
     {
@@ -86,14 +86,14 @@
       "month": 6,
       "type": "cumulative",
       "silver": {
-        "revenue": null,
+        "revenue": 6.0726585114,
         "cost": null,
         "production": 125.58,
         "sales": null,
         "lastYearProduction": null
       },
       "tin": {
-        "revenue": 5.9102500585,
+        "revenue": 7.9052770407,
         "cost": 1.5924048071999999,
         "production": 4523.23,
         "sales": null,
@@ -109,7 +109,7 @@
         "revenue": 11.65409,
         "cost": 3.9647535445999997,
         "production": 228.93,
-        "sales": 209.81907999999999,
+        "sales": 209.81908,
         "lastYearProduction": 199.62
       },
       "tin": {
@@ -248,16 +248,16 @@
       "silver": {
         "revenue": null,
         "cost": null,
-        "production": 125.58,
+        "production": null,
         "sales": null,
-        "lastYearProduction": null
+        "lastYearProduction": 228.93
       },
       "tin": {
         "revenue": null,
         "cost": null,
-        "production": 4523.23,
+        "production": null,
         "sales": null,
-        "lastYearProduction": null
+        "lastYearProduction": 8901.85
       }
     }
   ]
