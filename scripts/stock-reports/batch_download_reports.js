@@ -42,12 +42,12 @@ const path = require('path');
 const DEFAULT_CONFIG = {
   companies: [
     {
-      "code": "601899",
-      "name": "紫金矿业"
+      "code": "600938",
+      "name": "中国海洋石油"
     },
   ],
-  // years: [ 2025],
-  years: [2022, 2023, 2024, 2025],
+  years: [ 2021],
+  // years: [2022, 2023, 2024, 2025],
   outputBase: '../stock/report_analysis',
   // 报告类型：支持字符串或数组
   // 字符串：'all' | 'annual' | 'semi' | 'quarterly' | 'q1' | 'q3' | 'production'

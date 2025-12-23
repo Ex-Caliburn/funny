@@ -2,25 +2,67 @@
   "allData": [
     {
       "year": "2025",
-      "filename": "中国海洋石油2025年年度报告.pdf",
+      "filename": "中国海洋石油2025年半年度报告.pdf",
       "oil": {
-        "cost": [],
+        "cost": [
+          {
+            "keyword": "石油销售成本",
+            "line": "从extractOilGasFinancials提取",
+            "context": "从extractOilGasFinancials提取",
+            "value": 76825483956,
+            "allValues": [
+              76825483956
+            ]
+          }
+        ],
         "revenue": [
           {
             "keyword": "石油销售收入",
             "line": "从extractOilGasFinancials提取",
             "context": "从extractOilGasFinancials提取",
-            "value": 171745000000,
+            "value": 143998000000,
             "allValues": [
-              171745000000
+              143998000000
             ]
           }
         ],
-        "production": [],
-        "sales": []
+        "production": [
+          {
+            "keyword": "石油产量",
+            "line": "从extractOilGasProductionSales提取",
+            "context": "从extractOilGasProductionSales提取",
+            "value": 296.1,
+            "allValues": [
+              296.1
+            ]
+          }
+        ],
+        "sales": [
+          {
+            "keyword": "石油销量",
+            "line": "从extractOilGasProductionSales提取",
+            "context": "从extractOilGasProductionSales提取",
+            "value": 384.6,
+            "allValues": [
+              384.6
+            ]
+          }
+        ],
+        "price": 69.15,
+        "unitCost": 28.9
       },
       "gas": {
-        "cost": [],
+        "cost": [
+          {
+            "keyword": "天然气销售成本",
+            "line": "从extractOilGasFinancials提取",
+            "context": "从extractOilGasFinancials提取",
+            "value": 14803516044,
+            "allValues": [
+              14803516044
+            ]
+          }
+        ],
         "revenue": [
           {
             "keyword": "天然气销售收入",
@@ -32,270 +74,62 @@
             ]
           }
         ],
-        "production": [],
-        "sales": []
-      }
+        "production": [
+          {
+            "keyword": "天然气产量",
+            "line": "从extractOilGasProductionSales提取",
+            "context": "从extractOilGasProductionSales提取",
+            "value": 516.2,
+            "allValues": [
+              516.2
+            ]
+          }
+        ],
+        "sales": [
+          {
+            "keyword": "天然气销量",
+            "line": "从extractOilGasProductionSales提取",
+            "context": "从extractOilGasProductionSales提取",
+            "value": 266.5,
+            "allValues": [
+              266.5
+            ]
+          }
+        ],
+        "price": 7.9
+      },
+      "totalSales": 373.8
     },
     {
       "year": "2025",
       "filename": "中国海洋石油2025年第一季度报告.pdf",
       "oil": {
         "cost": [],
-        "revenue": [],
-        "production": [],
-        "sales": [
-          {
-            "keyword": "石油销量",
-            "line": "从extractOilGasProductionSales提取",
-            "context": "从extractOilGasProductionSales提取",
-            "value": 36560,
-            "allValues": [
-              36560
-            ]
-          }
-        ]
-      },
-      "gas": {
-        "cost": [],
         "revenue": [
           {
-            "keyword": "天然气销售收入",
+            "keyword": "石油销售收入",
             "line": "从extractOilGasFinancials提取",
             "context": "从extractOilGasFinancials提取",
-            "value": 36563000000,
+            "value": 74633000000,
             "allValues": [
-              36563000000
+              74633000000
             ]
           }
         ],
-        "production": [],
-        "sales": []
-      }
-    },
-    {
-      "year": "2025",
-      "filename": "中国海洋石油2025年第三季度报告.pdf",
-      "oil": {
-        "cost": [],
-        "revenue": [],
-        "production": [],
-        "sales": []
-      },
-      "gas": {
-        "cost": [],
-        "revenue": [
-          {
-            "keyword": "天然气销售收入",
-            "line": "从extractOilGasFinancials提取",
-            "context": "从extractOilGasFinancials提取",
-            "value": 44470000000,
-            "allValues": [
-              44470000000
-            ]
-          }
-        ],
-        "production": [
-          {
-            "keyword": "天然气产量",
-            "line": "从extractOilGasProductionSales提取",
-            "context": "从extractOilGasProductionSales提取",
-            "value": 163774560,
-            "allValues": [
-              163774560
-            ]
-          }
-        ],
-        "sales": []
-      }
-    },
-    {
-      "year": "2024",
-      "filename": "中国海洋石油2024年年度报告.pdf",
-      "oil": {
-        "cost": [],
-        "revenue": [],
-        "production": [],
-        "sales": []
-      },
-      "gas": {
-        "cost": [],
-        "revenue": [
-          {
-            "keyword": "天然气销售收入",
-            "line": "从extractOilGasFinancials提取",
-            "context": "从extractOilGasFinancials提取",
-            "value": 39719000000,
-            "allValues": [
-              39719000000
-            ]
-          }
-        ],
-        "production": [],
-        "sales": []
-      }
-    },
-    {
-      "year": "2024",
-      "filename": "中国海洋石油2024年第一季度报告.pdf",
-      "oil": {
-        "cost": [],
-        "revenue": [],
-        "production": [],
-        "sales": [
-          {
-            "keyword": "石油销量",
-            "line": "从extractOilGasProductionSales提取",
-            "context": "从extractOilGasProductionSales提取",
-            "value": 39720,
-            "allValues": [
-              39720
-            ]
-          }
-        ]
-      },
-      "gas": {
-        "cost": [],
-        "revenue": [
-          {
-            "keyword": "天然气销售收入",
-            "line": "从extractOilGasFinancials提取",
-            "context": "从extractOilGasFinancials提取",
-            "value": 29014000000,
-            "allValues": [
-              29014000000
-            ]
-          }
-        ],
-        "production": [],
-        "sales": [
-          {
-            "keyword": "天然气销量",
-            "line": "从extractOilGasProductionSales提取",
-            "context": "从extractOilGasProductionSales提取",
-            "value": 112487040,
-            "allValues": [
-              112487040
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "year": "2024",
-      "filename": "中国海洋石油2024年第三季度报告.pdf",
-      "oil": {
-        "cost": [],
-        "revenue": [],
-        "production": [],
-        "sales": []
-      },
-      "gas": {
-        "cost": [],
-        "revenue": [
-          {
-            "keyword": "天然气销售收入",
-            "line": "从extractOilGasFinancials提取",
-            "context": "从extractOilGasFinancials提取",
-            "value": 21564000000,
-            "allValues": [
-              21564000000
-            ]
-          }
-        ],
-        "production": [],
-        "sales": []
-      }
-    },
-    {
-      "year": "2023",
-      "filename": "中国海洋石油2023年年度报告.pdf",
-      "oil": {
-        "cost": [],
-        "revenue": [],
-        "production": [],
-        "sales": []
-      },
-      "gas": {
-        "cost": [],
-        "revenue": [
-          {
-            "keyword": "天然气销售收入",
-            "line": "从extractOilGasFinancials提取",
-            "context": "从extractOilGasFinancials提取",
-            "value": 32113000000,
-            "allValues": [
-              32113000000
-            ]
-          }
-        ],
-        "production": [],
-        "sales": []
-      }
-    },
-    {
-      "year": "2023",
-      "filename": "中国海洋石油2023年第一季度报告.pdf",
-      "oil": {
-        "cost": [],
-        "revenue": [],
-        "production": [],
-        "sales": [
-          {
-            "keyword": "石油销量",
-            "line": "从extractOilGasProductionSales提取",
-            "context": "从extractOilGasProductionSales提取",
-            "value": 32110.000000000004,
-            "allValues": [
-              32110.000000000004
-            ]
-          }
-        ]
-      },
-      "gas": {
-        "cost": [],
-        "revenue": [
-          {
-            "keyword": "天然气销售收入",
-            "line": "从extractOilGasFinancials提取",
-            "context": "从extractOilGasFinancials提取",
-            "value": 24736000000,
-            "allValues": [
-              24736000000
-            ]
-          }
-        ],
-        "production": [],
-        "sales": [
-          {
-            "keyword": "天然气销量",
-            "line": "从extractOilGasProductionSales提取",
-            "context": "从extractOilGasProductionSales提取",
-            "value": 90935520,
-            "allValues": [
-              90935520
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "year": "2023",
-      "filename": "中国海洋石油2023年第三季度报告.pdf",
-      "oil": {
-        "cost": [],
-        "revenue": [],
         "production": [
           {
             "keyword": "石油产量",
             "line": "从extractOilGasProductionSales提取",
             "context": "从extractOilGasProductionSales提取",
-            "value": 34550,
+            "value": 145.5,
             "allValues": [
-              34550
+              145.5
             ]
           }
         ],
-        "sales": []
+        "sales": [],
+        "price": 72.65,
+        "unitCost": 27.03
       },
       "gas": {
         "cost": [],
@@ -304,9 +138,9 @@
             "keyword": "天然气销售收入",
             "line": "从extractOilGasFinancials提取",
             "context": "从extractOilGasFinancials提取",
-            "value": 21788000000,
+            "value": 13635000000,
             "allValues": [
-              21788000000
+              13635000000
             ]
           }
         ],
@@ -315,286 +149,1290 @@
             "keyword": "天然气产量",
             "line": "从extractOilGasProductionSales提取",
             "context": "从extractOilGasProductionSales提取",
-            "value": 97845600,
+            "value": 253,
             "allValues": [
-              97845600
+              253
             ]
           }
         ],
-        "sales": []
-      }
-    },
-    {
-      "year": "2022",
-      "filename": "中国海洋石油2022年年度报告.pdf",
-      "oil": {
-        "cost": [],
-        "revenue": [],
-        "production": [],
-        "sales": []
+        "sales": [],
+        "price": 7.78
       },
-      "gas": {
-        "cost": [],
-        "revenue": [
-          {
-            "keyword": "天然气销售收入",
-            "line": "从extractOilGasFinancials提取",
-            "context": "从extractOilGasFinancials提取",
-            "value": 34301000000,
-            "allValues": [
-              34301000000
-            ]
-          }
-        ],
-        "production": [],
-        "sales": []
-      }
-    },
-    {
-      "year": "2022",
-      "filename": "中国海洋石油2022年第一季度报告.pdf",
-      "oil": {
-        "cost": [],
-        "revenue": [],
-        "production": [],
-        "sales": []
-      },
-      "gas": {
-        "cost": [],
-        "revenue": [
-          {
-            "keyword": "天然气销售收入",
-            "line": "从extractOilGasFinancials提取",
-            "context": "从extractOilGasFinancials提取",
-            "value": 41047000000,
-            "allValues": [
-              41047000000
-            ]
-          }
-        ],
-        "production": [],
-        "sales": []
-      }
-    },
-    {
-      "year": "2022",
-      "filename": "中国海洋石油2022年第三季度报告.pdf",
-      "oil": {
-        "cost": [],
-        "revenue": [],
-        "production": [],
-        "sales": []
-      },
-      "gas": {
-        "cost": [],
-        "revenue": [
-          {
-            "keyword": "天然气销售收入",
-            "line": "从extractOilGasFinancials提取",
-            "context": "从extractOilGasFinancials提取",
-            "value": 27121000000,
-            "allValues": [
-              27121000000
-            ]
-          }
-        ],
-        "production": [],
-        "sales": []
-      }
-    }
-  ],
-  "summary": [
-    {
-      "year": "2025",
-      "filename": "中国海洋石油2025年年度报告.pdf",
-      "oil": {
-        "revenue": 171745000000,
-        "cost": null,
-        "production": null,
-        "sales": null
-      },
-      "gas": {
-        "revenue": 27747000000,
-        "cost": null,
-        "production": null,
-        "sales": null
-      }
-    },
-    {
-      "year": "2025",
-      "filename": "中国海洋石油2025年第一季度报告.pdf",
-      "oil": {
-        "revenue": null,
-        "cost": null,
-        "production": null,
-        "sales": 36560
-      },
-      "gas": {
-        "revenue": 36563000000,
-        "cost": null,
-        "production": null,
-        "sales": null
-      }
+      "totalProduction": 188.8,
+      "netProfit": 36563000000
     },
     {
       "year": "2025",
       "filename": "中国海洋石油2025年第三季度报告.pdf",
       "oil": {
-        "revenue": null,
-        "cost": null,
-        "production": null,
-        "sales": null
+        "cost": [],
+        "revenue": [
+          {
+            "keyword": "石油销售收入",
+            "line": "从extractOilGasFinancials提取",
+            "context": "从extractOilGasFinancials提取",
+            "value": 213951000000,
+            "allValues": [
+              213951000000
+            ]
+          }
+        ],
+        "production": [
+          {
+            "keyword": "石油产量",
+            "line": "从extractOilGasProductionSales提取",
+            "context": "从extractOilGasProductionSales提取",
+            "value": 445.1,
+            "allValues": [
+              445.1
+            ]
+          }
+        ],
+        "sales": [],
+        "price": 68.29,
+        "unitCost": 27.35
       },
       "gas": {
-        "revenue": 44470000000,
-        "cost": null,
-        "production": 163774560,
-        "sales": null
-      }
+        "cost": [],
+        "revenue": [
+          {
+            "keyword": "天然气销售收入",
+            "line": "从extractOilGasFinancials提取",
+            "context": "从extractOilGasFinancials提取",
+            "value": 41531000000,
+            "allValues": [
+              41531000000
+            ]
+          }
+        ],
+        "production": [
+          {
+            "keyword": "天然气产量",
+            "line": "从extractOilGasProductionSales提取",
+            "context": "从extractOilGasProductionSales提取",
+            "value": 777.5,
+            "allValues": [
+              777.5
+            ]
+          }
+        ],
+        "sales": [],
+        "price": 7.86
+      },
+      "totalProduction": 578.3,
+      "netProfit": 32438000000
+    },
+    {
+      "year": "2024",
+      "filename": "中国海洋石油2024年半年度报告.pdf",
+      "oil": {
+        "cost": [
+          {
+            "keyword": "石油销售成本",
+            "line": "从extractOilGasFinancials提取",
+            "context": "从extractOilGasFinancials提取",
+            "value": 85807719175,
+            "allValues": [
+              85807719175
+            ]
+          }
+        ],
+        "revenue": [
+          {
+            "keyword": "石油销售收入",
+            "line": "从extractOilGasFinancials提取",
+            "context": "从extractOilGasFinancials提取",
+            "value": 161256000000,
+            "allValues": [
+              161256000000
+            ]
+          }
+        ],
+        "production": [
+          {
+            "keyword": "石油产量",
+            "line": "从extractOilGasProductionSales提取",
+            "context": "从extractOilGasProductionSales提取",
+            "value": 283.4,
+            "allValues": [
+              283.4
+            ]
+          }
+        ],
+        "sales": [
+          {
+            "keyword": "石油销量",
+            "line": "从extractOilGasProductionSales提取",
+            "context": "从extractOilGasProductionSales提取",
+            "value": 362.6,
+            "allValues": [
+              362.6
+            ]
+          }
+        ],
+        "price": 80.32,
+        "unitCost": 27.75
+      },
+      "gas": {
+        "cost": [
+          {
+            "keyword": "天然气销售成本",
+            "line": "从extractOilGasFinancials提取",
+            "context": "从extractOilGasFinancials提取",
+            "value": 12694280825,
+            "allValues": [
+              12694280825
+            ]
+          }
+        ],
+        "revenue": [
+          {
+            "keyword": "天然气销售收入",
+            "line": "从extractOilGasFinancials提取",
+            "context": "从extractOilGasFinancials提取",
+            "value": 23856000000,
+            "allValues": [
+              23856000000
+            ]
+          }
+        ],
+        "production": [
+          {
+            "keyword": "天然气产量",
+            "line": "从extractOilGasProductionSales提取",
+            "context": "从extractOilGasProductionSales提取",
+            "value": 461,
+            "allValues": [
+              461
+            ]
+          }
+        ],
+        "sales": [
+          {
+            "keyword": "天然气销量",
+            "line": "从extractOilGasProductionSales提取",
+            "context": "从extractOilGasProductionSales提取",
+            "value": 247.6,
+            "allValues": [
+              247.6
+            ]
+          }
+        ],
+        "price": 7.79
+      },
+      "totalSales": 356.1
     },
     {
       "year": "2024",
       "filename": "中国海洋石油2024年年度报告.pdf",
       "oil": {
-        "revenue": null,
-        "cost": null,
-        "production": null,
-        "sales": null
+        "cost": [],
+        "revenue": [
+          {
+            "keyword": "石油销售收入",
+            "line": "从extractOilGasFinancials提取",
+            "context": "从extractOilGasFinancials提取",
+            "value": 307812000000,
+            "allValues": [
+              307812000000
+            ]
+          }
+        ],
+        "production": [
+          {
+            "keyword": "石油产量",
+            "line": "从extractOilGasProductionSales提取",
+            "context": "从extractOilGasProductionSales提取",
+            "value": 556.46823,
+            "allValues": [
+              556.46823
+            ]
+          }
+        ],
+        "sales": [
+          {
+            "keyword": "石油销量",
+            "line": "从extractOilGasProductionSales提取",
+            "context": "从extractOilGasProductionSales提取",
+            "value": 441.7,
+            "allValues": [
+              441.7
+            ]
+          }
+        ],
+        "price": 76.75,
+        "unitCost": 28.42
       },
       "gas": {
-        "revenue": 39719000000,
-        "cost": null,
-        "production": null,
-        "sales": null
+        "cost": [],
+        "revenue": [
+          {
+            "keyword": "天然气销售收入",
+            "line": "从extractOilGasFinancials提取",
+            "context": "从extractOilGasFinancials提取",
+            "value": 47803000000,
+            "allValues": [
+              47803000000
+            ]
+          }
+        ],
+        "production": [
+          {
+            "keyword": "天然气产量",
+            "line": "从extractOilGasProductionSales提取",
+            "context": "从extractOilGasProductionSales提取",
+            "value": 873.4224,
+            "allValues": [
+              873.4224
+            ]
+          }
+        ],
+        "sales": [
+          {
+            "keyword": "天然气销量",
+            "line": "从extractOilGasProductionSales提取",
+            "context": "从extractOilGasProductionSales提取",
+            "value": 400.9,
+            "allValues": [
+              400.9
+            ]
+          }
+        ],
+        "price": 7.72
       }
     },
     {
       "year": "2024",
       "filename": "中国海洋石油2024年第一季度报告.pdf",
       "oil": {
-        "revenue": null,
-        "cost": null,
-        "production": null,
-        "sales": 39720
+        "cost": [],
+        "revenue": [
+          {
+            "keyword": "石油销售收入",
+            "line": "从extractOilGasFinancials提取",
+            "context": "从extractOilGasFinancials提取",
+            "value": 78203000000,
+            "allValues": [
+              78203000000
+            ]
+          }
+        ],
+        "production": [
+          {
+            "keyword": "石油产量",
+            "line": "从extractOilGasProductionSales提取",
+            "context": "从extractOilGasProductionSales提取",
+            "value": 140.7,
+            "allValues": [
+              140.7
+            ]
+          }
+        ],
+        "sales": [],
+        "price": 78.75,
+        "unitCost": 27.59
       },
       "gas": {
-        "revenue": 29014000000,
-        "cost": null,
-        "production": null,
-        "sales": 112487040
-      }
+        "cost": [],
+        "revenue": [
+          {
+            "keyword": "天然气销售收入",
+            "line": "从extractOilGasFinancials提取",
+            "context": "从extractOilGasFinancials提取",
+            "value": 11774000000,
+            "allValues": [
+              11774000000
+            ]
+          }
+        ],
+        "production": [
+          {
+            "keyword": "天然气产量",
+            "line": "从extractOilGasProductionSales提取",
+            "context": "从extractOilGasProductionSales提取",
+            "value": 229.5,
+            "allValues": [
+              229.5
+            ]
+          }
+        ],
+        "sales": [],
+        "price": 7.69
+      },
+      "totalProduction": 180.1,
+      "netProfit": 39719000000
     },
     {
       "year": "2024",
       "filename": "中国海洋石油2024年第三季度报告.pdf",
       "oil": {
-        "revenue": null,
-        "cost": null,
-        "production": null,
-        "sales": null
+        "cost": [],
+        "revenue": [
+          {
+            "keyword": "石油销售收入",
+            "line": "从extractOilGasFinancials提取",
+            "context": "从extractOilGasFinancials提取",
+            "value": 235382000000,
+            "allValues": [
+              235382000000
+            ]
+          }
+        ],
+        "production": [
+          {
+            "keyword": "石油产量",
+            "line": "从extractOilGasProductionSales提取",
+            "context": "从extractOilGasProductionSales提取",
+            "value": 422.4,
+            "allValues": [
+              422.4
+            ]
+          }
+        ],
+        "sales": [],
+        "price": 79.03,
+        "unitCost": 28.14
       },
       "gas": {
-        "revenue": 21564000000,
-        "cost": null,
-        "production": null,
-        "sales": null
-      }
+        "cost": [],
+        "revenue": [
+          {
+            "keyword": "天然气销售收入",
+            "line": "从extractOilGasFinancials提取",
+            "context": "从extractOilGasFinancials提取",
+            "value": 36050000000,
+            "allValues": [
+              36050000000
+            ]
+          }
+        ],
+        "production": [
+          {
+            "keyword": "天然气产量",
+            "line": "从extractOilGasProductionSales提取",
+            "context": "从extractOilGasProductionSales提取",
+            "value": 696.5,
+            "allValues": [
+              696.5
+            ]
+          }
+        ],
+        "sales": [],
+        "price": 7.78
+      },
+      "totalProduction": 542.1,
+      "netProfit": 97645000000
+    },
+    {
+      "year": "2023",
+      "filename": "中国海洋石油2023年半年度报告.pdf",
+      "oil": {
+        "cost": [],
+        "revenue": [
+          {
+            "keyword": "石油销售收入",
+            "line": "从extractOilGasFinancials提取",
+            "context": "从extractOilGasFinancials提取",
+            "value": 129933000000,
+            "allValues": [
+              129933000000
+            ]
+          }
+        ],
+        "production": [
+          {
+            "keyword": "石油产量",
+            "line": "从extractOilGasProductionSales提取",
+            "context": "从extractOilGasProductionSales提取",
+            "value": 260.4,
+            "allValues": [
+              260.4
+            ]
+          }
+        ],
+        "sales": [
+          {
+            "keyword": "石油销量",
+            "line": "从extractOilGasProductionSales提取",
+            "context": "从extractOilGasProductionSales提取",
+            "value": 331.8,
+            "allValues": [
+              331.8
+            ]
+          }
+        ],
+        "price": 73.57,
+        "unitCost": 30
+      },
+      "gas": {
+        "cost": [],
+        "revenue": [
+          {
+            "keyword": "天然气销售收入",
+            "line": "从extractOilGasFinancials提取",
+            "context": "从extractOilGasFinancials提取",
+            "value": 21753000000,
+            "allValues": [
+              21753000000
+            ]
+          }
+        ],
+        "production": [
+          {
+            "keyword": "天然气产量",
+            "line": "从extractOilGasProductionSales提取",
+            "context": "从extractOilGasProductionSales提取",
+            "value": 415.5,
+            "allValues": [
+              415.5
+            ]
+          }
+        ],
+        "sales": [
+          {
+            "keyword": "天然气销量",
+            "line": "从extractOilGasProductionSales提取",
+            "context": "从extractOilGasProductionSales提取",
+            "value": 231.2,
+            "allValues": [
+              231.2
+            ]
+          }
+        ],
+        "price": 8.12
+      },
+      "totalProduction": 331.8,
+      "totalSales": 320.6
     },
     {
       "year": "2023",
       "filename": "中国海洋石油2023年年度报告.pdf",
       "oil": {
-        "revenue": null,
-        "cost": null,
-        "production": null,
-        "sales": null
+        "cost": [],
+        "revenue": [
+          {
+            "keyword": "石油销售收入",
+            "line": "从extractOilGasFinancials提取",
+            "context": "从extractOilGasFinancials提取",
+            "value": 282447000000,
+            "allValues": [
+              282447000000
+            ]
+          }
+        ],
+        "production": [
+          {
+            "keyword": "石油产量",
+            "line": "从extractOilGasProductionSales提取",
+            "context": "从extractOilGasProductionSales提取",
+            "value": 518.684345,
+            "allValues": [
+              518.684345
+            ]
+          }
+        ],
+        "sales": [
+          {
+            "keyword": "石油销量",
+            "line": "从extractOilGasProductionSales提取",
+            "context": "从extractOilGasProductionSales提取",
+            "value": 318.2,
+            "allValues": [
+              318.2
+            ]
+          }
+        ],
+        "price": 77.96,
+        "unitCost": 28.83
       },
       "gas": {
-        "revenue": 32113000000,
-        "cost": null,
-        "production": null,
-        "sales": null
-      }
+        "cost": [],
+        "revenue": [
+          {
+            "keyword": "天然气销售收入",
+            "line": "从extractOilGasFinancials提取",
+            "context": "从extractOilGasFinancials提取",
+            "value": 45420000000,
+            "allValues": [
+              45420000000
+            ]
+          }
+        ],
+        "production": [
+          {
+            "keyword": "天然气产量",
+            "line": "从extractOilGasProductionSales提取",
+            "context": "从extractOilGasProductionSales提取",
+            "value": 808.9129999999999,
+            "allValues": [
+              808.9129999999999
+            ]
+          }
+        ],
+        "sales": [
+          {
+            "keyword": "天然气销量",
+            "line": "从extractOilGasProductionSales提取",
+            "context": "从extractOilGasProductionSales提取",
+            "value": 390.9,
+            "allValues": [
+              390.9
+            ]
+          }
+        ],
+        "price": 7.98
+      },
+      "totalSales": 653.2
     },
     {
       "year": "2023",
       "filename": "中国海洋石油2023年第一季度报告.pdf",
       "oil": {
-        "revenue": null,
-        "cost": null,
-        "production": null,
-        "sales": 32110.000000000004
+        "cost": [],
+        "revenue": [
+          {
+            "keyword": "石油销售收入",
+            "line": "从extractOilGasFinancials提取",
+            "context": "从extractOilGasFinancials提取",
+            "value": 63283000000,
+            "allValues": [
+              63283000000
+            ]
+          }
+        ],
+        "production": [
+          {
+            "keyword": "石油产量",
+            "line": "从extractOilGasProductionSales提取",
+            "context": "从extractOilGasProductionSales提取",
+            "value": 128.4,
+            "allValues": [
+              128.4
+            ]
+          }
+        ],
+        "sales": [],
+        "price": 74.17,
+        "unitCost": 28.22
       },
       "gas": {
-        "revenue": 24736000000,
-        "cost": null,
-        "production": null,
-        "sales": 90935520
-      }
+        "cost": [],
+        "revenue": [
+          {
+            "keyword": "天然气销售收入",
+            "line": "从extractOilGasFinancials提取",
+            "context": "从extractOilGasFinancials提取",
+            "value": 10913000000,
+            "allValues": [
+              10913000000
+            ]
+          }
+        ],
+        "production": [
+          {
+            "keyword": "天然气产量",
+            "line": "从extractOilGasProductionSales提取",
+            "context": "从extractOilGasProductionSales提取",
+            "value": 207.5,
+            "allValues": [
+              207.5
+            ]
+          }
+        ],
+        "sales": [],
+        "price": 8.33
+      },
+      "totalProduction": 163.9,
+      "netProfit": 97711000000
     },
     {
       "year": "2023",
       "filename": "中国海洋石油2023年第三季度报告.pdf",
       "oil": {
-        "revenue": null,
-        "cost": null,
-        "production": 34550,
-        "sales": null
+        "cost": [],
+        "revenue": [
+          {
+            "keyword": "石油销售收入",
+            "line": "从extractOilGasFinancials提取",
+            "context": "从extractOilGasFinancials提取",
+            "value": 205452000000,
+            "allValues": [
+              205452000000
+            ]
+          }
+        ],
+        "production": [
+          {
+            "keyword": "石油产量",
+            "line": "从extractOilGasProductionSales提取",
+            "context": "从extractOilGasProductionSales提取",
+            "value": 389.8,
+            "allValues": [
+              389.8
+            ]
+          }
+        ],
+        "sales": [],
+        "price": 76.84,
+        "unitCost": 28.37
       },
       "gas": {
-        "revenue": 21788000000,
-        "cost": null,
-        "production": 97845600,
-        "sales": null
-      }
+        "cost": [],
+        "revenue": [
+          {
+            "keyword": "天然气销售收入",
+            "line": "从extractOilGasFinancials提取",
+            "context": "从extractOilGasFinancials提取",
+            "value": 32944000000,
+            "allValues": [
+              32944000000
+            ]
+          }
+        ],
+        "production": [
+          {
+            "keyword": "天然气产量",
+            "line": "从extractOilGasProductionSales提取",
+            "context": "从extractOilGasProductionSales提取",
+            "value": 639.3,
+            "allValues": [
+              639.3
+            ]
+          }
+        ],
+        "sales": [],
+        "price": 7.92
+      },
+      "totalProduction": 499.7,
+      "netProfit": 33884000000
+    },
+    {
+      "year": "2022",
+      "filename": "中国海洋石油2022年半年度报告.pdf",
+      "oil": {
+        "cost": [
+          {
+            "keyword": "石油销售成本",
+            "line": "从extractOilGasFinancials提取",
+            "context": "从extractOilGasFinancials提取",
+            "value": 65021053558,
+            "allValues": [
+              65021053558
+            ]
+          }
+        ],
+        "revenue": [
+          {
+            "keyword": "石油销售收入",
+            "line": "从extractOilGasFinancials提取",
+            "context": "从extractOilGasFinancials提取",
+            "value": 102227000000,
+            "allValues": [
+              102227000000
+            ]
+          }
+        ],
+        "production": [
+          {
+            "keyword": "石油产量",
+            "line": "从extractOilGasProductionSales提取",
+            "context": "从extractOilGasProductionSales提取",
+            "value": 240.5,
+            "allValues": [
+              240.5
+            ]
+          }
+        ],
+        "sales": [],
+        "unitCost": 28.87
+      },
+      "gas": {
+        "cost": [
+          {
+            "keyword": "天然气销售成本",
+            "line": "从extractOilGasFinancials提取",
+            "context": "从extractOilGasFinancials提取",
+            "value": 21755946442,
+            "allValues": [
+              21755946442
+            ]
+          }
+        ],
+        "revenue": [
+          {
+            "keyword": "天然气销售收入",
+            "line": "从extractOilGasFinancials提取",
+            "context": "从extractOilGasFinancials提取",
+            "value": 34205000000,
+            "allValues": [
+              34205000000
+            ]
+          }
+        ],
+        "production": [
+          {
+            "keyword": "天然气产量",
+            "line": "从extractOilGasProductionSales提取",
+            "context": "从extractOilGasProductionSales提取",
+            "value": 374.7,
+            "allValues": [
+              374.7
+            ]
+          }
+        ],
+        "sales": [],
+        "price": 6.7114
+      },
+      "totalProduction": 304.8
     },
     {
       "year": "2022",
       "filename": "中国海洋石油2022年年度报告.pdf",
       "oil": {
-        "revenue": null,
-        "cost": null,
-        "production": null,
-        "sales": null
+        "cost": [],
+        "revenue": [
+          {
+            "keyword": "石油销售收入",
+            "line": "从extractOilGasFinancials提取",
+            "context": "从extractOilGasFinancials提取",
+            "value": 311035000000,
+            "allValues": [
+              311035000000
+            ]
+          }
+        ],
+        "production": [
+          {
+            "keyword": "石油产量",
+            "line": "从extractOilGasProductionSales提取",
+            "context": "从extractOilGasProductionSales提取",
+            "value": 478.82014,
+            "allValues": [
+              478.82014
+            ]
+          }
+        ],
+        "sales": [
+          {
+            "keyword": "石油销量",
+            "line": "从extractOilGasProductionSales提取",
+            "context": "从extractOilGasProductionSales提取",
+            "value": 265.2,
+            "allValues": [
+              265.2
+            ]
+          }
+        ],
+        "price": 96.59,
+        "unitCost": 30.39
       },
       "gas": {
-        "revenue": 34301000000,
-        "cost": null,
-        "production": null,
-        "sales": null
-      }
+        "cost": [],
+        "revenue": [
+          {
+            "keyword": "天然气销售收入",
+            "line": "从extractOilGasFinancials提取",
+            "context": "从extractOilGasFinancials提取",
+            "value": 41921000000,
+            "allValues": [
+              41921000000
+            ]
+          }
+        ],
+        "production": [
+          {
+            "keyword": "天然气产量",
+            "line": "从extractOilGasProductionSales提取",
+            "context": "从extractOilGasProductionSales提取",
+            "value": 723.5395,
+            "allValues": [
+              723.5395
+            ]
+          }
+        ],
+        "sales": [
+          {
+            "keyword": "天然气销量",
+            "line": "从extractOilGasProductionSales提取",
+            "context": "从extractOilGasProductionSales提取",
+            "value": 345.4,
+            "allValues": [
+              345.4
+            ]
+          }
+        ],
+        "price": 8.58
+      },
+      "totalSales": 603.6
     },
     {
       "year": "2022",
       "filename": "中国海洋石油2022年第一季度报告.pdf",
       "oil": {
-        "revenue": null,
-        "cost": null,
-        "production": null,
-        "sales": null
+        "cost": [],
+        "revenue": [
+          {
+            "keyword": "石油销售收入",
+            "line": "从extractOilGasFinancials提取",
+            "context": "从extractOilGasFinancials提取",
+            "value": 73277000000,
+            "allValues": [
+              73277000000
+            ]
+          }
+        ],
+        "production": [
+          {
+            "keyword": "石油产量",
+            "line": "从extractOilGasProductionSales提取",
+            "context": "从extractOilGasProductionSales提取",
+            "value": 119.6,
+            "allValues": [
+              119.6
+            ]
+          }
+        ],
+        "sales": [],
+        "price": 97.47,
+        "unitCost": 30.59
       },
       "gas": {
-        "revenue": 41047000000,
-        "cost": null,
-        "production": null,
-        "sales": null
-      }
+        "cost": [],
+        "revenue": [
+          {
+            "keyword": "天然气销售收入",
+            "line": "从extractOilGasFinancials提取",
+            "context": "从extractOilGasFinancials提取",
+            "value": 9103000000,
+            "allValues": [
+              9103000000
+            ]
+          }
+        ],
+        "production": [
+          {
+            "keyword": "天然气产量",
+            "line": "从extractOilGasProductionSales提取",
+            "context": "从extractOilGasProductionSales提取",
+            "value": 184,
+            "allValues": [
+              184
+            ]
+          }
+        ],
+        "sales": [],
+        "price": 5.58
+      },
+      "totalProduction": 151,
+      "netProfit": 90898000000
     },
     {
       "year": "2022",
       "filename": "中国海洋石油2022年第三季度报告.pdf",
       "oil": {
-        "revenue": null,
-        "cost": null,
-        "production": null,
-        "sales": null
+        "cost": [],
+        "revenue": [
+          {
+            "keyword": "石油销售收入",
+            "line": "从extractOilGasFinancials提取",
+            "context": "从extractOilGasFinancials提取",
+            "value": 237257000000,
+            "allValues": [
+              237257000000
+            ]
+          }
+        ],
+        "production": [
+          {
+            "keyword": "石油产量",
+            "line": "从extractOilGasProductionSales提取",
+            "context": "从extractOilGasProductionSales提取",
+            "value": 362.6,
+            "allValues": [
+              362.6
+            ]
+          }
+        ],
+        "sales": [],
+        "price": 101.4,
+        "unitCost": 30.29
       },
       "gas": {
-        "revenue": 27121000000,
+        "cost": [],
+        "revenue": [
+          {
+            "keyword": "天然气销售收入",
+            "line": "从extractOilGasFinancials提取",
+            "context": "从extractOilGasFinancials提取",
+            "value": 28630000000,
+            "allValues": [
+              28630000000
+            ]
+          }
+        ],
+        "production": [
+          {
+            "keyword": "天然气产量",
+            "line": "从extractOilGasProductionSales提取",
+            "context": "从extractOilGasProductionSales提取",
+            "value": 575.7,
+            "allValues": [
+              575.7
+            ]
+          }
+        ],
+        "sales": [],
+        "price": 8.14
+      },
+      "totalProduction": 461.5,
+      "netProfit": 36881000000
+    }
+  ],
+  "summary": [
+    {
+      "year": "2025",
+      "filename": "中国海洋石油2025年半年度报告.pdf",
+      "oil": {
+        "revenue": 143998000000,
+        "cost": 76825483956,
+        "production": 296.1,
+        "sales": 384.6,
+        "price": 69.15,
+        "unitCost": 28.9
+      },
+      "gas": {
+        "revenue": 27747000000,
+        "cost": 14803516044,
+        "production": 516.2,
+        "sales": 266.5,
+        "price": 7.9,
+        "unitCost": null
+      },
+      "netProfit": null,
+      "totalProduction": null,
+      "totalSales": 373.8
+    },
+    {
+      "year": "2025",
+      "filename": "中国海洋石油2025年第一季度报告.pdf",
+      "oil": {
+        "revenue": 74633000000,
         "cost": null,
-        "production": null,
-        "sales": null
-      }
+        "production": 145.5,
+        "sales": null,
+        "price": 72.65,
+        "unitCost": 27.03
+      },
+      "gas": {
+        "revenue": 13635000000,
+        "cost": null,
+        "production": 253,
+        "sales": null,
+        "price": 7.78,
+        "unitCost": null
+      },
+      "netProfit": 36563000000,
+      "totalProduction": 188.8,
+      "totalSales": null
+    },
+    {
+      "year": "2025",
+      "filename": "中国海洋石油2025年第三季度报告.pdf",
+      "oil": {
+        "revenue": 213951000000,
+        "cost": null,
+        "production": 445.1,
+        "sales": null,
+        "price": 68.29,
+        "unitCost": 27.35
+      },
+      "gas": {
+        "revenue": 41531000000,
+        "cost": null,
+        "production": 777.5,
+        "sales": null,
+        "price": 7.86,
+        "unitCost": null
+      },
+      "netProfit": 32438000000,
+      "totalProduction": 578.3,
+      "totalSales": null
+    },
+    {
+      "year": "2024",
+      "filename": "中国海洋石油2024年半年度报告.pdf",
+      "oil": {
+        "revenue": 161256000000,
+        "cost": 85807719175,
+        "production": 283.4,
+        "sales": 362.6,
+        "price": 80.32,
+        "unitCost": 27.75
+      },
+      "gas": {
+        "revenue": 23856000000,
+        "cost": 12694280825,
+        "production": 461,
+        "sales": 247.6,
+        "price": 7.79,
+        "unitCost": null
+      },
+      "netProfit": null,
+      "totalProduction": null,
+      "totalSales": 356.1
+    },
+    {
+      "year": "2024",
+      "filename": "中国海洋石油2024年年度报告.pdf",
+      "oil": {
+        "revenue": 307812000000,
+        "cost": null,
+        "production": 556.46823,
+        "sales": 441.7,
+        "price": 76.75,
+        "unitCost": 28.42
+      },
+      "gas": {
+        "revenue": 47803000000,
+        "cost": null,
+        "production": 873.4224,
+        "sales": 400.9,
+        "price": 7.72,
+        "unitCost": null
+      },
+      "netProfit": null,
+      "totalProduction": null,
+      "totalSales": null
+    },
+    {
+      "year": "2024",
+      "filename": "中国海洋石油2024年第一季度报告.pdf",
+      "oil": {
+        "revenue": 78203000000,
+        "cost": null,
+        "production": 140.7,
+        "sales": null,
+        "price": 78.75,
+        "unitCost": 27.59
+      },
+      "gas": {
+        "revenue": 11774000000,
+        "cost": null,
+        "production": 229.5,
+        "sales": null,
+        "price": 7.69,
+        "unitCost": null
+      },
+      "netProfit": 39719000000,
+      "totalProduction": 180.1,
+      "totalSales": null
+    },
+    {
+      "year": "2024",
+      "filename": "中国海洋石油2024年第三季度报告.pdf",
+      "oil": {
+        "revenue": 235382000000,
+        "cost": null,
+        "production": 422.4,
+        "sales": null,
+        "price": 79.03,
+        "unitCost": 28.14
+      },
+      "gas": {
+        "revenue": 36050000000,
+        "cost": null,
+        "production": 696.5,
+        "sales": null,
+        "price": 7.78,
+        "unitCost": null
+      },
+      "netProfit": 97645000000,
+      "totalProduction": 542.1,
+      "totalSales": null
+    },
+    {
+      "year": "2023",
+      "filename": "中国海洋石油2023年半年度报告.pdf",
+      "oil": {
+        "revenue": 129933000000,
+        "cost": null,
+        "production": 260.4,
+        "sales": 331.8,
+        "price": 73.57,
+        "unitCost": 30
+      },
+      "gas": {
+        "revenue": 21753000000,
+        "cost": null,
+        "production": 415.5,
+        "sales": 231.2,
+        "price": 8.12,
+        "unitCost": null
+      },
+      "netProfit": null,
+      "totalProduction": 331.8,
+      "totalSales": 320.6
+    },
+    {
+      "year": "2023",
+      "filename": "中国海洋石油2023年年度报告.pdf",
+      "oil": {
+        "revenue": 282447000000,
+        "cost": null,
+        "production": 518.684345,
+        "sales": 318.2,
+        "price": 77.96,
+        "unitCost": 28.83
+      },
+      "gas": {
+        "revenue": 45420000000,
+        "cost": null,
+        "production": 808.9129999999999,
+        "sales": 390.9,
+        "price": 7.98,
+        "unitCost": null
+      },
+      "netProfit": null,
+      "totalProduction": null,
+      "totalSales": 653.2
+    },
+    {
+      "year": "2023",
+      "filename": "中国海洋石油2023年第一季度报告.pdf",
+      "oil": {
+        "revenue": 63283000000,
+        "cost": null,
+        "production": 128.4,
+        "sales": null,
+        "price": 74.17,
+        "unitCost": 28.22
+      },
+      "gas": {
+        "revenue": 10913000000,
+        "cost": null,
+        "production": 207.5,
+        "sales": null,
+        "price": 8.33,
+        "unitCost": null
+      },
+      "netProfit": 97711000000,
+      "totalProduction": 163.9,
+      "totalSales": null
+    },
+    {
+      "year": "2023",
+      "filename": "中国海洋石油2023年第三季度报告.pdf",
+      "oil": {
+        "revenue": 205452000000,
+        "cost": null,
+        "production": 389.8,
+        "sales": null,
+        "price": 76.84,
+        "unitCost": 28.37
+      },
+      "gas": {
+        "revenue": 32944000000,
+        "cost": null,
+        "production": 639.3,
+        "sales": null,
+        "price": 7.92,
+        "unitCost": null
+      },
+      "netProfit": 33884000000,
+      "totalProduction": 499.7,
+      "totalSales": null
+    },
+    {
+      "year": "2022",
+      "filename": "中国海洋石油2022年半年度报告.pdf",
+      "oil": {
+        "revenue": 102227000000,
+        "cost": 65021053558,
+        "production": 240.5,
+        "sales": null,
+        "price": null,
+        "unitCost": 28.87
+      },
+      "gas": {
+        "revenue": 34205000000,
+        "cost": 21755946442,
+        "production": 374.7,
+        "sales": null,
+        "price": 6.7114,
+        "unitCost": null
+      },
+      "netProfit": null,
+      "totalProduction": 304.8,
+      "totalSales": null
+    },
+    {
+      "year": "2022",
+      "filename": "中国海洋石油2022年年度报告.pdf",
+      "oil": {
+        "revenue": 311035000000,
+        "cost": null,
+        "production": 478.82014,
+        "sales": 265.2,
+        "price": 96.59,
+        "unitCost": 30.39
+      },
+      "gas": {
+        "revenue": 41921000000,
+        "cost": null,
+        "production": 723.5395,
+        "sales": 345.4,
+        "price": 8.58,
+        "unitCost": null
+      },
+      "netProfit": null,
+      "totalProduction": null,
+      "totalSales": 603.6
+    },
+    {
+      "year": "2022",
+      "filename": "中国海洋石油2022年第一季度报告.pdf",
+      "oil": {
+        "revenue": 73277000000,
+        "cost": null,
+        "production": 119.6,
+        "sales": null,
+        "price": 97.47,
+        "unitCost": 30.59
+      },
+      "gas": {
+        "revenue": 9103000000,
+        "cost": null,
+        "production": 184,
+        "sales": null,
+        "price": 5.58,
+        "unitCost": null
+      },
+      "netProfit": 90898000000,
+      "totalProduction": 151,
+      "totalSales": null
+    },
+    {
+      "year": "2022",
+      "filename": "中国海洋石油2022年第三季度报告.pdf",
+      "oil": {
+        "revenue": 237257000000,
+        "cost": null,
+        "production": 362.6,
+        "sales": null,
+        "price": 101.4,
+        "unitCost": 30.29
+      },
+      "gas": {
+        "revenue": 28630000000,
+        "cost": null,
+        "production": 575.7,
+        "sales": null,
+        "price": 8.14,
+        "unitCost": null
+      },
+      "netProfit": 36881000000,
+      "totalProduction": 461.5,
+      "totalSales": null
     }
   ]
 }

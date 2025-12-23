@@ -17,16 +17,16 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            padding: 20px;
+            /* padding: 20px; */
         }
 
         .container {
-            max-width: 1400px;
+            /* max-width: 1400px; */
             margin: 0 auto;
             background: white;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-            padding: 20px;
-            border-radius: 8px;
+            /* box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2); */
+            padding: 16px;
+            /* border-radius: 8px; */
         }
 
         h1 {
@@ -401,7 +401,6 @@
 <body>
     <div class="container">
         <h1>中国海洋石油数据对比分析</h1>
-        <div class="subtitle">石油和天然气数据</div>
         <div class="controls">
             <div class="btn-group">
                 <button class="btn active" onclick="switchView('quarterly', event)">单季度数据</button>
@@ -410,59 +409,27 @@
         </div>
 
         <div id="content">
+            <!-- 油气合并表格 -->
+            <div class="table-section">
+                <h2>油气合并数据</h2>
+                <div class="table-wrapper">
+                    <table id="oilGasTable">
+                        <thead>
+                            <!-- 表头由JavaScript动态生成 -->
+                        </thead>
+                        <tbody id="oilGasTableBody">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
             <!-- 石油表格 -->
             <div class="table-section">
                 <h2>石油数据</h2>
                 <div class="table-wrapper">
                     <table id="oilTable">
                         <thead>
-                            <tr>
-                                <th rowspan="2">报告期</th>
-                                <th colspan="3" class="selectable" data-column="revenue" data-name="营收" data-unit="亿元"
-                                    data-product="oil" onclick="selectColumn('revenue', '营收', '亿元', 'oil', event)">营收<br><span
-                                        style="font-size:10px;font-weight:normal">(亿元)</span></th>
-                                <th colspan="3" class="selectable" data-column="cost" data-name="成本" data-unit="亿元"
-                                    data-product="oil" onclick="selectColumn('cost', '成本', '亿元', 'oil', event)">成本<br><span
-                                        style="font-size:10px;font-weight:normal">(亿元)</span></th>
-                                <th colspan="3" class="selectable" data-column="production" data-name="产量" data-unit="万桶"
-                                    data-product="oil" onclick="selectColumn('production', '产量', '万桶', 'oil', event)">产量<br><span
-                                        style="font-size:10px;font-weight:normal">(万桶)</span></th>
-                                <th colspan="3" class="selectable" data-column="sales" data-name="销量" data-unit="万桶"
-                                    data-product="oil" onclick="selectColumn('sales', '销量', '万桶', 'oil', event)">销量<br><span
-                                        style="font-size:10px;font-weight:normal">(万桶)</span></th>
-                                <th colspan="3" class="selectable" data-column="price" data-name="售价" data-unit="元/桶"
-                                    data-product="oil" onclick="selectColumn('price', '售价', '元/桶', 'oil', event)">售价<br><span
-                                        style="font-size:10px;font-weight:normal">(元/桶)</span></th>
-                                <th colspan="3" class="selectable" data-column="unitCost" data-name="成本" data-unit="元/桶"
-                                    data-product="oil" onclick="selectColumn('unitCost', '成本', '元/桶', 'oil', event)">成本<br><span
-                                        style="font-size:10px;font-weight:normal">(元/桶)</span></th>
-                                <th colspan="3" class="selectable" data-column="grossMargin" data-name="毛利率" data-unit="%"
-                                    data-product="oil" onclick="selectColumn('grossMargin', '毛利率', '%', 'oil', event)">毛利率<br><span
-                                        style="font-size:10px;font-weight:normal">(%)</span></th>
-                            </tr>
-                            <tr>
-                                <th>数值</th>
-                                <th>同比</th>
-                                <th>环比</th>
-                                <th>数值</th>
-                                <th>同比</th>
-                                <th>环比</th>
-                                <th>数值</th>
-                                <th>同比</th>
-                                <th>环比</th>
-                                <th>数值</th>
-                                <th>同比</th>
-                                <th>环比</th>
-                                <th>数值</th>
-                                <th>同比</th>
-                                <th>环比</th>
-                                <th>数值</th>
-                                <th>同比</th>
-                                <th>环比</th>
-                                <th>数值</th>
-                                <th>同比</th>
-                                <th>环比</th>
-                            </tr>
+                            <!-- 表头由JavaScript动态生成 -->
                         </thead>
                         <tbody id="oilTableBody">
                         </tbody>
@@ -476,53 +443,7 @@
                 <div class="table-wrapper">
                     <table id="gasTable">
                         <thead>
-                            <tr>
-                                <th rowspan="2">报告期</th>
-                                <th colspan="3" class="selectable" data-column="revenue" data-name="营收" data-unit="亿元"
-                                    data-product="gas" onclick="selectColumn('revenue', '营收', '亿元', 'gas', event)">营收<br><span
-                                        style="font-size:10px;font-weight:normal">(亿元)</span></th>
-                                <th colspan="3" class="selectable" data-column="cost" data-name="成本" data-unit="亿元"
-                                    data-product="gas" onclick="selectColumn('cost', '成本', '亿元', 'gas', event)">成本<br><span
-                                        style="font-size:10px;font-weight:normal">(亿元)</span></th>
-                                <th colspan="3" class="selectable" data-column="production" data-name="产量" data-unit="万立方米"
-                                    data-product="gas" onclick="selectColumn('production', '产量', '万立方米', 'gas', event)">产量<br><span
-                                        style="font-size:10px;font-weight:normal">(万立方米)</span></th>
-                                <th colspan="3" class="selectable" data-column="sales" data-name="销量" data-unit="万立方米"
-                                    data-product="gas" onclick="selectColumn('sales', '销量', '万立方米', 'gas', event)">销量<br><span
-                                        style="font-size:10px;font-weight:normal">(万立方米)</span></th>
-                                <th colspan="3" class="selectable" data-column="price" data-name="售价" data-unit="元/立方米"
-                                    data-product="gas" onclick="selectColumn('price', '售价', '元/立方米', 'gas', event)">售价<br><span
-                                        style="font-size:10px;font-weight:normal">(元/立方米)</span></th>
-                                <th colspan="3" class="selectable" data-column="unitCost" data-name="成本" data-unit="元/立方米"
-                                    data-product="gas" onclick="selectColumn('unitCost', '成本', '元/立方米', 'gas', event)">成本<br><span
-                                        style="font-size:10px;font-weight:normal">(元/立方米)</span></th>
-                                <th colspan="3" class="selectable" data-column="grossMargin" data-name="毛利率" data-unit="%"
-                                    data-product="gas" onclick="selectColumn('grossMargin', '毛利率', '%', 'gas', event)">毛利率<br><span
-                                        style="font-size:10px;font-weight:normal">(%)</span></th>
-                            </tr>
-                            <tr>
-                                <th>数值</th>
-                                <th>同比</th>
-                                <th>环比</th>
-                                <th>数值</th>
-                                <th>同比</th>
-                                <th>环比</th>
-                                <th>数值</th>
-                                <th>同比</th>
-                                <th>环比</th>
-                                <th>数值</th>
-                                <th>同比</th>
-                                <th>环比</th>
-                                <th>数值</th>
-                                <th>同比</th>
-                                <th>环比</th>
-                                <th>数值</th>
-                                <th>同比</th>
-                                <th>环比</th>
-                                <th>数值</th>
-                                <th>同比</th>
-                                <th>环比</th>
-                            </tr>
+                            <!-- 表头由JavaScript动态生成 -->
                         </thead>
                         <tbody id="gasTableBody">
                         </tbody>
@@ -559,17 +480,31 @@
         // 原始累计数据（从JSON文件加载）
         let rawData = {
             oil: [],
-            gas: []
+            gas: [],
+            oilGas: [] // 合并的油气数据
         };
 
-        // 从JSON文件加载数据
+        // 从JSON文件加载数据（优先使用修正数据文件）
         async function loadData() {
             try {
-                const response = await fetch('cnooc_data.json');
+                // 优先尝试加载修正数据文件
+                let response = await fetch('cnooc_data_corrected.json');
+                let jsonData;
+                let isCorrectedData = false;
+                
                 if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
+                    // 如果修正数据文件不存在，回退到原始数据文件
+                    console.warn('修正数据文件不存在，使用原始数据文件');
+                    response = await fetch('cnooc_data.json');
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    jsonData = await response.json();
+                } else {
+                    isCorrectedData = true;
+                    jsonData = await response.json();
                 }
-                const jsonData = await response.json();
+                
                 const summary = jsonData.summary || [];
 
                 // 将summary数据转换为表格数据格式
@@ -577,23 +512,37 @@
                 rawData.gas = [];
 
                 summary.forEach(item => {
-                    // 根据文件名确定报告期
-                    let period = '';
+                    // 修正数据文件已经有period字段，原始数据文件需要从filename推断
+                    let period = item.period || '';
                     let year = parseInt(item.year);
+                    
+                    // 暂时隐藏2021年数据
+                    if (year === 2021) {
+                        return; // 跳过2021年的数据
+                    }
                     let month = 0;
 
-                    if (item.filename.includes('第一季度')) {
-                        period = `${year}年1-3月`;
-                        month = 3;
-                    } else if (item.filename.includes('半年度') || item.filename.includes('半年')) {
-                        period = `${year}年上半年`;
-                        month = 6;
-                    } else if (item.filename.includes('第三季度')) {
-                        period = `${year}年1-9月`;
-                        month = 9;
-                    } else if ((item.filename.includes('年度报告') || item.filename.includes('年报')) && !item.filename.includes('半年度')) {
-                        period = `${year}年全年`;
-                        month = 12;
+                    if (!period) {
+                        // 从文件名推断报告期（兼容原始数据格式）
+                        if (item.filename.includes('第一季度')) {
+                            period = `${year}年1-3月`;
+                            month = 3;
+                        } else if (item.filename.includes('半年度') || item.filename.includes('半年')) {
+                            period = `${year}年上半年`;
+                            month = 6;
+                        } else if (item.filename.includes('第三季度')) {
+                            period = `${year}年1-9月`;
+                            month = 9;
+                        } else if ((item.filename.includes('年度报告') || item.filename.includes('年报')) && !item.filename.includes('半年度')) {
+                            period = `${year}年全年`;
+                            month = 12;
+                        }
+                    } else {
+                        // 从period字段推断month
+                        if (period.includes('1-3月')) month = 3;
+                        else if (period.includes('上半年')) month = 6;
+                        else if (period.includes('1-9月')) month = 9;
+                        else if (period.includes('全年')) month = 12;
                     }
 
                     if (period) {
@@ -604,10 +553,14 @@
                                 year: year,
                                 month: month,
                                 type: 'cumulative',
-                                revenue: item.oil.revenue ? item.oil.revenue / 100000000 : null, // 转换为亿元
-                                cost: item.oil.cost ? item.oil.cost / 100000000 : null, // 转换为亿元
-                                production: item.oil.production || null, // 万桶
-                                sales: item.oil.sales || null // 万桶
+                                // 修正数据文件已经是亿元单位，原始数据文件需要转换
+                                // 如果值为0，也处理为null（表示数据缺失）
+                                revenue: (item.oil.revenue && item.oil.revenue !== 0) ? (isCorrectedData ? item.oil.revenue : item.oil.revenue / 100000000) : null,
+                                cost: (item.oil.cost && item.oil.cost !== 0) ? (isCorrectedData ? item.oil.cost : item.oil.cost / 100000000) : null,
+                                production: (item.oil.production && item.oil.production !== 0) ? item.oil.production : null, // 百万桶
+                                sales: (item.oil.sales && item.oil.sales !== 0) ? item.oil.sales : null, // 百万桶
+                                price: (item.oil.price && item.oil.price !== 0) ? item.oil.price : null, // 美元/桶
+                                unitCost: (item.oil.unitCost && item.oil.unitCost !== 0) ? item.oil.unitCost : null // 美元/桶（从PDF提取）
                             });
                         }
 
@@ -618,10 +571,14 @@
                                 year: year,
                                 month: month,
                                 type: 'cumulative',
-                                revenue: item.gas.revenue ? item.gas.revenue / 100000000 : null, // 转换为亿元
-                                cost: item.gas.cost ? item.gas.cost / 100000000 : null, // 转换为亿元
-                                production: item.gas.production || null, // 万立方米
-                                sales: item.gas.sales || null // 万立方米
+                                // 修正数据文件已经是亿元单位，原始数据文件需要转换
+                                // 如果值为0，也处理为null（表示数据缺失）
+                                revenue: (item.gas.revenue && item.gas.revenue !== 0) ? (isCorrectedData ? item.gas.revenue : item.gas.revenue / 100000000) : null,
+                                cost: (item.gas.cost && item.gas.cost !== 0) ? (isCorrectedData ? item.gas.cost : item.gas.cost / 100000000) : null,
+                                production: (item.gas.production && item.gas.production !== 0) ? item.gas.production : null, // 十亿立方英尺
+                                sales: (item.gas.sales && item.gas.sales !== 0) ? item.gas.sales : null, // 十亿立方英尺
+                                price: (item.gas.price && item.gas.price !== 0) ? item.gas.price : null, // 美元/千立方英尺
+                                unitCost: (item.gas.unitCost && item.gas.unitCost !== 0) ? item.gas.unitCost : null // 美元/千立方英尺（从PDF提取）
                             });
                         }
                     }
@@ -638,7 +595,157 @@
                     return a.month - b.month;
                 });
 
-                console.log('已加载数据，石油:', rawData.oil.length, '条，天然气:', rawData.gas.length, '条');
+                // 创建合并的油气数据
+                rawData.oilGas = [];
+                const periodMap = new Map();
+                
+                // 合并石油和天然气数据
+                rawData.oil.forEach(oilItem => {
+                    const key = `${oilItem.year}-${oilItem.month}`;
+                    if (!periodMap.has(key)) {
+                        periodMap.set(key, {
+                            period: oilItem.period,
+                            year: oilItem.year,
+                            month: oilItem.month,
+                            type: 'cumulative',
+                            revenue: null,
+                            cost: null,
+                            production: null,
+                            grossMargin: null,
+                            netProfit: null, // 归母净利润，需要从数据中提取
+                            totalProduction: null, // 油气总产量（百万桶油当量）
+                            totalSales: null // 油气总销量（百万桶油当量）
+                        });
+                    }
+                    const item = periodMap.get(key);
+                    // 处理营收和成本：如果值为null或undefined，保持为null；如果为0，也保持为null（表示数据缺失）
+                    const oilRevenue = (oilItem.revenue !== null && oilItem.revenue !== undefined && oilItem.revenue !== 0) ? oilItem.revenue : null;
+                    const oilCost = (oilItem.cost !== null && oilItem.cost !== undefined && oilItem.cost !== 0) ? oilItem.cost : null;
+                    const currentRevenue = (item.revenue !== null && item.revenue !== undefined && item.revenue !== 0) ? item.revenue : null;
+                    const currentCost = (item.cost !== null && item.cost !== undefined && item.cost !== 0) ? item.cost : null;
+                    
+                    if (oilRevenue !== null && currentRevenue !== null) {
+                        item.revenue = currentRevenue + oilRevenue;
+                    } else if (oilRevenue !== null) {
+                        item.revenue = oilRevenue;
+                    } else if (currentRevenue !== null) {
+                        item.revenue = currentRevenue;
+                    } else {
+                        item.revenue = null;
+                    }
+                    
+                    if (oilCost !== null && currentCost !== null) {
+                        item.cost = currentCost + oilCost;
+                    } else if (oilCost !== null) {
+                        item.cost = oilCost;
+                    } else if (currentCost !== null) {
+                        item.cost = currentCost;
+                    } else {
+                        item.cost = null;
+                    }
+                    // 产量：石油（百万桶）和天然气（十亿立方英尺）不能直接相加，需要转换为统一单位
+                    // 这里先保留石油产量，后续可以添加天然气产量（需要转换单位）
+                });
+                
+                rawData.gas.forEach(gasItem => {
+                    const key = `${gasItem.year}-${gasItem.month}`;
+                    if (!periodMap.has(key)) {
+                        periodMap.set(key, {
+                            period: gasItem.period,
+                            year: gasItem.year,
+                            month: gasItem.month,
+                            type: 'cumulative',
+                            revenue: null,
+                            cost: null,
+                            production: null,
+                            grossMargin: null,
+                            netProfit: null, // 归母净利润
+                            operatingRevenue: null, // 营业收入
+                            totalProduction: null, // 油气总产量（百万桶油当量）
+                            totalSales: null // 油气总销量（百万桶油当量）
+                        });
+                    }
+                    const item = periodMap.get(key);
+                    // 处理营收和成本：如果值为null或undefined，保持为null；如果为0，也保持为null（表示数据缺失）
+                    const gasRevenue = (gasItem.revenue !== null && gasItem.revenue !== undefined && gasItem.revenue !== 0) ? gasItem.revenue : null;
+                    const gasCost = (gasItem.cost !== null && gasItem.cost !== undefined && gasItem.cost !== 0) ? gasItem.cost : null;
+                    const currentRevenue = (item.revenue !== null && item.revenue !== undefined && item.revenue !== 0) ? item.revenue : null;
+                    const currentCost = (item.cost !== null && item.cost !== undefined && item.cost !== 0) ? item.cost : null;
+                    
+                    if (gasRevenue !== null && currentRevenue !== null) {
+                        item.revenue = currentRevenue + gasRevenue;
+                    } else if (gasRevenue !== null) {
+                        item.revenue = gasRevenue;
+                    } else if (currentRevenue !== null) {
+                        item.revenue = currentRevenue;
+                    } else {
+                        item.revenue = null;
+                    }
+                    
+                    if (gasCost !== null && currentCost !== null) {
+                        item.cost = currentCost + gasCost;
+                    } else if (gasCost !== null) {
+                        item.cost = gasCost;
+                    } else if (currentCost !== null) {
+                        item.cost = currentCost;
+                    } else {
+                        item.cost = null;
+                    }
+                });
+                
+                // 计算毛利率和产量，提取归母净利润
+                periodMap.forEach(item => {
+                    // 计算毛利率 = (销售收入 - 成本) / 销售收入 * 100%
+                    if (item.revenue && item.revenue > 0 && item.cost !== null && item.cost !== 0) {
+                        item.grossMargin = ((item.revenue - item.cost) / item.revenue * 100).toFixed(2);
+                    } else {
+                        item.grossMargin = null;
+                    }
+                    
+                    // 产量：暂时使用石油产量，后续可以添加合并产量计算
+                    const oilItem = rawData.oil.find(o => o.period === item.period);
+                    const gasItem = rawData.gas.find(g => g.period === item.period);
+                    // 产量单位不同，暂时不合并，可以显示为"石油产量/天然气产量"
+                    item.oilProduction = oilItem ? oilItem.production : null;
+                    item.gasProduction = gasItem ? gasItem.production : null;
+                    
+                    // 从summary中提取归母净利润、营业收入、总产量、总销量
+                    const summaryItem = summary.find(s => s.period === item.period);
+                    if (summaryItem) {
+                        if (summaryItem.netProfit !== null && summaryItem.netProfit !== undefined && summaryItem.netProfit !== 0) {
+                            // 修正数据文件已经是亿元单位，原始数据文件需要转换
+                            item.netProfit = isCorrectedData ? summaryItem.netProfit : (summaryItem.netProfit / 100000000);
+                        } else {
+                            item.netProfit = null;
+                        }
+                        if (summaryItem.operatingRevenue !== null && summaryItem.operatingRevenue !== undefined && summaryItem.operatingRevenue !== 0) {
+                            // 修正数据文件已经是亿元单位，原始数据文件需要转换
+                            item.operatingRevenue = isCorrectedData ? summaryItem.operatingRevenue : (summaryItem.operatingRevenue / 100000000);
+                        } else {
+                            item.operatingRevenue = null;
+                        }
+                        if (summaryItem.totalProduction !== null && summaryItem.totalProduction !== undefined && summaryItem.totalProduction !== 0) {
+                            item.totalProduction = summaryItem.totalProduction; // 百万桶油当量，单位不变
+                        } else {
+                            item.totalProduction = null;
+                        }
+                        if (summaryItem.totalSales !== null && summaryItem.totalSales !== undefined && summaryItem.totalSales !== 0) {
+                            item.totalSales = summaryItem.totalSales; // 百万桶油当量，单位不变
+                        } else {
+                            item.totalSales = null;
+                        }
+                    }
+                    
+                    rawData.oilGas.push(item);
+                });
+                
+                // 按时间排序
+                rawData.oilGas.sort((a, b) => {
+                    if (a.year !== b.year) return a.year - b.year;
+                    return a.month - b.month;
+                });
+
+                console.log('已加载数据，石油:', rawData.oil.length, '条，天然气:', rawData.gas.length, '条，合并:', rawData.oilGas.length, '条');
             } catch (error) {
                 console.error('加载数据失败:', error);
                 rawData.oil = [];
@@ -924,10 +1031,10 @@
                         month: 6,
                         quarter: 2,
                         type: 'quarterly',
-                        revenue: (h1.revenue || 0) - (q1Data.revenue || 0),
-                        cost: (h1.cost || 0) - (q1Data.cost || 0),
-                        production: (h1.production || 0) - (q1Data.production || 0),
-                        sales: (h1.sales || 0) - (q1Data.sales || 0)
+                        revenue: (h1.revenue !== null && h1.revenue !== undefined && q1Data.revenue !== null && q1Data.revenue !== undefined) ? (h1.revenue - q1Data.revenue) : null,
+                        cost: (h1.cost !== null && h1.cost !== undefined && q1Data.cost !== null && q1Data.cost !== undefined) ? (h1.cost - q1Data.cost) : null,
+                        production: (h1.production !== null && h1.production !== undefined && q1Data.production !== null && q1Data.production !== undefined) ? (h1.production - q1Data.production) : null,
+                        sales: (h1.sales !== null && h1.sales !== undefined && q1Data.sales !== null && q1Data.sales !== undefined) ? (h1.sales - q1Data.sales) : null
                     });
                 }
 
@@ -939,10 +1046,10 @@
                         month: 9,
                         quarter: 3,
                         type: 'quarterly',
-                        revenue: (q3Cum.revenue || 0) - (h1.revenue || 0),
-                        cost: (q3Cum.cost || 0) - (h1.cost || 0),
-                        production: (q3Cum.production || 0) - (h1.production || 0),
-                        sales: (q3Cum.sales || 0) - (h1.sales || 0)
+                        revenue: (q3Cum.revenue !== null && q3Cum.revenue !== undefined && h1.revenue !== null && h1.revenue !== undefined) ? (q3Cum.revenue - h1.revenue) : null,
+                        cost: (q3Cum.cost !== null && q3Cum.cost !== undefined && h1.cost !== null && h1.cost !== undefined) ? (q3Cum.cost - h1.cost) : null,
+                        production: (q3Cum.production !== null && q3Cum.production !== undefined && h1.production !== null && h1.production !== undefined) ? (q3Cum.production - h1.production) : null,
+                        sales: (q3Cum.sales !== null && q3Cum.sales !== undefined && h1.sales !== null && h1.sales !== undefined) ? (q3Cum.sales - h1.sales) : null
                     });
                 }
 
@@ -954,45 +1061,37 @@
                         month: 12,
                         quarter: 4,
                         type: 'quarterly',
-                        revenue: (fullYear.revenue || 0) - (q3Cum.revenue || 0),
-                        cost: (fullYear.cost || 0) - (q3Cum.cost || 0),
-                        production: (fullYear.production || 0) - (q3Cum.production || 0),
-                        sales: (fullYear.sales || 0) - (q3Cum.sales || 0)
+                        revenue: (fullYear.revenue !== null && fullYear.revenue !== undefined && q3Cum.revenue !== null && q3Cum.revenue !== undefined) ? (fullYear.revenue - q3Cum.revenue) : null,
+                        cost: (fullYear.cost !== null && fullYear.cost !== undefined && q3Cum.cost !== null && q3Cum.cost !== undefined) ? (fullYear.cost - q3Cum.cost) : null,
+                        production: (fullYear.production !== null && fullYear.production !== undefined && q3Cum.production !== null && q3Cum.production !== undefined) ? (fullYear.production - q3Cum.production) : null,
+                        sales: (fullYear.sales !== null && fullYear.sales !== undefined && q3Cum.sales !== null && q3Cum.sales !== undefined) ? (fullYear.sales - q3Cum.sales) : null
                     });
                 }
             });
 
-            // 计算售价、成本(单位)、毛利率
+            // 计算成本(单位)、毛利率
+            // 注意：价格和单位成本优先使用从PDF直接提取的数据
             quarterlyData.forEach(item => {
-                if (product === 'oil') {
-                    // 石油：售价(元/桶) = 营收(亿元) / 销量(万桶) × 10000
-                    if (item.revenue && item.sales && item.sales > 0) {
-                        item.price = (item.revenue / item.sales) * 10000;
+                // 如果没有从PDF提取到unitCost，则通过成本和销量计算
+                if (!item.unitCost) {
+                    if (product === 'oil') {
+                        // 石油：成本(美元/桶) = 成本(亿元) / 销量(百万桶) × 100
+                        if (item.cost && item.sales && item.sales > 0) {
+                            item.unitCost = (item.cost / item.sales) * 100;
+                        } else {
+                            item.unitCost = null;
+                        }
                     } else {
-                        item.price = null;
-                    }
-                    // 成本(元/桶) = 成本(亿元) / 销量(万桶) × 10000
-                    if (item.cost && item.sales && item.sales > 0) {
-                        item.unitCost = (item.cost / item.sales) * 10000;
-                    } else {
-                        item.unitCost = null;
-                    }
-                } else {
-                    // 天然气：售价(元/立方米) = 营收(亿元) / 销量(万立方米) × 10000
-                    if (item.revenue && item.sales && item.sales > 0) {
-                        item.price = (item.revenue / item.sales) * 10000;
-                    } else {
-                        item.price = null;
-                    }
-                    // 成本(元/立方米) = 成本(亿元) / 销量(万立方米) × 10000
-                    if (item.cost && item.sales && item.sales > 0) {
-                        item.unitCost = (item.cost / item.sales) * 10000;
-                    } else {
-                        item.unitCost = null;
+                        // 天然气：成本(美元/千立方英尺) = 成本(亿元) / 销量(十亿立方英尺) × 1000
+                        if (item.cost && item.sales && item.sales > 0) {
+                            item.unitCost = (item.cost / item.sales) * 1000;
+                        } else {
+                            item.unitCost = null;
+                        }
                     }
                 }
 
-                // 毛利率 = (售价 - 成本) / 售价 × 100%
+                // 毛利率 = (实现价格 - 成本) / 实现价格 × 100%
                 if (item.price !== null && item.unitCost !== null && item.price > 0) {
                     item.grossMargin = ((item.price - item.unitCost) / item.price * 100).toFixed(2);
                 } else {
@@ -1013,29 +1112,25 @@
                 data = rawData[product].map(d => ({ ...d, isCumulative: true }));
             }
 
-            // 计算售价、成本(单位)、毛利率
+            // 计算成本(单位)、毛利率
+            // 注意：价格和单位成本优先使用从PDF直接提取的数据
             data.forEach(item => {
-                if (product === 'oil') {
-                    if (item.revenue && item.sales && item.sales > 0) {
-                        item.price = (item.revenue / item.sales) * 10000;
+                // 如果没有从PDF提取到unitCost，则通过成本和销量计算
+                if (!item.unitCost) {
+                    if (product === 'oil') {
+                        // 石油：成本(美元/桶) = 成本(亿元) / 销量(百万桶) × 100
+                        if (item.cost && item.sales && item.sales > 0) {
+                            item.unitCost = (item.cost / item.sales) * 100;
+                        } else {
+                            item.unitCost = null;
+                        }
                     } else {
-                        item.price = null;
-                    }
-                    if (item.cost && item.sales && item.sales > 0) {
-                        item.unitCost = (item.cost / item.sales) * 10000;
-                    } else {
-                        item.unitCost = null;
-                    }
-                } else {
-                    if (item.revenue && item.sales && item.sales > 0) {
-                        item.price = (item.revenue / item.sales) * 10000;
-                    } else {
-                        item.price = null;
-                    }
-                    if (item.cost && item.sales && item.sales > 0) {
-                        item.unitCost = (item.cost / item.sales) * 10000;
-                    } else {
-                        item.unitCost = null;
+                        // 天然气：成本(美元/千立方英尺) = 成本(亿元) / 销量(十亿立方英尺) × 1000
+                        if (item.cost && item.sales && item.sales > 0) {
+                            item.unitCost = (item.cost / item.sales) * 1000;
+                        } else {
+                            item.unitCost = null;
+                        }
                     }
                 }
 
@@ -1061,12 +1156,18 @@
             if (isNaN(numValue)) {
                 return '<span class="no-data">-</span>';
             }
+            // 如果值为0，也显示为空（因为0通常表示数据缺失）
+            if (numValue === 0) {
+                return '<span class="no-data">-</span>';
+            }
             return numValue.toFixed(2);
         }
 
         // 计算变化百分比
         function calculateChange(current, previous) {
-            if (current === null || previous === null || previous === 0) {
+            // 如果当前值或前一个值为null、undefined或0，返回null
+            if (current === null || current === undefined || current === 0 ||
+                previous === null || previous === undefined || previous === 0) {
                 return null;
             }
             return ((current - previous) / previous * 100).toFixed(2);
@@ -1110,22 +1211,210 @@
             return null;
         }
 
+        // 渲染表头（根据视图类型动态调整）
+        function renderTableHeader(viewType, product) {
+            const tableId = product === 'oil' ? 'oilTable' : 'gasTable';
+            const thead = document.querySelector(`#${tableId} thead`);
+            const isCumulative = viewType === 'cumulative';
+            
+            // 定义所有列
+            // 去掉成本列，天然气去掉完全成本和毛利率
+            const allColumns = [
+                { key: 'revenue', name: '营收', unit: product === 'oil' ? '亿元' : '亿元' },
+                { key: 'cost', name: '成本', unit: product === 'oil' ? '亿元' : '亿元' },
+                { key: 'production', name: '产量', unit: product === 'oil' ? '百万桶' : '十亿立方英尺' },
+                { key: 'sales', name: '销量', unit: product === 'oil' ? '百万桶' : '十亿立方英尺' },
+                { key: 'price', name: '实现价格', unit: product === 'oil' ? '美元/桶' : '美元/千立方英尺' },
+                { key: 'unitCost', name: '完全成本', unit: product === 'oil' ? '美元/桶' : '美元/千立方英尺' },
+                { key: 'grossMargin', name: '毛利率', unit: '%' }
+            ];
+            
+            // 过滤列：
+            // 1. 去掉成本列
+            // 2. 天然气去掉完全成本和毛利率
+            // 3. 单季度视图（非累积）去掉销量、实现价格、完全成本、毛利率
+            const columns = allColumns.filter(col => {
+                if (col.key === 'cost') return false; // 去掉成本列
+                if (product === 'gas' && (col.key === 'unitCost' || col.key === 'grossMargin')) return false; // 天然气去掉完全成本和毛利率
+                if (!isCumulative && (col.key === 'sales' || col.key === 'price' || col.key === 'unitCost' || col.key === 'grossMargin')) {
+                    return false; // 单季度视图去掉销量、实现价格、完全成本、毛利率
+                }
+                return true;
+            });
+            
+            // 构建表头HTML
+            let headerRow1 = '<tr><th rowspan="2">报告期</th>';
+            let headerRow2 = '<tr>';
+            
+            columns.forEach(col => {
+                // 累计视图显示2列（数值、同比），单季度视图显示3列（数值、同比、环比）
+                const colspan = isCumulative ? 2 : 3;
+                headerRow1 += `<th colspan="${colspan}" class="selectable" data-column="${col.key}" data-name="${col.name}" data-unit="${col.unit}" data-product="${product}" onclick="selectColumn('${col.key}', '${col.name}', '${col.unit}', '${product}', event)">${col.name}<br><span style="font-size:10px;font-weight:normal">(${col.unit})</span></th>`;
+                
+                headerRow2 += '<th>数值</th><th>同比</th>';
+                if (!isCumulative) {
+                    headerRow2 += '<th>环比</th>';
+                }
+            });
+            
+            headerRow1 += '</tr>';
+            headerRow2 += '</tr>';
+            
+            thead.innerHTML = headerRow1 + headerRow2;
+        }
+
+        // 渲染合并油气表格
+        function renderOilGasTable(viewType) {
+            const thead = document.querySelector('#oilGasTable thead');
+            const tbody = document.getElementById('oilGasTableBody');
+            const isCumulative = viewType === 'cumulative';
+            
+            // 定义列
+            const columns = [
+                { key: 'operatingRevenue', name: '营业收入', unit: '亿元' },
+                { key: 'revenue', name: '油气销售收入', unit: '亿元' },
+                { key: 'totalProduction', name: '油气总产量', unit: '百万桶油当量' },
+                { key: 'totalSales', name: '油气总销量', unit: '百万桶油当量' },
+                { key: 'cost', name: '营业成本', unit: '亿元' },
+                { key: 'grossMargin', name: '毛利率', unit: '%' },
+                { key: 'netProfit', name: '归母净利润', unit: '亿元' }
+            ];
+            
+            // 构建表头
+            let headerRow1 = '<tr><th rowspan="2">报告期</th>';
+            let headerRow2 = '<tr>';
+            
+            columns.forEach(col => {
+                const colspan = isCumulative ? 2 : 3;
+                headerRow1 += `<th colspan="${colspan}" class="selectable" data-column="${col.key}" data-name="${col.name}" data-unit="${col.unit}" data-product="oilGas" onclick="selectColumn('${col.key}', '${col.name}', '${col.unit}', 'oilGas', event)">${col.name}<br><span style="font-size:10px;font-weight:normal">(${col.unit})</span></th>`;
+                headerRow2 += '<th>数值</th><th>同比</th>';
+                if (!isCumulative) {
+                    headerRow2 += '<th>环比</th>';
+                }
+            });
+            
+            headerRow1 += '</tr>';
+            headerRow2 += '</tr>';
+            thead.innerHTML = headerRow1 + headerRow2;
+            
+            // 渲染数据
+            tbody.innerHTML = '';
+            const allData = rawData.oilGas || [];
+            const columnCount = columns.length;
+            const totalCols = isCumulative ? (1 + columnCount * 2) : (1 + columnCount * 3);
+            let lastYear = null;
+            
+            allData.forEach((item, index) => {
+                if (lastYear !== item.year) {
+                    if (lastYear !== null) {
+                        const separatorRow = document.createElement('tr');
+                        separatorRow.innerHTML = `<td colspan="${totalCols}" style="height: 5px; background: #f5f5f5;"></td>`;
+                        tbody.appendChild(separatorRow);
+                    }
+                    lastYear = item.year;
+                }
+                
+                const row = document.createElement('tr');
+                row.innerHTML += `<td class="period">${item.period}</td>`;
+                
+                const baseYoY = allData.find(d => d.year === item.year - 1 && d.month === item.month);
+                const baseQoQ = index > 0 ? allData[index - 1] : null;
+                
+                // 营业收入
+                const operatingRevenueYoYChange = baseYoY && baseYoY.operatingRevenue !== null && item.operatingRevenue !== null ? calculateChange(item.operatingRevenue, baseYoY.operatingRevenue) : null;
+                const operatingRevenueQoQChange = !isCumulative && baseQoQ && baseQoQ.operatingRevenue !== null && item.operatingRevenue !== null ? calculateChange(item.operatingRevenue, baseQoQ.operatingRevenue) : null;
+                row.innerHTML += `<td class="value">${formatValue(item.operatingRevenue)}</td>`;
+                row.innerHTML += `<td>${formatChange(operatingRevenueYoYChange)}</td>`;
+                if (!isCumulative) {
+                    row.innerHTML += `<td>${formatChange(operatingRevenueQoQChange)}</td>`;
+                }
+                
+                // 油气销售收入
+                const revenueYoYChange = baseYoY && baseYoY.revenue !== null && item.revenue !== null ? calculateChange(item.revenue, baseYoY.revenue) : null;
+                const revenueQoQChange = !isCumulative && baseQoQ && baseQoQ.revenue !== null && item.revenue !== null ? calculateChange(item.revenue, baseQoQ.revenue) : null;
+                row.innerHTML += `<td class="value">${formatValue(item.revenue)}</td>`;
+                row.innerHTML += `<td>${formatChange(revenueYoYChange)}</td>`;
+                if (!isCumulative) {
+                    row.innerHTML += `<td>${formatChange(revenueQoQChange)}</td>`;
+                }
+                
+                // 油气总产量（百万桶油当量）
+                const totalProductionYoYChange = baseYoY && baseYoY.totalProduction !== null && item.totalProduction !== null ? calculateChange(item.totalProduction, baseYoY.totalProduction) : null;
+                const totalProductionQoQChange = !isCumulative && baseQoQ && baseQoQ.totalProduction !== null && item.totalProduction !== null ? calculateChange(item.totalProduction, baseQoQ.totalProduction) : null;
+                row.innerHTML += `<td class="value">${formatValue(item.totalProduction)}</td>`;
+                row.innerHTML += `<td>${formatChange(totalProductionYoYChange)}</td>`;
+                if (!isCumulative) {
+                    row.innerHTML += `<td>${formatChange(totalProductionQoQChange)}</td>`;
+                }
+                
+                // 油气总销量（百万桶油当量）
+                const totalSalesYoYChange = baseYoY && baseYoY.totalSales !== null && item.totalSales !== null ? calculateChange(item.totalSales, baseYoY.totalSales) : null;
+                const totalSalesQoQChange = !isCumulative && baseQoQ && baseQoQ.totalSales !== null && item.totalSales !== null ? calculateChange(item.totalSales, baseQoQ.totalSales) : null;
+                row.innerHTML += `<td class="value">${formatValue(item.totalSales)}</td>`;
+                row.innerHTML += `<td>${formatChange(totalSalesYoYChange)}</td>`;
+                if (!isCumulative) {
+                    row.innerHTML += `<td>${formatChange(totalSalesQoQChange)}</td>`;
+                }
+                
+                // 营业成本
+                const costYoYChange = baseYoY && baseYoY.cost !== null && item.cost !== null ? calculateChange(item.cost, baseYoY.cost) : null;
+                const costQoQChange = !isCumulative && baseQoQ && baseQoQ.cost !== null && item.cost !== null ? calculateChange(item.cost, baseQoQ.cost) : null;
+                row.innerHTML += `<td class="value">${formatValue(item.cost)}</td>`;
+                row.innerHTML += `<td>${formatChange(costYoYChange)}</td>`;
+                if (!isCumulative) {
+                    row.innerHTML += `<td>${formatChange(costQoQChange)}</td>`;
+                }
+                
+                // 毛利率
+                const grossMarginYoYChange = baseYoY && baseYoY.grossMargin !== null && item.grossMargin !== null ? calculateChange(parseFloat(item.grossMargin), parseFloat(baseYoY.grossMargin)) : null;
+                const grossMarginQoQChange = !isCumulative && baseQoQ && baseQoQ.grossMargin !== null && item.grossMargin !== null ? calculateChange(parseFloat(item.grossMargin), parseFloat(baseQoQ.grossMargin)) : null;
+                const grossMarginValue = item.grossMargin !== null && item.grossMargin !== undefined && !isNaN(item.grossMargin) ? parseFloat(item.grossMargin) : null;
+                row.innerHTML += `<td class="value">${grossMarginValue !== null ? grossMarginValue.toFixed(2) + '%' : '<span class="no-data">-</span>'}</td>`;
+                row.innerHTML += `<td>${formatChange(grossMarginYoYChange)}</td>`;
+                if (!isCumulative) {
+                    row.innerHTML += `<td>${formatChange(grossMarginQoQChange)}</td>`;
+                }
+                
+                // 归母净利润
+                const netProfitYoYChange = baseYoY && baseYoY.netProfit !== null && item.netProfit !== null ? calculateChange(item.netProfit, baseYoY.netProfit) : null;
+                const netProfitQoQChange = !isCumulative && baseQoQ && baseQoQ.netProfit !== null && item.netProfit !== null ? calculateChange(item.netProfit, baseQoQ.netProfit) : null;
+                row.innerHTML += `<td class="value">${formatValue(item.netProfit)}</td>`;
+                row.innerHTML += `<td>${formatChange(netProfitYoYChange)}</td>`;
+                if (!isCumulative) {
+                    row.innerHTML += `<td>${formatChange(netProfitQoQChange)}</td>`;
+                }
+                
+                tbody.appendChild(row);
+            });
+        }
+
         // 渲染表格
         function renderTable(viewType, product) {
             const tableId = product === 'oil' ? 'oilTable' : 'gasTable';
             const tbodyId = product === 'oil' ? 'oilTableBody' : 'gasTableBody';
+            
+            // 先渲染表头
+            renderTableHeader(viewType, product);
+            
             const tbody = document.getElementById(tbodyId);
             tbody.innerHTML = '';
 
             const allData = getAllData(viewType, product);
             const isCumulative = viewType === 'cumulative';
             let lastYear = null;
+            
+            // 计算总列数（用于分隔行的colspan）
+            // 根据实际显示的列数计算
+            // 累积视图：石油：营收、产量、销量、实现价格、完全成本、毛利率 = 6列；天然气：营收、产量、销量、实现价格 = 4列
+            // 单季度视图：石油：营收、产量 = 2列；天然气：营收、产量 = 2列
+            const columnCount = isCumulative ? (product === 'oil' ? 6 : 4) : 2;
+            const totalCols = isCumulative ? (1 + columnCount * 2) : (1 + columnCount * 3);
 
             allData.forEach((item, index) => {
                 if (lastYear !== item.year) {
                     if (lastYear !== null) {
                         const separatorRow = document.createElement('tr');
-                        separatorRow.innerHTML = `<td colspan="22" style="height: 5px; background: #f5f5f5;"></td>`;
+                        separatorRow.innerHTML = `<td colspan="${totalCols}" style="height: 5px; background: #f5f5f5;"></td>`;
                         tbody.appendChild(separatorRow);
                     }
                     lastYear = item.year;
@@ -1150,15 +1439,6 @@
                     row.innerHTML += `<td>${formatChange(revenueQoQChange)}</td>`;
                 }
 
-                // 成本
-                const costYoYChange = baseYoY && baseYoY.cost !== null ? calculateChange(item.cost, baseYoY.cost) : null;
-                const costQoQChange = !isCumulative && baseQoQ && baseQoQ.cost !== null ? calculateChange(item.cost, baseQoQ.cost) : null;
-                row.innerHTML += `<td class="value">${formatValue(item.cost)}</td>`;
-                row.innerHTML += `<td>${formatChange(costYoYChange)}</td>`;
-                if (!isCumulative) {
-                    row.innerHTML += `<td>${formatChange(costQoQChange)}</td>`;
-                }
-
                 // 产量
                 const productionYoYChange = baseYoY && baseYoY.production !== null ? calculateChange(item.production, baseYoY.production) : null;
                 const productionQoQChange = !isCumulative && baseQoQ && baseQoQ.production !== null ? calculateChange(item.production, baseQoQ.production) : null;
@@ -1168,41 +1448,33 @@
                     row.innerHTML += `<td>${formatChange(productionQoQChange)}</td>`;
                 }
 
-                // 销量
-                const salesYoYChange = baseYoY && baseYoY.sales !== null ? calculateChange(item.sales, baseYoY.sales) : null;
-                const salesQoQChange = !isCumulative && baseQoQ && baseQoQ.sales !== null ? calculateChange(item.sales, baseQoQ.sales) : null;
-                row.innerHTML += `<td class="value">${formatValue(item.sales)}</td>`;
-                row.innerHTML += `<td>${formatChange(salesYoYChange)}</td>`;
-                if (!isCumulative) {
-                    row.innerHTML += `<td>${formatChange(salesQoQChange)}</td>`;
+                // 销量（仅累积视图显示）
+                if (isCumulative) {
+                    const salesYoYChange = baseYoY && baseYoY.sales !== null ? calculateChange(item.sales, baseYoY.sales) : null;
+                    row.innerHTML += `<td class="value">${formatValue(item.sales)}</td>`;
+                    row.innerHTML += `<td>${formatChange(salesYoYChange)}</td>`;
                 }
 
-                // 售价
-                const priceYoYChange = baseYoY && baseYoY.price !== null && item.price !== null ? calculateChange(item.price, baseYoY.price) : null;
-                const priceQoQChange = !isCumulative && baseQoQ && baseQoQ.price !== null && item.price !== null ? calculateChange(item.price, baseQoQ.price) : null;
-                row.innerHTML += `<td class="value">${formatValue(item.price)}</td>`;
-                row.innerHTML += `<td>${formatChange(priceYoYChange)}</td>`;
-                if (!isCumulative) {
-                    row.innerHTML += `<td>${formatChange(priceQoQChange)}</td>`;
+                // 实现价格（仅累积视图显示）
+                if (isCumulative) {
+                    const priceYoYChange = baseYoY && baseYoY.price !== null && item.price !== null ? calculateChange(item.price, baseYoY.price) : null;
+                    row.innerHTML += `<td class="value">${formatValue(item.price)}</td>`;
+                    row.innerHTML += `<td>${formatChange(priceYoYChange)}</td>`;
                 }
 
-                // 成本(单位)
-                const unitCostYoYChange = baseYoY && baseYoY.unitCost !== null && item.unitCost !== null ? calculateChange(item.unitCost, baseYoY.unitCost) : null;
-                const unitCostQoQChange = !isCumulative && baseQoQ && baseQoQ.unitCost !== null && item.unitCost !== null ? calculateChange(item.unitCost, baseQoQ.unitCost) : null;
-                row.innerHTML += `<td class="value">${formatValue(item.unitCost)}</td>`;
-                row.innerHTML += `<td>${formatChange(unitCostYoYChange)}</td>`;
-                if (!isCumulative) {
-                    row.innerHTML += `<td>${formatChange(unitCostQoQChange)}</td>`;
+                // 完全成本（仅石油且仅累积视图显示）
+                if (product === 'oil' && isCumulative) {
+                    const unitCostYoYChange = baseYoY && baseYoY.unitCost !== null && item.unitCost !== null ? calculateChange(item.unitCost, baseYoY.unitCost) : null;
+                    row.innerHTML += `<td class="value">${formatValue(item.unitCost)}</td>`;
+                    row.innerHTML += `<td>${formatChange(unitCostYoYChange)}</td>`;
                 }
 
-                // 毛利率
-                const grossMarginYoYChange = baseYoY && baseYoY.grossMargin !== null && item.grossMargin !== null ? calculateChange(parseFloat(item.grossMargin), parseFloat(baseYoY.grossMargin)) : null;
-                const grossMarginQoQChange = !isCumulative && baseQoQ && baseQoQ.grossMargin !== null && item.grossMargin !== null ? calculateChange(parseFloat(item.grossMargin), parseFloat(baseQoQ.grossMargin)) : null;
-                const grossMarginValue = item.grossMargin !== null && item.grossMargin !== undefined && !isNaN(item.grossMargin) ? parseFloat(item.grossMargin) : null;
-                row.innerHTML += `<td class="value">${grossMarginValue !== null ? grossMarginValue.toFixed(2) + '%' : '<span class="no-data">-</span>'}</td>`;
-                row.innerHTML += `<td>${formatChange(grossMarginYoYChange)}</td>`;
-                if (!isCumulative) {
-                    row.innerHTML += `<td>${formatChange(grossMarginQoQChange)}</td>`;
+                // 毛利率（仅石油且仅累积视图显示）
+                if (product === 'oil' && isCumulative) {
+                    const grossMarginYoYChange = baseYoY && baseYoY.grossMargin !== null && item.grossMargin !== null ? calculateChange(parseFloat(item.grossMargin), parseFloat(baseYoY.grossMargin)) : null;
+                    const grossMarginValue = item.grossMargin !== null && item.grossMargin !== undefined && !isNaN(item.grossMargin) ? parseFloat(item.grossMargin) : null;
+                    row.innerHTML += `<td class="value">${grossMarginValue !== null ? grossMarginValue.toFixed(2) + '%' : '<span class="no-data">-</span>'}</td>`;
+                    row.innerHTML += `<td>${formatChange(grossMarginYoYChange)}</td>`;
                 }
 
                 tbody.appendChild(row);
@@ -1230,6 +1502,8 @@
             closeChartModal();
             currentSelectedColumn = null;
 
+            // 重新渲染表头和表格
+            renderOilGasTable(viewType);
             renderTable(viewType, 'oil');
             renderTable(viewType, 'gas');
         }
@@ -1245,6 +1519,8 @@
 
             console.log('数据加载完成，准备渲染表格');
 
+            // 初始化时渲染表头和表格（默认单季度视图）
+            renderOilGasTable('quarterly');
             renderTable('quarterly', 'oil');
             renderTable('quarterly', 'gas');
         }

@@ -4,7 +4,7 @@
  * 
  * 使用方法：
  * # 下载所有类型报告
- * node download_all_reports.js --code 600348 --name 华阳股份 --years 2023 --type all
+ * node scripts/stock-reports/download_all_reports.js --code 600348 --name 华阳股份 --years 2023 --type all
  * 
  * # 只下载年报
  * node download_all_reports.js --code 600348 --name 华阳股份 --years 2023 --type annual
@@ -214,32 +214,40 @@ function searchReport(stockCode, year, reportType, customKeywords = []) {
     const searchKey = searchKeys[0];
     
     // 调整搜索时间范围：对于季度报告，扩大搜索范围
+    // 注意：year可能是字符串，需要转换为数字进行计算
+    const yearNum = typeof year === 'string' ? parseInt(year) : year;
     let sdate, edate;
     if (reportType === 'q1') {
       // Q1通常在4月发布，搜索范围从当年1月到次年6月
-      sdate = `${year}-01-01`;
-      edate = `${year + 1}-06-30`;
+      sdate = `${yearNum}-01-01`;
+      edate = `${yearNum + 1}-06-30`;
     } else if (reportType === 'q3') {
       // Q3通常在10月发布，搜索范围从当年7月到次年3月
-      sdate = `${year}-07-01`;
-      edate = `${year + 1}-03-31`;
+      sdate = `${yearNum}-07-01`;
+      edate = `${yearNum + 1}-03-31`;
     } else if (reportType === 'production') {
       // 生产经营数据公告：搜索整年，并延伸到次年4月（Q4数据通常在次年初发布）
-      sdate = `${year}-01-01`;
-      edate = `${year + 1}-04-30`;
+      sdate = `${yearNum}-01-01`;
+      edate = `${yearNum + 1}-04-30`;
     } else {
-      sdate = `${year}-01-01`;
-      edate = `${year + 1}-12-31`;
+      sdate = `${yearNum}-01-01`;
+      edate = `${yearNum + 1}-12-31`;
     }
     
+    // 判断股票代码所属交易所：600开头是上交所，000/002/300开头是深交所
+    const column = stockCode.startsWith('600') || stockCode.startsWith('688') || stockCode.startsWith('603') ? 'sse' : 'szse';
+    
     const postData = querystring.stringify({
-      searchkey: searchKey,
-      sdate: sdate,
-      edate: edate,
-      isfulltext: 'false',
-      sortName: 'nothing',
-      sortType: 'desc',
-      pageNum: 1
+      'pageNum': '1',
+      'pageSize': '30',
+      'column': column,
+      'plate': '',
+      'stock': stockCode + ',',
+      'searchkey': searchKey,
+      'secid': '',
+      'category': '',
+      'trade': '',
+      'seDate': sdate + '~' + edate
     });
 
     const options = {
