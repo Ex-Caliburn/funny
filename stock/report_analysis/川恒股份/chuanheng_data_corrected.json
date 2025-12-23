@@ -1,0 +1,744 @@
+{
+  "_metadata": {
+    "stockName": "川恒股份",
+    "stockCode": "002895",
+    "description": "此文件包含修正后的数据，用于页面展示。手动修正的数据会被标记。",
+    "dataSource": "chuanheng_data.json",
+    "lastUpdated": "2025-12-23",
+    "products": [
+      "phosphorus"
+    ],
+    "dataFlow": "PDF报告 → 自动提取(chuanheng_data.json) → 手动修正(本文件) → 页面展示",
+    "correctionRules": {
+      "manual": "手动填入或修改的数据，标记 _source: \"manual\"",
+      "verified": "经过人工验证确认正确的数据，标记 _verified: true"
+    }
+  },
+  "summary": [
+    {
+      "period": "2025年1-9月",
+      "year": "2025",
+      "filename": "川恒股份2025年第三季度报告.pdf",
+      "phosphorus": {
+        "production": null,
+        "sales": null,
+        "inventory": null,
+        "revenue": 58.04,
+        "cost": 39.58,
+        "unitPrice": null,
+        "unitCost": null,
+        "unitGrossProfit": null,
+        "grossMargin": 31.805651274982772,
+        "_corrected": true,
+        "_verified": false,
+        "_notes": "根据整体财务数据表格修正：营收从58.04亿改为58.04亿，成本从46.22亿改为39.58亿，毛利率31.81%"
+      },
+      "productSales": {
+        "feedGradeMCP": null,
+        "phosphoricAcid": null,
+        "map": null,
+        "phosphateRock": null
+      },
+      "productFinancials": {
+        "feedGradeMCP": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null
+        },
+        "map": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null
+        },
+        "phosphateRock": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null
+        },
+        "phosphoricAcid": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null
+        }
+      }
+    },
+    {
+      "period": "2025年上半年",
+      "year": "2025",
+      "filename": "川恒股份2025年半年度报告.pdf",
+      "phosphorus": {
+        "production": null,
+        "sales": null,
+        "inventory": null,
+        "revenue": 33.6,
+        "cost": 23.13,
+        "unitPrice": null,
+        "unitCost": null,
+        "unitGrossProfit": null,
+        "grossMargin": 31.160714285714292,
+        "_corrected": true,
+        "_verified": false,
+        "_notes": "根据整体财务数据表格修正：营收从31.27亿改为33.60亿，成本从22.70亿改为23.13亿，毛利率31.16%"
+      },
+      "productSales": {
+        "feedGradeMCP": null,
+        "phosphoricAcid": null,
+        "map": null,
+        "phosphateRock": null
+      },
+      "productFinancials": {
+        "feedGradeMCP": {
+          "revenue": 843787216.36,
+          "cost": 568743382.81,
+          "grossMargin": 32.6
+        },
+        "map": {
+          "revenue": 715362188.56,
+          "cost": 396549177.29,
+          "grossMargin": 44.57
+        },
+        "phosphateRock": {
+          "revenue": 233025846.15,
+          "cost": 43778841.32,
+          "grossMargin": 81.21
+        },
+        "phosphoricAcid": {
+          "revenue": 954641684.47,
+          "cost": 774363662.32,
+          "grossMargin": 18.88
+        }
+      }
+    },
+    {
+      "period": "2025年1-3月",
+      "year": "2025",
+      "filename": "川恒股份2025年第一季度报告.pdf",
+      "phosphorus": {
+        "production": null,
+        "sales": null,
+        "inventory": null,
+        "revenue": 14.93,
+        "cost": 10.64,
+        "unitPrice": null,
+        "unitCost": null,
+        "unitGrossProfit": null,
+        "grossMargin": 28.734092431346276,
+        "_corrected": true,
+        "_verified": false,
+        "_notes": "根据整体财务数据表格修正：营收从14.93亿改为14.93亿，成本从12.44亿改为10.64亿，毛利率28.73%"
+      },
+      "productSales": {
+        "feedGradeMCP": null,
+        "phosphoricAcid": null,
+        "map": null,
+        "phosphateRock": null
+      },
+      "productFinancials": {
+        "feedGradeMCP": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null
+        },
+        "map": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null
+        },
+        "phosphateRock": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null
+        },
+        "phosphoricAcid": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null
+        }
+      }
+    },
+    {
+      "period": "2024年全年",
+      "year": "2024",
+      "filename": "川恒股份2024年年度报告.pdf",
+      "phosphorus": {
+        "production": 107.284135,
+        "sales": 106.437451,
+        "inventory": 7.003062,
+        "revenue": 59.06,
+        "cost": 39.49,
+        "unitPrice": 4686.581,
+        "unitCost": 3385.5886,
+        "unitGrossProfit": 1300.9924,
+        "grossMargin": 33.1357941076871,
+        "_corrected": true,
+        "_verified": false,
+        "_notes": "根据整体财务数据表格修正：营收从49.88亿改为59.06亿，成本从36.04亿改为39.49亿，毛利率33.14%"
+      },
+      "productSales": {
+        "feedGradeMCP": null,
+        "phosphoricAcid": null,
+        "map": null,
+        "phosphateRock": 67.93
+      },
+      "productFinancials": {
+        "feedGradeMCP": {
+          "revenue": 1444988001.9,
+          "cost": 1017235194.88,
+          "grossMargin": 29.6,
+          "_corrected": true,
+          "_notes": "根据2024年年度报告PDF表格数据修正"
+        },
+        "map": {
+          "revenue": 1176108022.69,
+          "cost": 609671240.08,
+          "grossMargin": 48.16
+        },
+        "phosphateRock": {
+          "revenue": 542645050.02,
+          "cost": 100862935.05,
+          "grossMargin": 81.41
+        },
+        "phosphoricAcid": {
+          "revenue": 1872219740.8,
+          "cost": 1473379460.32,
+          "grossMargin": 21.3,
+          "_corrected": true,
+          "_notes": "根据2024年年度报告PDF表格数据修正"
+        }
+      }
+    },
+    {
+      "period": "2024年1-9月",
+      "year": "2024",
+      "filename": "川恒股份2024年第三季度报告.pdf",
+      "phosphorus": {
+        "production": null,
+        "sales": null,
+        "inventory": null,
+        "revenue": 39.73,
+        "cost": 25.71,
+        "unitPrice": null,
+        "unitCost": null,
+        "unitGrossProfit": null,
+        "grossMargin": 35.28819531839918,
+        "_corrected": true,
+        "_verified": false,
+        "_notes": "根据整体财务数据表格修正：营收从39.73亿改为39.73亿，成本从30.98亿改为25.71亿，毛利率35.29%"
+      },
+      "productSales": {
+        "feedGradeMCP": null,
+        "phosphoricAcid": null,
+        "map": null,
+        "phosphateRock": null
+      },
+      "productFinancials": {
+        "feedGradeMCP": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null
+        },
+        "map": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null
+        },
+        "phosphateRock": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null
+        },
+        "phosphoricAcid": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null
+        }
+      }
+    },
+    {
+      "period": "2024年上半年",
+      "year": "2024",
+      "filename": "川恒股份2024年半年度报告.pdf",
+      "phosphorus": {
+        "production": null,
+        "sales": null,
+        "inventory": null,
+        "revenue": 24.84,
+        "cost": 16.59,
+        "unitPrice": null,
+        "unitCost": null,
+        "unitGrossProfit": null,
+        "grossMargin": 33.21256038647343,
+        "_corrected": true,
+        "_verified": false,
+        "_notes": "根据整体财务数据表格修正：营收从22.75亿改为24.84亿，成本从16.21亿改为16.59亿，毛利率33.21%"
+      },
+      "productSales": {
+        "feedGradeMCP": null,
+        "phosphoricAcid": null,
+        "map": null,
+        "phosphateRock": 27.23
+      },
+      "productFinancials": {
+        "feedGradeMCP": {
+          "revenue": 633393306.77,
+          "cost": 457900169.3,
+          "grossMargin": 27.71
+        },
+        "map": {
+          "revenue": 514975151.39,
+          "cost": 304828870.96,
+          "grossMargin": 40.81
+        },
+        "phosphateRock": {
+          "revenue": 209598304.3,
+          "cost": 38136455.65,
+          "grossMargin": 81.8
+        },
+        "phosphoricAcid": {
+          "revenue": 747816169.6,
+          "cost": 535325892.18,
+          "grossMargin": 28.41,
+          "_corrected": true,
+          "_notes": "根据2024年半年度报告PDF表格数据修正，之前错误地使用了饲料级磷酸二氢钙的数据"
+        }
+      }
+    },
+    {
+      "period": "2024年1-3月",
+      "year": "2024",
+      "filename": "川恒股份2024年第一季度报告.pdf",
+      "phosphorus": {
+        "production": null,
+        "sales": null,
+        "inventory": null,
+        "revenue": 10.44,
+        "cost": 6.91,
+        "unitPrice": null,
+        "unitCost": null,
+        "unitGrossProfit": null,
+        "grossMargin": 33.81226053639846,
+        "_corrected": true,
+        "_verified": false,
+        "_notes": "根据整体财务数据表格修正：营收从10.44亿改为10.44亿，成本从8.49亿改为6.91亿，毛利率33.81%"
+      },
+      "productSales": {
+        "feedGradeMCP": null,
+        "phosphoricAcid": null,
+        "map": null,
+        "phosphateRock": null
+      },
+      "productFinancials": {
+        "feedGradeMCP": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null
+        },
+        "map": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null
+        },
+        "phosphateRock": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null
+        },
+        "phosphoricAcid": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null
+        }
+      }
+    },
+    {
+      "period": "2023年全年",
+      "year": "2023",
+      "filename": "川恒股份2023年年度报告.pdf",
+      "phosphorus": {
+        "production": 77.973865,
+        "sales": 78.926521,
+        "inventory": 6.171876999999999,
+        "revenue": 43.2,
+        "cost": 26.33,
+        "unitPrice": 4309.2917,
+        "unitCost": 2969.2296,
+        "unitGrossProfit": 1340.0621,
+        "grossMargin": 39.05092592592593,
+        "_corrected": true,
+        "_verified": false,
+        "_notes": "根据整体财务数据表格修正：营收从34.01亿改为43.20亿，成本从23.44亿改为26.33亿，毛利率39.05%"
+      },
+      "productSales": {
+        "feedGradeMCP": null,
+        "phosphoricAcid": 22.5,
+        "map": null,
+        "phosphateRock": 75.42
+      },
+      "productFinancials": {
+        "feedGradeMCP": {
+          "revenue": 1202596543.1,
+          "cost": 761406289.23,
+          "grossMargin": 36.7,
+          "_corrected": true,
+          "_notes": "根据2023年年度报告PDF表格数据修正"
+        },
+        "map": {
+          "revenue": 931830033.67,
+          "cost": 597232917.93,
+          "grossMargin": 35.91
+        },
+        "phosphateRock": {
+          "revenue": 567305455.34,
+          "cost": 99272316.06,
+          "grossMargin": 82.5
+        },
+        "phosphoricAcid": {
+          "revenue": 848575986.68,
+          "cost": 601215742.14,
+          "grossMargin": 29.15
+        }
+      }
+    },
+    {
+      "period": "2023年1-9月",
+      "year": "2023",
+      "filename": "川恒股份2023年第三季度报告.pdf",
+      "phosphorus": {
+        "production": null,
+        "sales": null,
+        "inventory": null,
+        "revenue": 30.72,
+        "cost": 19.42,
+        "unitPrice": null,
+        "unitCost": null,
+        "unitGrossProfit": null,
+        "grossMargin": 36.78385416666666,
+        "_corrected": true,
+        "_verified": false,
+        "_notes": "根据整体财务数据表格修正：营收从30.72亿改为30.72亿，成本从24.25亿改为19.42亿，毛利率36.78%"
+      },
+      "productSales": {
+        "feedGradeMCP": null,
+        "phosphoricAcid": null,
+        "map": null,
+        "phosphateRock": null
+      },
+      "productFinancials": {
+        "feedGradeMCP": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null
+        },
+        "map": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null
+        },
+        "phosphateRock": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null
+        },
+        "phosphoricAcid": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null
+        }
+      }
+    },
+    {
+      "period": "2023年上半年",
+      "year": "2023",
+      "filename": "川恒股份2023年半年度报告.pdf",
+      "phosphorus": {
+        "production": null,
+        "sales": null,
+        "inventory": null,
+        "revenue": 18.8,
+        "cost": 12.26,
+        "unitPrice": null,
+        "unitCost": null,
+        "unitGrossProfit": null,
+        "grossMargin": 34.787234042553195,
+        "_corrected": true,
+        "_verified": false,
+        "_notes": "根据整体财务数据表格修正：营收从17.49亿改为18.80亿，成本从12.11亿改为12.26亿，毛利率34.79%"
+      },
+      "productSales": {
+        "feedGradeMCP": null,
+        "phosphoricAcid": null,
+        "map": null,
+        "phosphateRock": null
+      },
+      "productFinancials": {
+        "feedGradeMCP": {
+          "revenue": 559269525.25,
+          "cost": 362706698.96,
+          "grossMargin": 35.15,
+          "_corrected": true,
+          "_notes": "根据2023年半年度报告PDF表格数据修正，之前成本数据错误"
+        },
+        "map": {
+          "revenue": 404042530.86,
+          "cost": 269662196.38,
+          "grossMargin": 33.26
+        },
+        "phosphateRock": {
+          "revenue": 131176641.48,
+          "cost": 15435233.36,
+          "grossMargin": 88.23
+        },
+        "phosphoricAcid": {
+          "revenue": 419517651.68,
+          "cost": 291014896.28,
+          "grossMargin": 30.63,
+          "_corrected": true,
+          "_notes": "根据2023年半年度报告PDF表格数据修正"
+        }
+      }
+    },
+    {
+      "period": "2023年1-3月",
+      "year": "2023",
+      "filename": "川恒股份2023年第一季度报告.pdf",
+      "phosphorus": {
+        "production": null,
+        "sales": null,
+        "inventory": null,
+        "revenue": 9.98,
+        "cost": 6.28,
+        "unitPrice": null,
+        "unitCost": null,
+        "unitGrossProfit": null,
+        "grossMargin": 37.07414829659319,
+        "_corrected": true,
+        "_verified": false,
+        "_notes": "根据整体财务数据表格修正：营收从9.98亿改为9.98亿，成本从7.99亿改为6.28亿，毛利率37.07%"
+      },
+      "productSales": {
+        "feedGradeMCP": null,
+        "phosphoricAcid": null,
+        "map": null,
+        "phosphateRock": null
+      },
+      "productFinancials": {
+        "feedGradeMCP": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null
+        },
+        "map": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null
+        },
+        "phosphateRock": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null
+        },
+        "phosphoricAcid": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null
+        }
+      }
+    },
+    {
+      "period": "2022年全年",
+      "year": "2022",
+      "filename": "川恒股份2022年年度报告.pdf",
+      "phosphorus": {
+        "production": 57.404754000000004,
+        "sales": 53.266662,
+        "inventory": 7.1245330000000004,
+        "revenue": 34.47,
+        "cost": 18.98,
+        "unitPrice": 4967.2299,
+        "unitCost": 2773.9861,
+        "unitGrossProfit": 2193.2438,
+        "grossMargin": 44.93762692196112,
+        "_corrected": true,
+        "_verified": false,
+        "_notes": "根据整体财务数据表格修正：营收从26.46亿改为34.47亿，成本从14.78亿改为18.98亿，毛利率44.94%"
+      },
+      "productSales": {
+        "feedGradeMCP": null,
+        "phosphoricAcid": 22.5,
+        "map": null,
+        "phosphateRock": 66.58
+      },
+      "productFinancials": {
+        "feedGradeMCP": {
+          "revenue": 1570168301.92,
+          "cost": 802038116.01,
+          "grossMargin": 48.92,
+          "_corrected": true,
+          "_notes": "根据2022年年度报告PDF表格数据修正"
+        },
+        "map": {
+          "revenue": 768007450.77,
+          "cost": 465782248.6,
+          "grossMargin": 39.35
+        },
+        "phosphateRock": {
+          "revenue": 438474734.99,
+          "cost": 149988150,
+          "grossMargin": 65.79
+        },
+        "phosphoricAcid": {
+          "revenue": 254564811.2,
+          "cost": 164127581.05,
+          "grossMargin": 35.52,
+          "_corrected": true,
+          "_notes": "根据2023年年度报告\"营业成本比上年同期增减266.31%\"倒推计算得出，毛利率已重新计算"
+        }
+      }
+    },
+    {
+      "period": "2022年1-9月",
+      "year": "2022",
+      "filename": "川恒股份2022年第三季度报告.pdf",
+      "phosphorus": {
+        "production": null,
+        "sales": null,
+        "inventory": null,
+        "revenue": 24.56,
+        "cost": 13.47,
+        "unitPrice": null,
+        "unitCost": null,
+        "unitGrossProfit": null,
+        "grossMargin": 45.15472312703582,
+        "_corrected": true,
+        "_verified": false,
+        "_notes": "根据整体财务数据表格修正：营收从24.56亿改为24.56亿，成本从16.95亿改为13.47亿，毛利率45.15%"
+      },
+      "productSales": {
+        "feedGradeMCP": null,
+        "phosphoricAcid": null,
+        "map": null,
+        "phosphateRock": null
+      },
+      "productFinancials": {
+        "feedGradeMCP": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null
+        },
+        "map": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null
+        },
+        "phosphateRock": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null
+        },
+        "phosphoricAcid": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null
+        }
+      }
+    },
+    {
+      "period": "2022年上半年",
+      "year": "2022",
+      "filename": "川恒股份2022年半年度报告.pdf",
+      "phosphorus": {
+        "production": null,
+        "sales": null,
+        "inventory": null,
+        "revenue": 15.87,
+        "cost": 9.28,
+        "unitPrice": null,
+        "unitCost": null,
+        "unitGrossProfit": null,
+        "grossMargin": 41.52488972904852,
+        "_corrected": true,
+        "_verified": false,
+        "_notes": "根据整体财务数据表格修正：营收从13.97亿改为15.87亿，成本从8.78亿改为9.28亿，毛利率41.52%"
+      },
+      "productSales": {
+        "feedGradeMCP": null,
+        "phosphoricAcid": null,
+        "map": null,
+        "phosphateRock": null
+      },
+      "productFinancials": {
+        "feedGradeMCP": {
+          "revenue": 716057444.08,
+          "cost": 417476796.21,
+          "grossMargin": 41.7,
+          "_corrected": true,
+          "_notes": "根据2022年半年度报告PDF表格数据修正"
+        },
+        "map": {
+          "revenue": 355912856.34,
+          "cost": 228622286.38,
+          "grossMargin": 35.76
+        },
+        "phosphateRock": {
+          "revenue": 189981126.08,
+          "cost": 49290894.06,
+          "grossMargin": 74.05
+        },
+        "phosphoricAcid": {
+          "revenue": 169107623.49,
+          "cost": 103724202.37,
+          "grossMargin": 38.66,
+          "_corrected": true,
+          "_notes": "根据2022年半年度报告PDF表格数据修正，之前错误地使用了饲料级磷酸二氢钙的数据"
+        }
+      }
+    },
+    {
+      "period": "2022年1-3月",
+      "year": "2022",
+      "filename": "川恒股份2022年第一季度报告.pdf",
+      "phosphorus": {
+        "production": null,
+        "sales": null,
+        "inventory": null,
+        "revenue": 6.09,
+        "cost": 3.94,
+        "unitPrice": null,
+        "unitCost": null,
+        "unitGrossProfit": null,
+        "grossMargin": 35.30377668308703,
+        "_corrected": true,
+        "_verified": false,
+        "_notes": "根据整体财务数据表格修正：营收从6.09亿改为6.09亿，成本从4.88亿改为3.94亿，毛利率35.30%"
+      },
+      "productSales": {
+        "feedGradeMCP": null,
+        "phosphoricAcid": null,
+        "map": null,
+        "phosphateRock": null
+      },
+      "productFinancials": {
+        "feedGradeMCP": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null
+        },
+        "map": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null
+        },
+        "phosphateRock": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null
+        },
+        "phosphoricAcid": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null
+        }
+      }
+    }
+  ]
+}

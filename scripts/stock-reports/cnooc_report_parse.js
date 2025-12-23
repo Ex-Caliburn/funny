@@ -2703,8 +2703,7 @@ async function updateCorrectedData() {
         products: ['oil', 'gas'],
         dataFlow: 'PDF报告 → 自动提取(cnooc_data.json) → 手动修正(本文件) → 页面展示',
         correctionRules: {
-          manual: '手动填入或修改的数据，标记 _source: "manual"',
-          calculated: '根据其他字段计算得出的数据，标记 _source: "calculated"',
+          manual: '手动填入或修改的数据，标记 _corrected: true',
           verified: '经过人工验证确认正确的数据，标记 _verified: true'
         }
       },

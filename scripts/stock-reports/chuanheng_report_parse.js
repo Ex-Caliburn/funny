@@ -32,10 +32,10 @@ const patterns = {
  */
 function extractNumber(text) {
   if (!text) return null;
-  
+
   // 移除逗号和空格
   let cleaned = text.replace(/[,，\s]/g, '');
-  
+
   // 检查是否包含"亿"
   let multiplier = 1;
   if (cleaned.includes('亿')) {
@@ -45,14 +45,14 @@ function extractNumber(text) {
     multiplier = 10000;
     cleaned = cleaned.replace(/万/g, '');
   }
-  
+
   // 提取数字
   const match = cleaned.match(/[\d.]+/);
   if (match) {
     const num = parseFloat(match[0]);
     return isNaN(num) ? null : num * multiplier;
   }
-  
+
   return null;
 }
 
@@ -62,20 +62,20 @@ function extractNumber(text) {
  */
 function extractNumberInWanTons(text) {
   if (!text) return null;
-  
+
   // 移除逗号和空格
   let cleaned = text.replace(/[,，\s]/g, '');
-  
+
   // 移除"万吨"、"吨"等单位
   cleaned = cleaned.replace(/万吨|吨/g, '');
-  
+
   // 提取数字
   const match = cleaned.match(/[\d.]+/);
   if (match) {
     const num = parseFloat(match[0]);
     return isNaN(num) ? null : num; // 直接返回数字，不乘以任何系数
   }
-  
+
   return null;
 }
 
@@ -105,7 +105,7 @@ function extractInventoryFromMainProducts(text, extractedData) {
     // 磷产品（通用，最后匹配）
     /磷[\(（][^）)]*万吨[\)）][\s\t]+([\d,，]+\.?\d*)[\s\t]+([\d,，]+\.?\d*)[\s\t]+([\d,，]+\.?\d*)/g
   ];
-  
+
   for (const pattern of patterns) {
     let match;
     while ((match = pattern.exec(text)) !== null) {
@@ -115,19 +115,20 @@ function extractInventoryFromMainProducts(text, extractedData) {
       if (!isMainProductTable && (match[0].includes('产量') || match[0].includes('销量') || match[0].includes('销售量'))) {
         continue;
       }
-      
+
       // 提取三个数值：生产量、销售量、库存量
+      // 注意：此函数只在年度报告中调用，所以生产量、库存量都是年度报告数据
       const productionStr = match[1].replace(/[,，]/g, '');
       const salesStr = match[2].replace(/[,，]/g, '');
       const inventoryStr = match[3].replace(/[,，]/g, '');
-      
+
       const production = parseFloat(productionStr);
       const sales = parseFloat(salesStr);
       const inventory = parseFloat(inventoryStr);
-      
+
       // 数据合理性验证：产量和销量应该在合理范围内（0-10000万吨）
       // 同时验证：产量和销量不能是百分比（不能小于1，除非是小数如0.5万吨）
-      // 对于半年报，产量和销量通常应该在几十到几百万吨之间
+      // 年度报告的产量和销量通常应该在几十到几百万吨之间
       if (!isNaN(production) && production > 0 && production < 100000 && production >= 0.1) {
         // 进一步验证：如果值太小（小于0.5万吨），很可能是误提取的百分比
         if (production >= 0.5 || (production >= 0.1 && production < 0.5 && match[0].includes('主要产品'))) {
@@ -140,7 +141,7 @@ function extractInventoryFromMainProducts(text, extractedData) {
           });
         }
       }
-      
+
       if (!isNaN(sales) && sales > 0 && sales < 100000 && sales >= 0.1) {
         // 进一步验证：如果值太小（小于0.5万吨），很可能是误提取的百分比
         if (sales >= 0.5 || (sales >= 0.1 && sales < 0.5 && match[0].includes('主要产品'))) {
@@ -153,7 +154,7 @@ function extractInventoryFromMainProducts(text, extractedData) {
           });
         }
       }
-      
+
       if (!isNaN(inventory) && inventory > 0 && inventory < 100000) {
         extractedData.inventory.push({
           keyword: '主要产品-库存',
@@ -191,7 +192,7 @@ function extractProductSales(text, extractedData) {
       break;
     }
   }
-  
+
   // 饲料级磷酸二氢钙（单独提取，从文本中，如果主要产品表格中没有找到）
   if (extractedData.productSales.feedGradeMCP.length === 0) {
     const feedGradeMCPPattern = /饲料级磷酸二氢钙[\s\t]+([\d,，]+\.?\d*)[\s\t]*万吨/g;
@@ -210,7 +211,7 @@ function extractProductSales(text, extractedData) {
       }
     }
   }
-  
+
   // 从"主要产品"表格中提取分产品销量数据（优先）
   // 格式：主要产品 \t磷酸 \t生产量 \t销售量 \t库存量
   // 或者：磷酸(万吨） \t生产量 \t销售量 \t库存量
@@ -234,7 +235,7 @@ function extractProductSales(text, extractedData) {
       break; // 只取第一个匹配
     }
   }
-  
+
   // 磷酸（单独提取，从文本中，如果主要产品表格中没有找到）
   if (extractedData.productSales.phosphoricAcid.length === 0) {
     const phosphoricAcidPattern = /磷酸[\s\t]+([\d,，]+\.?\d*)[\s\t]*万吨/g;
@@ -253,7 +254,7 @@ function extractProductSales(text, extractedData) {
       }
     }
   }
-  
+
   // 磷酸一铵（从主要产品表格中提取，优先）
   const mapMainPattern = /(?:主要产品[^\d]*)?磷酸一铵[\(（]?[^）)]*万吨[\)）]?[\s\t]+([\d,，]+\.?\d*)[\s\t]+([\d,，]+\.?\d*)[\s\t]+([\d,，]+\.?\d*)/g;
   let mapMainMatch;
@@ -273,7 +274,7 @@ function extractProductSales(text, extractedData) {
       break;
     }
   }
-  
+
   // 磷酸一铵（单独提取，从文本中，如果主要产品表格中没有找到）
   if (extractedData.productSales.map.length === 0) {
     const mapPattern = /磷酸一铵[\s\t]+([\d,，]+\.?\d*)[\s\t]*万吨/g;
@@ -292,7 +293,7 @@ function extractProductSales(text, extractedData) {
       }
     }
   }
-  
+
   // 磷矿石（单独提取）
   const phosphateRockPattern = /磷矿石[\s\t]+([\d,，]+\.?\d*)[\s\t]*万吨/g;
   let phosphateRockMatch;
@@ -317,24 +318,32 @@ function extractProductSales(text, extractedData) {
 function extractDataByKeyword(text, keyword, contextLines = 3) {
   const results = [];
   const lines = text.split('\n');
-  
+
   // 判断是否是需要保持万吨单位的关键词
-  const isWanTonKeyword = keyword.includes('产量') || keyword.includes('销量') || 
+  const isWanTonKeyword = keyword.includes('产量') || keyword.includes('销量') ||
                           keyword.includes('库存');
-  
+
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
     if (line.includes(keyword)) {
+      // 如果关键词是"成本"或"营业成本"，排除"营业总成本"
+      if ((keyword === '成本' || keyword === '营业成本') && line.includes('营业总成本')) {
+        continue;
+      }
+      // 如果关键词是"营收"或"营业收入"，排除"营业总收入"
+      if ((keyword === '营收' || keyword === '营业收入') && line.includes('营业总收入')) {
+        continue;
+      }
       // 获取上下文
       const context = [];
       const expandedContextLines = contextLines;
       for (let j = Math.max(0, i - expandedContextLines); j < Math.min(lines.length, i + expandedContextLines + 1); j++) {
         context.push(lines[j]);
       }
-      
+
       // 尝试从关键词附近提取数字
       let extractedValue = null;
-      
+
       // 特殊处理：产量、销量关键词，精确匹配"关键词...数字"模式
       if (!extractedValue && (keyword.includes('产量') || keyword.includes('销量'))) {
         // 优先匹配表格格式：磷酸产量（万吨） 176.80 ... 或 磷酸销售量（万吨） ...
@@ -362,7 +371,7 @@ function extractDataByKeyword(text, keyword, contextLines = 3) {
           }
         }
       }
-      
+
       // 如果没有精确匹配，使用通用方法
       // 对于产量和销量，必须确保有"万吨"单位，且不是百分比
       if (!extractedValue) {
@@ -383,7 +392,7 @@ function extractDataByKeyword(text, keyword, contextLines = 3) {
           // 对于其他关键词，使用通用方法
           // 在当前行中查找数字（优先从当前行提取，避免上下文干扰）
           const lineNumbers = line.match(patterns.number);
-          
+
           if (lineNumbers && lineNumbers.length > 0) {
             // 根据关键词类型选择合适的提取函数
             const extractFunc = isWanTonKeyword ? extractNumberInWanTons : extractNumber;
@@ -395,7 +404,7 @@ function extractDataByKeyword(text, keyword, contextLines = 3) {
             // 如果当前行没有数字，再从上下文中查找
             const contextText = context.join(' ');
             const numbers = contextText.match(patterns.number);
-            
+
             if (numbers && numbers.length > 0) {
               const extractFunc = isWanTonKeyword ? extractNumberInWanTons : extractNumber;
               const values = numbers.map(n => extractFunc(n)).filter(n => n !== null);
@@ -406,12 +415,12 @@ function extractDataByKeyword(text, keyword, contextLines = 3) {
           }
         }
       }
-      
+
       if (extractedValue) {
         const lineNumbers = line.match(patterns.number);
         const extractFunc = isWanTonKeyword ? extractNumberInWanTons : extractNumber;
         const allValues = lineNumbers ? lineNumbers.map(n => extractFunc(n)).filter(n => n !== null) : [extractedValue];
-        
+
         results.push({
           keyword,
           line: line.trim(),
@@ -422,26 +431,26 @@ function extractDataByKeyword(text, keyword, contextLines = 3) {
       }
     }
   }
-  
+
   return results;
 }
 
 /**
  * 从"行业分类"表格中提取磷化工的销售量、生产量、库存量（单位：吨，需转换为万吨）
  */
-function extractIndustryClassification(text, extractedData) {
+function extractIndustryClassification(text, extractedData, isAnnualReport = false) {
   // 查找"行业分类"表格区域
   const industryIndex = text.indexOf('行业分类');
   if (industryIndex === -1) return;
-  
+
   // 获取"行业分类"表格附近2000字符的文本
   const industrySection = text.substring(industryIndex, industryIndex + 2000);
-  
+
   // 匹配"磷化工"行的数据
   // 格式：磷化工 \t销售量 \t吨 \t1,064,374.51 \t789,265.21 \t34.86%
   // 或者：磷化工 \t生产量 \t吨 \t1,072,841.35 \t779,738.65 \t37.59%
   // 或者：磷化工 \t库存量 \t吨 \t70,030.62 \t61,718.77 \t13.47%
-  
+
   // 销售量
   const salesPattern = /磷化工[\s\S]{0,100}?销售量[\s\S]{0,50}?([\d,，]+\.?\d*)[\s\t]+[\d,，]+\.?\d*/g;
   let salesMatch;
@@ -461,44 +470,48 @@ function extractIndustryClassification(text, extractedData) {
       break;
     }
   }
-  
-  // 生产量
-  const productionPattern = /磷化工[\s\S]{0,100}?生产量[\s\S]{0,50}?([\d,，]+\.?\d*)[\s\t]+[\d,，]+\.?\d*/g;
-  let productionMatch;
-  while ((productionMatch = productionPattern.exec(industrySection)) !== null) {
-    const valueStr = productionMatch[1].replace(/[,，]/g, '');
-    const value = parseFloat(valueStr);
-    if (!isNaN(value) && value > 0) {
-      // 转换为万吨
-      const valueInWanTons = value / 10000;
-      extractedData.production.push({
-        keyword: '行业分类-磷化工生产量',
-        line: productionMatch[0],
-        context: industrySection.substring(0, 500),
-        value: valueInWanTons,
-        allValues: [valueInWanTons]
-      });
-      break;
+
+  // 生产量（仅年度报告有此数据）
+  if (isAnnualReport) {
+    const productionPattern = /磷化工[\s\S]{0,100}?生产量[\s\S]{0,50}?([\d,，]+\.?\d*)[\s\t]+[\d,，]+\.?\d*/g;
+    let productionMatch;
+    while ((productionMatch = productionPattern.exec(industrySection)) !== null) {
+      const valueStr = productionMatch[1].replace(/[,，]/g, '');
+      const value = parseFloat(valueStr);
+      if (!isNaN(value) && value > 0) {
+        // 转换为万吨
+        const valueInWanTons = value / 10000;
+        extractedData.production.push({
+          keyword: '行业分类-磷化工生产量',
+          line: productionMatch[0],
+          context: industrySection.substring(0, 500),
+          value: valueInWanTons,
+          allValues: [valueInWanTons]
+        });
+        break;
+      }
     }
   }
-  
-  // 库存量
-  const inventoryPattern = /磷化工[\s\S]{0,100}?库存量[\s\S]{0,50}?([\d,，]+\.?\d*)[\s\t]+[\d,，]+\.?\d*/g;
-  let inventoryMatch;
-  while ((inventoryMatch = inventoryPattern.exec(industrySection)) !== null) {
-    const valueStr = inventoryMatch[1].replace(/[,，]/g, '');
-    const value = parseFloat(valueStr);
-    if (!isNaN(value) && value > 0) {
-      // 转换为万吨
-      const valueInWanTons = value / 10000;
-      extractedData.inventory.push({
-        keyword: '行业分类-磷化工库存量',
-        line: inventoryMatch[0],
-        context: industrySection.substring(0, 500),
-        value: valueInWanTons,
-        allValues: [valueInWanTons]
-      });
-      break;
+
+  // 库存量（仅年度报告有此数据）
+  if (isAnnualReport) {
+    const inventoryPattern = /磷化工[\s\S]{0,100}?库存量[\s\S]{0,50}?([\d,，]+\.?\d*)[\s\t]+[\d,，]+\.?\d*/g;
+    let inventoryMatch;
+    while ((inventoryMatch = inventoryPattern.exec(industrySection)) !== null) {
+      const valueStr = inventoryMatch[1].replace(/[,，]/g, '');
+      const value = parseFloat(valueStr);
+      if (!isNaN(value) && value > 0) {
+        // 转换为万吨
+        const valueInWanTons = value / 10000;
+        extractedData.inventory.push({
+          keyword: '行业分类-磷化工库存量',
+          line: inventoryMatch[0],
+          context: industrySection.substring(0, 500),
+          value: valueInWanTons,
+          allValues: [valueInWanTons]
+        });
+        break;
+      }
     }
   }
 }
@@ -514,24 +527,24 @@ function extractAllProductFinancials(text) {
     phosphateRock: { revenue: null, cost: null, grossMargin: null },  // 磷矿石
     phosphoricAcid: { revenue: null, cost: null, grossMargin: null } // 磷酸
   };
-  
+
   // 从"分产品"表格中提取数据
   // 格式：分产品 \t饲料级磷酸二氢钙 \t营业收入 \t营业成本 \t毛利率
   // 或者：饲料级磷酸二氢钙 \t843,787,216.36 \t568,743,382.81 \t32.60%
-  
+
   // 查找"分产品"表格区域
   const productTableIndex = text.indexOf('分产品');
   if (productTableIndex !== -1) {
     // 获取"分产品"表格附近5000字符的文本（扩大范围以包含所有产品）
     const productTableSection = text.substring(productTableIndex, productTableIndex + 5000);
-    
+
     // 匹配饲料级磷酸二氢钙
     const feedGradeMCPPatterns = [
       /(?:分产品[^\d]*)?饲料级磷酸二氢钙[^\d]*([\d,，]+\.?\d*)[\s\t]+([\d,，]+\.?\d*)[\s\t]+([\d,，]+\.?\d*)\s*%/g,
       /(?:分产品[^\d]*)?饲料级磷酸二氢钙[^\d]*([\d,，]+\.?\d*)[\s\t]+[\d,，]+\.?\d*%[^\d]*([\d,，]+\.?\d*)[\s\t]+[\d,，]+\.?\d*%[^\d]*([\d,，]+\.?\d*)\s*%/g,
       /饲料级磷酸二氢钙[\s\S]{0,200}?([\d,，]+\.?\d*)[\s\t]+([\d,，]+\.?\d*)[\s\t]+([\d,，]+\.?\d*)\s*%/g
     ];
-    
+
     for (const pattern of feedGradeMCPPatterns) {
       let match;
       while ((match = pattern.exec(productTableSection)) !== null) {
@@ -539,7 +552,7 @@ function extractAllProductFinancials(text) {
         const costValue = extractNumber(match[2] + '元');
         const marginStr = match[3].replace(/[,，]/g, '');
         const marginValue = parseFloat(marginStr);
-        
+
         if (revenueValue && revenueValue > 10000000 && costValue && costValue > 10000000) {
           result.feedGradeMCP.revenue = revenueValue;
           result.feedGradeMCP.cost = costValue;
@@ -551,14 +564,14 @@ function extractAllProductFinancials(text) {
       }
       if (result.feedGradeMCP.revenue) break;
     }
-    
+
     // 匹配磷酸一铵
     const mapPatterns = [
       /(?:分产品[^\d]*)?磷酸一铵[^\d]*([\d,，]+\.?\d*)[\s\t]+([\d,，]+\.?\d*)[\s\t]+([\d,，]+\.?\d*)\s*%/g,
       /(?:分产品[^\d]*)?磷酸一铵[^\d]*([\d,，]+\.?\d*)[\s\t]+[\d,，]+\.?\d*%[^\d]*([\d,，]+\.?\d*)[\s\t]+[\d,，]+\.?\d*%[^\d]*([\d,，]+\.?\d*)\s*%/g,
       /磷酸一铵[\s\S]{0,200}?([\d,，]+\.?\d*)[\s\t]+([\d,，]+\.?\d*)[\s\t]+([\d,，]+\.?\d*)\s*%/g
     ];
-    
+
     for (const pattern of mapPatterns) {
       let match;
       while ((match = pattern.exec(productTableSection)) !== null) {
@@ -566,7 +579,7 @@ function extractAllProductFinancials(text) {
         const costValue = extractNumber(match[2] + '元');
         const marginStr = match[3].replace(/[,，]/g, '');
         const marginValue = parseFloat(marginStr);
-        
+
         if (revenueValue && revenueValue > 10000000 && costValue && costValue > 10000000) {
           result.map.revenue = revenueValue;
           result.map.cost = costValue;
@@ -578,14 +591,14 @@ function extractAllProductFinancials(text) {
       }
       if (result.map.revenue) break;
     }
-    
+
     // 匹配磷矿石
     const phosphateRockPatterns = [
       /(?:分产品[^\d]*)?磷矿石[^\d]*([\d,，]+\.?\d*)[\s\t]+([\d,，]+\.?\d*)[\s\t]+([\d,，]+\.?\d*)\s*%/g,
       /(?:分产品[^\d]*)?磷矿石[^\d]*([\d,，]+\.?\d*)[\s\t]+[\d,，]+\.?\d*%[^\d]*([\d,，]+\.?\d*)[\s\t]+[\d,，]+\.?\d*%[^\d]*([\d,，]+\.?\d*)\s*%/g,
       /磷矿石[\s\S]{0,200}?([\d,，]+\.?\d*)[\s\t]+([\d,，]+\.?\d*)[\s\t]+([\d,，]+\.?\d*)\s*%/g
     ];
-    
+
     for (const pattern of phosphateRockPatterns) {
       let match;
       while ((match = pattern.exec(productTableSection)) !== null) {
@@ -593,7 +606,7 @@ function extractAllProductFinancials(text) {
         const costValue = extractNumber(match[2] + '元');
         const marginStr = match[3].replace(/[,，]/g, '');
         const marginValue = parseFloat(marginStr);
-        
+
         if (revenueValue && revenueValue > 10000000 && costValue && costValue > 10000000) {
           result.phosphateRock.revenue = revenueValue;
           result.phosphateRock.cost = costValue;
@@ -605,41 +618,89 @@ function extractAllProductFinancials(text) {
       }
       if (result.phosphateRock.revenue) break;
     }
-    
-    // 匹配磷酸
-    const phosphoricAcidPatterns = [
-      /(?:分产品[^\d]*)?磷酸[^\d]*([\d,，]+\.?\d*)[\s\t]+([\d,，]+\.?\d*)[\s\t]+([\d,，]+\.?\d*)\s*%/g,
-      /(?:分产品[^\d]*)?磷酸[^\d]*([\d,，]+\.?\d*)[\s\t]+[\d,，]+\.?\d*%[^\d]*([\d,，]+\.?\d*)[\s\t]+[\d,，]+\.?\d*%[^\d]*([\d,，]+\.?\d*)\s*%/g,
-      /磷酸[\s\S]{0,200}?([\d,，]+\.?\d*)[\s\t]+([\d,，]+\.?\d*)[\s\t]+([\d,，]+\.?\d*)\s*%/g
-    ];
-    
-    for (const pattern of phosphoricAcidPatterns) {
-      let match;
-      while ((match = pattern.exec(productTableSection)) !== null) {
-        // 排除"饲料级磷酸二氢钙"和"磷酸一铵"的误匹配
-        const beforeMatch = productTableSection.substring(0, match.index);
-        if (beforeMatch.includes('饲料级') || beforeMatch.includes('一铵')) {
-          continue;
-        }
-        
+
+    // 匹配磷酸（需要更严格的匹配，避免匹配到"饲料级磷酸二氢钙"）
+    // 策略：优先匹配标准格式（营收 成本 毛利率%），然后检查行文本排除误匹配
+    // 标准格式：磷酸 954,641,684.47 774,363,662.32 18.88%
+    // 非标准格式：磷酸 954,641,684.47 28.41% 747,816,169.60 30.10% 27.66%
+
+    // 优先匹配标准格式：磷酸 营收 成本 毛利率%
+    const standardPattern = /(?:^|[\n\r])(?!.*饲料级)(?!.*一铵)(?!.*二氢钙)(?!.*磷酸铁)磷酸[^\d]*([\d,，]+\.?\d*)[\s\t]+([\d,，]+\.?\d*)[\s\t]+([\d,，]+\.?\d*)\s*%/gm;
+    let match = standardPattern.exec(productTableSection);
+    if (match) {
+      const lineStart = productTableSection.lastIndexOf('\n', match.index);
+      const lineEnd = productTableSection.indexOf('\n', match.index + match[0].length);
+      const lineText = productTableSection.substring(
+        lineStart < 0 ? 0 : lineStart,
+        lineEnd < 0 ? productTableSection.length : lineEnd
+      );
+
+      // 检查行文本，确保不包含"饲料级"、"一铵"、"二氢钙"、"磷酸铁"
+      if (!lineText.includes('饲料级') && !lineText.includes('一铵') && !lineText.includes('二氢钙') && !lineText.includes('磷酸铁')) {
         const revenueValue = extractNumber(match[1] + '元');
         const costValue = extractNumber(match[2] + '元');
         const marginStr = match[3].replace(/[,，]/g, '');
         const marginValue = parseFloat(marginStr);
-        
+
         if (revenueValue && revenueValue > 10000000 && costValue && costValue > 10000000) {
-          result.phosphoricAcid.revenue = revenueValue;
-          result.phosphoricAcid.cost = costValue;
-          if (!isNaN(marginValue) && marginValue >= 0 && marginValue <= 100) {
-            result.phosphoricAcid.grossMargin = marginValue;
+          // 验证：如果营收等于已提取的饲料级磷酸二氢钙的营收，说明匹配错了
+          if (!result.feedGradeMCP.revenue || Math.abs(revenueValue - result.feedGradeMCP.revenue) >= 1000) {
+            result.phosphoricAcid.revenue = revenueValue;
+            result.phosphoricAcid.cost = costValue;
+            if (!isNaN(marginValue) && marginValue >= 0 && marginValue <= 100) {
+              result.phosphoricAcid.grossMargin = marginValue;
+            }
           }
-          break;
         }
       }
-      if (result.phosphoricAcid.revenue) break;
+    }
+
+    // 如果标准格式没匹配到，尝试其他格式
+    if (!result.phosphoricAcid.revenue) {
+      const phosphoricAcidPatterns = [
+        /(?:分产品[^\d]*)?磷酸[^\d]*([\d,，]+\.?\d*)[\s\t]+([\d,，]+\.?\d*)[\s\t]+([\d,，]+\.?\d*)\s*%/g,
+        /(?:分产品[^\d]*)?磷酸[^\d]*([\d,，]+\.?\d*)[\s\t]+[\d,，]+\.?\d*%[^\d]*([\d,，]+\.?\d*)[\s\t]+[\d,，]+\.?\d*%[^\d]*([\d,，]+\.?\d*)\s*%/g,
+        /磷酸[\s\S]{0,200}?([\d,，]+\.?\d*)[\s\t]+([\d,，]+\.?\d*)[\s\t]+([\d,，]+\.?\d*)\s*%/g
+      ];
+
+      for (const pattern of phosphoricAcidPatterns) {
+        let match;
+        while ((match = pattern.exec(productTableSection)) !== null) {
+          // 获取匹配行的完整文本
+          const lineStart = productTableSection.lastIndexOf('\n', match.index);
+          const lineEnd = productTableSection.indexOf('\n', match.index + match[0].length);
+          const lineText = productTableSection.substring(
+            lineStart < 0 ? 0 : lineStart,
+            lineEnd < 0 ? productTableSection.length : lineEnd
+          );
+
+          // 检查行文本，排除误匹配
+          if (lineText.includes('饲料级') || lineText.includes('一铵') || lineText.includes('二氢钙') || lineText.includes('磷酸铁')) {
+            continue;
+          }
+
+          const revenueValue = extractNumber(match[1] + '元');
+          const costValue = extractNumber(match[2] + '元');
+          const marginStr = match[3].replace(/[,，]/g, '');
+          const marginValue = parseFloat(marginStr);
+
+          if (revenueValue && revenueValue > 10000000 && costValue && costValue > 10000000) {
+            // 验证：如果营收等于已提取的饲料级磷酸二氢钙的营收，说明匹配错了
+            if (!result.feedGradeMCP.revenue || Math.abs(revenueValue - result.feedGradeMCP.revenue) >= 1000) {
+              result.phosphoricAcid.revenue = revenueValue;
+              result.phosphoricAcid.cost = costValue;
+              if (!isNaN(marginValue) && marginValue >= 0 && marginValue <= 100) {
+                result.phosphoricAcid.grossMargin = marginValue;
+              }
+              break;
+            }
+          }
+        }
+        if (result.phosphoricAcid.revenue) break;
+      }
     }
   }
-  
+
   return result;
 }
 
@@ -654,7 +715,7 @@ function extractPhosphorusFinancials(text) {
     grossProfit: null,
     grossMargin: null  // 毛利率
   };
-  
+
   // 优先从"分行业"表格中提取"磷化工"的数据（营业收入、营业成本、毛利率都在同一行）
   // 根据实际PDF文本，格式是：磷化工 3,127,388,431.01 2,269,609,525.65 27.43%
   // 需要匹配：磷化工后面跟着三个数字（营业收入、营业成本、毛利率），最后一个数字后面有%
@@ -665,7 +726,7 @@ function extractPhosphorusFinancials(text) {
     // 格式2：更宽松，允许中间有其他字符，但确保三个数字都是大数字（营业收入和成本）和小数字（毛利率）
     /磷化工[\s\S]{0,300}?([\d,，]{9,}\.?\d{0,2})[\s\S]{0,100}?([\d,，]{9,}\.?\d{0,2})[\s\S]{0,100}?([\d,，]*\.?\d{1,2})\s*%/
   ];
-  
+
   for (const pattern of patterns) {
     pattern.lastIndex = 0;
     let match;
@@ -675,12 +736,12 @@ function extractPhosphorusFinancials(text) {
       const costValue = extractNumber(match[2] + '元');
       const marginStr = match[3].replace(/[,，]/g, '');
       const marginValue = parseFloat(marginStr);
-      
+
       // 验证数据合理性：
       // 1. 营收和成本应该大于1亿（100,000,000元）
       // 2. 营收应该大于成本（否则不合理）
       // 3. 毛利率应该在合理范围内（0-100%），且不应该太大（如果>50%可能是误匹配）
-      if (revenueValue && revenueValue > 100000000 && 
+      if (revenueValue && revenueValue > 100000000 &&
           costValue && costValue > 100000000 &&
           revenueValue > costValue &&
           !isNaN(marginValue) && marginValue >= 0 && marginValue <= 100) {
@@ -697,7 +758,7 @@ function extractPhosphorusFinancials(text) {
       }
     }
   }
-  
+
   // 如果"分行业"表格中没找到，再尝试从"分产品"表格中提取磷化工数据
   const productPattern = /分产品[^\d]*磷化工[^\d]*([\d,，]+\.?\d*)[\s\t]+([\d,，]+\.?\d*)[\s\t]+([\d,，]+\.?\d*)\s*%/g;
   let productMatch;
@@ -706,7 +767,7 @@ function extractPhosphorusFinancials(text) {
     const costValue = extractNumber(productMatch[2] + '元');
     const marginStr = productMatch[3].replace(/[,，]/g, '');
     const marginValue = parseFloat(marginStr);
-    
+
     if (revenueValue && revenueValue > 100000000 && costValue && costValue > 100000000) {
       result.phosphorusRevenue = revenueValue;
       result.phosphorusCost = costValue;
@@ -716,7 +777,7 @@ function extractPhosphorusFinancials(text) {
       return result;
     }
   }
-  
+
   // 匹配格式：磷产品销售收入 \tXX \t亿元，磷产品销售成本 \tXX \t亿元，毛利 \tXX \t亿
   const pattern1 = /(?:磷产品|磷化工)销售收入[\s\t]+([\d,，]+\.?\d*)[\s\t]+亿元[，,]*[\s\t]*(?:磷产品|磷化工)销售成本[\s\t]+([\d,，]+\.?\d*)[\s\t]+亿元[，,]*[\s\t]*毛利[\s\t]+([\d,，]+\.?\d*)[\s\t]*亿/g;
   let match1 = pattern1.exec(text);
@@ -726,7 +787,7 @@ function extractPhosphorusFinancials(text) {
     result.grossProfit = extractNumber(match1[3] + '亿元');
     return result;
   }
-  
+
   // 匹配格式：磷产品销售收入 \tXX \t亿元，磷产品销售成本 \tXX \t亿元
   const pattern2 = /磷产品销售收入[\s\t]+([\d,，]+\.?\d*)[\s\t]+亿元[，,]*[\s\t]*磷产品销售成本[\s\t]+([\d,，]+\.?\d*)[\s\t]+亿元/g;
   let match2 = pattern2.exec(text);
@@ -738,7 +799,7 @@ function extractPhosphorusFinancials(text) {
     }
     return result;
   }
-  
+
   // 格式3：其中磷产品销售收入 XX 亿元（半年报格式）
   if (!result.phosphorusRevenue) {
     const pattern5 = /(?:其中)?(?:磷产品|磷酸)销售收入[\s\t]+([\d,，]+\.?\d*)[\s\t]*亿元/g;
@@ -751,7 +812,7 @@ function extractPhosphorusFinancials(text) {
       }
     }
   }
-  
+
   // 格式4：磷产品销售成本 XX 亿元（半年报格式）
   if (!result.phosphorusCost) {
     const pattern6 = /(?:其中)?(?:磷产品|磷酸)销售成本[\s\t]+([\d,，]+\.?\d*)[\s\t]*亿元/g;
@@ -764,7 +825,7 @@ function extractPhosphorusFinancials(text) {
       }
     }
   }
-  
+
   // 格式5：从"分产品"表格中提取磷化工的营业收入、营业成本和毛利率（优先匹配磷化工）
   if (!result.phosphorusRevenue || !result.phosphorusCost || !result.grossMargin) {
     // 匹配"分产品"表格中的磷化工行（优先）
@@ -776,7 +837,7 @@ function extractPhosphorusFinancials(text) {
       const costValue = extractNumber(productMatch[2] + '元');
       const marginStr = productMatch[3].replace(/[,，]/g, '');
       const marginValue = parseFloat(marginStr);
-      
+
       if (revenueValue && revenueValue > 1000000000 && costValue && costValue > 1000000000) {
         if (!result.phosphorusRevenue) result.phosphorusRevenue = revenueValue;
         if (!result.phosphorusCost) result.phosphorusCost = costValue;
@@ -787,7 +848,7 @@ function extractPhosphorusFinancials(text) {
       }
     }
   }
-  
+
   // 格式6：磷产品销售收入（万元） XX,XXX.XX（表格格式）
   if (!result.phosphorusRevenue) {
     const pattern7a = /(?:磷产品|磷酸)销售收入\s*[（(]万元[）)]\s+([\d,，]+\.?\d*)/g;
@@ -811,7 +872,7 @@ function extractPhosphorusFinancials(text) {
       }
     }
   }
-  
+
   // 格式7：磷产品销售成本（万元） XX,XXX.XX（表格格式）
   if (!result.phosphorusCost) {
     const pattern8a = /(?:磷产品|磷酸)销售成本\s*[（(]万元[）)]\s+([\d,，]+\.?\d*)/g;
@@ -835,7 +896,7 @@ function extractPhosphorusFinancials(text) {
       }
     }
   }
-  
+
   // 单独匹配磷产品销售收入（兜底，亿元）
   if (!result.phosphorusRevenue) {
     const pattern3 = /(?:磷产品|磷酸)销售收入[\s\t]+([\d,，]+\.?\d*)[\s\t]*亿元/g;
@@ -847,7 +908,7 @@ function extractPhosphorusFinancials(text) {
       }
     }
   }
-  
+
   // 单独匹配磷产品销售成本（兜底，亿元）
   if (!result.phosphorusCost) {
     const pattern4 = /(?:磷产品|磷酸)销售成本[\s\t]+([\d,，]+\.?\d*)[\s\t]*亿元/g;
@@ -859,12 +920,12 @@ function extractPhosphorusFinancials(text) {
       }
     }
   }
-  
+
   // 如果都有，计算毛利
   if (result.phosphorusRevenue && result.phosphorusCost && !result.grossProfit) {
     result.grossProfit = result.phosphorusRevenue - result.phosphorusCost;
   }
-  
+
   // 提取毛利率（从分产品表格中）
   const grossMarginPatterns = [
     /(?:磷产品|磷酸|磷化工)[^\d]*[\d,，]+\.?\d*[^\d]*[\d,，]+\.?\d*[^\d]*([\d,，]+\.?\d*)\s*%/g,
@@ -872,7 +933,7 @@ function extractPhosphorusFinancials(text) {
     /(?:磷产品|磷酸|磷化工)[^\d]*毛利率[\s\t]+([\d,，]+\.?\d*)\s*%/g,
     /分产品[^\d]*(?:磷产品|磷酸|磷化工)[\s\S]{0,500}毛利率[\s\t]+([\d,，]+\.?\d*)\s*%/g
   ];
-  
+
   for (const pattern of grossMarginPatterns) {
     let match;
     while ((match = pattern.exec(text)) !== null) {
@@ -885,10 +946,10 @@ function extractPhosphorusFinancials(text) {
     }
     if (result.grossMargin !== null) break;
   }
-  
+
   // 不再计算毛利率，毛利率必须从PDF中提取（都在同一行）
   // 如果提取到营收和成本但没有毛利率，不计算，保持为null
-  
+
   return result;
 }
 
@@ -902,14 +963,14 @@ async function parsePDF(filePath) {
     const parser = new PDFParse({ data: dataBuffer });
     const textData = await parser.getText();
     const data = { text: textData.text };
-    
+
     // 提取年份
     const yearMatch = data.text.match(/20\d{2}/);
     const year = yearMatch ? yearMatch[0] : null;
-    
+
     console.log(`提取到年份: ${year || '未知'}`);
     console.log(`文本长度: ${data.text.length} 字符`);
-    
+
     // 提取各类数据
     const extractedData = {
       year: year,
@@ -931,44 +992,52 @@ async function parsePDF(filePath) {
         other: { revenue: null, cost: null, grossMargin: null }        // 其他产品
       }
     };
-    
+
     // 提取成本相关数据
     for (const keyword of keywords.cost) {
       const results = extractDataByKeyword(data.text, keyword);
       extractedData.cost.push(...results);
     }
-    
+
     // 提取营收相关数据
     for (const keyword of keywords.revenue) {
       const results = extractDataByKeyword(data.text, keyword);
       extractedData.revenue.push(...results);
     }
-    
-    // 提取产量相关数据
-    for (const keyword of keywords.production) {
-      const results = extractDataByKeyword(data.text, keyword);
-      extractedData.production.push(...results);
+
+    // 提取库存相关数据（仅年报有此数据，不包括半年度报告和季度报告）
+    const isAnnualReport = extractedData.filename && extractedData.filename.match(/\d{4}年年度报告/);
+
+    // 提取产量相关数据（仅年报有此数据，不包括半年度报告和季度报告）
+    if (isAnnualReport) {
+      for (const keyword of keywords.production) {
+        const results = extractDataByKeyword(data.text, keyword);
+        extractedData.production.push(...results);
+      }
     }
-    
+
     // 提取销量相关数据
     for (const keyword of keywords.sales) {
       const results = extractDataByKeyword(data.text, keyword);
       extractedData.sales.push(...results);
     }
-    
-    // 提取库存相关数据（从"主要产品"表格中提取）
-    extractInventoryFromMainProducts(data.text, extractedData);
-    
+
+    // 提取库存相关数据（仅年报有此数据）
+    if (isAnnualReport) {
+      extractInventoryFromMainProducts(data.text, extractedData);
+    }
+
     // 从"行业分类"表格中提取磷化工的销售量、生产量、库存量
-    extractIndustryClassification(data.text, extractedData);
-    
+    // 注意：生产量和库存量只在年度报告中提取
+    extractIndustryClassification(data.text, extractedData, isAnnualReport);
+
     // 提取分产品销量数据
     extractProductSales(data.text, extractedData);
-    
+
     // 提取磷产品财务数据（销售收入、成本、毛利率）
     // 优先从"分行业"表格中提取"磷化工"的数据
     const phosphorusFinancials = extractPhosphorusFinancials(data.text);
-    
+
     // 如果从"分行业"表格提取到了数据，优先使用
     if (phosphorusFinancials.phosphorusRevenue && phosphorusFinancials.phosphorusCost) {
       extractedData.revenue.push({
@@ -1012,7 +1081,7 @@ async function parsePDF(filePath) {
         extractedData.grossMargin = phosphorusFinancials.grossMargin;
       }
     }
-    
+
     // 提取所有产品的财务数据（四个分产品：饲料级磷酸二氢钙、磷酸一铵、磷矿石、磷酸）
     const allProductFinancials = extractAllProductFinancials(data.text);
     // 将四个分产品的财务数据存储到productSales中
@@ -1032,7 +1101,7 @@ async function parsePDF(filePath) {
       extractedData.productFinancials = extractedData.productFinancials || {};
       extractedData.productFinancials.phosphoricAcid = allProductFinancials.phosphoricAcid;
     }
-    
+
     return extractedData;
   } catch (error) {
     console.error(`解析 ${filePath} 时出错:`, error.message);
@@ -1048,11 +1117,11 @@ async function processAllPDFs() {
   const files = fs.readdirSync(reportDir)
     .filter(f => f.toLowerCase().endsWith('.pdf'))
     .sort();
-  
+
   console.log(`找到 ${files.length} 个PDF文件`);
-  
+
   const allData = [];
-  
+
   for (const file of files) {
     const filePath = path.join(reportDir, file);
     const data = await parsePDF(filePath);
@@ -1060,7 +1129,7 @@ async function processAllPDFs() {
       allData.push(data);
     }
   }
-  
+
   // 按年份排序
   allData.sort((a, b) => {
     if (a.year && b.year) {
@@ -1068,7 +1137,7 @@ async function processAllPDFs() {
     }
     return 0;
   });
-  
+
   return allData;
 }
 
@@ -1077,7 +1146,7 @@ async function processAllPDFs() {
  */
 function getMainValue(results, preferKeyword = null) {
   if (!results || results.length === 0) return null;
-  
+
   // 如果指定了优先关键词，先查找匹配的
   if (preferKeyword) {
     const preferredItems = results.filter(r => r.keyword && r.keyword.includes(preferKeyword));
@@ -1088,11 +1157,11 @@ function getMainValue(results, preferKeyword = null) {
       }
     }
   }
-  
+
   // 如果没有找到优先的，或没有指定优先关键词，取所有结果中的最大值
   const values = results.map(r => r.value).filter(v => v !== null && v > 0);
   if (values.length === 0) return null;
-  
+
   return Math.max(...values);
 }
 
@@ -1101,197 +1170,247 @@ function getMainValue(results, preferKeyword = null) {
  */
 function generateSummary(allData) {
   const summary = [];
-  
+
   for (const data of allData) {
     const year = data.year || '未知';
-    
-    // 优先从已提取的数据中查找"磷产品销售收入"和"磷产品销售成本"
+    const isAnnualReport = data.filename && data.filename.match(/\d{4}年年度报告/);
+
+    // 优先从已提取的数据中查找整体的"营业收入"和"营业成本"（不是"分行业"表格中的"磷化工"数据）
     let phosphorusRevenue = null;
     let phosphorusCost = null;
     let grossProfit = null;
-    
-    // 从revenue中查找"磷化工营业收入（分行业表格）"（优先）
-    for (const rev of data.revenue) {
-      if (rev.line && rev.line.includes('分行业表格')) {
-        phosphorusRevenue = rev.value;
-        break;
+
+    // 如果是年报，优先从"合并利润表"中提取"营业收入"和"营业成本"
+    if (isAnnualReport) {
+      // 查找合并利润表中的"营业收入"（"其中: 营业收入"）
+      // 识别特征：行内容包含"其中：营业收入"或"其中: 营业收入"，且上下文包含"一、营业总收入"（合并利润表的特征）
+      for (const rev of data.revenue) {
+        const line = rev.line || '';
+        const context = rev.context || '';
+        const keyword = rev.keyword || '';
+        const fullText = line + ' ' + context;
+        // 优先匹配合并利润表中的"其中: 营业收入"
+        // 特征1：行内容包含"其中：营业收入"或"其中: 营业收入"
+        // 特征2：上下文包含"一、营业总收入"（这是合并利润表的特征，区别于母公司利润表）
+        // 特征3：或者上下文包含"合并利润表"或"3、合并利润表"
+        if (keyword === '营业收入' && 
+            rev.value && rev.value > 1000000000 &&
+            (line.includes('其中：营业收入') || line.includes('其中: 营业收入')) &&
+            (fullText.includes('一、营业总收入') || 
+             fullText.includes('合并利润表') || 
+             fullText.includes('3、合并利润表') ||
+             (fullText.includes('利润表') && !fullText.includes('母公司利润表')))) {
+          phosphorusRevenue = rev.value;
+          console.log(`  从合并利润表提取到营业收入: ${(rev.value/100000000).toFixed(2)}亿元`);
+          break;
+        }
+      }
+      
+      // 查找合并利润表中的"营业成本"（"其中: 营业成本"）
+      // 识别特征：行内容包含"其中：营业成本"或"其中: 营业成本"，且上下文包含"二、营业总成本"（合并利润表的特征）
+      for (const c of data.cost) {
+        const line = c.line || '';
+        const context = c.context || '';
+        const keyword = c.keyword || '';
+        const fullText = line + ' ' + context;
+        // 优先匹配合并利润表中的"其中: 营业成本"
+        // 特征1：行内容包含"其中：营业成本"或"其中: 营业成本"
+        // 特征2：上下文包含"二、营业总成本"（这是合并利润表的特征，区别于母公司利润表）
+        // 特征3：或者上下文包含"合并利润表"或"3、合并利润表"
+        if (keyword === '营业成本' && 
+            c.value && c.value > 1000000000 &&
+            (line.includes('其中：营业成本') || line.includes('其中: 营业成本')) &&
+            (fullText.includes('二、营业总成本') || 
+             fullText.includes('合并利润表') || 
+             fullText.includes('3、合并利润表') ||
+             (fullText.includes('利润表') && !fullText.includes('母公司利润表')))) {
+          phosphorusCost = c.value;
+          console.log(`  从合并利润表提取到营业成本: ${(c.value/100000000).toFixed(2)}亿元`);
+          break;
+        }
       }
     }
-    // 如果没找到，再查找"磷产品销售收入"
+
+    // 如果年报没找到，或者不是年报，继续查找其他来源的"营业收入"
     if (!phosphorusRevenue) {
+      // 查找整体的"营业收入"：优先使用行内容格式为"营业收入 3,360,414,277.16"这样的数据
       for (const rev of data.revenue) {
-        if (rev.line === '从extractPhosphorusFinancials提取') {
+        const line = rev.line || '';
+        const keyword = rev.keyword || '';
+      // 优先使用：关键词为"营业收入"，行内容包含"营业收入"后跟大数字，且不包含"分行业"、"磷化工"、"营业总收入"
+      if (keyword === '营业收入' && 
+          rev.value && rev.value > 1000000000 && // 确保是大数字（大于10亿）
+          !line.includes('营业总收入') && 
+          !line.includes('分行业') &&
+          !line.includes('分行业表格') &&
+          !line.includes('磷化工') &&
+          !keyword.includes('分行业表格')) {
+        // 进一步验证：行内容应该是"营业收入 数字"的格式，而不是其他格式
+        if (line.match(/营业收入[\s\t]+[\d,，]{9,}/) || 
+            line.match(/营业收入[（(]元[）)][\s\t]+[\d,，]{9,}/) ||
+            line.match(/营业收入合计[\s\t]+[\d,，]{9,}/) ||
+            line.match(/其中：营业收入[\s\t]+[\d,，]{9,}/) ||
+            line.match(/其中: 营业收入[\s\t]+[\d,，]{9,}/)) {
           phosphorusRevenue = rev.value;
           break;
         }
       }
+      }
     }
+    
+    // 如果没找到，再查找其他符合条件的"营业收入"数据
     if (!phosphorusRevenue) {
-      for (const rev of data.revenue) {
-        if (rev.keyword === '磷产品销售收入' || rev.line.includes('磷产品销售收入')) {
-          phosphorusRevenue = rev.value;
-          break;
-        }
-        if (rev.line.includes('磷产品销售收入')) {
-          let match = rev.line.match(/磷产品销售收入[\s\t]+([\d,，]+\.?\d*)[\s\t]*万元/);
-          if (match) {
-            const value = extractNumber(match[1] + '万元');
-            if (value && value > 1000000) {
-              phosphorusRevenue = value;
-              break;
-            }
-          }
-          match = rev.line.match(/磷产品销售收入[\s\t]+([\d,，]+\.?\d*)[\s\t]*亿元/);
-          if (match) {
-            const value = extractNumber(match[1] + '亿元');
-            if (value && value > 10000000) {
-              phosphorusRevenue = value;
-              break;
-            }
+      const filteredRevenues = data.revenue.filter(r => {
+        const line = r.line || '';
+        const keyword = r.keyword || '';
+        return r.value && r.value > 1000000000 && // 确保是大数字
+               !line.includes('营业总收入') && 
+               !keyword.includes('营业总收入') &&
+               !line.includes('分行业表格') &&
+               !keyword.includes('分行业表格') &&
+               !line.includes('分行业') &&
+               !line.includes('磷化工');
+      });
+      // 优先使用关键词为"营业收入"的数据
+      const revenueItems = filteredRevenues.filter(r => r.keyword === '营业收入');
+      if (revenueItems.length > 0) {
+        phosphorusRevenue = getMainValue(revenueItems);
+      } else {
+        phosphorusRevenue = getMainValue(filteredRevenues);
+      }
+    }
+
+    // 如果年报没找到，或者不是年报，继续查找其他来源的"营业成本"
+    if (!phosphorusCost) {
+      // 查找整体的"营业成本"：优先使用行内容格式为"营业成本 2,313,388,366.97"这样的数据
+      for (const c of data.cost) {
+        const line = c.line || '';
+        const keyword = c.keyword || '';
+        // 优先使用：关键词为"营业成本"，行内容包含"营业成本"后跟大数字，且不包含"分行业"、"磷化工"、"营业总成本"
+        if (keyword === '营业成本' && 
+            c.value && c.value > 1000000000 && // 确保是大数字（大于10亿）
+            !line.includes('营业总成本') && 
+            !line.includes('分行业') &&
+            !line.includes('分行业表格') &&
+            !line.includes('磷化工') &&
+            !keyword.includes('分行业表格')) {
+          // 进一步验证：行内容应该是"营业成本 数字"的格式
+          if (line.match(/营业成本[\s\t]+[\d,，]{9,}/) || 
+              line.match(/其中：营业成本[\s\t]+[\d,，]{9,}/) ||
+              line.match(/其中: 营业成本[\s\t]+[\d,，]{9,}/)) {
+            phosphorusCost = c.value;
+            break;
           }
         }
       }
     }
     
-    // 从cost中查找"磷化工营业成本（分行业表格）"（优先）
-    for (const c of data.cost) {
-      if (c.line && c.line.includes('分行业表格')) {
-        phosphorusCost = c.value;
-        break;
-      }
-    }
-    // 如果没找到，再查找"磷产品销售成本"
+    // 如果没找到，再查找其他符合条件的"营业成本"数据
     if (!phosphorusCost) {
-      for (const c of data.cost) {
-        if (c.keyword === '磷产品销售成本' && c.line.includes('从extractPhosphorusFinancials提取')) {
-          phosphorusCost = c.value;
-          break;
-        }
+      const filteredCosts = data.cost.filter(c => {
+        const line = c.line || '';
+        const keyword = c.keyword || '';
+        return c.value && c.value > 1000000000 && // 确保是大数字
+               !line.includes('营业总成本') && 
+               !keyword.includes('营业总成本') &&
+               !line.includes('分行业表格') &&
+               !keyword.includes('分行业表格') &&
+               !line.includes('分行业') &&
+               !line.includes('磷化工');
+      });
+      // 优先使用关键词为"营业成本"的数据
+      const costItems = filteredCosts.filter(c => c.keyword === '营业成本');
+      if (costItems.length > 0) {
+        phosphorusCost = getMainValue(costItems);
+      } else {
+        phosphorusCost = getMainValue(filteredCosts);
       }
-    }
-    if (!phosphorusCost) {
-      for (const c of data.cost) {
-        if (c.keyword === '磷产品销售成本') {
-          phosphorusCost = c.value;
-          break;
-        }
-      }
-    }
-    if (!phosphorusCost) {
-      for (const c of data.cost) {
-        if (c.line.includes('磷产品销售成本')) {
-          let match = c.line.match(/磷产品销售成本[\s\t]+([\d,，]+\.?\d*)[\s\t]*万元/);
-          if (match) {
-            const value = extractNumber(match[1] + '万元');
-            if (value && value > 1000000) {
-              phosphorusCost = value;
-              break;
-            }
-          }
-          match = c.line.match(/磷产品销售成本[\s\t]+([\d,，]+\.?\d*)[\s\t]*亿元/);
-          if (match) {
-            const value = extractNumber(match[1] + '亿元');
-            if (value && value > 10000000) {
-              phosphorusCost = value;
-              break;
-            }
-          }
-        }
-      }
-    }
-    
-    // 如果还没找到，使用默认值
-    if (!phosphorusRevenue) {
-      phosphorusRevenue = getMainValue(data.revenue);
-    }
-    if (!phosphorusCost) {
-      phosphorusCost = getMainValue(data.cost);
     }
     if (!grossProfit && phosphorusRevenue && phosphorusCost) {
       grossProfit = phosphorusRevenue - phosphorusCost;
     }
-    
+
     // 优先从"行业分类"表格中提取磷化工的产量、销量、库存量
     let production = getMainValue(data.production, '行业分类-磷化工生产量');
     let sales = getMainValue(data.sales, '行业分类-磷化工销售量');
     let inventory = getMainValue(data.inventory, '行业分类-磷化工库存量');
-    
+
     // 如果没找到"行业分类"的数据，再尝试"主要产品"表格
     if (!production) {
-      const productionItems = data.production.filter(p => 
-        p.keyword && p.keyword.includes('主要产品') && 
+      const productionItems = data.production.filter(p =>
+        p.keyword && p.keyword.includes('主要产品') &&
         p.line && p.line.includes('万吨') &&
-        !p.line.includes('%') && 
+        !p.line.includes('%') &&
         p.value && p.value >= 0.5
       );
       if (productionItems.length > 0) {
         production = Math.max(...productionItems.map(p => p.value));
       }
     }
-    
+
     if (!sales) {
-      const salesItems = data.sales.filter(s => 
-        s.keyword && s.keyword.includes('主要产品') && 
+      const salesItems = data.sales.filter(s =>
+        s.keyword && s.keyword.includes('主要产品') &&
         s.line && s.line.includes('万吨') &&
-        !s.line.includes('%') && 
+        !s.line.includes('%') &&
         s.value && s.value >= 0.5
       );
       if (salesItems.length > 0) {
         sales = Math.max(...salesItems.map(s => s.value));
       }
     }
-    
+
     if (!inventory) {
       inventory = getMainValue(data.inventory, '主要产品');
     }
-    
+
     // 如果还没找到，再尝试其他来源
     if (!production) {
-      const otherProductionItems = data.production.filter(p => 
+      const otherProductionItems = data.production.filter(p =>
         p.line && p.line.includes('万吨') &&
-        !p.line.includes('%') && 
+        !p.line.includes('%') &&
         p.value && p.value >= 0.5
       );
       if (otherProductionItems.length > 0) {
         production = Math.max(...otherProductionItems.map(p => p.value));
       }
     }
-    
+
     if (!sales) {
-      const otherSalesItems = data.sales.filter(s => 
+      const otherSalesItems = data.sales.filter(s =>
         s.line && s.line.includes('万吨') &&
-        !s.line.includes('%') && 
+        !s.line.includes('%') &&
         s.value && s.value >= 0.5
       );
       if (otherSalesItems.length > 0) {
         sales = Math.max(...otherSalesItems.map(s => s.value));
       }
     }
-    
+
     // 数据合理性验证
     if (production && (production > 100000 || production < 0.5)) {
       console.log(`  ⚠️  产量数据异常 (${production.toFixed(2)}万吨)，已清空`);
       production = null;
     }
-    
+
     if (sales && (sales > 100000 || sales < 0.5)) {
       console.log(`  ⚠️  销量数据异常 (${sales.toFixed(2)}万吨)，已清空`);
       sales = null;
     }
-    
+
     if (phosphorusRevenue && phosphorusRevenue > 50000000000) {
       console.log(`  ⚠️  营收数据异常 (${(phosphorusRevenue/100000000).toFixed(2)}亿元)，可能是总营收而非磷产品营收`);
     }
-    
+
     // 提取分产品销量
     const feedGradeMCP = getMainValue(data.productSales.feedGradeMCP);
     const phosphoricAcid = getMainValue(data.productSales.phosphoricAcid);
     const map = getMainValue(data.productSales.map);
     const phosphateRock = getMainValue(data.productSales.phosphateRock);
-    
+
     // 提取分产品财务数据
     const productFinancials = data.productFinancials || {};
-    
+
     summary.push({
       year: year,
       filename: data.filename,
@@ -1315,7 +1434,7 @@ function generateSummary(allData) {
       }
     });
   }
-  
+
   return summary;
 }
 
@@ -1324,16 +1443,16 @@ function generateSummary(allData) {
  */
 async function main() {
   console.log('开始解析川恒股份年报PDF文件...\n');
-  
+
   const allData = await processAllPDFs();
-  
+
   if (allData.length === 0) {
     console.log('未找到任何数据');
     return;
   }
-  
+
   const summary = generateSummary(allData);
-  
+
   // 输出摘要
   console.log('\n=== 数据摘要 ===');
   summary.forEach(item => {
@@ -1367,12 +1486,12 @@ async function main() {
       }
     }
   });
-  
+
   // 保存为JSON文件
   const outputPath = path.join(__dirname, '../../stock/report_analysis/川恒股份/chuanheng_data.json');
   fs.writeFileSync(outputPath, JSON.stringify({ allData, summary }, null, 2), 'utf8');
   console.log(`\n数据已保存到: ${outputPath}`);
-  
+
   return { allData, summary };
 }
 

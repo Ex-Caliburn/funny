@@ -1,0 +1,270 @@
+{
+  "_metadata": {
+    "stockName": "铜陵有色",
+    "stockCode": "000630",
+    "description": "此文件包含修正后的数据，用于页面展示。手动修正的数据会被标记。",
+    "dataSource": "tongling_data.json",
+    "lastUpdated": "2025-12-23",
+    "products": [
+      "copper",
+      "goldByproduct",
+      "chemical"
+    ],
+    "dataFlow": "PDF报告 → 自动提取(tongling_data.json) → 手动修正(本文件) → 页面展示",
+    "correctionRules": {
+      "manual": "手动填入或修改的数据，标记 _source: \"manual\"",
+      "verified": "经过人工验证确认正确的数据，标记 _verified: true"
+    }
+  },
+  "summary": [
+    {
+      "period": "2025年1-9月",
+      "year": "2025",
+      "filename": "铜陵有色2025年第三季度报告.pdf",
+      "cost": 1162.6708438929,
+      "revenue": 1218.9299963135002,
+      "production": null,
+      "sales": null,
+      "inventory": null,
+      "grossMargin": null,
+      "productSales": {
+        "cathodeCopper": null,
+        "copperConcentrate": null,
+        "copperMaterial": null
+      },
+      "otherProducts": {
+        "goldByproduct": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null,
+          "_corrected": false,
+          "_verified": false
+        },
+        "chemical": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null,
+          "_corrected": false,
+          "_verified": false
+        }
+      },
+      "_corrected": false,
+      "_verified": false,
+      "_notes": null
+    },
+    {
+      "period": "2025年上半年",
+      "year": "2025",
+      "filename": "铜陵有色2025年半年度报告.pdf",
+      "cost": 602.9131438794,
+      "revenue": 637.3626295668,
+      "production": null,
+      "sales": null,
+      "inventory": null,
+      "grossMargin": 8,
+      "productSales": {
+        "cathodeCopper": null,
+        "copperConcentrate": null,
+        "copperMaterial": null
+      },
+      "otherProducts": {
+        "goldByproduct": {
+          "revenue": 103.32616011379999,
+          "cost": 87.2436362232,
+          "grossMargin": 15.56,
+          "_corrected": false,
+          "_verified": false
+        },
+        "chemical": {
+          "revenue": 16.5799541897,
+          "cost": 17.2329268855,
+          "grossMargin": -3.94,
+          "_corrected": false,
+          "_verified": false
+        }
+      },
+      "_corrected": false,
+      "_verified": false,
+      "_notes": null
+    },
+    {
+      "period": "2025年1-3月",
+      "year": "2025",
+      "filename": "铜陵有色2025年第一季度报告.pdf",
+      "cost": 333.6687379474,
+      "revenue": 352.2218266323,
+      "production": null,
+      "sales": null,
+      "inventory": null,
+      "grossMargin": null,
+      "productSales": {
+        "cathodeCopper": null,
+        "copperConcentrate": null,
+        "copperMaterial": null
+      },
+      "otherProducts": {
+        "goldByproduct": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null,
+          "_corrected": false,
+          "_verified": false
+        },
+        "chemical": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null,
+          "_corrected": false,
+          "_verified": false
+        }
+      },
+      "_corrected": false,
+      "_verified": false,
+      "_notes": null
+    },
+    {
+      "period": "2024年全年",
+      "year": "2024",
+      "filename": "铜陵有色2024年年度报告.pdf",
+      "cost": 1176.7808090979,
+      "revenue": 1230.6546676921,
+      "production": null,
+      "sales": null,
+      "inventory": null,
+      "grossMargin": 18,
+      "productSales": {
+        "cathodeCopper": 176.8,
+        "copperConcentrate": 15.52,
+        "copperMaterial": null
+      },
+      "otherProducts": {
+        "goldByproduct": {
+          "revenue": 192.73117131880002,
+          "cost": 155.7386364425,
+          "grossMargin": 19.19,
+          "_corrected": false,
+          "_verified": false
+        },
+        "chemical": {
+          "revenue": 22.9269951102,
+          "cost": 11.5804339294,
+          "grossMargin": 49.49,
+          "_corrected": false,
+          "_verified": false
+        }
+      },
+      "_corrected": false,
+      "_verified": false,
+      "_notes": null
+    },
+    {
+      "period": "2024年1-9月",
+      "year": "2024",
+      "filename": "铜陵有色2024年第三季度报告.pdf",
+      "cost": 1012.0517454179,
+      "revenue": 1063.0790032194,
+      "production": null,
+      "sales": null,
+      "inventory": null,
+      "grossMargin": null,
+      "productSales": {
+        "cathodeCopper": null,
+        "copperConcentrate": null,
+        "copperMaterial": null
+      },
+      "otherProducts": {
+        "goldByproduct": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null,
+          "_corrected": false,
+          "_verified": false
+        },
+        "chemical": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null,
+          "_corrected": false,
+          "_verified": false
+        }
+      },
+      "_corrected": false,
+      "_verified": false,
+      "_notes": null
+    },
+    {
+      "period": "2024年上半年",
+      "year": "2024",
+      "filename": "铜陵有色2024年半年度报告.pdf",
+      "cost": 558.0443375113,
+      "revenue": 605.2096930148999,
+      "production": null,
+      "sales": null,
+      "inventory": null,
+      "grossMargin": 7.79,
+      "_corrected": true,
+      "_verified": true,
+      "_notes": "根据营收和成本计算：(605.21 - 558.04) / 605.21 * 100 = 7.79%",
+      "productSales": {
+        "cathodeCopper": 175.63,
+        "copperConcentrate": 17.51,
+        "copperMaterial": null
+      },
+      "otherProducts": {
+        "goldByproduct": {
+          "revenue": 87.2436362232,
+          "cost": 77.4537175929,
+          "grossMargin": 11.22,
+          "_corrected": true,
+          "_verified": true,
+          "_notes": "根据营收和成本计算：(87.24 - 77.45) / 87.24 * 100 = 11.22%"
+        },
+        "chemical": {
+          "revenue": 17.2329268855,
+          "cost": 14.4777154072,
+          "grossMargin": 15.99,
+          "_corrected": false,
+          "_verified": false
+        }
+      },
+      "_corrected": false,
+      "_verified": false,
+      "_notes": null
+    },
+    {
+      "period": "2024年1-3月",
+      "year": "2024",
+      "filename": "铜陵有色2024年第一季度报告.pdf",
+      "cost": 325.35951340919996,
+      "revenue": 343.3733724206,
+      "production": null,
+      "sales": null,
+      "inventory": null,
+      "grossMargin": null,
+      "productSales": {
+        "cathodeCopper": null,
+        "copperConcentrate": null,
+        "copperMaterial": null
+      },
+      "otherProducts": {
+        "goldByproduct": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null,
+          "_corrected": false,
+          "_verified": false
+        },
+        "chemical": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null,
+          "_corrected": false,
+          "_verified": false
+        }
+      },
+      "_corrected": false,
+      "_verified": false,
+      "_notes": null
+    }
+  ]
+}

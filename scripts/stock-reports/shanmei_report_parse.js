@@ -4,7 +4,7 @@ const path = require('path');
 
 /**
  * 山煤国际年报数据提取脚本
- * 提取冶金煤/动力煤和贸易煤相关的数据 
+ * 提取冶金煤/动力煤和贸易煤相关的数据
  */
 
 /**
@@ -12,10 +12,10 @@ const path = require('path');
  */
 function extractNumber(text) {
   if (!text) return null;
-  
+
   // 移除逗号和空格
   let cleaned = text.replace(/[,，\s]/g, '');
-  
+
   // 检查是否包含"亿"
   let multiplier = 1;
   if (cleaned.includes('亿')) {
@@ -25,14 +25,14 @@ function extractNumber(text) {
     multiplier = 10000;
     cleaned = cleaned.replace(/万/g, '');
   }
-  
+
   // 提取数字
   const match = cleaned.match(/[\d.]+/);
   if (match) {
     const num = parseFloat(match[0]);
     return isNaN(num) ? null : num * multiplier;
   }
-  
+
   return null;
 }
 
@@ -41,20 +41,20 @@ function extractNumber(text) {
  */
 function extractNumberInWanTons(text) {
   if (!text) return null;
-  
+
   // 移除逗号和空格
   let cleaned = text.replace(/[,，\s]/g, '');
-  
+
   // 移除"万吨"、"吨"等单位
   cleaned = cleaned.replace(/万吨|吨/g, '');
-  
+
   // 提取数字
   const match = cleaned.match(/[\d.]+/);
   if (match) {
     const num = parseFloat(match[0]);
     return isNaN(num) ? null : num;
   }
-  
+
   return null;
 }
 
@@ -94,17 +94,17 @@ function extractMetallurgicalAndThermalCoal(text, year) {
   // 年报格式：动力煤 	854,692.72 	473,504.98 	44.60 	-36.82 	-6.84 	减少 	17.83 	个百分点
   // 格式：产品名 \t 收入(万元) \t 成本(万元) \t 毛利率 \t 同比收入 \t 同比成本 ...
   // 需要提取"自产煤"部分，排除"煤炭品种"表格（单位是亿元）
-  
+
   // 先找到"自产煤"或"主营业务"部分的文本，以及"产销量情况分析表"
   const lines = text.split('\n');
   let inProductSection = false;
   let inProductSalesTable = false;
   let productSectionText = '';
   let productSalesTableText = '';
-  
+
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
-    
+
     // 开始标记：自产煤、主营业务分行业、产销量情况
     if (line.includes('自产煤') || line.includes('主营业务分行业') || line.includes('主营业务分产品')) {
       inProductSection = true;
@@ -112,16 +112,16 @@ function extractMetallurgicalAndThermalCoal(text, year) {
     if (line.includes('产销量情况') || (line.includes('主要产品') && line.includes('生产量'))) {
       inProductSalesTable = true;
     }
-    
+
     // 结束标记：煤炭品种、主营业务分地区、单位：亿元
-    if (inProductSection && (line.includes('煤炭品种') || line.includes('主营业务分地区') || 
+    if (inProductSection && (line.includes('煤炭品种') || line.includes('主营业务分地区') ||
         line.includes('单位：亿元'))) {
       inProductSection = false;
     }
     if (inProductSalesTable && (line.includes('合计') && i > 0 && lines[i-1].includes('贸易煤'))) {
       inProductSalesTable = false;
     }
-    
+
     if (inProductSection) {
       productSectionText += line + '\n';
     }
@@ -129,12 +129,12 @@ function extractMetallurgicalAndThermalCoal(text, year) {
       productSalesTableText += line + '\n';
     }
   }
-  
+
   // 优先使用产销量情况分析表，其次使用分产品部分，最后使用全文
   const searchTextRaw = productSalesTableText || productSectionText || text;
   // 规范化数字格式，去除逗号后的空格，便于正则匹配
   const searchText = searchTextRaw.replace(/,\s+/g, ',');
-  
+
   // 匹配动力煤数据行（带产量/销量）
   // 格式：动力煤 28,109,145.75 25,832,344.25 1,461,444.70 383,330.63
   let match;
@@ -181,7 +181,7 @@ function extractMetallurgicalAndThermalCoal(text, year) {
       }
     }
   }
-  
+
   // 匹配冶金煤数据行（带产量/销量）
   // 格式：冶金煤 12,465,725.99 11,125,652.58 1,264,321.20 339,601.61
   const metallurgicalCoalPatternFull = /(?:冶金煤)[\s\t]+([\d,，\s]+\.?\d+)[\s\t]+([\d,，\s]+\.?\d+)[\s\t]+([\d,，\s]+\.?\d+)[\s\t]+([\d,，\s]+\.?\d+)/g;
@@ -226,7 +226,7 @@ function extractMetallurgicalAndThermalCoal(text, year) {
       }
     }
   }
-  
+
   // 匹配焦煤数据行（从分产品表格，格式：焦煤 收入 成本 毛利率）
   // 注意：焦煤数据通常在分产品表格中，而不是产销量情况分析表
   // 所以优先从productSectionText提取，如果没有再从全文提取
@@ -237,12 +237,12 @@ function extractMetallurgicalAndThermalCoal(text, year) {
     const val1 = parseFloat(match[1].replace(/[，,]/g, ''));
     const val2 = parseFloat(match[2].replace(/[，,]/g, ''));
     const val3 = parseFloat(match[3].replace(/[，,]/g, ''));
-    
+
     // 判断是否是分产品表格：收入在10万-500万（万元）范围，毛利率在0-100之间
     // 排除产销量表格：产量/销量通常在100万-1000万（吨）
     const isRevenueTable = !isNaN(val1) && val1 >= 100000 && val1 < 5000000 &&
                            !isNaN(val3) && val3 >= 0 && val3 <= 100;
-    
+
     if (isRevenueTable) {
       result.cokeCoal.revenue = val1;
       result.cokeCoal.cost = val2;
@@ -250,7 +250,7 @@ function extractMetallurgicalAndThermalCoal(text, year) {
       console.log(`    提取焦煤数据: 收入=${(val1/10000).toFixed(2)}亿元, 成本=${(val2/10000).toFixed(2)}亿元`);
     }
   }
-  
+
   // 匹配无烟煤数据行（从分产品表格提取，格式：无烟煤 收入 成本 毛利率）
   const anthraciteSearchText = productSectionText || text;
   const anthracitePattern = /(?:无烟煤)[\s\t]+([\d,，]+\.?\d*)[\s\t]+([\d,，]+\.?\d*)[\s\t]+([\d,，]+\.?\d*)/g;
@@ -259,11 +259,11 @@ function extractMetallurgicalAndThermalCoal(text, year) {
     const val1 = parseFloat(match[1].replace(/[，,]/g, ''));
     const val2 = parseFloat(match[2].replace(/[，,]/g, ''));
     const val3 = parseFloat(match[3].replace(/[，,]/g, ''));
-    
+
     // 验证是分产品表格（收入万元）而不是产销量表格（产量吨）
     const isRevenueTable = !isNaN(val1) && val1 >= 100000 && val1 < 10000000 &&
                            !isNaN(val3) && val3 >= 0 && val3 <= 100;
-    
+
     if (isRevenueTable) {
       result.anthracite.revenue = val1;
       result.anthracite.cost = val2;
@@ -271,7 +271,7 @@ function extractMetallurgicalAndThermalCoal(text, year) {
       console.log(`    提取无烟煤数据: 收入=${(val1/10000).toFixed(2)}亿元, 成本=${(val2/10000).toFixed(2)}亿元`);
     }
   }
-  
+
   // 1. 从产销量情况分析表提取贸易煤销量（格式：贸易煤 万吨 —— 销量 库存）
   const tradeSalesPattern = /贸易煤[\s\t]+万吨[\s\t]+[—\-]+[\s\t]+([\d,，\.]+)[\s\t]+([\d,，\.]+)/g;
   match = tradeSalesPattern.exec(searchText);
@@ -287,7 +287,7 @@ function extractMetallurgicalAndThermalCoal(text, year) {
       console.log(`    提取贸易煤库存: ${inventoryWanTon}万吨`);
     }
   }
-  
+
   // 2. 从分产品表格提取贸易煤收入/成本（格式：[序号.]贸易煤 收入 成本 毛利率）
   const tradeRevenueSearchText = productSectionText || text;
   const tradeRevenuePattern = /(?:\d+\.)?贸易煤[\s\t]+([\d,，]+\.?\d*)[\s\t]+([\d,，]+\.?\d*)[\s\t]+([\d,，\.]+)/g;
@@ -296,7 +296,7 @@ function extractMetallurgicalAndThermalCoal(text, year) {
     const revenueWan = parseFloat(match[1].replace(/[，,]/g, ''));
     const costWan = parseFloat(match[2].replace(/[，,]/g, ''));
     const grossMargin = parseFloat(match[3].replace(/[，,]/g, ''));
-    
+
     // 验证是分产品表格（收入10万以上，毛利率0-100）
     if (!isNaN(revenueWan) && revenueWan >= 100000 && revenueWan < 10000000 &&
         !isNaN(grossMargin) && grossMargin >= 0 && grossMargin <= 100) {
@@ -401,7 +401,7 @@ function extractMetallurgicalAndThermalCoal(text, year) {
       }
     });
   }
-  
+
   // 不再合并焦煤和冶金煤，保持独立
   // 2021年报告使用"焦煤"
   // 2022-2024年报告使用"冶金煤"
@@ -489,7 +489,7 @@ function extractProductData(text, year) {
       }
     }
   };
-  
+
   // 优先从"主营业务分行业"表格中提取煤炭生产数据
   // 格式：煤炭生产 2,371,790.63 676,371.29 71.48 99.33 19.19
   const industryPattern = /煤炭生产[\s\t]+([\d,，]+\.?\d*)[\s\t]+([\d,，]+\.?\d*)[\s\t]+([\d,，]+\.?\d*)/g;
@@ -497,7 +497,7 @@ function extractProductData(text, year) {
   if (industryMatch) {
     const revenueWan = parseFloat(industryMatch[1].replace(/[，,]/g, ''));
     const costWan = parseFloat(industryMatch[2].replace(/[，,]/g, ''));
-    
+
     // 验证数据合理性（单位应该是万元）
     if (!isNaN(revenueWan) && revenueWan >= 100000 && revenueWan < 100000000) {
       result.productionCoal.revenue = revenueWan; // 万元
@@ -505,7 +505,7 @@ function extractProductData(text, year) {
       console.log(`    提取煤炭生产数据（从分行业表格）: 收入=${revenueWan}万元, 成本=${costWan}万元`);
     }
   }
-  
+
   // 如果表格中没有提取到，再从文本描述中提取
   // 匹配格式：公司实现煤炭生产业务收入 57.56 亿元，同比下降 29.59%，销量 1,034.56 万吨
   // 或者：报告期内，公司实现原煤产量1,782.12万吨，同比增加15.86%；公司实现煤炭生产业务收入57.56亿元
@@ -521,7 +521,7 @@ function extractProductData(text, year) {
     /煤炭生产业务[\s\t]+收入[\s\t]+([\d,，]+\.?\d*)[\s\t]+(?:万元|亿元|元|万|亿)/g,
     /自产煤[\s\t]+营业收入[\s\t]+([\d,，]+\.?\d*)[\s\t]+(?:万元|亿元|元|万|亿)/g
   ];
-  
+
   // 只有在表格中没有提取到时才从文本中提取
   if (!result.productionCoal.revenue) {
     for (const pattern of productionPatterns) {
@@ -532,7 +532,7 @@ function extractProductData(text, year) {
         let unit = '元';
         if (context.includes('亿元')) unit = '亿元';
         else if (context.includes('万元')) unit = '万元';
-        
+
         const value = extractNumber(match[1].replace(/,，/g, '') + unit);
         if (value && value > 1000000) {
           result.productionCoal.revenue = value;
@@ -543,7 +543,7 @@ function extractProductData(text, year) {
       if (result.productionCoal.revenue) break;
     }
   }
-  
+
   // 如果还没有提取到收入，尝试更宽松的模式：在"报告期内"或"本报告期"附近查找
   if (!result.productionCoal.revenue) {
     const relaxedPatterns = [
@@ -551,7 +551,7 @@ function extractProductData(text, year) {
       /(?:报告期内|本报告期)[^。，；]*?实现[^。，；]*?煤炭生产业务[^。，；]*?收入[^。，；]*?([\d,，]+\.?\d*)[^。，；]*?(?:亿元|万元)/g,
       /公司实现[^。，；]*?煤炭生产业务[^。，；]*?收入[^。，；]*?([\d,，]+\.?\d*)[^。，；]*?(?:亿元|万元)/g
     ];
-    
+
     for (const pattern of relaxedPatterns) {
       let match;
       while ((match = pattern.exec(text)) !== null) {
@@ -559,7 +559,7 @@ function extractProductData(text, year) {
         let unit = '元';
         if (context.includes('亿元')) unit = '亿元';
         else if (context.includes('万元')) unit = '万元';
-        
+
         const value = extractNumber(match[1].replace(/,，/g, '') + unit);
         if (value && value > 1000000 && value < 100000000000) { // 限制在合理范围内
           result.productionCoal.revenue = value;
@@ -569,7 +569,7 @@ function extractProductData(text, year) {
       if (result.productionCoal.revenue) break;
     }
   }
-  
+
   // 提取煤炭生产业务销量
   // 匹配格式：销量 1,034.56 万吨 或 销量1,034.56万吨
   const productionSalesPatterns = [
@@ -579,7 +579,7 @@ function extractProductData(text, year) {
     /(?:公司实现|实现)[\s\t]*煤炭生产业务收入[^。，；]*?销量[\s\t]*([\d,，]+\.?\d*)[\s\t]*(?:万吨|吨)/g,
     /煤炭生产业务收入[^。，；]*?销量[\s\t]*([\d,，]+\.?\d*)[\s\t]*(?:万吨|吨)/g
   ];
-  
+
   for (const pattern of productionSalesPatterns) {
     let match;
     while ((match = pattern.exec(text)) !== null) {
@@ -591,7 +591,7 @@ function extractProductData(text, year) {
     }
     if (result.productionCoal.sales) break;
   }
-  
+
   // 提取原煤产量
   // 匹配格式：原煤产量 	2,664.14 	万吨
   // 优先匹配"原煤产量"，避免匹配到其他产量
@@ -600,7 +600,7 @@ function extractProductData(text, year) {
     /(?:报告期内|本报告期)[^。，；]*?原煤产量[\s\t]+([\d,，]+\.?\d*)[\s\t]+(?:万吨|吨)/g,
     /(?:公司实现|实现)[\s\t]*原煤产量[\s\t]+([\d,，]+\.?\d*)[\s\t]+(?:万吨|吨)/g
   ];
-  
+
   for (const pattern of productionVolumePatterns) {
     let match;
     while ((match = pattern.exec(text)) !== null) {
@@ -613,7 +613,7 @@ function extractProductData(text, year) {
     }
     if (result.productionCoal.production) break;
   }
-  
+
   // 提取销售均价（在煤炭生产业务上下文中）
   // 匹配格式：销售均价556.34元/吨 或 销售均价 556.34 元/吨
   // 注意：PDF中可能是"销售均价 	556.34 	元/ 吨"（有制表符和空格）
@@ -624,7 +624,7 @@ function extractProductData(text, year) {
     /(?:煤炭生产业务|自产煤)[^。，；]*?(?:销售均价|售价)[\s\t]+([\d,，]+\.?\d*)[\s\t]+(?:元\/[\s\t]*吨|元\/[\s\t]*t)/g,
     /(?:销售均价|售价)[\s\t]+([\d,，]+\.?\d*)[\s\t]+(?:元\/[\s\t]*吨|元\/[\s\t]*t)[^。，；]*?(?:煤炭生产业务|自产煤)/g
   ];
-  
+
   for (const pattern of pricePatterns) {
     match = pattern.exec(text);
     if (match) {
@@ -637,7 +637,7 @@ function extractProductData(text, year) {
     // 重置正则表达式的lastIndex，以便下次匹配
     pattern.lastIndex = 0;
   }
-  
+
   // 如果还没有提取到售价，尝试更简单的模式
   if (!result.productionCoal.price) {
     const simplePricePattern = /销售均价[\s\t]+([\d,，]+\.?\d*)[\s\t]+元/g;
@@ -649,7 +649,7 @@ function extractProductData(text, year) {
       }
     }
   }
-  
+
   // 提取吨煤成本（在煤炭生产业务上下文中）
   // 匹配格式：吨煤成本 	253.83 	元 或 吨煤成本 253.83 元/吨
   const costPatterns = [
@@ -660,7 +660,7 @@ function extractProductData(text, year) {
     /(?:煤炭生产业务|自产煤)[^。，；]*?(?:吨煤成本|成本)[\s\t]+([\d,，]+\.?\d*)[\s\t]*(?:元\/[\s\t]*吨|元\/[\s\t]*t)/g,
     /(?:吨煤成本|成本)[\s\t]+([\d,，]+\.?\d*)[\s\t]*(?:元\/[\s\t]*吨|元\/[\s\t]*t)[^。，；]*?(?:煤炭生产业务|自产煤)/g
   ];
-  
+
   for (const pattern of costPatterns) {
     match = pattern.exec(text);
     if (match) {
@@ -673,7 +673,7 @@ function extractProductData(text, year) {
     // 重置正则表达式的lastIndex
     pattern.lastIndex = 0;
   }
-  
+
   // 如果还没有提取到成本，尝试更简单的模式：吨煤成本 	253.83 	元
   if (!result.productionCoal.unitCost) {
     const simpleCostPattern = /吨煤成本[\s\t]+([\d,，]+\.?\d*)[\s\t]+元/g;
@@ -685,7 +685,7 @@ function extractProductData(text, year) {
       }
     }
   }
-  
+
   // 如果没有提取到单位成本，尝试从营业成本计算
   if (!result.productionCoal.unitCost && result.productionCoal.revenue && result.productionCoal.sales) {
     // 尝试提取营业成本
@@ -703,12 +703,12 @@ function extractProductData(text, year) {
       }
     }
   }
-  
+
   // 计算成本（如果有收入和销量）
   if (result.productionCoal.revenue && result.productionCoal.sales && result.productionCoal.unitCost) {
     result.productionCoal.cost = result.productionCoal.sales * result.productionCoal.unitCost / 10000; // 转换为亿元
   }
-  
+
   // 提取煤炭贸易业务数据（仅在productBreakdown未提取到时使用）
   // 匹配格式：公司实现煤炭贸易业务收入 35.43 亿元，同比下降 36.51%，贸易量 753.79 万吨
   // 注意：productBreakdown.tradeCoal的数据更准确，这里仅作补充
@@ -718,7 +718,7 @@ function extractProductData(text, year) {
       /煤炭贸易业务[\s\t]+收入[\s\t]+([\d,，]+\.?\d*)[\s\t]*(?:万元|亿元|元|万|亿)/g,
       /贸易煤[\s\t]+营业收入[\s\t]+([\d,，]+\.?\d*)[\s\t]*(?:万元|亿元|元|万|亿)/g
     ];
-    
+
     for (const pattern of tradePatterns) {
       let match;
       while ((match = pattern.exec(text)) !== null) {
@@ -731,13 +731,13 @@ function extractProductData(text, year) {
       if (result.tradeCoal.revenue) break;
     }
   }
-  
+
   // 提取贸易量
   const tradeVolumePatterns = [
     /(?:贸易量|贸易煤销量)[\s\t]+([\d,，]+\.?\d*)[\s\t]*(?:万吨|吨)/g,
     /贸易煤[\s\t]+销量[\s\t]+([\d,，]+\.?\d*)[\s\t]*(?:万吨|吨)/g
   ];
-  
+
   for (const pattern of tradeVolumePatterns) {
     let match;
     while ((match = pattern.exec(text)) !== null) {
@@ -750,7 +750,7 @@ function extractProductData(text, year) {
     }
     if (result.tradeCoal.sales) break;
   }
-  
+
   // 提取进口量
   const importPattern = /(?:进口量|进口煤)[\s\t]+([\d,，]+\.?\d*)[\s\t]*(?:万吨|吨)/g;
   match = importPattern.exec(text);
@@ -760,7 +760,7 @@ function extractProductData(text, year) {
       result.tradeCoal.importVolume = value;
     }
   }
-  
+
   // 提取贸易煤售价
   const tradePricePattern = /(?:贸易煤|煤炭贸易)[^。]*?(?:销售均价|售价)[\s\t]+([\d,，]+\.?\d*)[\s\t]*(?:元\/吨|元\/t)/g;
   match = tradePricePattern.exec(text);
@@ -770,7 +770,7 @@ function extractProductData(text, year) {
       result.tradeCoal.price = value;
     }
   }
-  
+
   // 计算贸易煤成本（如果有收入和销量、售价）
   if (result.tradeCoal.revenue && result.tradeCoal.sales && result.tradeCoal.price) {
     // 毛利率通常很低，可以从文本中提取或估算
@@ -783,7 +783,7 @@ function extractProductData(text, year) {
       }
     }
   }
-  
+
   // 提取煤种分产品数据
   const productBreakdown = extractMetallurgicalAndThermalCoal(text, year);
   if (productBreakdown) {
@@ -793,26 +793,26 @@ function extractProductData(text, year) {
     result.productBreakdown.anthracite = productBreakdown.anthracite;
     result.productBreakdown.tradeCoal = productBreakdown.tradeCoal;
   }
-  
+
   // 从"煤炭品种"表格或"产销量情况分析表"中提取总产销存数据（单位：吨或万吨）
   // 先找到表格，然后在该区域内查找自产煤和贸易煤的行
   const lines = text.split('\n');
   let inCoalTypesTable = false;
   let inProductSalesTable = false;
-  
+
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
-    
+
     // 找到煤炭品种表格的开始（包含产量和销量的表头）
     if (line.includes('煤炭品种') && line.includes('产量') && line.includes('销量')) {
       inCoalTypesTable = true;
     }
-    
+
     // 找到产销量情况分析表（包含库存量）
     if (line.includes('产销量情况') || (line.includes('主要产品') && line.includes('库存量'))) {
       inProductSalesTable = true;
     }
-    
+
     // 从产销量情况分析表提取自产煤和贸易煤的库存量
     if (inProductSalesTable) {
       // 匹配格式：自产煤 万吨 4,057.49 3,695.80 132.16
@@ -824,7 +824,7 @@ function extractProductData(text, year) {
           console.log(`    提取自产煤库存量: ${inventory}万吨`);
         }
       }
-      
+
       // 匹配贸易煤库存量
       const tradeCoalMatch = /贸易煤[\s\t]+万吨[\s\t]+[-—]+[\s\t]+([\d,，]+\.?\d*)[\s\t]+([\d,，]+\.?\d*)/.exec(line);
       if (tradeCoalMatch) {
@@ -835,7 +835,7 @@ function extractProductData(text, year) {
         }
       }
     }
-    
+
     // 在煤炭品种表格范围内查找合计行
     if (inCoalTypesTable && line.includes('合计')) {
       // 格式：合计 40,419,185.31 37,379,589.11 237.18 67.64 169.54
@@ -843,12 +843,12 @@ function extractProductData(text, year) {
       if (coalMatch) {
         const productionTons = parseFloat(coalMatch[1].replace(/[，,]/g, ''));
         const salesTons = parseFloat(coalMatch[2].replace(/[，,]/g, ''));
-        
+
         if (!isNaN(productionTons) && productionTons > 1000000) {
           result.productionCoal.production = parseFloat((productionTons / 10000).toFixed(2)); // 吨转万吨
           console.log(`    提取总产量（从煤炭品种表格）: ${result.productionCoal.production}万吨`);
         }
-        
+
         if (!isNaN(salesTons) && salesTons > 1000000) {
           result.productionCoal.sales = parseFloat((salesTons / 10000).toFixed(2)); // 吨转万吨
           console.log(`    提取总销量（从煤炭品种表格）: ${result.productionCoal.sales}万吨`);
@@ -856,13 +856,13 @@ function extractProductData(text, year) {
       }
       break; // 找到合计行后退出
     }
-    
+
     // 超出表格范围
     if (inCoalTypesTable && (line.includes('煤炭储量') || line.includes('资源量') || line.includes('矿区'))) {
       break;
     }
   }
-  
+
   // 从文本中提取自产煤销量和贸易煤销量（年报文字描述中）
   // 2023年开始的格式：公司实现自产煤销量 3,485.99 万吨，贸易煤销量 1,764.54 万吨
   const ownCoalSalesMatch = text.match(/自产煤销量\s+([\d,，.]+)\s*万吨/);
@@ -873,7 +873,7 @@ function extractProductData(text, year) {
       result.productionCoal.sales = ownSales;
       result.productionCoal.salesType = 'ownCoal'; // 标记为自产煤
       console.log(`    提取自产煤销量（从文本）: ${ownSales}万吨`);
-      
+
       // 同时提取贸易煤销量
       const tradeCoalSalesMatch = text.match(/贸易煤销量\s+([\d,，.]+)\s*万吨/);
       if (tradeCoalSalesMatch) {
@@ -885,7 +885,7 @@ function extractProductData(text, year) {
       }
     }
   }
-  
+
   // 提取季度数据（从报告的表格中）
   // 根据报告类型提取不同的季度数据
   const filename = arguments[1] || ''; // 从调用处传入文件名
@@ -895,26 +895,26 @@ function extractProductData(text, year) {
   if (filename && filename.includes('年度报告')) {
     console.log(`    正在提取库存数据 (${filename})...`);
     const lines = text.split('\n');
-    
+
     // 查找存货明细表中的库存商品行
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i];
-      
+
       // 匹配格式：库存商品 期末账面余额 减值准备 期末账面价值 期初账面余额 减值准备 期初账面价值
       // 确保是在存货明细表中（上文有"原材料"）
       if (line.match(/库存商品/) && i > 0 && lines[i-2].includes('原材料')) {
         // 提取数值：库存商品后面跟着多个数值，第一个是期末账面余额，第四个是期初账面余额
         const values = line.match(/[\d,，]+\.?\d+/g);
-        
+
         if (values && values.length >= 4) {
           const periodEndValue = parseFloat(values[0].replace(/[,，]/g, ''));
           const periodStartValue = parseFloat(values[3].replace(/[,，]/g, ''));
-          
+
           if (!isNaN(periodEndValue) && periodEndValue > 1000000) {
             result.inventory.periodEnd = parseFloat((periodEndValue / 100000000).toFixed(2)); // 元转亿元
             console.log(`    提取期末库存: ${result.inventory.periodEnd}亿元`);
           }
-          
+
           if (!isNaN(periodStartValue) && periodStartValue > 1000000) {
             result.inventory.periodStart = parseFloat((periodStartValue / 100000000).toFixed(2)); // 元转亿元
             console.log(`    提取期初库存: ${result.inventory.periodStart}亿元`);
@@ -929,42 +929,42 @@ function extractProductData(text, year) {
   const yearNum = year ? parseInt(year) : null;
   if (yearNum && yearNum < 2024 && !result.productionCoal.salesType) {
     console.log(`    === 2024年之前业绩报：计算自产煤数据 ===`);
-    
+
     // 1. 从productBreakdown计算自产煤收入和成本（焦煤+冶金煤+动力煤+无烟煤）
     let ownCoalRevenue = 0;
     let ownCoalCost = 0;
     let hasBreakdownData = false;
-    
+
     const breakdown = result.productBreakdown || result;
-    
+
     if (breakdown.cokeCoal && breakdown.cokeCoal.revenue) {
       ownCoalRevenue += breakdown.cokeCoal.revenue;
       ownCoalCost += breakdown.cokeCoal.cost || 0;
       hasBreakdownData = true;
       console.log(`    焦煤收入: ${(breakdown.cokeCoal.revenue / 10000).toFixed(2)}亿元`);
     }
-    
+
     if (breakdown.metallurgicalCoal && breakdown.metallurgicalCoal.revenue) {
       ownCoalRevenue += breakdown.metallurgicalCoal.revenue;
       ownCoalCost += breakdown.metallurgicalCoal.cost || 0;
       hasBreakdownData = true;
       console.log(`    冶金煤收入: ${(breakdown.metallurgicalCoal.revenue / 10000).toFixed(2)}亿元`);
     }
-    
+
     if (breakdown.thermalCoal && breakdown.thermalCoal.revenue) {
       ownCoalRevenue += breakdown.thermalCoal.revenue;
       ownCoalCost += breakdown.thermalCoal.cost || 0;
       hasBreakdownData = true;
       console.log(`    动力煤收入: ${(breakdown.thermalCoal.revenue / 10000).toFixed(2)}亿元`);
     }
-    
+
     if (breakdown.anthracite && breakdown.anthracite.revenue) {
       ownCoalRevenue += breakdown.anthracite.revenue;
       ownCoalCost += breakdown.anthracite.cost || 0;
       hasBreakdownData = true;
       console.log(`    无烟煤收入: ${(breakdown.anthracite.revenue / 10000).toFixed(2)}亿元`);
     }
-    
+
     if (hasBreakdownData && ownCoalRevenue > 0) {
       // 用分产品数据覆盖煤炭生产收入（更准确）
       result.productionCoal.revenue = ownCoalRevenue;
@@ -972,12 +972,12 @@ function extractProductData(text, year) {
       console.log(`    ✓ 自产煤收入合计: ${(ownCoalRevenue / 10000).toFixed(2)}亿元`);
       console.log(`    ✓ 自产煤成本合计: ${(ownCoalCost / 10000).toFixed(2)}亿元`);
     }
-    
+
     // 2. 尝试提取贸易煤销量，计算自产煤销量
     // 先尝试从文本描述中提取贸易煤销量
     const tradeCoalSalesMatch = text.match(/贸易煤?[量销]+([\d,，.]+)\s*万吨/);
     let tradeCoalSales = null;
-    
+
     if (tradeCoalSalesMatch) {
       tradeCoalSales = parseFloat(tradeCoalSalesMatch[1].replace(/[，,]/g, ''));
       if (!isNaN(tradeCoalSales) && tradeCoalSales > 0) {
@@ -985,7 +985,7 @@ function extractProductData(text, year) {
         console.log(`    提取贸易煤销量: ${tradeCoalSales}万吨`);
       }
     }
-    
+
     // 如果没有直接的贸易煤销量，尝试从贸易煤收入和价格推算
     if (!tradeCoalSales && breakdown.tradeCoal && breakdown.tradeCoal.revenue) {
       // 估算贸易煤价格（通常在700-800元/吨，参考2023年数据）
@@ -997,20 +997,20 @@ function extractProductData(text, year) {
       result.tradeCoal.sales = parseFloat(tradeCoalSales.toFixed(2));
       console.log(`    从贸易煤收入推算销量: ${result.tradeCoal.sales}万吨 (收入${tradeRevenueYi.toFixed(2)}亿元，估算价格${estimatedTradePrice}元/吨)`);
     }
-    
+
     // 3. 验证贸易煤销量的合理性，决定是否用于计算自产煤销量
     if (result.productionCoal.sales && tradeCoalSales && tradeCoalSales > 0) {
       const totalSales = result.productionCoal.sales;
       const ownCoalSales = totalSales - tradeCoalSales;
-      
+
       // 验证：自产煤销量应该 > 0 且合理（不应过小）
       // 合理性检查：自产煤销量应该在产量的60%-110%之间
-      const isReasonable = ownCoalSales > 0 && 
+      const isReasonable = ownCoalSales > 0 &&
                           ownCoalSales > totalSales * 0.2 && // 至少占总销量的20%
-                          (!result.productionCoal.production || 
-                           (ownCoalSales >= result.productionCoal.production * 0.6 && 
+                          (!result.productionCoal.production ||
+                           (ownCoalSales >= result.productionCoal.production * 0.6 &&
                             ownCoalSales <= result.productionCoal.production * 1.1));
-      
+
       if (isReasonable) {
         result.productionCoal.sales = parseFloat(ownCoalSales.toFixed(2));
         result.productionCoal.salesType = 'calculated'; // 标记为计算得出
@@ -1032,7 +1032,7 @@ function extractProductData(text, year) {
   if (result.productionCoal.revenue && result.productionCoal.sales && result.productionCoal.sales > 0) {
     // revenue是万元，sales是万吨，计算得到元/吨
     const price = result.productionCoal.revenue / result.productionCoal.sales;
-    
+
     // 验证售价合理性（煤炭价格通常在100-3000元/吨之间）
     if (price >= 100 && price <= 3000) {
       result.productionCoal.price = parseFloat(price.toFixed(2));
@@ -1041,11 +1041,11 @@ function extractProductData(text, year) {
       console.log(`    ⚠️ 售价异常 (${price.toFixed(2)}元/吨)，跳过`);
     }
   }
-  
+
   // 计算煤炭生产的单位成本
   if (result.productionCoal.cost && result.productionCoal.sales && result.productionCoal.sales > 0) {
     const unitCost = result.productionCoal.cost / result.productionCoal.sales;
-    
+
     // 验证单位成本合理性（煤炭成本通常在50-1500元/吨之间）
     if (unitCost >= 50 && unitCost <= 1500) {
       result.productionCoal.unitCost = parseFloat(unitCost.toFixed(2));
@@ -1061,7 +1061,7 @@ function extractProductData(text, year) {
   // 动力煤    2,893.57   2,663.11   1,352,748.17  508,269.42  844,478.75
   // 冶金煤    1,004.80   822.88     1,027,014.91  470,894.04  556,120.87
   // 合计      3,898.37   3,485.99   2,379,763.08  979,163.45  1,400,599.62
-  
+
   // 提取动力煤数据
   const thermalCoalPattern = /动力煤[\s\t]+([\d,，]+\.?\d*)[\s\t]+([\d,，]+\.?\d*)[\s\t]+([\d,，]+\.?\d*)[\s\t]+([\d,，]+\.?\d*)/;
   let thermalMatch = text.match(thermalCoalPattern);
@@ -1070,7 +1070,7 @@ function extractProductData(text, year) {
     const sales = parseFloat(thermalMatch[2].replace(/[，,]/g, ''));
     const revenueWan = parseFloat(thermalMatch[3].replace(/[，,]/g, ''));
     const costWan = parseFloat(thermalMatch[4].replace(/[，,]/g, ''));
-    
+
     // 验证数据合理性
     if (sales >= 100 && sales < 10000 && revenueWan >= 100000 && revenueWan < 100000000) {
       result.productBreakdown.thermalCoal.sales = sales;
@@ -1080,7 +1080,7 @@ function extractProductData(text, year) {
       console.log(`    提取动力煤数据: 销量=${sales}万吨, 收入=${revenueWan}万元`);
     }
   }
-  
+
   // 提取冶金煤数据
   const metallurgicalCoalPattern = /冶金煤[\s\t]+([\d,，]+\.?\d*)[\s\t]+([\d,，]+\.?\d*)[\s\t]+([\d,，]+\.?\d*)[\s\t]+([\d,，]+\.?\d*)/;
   let metallurgicalMatch = text.match(metallurgicalCoalPattern);
@@ -1089,7 +1089,7 @@ function extractProductData(text, year) {
     const sales = parseFloat(metallurgicalMatch[2].replace(/[，,]/g, ''));
     const revenueWan = parseFloat(metallurgicalMatch[3].replace(/[，,]/g, ''));
     const costWan = parseFloat(metallurgicalMatch[4].replace(/[，,]/g, ''));
-    
+
     // 验证数据合理性
     if (sales >= 100 && sales < 10000 && revenueWan >= 100000 && revenueWan < 100000000) {
       result.productBreakdown.metallurgicalCoal.sales = sales;
@@ -1113,11 +1113,11 @@ function extractQuarterlyDataFromTable(text, result, filename = '') {
   const isHalfYear = filename.includes('半年度') || filename.includes('半年');
   const isThirdQuarter = filename.includes('第三季度');
   const isAnnual = filename.includes('年度报告') || filename.includes('年报');
-  
+
   // 提取年份
   const yearMatch = filename.match(/20\d{2}/);
   const year = yearMatch ? parseInt(yearMatch[0]) : null;
-  
+
   // 半年度报告：只提取Q2数据
   if (isHalfYear) {
     extractQ2FromHalfYearReport(text, result, year);
@@ -1139,13 +1139,13 @@ function extractQuarterlyDataFromTable(text, result, filename = '') {
 /**
  * 从半年度报告的表格中提取Q2的季度数据
  * 新策略：直接提取Q2单季数据
- * 
+ *
  * 2024年开始：新格式，表格列顺序为 Q1 | Q2（正序），Q2是第二列
  * 2023年及之前：旧格式，表格列顺序为 Q2 | Q1（倒序），Q2是第一列
  */
 function extractQ2FromHalfYearReport(text, result, year = null) {
   console.log('  提取Q2单季数据...');
-  
+
   // 2024年之前不从年报提取单季度（改用运营数据）
   if (year && year >= 2024) {
     console.log('    使用2024年新格式（正序：Q1|Q2）');
@@ -1171,7 +1171,7 @@ function extractQ2FromHalfYearReport_NewFormat(text, result) {
       console.log(`    Q2营业收入: ${result.quarterlyData.q2.revenue.toFixed(2)} 亿元`);
     }
   }
-  
+
   // 提取Q2营业成本（万元）- 第二列
   const costPattern = /营业成本[（(]万元[）)]\s+([\d,，]+\.?\d*)\s+([\d,，]+\.?\d*)/;
   match = text.match(costPattern);
@@ -1182,7 +1182,7 @@ function extractQ2FromHalfYearReport_NewFormat(text, result) {
       console.log(`    Q2营业成本: ${result.quarterlyData.q2.cost.toFixed(2)} 亿元`);
     }
   }
-  
+
   // 提取Q2销量（万吨）- 第二列
   const salesPattern = /销量[（(]万吨[）)]\s+([\d,，]+\.?\d*)\s+([\d,，]+\.?\d*)/;
   match = text.match(salesPattern);
@@ -1193,7 +1193,7 @@ function extractQ2FromHalfYearReport_NewFormat(text, result) {
       console.log(`    Q2销量: ${q2Sales} 万吨`);
     }
   }
-  
+
   // 提取Q2产量（万吨）- 第二列
   const productionPattern = /产量[（(]万吨[）)]\s+([\d,，]+\.?\d*)\s+([\d,，]+\.?\d*)/;
   match = text.match(productionPattern);
@@ -1204,7 +1204,7 @@ function extractQ2FromHalfYearReport_NewFormat(text, result) {
       console.log(`    Q2产量: ${q2Production} 万吨`);
     }
   }
-  
+
   // 提取Q2售价（元/吨）- 第二列
   const pricePattern = /售价[（(]元\/吨[）)]\s+([\d,，]+\.?\d*)\s+([\d,，]+\.?\d*)/;
   match = text.match(pricePattern);
@@ -1215,7 +1215,7 @@ function extractQ2FromHalfYearReport_NewFormat(text, result) {
       console.log(`    Q2售价: ${q2Price} 元/吨`);
     }
   }
-  
+
   // 提取Q2吨煤成本（元/吨）- 第二列
   const unitCostPattern = /吨煤成本[（(]元\/吨[）)]\s+([\d,，]+\.?\d*)\s+([\d,，]+\.?\d*)/;
   match = text.match(unitCostPattern);
@@ -1226,7 +1226,7 @@ function extractQ2FromHalfYearReport_NewFormat(text, result) {
       console.log(`    Q2吨煤成本: ${q2UnitCost} 元/吨`);
     }
   }
-  
+
   // 如果提取到了成本和销量，计算单位成本
   if (!result.quarterlyData.q2.unitCost && result.quarterlyData.q2.cost && result.quarterlyData.q2.sales) {
     result.quarterlyData.q2.unitCost = parseFloat(((result.quarterlyData.q2.cost * 10000) / result.quarterlyData.q2.sales).toFixed(2));
@@ -1238,13 +1238,13 @@ function extractQ2FromHalfYearReport_NewFormat(text, result) {
 /**
  * 从第三季度报告的表格中提取Q3的季度数据
  * 新策略：直接提取Q3单季数据
- * 
+ *
  * 2024年开始：新格式，表格列顺序为 Q1 | Q2 | Q3（正序），Q3是第三列
  * 2023年及之前：旧格式，表格列顺序为 Q3 | Q2 | Q1（倒序），Q3是第一列
  */
 function extractQ3FromThirdQuarterReport(text, result, year = null) {
   console.log('  提取Q3单季数据...');
-  
+
   // 2024年之前不从年报提取单季度（改用运营数据）
   if (year && year >= 2024) {
     console.log('    使用2024年新格式（正序：Q1|Q2|Q3）');
@@ -1261,7 +1261,7 @@ function extractQ3FromThirdQuarterReport(text, result, year = null) {
 function extractQ3FromThirdQuarterReport_NewFormat(text, result) {
   // 初始化q3对象
   if (!result.quarterlyData.q3) result.quarterlyData.q3 = {};
-  
+
   // 新格式：Q3是第三列
   // 提取Q3营业收入（万元）- 第三列
   const revenuePattern = /营业收入[（(]万元[）)]\s+([\d,，]+\.?\d*)\s+([\d,，]+\.?\d*)\s+([\d,，]+\.?\d*)/;
@@ -1273,7 +1273,7 @@ function extractQ3FromThirdQuarterReport_NewFormat(text, result) {
       console.log(`    Q3营业收入: ${result.quarterlyData.q3.revenue.toFixed(2)} 亿元`);
     }
   }
-  
+
   // 提取Q3营业成本（万元）- 第三列
   const costPattern = /营业成本[（(]万元[）)]\s+([\d,，]+\.?\d*)\s+([\d,，]+\.?\d*)\s+([\d,，]+\.?\d*)/;
   match = text.match(costPattern);
@@ -1284,7 +1284,7 @@ function extractQ3FromThirdQuarterReport_NewFormat(text, result) {
       console.log(`    Q3营业成本: ${result.quarterlyData.q3.cost.toFixed(2)} 亿元`);
     }
   }
-  
+
   // 提取Q3销量（万吨）- 第三列
   const salesPattern = /销量[（(]万吨[）)]\s+([\d,，]+\.?\d*)\s+([\d,，]+\.?\d*)\s+([\d,，]+\.?\d*)/;
   match = text.match(salesPattern);
@@ -1295,7 +1295,7 @@ function extractQ3FromThirdQuarterReport_NewFormat(text, result) {
       console.log(`    Q3销量: ${q3Sales} 万吨`);
     }
   }
-  
+
   // 提取Q3产量（万吨）- 第三列
   const productionPattern = /产量[（(]万吨[）)]\s+([\d,，]+\.?\d*)\s+([\d,，]+\.?\d*)\s+([\d,，]+\.?\d*)/;
   match = text.match(productionPattern);
@@ -1306,7 +1306,7 @@ function extractQ3FromThirdQuarterReport_NewFormat(text, result) {
       console.log(`    Q3产量: ${q3Production} 万吨`);
     }
   }
-  
+
   // 提取Q3售价（元/吨）- 第三列
   const pricePattern = /售价[（(]元\/吨[）)]\s+([\d,，]+\.?\d*)\s+([\d,，]+\.?\d*)\s+([\d,，]+\.?\d*)/;
   match = text.match(pricePattern);
@@ -1317,7 +1317,7 @@ function extractQ3FromThirdQuarterReport_NewFormat(text, result) {
       console.log(`    Q3售价: ${q3Price} 元/吨`);
     }
   }
-  
+
   // 提取Q3吨煤成本（元/吨）- 第三列
   const unitCostPattern = /吨煤成本[（(]元\/吨[）)]\s+([\d,，]+\.?\d*)\s+([\d,，]+\.?\d*)\s+([\d,，]+\.?\d*)/;
   match = text.match(unitCostPattern);
@@ -1328,7 +1328,7 @@ function extractQ3FromThirdQuarterReport_NewFormat(text, result) {
       console.log(`    Q3吨煤成本: ${q3UnitCost} 元/吨`);
     }
   }
-  
+
   // 如果提取到了成本和销量，计算单位成本
   if (!result.quarterlyData.q3.unitCost && result.quarterlyData.q3.cost && result.quarterlyData.q3.sales) {
     result.quarterlyData.q3.unitCost = parseFloat(((result.quarterlyData.q3.cost * 10000) / result.quarterlyData.q3.sales).toFixed(2));
@@ -1342,13 +1342,13 @@ function extractQ3FromThirdQuarterReport_NewFormat(text, result) {
  * 新策略：
  * 1. 提取Q4单季数据（表格第一列）
  * 2. 提取全年累计数据（用于2021年）
- * 
+ *
  * 2024年开始：新格式，表格列顺序为 Q1 | Q2 | Q3 | Q4（正序）
  * 2023年及之前：旧格式，表格列顺序为 Q4 | Q3 | Q2 | Q1（倒序）
  */
 function extractQ4FromAnnualReport(text, result, year = null) {
   console.log('  提取Q4单季数据...');
-  
+
   // 2024年之前不从年报提取单季度（改用运营数据）
   if (year && year >= 2024) {
     console.log('    使用2024年新格式（正序：Q1|Q2|Q3|Q4）');
@@ -1365,11 +1365,11 @@ function extractQ4FromAnnualReport(text, result, year = null) {
 function extractQ4FromAnnualReport_NewFormat(text, result, year) {
   // 初始化q4对象
   if (!result.quarterlyData.q4) result.quarterlyData.q4 = {};
-  
+
   // 新格式：匹配 "2024年第X季度"
   // 表格有4列，Q4是第四列
   const yearStr = year.toString();
-  
+
   // 提取Q4营业收入（万元）- 第四列
   const revenuePattern = new RegExp(`营业收入[（(]万元[）)]\\s+([\\d,，]+\\.?\\d*)\\s+([\\d,，]+\\.?\\d*)\\s+([\\d,，]+\\.?\\d*)\\s+([\\d,，]+\\.?\\d*)`);
   let match = text.match(revenuePattern);
@@ -1380,7 +1380,7 @@ function extractQ4FromAnnualReport_NewFormat(text, result, year) {
       console.log(`    Q4营业收入: ${result.quarterlyData.q4.revenue.toFixed(2)} 亿元`);
     }
   }
-  
+
   // 提取Q4销量（万吨）- 第四列
   const salesPattern = /销量[（(]万吨[）)]\s+([\d,，]+\.?\d*)\s+([\d,，]+\.?\d*)\s+([\d,，]+\.?\d*)\s+([\d,，]+\.?\d*)/;
   match = text.match(salesPattern);
@@ -1391,7 +1391,7 @@ function extractQ4FromAnnualReport_NewFormat(text, result, year) {
       console.log(`    Q4销量: ${q4Sales} 万吨`);
     }
   }
-  
+
   // 提取Q4售价（元/吨）- 第四列
   const pricePattern = /售价[（(]元\/吨[）)]\s+([\d,，]+\.?\d*)\s+([\d,，]+\.?\d*)\s+([\d,，]+\.?\d*)\s+([\d,，]+\.?\d*)/;
   match = text.match(pricePattern);
@@ -1402,7 +1402,7 @@ function extractQ4FromAnnualReport_NewFormat(text, result, year) {
       console.log(`    Q4售价: ${q4Price} 元/吨`);
     }
   }
-  
+
   // 提取Q4产量（万吨）- 第四列
   const productionPattern = /产量[（(]万吨[）)]\s+([\d,，]+\.?\d*)\s+([\d,，]+\.?\d*)\s+([\d,，]+\.?\d*)\s+([\d,，]+\.?\d*)/;
   match = text.match(productionPattern);
@@ -1413,7 +1413,7 @@ function extractQ4FromAnnualReport_NewFormat(text, result, year) {
       console.log(`    Q4产量: ${q4Production} 万吨`);
     }
   }
-  
+
   // 提取Q4营业成本（万元）- 第四列
   const costPattern = /营业成本[（(]万元[）)]\s+([\d,，]+\.?\d*)\s+([\d,，]+\.?\d*)\s+([\d,，]+\.?\d*)\s+([\d,，]+\.?\d*)/;
   match = text.match(costPattern);
@@ -1424,7 +1424,7 @@ function extractQ4FromAnnualReport_NewFormat(text, result, year) {
       console.log(`    Q4营业成本: ${result.quarterlyData.q4.cost.toFixed(2)} 亿元`);
     }
   }
-  
+
   // 提取Q4吨煤成本（元/吨）- 第四列
   const unitCostPattern = /吨煤成本[（(]元\/吨[）)]\s+([\d,，]+\.?\d*)\s+([\d,，]+\.?\d*)\s+([\d,，]+\.?\d*)\s+([\d,，]+\.?\d*)/;
   match = text.match(unitCostPattern);
@@ -1435,7 +1435,7 @@ function extractQ4FromAnnualReport_NewFormat(text, result, year) {
       console.log(`    Q4吨煤成本: ${q4UnitCost} 元/吨`);
     }
   }
-  
+
   // 如果提取到了成本和销量，计算单位成本
   if (!result.quarterlyData.q4.unitCost && result.quarterlyData.q4.cost && result.quarterlyData.q4.sales) {
     result.quarterlyData.q4.unitCost = parseFloat(((result.quarterlyData.q4.cost * 10000) / result.quarterlyData.q4.sales).toFixed(2));
@@ -1545,7 +1545,7 @@ function extractQ1FromFirstQuarterReport(text, result, year = null) {
         console.log(`    Q1毛利率: ${grossMargin}%`);
       }
     }
-    
+
     // 如果表格提取失败，尝试从财务报表提取营业收入和营业成本（单位：元）
     if (!revenue) {
       const revenuePattern = /营业收入\s+([\d,，]+\.?\d*)/;
@@ -1557,7 +1557,7 @@ function extractQ1FromFirstQuarterReport(text, result, year = null) {
         }
       }
     }
-    
+
     if (!cost) {
       const costPattern = /营业成本\s+([\d,，]+\.?\d*)/;
       const costMatch = costPattern.exec(text);
@@ -1571,7 +1571,7 @@ function extractQ1FromFirstQuarterReport(text, result, year = null) {
   } else {
     console.log('    2024年之前：跳过Q1数据提取（季报表格中的数据是累计值，不是单季值）');
   }
-  
+
   // 如果还没有提取到，尝试使用productionCoal的数据
   if (!revenue && result.productionCoal && result.productionCoal.revenue) {
     revenue = result.productionCoal.revenue;
@@ -1579,23 +1579,23 @@ function extractQ1FromFirstQuarterReport(text, result, year = null) {
       revenue = revenue / 100000000; // 元转亿元
     }
   }
-  
+
   if (!sales && result.productionCoal && result.productionCoal.sales) {
     sales = result.productionCoal.sales;
   }
-  
+
   if (!production && result.productionCoal && result.productionCoal.production) {
     production = result.productionCoal.production;
   }
-  
+
   if (!price && result.productionCoal && result.productionCoal.price) {
     price = result.productionCoal.price;
   }
-  
+
   if (!unitCost && result.productionCoal && result.productionCoal.unitCost) {
     unitCost = result.productionCoal.unitCost;
   }
-  
+
   result.quarterlyData.q1 = {
     revenue: revenue,
     cost: cost,
@@ -1617,19 +1617,19 @@ async function parsePDF(filePath) {
     const parser = new PDFParse({ data: dataBuffer });
     const textData = await parser.getText();
     const text = textData.text;
-    
+
     // 提取年份
     const yearMatch = text.match(/20\d{2}/);
     const year = yearMatch ? yearMatch[0] : null;
-    
+
     console.log(`提取到年份: ${year || '未知'}`);
     console.log(`文本长度: ${text.length} 字符`);
-    
+
     // 确定报告期
     let period = '';
     let month = 0;
     const filename = path.basename(filePath);
-    
+
     // 提取分产品数据（传入年份以便处理特殊合并逻辑）
     const productData = extractProductData(text, year);
 
@@ -1670,14 +1670,14 @@ async function parsePDF(filePath) {
         productData.productionCoal.unitCost = null;
       }
     }
-    
+
     // 将productData.quarterlyData转换为quarterData格式
     let quarterData = null;
     if (productData.quarterlyData) {
       // 确定当前是哪个季度
       let currentQuarter = null;
       let quarterlyValue = null;
-      
+
       if (filename.includes('第一季度')) {
         currentQuarter = 'Q1';
         quarterlyValue = productData.quarterlyData.q1;
@@ -1691,7 +1691,7 @@ async function parsePDF(filePath) {
         currentQuarter = 'Q4';
         quarterlyValue = productData.quarterlyData.q4;
       }
-      
+
       // 如果提取到了季度数据，创建quarterData
       if (quarterlyValue && quarterlyValue.revenue) {
         quarterData = {
@@ -1699,14 +1699,14 @@ async function parsePDF(filePath) {
           quarterly: quarterlyValue,
           cumulative: null // 累计数据后续通过calculateCumulativeData计算
         };
-        
+
         // 如果有annualCumulative（2021年报），保留它
         if (productData.quarterlyData.annualCumulative) {
           quarterData.annualCumulative = productData.quarterlyData.annualCumulative;
         }
       }
     }
-    
+
     return {
       year: year,
       period: period,
@@ -1730,15 +1730,15 @@ async function processAllPDFs() {
   const files = fs.readdirSync(reportDir)
     .filter(f => f.endsWith('.pdf'))
     .filter(f => !f.includes('生产经营数据')); // 跳过生产经营数据PDF（由parse_production_data.js处理）
-  
+
   // 处理所有PDF文件
   console.log(`找到 ${files.length} 个PDF文件（不含生产经营数据PDF）`);
-  
+
   const allData = [];
-  
+
   // 按文件名排序，确保按时间顺序处理
   files.sort();
-  
+
   for (const file of files) {
     const filePath = path.join(reportDir, file);
     const result = await parsePDF(filePath);
@@ -1746,18 +1746,18 @@ async function processAllPDFs() {
       allData.push(result);
     }
   }
-  
+
   // 保存结果
   const outputPath = path.join(reportDir, 'shanmei_data.json');
   fs.writeFileSync(outputPath, JSON.stringify(allData, null, 2), 'utf8');
   console.log(`\n数据已保存到: ${outputPath}`);
-  
+
   // 按年份和月份排序
   allData.sort((a, b) => {
     if (a.year !== b.year) return a.year - b.year;
     return a.month - b.month;
   });
-  
+
   // 打印摘要
   console.log('\n=== 数据摘要 ===');
   allData.forEach(item => {
@@ -1768,7 +1768,7 @@ async function processAllPDFs() {
       console.log('  季度数据:', JSON.stringify(item.quarterData, null, 2));
     }
   });
-  
+
   // 统计信息
   console.log(`\n=== 处理统计 ===`);
   console.log(`总共处理: ${allData.length} 个报告`);
@@ -1787,26 +1787,26 @@ async function processAllPDFs() {
  */
 function calculateCumulativeData(data) {
   console.log('\n📊 计算累计数据...\n');
-  
+
   // 按年份分组
   const yearGroups = {};
   data.forEach(item => {
     if (!yearGroups[item.year]) {
       yearGroups[item.year] = {};
     }
-    
+
     if (item.quarterData && item.quarterData.quarterly) {
       const quarter = item.quarterData.quarter;
       yearGroups[item.year][quarter] = item.quarterData.quarterly;
     }
   });
-  
+
   // 计算每年的累计数据
   Object.keys(yearGroups).sort().forEach(year => {
     const quarters = yearGroups[year];
-    
+
     console.log(`处理 ${year}年...`);
-    
+
     if (year === '2021') {
       // 2021年特殊处理
       handle2021Data(data, quarters);
@@ -1815,7 +1815,7 @@ function calculateCumulativeData(data) {
       handleNormalYearData(data, year, quarters);
     }
   });
-  
+
   console.log('\n✅ 累计数据计算完成\n');
 }
 
@@ -1825,7 +1825,7 @@ function calculateCumulativeData(data) {
  */
 function calculateProductBreakdownQuarterlyData(data) {
   console.log('\n📊 计算煤种分产品季度数据...\n');
-  
+
   // 按年份分组
   const yearGroups = {};
   data.forEach(item => {
@@ -1835,34 +1835,34 @@ function calculateProductBreakdownQuarterlyData(data) {
     }
     yearGroups[year].push(item);
   });
-  
+
   // 处理每一年
   Object.keys(yearGroups).sort().forEach(year => {
     const yearData = yearGroups[year];
-    
+
     // 找到全年数据
     const annualItem = yearData.find(d => d.period.includes('全年'));
     if (!annualItem || !annualItem.productData?.productBreakdown) {
       return;
     }
-    
+
     const annualBreakdown = annualItem.productData.productBreakdown;
-    
+
     // 检查是否有动力煤或冶金煤的全年数据
     const hasThermal = annualBreakdown.thermalCoal?.sales;
     const hasMetallurgical = annualBreakdown.metallurgicalCoal?.sales;
-    
+
     if (!hasThermal && !hasMetallurgical) {
       return;
     }
-    
+
     console.log(`处理 ${year}年煤种分产品数据...`);
-    
+
     // 找Q1, Q2, Q3数据 (如果存在)
     const q1Item = yearData.find(d => d.period.includes('1-3月'));
     const h1Item = yearData.find(d => d.period.includes('上半年'));
     const q3Item = yearData.find(d => d.period.includes('1-9月'));
-    
+
     // 辅助函数：从两个分产品数据中相减
     const subtractProductData = (total, ...parts) => {
       const result = {
@@ -1871,61 +1871,61 @@ function calculateProductBreakdownQuarterlyData(data) {
         revenue: null,
         cost: null
       };
-      
+
       ['production', 'sales', 'revenue', 'cost'].forEach(field => {
         if (total[field] == null) {
           result[field] = null;
           return;
         }
-        
+
         const hasNullInParts = parts.some(p => p[field] == null);
         if (hasNullInParts) {
           result[field] = null;
           return;
         }
-        
+
         let value = total[field];
         parts.forEach(p => {
           value -= p[field];
         });
-        
+
         result[field] = value < 0 ? null : parseFloat(value.toFixed(2));
       });
-      
+
       return result;
     };
-    
+
     // 如果没有Q1数据，但有上半年数据，可以创建Q1累计（=Q1单季）
     if (!q1Item && h1Item && h1Item.productData?.productBreakdown) {
       console.log(`  ${year}年: 创建Q1累计数据（从H1数据）`);
       // 这里不创建新记录，只是标记可能需要
     }
-    
+
     // 如果有全年和Q3数据，可以反推Q4
     if (q3Item && q3Item.productData?.productBreakdown) {
       const q3Breakdown = q3Item.productData.productBreakdown;
-      
+
       // 反推Q4动力煤
       if (hasThermal && q3Breakdown.thermalCoal?.sales) {
         const q4Thermal = subtractProductData(
           annualBreakdown.thermalCoal,
           q3Breakdown.thermalCoal
         );
-        
+
         // 将Q4数据添加到全年记录的productBreakdown中
         if (!annualItem.productData.productBreakdown.thermalCoalQ4) {
           annualItem.productData.productBreakdown.thermalCoalQ4 = q4Thermal;
           console.log(`  ✓ 动力煤Q4 = 全年 - 1-9月 (反推)`);
         }
       }
-      
+
       // 反推Q4冶金煤
       if (hasMetallurgical && q3Breakdown.metallurgicalCoal?.sales) {
         const q4Metallurgical = subtractProductData(
           annualBreakdown.metallurgicalCoal,
           q3Breakdown.metallurgicalCoal
         );
-        
+
         if (!annualItem.productData.productBreakdown.metallurgicalCoalQ4) {
           annualItem.productData.productBreakdown.metallurgicalCoalQ4 = q4Metallurgical;
           console.log(`  ✓ 冶金煤Q4 = 全年 - 1-9月 (反推)`);
@@ -1933,7 +1933,7 @@ function calculateProductBreakdownQuarterlyData(data) {
       }
     }
   });
-  
+
   console.log('\n✅ 煤种分产品季度数据计算完成\n');
 }
 
@@ -1947,7 +1947,7 @@ function handle2021Data(data, quarters) {
   const hasQ1 = hasValidData(quarters.Q1);
   const hasQ2 = hasValidData(quarters.Q2);
   const hasQ3 = hasValidData(quarters.Q3);
-  
+
   if (!hasQ4 && hasQ1 && hasQ2 && hasQ3) {
     const annualData = getAnnualData(data, '2021');
     if (annualData) {
@@ -1957,27 +1957,27 @@ function handle2021Data(data, quarters) {
       updateQuarterlyData(data, '2021', 'Q4', quarters.Q4);
     }
   }
-  
+
   // Q1累计 = Q1
   if (quarters.Q1) {
     updateCumulativeData(data, '2021', '1-3月', quarters.Q1);
     console.log('  ✓ Q1累计 = Q1');
   }
-  
+
   // H1 = Q1 + Q2
   if (quarters.Q1 && quarters.Q2) {
     const h1 = calculateSum([quarters.Q1, quarters.Q2]);
     updateCumulativeData(data, '2021', '上半年', h1);
     console.log('  ✓ H1累计 = Q1 + Q2');
   }
-  
+
   // Q3累计 = Q1 + Q2 + Q3
   if (quarters.Q1 && quarters.Q2 && quarters.Q3) {
     const q3cum = calculateSum([quarters.Q1, quarters.Q2, quarters.Q3]);
     updateCumulativeData(data, '2021', '1-9月', q3cum);
     console.log('  ✓ Q3累计 = Q1 + Q2 + Q3');
   }
-  
+
   // 全年 = Q1 + Q2 + Q3 + Q4
   if (quarters.Q1 && quarters.Q2 && quarters.Q3 && quarters.Q4) {
     const annual = calculateSum([quarters.Q1, quarters.Q2, quarters.Q3, quarters.Q4]);
@@ -1994,11 +1994,11 @@ function handleNormalYearData(data, year, quarters) {
   const hasQ1 = hasValidData(quarters.Q1);
   const hasQ2 = hasValidData(quarters.Q2);
   const hasQ3 = hasValidData(quarters.Q3);
-  
+
   // 检查Q1是否缺少revenue/sales（即使有production）
-  const q1MissingRevenueSales = quarters.Q1 && 
+  const q1MissingRevenueSales = quarters.Q1 &&
     (quarters.Q1.revenue == null || quarters.Q1.sales == null);
-  
+
   // 如果Q1数据不完整（无数据或缺少revenue/sales）但有Q2和H1累计数据，反推Q1
   // Q1 = H1累计 - Q2单季
   if ((!hasQ1 || q1MissingRevenueSales) && hasQ2) {
@@ -2007,7 +2007,7 @@ function handleNormalYearData(data, year, quarters) {
     // 我们需要从productData.productionCoal获取真正的累积数据
     const h1Item = data.find(d => d.year === year && d.period.includes('上半年'));
     let h1CumulativeData = null;
-    
+
     // 尝试从productData获取
     if (h1Item && h1Item.productData && h1Item.productData.productionCoal) {
       const pc = h1Item.productData.productionCoal;
@@ -2018,7 +2018,7 @@ function handleNormalYearData(data, year, quarters) {
         production: pc.production || null
       };
     }
-    
+
     // 如果productData为空但有quarterData.quarterly（Q2），则H1累积 ≈ Q2（因为Q1可能为0）
     // 这种情况下无法反推Q1，因为H1 - Q2 = 0
     if (!h1CumulativeData || (h1CumulativeData.revenue == null && h1CumulativeData.sales == null)) {
@@ -2027,21 +2027,21 @@ function handleNormalYearData(data, year, quarters) {
         h1CumulativeData = h1Item.quarterData.quarterly;
       }
     }
-    
+
     if (h1CumulativeData && (h1CumulativeData.revenue != null || h1CumulativeData.sales != null)) {
       const deducedQ1 = calculateDifference(h1CumulativeData, quarters.Q2);
-      
+
       // 如果Q1已有production，保留它；否则使用反推的production
       if (quarters.Q1 && quarters.Q1.production != null) {
         deducedQ1.production = quarters.Q1.production;
       }
-      
+
       quarters.Q1 = deducedQ1;
       console.log('  ✓ Q1 = H1累计 - Q2 (反推计算revenue/sales，保留production)');
       updateQuarterlyData(data, year, 'Q1', quarters.Q1, '1-3月');
     }
   }
-  
+
   // 如果Q4数据不完整但有Q1-Q3和全年数据，反推Q4
   // Q4 = 全年累计 - Q1 - Q2 - Q3
   if (!hasQ4 && hasQ1 && hasQ2 && hasQ3) {
@@ -2052,27 +2052,27 @@ function handleNormalYearData(data, year, quarters) {
       updateQuarterlyData(data, year, 'Q4', quarters.Q4, '全年');
     }
   }
-  
+
   // Q1累计 = Q1
   if (quarters.Q1) {
     updateCumulativeData(data, year, '1-3月', quarters.Q1);
     console.log('  ✓ Q1累计 = Q1');
   }
-  
+
   // H1 = Q1 + Q2
   if (quarters.Q1 && quarters.Q2) {
     const h1 = calculateSum([quarters.Q1, quarters.Q2]);
     updateCumulativeData(data, year, '上半年', h1);
     console.log('  ✓ H1累计 = Q1 + Q2');
   }
-  
+
   // Q3累计 = Q1 + Q2 + Q3
   if (quarters.Q1 && quarters.Q2 && quarters.Q3) {
     const q3cum = calculateSum([quarters.Q1, quarters.Q2, quarters.Q3]);
     updateCumulativeData(data, year, '1-9月', q3cum);
     console.log('  ✓ Q3累计 = Q1 + Q2 + Q3');
   }
-  
+
   // 全年 = Q1 + Q2 + Q3 + Q4
   if (quarters.Q1 && quarters.Q2 && quarters.Q3 && quarters.Q4) {
     const annual = calculateSum([quarters.Q1, quarters.Q2, quarters.Q3, quarters.Q4]);
@@ -2091,19 +2091,19 @@ function calculateSum(quarters) {
     sales: 0,
     production: 0
   };
-  
+
   quarters.forEach(q => {
     result.revenue += q.revenue || 0;
     result.cost += q.cost || 0;
     result.sales += q.sales || 0;
     result.production += q.production || 0;
   });
-  
+
   // 保留2位小数
   Object.keys(result).forEach(key => {
     result[key] = parseFloat(result[key].toFixed(2));
   });
-  
+
   return result;
 }
 
@@ -2117,14 +2117,14 @@ function calculateSum(quarters) {
  */
 function calculateDifference(total, ...quarters) {
   const result = {};
-  
+
   ['revenue', 'cost', 'sales', 'production'].forEach(field => {
     // 如果全年数据该字段为null/undefined，则结果也为null
     if (total[field] == null) {
       result[field] = null;
       return;
     }
-    
+
     // 检查所有季度的该字段是否都有值
     const hasNullInQuarters = quarters.some(q => q[field] == null);
     if (hasNullInQuarters) {
@@ -2134,7 +2134,7 @@ function calculateDifference(total, ...quarters) {
       result[field] = null;
       return;
     }
-    
+
     let value = total[field];
     quarters.forEach(q => {
       value -= q[field];
@@ -2142,7 +2142,7 @@ function calculateDifference(total, ...quarters) {
 
     // 保留2位小数
     const roundedValue = parseFloat(value.toFixed(2));
-    
+
     // 如果结果为负数（小于-0.01）则设为null（数据异常）
     if (value < -0.01) {
       result[field] = null;
@@ -2152,7 +2152,7 @@ function calculateDifference(total, ...quarters) {
       result[field] = roundedValue;
     }
   });
-  
+
   return result;
 }
 
@@ -2161,13 +2161,13 @@ function calculateDifference(total, ...quarters) {
  */
 function hasValidData(quarterData) {
   if (!quarterData) return false;
-  
+
   // 检查是否有非null/undefined的有效数值
-  const hasValidValue = (quarterData.revenue != null && quarterData.revenue !== 0) || 
-                        (quarterData.cost != null && quarterData.cost !== 0) || 
-                        (quarterData.sales != null && quarterData.sales !== 0) || 
+  const hasValidValue = (quarterData.revenue != null && quarterData.revenue !== 0) ||
+                        (quarterData.cost != null && quarterData.cost !== 0) ||
+                        (quarterData.sales != null && quarterData.sales !== 0) ||
                         (quarterData.production != null && quarterData.production !== 0);
-  
+
   return hasValidValue;
 }
 
@@ -2218,7 +2218,7 @@ function getH1Data(data, year, preferProductData = false) {
       sales: pc.sales || null,
       production: pc.production || null
     };
-    
+
     // 如果productData有有效数据，返回它
     if (pdData.revenue != null || pdData.sales != null) {
       return pdData;
@@ -2272,21 +2272,21 @@ async function parseProductionDataPDF(filePath) {
   const parser = new PDFParse({ data: dataBuffer });
   const textData = await parser.getText();
   const text = textData.text;
-  
+
   const filename = path.basename(filePath);
   const yearQuarterMatch = filename.match(/(\d{4})Q(\d)/);
-  
+
   if (!yearQuarterMatch) {
     console.log(`⚠️  无法从文件名提取年份和季度: ${filename}`);
     return null;
   }
-  
+
   const year = yearQuarterMatch[1];
   const quarter = 'Q' + yearQuarterMatch[2];
   const lastYear = (parseInt(year) - 1).toString();
-  
+
   console.log(`解析: ${filename}`);
-  
+
   // 提取数据
   const result = {
     year,
@@ -2295,7 +2295,7 @@ async function parseProductionDataPDF(filePath) {
     data: {},
     lastYearData: null  // 去年同期数据
   };
-  
+
   // 辅助函数：从表格中提取两列数据（当期和去年同期）
   function extractTwoColumns(pattern) {
     const match = text.match(pattern);
@@ -2306,7 +2306,7 @@ async function parseProductionDataPDF(filePath) {
     }
     return null;
   }
-  
+
   // 提取产量（万吨）- 原煤产量就是自产煤产量
   // 格式：原煤产量（万吨）  1,055.92  1,107.01
   const productionData = extractTwoColumns(/原煤产量[（(]万吨[）)]\s+([\d,，.]+)\s+([\d,，.]+)/);
@@ -2317,7 +2317,7 @@ async function parseProductionDataPDF(filePath) {
       result.lastYearData.production = productionData.last;
     }
   }
-  
+
   // 提取自产煤销量（万吨）
   // 格式：自产煤销量  967.52  971.50
   const salesData = extractTwoColumns(/自产煤销量\s+([\d,，.]+)\s+([\d,，.]+)/);
@@ -2330,7 +2330,7 @@ async function parseProductionDataPDF(filePath) {
       result.lastYearData.salesType = 'ownCoal';
     }
   }
-  
+
   // 提取自产煤营业收入（万元）
   // 格式：自产煤营业收入  640,379.71  729,795.81
   const revenueData = extractTwoColumns(/自产煤营业收入\s+([\d,，.]+)\s+([\d,，.]+)/);
@@ -2343,7 +2343,7 @@ async function parseProductionDataPDF(filePath) {
       result.lastYearData.revenueType = 'ownCoal';
     }
   }
-  
+
   // 提取自产煤营业成本（万元）
   // 格式：自产煤营业成本  250,043.07  249,801.93
   const costData = extractTwoColumns(/自产煤营业成本\s+([\d,，.]+)\s+([\d,，.]+)/);
@@ -2356,25 +2356,25 @@ async function parseProductionDataPDF(filePath) {
       result.lastYearData.costType = 'ownCoal';
     }
   }
-  
+
   // 计算当期售价和单位成本
   if (result.data.revenue && result.data.sales && result.data.sales > 0) {
     result.data.price = parseFloat(((result.data.revenue * 10000) / result.data.sales).toFixed(2));
   }
-  
+
   if (result.data.cost && result.data.sales && result.data.sales > 0) {
     result.data.unitCost = parseFloat(((result.data.cost * 10000) / result.data.sales).toFixed(2));
   }
-  
+
   // 计算去年同期售价和单位成本
   if (result.lastYearData && result.lastYearData.revenue && result.lastYearData.sales && result.lastYearData.sales > 0) {
     result.lastYearData.price = parseFloat(((result.lastYearData.revenue * 10000) / result.lastYearData.sales).toFixed(2));
   }
-  
+
   if (result.lastYearData && result.lastYearData.cost && result.lastYearData.sales && result.lastYearData.sales > 0) {
     result.lastYearData.unitCost = parseFloat(((result.lastYearData.cost * 10000) / result.lastYearData.sales).toFixed(2));
   }
-  
+
   return result;
 }
 
@@ -2383,17 +2383,17 @@ async function parseProductionDataPDF(filePath) {
  */
 async function parseAllProductionDataPDFs() {
   console.log('\n📊 解析生产经营数据PDF...\n');
-  
+
   const reportDir = path.join(__dirname, '../../stock/report_analysis/山煤国际');
   const files = fs.readdirSync(reportDir)
     .filter(f => f.includes('生产经营数据.pdf'))
     .sort();
-  
+
   console.log(`找到 ${files.length} 个生产经营数据PDF文件\n`);
-  
+
   const results = [];
   const lastYearDataToAdd = []; // 存储从当期PDF提取的去年同期数据
-  
+
   for (const file of files) {
     const filePath = path.join(reportDir, file);
     try {
@@ -2407,7 +2407,7 @@ async function parseAllProductionDataPDFs() {
           data: result.data
         });
         console.log(`  ✓ ${result.year}${result.quarter}: 产量=${result.data.production || 'N/A'}万吨, 销量=${result.data.sales || 'N/A'}万吨, 收入=${result.data.revenue?.toFixed(2) || 'N/A'}亿元`);
-        
+
         // 如果有去年同期数据，记录下来
         if (result.lastYearData && Object.keys(result.lastYearData).length > 0) {
           const lastYear = (parseInt(result.year) - 1).toString();
@@ -2425,9 +2425,9 @@ async function parseAllProductionDataPDFs() {
       console.error(`❌ 解析失败 ${file}:`, err.message);
     }
   }
-  
+
   console.log(`\n✅ 成功解析 ${results.length}/${files.length} 个文件`);
-  
+
   // 合并去年同期数据（只添加缺失的数据）
   console.log('\n📝 处理去年同期数据...');
   let addedCount = 0;
@@ -2456,24 +2456,24 @@ async function parseAllProductionDataPDFs() {
       }
     }
   });
-  
+
   if (addedCount > 0) {
     console.log(`✓ 补充/更新了 ${addedCount} 条去年同期数据`);
   } else {
     console.log('✓ 无需补充数据');
   }
-  
+
   // 按年份和季度排序
   results.sort((a, b) => {
     if (a.year !== b.year) return a.year.localeCompare(b.year);
     return a.quarter.localeCompare(b.quarter);
   });
-  
+
   // 保存结果
   const outputPath = path.join(reportDir, 'production_data_extracted.json');
   fs.writeFileSync(outputPath, JSON.stringify(results, null, 2), 'utf-8');
   console.log(`\n💾 数据已保存到: production_data_extracted.json (共${results.length}条记录)`);
-  
+
   return results;
 }
 
@@ -2483,22 +2483,22 @@ async function parseAllProductionDataPDFs() {
 function loadProductionDataPDF() {
   const baseDir = path.join(__dirname, '../../stock/report_analysis/山煤国际');
   const productionDataPath = path.join(baseDir, 'production_data_extracted.json');
-  
+
   if (!fs.existsSync(productionDataPath)) {
     console.log('  ⚠️  生产经营数据PDF未找到，将跳过');
     return null;
   }
-  
+
   const productionData = JSON.parse(fs.readFileSync(productionDataPath, 'utf-8'));
   console.log(`  - 生产经营数据PDF: ${productionData.length} 条记录`);
-  
+
   // 转换为Map，key为 year-quarter
   const productionMap = new Map();
   productionData.forEach(item => {
     const key = `${item.year}-${item.quarter}`;
     productionMap.set(key, item.data);
   });
-  
+
   return productionMap;
 }
 
@@ -2509,33 +2509,33 @@ function loadProductionDataPDF() {
  */
 function mergeQuarterlyData() {
   console.log('\n🔄 整合季度数据到主数据文件...\n');
-  
+
   const baseDir = path.join(__dirname, '../../stock/report_analysis/山煤国际');
   const shanmeiDataPath = path.join(baseDir, 'shanmei_data.json');
-  
+
   if (!fs.existsSync(shanmeiDataPath)) {
     console.error('❌ shanmei_data.json 不存在');
     return false;
   }
-  
+
   // 加载生产经营数据PDF（优先数据源）
   const productionDataMap = loadProductionDataPDF();
-  
+
   const shanmeiData = JSON.parse(fs.readFileSync(shanmeiDataPath, 'utf-8'));
   console.log(`  - 主数据: ${shanmeiData.length} 条记录`);
-  
+
   let productionDataUsed = 0;
-  
+
   shanmeiData.forEach(item => {
     const year = parseInt(item.year);
-    
+
     // 确定季度标识（Q1, Q2, Q3, Q4）
     let quarter = null;
     if (item.period.includes('1-3月')) quarter = 'Q1';
     else if (item.period.includes('上半年')) quarter = 'Q2';
     else if (item.period.includes('1-9月')) quarter = 'Q3';
     else if (item.period.includes('全年')) quarter = 'Q4';
-    
+
     // 使用运营数据PDF（所有年份）
     // 2024年之前：只录入有自产煤销量的数据（salesType === 'ownCoal'）
     // 2024年及以后：录入所有运营数据（都是自产煤）
@@ -2545,7 +2545,7 @@ function mergeQuarterlyData() {
 
       // 判断是否应该录入数据
       const shouldUseData = year >= 2024 || (productionData && productionData.salesType === 'ownCoal');
-      
+
       if (shouldUseData && productionData) {
         // 使用生产经营数据PDF（仅自产煤）
         if (!item.quarterData) {
@@ -2554,10 +2554,10 @@ function mergeQuarterlyData() {
         if (!item.quarterData.quarterly) {
           item.quarterData.quarterly = {};
         }
-        
+
         // 直接更新 quarterly 对象
         const q = item.quarterData.quarterly;
-        
+
         // 运营数据PDF优先，直接写入（不检查是否存在）
         if (productionData.production !== undefined) {
           q.production = productionData.production;
@@ -2578,13 +2578,13 @@ function mergeQuarterlyData() {
         if (productionData.unitCost !== undefined) {
           q.unitCost = productionData.unitCost;
         }
-        
+
         // 计算毛利率
         if (productionData.revenue && productionData.cost) {
           const grossMargin = ((productionData.revenue - productionData.cost) / productionData.revenue * 100).toFixed(2);
           q.grossMargin = parseFloat(grossMargin);
         }
-        
+
         item.quarterData.quarter = quarter;
         productionDataUsed++;
         console.log(`    ${item.period}: 使用生产经营数据PDF (${quarter}, 自产煤)`);
@@ -2596,19 +2596,19 @@ function mergeQuarterlyData() {
         if (!item.quarterData.quarterly) {
           item.quarterData.quarterly = {};
         }
-        
+
         const q = item.quarterData.quarterly;
-        
+
         // 只录入产量（原煤产量=自产煤产量）
         if (productionData.production !== undefined) {
           q.production = productionData.production;
         }
-        
+
         item.quarterData.quarter = quarter;
           console.log(`    ${item.period}: 仅使用产量数据 (${quarter})`);
         }
       }
-    
+
     // 确保quarterData存在
     if (!item.quarterData && quarter) {
         item.quarterData = {
@@ -2617,21 +2617,21 @@ function mergeQuarterlyData() {
       };
         }
   });
-  
+
   if (productionDataUsed > 0) {
     console.log(`  ✓ 使用了 ${productionDataUsed} 条生产经营数据PDF记录`);
   }
-  
+
   shanmeiData.sort((a, b) => {
     const yearA = parseInt(a.year);
     const yearB = parseInt(b.year);
     if (yearA !== yearB) return yearA - yearB;
     return (a.month || 0) - (b.month || 0);
   });
-  
+
   // 计算累计数据
   calculateCumulativeData(shanmeiData);
-  
+
   // 计算煤种分产品季度数据
   calculateProductBreakdownQuarterlyData(shanmeiData);
 
@@ -2664,10 +2664,10 @@ function mergeQuarterlyData() {
   if (cleanedCount > 0) {
     console.log(`✓ 清理了 ${cleanedCount} 条记录的嵌套字段`);
   }
-  
+
   fs.writeFileSync(shanmeiDataPath, JSON.stringify(shanmeiData, null, 2), 'utf-8');
   console.log(`\n💾 数据已保存: shanmei_data.json (${shanmeiData.length}条)`);
-  
+
   return true;
 }
 
@@ -2676,43 +2676,43 @@ function mergeQuarterlyData() {
  */
 function testDataIntegrity() {
   console.log('\n🧪 测试数据完整性...\n');
-  
+
   const dataPath = path.join(__dirname, '../../stock/report_analysis/山煤国际/shanmei_data.json');
-  
+
   if (!fs.existsSync(dataPath)) {
     console.error('❌ shanmei_data.json 不存在');
     return false;
   }
-  
+
   const data = JSON.parse(fs.readFileSync(dataPath, 'utf-8'));
-  
+
   console.log(`✓ 总记录数: ${data.length}`);
-  
+
   let withQuarterData = 0;
   let withProductBreakdown = 0;
-  
+
   data.forEach(item => {
     if (item.quarterData) withQuarterData++;
-    
+
     if (item.productData?.productBreakdown) {
       const breakdown = item.productData.productBreakdown;
-      const hasAnyData = 
+      const hasAnyData =
         breakdown.metallurgicalCoal?.revenue ||
         breakdown.thermalCoal?.revenue ||
         breakdown.cokeCoal?.revenue ||
         breakdown.anthracite?.revenue ||
         breakdown.tradeCoal?.revenue;
-      
+
       if (hasAnyData) withProductBreakdown++;
     }
   });
-  
+
   console.log(`✓ 包含quarterData: ${withQuarterData}/${data.length}`);
   console.log(`✓ 包含分产品数据: ${withProductBreakdown}/${data.length}`);
-  
+
   console.log('\n📈 按年份统计:');
   const yearStats = {};
-  
+
   data.forEach(item => {
     const year = item.year;
     if (!yearStats[year]) {
@@ -2724,28 +2724,28 @@ function testDataIntegrity() {
       yearStats[year].quarters.push(item.quarterData.quarter);
     }
   });
-  
+
   Object.keys(yearStats).sort().forEach(year => {
     const stats = yearStats[year];
     console.log(`  ${year}年: ${stats.total}条, 季度${stats.withQuarter}个 (${stats.quarters.join(', ')})`);
   });
-  
+
   console.log('\n📅 2021-2024年完整性:');
   const targetYears = ['2021', '2022', '2023', '2024'];
   const expectedQuarters = ['Q1', 'Q2', 'Q3', 'Q4'];
-  
+
   targetYears.forEach(year => {
     const yearData = data.filter(d => d.year == year && d.quarterData);
     const quarters = yearData.map(d => d.quarterData.quarter).sort();
     const missing = expectedQuarters.filter(q => !quarters.includes(q));
-    
+
     if (missing.length === 0) {
       console.log(`  ✓ ${year}年: 完整 (${quarters.join(', ')})`);
     } else {
       console.log(`  ⚠ ${year}年: 缺少 ${missing.join(', ')})`);
     }
   });
-  
+
   console.log('\n✅ 测试完成！');
   return true;
 }
@@ -2755,49 +2755,49 @@ function testDataIntegrity() {
 async function main() {
   const args = process.argv.slice(2);
   const command = args[0] || 'parse';
-  
+
   console.log('🚀 山煤国际数据处理统一脚本');
   console.log('='.repeat(60));
-  
+
   switch (command) {
     case 'parse':
     case 'pdf':
       // 解析PDF文件
       await processAllPDFs();
       break;
-      
 
-      
+
+
     case 'production':
     case 'prod':
       // 解析生产经营数据PDF
       await parseAllProductionDataPDFs();
       break;
-      
+
     case 'merge':
       // 整合数据（一步到位：提取 + 合并）
       if (mergeQuarterlyData()) {
         console.log('\n✅ 数据整合完成！');
       }
       break;
-      
+
     case 'test':
       // 测试数据
       testDataIntegrity();
       break;
-      
+
     case 'all':
       // 执行所有操作：解析生产经营数据PDF → 解析年报PDF → 合并季度数据 → 测试
       console.log('\n📋 执行完整流程...\n');
-      
+
       // 1. 解析生产经营数据PDF
       await parseAllProductionDataPDFs();
       console.log('\n' + '='.repeat(60));
-      
+
       // 2. 解析年报PDF
       await processAllPDFs();
       console.log('\n' + '='.repeat(60));
-      
+
       // 3. 合并季度数据
       console.log('\n' + '='.repeat(60));
       if (mergeQuarterlyData()) {
@@ -2807,7 +2807,7 @@ async function main() {
         console.log('\n✅ 所有操作完成！');
       }
       break;
-      
+
     case 'help':
     case '--help':
     case '-h':
@@ -2826,13 +2826,13 @@ async function main() {
 常用流程:
   1. 首次使用或添加新PDF:
      node shanmei_report_parse.js all
-     
+
   2. 只解析生产经营数据PDF:
      node shanmei_report_parse.js production
-     
+
   3. 只更新季度数据:
      node shanmei_report_parse.js merge
-     
+
   4. 只测试数据:
      node shanmei_report_parse.js test
 
@@ -2843,7 +2843,7 @@ async function main() {
   - merge 命令整合所有数据源并计算累积数据
       `);
       break;
-      
+
     default:
       console.log(`未知命令: ${command}`);
       console.log('使用 "help" 查看帮助信息');
@@ -2856,8 +2856,8 @@ if (require.main === module) {
   main().catch(console.error);
 }
 
-module.exports = { 
-  parsePDF, 
+module.exports = {
+  parsePDF,
   extractProductData,
   parseProductionDataPDF,
   parseAllProductionDataPDFs,

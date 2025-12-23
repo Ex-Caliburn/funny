@@ -32,10 +32,10 @@ const patterns = {
  */
 function extractNumber(text) {
   if (!text) return null;
-  
+
   // 移除逗号和空格
   let cleaned = text.replace(/[,，\s]/g, '');
-  
+
   // 检查是否包含"亿"
   let multiplier = 1;
   if (cleaned.includes('亿')) {
@@ -45,14 +45,14 @@ function extractNumber(text) {
     multiplier = 10000;
     cleaned = cleaned.replace(/万/g, '');
   }
-  
+
   // 提取数字
   const match = cleaned.match(/[\d.]+/);
   if (match) {
     const num = parseFloat(match[0]);
     return isNaN(num) ? null : num * multiplier;
   }
-  
+
   return null;
 }
 
@@ -62,20 +62,20 @@ function extractNumber(text) {
  */
 function extractNumberInWanTons(text) {
   if (!text) return null;
-  
+
   // 移除逗号和空格
   let cleaned = text.replace(/[,，\s]/g, '');
-  
+
   // 移除"万吨"、"吨"等单位
   cleaned = cleaned.replace(/万吨|吨/g, '');
-  
+
   // 提取数字
   const match = cleaned.match(/[\d.]+/);
   if (match) {
     const num = parseFloat(match[0]);
     return isNaN(num) ? null : num; // 直接返回数字，不乘以任何系数
   }
-  
+
   return null;
 }
 
@@ -103,7 +103,7 @@ function extractInventoryFromMainProducts(text, extractedData) {
     // 铜产品（通用，最后匹配）
     /铜[\(（][^）)]*万吨[\)）][\s\t]+([\d,，]+\.?\d*)[\s\t]+([\d,，]+\.?\d*)[\s\t]+([\d,，]+\.?\d*)/g
   ];
-  
+
   for (const pattern of patterns) {
     let match;
     while ((match = pattern.exec(text)) !== null) {
@@ -113,16 +113,16 @@ function extractInventoryFromMainProducts(text, extractedData) {
       if (!isMainProductTable && (match[0].includes('产量') || match[0].includes('销量') || match[0].includes('销售量'))) {
         continue;
       }
-      
+
       // 提取三个数值：生产量、销售量、库存量
       const productionStr = match[1].replace(/[,，]/g, '');
       const salesStr = match[2].replace(/[,，]/g, '');
       const inventoryStr = match[3].replace(/[,，]/g, '');
-      
+
       const production = parseFloat(productionStr);
       const sales = parseFloat(salesStr);
       const inventory = parseFloat(inventoryStr);
-      
+
       // 数据合理性验证：产量和销量应该在合理范围内（0-10000万吨）
       // 同时验证：产量和销量不能是百分比（不能小于1，除非是小数如0.5万吨）
       // 对于半年报，产量和销量通常应该在几十到几百万吨之间
@@ -138,7 +138,7 @@ function extractInventoryFromMainProducts(text, extractedData) {
           });
         }
       }
-      
+
       if (!isNaN(sales) && sales > 0 && sales < 100000 && sales >= 0.1) {
         // 进一步验证：如果值太小（小于0.5万吨），很可能是误提取的百分比
         if (sales >= 0.5 || (sales >= 0.1 && sales < 0.5 && match[0].includes('主要产品'))) {
@@ -151,7 +151,7 @@ function extractInventoryFromMainProducts(text, extractedData) {
           });
         }
       }
-      
+
       if (!isNaN(inventory) && inventory > 0 && inventory < 100000) {
         extractedData.inventory.push({
           keyword: '主要产品-库存',
@@ -193,7 +193,7 @@ function extractProductSales(text, extractedData) {
       break; // 只取第一个匹配
     }
   }
-  
+
   // 阴极铜（单独提取，从文本中，如果主要产品表格中没有找到）
   if (extractedData.productSales.cathodeCopper.length === 0) {
     const cathodeCopperPattern = /阴极铜[\s\t]+([\d,，]+\.?\d*)[\s\t]*万吨/g;
@@ -212,7 +212,7 @@ function extractProductSales(text, extractedData) {
       }
     }
   }
-  
+
   // 铜精矿含铜（从主要产品表格中提取，优先）
   const copperConcentrateMainPattern = /(?:主要产品[^\d]*)?铜精矿[\(（]?[^）)]*万吨[\)）]?[\s\t]+([\d,，]+\.?\d*)[\s\t]+([\d,，]+\.?\d*)[\s\t]+([\d,，]+\.?\d*)/g;
   let concentrateMainMatch;
@@ -232,7 +232,7 @@ function extractProductSales(text, extractedData) {
       break;
     }
   }
-  
+
   // 铜精矿含铜（单独提取，从文本中，如果主要产品表格中没有找到）
   if (extractedData.productSales.copperConcentrate.length === 0) {
     const copperConcentratePattern = /铜精矿含铜[\s\t]+([\d,，]+\.?\d*)[\s\t]*万吨/g;
@@ -251,7 +251,7 @@ function extractProductSales(text, extractedData) {
       }
     }
   }
-  
+
   // 铜材（单独提取）
   const copperMaterialPattern = /铜材[\s\t]+([\d,，]+\.?\d*)[\s\t]*万吨/g;
   let materialMatch;
@@ -268,20 +268,20 @@ function extractProductSales(text, extractedData) {
       break;
     }
   }
-  
+
   // 从"分产品"表格中提取销量数据（如果主要产品表格中没有找到）
   // 格式：分产品 \t铜产品 \t营业收入 \t营业成本 \t毛利率 \t销量（如果有）
   // 注意：分产品表格通常只有营收、成本、毛利率，但有些报告可能包含销量
   // 尝试从"分产品"表格附近查找销量数据
-  if (extractedData.productSales.cathodeCopper.length === 0 || 
-      extractedData.productSales.copperConcentrate.length === 0 || 
+  if (extractedData.productSales.cathodeCopper.length === 0 ||
+      extractedData.productSales.copperConcentrate.length === 0 ||
       extractedData.productSales.copperMaterial.length === 0) {
     // 查找"分产品"表格区域
     const productTableIndex = text.indexOf('分产品');
     if (productTableIndex !== -1) {
       // 获取"分产品"表格附近2000字符的文本
       const productTableSection = text.substring(productTableIndex, productTableIndex + 2000);
-      
+
       // 在"分产品"表格区域中查找销量数据
       // 格式：铜产品.*销量.*([\d,，]+\.?\d*).*万吨
       const productSalesPatterns = [
@@ -290,7 +290,7 @@ function extractProductSales(text, extractedData) {
         /铜精矿[^\d]*销量[^\d]*([\d,，]+\.?\d*)[\s\t]*万吨/g,
         /铜材[^\d]*销量[^\d]*([\d,，]+\.?\d*)[\s\t]*万吨/g
       ];
-      
+
       for (const pattern of productSalesPatterns) {
         let match;
         while ((match = pattern.exec(productTableSection)) !== null) {
@@ -340,11 +340,11 @@ function extractProductSales(text, extractedData) {
 function extractDataByKeyword(text, keyword, contextLines = 3) {
   const results = [];
   const lines = text.split('\n');
-  
+
   // 判断是否是需要保持万吨单位的关键词
-  const isWanTonKeyword = keyword.includes('产量') || keyword.includes('销量') || 
+  const isWanTonKeyword = keyword.includes('产量') || keyword.includes('销量') ||
                           keyword.includes('库存');
-  
+
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
     if (line.includes(keyword)) {
@@ -354,10 +354,10 @@ function extractDataByKeyword(text, keyword, contextLines = 3) {
       for (let j = Math.max(0, i - expandedContextLines); j < Math.min(lines.length, i + expandedContextLines + 1); j++) {
         context.push(lines[j]);
       }
-      
+
       // 尝试从关键词附近提取数字
       let extractedValue = null;
-      
+
       // 特殊处理：产量、销量关键词，精确匹配"关键词...数字"模式
       if (!extractedValue && (keyword.includes('产量') || keyword.includes('销量'))) {
         // 优先匹配表格格式：阴极铜产量（万吨） 176.80 ... 或 阴极铜销售量（万吨） ...
@@ -385,7 +385,7 @@ function extractDataByKeyword(text, keyword, contextLines = 3) {
           }
         }
       }
-      
+
       // 如果没有精确匹配，使用通用方法
       // 对于产量和销量，必须确保有"万吨"单位，且不是百分比
       if (!extractedValue) {
@@ -406,7 +406,7 @@ function extractDataByKeyword(text, keyword, contextLines = 3) {
           // 对于其他关键词，使用通用方法
           // 在当前行中查找数字（优先从当前行提取，避免上下文干扰）
           const lineNumbers = line.match(patterns.number);
-          
+
           if (lineNumbers && lineNumbers.length > 0) {
             // 根据关键词类型选择合适的提取函数
             const extractFunc = isWanTonKeyword ? extractNumberInWanTons : extractNumber;
@@ -418,7 +418,7 @@ function extractDataByKeyword(text, keyword, contextLines = 3) {
             // 如果当前行没有数字，再从上下文中查找
             const contextText = context.join(' ');
             const numbers = contextText.match(patterns.number);
-            
+
             if (numbers && numbers.length > 0) {
               const extractFunc = isWanTonKeyword ? extractNumberInWanTons : extractNumber;
               const values = numbers.map(n => extractFunc(n)).filter(n => n !== null);
@@ -429,12 +429,12 @@ function extractDataByKeyword(text, keyword, contextLines = 3) {
           }
         }
       }
-      
+
       if (extractedValue) {
         const lineNumbers = line.match(patterns.number);
         const extractFunc = isWanTonKeyword ? extractNumberInWanTons : extractNumber;
         const allValues = lineNumbers ? lineNumbers.map(n => extractFunc(n)).filter(n => n !== null) : [extractedValue];
-        
+
         results.push({
           keyword,
           line: line.trim(),
@@ -445,7 +445,7 @@ function extractDataByKeyword(text, keyword, contextLines = 3) {
       }
     }
   }
-  
+
   return results;
 }
 
@@ -458,28 +458,43 @@ function extractAllProductFinancials(text) {
     goldByproduct: { revenue: null, cost: null, grossMargin: null },
     chemical: { revenue: null, cost: null, grossMargin: null }
   };
-  
+
   // 从"分产品"表格中提取数据
   // 格式：分产品 \t铜产品 \t营业收入 \t营业成本 \t毛利率
   // 或者：铜产品 \t63,736,262,956.68 \t60,291,314,387.94 \t5.41%
   // 黄金等副产品 \t10,332,616,011.38 \t8,764,646,179.29 \t15.17%
   // 化工及其他产品 \t1,657,995,418.97 \t745,471,485.87 \t55.04%
-  
+
   // 查找"分产品"表格区域
   const productTableIndex = text.indexOf('分产品');
+  let productTableSection = '';
   if (productTableIndex !== -1) {
-    // 获取"分产品"表格附近3000字符的文本
-    const productTableSection = text.substring(productTableIndex, productTableIndex + 3000);
-    
+    // 获取"分产品"表格附近5000字符的文本（扩大范围确保能匹配到所有产品数据）
+    productTableSection = text.substring(productTableIndex, productTableIndex + 5000);
+  }
+
+  // 同时查找"主营业务收入、主营业务成本的分解信息"表格（这个表格可能不在"分产品"附近）
+  const mainBusinessIndex = text.indexOf('主营业务收入、主营业务成本的分解信息');
+  let mainBusinessSection = '';
+  if (mainBusinessIndex !== -1) {
+    // 获取该表格附近5000字符的文本（这个表格可能比较长）
+    mainBusinessSection = text.substring(mainBusinessIndex, mainBusinessIndex + 5000);
+  }
+
+  // 合并两个搜索区域
+  const searchSection = productTableSection + '\n' + mainBusinessSection;
+
+  if (productTableIndex !== -1 || mainBusinessIndex !== -1) {
+
     // 匹配铜产品
     const copperPattern = /(?:分产品[^\d]*)?铜产品[^\d]*([\d,，]+\.?\d*)[\s\t]+([\d,，]+\.?\d*)[\s\t]+([\d,，]+\.?\d*)\s*%/g;
     let copperMatch;
-    while ((copperMatch = copperPattern.exec(productTableSection)) !== null) {
+    while ((copperMatch = copperPattern.exec(searchSection)) !== null) {
       const revenueValue = extractNumber(copperMatch[1] + '元');
       const costValue = extractNumber(copperMatch[2] + '元');
       const marginStr = copperMatch[3].replace(/[,，]/g, '');
       const marginValue = parseFloat(marginStr);
-      
+
       if (revenueValue && revenueValue > 1000000000 && costValue && costValue > 1000000000) {
         result.copper.revenue = revenueValue;
         result.copper.cost = costValue;
@@ -489,15 +504,22 @@ function extractAllProductFinancials(text) {
         break;
       }
     }
-    
+
     // 匹配黄金等副产品（支持多种格式）
-    // 格式1：黄金等副产品 \t营业收入 \t营业成本 \t毛利率
+    // 格式1：黄金等副产品 \t营业收入 \t营业成本 \t毛利率（标准格式，优先匹配）
     // 格式2：黄金等副产品 \t10,332,616,011.38 \t8,764,646,179.29 \t15.17%
     // 格式3：黄金等副产品 19,273,117,131.88 13.24% 14,693,241,548.63 10.69% 31.17%（2024年报格式：营收 营收占比% 成本 成本占比% 毛利率%）
     // 格式4：黄金等副产品（可能跨行）
+    // 格式5：主营业务收入、主营业务成本的分解信息表格格式（本期发生额收入 本期发生额成本 上期发生额收入 上期发生额成本）
     const goldPatterns = [
-      // 格式1：标准格式（营收 成本 毛利率）
+      // 格式1：标准格式（营收 成本 毛利率）- 优先匹配，因为"分产品"表格更准确
       /(?:分产品[^\d]*)?黄金等副产品[^\d]*([\d,，]+\.?\d*)[\s\t]+([\d,，]+\.?\d*)[\s\t]+([\d,，]+\.?\d*)\s*%/g,
+      // 格式5：主营业务收入、主营业务成本的分解信息表格格式（作为备选）
+      // 格式：黄金等副产品 8,724,363,622.32 7,745,371,759.29 7,262,837,273.93 6,206,648,892.02
+      // 或者：黄金等副产品 19,273,117,131.88 15,573,863,644.25 14,693,241,548.63 11,971,064,930.39
+      // 只取前两个值（本期发生额的营收和成本）
+      // 需要确保在"主营业务收入、主营业务成本的分解信息"表格中，且后面有"按产品类型分类"
+      /(?:主营业务收入[^\d]*主营业务成本[^\d]*分解信息|按产品类型分类)[\s\S]{0,500}?黄金等副产品[^\d]*([\d,，]+\.?\d*)[\s\t]+([\d,，]+\.?\d*)[\s\t]+[\d,，]+\.?\d*[^\d]*[\d,，]+\.?\d*/g,
       // 格式2：2024年报格式（营收 营收占比% 成本 成本占比% 毛利率%）
       /(?:分产品[^\d]*)?黄金等副产品[^\d]*([\d,，]+\.?\d*)[\s\t]+[\d,，]+\.?\d*%[^\d]*([\d,，]+\.?\d*)[\s\t]+[\d,，]+\.?\d*%[^\d]*([\d,，]+\.?\d*)\s*%/g,
       // 格式3：跨行匹配
@@ -505,36 +527,41 @@ function extractAllProductFinancials(text) {
       // 格式4：跨行匹配2024年报格式
       /黄金等副产品[\s\S]{0,300}?([\d,，]+\.?\d*)[\s\t]+[\d,，]+\.?\d*%[^\d]*([\d,，]+\.?\d*)[\s\t]+[\d,，]+\.?\d*%[^\d]*([\d,，]+\.?\d*)\s*%/g
     ];
-    
-    for (const goldPattern of goldPatterns) {
+
+    for (let patternIndex = 0; patternIndex < goldPatterns.length; patternIndex++) {
+      const goldPattern = goldPatterns[patternIndex];
       let goldMatch;
-      while ((goldMatch = goldPattern.exec(productTableSection)) !== null) {
+      while ((goldMatch = goldPattern.exec(searchSection)) !== null) {
         const revenueValue = extractNumber(goldMatch[1] + '元');
         const costValue = extractNumber(goldMatch[2] + '元');
-        const marginStr = goldMatch[3].replace(/[,，]/g, '');
-        const marginValue = parseFloat(marginStr);
-        
+
+        // 黄金等副产品毛利率不提取，后续根据营收和成本计算
         // 降低阈值，因为有些年份的数据可能较小
         if (revenueValue && revenueValue > 100000000 && costValue && costValue > 100000000) {
           result.goldByproduct.revenue = revenueValue;
           result.goldByproduct.cost = costValue;
-          if (!isNaN(marginValue) && marginValue >= 0 && marginValue <= 100) {
-            result.goldByproduct.grossMargin = marginValue;
-          }
+          // 不提取毛利率，设置为null，后续根据营收和成本计算
+          result.goldByproduct.grossMargin = null;
           break;
         }
       }
       if (result.goldByproduct.revenue) break;
     }
-    
+
     // 匹配化工及其他产品（支持多种格式）
     // 格式1：化工及其他产品 \t营业收入 \t营业成本 \t毛利率
     // 格式2：化工及其他产品 \t1,657,995,418.97 \t745,471,485.87 \t55.04%
     // 格式3：化工及其他产品 2,292,699,511.02 1.58% 2,509,724,305.75 1.83% -8.65%（2024年报格式：营收 营收占比% 成本 成本占比% 毛利率%，注意毛利率可能是负数）
     // 格式4：化工及其他产品（可能跨行）
+    // 格式5：主营业务收入、主营业务成本的分解信息表格格式（本期发生额收入 本期发生额成本 上期发生额收入 上期发生额成本）
     const chemicalPatterns = [
-      // 格式1：标准格式（营收 成本 毛利率）
+      // 格式1：标准格式（营收 成本 毛利率）- 优先匹配，因为"分产品"表格更准确
       /(?:分产品[^\d]*)?化工及其他产品[^\d]*([\d,，]+\.?\d*)[\s\t]+([\d,，]+\.?\d*)[\s\t]+([\d,，]+\.?\d*)\s*%/g,
+      // 格式5：主营业务收入、主营业务成本的分解信息表格格式（作为备选）
+      // 格式：化工及其他产品 2,292,699,511.02 1,158,043,392.94 2,509,724,305.75 1,158,043,392.94
+      // 只取前两个值（本期发生额的营收和成本）
+      // 需要确保在"主营业务收入、主营业务成本的分解信息"表格中，且后面有"按产品类型分类"
+      /(?:主营业务收入[^\d]*主营业务成本[^\d]*分解信息|按产品类型分类)[\s\S]{0,500}?化工及其他产品[^\d]*([\d,，]+\.?\d*)[\s\t]+([\d,，]+\.?\d*)[\s\t]+[\d,，]+\.?\d*[^\d]*[\d,，]+\.?\d*/g,
       // 格式2：2024年报格式（营收 营收占比% 成本 成本占比% 毛利率%，注意毛利率可能是负数）
       /(?:分产品[^\d]*)?化工及其他产品[^\d]*([\d,，]+\.?\d*)[\s\t]+[\d,，]+\.?\d*%[^\d]*([\d,，]+\.?\d*)[\s\t]+[\d,，]+\.?\d*%[^\d]*([-]?[\d,，]+\.?\d*)\s*%/g,
       // 格式3：跨行匹配
@@ -542,63 +569,30 @@ function extractAllProductFinancials(text) {
       // 格式4：跨行匹配2024年报格式
       /化工及其他产品[\s\S]{0,300}?([\d,，]+\.?\d*)[\s\t]+[\d,，]+\.?\d*%[^\d]*([\d,，]+\.?\d*)[\s\t]+[\d,，]+\.?\d*%[^\d]*([-]?[\d,，]+\.?\d*)\s*%/g
     ];
-    
-    for (const chemicalPattern of chemicalPatterns) {
+
+    for (let patternIndex = 0; patternIndex < chemicalPatterns.length; patternIndex++) {
+      const chemicalPattern = chemicalPatterns[patternIndex];
       let chemicalMatch;
-      while ((chemicalMatch = chemicalPattern.exec(productTableSection)) !== null) {
+      while ((chemicalMatch = chemicalPattern.exec(searchSection)) !== null) {
         const revenueValue = extractNumber(chemicalMatch[1] + '元');
         const costValue = extractNumber(chemicalMatch[2] + '元');
-        const marginStr = chemicalMatch[3].replace(/[,，]/g, '');
-        const marginValue = parseFloat(marginStr);
-        
+
+        // 化工及其他产品毛利率不提取，后续根据营收和成本计算
         // 降低阈值，因为有些年份的数据可能较小
-        // 注意：2024年报中毛利率是-8.65%，这是同比变化，不是毛利率本身
-        // 需要从后面的表格中提取真正的毛利率：49.49%
         if (revenueValue && revenueValue > 10000000 && costValue && costValue > 10000000) {
           result.chemical.revenue = revenueValue;
           result.chemical.cost = costValue;
-          // 对于2024年报格式，第三个数字是同比变化，不是毛利率，需要从后面的表格中提取
-          // 但这里先尝试匹配，如果匹配到负数或异常值，会在后面重新匹配
-          if (!isNaN(marginValue) && marginValue >= 0 && marginValue <= 100) {
-            result.chemical.grossMargin = marginValue;
-          }
+          // 不提取毛利率，设置为null，后续根据营收和成本计算
+          result.chemical.grossMargin = null;
           break;
         }
       }
       if (result.chemical.revenue) break;
     }
-    
-    // 如果提取到营收和成本但没有毛利率，尝试从后面的表格中提取
-    // 2024年报格式：分产品表格有两部分，第一部分是同比数据，第二部分是详细数据（包含毛利率）
-    if (result.chemical.revenue && result.chemical.cost && !result.chemical.grossMargin) {
-      // 查找"营业收入 营业成本 毛利率"标题后的数据
-      const detailedTablePattern = /营业收入[\s\t]+营业成本[\s\t]+毛利率[\s\S]{0,1000}?化工及其他产品[^\d]*[\d,，]+\.?\d*[^\d]*[\d,，]+\.?\d*[^\d]*([\d,，]+\.?\d*)\s*%/g;
-      let detailedMatch;
-      while ((detailedMatch = detailedTablePattern.exec(productTableSection)) !== null) {
-        const marginStr = detailedMatch[1].replace(/[,，]/g, '');
-        const marginValue = parseFloat(marginStr);
-        if (!isNaN(marginValue) && marginValue >= 0 && marginValue <= 100) {
-          result.chemical.grossMargin = marginValue;
-          break;
-        }
-      }
-    }
-    
-    // 同样处理黄金等副产品
-    if (result.goldByproduct.revenue && result.goldByproduct.cost && !result.goldByproduct.grossMargin) {
-      const detailedTablePattern = /营业收入[\s\t]+营业成本[\s\t]+毛利率[\s\S]{0,1000}?黄金等副产品[^\d]*[\d,，]+\.?\d*[^\d]*[\d,，]+\.?\d*[^\d]*([\d,，]+\.?\d*)\s*%/g;
-      let detailedMatch;
-      while ((detailedMatch = detailedTablePattern.exec(productTableSection)) !== null) {
-        const marginStr = detailedMatch[1].replace(/[,，]/g, '');
-        const marginValue = parseFloat(marginStr);
-        if (!isNaN(marginValue) && marginValue >= 0 && marginValue <= 100) {
-          result.goldByproduct.grossMargin = marginValue;
-          break;
-        }
-      }
-    }
+
+    // 黄金等副产品毛利率不提取，后续根据营收和成本计算
   }
-  
+
   return result;
 }
 
@@ -612,7 +606,7 @@ function extractCopperFinancials(text) {
     grossProfit: null,
     grossMargin: null  // 毛利率
   };
-  
+
   // 匹配格式：铜产品销售收入 \tXX \t亿元，铜产品销售成本 \tXX \t亿元，毛利 \tXX \t亿
   const pattern1 = /铜产品销售收入[\s\t]+([\d,，]+\.?\d*)[\s\t]+亿元[，,]*[\s\t]*铜产品销售成本[\s\t]+([\d,，]+\.?\d*)[\s\t]+亿元[，,]*[\s\t]*毛利[\s\t]+([\d,，]+\.?\d*)[\s\t]*亿/g;
   let match1 = pattern1.exec(text);
@@ -622,7 +616,7 @@ function extractCopperFinancials(text) {
     result.grossProfit = extractNumber(match1[3] + '亿元');
     return result;
   }
-  
+
   // 匹配格式：铜产品销售收入 \tXX \t亿元，铜产品销售成本 \tXX \t亿元
   const pattern2 = /铜产品销售收入[\s\t]+([\d,，]+\.?\d*)[\s\t]+亿元[，,]*[\s\t]*铜产品销售成本[\s\t]+([\d,，]+\.?\d*)[\s\t]+亿元/g;
   let match2 = pattern2.exec(text);
@@ -634,7 +628,7 @@ function extractCopperFinancials(text) {
     }
     return result;
   }
-  
+
   // 格式3：其中铜产品销售收入 XX 亿元（半年报格式）
   if (!result.copperRevenue) {
     const pattern5 = /(?:其中)?铜产品销售收入[\s\t]+([\d,，]+\.?\d*)[\s\t]*亿元/g;
@@ -647,7 +641,7 @@ function extractCopperFinancials(text) {
       }
     }
   }
-  
+
   // 格式4：铜产品销售成本 XX 亿元（半年报格式）
   if (!result.copperCost) {
     const pattern6 = /(?:其中)?铜产品销售成本[\s\t]+([\d,，]+\.?\d*)[\s\t]*亿元/g;
@@ -660,7 +654,7 @@ function extractCopperFinancials(text) {
       }
     }
   }
-  
+
   // 格式5：从"分产品"表格中提取铜产品的营业收入、营业成本和毛利率
   // 格式：分产品 \t铜产品 \t营业收入 \t营业成本 \t毛利率
   // 或者：铜产品 \t63,736,262,956.68 \t60,291,314,387.94 \t5.41%
@@ -674,7 +668,7 @@ function extractCopperFinancials(text) {
       const costValue = extractNumber(productMatch[2] + '元');
       const marginStr = productMatch[3].replace(/[,，]/g, '');
       const marginValue = parseFloat(marginStr);
-      
+
       if (revenueValue && revenueValue > 1000000000 && costValue && costValue > 1000000000) {
         if (!result.copperRevenue) result.copperRevenue = revenueValue;
         if (!result.copperCost) result.copperCost = costValue;
@@ -685,7 +679,7 @@ function extractCopperFinancials(text) {
       }
     }
   }
-  
+
   // 格式6：铜产品销售收入（万元） XX,XXX.XX（表格格式）
   if (!result.copperRevenue) {
     const pattern7a = /铜产品销售收入\s*[（(]万元[）)]\s+([\d,，]+\.?\d*)/g;
@@ -709,7 +703,7 @@ function extractCopperFinancials(text) {
       }
     }
   }
-  
+
   // 格式7：铜产品销售成本（万元） XX,XXX.XX（表格格式）
   if (!result.copperCost) {
     const pattern8a = /铜产品销售成本\s*[（(]万元[）)]\s+([\d,，]+\.?\d*)/g;
@@ -733,7 +727,7 @@ function extractCopperFinancials(text) {
       }
     }
   }
-  
+
   // 单独匹配铜产品销售收入（兜底，亿元）
   if (!result.copperRevenue) {
     const pattern3 = /铜产品销售收入[\s\t]+([\d,，]+\.?\d*)[\s\t]*亿元/g;
@@ -745,7 +739,7 @@ function extractCopperFinancials(text) {
       }
     }
   }
-  
+
   // 单独匹配铜产品销售成本（兜底，亿元）
   if (!result.copperCost) {
     const pattern4 = /铜产品销售成本[\s\t]+([\d,，]+\.?\d*)[\s\t]*亿元/g;
@@ -757,12 +751,12 @@ function extractCopperFinancials(text) {
       }
     }
   }
-  
+
   // 如果都有，计算毛利
   if (result.copperRevenue && result.copperCost && !result.grossProfit) {
     result.grossProfit = result.copperRevenue - result.copperCost;
   }
-  
+
   // 提取毛利率（从分产品表格中）
   // 格式：铜产品 \t营业收入 \t营业成本 \t毛利率
   // 或者：铜产品 营业收入 63,736,262,956.68 营业成本 60,291,314,387.94 毛利率 5.41%
@@ -776,7 +770,7 @@ function extractCopperFinancials(text) {
     // 格式4：分产品.*铜产品[\s\S]{0,500}毛利率[\s\t]+([\d,，]+\.?\d*)\s*%
     /分产品[^\d]*铜产品[\s\S]{0,500}毛利率[\s\t]+([\d,，]+\.?\d*)\s*%/g
   ];
-  
+
   for (const pattern of grossMarginPatterns) {
     let match;
     while ((match = pattern.exec(text)) !== null) {
@@ -789,13 +783,13 @@ function extractCopperFinancials(text) {
     }
     if (result.grossMargin !== null) break;
   }
-  
+
   // 如果提取到营收和成本但没有毛利率，计算毛利率
   if (result.copperRevenue && result.copperCost && result.grossMargin === null) {
     const grossProfit = result.copperRevenue - result.copperCost;
     result.grossMargin = (grossProfit / result.copperRevenue) * 100;
   }
-  
+
   return result;
 }
 
@@ -809,14 +803,14 @@ async function parsePDF(filePath) {
     const parser = new PDFParse({ data: dataBuffer });
     const textData = await parser.getText();
     const data = { text: textData.text };
-    
+
     // 提取年份
     const yearMatch = data.text.match(/20\d{2}/);
     const year = yearMatch ? yearMatch[0] : null;
-    
+
     console.log(`提取到年份: ${year || '未知'}`);
     console.log(`文本长度: ${data.text.length} 字符`);
-    
+
     // 提取各类数据
     const extractedData = {
       year: year,
@@ -837,37 +831,37 @@ async function parsePDF(filePath) {
         chemical: { revenue: null, cost: null, grossMargin: null }        // 化工及其他产品
       }
     };
-    
+
     // 提取成本相关数据
     for (const keyword of keywords.cost) {
       const results = extractDataByKeyword(data.text, keyword);
       extractedData.cost.push(...results);
     }
-    
+
     // 提取营收相关数据
     for (const keyword of keywords.revenue) {
       const results = extractDataByKeyword(data.text, keyword);
       extractedData.revenue.push(...results);
     }
-    
+
     // 提取产量相关数据
     for (const keyword of keywords.production) {
       const results = extractDataByKeyword(data.text, keyword);
       extractedData.production.push(...results);
     }
-    
+
     // 提取销量相关数据
     for (const keyword of keywords.sales) {
       const results = extractDataByKeyword(data.text, keyword);
       extractedData.sales.push(...results);
     }
-    
+
     // 提取库存相关数据（从"主要产品"表格中提取）
     extractInventoryFromMainProducts(data.text, extractedData);
-    
+
     // 提取分产品销量数据
     extractProductSales(data.text, extractedData);
-    
+
     // 提取铜产品财务数据（销售收入、成本、毛利率）
     const copperFinancials = extractCopperFinancials(data.text);
     if (copperFinancials.copperRevenue) {
@@ -891,7 +885,7 @@ async function parsePDF(filePath) {
     if (copperFinancials.grossMargin !== null) {
       extractedData.grossMargin = copperFinancials.grossMargin;
     }
-    
+
     // 提取所有产品的财务数据（包括黄金等副产品和化工及其他产品）
     const allProductFinancials = extractAllProductFinancials(data.text);
     if (allProductFinancials.goldByproduct.revenue) {
@@ -900,7 +894,7 @@ async function parsePDF(filePath) {
     if (allProductFinancials.chemical.revenue) {
       extractedData.otherProducts.chemical = allProductFinancials.chemical;
     }
-    
+
     return extractedData;
   } catch (error) {
     console.error(`解析 ${filePath} 时出错:`, error.message);
@@ -916,11 +910,11 @@ async function processAllPDFs() {
   const files = fs.readdirSync(reportDir)
     .filter(f => f.toLowerCase().endsWith('.pdf'))
     .sort();
-  
+
   console.log(`找到 ${files.length} 个PDF文件`);
-  
+
   const allData = [];
-  
+
   for (const file of files) {
     const filePath = path.join(reportDir, file);
     const data = await parsePDF(filePath);
@@ -928,7 +922,7 @@ async function processAllPDFs() {
       allData.push(data);
     }
   }
-  
+
   // 按年份排序
   allData.sort((a, b) => {
     if (a.year && b.year) {
@@ -936,7 +930,7 @@ async function processAllPDFs() {
     }
     return 0;
   });
-  
+
   return allData;
 }
 
@@ -945,7 +939,7 @@ async function processAllPDFs() {
  */
 function getMainValue(results, preferKeyword = null) {
   if (!results || results.length === 0) return null;
-  
+
   // 如果指定了优先关键词，先查找匹配的
   if (preferKeyword) {
     const preferredItems = results.filter(r => r.keyword && r.keyword.includes(preferKeyword));
@@ -956,11 +950,11 @@ function getMainValue(results, preferKeyword = null) {
       }
     }
   }
-  
+
   // 如果没有找到优先的，或没有指定优先关键词，取所有结果中的最大值
   const values = results.map(r => r.value).filter(v => v !== null && v > 0);
   if (values.length === 0) return null;
-  
+
   return Math.max(...values);
 }
 
@@ -969,15 +963,15 @@ function getMainValue(results, preferKeyword = null) {
  */
 function generateSummary(allData) {
   const summary = [];
-  
+
   for (const data of allData) {
     const year = data.year || '未知';
-    
+
     // 优先从已提取的数据中查找"铜产品销售收入"和"铜产品销售成本"
     let copperRevenue = null;
     let copperCost = null;
     let grossProfit = null;
-    
+
     // 从revenue中查找"铜产品销售收入"
     for (const rev of data.revenue) {
       if (rev.line === '从extractCopperFinancials提取') {
@@ -1011,7 +1005,7 @@ function generateSummary(allData) {
         }
       }
     }
-    
+
     // 从cost中查找"铜产品销售成本"
     for (const c of data.cost) {
       if (c.keyword === '铜产品销售成本' && c.line.includes('从extractCopperFinancials提取')) {
@@ -1049,7 +1043,7 @@ function generateSummary(allData) {
         }
       }
     }
-    
+
     // 如果还没找到，使用默认值
     if (!copperRevenue) {
       copperRevenue = getMainValue(data.revenue);
@@ -1060,77 +1054,77 @@ function generateSummary(allData) {
     if (!grossProfit && copperRevenue && copperCost) {
       grossProfit = copperRevenue - copperCost;
     }
-    
+
     // 优先从"主要产品"表格中提取产量和销量
     let production = null;
     let sales = null;
     let inventory = getMainValue(data.inventory, '主要产品');
-    
+
     // 从production中查找"主要产品"相关的数据
-    const productionItems = data.production.filter(p => 
-      p.keyword && p.keyword.includes('主要产品') && 
+    const productionItems = data.production.filter(p =>
+      p.keyword && p.keyword.includes('主要产品') &&
       p.line && p.line.includes('万吨') &&
-      !p.line.includes('%') && 
+      !p.line.includes('%') &&
       p.value && p.value >= 0.5  // 过滤掉太小的值（可能是百分比）
     );
     if (productionItems.length > 0) {
       production = Math.max(...productionItems.map(p => p.value));
     }
-    
+
     // 从sales中查找"主要产品"相关的数据
-    const salesItems = data.sales.filter(s => 
-      s.keyword && s.keyword.includes('主要产品') && 
+    const salesItems = data.sales.filter(s =>
+      s.keyword && s.keyword.includes('主要产品') &&
       s.line && s.line.includes('万吨') &&
-      !s.line.includes('%') && 
+      !s.line.includes('%') &&
       s.value && s.value >= 0.5  // 过滤掉太小的值（可能是百分比）
     );
     if (salesItems.length > 0) {
       sales = Math.max(...salesItems.map(s => s.value));
     }
-    
+
     // 如果没找到"主要产品"的数据，再尝试其他来源，但必须包含"万吨"且不是百分比
     if (!production) {
-      const otherProductionItems = data.production.filter(p => 
+      const otherProductionItems = data.production.filter(p =>
         p.line && p.line.includes('万吨') &&
-        !p.line.includes('%') && 
+        !p.line.includes('%') &&
         p.value && p.value >= 0.5
       );
       if (otherProductionItems.length > 0) {
         production = Math.max(...otherProductionItems.map(p => p.value));
       }
     }
-    
+
     if (!sales) {
-      const otherSalesItems = data.sales.filter(s => 
+      const otherSalesItems = data.sales.filter(s =>
         s.line && s.line.includes('万吨') &&
-        !s.line.includes('%') && 
+        !s.line.includes('%') &&
         s.value && s.value >= 0.5
       );
       if (otherSalesItems.length > 0) {
         sales = Math.max(...otherSalesItems.map(s => s.value));
       }
     }
-    
+
     // 数据合理性验证
     if (production && (production > 100000 || production < 0.5)) {
       console.log(`  ⚠️  产量数据异常 (${production.toFixed(2)}万吨)，已清空`);
       production = null;
     }
-    
+
     if (sales && (sales > 100000 || sales < 0.5)) {
       console.log(`  ⚠️  销量数据异常 (${sales.toFixed(2)}万吨)，已清空`);
       sales = null;
     }
-    
+
     if (copperRevenue && copperRevenue > 50000000000) {
       console.log(`  ⚠️  营收数据异常 (${(copperRevenue/100000000).toFixed(2)}亿元)，可能是总营收而非铜产品营收`);
     }
-    
+
     // 提取分产品销量
     const cathodeCopper = getMainValue(data.productSales.cathodeCopper);
     const copperConcentrate = getMainValue(data.productSales.copperConcentrate);
     const copperMaterial = getMainValue(data.productSales.copperMaterial);
-    
+
     summary.push({
       year: year,
       filename: data.filename,
@@ -1151,7 +1145,7 @@ function generateSummary(allData) {
       }
     });
   }
-  
+
   return summary;
 }
 
@@ -1160,16 +1154,16 @@ function generateSummary(allData) {
  */
 async function main() {
   console.log('开始解析铜陵有色年报PDF文件...\n');
-  
+
   const allData = await processAllPDFs();
-  
+
   if (allData.length === 0) {
     console.log('未找到任何数据');
     return;
   }
-  
+
   const summary = generateSummary(allData);
-  
+
   // 输出摘要
   console.log('\n=== 数据摘要 ===');
   summary.forEach(item => {
@@ -1187,13 +1181,239 @@ async function main() {
       console.log(`    铜材: ${item.productSales.copperMaterial ? item.productSales.copperMaterial.toFixed(2) + '万吨' : '未找到'}`);
     }
   });
-  
+
   // 保存为JSON文件
   const outputPath = path.join(__dirname, '../../stock/report_analysis/铜陵有色/tongling_data.json');
   fs.writeFileSync(outputPath, JSON.stringify({ allData, summary }, null, 2), 'utf8');
   console.log(`\n数据已保存到: ${outputPath}`);
-  
+
+  // 自动更新修正数据文件
+  await updateCorrectedData();
+
   return { allData, summary };
+}
+
+/**
+ * 自动更新修正数据文件（增量更新，不覆盖已有数据）
+ */
+async function updateCorrectedData() {
+  console.log('\n' + '='.repeat(60));
+  console.log('开始更新修正数据文件...');
+
+  const correctedPath = path.join(__dirname, '../../stock/report_analysis/铜陵有色/tongling_data_corrected.json');
+  const rawPath = path.join(__dirname, '../../stock/report_analysis/铜陵有色/tongling_data.json');
+
+  // 读取原始数据
+  const rawData = JSON.parse(fs.readFileSync(rawPath, 'utf8'));
+
+  // 读取或创建修正数据
+  let correctedData;
+  if (fs.existsSync(correctedPath)) {
+    correctedData = JSON.parse(fs.readFileSync(correctedPath, 'utf8'));
+    console.log(`找到现有修正数据文件，包含 ${correctedData.summary.length} 条记录`);
+  } else {
+    console.log('未找到修正数据文件，创建新文件');
+    correctedData = {
+      _metadata: {
+        stockName: '铜陵有色',
+        stockCode: '000630',
+        description: '此文件包含修正后的数据，用于页面展示。手动修正的数据会被标记。',
+        dataSource: 'tongling_data.json',
+        lastUpdated: new Date().toISOString().split('T')[0],
+        products: ['copper', 'goldByproduct', 'chemical'],
+        dataFlow: 'PDF报告 → 自动提取(tongling_data.json) → 手动修正(本文件) → 页面展示',
+        correctionRules: {
+          manual: '手动填入或修改的数据，标记 _corrected: true',
+          verified: '经过人工验证确认正确的数据，标记 _verified: true'
+        }
+      },
+      summary: []
+    };
+  }
+
+  // 创建现有数据的索引
+  const existingIndex = new Map();
+  correctedData.summary.forEach(item => {
+    const key = `${item.year}-${item.period}`;
+    existingIndex.set(key, item);
+  });
+
+  // 处理原始数据
+  let newCount = 0;
+  let updatedCount = 0;
+  let skippedCount = 0;
+
+  rawData.summary.forEach(item => {
+    // 确定报告期
+    let period = '';
+    if (item.filename.includes('第一季度')) {
+      period = `${item.year}年1-3月`;
+    } else if (item.filename.includes('半年度') || item.filename.includes('半年')) {
+      period = `${item.year}年上半年`;
+    } else if (item.filename.includes('第三季度')) {
+      period = `${item.year}年1-9月`;
+    } else if ((item.filename.includes('年度报告') || item.filename.includes('年报')) && !item.filename.includes('半年度')) {
+      period = `${item.year}年全年`;
+    }
+
+    if (!period) return;
+
+    const key = `${item.year}-${period}`;
+
+    // 检查是否已存在
+    if (existingIndex.has(key)) {
+      // 如果已存在，检查是否需要更新（只更新未修正的数据）
+      const existingItem = existingIndex.get(key);
+      if (!existingItem._corrected) {
+        // 更新数据（但保留手动修正的标记）
+        existingItem.cost = item.cost ? item.cost / 100000000 : null;
+        existingItem.revenue = item.revenue ? item.revenue / 100000000 : null;
+        existingItem.production = item.production || null;
+        existingItem.sales = item.sales || null;
+        existingItem.inventory = item.inventory || null;
+        // 总毛利率根据营收和成本计算
+        if (existingItem.revenue !== null && existingItem.cost !== null && !isNaN(existingItem.revenue) && !isNaN(existingItem.cost) && existingItem.revenue > 0) {
+          const calculatedMargin = ((existingItem.revenue - existingItem.cost) / existingItem.revenue) * 100;
+          existingItem.grossMargin = !isNaN(calculatedMargin) ? parseFloat(calculatedMargin.toFixed(2)) : null;
+        } else {
+          existingItem.grossMargin = null;
+        }
+        if (item.productSales) {
+          existingItem.productSales = item.productSales;
+        }
+        if (item.otherProducts) {
+          existingItem.otherProducts = {
+            goldByproduct: item.otherProducts.goldByproduct ? {
+              revenue: item.otherProducts.goldByproduct.revenue ? item.otherProducts.goldByproduct.revenue / 100000000 : null,
+              cost: item.otherProducts.goldByproduct.cost ? item.otherProducts.goldByproduct.cost / 100000000 : null,
+              // 黄金等副产品毛利率不提取，根据营收和成本计算
+              grossMargin: (() => {
+                const rev = item.otherProducts.goldByproduct.revenue ? item.otherProducts.goldByproduct.revenue / 100000000 : null;
+                const cst = item.otherProducts.goldByproduct.cost ? item.otherProducts.goldByproduct.cost / 100000000 : null;
+                if (rev !== null && cst !== null && !isNaN(rev) && !isNaN(cst) && rev > 0) {
+                  const calculatedMargin = ((rev - cst) / rev) * 100;
+                  return !isNaN(calculatedMargin) ? parseFloat(calculatedMargin.toFixed(2)) : null;
+                }
+                return null;
+              })(),
+              _corrected: false,
+              _verified: false
+            } : null,
+            chemical: item.otherProducts.chemical ? {
+              revenue: item.otherProducts.chemical.revenue ? item.otherProducts.chemical.revenue / 100000000 : null,
+              cost: item.otherProducts.chemical.cost ? item.otherProducts.chemical.cost / 100000000 : null,
+              // 化工及其他产品毛利率不提取，根据营收和成本计算
+              grossMargin: (() => {
+                const rev = item.otherProducts.chemical.revenue ? item.otherProducts.chemical.revenue / 100000000 : null;
+                const cst = item.otherProducts.chemical.cost ? item.otherProducts.chemical.cost / 100000000 : null;
+                if (rev !== null && cst !== null && !isNaN(rev) && !isNaN(cst) && rev > 0) {
+                  const calculatedMargin = ((rev - cst) / rev) * 100;
+                  return !isNaN(calculatedMargin) ? parseFloat(calculatedMargin.toFixed(2)) : null;
+                }
+                return null;
+              })(),
+              _corrected: false,
+              _verified: false
+            } : null
+          };
+        }
+        updatedCount++;
+        console.log(`🔄 更新数据: ${period}`);
+      } else {
+        skippedCount++;
+      }
+      return;
+    }
+
+    // 创建新数据项
+    const newItem = {
+      period: period,
+      year: item.year,
+      filename: item.filename,
+      cost: item.cost ? item.cost / 100000000 : null,
+      revenue: item.revenue ? item.revenue / 100000000 : null,
+      production: item.production || null,
+      sales: item.sales || null,
+      inventory: item.inventory || null,
+      // 总毛利率根据营收和成本计算
+      grossMargin: (() => {
+        const rev = item.revenue ? item.revenue / 100000000 : null;
+        const cst = item.cost ? item.cost / 100000000 : null;
+        if (rev !== null && cst !== null && !isNaN(rev) && !isNaN(cst) && rev > 0) {
+          const calculatedMargin = ((rev - cst) / rev) * 100;
+          return !isNaN(calculatedMargin) ? parseFloat(calculatedMargin.toFixed(2)) : null;
+        }
+        return null;
+      })(),
+      productSales: item.productSales || null,
+      otherProducts: item.otherProducts ? {
+        goldByproduct: item.otherProducts.goldByproduct ? {
+          revenue: item.otherProducts.goldByproduct.revenue ? item.otherProducts.goldByproduct.revenue / 100000000 : null,
+          cost: item.otherProducts.goldByproduct.cost ? item.otherProducts.goldByproduct.cost / 100000000 : null,
+          // 黄金等副产品毛利率不提取，根据营收和成本计算
+          grossMargin: (() => {
+            const rev = item.otherProducts.goldByproduct.revenue ? item.otherProducts.goldByproduct.revenue / 100000000 : null;
+            const cst = item.otherProducts.goldByproduct.cost ? item.otherProducts.goldByproduct.cost / 100000000 : null;
+            if (rev !== null && cst !== null && !isNaN(rev) && !isNaN(cst) && rev > 0) {
+              const calculatedMargin = ((rev - cst) / rev) * 100;
+              return !isNaN(calculatedMargin) ? parseFloat(calculatedMargin.toFixed(2)) : null;
+            }
+            return null;
+          })(),
+          _corrected: false,
+          _verified: false
+        } : null,
+        chemical: item.otherProducts.chemical ? {
+          revenue: item.otherProducts.chemical.revenue ? item.otherProducts.chemical.revenue / 100000000 : null,
+          cost: item.otherProducts.chemical.cost ? item.otherProducts.chemical.cost / 100000000 : null,
+          // 化工及其他产品毛利率不提取，根据营收和成本计算
+          grossMargin: (() => {
+            const rev = item.otherProducts.chemical.revenue ? item.otherProducts.chemical.revenue / 100000000 : null;
+            const cst = item.otherProducts.chemical.cost ? item.otherProducts.chemical.cost / 100000000 : null;
+            if (rev !== null && cst !== null && !isNaN(rev) && !isNaN(cst) && rev > 0) {
+              const calculatedMargin = ((rev - cst) / rev) * 100;
+              return !isNaN(calculatedMargin) ? parseFloat(calculatedMargin.toFixed(2)) : null;
+            }
+            return null;
+          })(),
+          _corrected: false,
+          _verified: false
+        } : null
+      } : null,
+      _corrected: false,
+      _verified: false,
+      _notes: null
+    };
+
+    correctedData.summary.push(newItem);
+    newCount++;
+    console.log(`✅ 添加新数据: ${period}`);
+  });
+
+  // 按时间排序（最新的在前）
+  correctedData.summary.sort((a, b) => {
+    if (a.year !== b.year) return b.year.localeCompare(a.year);
+    const monthOrder = { '1-3月': 3, '上半年': 6, '1-9月': 9, '全年': 12 };
+    const aMonth = monthOrder[a.period.replace(/\d{4}年/, '')] || 0;
+    const bMonth = monthOrder[b.period.replace(/\d{4}年/, '')] || 0;
+    return bMonth - aMonth;
+  });
+
+  // 更新元数据
+  correctedData._metadata.lastUpdated = new Date().toISOString().split('T')[0];
+
+  // 保存文件
+  fs.writeFileSync(correctedPath, JSON.stringify(correctedData, null, 2), 'utf8');
+
+  console.log('✅ 修正数据文件更新完成！');
+  console.log(`   总记录数: ${correctedData.summary.length}`);
+  console.log(`   新增记录: ${newCount} 条`);
+  console.log(`   更新记录: ${updatedCount} 条`);
+  console.log(`   跳过记录: ${skippedCount} 条（已存在且已修正）`);
+  if (newCount > 0 || updatedCount > 0) {
+    console.log('\n📝 提示: 请检查并手动修正新增或更新的数据');
+  }
+  console.log('='.repeat(60));
 }
 
 // 如果直接运行此脚本

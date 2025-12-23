@@ -53,6 +53,7 @@ node scripts/stock-reports/batch_download_reports.js --config config.json
 ```
 
 **支持的报告类型：**
+
 - `"all"`: 年报 + 半年报 + 季报
 - `"annual"`: 年度报告
 - `"semi"`: 半年度报告
@@ -125,13 +126,34 @@ node scripts/stock-reports/shanmei_report_parse.js
 
 # 解析川恒股份财报
 node scripts/stock-reports/chuanheng_report_parse.js
+
+# 解析铜陵有色财报
+node scripts/stock-reports/tongling_report_parse.js
 ```
 
 解析脚本会：
+
 1. 读取下载的 PDF 和 Excel 文件
 2. 提取关键财务数据
 3. 生成 JSON 格式的结构化数据
 4. 保存到 `stock/report_analysis/[公司名]/` 目录
+
+**数据文件说明：**
+
+- 解析脚本会生成两个文件：
+  - `[公司名]_data.json`：原始提取数据（元单位），用于调试和验证
+  - `[公司名]_data_corrected.json`：修正后的数据（亿元单位），**用于页面展示**
+- HTML 分析页面**直接读取** `*_data_corrected.json`，**不使用回退方案**
+- `corrected.json` 文件支持增量更新，不会覆盖已手动修正的数据（标记 `_corrected: true`）
+- 数据格式：`corrected.json` 中的数据已经是**亿元单位**，无需转换
+- **重要**：所有新开发的解析脚本和 HTML 页面都应遵循此规范，直接使用 `corrected.json`，避免冗余的回退逻辑
+
+**页面展示规范：**
+
+- HTML 分析页面**只显示累计数据**（年报、半年报），不显示单季度数据
+- 累计数据**只显示同比**，不显示环比（环比仅适用于单季度数据）
+- 毛利率等计算字段通常由脚本自动计算，不需要标记 `_source` 字段
+- 页面不提供 Tab 切换功能，直接展示累计数据表格和分产品数据表格
 
 ## 📊 输出数据结构
 
@@ -211,16 +233,19 @@ node scripts/stock-reports/remove_scan_mark.js [pdf文件路径]
 ## 🐛 常见问题
 
 ### 1. 下载失败
+
 - 检查网络连接
 - 确认公司代码和名称正确
 - 查看是否有对应年份的报告
 
 ### 2. 解析错误
+
 - 确认 PDF/Excel 文件完整下载
 - 检查文件格式是否正确
 - 某些报告格式可能需要调整解析逻辑
 
 ### 3. 路径问题
+
 - 所有脚本使用相对路径，已自动适配新的目录结构
 - 确保从项目根目录或脚本所在目录运行
 
@@ -233,9 +258,9 @@ node scripts/stock-reports/remove_scan_mark.js [pdf文件路径]
 ## 🤝 贡献
 
 如需添加新公司的解析脚本：
+
 1. 参考现有的解析脚本（如 `huayang_report_parse.js`）
 2. 根据该公司的报告格式调整解析逻辑
 3. 测试并提交
 
 欢迎提交 Issue 和 Pull Request！
-

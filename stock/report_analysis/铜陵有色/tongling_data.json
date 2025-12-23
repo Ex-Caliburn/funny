@@ -826,12 +826,12 @@
         "goldByproduct": {
           "revenue": 10332616011.38,
           "cost": 8724363622.32,
-          "grossMargin": 18.43
+          "grossMargin": null
         },
         "chemical": {
           "revenue": 1657995418.97,
           "cost": 1723292688.55,
-          "grossMargin": 3.79
+          "grossMargin": null
         }
       }
     },
@@ -1993,12 +1993,12 @@
         "goldByproduct": {
           "revenue": 8724363622.32,
           "cost": 7745371759.29,
-          "grossMargin": 11.22
+          "grossMargin": null
         },
         "chemical": {
           "revenue": 1723292688.55,
-          "cost": 1588389500.39,
-          "grossMargin": 8.49
+          "cost": 1447771540.72,
+          "grossMargin": null
         }
       }
     },
@@ -3272,13 +3272,13 @@
       "otherProducts": {
         "goldByproduct": {
           "revenue": 19273117131.88,
-          "cost": 14693241548.63,
-          "grossMargin": 31.17
+          "cost": 15573863644.25,
+          "grossMargin": null
         },
         "chemical": {
           "revenue": 2292699511.02,
-          "cost": 2509724305.75,
-          "grossMargin": 8.65
+          "cost": 1158043392.94,
+          "grossMargin": null
         }
       }
     },
@@ -3493,12 +3493,12 @@
         "goldByproduct": {
           "revenue": 10332616011.38,
           "cost": 8724363622.32,
-          "grossMargin": 18.43
+          "grossMargin": null
         },
         "chemical": {
           "revenue": 1657995418.97,
           "cost": 1723292688.55,
-          "grossMargin": 3.79
+          "grossMargin": null
         }
       }
     },
@@ -3574,12 +3574,12 @@
         "goldByproduct": {
           "revenue": 8724363622.32,
           "cost": 7745371759.29,
-          "grossMargin": 11.22
+          "grossMargin": null
         },
         "chemical": {
           "revenue": 1723292688.55,
-          "cost": 1588389500.39,
-          "grossMargin": 8.49
+          "cost": 1447771540.72,
+          "grossMargin": null
         }
       }
     },
@@ -3600,13 +3600,13 @@
       "otherProducts": {
         "goldByproduct": {
           "revenue": 19273117131.88,
-          "cost": 14693241548.63,
-          "grossMargin": 31.17
+          "cost": 15573863644.25,
+          "grossMargin": null
         },
         "chemical": {
           "revenue": 2292699511.02,
-          "cost": 2509724305.75,
-          "grossMargin": 8.65
+          "cost": 1158043392.94,
+          "grossMargin": null
         }
       }
     },

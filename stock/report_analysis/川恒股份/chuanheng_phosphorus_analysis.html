@@ -115,7 +115,7 @@
             background: #f9fafb;
             box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
         }
-        
+
         /* 确保分产品表格的表头对齐 */
         #productSalesSection table,
         #companyFinancialSection table {
@@ -123,7 +123,7 @@
             border-spacing: 0;
             width: 100%;
         }
-        
+
         #productSalesSection thead th,
         #companyFinancialSection thead th {
             vertical-align: middle;
@@ -133,7 +133,7 @@
             white-space: nowrap;
             background: #f9fafb;
         }
-        
+
         #productSalesSection tbody td,
         #companyFinancialSection tbody td {
             border: 1px solid #e5e7eb;
@@ -142,7 +142,7 @@
             text-align: center;
             white-space: nowrap;
         }
-        
+
         /* 确保分产品表格的报告期列固定宽度 */
         #productSalesSection thead th:first-child,
         #productSalesSection tbody td.period,
@@ -152,7 +152,7 @@
             min-width: 100px;
             max-width: 100px;
         }
-        
+
         /* 确保所有数据列宽度一致 */
         #productSalesSection thead tr:last-child th,
         #productSalesSection tbody td:not(.period),
@@ -248,7 +248,7 @@
             background: #f9fafb;
             box-shadow: -2px 0 4px rgba(0, 0, 0, 0.1);
         }
-        
+
         /* 分产品表格的表头第三行也需要sticky */
         #productSalesSection thead tr:nth-child(3) th:first-child {
             position: sticky;
@@ -583,50 +583,48 @@
             // 从JSON文件加载数据
             async function loadCorrectedData() {
                 try {
-                    const response = await fetch('chuanheng_data.json');
+                    const response = await fetch('chuanheng_data_corrected.json');
                     if (!response.ok) {
                         throw new Error(`HTTP error! status: ${response.status}`);
                     }
                     const jsonData = await response.json();
-                    // 从summary数据转换为rawData格式
-                    if (jsonData.summary) {
-                        rawData = jsonData.summary.map(item => {
-                            // 根据文件名确定报告期
-                            let period = '';
-                            let year = parseInt(item.year);
-                            let month = 0;
-                            
-                            if (item.filename.includes('第一季度')) {
-                                period = `${year}年1-3月`;
-                                month = 3;
-                            } else if (item.filename.includes('半年度') || item.filename.includes('半年')) {
-                                period = `${year}年上半年`;
-                                month = 6;
-                            } else if (item.filename.includes('第三季度')) {
-                                period = `${year}年1-9月`;
-                                month = 9;
-                            } else if ((item.filename.includes('年度报告') || item.filename.includes('年报')) && !item.filename.includes('半年度')) {
-                                period = `${year}年全年`;
-                                month = 12;
-                            }
-                            
-                            return {
-                                period: period,
-                                year: year,
-                                month: month,
-                                type: 'cumulative',
-                                cost: item.cost ? item.cost / 100000000 : null, // 转换为亿元
-                                revenue: item.revenue ? item.revenue / 100000000 : null, // 转换为亿元
-                                production: item.production || null,
-                                sales: item.sales || null,
-                                inventory: item.inventory || null,
-                                grossMargin: (item.grossMargin !== null && item.grossMargin !== undefined && !isNaN(item.grossMargin)) ? parseFloat(item.grossMargin) : null, // 保留原始毛利率
-                                productSales: item.productSales || {}
-                            };
-                        }).filter(item => item.period); // 过滤掉没有period的数据
-                    } else {
-                        rawData = jsonData.rawData || [];
+                    // 从summary数据转换为rawData格式（修正数据文件结构）
+                    if (!jsonData.summary || jsonData.summary.length === 0) {
+                        throw new Error('修正数据文件中未找到summary数据');
                     }
+
+                    rawData = jsonData.summary.map(item => {
+                        // 修正数据文件中，period已经存在
+                        const period = item.period;
+                        const year = parseInt(item.year);
+                        let month = 0;
+
+                        // 从period计算month
+                        if (period.includes('1-3月')) month = 3;
+                        else if (period.includes('上半年')) month = 6;
+                        else if (period.includes('1-9月')) month = 9;
+                        else if (period.includes('全年')) month = 12;
+
+                        // 修正文件的数据结构：数据在 item.phosphorus 中（已经是亿元单位）
+                        const phosphorus = item.phosphorus || {};
+
+                        return {
+                            period: period,
+                            year: year,
+                            month: month,
+                            type: 'cumulative',
+                            cost: phosphorus.cost || null, // 已经是亿元
+                            revenue: phosphorus.revenue || null, // 已经是亿元
+                            production: phosphorus.production || null,
+                            sales: phosphorus.sales || null,
+                            inventory: phosphorus.inventory || null,
+                            grossMargin: (phosphorus.grossMargin !== null && phosphorus.grossMargin !== undefined && !isNaN(phosphorus.grossMargin))
+                                ? parseFloat(phosphorus.grossMargin)
+                                : null,
+                            productSales: item.productSales || {},
+                            productFinancials: item.productFinancials || {}
+                        };
+                    }).filter(item => item.period); // 过滤掉没有period的数据
                     console.log('已加载修正后的数据，共', rawData.length, '条记录');
                     // 调试：检查2024年上半年的数据
                     const h1_2024 = rawData.find(d => d.period && d.period.includes('2024年上半年'));
@@ -1392,7 +1390,7 @@
                     // 优先使用原始数据中的grossMargin，如果不存在或异常，则计算
                     // 保存原始grossMargin值
                     const originalGrossMargin = item.grossMargin;
-                    
+
                     // 调试信息：如果是2024年上半年，输出原始数据
                     if (item.period && item.period.includes('2024年上半年')) {
                         console.log('2024年上半年数据处理前:', {
@@ -1404,7 +1402,7 @@
                             isNaN: isNaN(originalGrossMargin)
                         });
                     }
-                    
+
                     // 检查原始毛利率是否有效（允许0值，只要不是null/undefined/NaN）
                     if (originalGrossMargin !== null && originalGrossMargin !== undefined && !isNaN(originalGrossMargin) && originalGrossMargin >= 0 && originalGrossMargin <= 100) {
                         // 如果原始数据中有有效的毛利率（包括0），直接使用
@@ -1472,13 +1470,13 @@
                 });
 
                 console.log('数据加载和计算完成，准备渲染表格');
-                
+
                 // 渲染公司整体财务数据表格
                 renderCompanyFinancialTable();
-                
+
                 // 渲染累计数据表格（去掉1-3月和1-9月）
                 renderTable('cumulative');
-                
+
                 // 显示分产品销量表格
                 const productSalesSection = document.getElementById('productSalesSection');
                 if (productSalesSection) {
@@ -1492,243 +1490,55 @@
             async function renderCompanyFinancialTable() {
                 try {
                     // 从JSON文件读取数据
-                    const response = await fetch('chuanheng_data.json');
+                    const response = await fetch('chuanheng_data_corrected.json');
                     if (!response.ok) {
                         throw new Error(`HTTP error! status: ${response.status}`);
                     }
                     const jsonData = await response.json();
                     const summary = jsonData.summary || [];
-                    const allData = jsonData.allData || [];
 
-                    if (summary.length === 0 && allData.length === 0) {
-                        console.warn('未找到summary或allData数据');
+                    if (summary.length === 0) {
+                        console.warn('未找到summary数据');
                         return;
                     }
 
-                    // 优先使用summary数据（因为summary中已经有处理好的公司整体数据）
-                    // 如果没有summary，再从allData中提取
+                    // 使用summary数据（修正数据文件结构）
                     const companyFinancialData = [];
-                    
-                    if (summary.length > 0) {
-                        // 使用summary数据（更准确，因为已经处理过）
-                        summary.forEach(item => {
-                            // 根据文件名确定报告期
-                            let period = '';
-                            let year = parseInt(item.year);
-                            let month = 0;
-                            
-                            if (item.filename.includes('第一季度')) {
-                                period = `${year}年1-3月`;
-                                month = 3;
-                            } else if (item.filename.includes('半年度') || item.filename.includes('半年')) {
-                                period = `${year}年上半年`;
-                                month = 6;
-                            } else if (item.filename.includes('第三季度')) {
-                                period = `${year}年1-9月`;
-                                month = 9;
-                            } else if ((item.filename.includes('年度报告') || item.filename.includes('年报')) && !item.filename.includes('半年度')) {
-                                period = `${year}年全年`;
-                                month = 12;
-                            }
 
-                            if (period) {
-                                // summary数据中，revenue和cost已经是处理好的数值（单位：元）
-                                // 但我们需要公司整体的数据，不是磷化工的数据
-                                // 从allData中找到对应的原始数据，提取公司整体的营业收入和营业成本
-                                const allDataItem = allData.find(d => d.filename === item.filename);
-                                
-                                let companyRevenue = null;
-                                let companyCost = null;
-                                let grossMargin = null;
+                    summary.forEach(item => {
+                        // 修正数据文件中，period已经存在
+                        const period = item.period;
+                        const year = parseInt(item.year);
+                        let month = 0;
 
-                                if (allDataItem) {
-                                    // 从allData中提取公司整体的营业收入和营业成本
-                                    // 优先查找"营业收入合计"或"营业总收入"（合并报表数据）
-                                    for (const rev of allDataItem.revenue || []) {
-                                        if (rev.keyword && rev.keyword.includes('营业收入')) {
-                                            // 优先选择包含"合计"或"营业收入合计"的，或者最大的（排除磷化工相关的）
-                                            if (rev.line.includes('合计') || rev.line.includes('营业收入合计') || 
-                                                rev.line.includes('营业总收入') || rev.line.includes('一、营业收入')) {
-                                                // 排除磷化工相关的
-                                                if (!rev.line.includes('磷产品') && !rev.line.includes('磷化工') &&
-                                                    !rev.keyword.includes('磷产品') && !rev.keyword.includes('磷化工')) {
-                                                    if (!companyRevenue || rev.value > companyRevenue) {
-                                                        companyRevenue = rev.value;
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
+                        // 从period计算month
+                        if (period.includes('1-3月')) month = 3;
+                        else if (period.includes('上半年')) month = 6;
+                        else if (period.includes('1-9月')) month = 9;
+                        else if (period.includes('全年')) month = 12;
 
-                                    // 查找"营业成本"（合并报表数据，不是磷化工的）
-                                    for (const c of allDataItem.cost || []) {
-                                        if (c.keyword && c.keyword.includes('营业成本')) {
-                                            // 优先选择包含"合计"或"其中：营业成本"的（合并报表数据）
-                                            if (c.line.includes('合计') || c.line.includes('其中：营业成本') ||
-                                                c.line.includes('减：营业成本')) {
-                                                // 排除磷化工相关的
-                                                if (!c.line.includes('磷产品') && !c.line.includes('磷化工') &&
-                                                    !c.keyword.includes('磷产品') && !c.keyword.includes('磷化工')) {
-                                                    if (!companyCost || c.value > companyCost) {
-                                                        companyCost = c.value;
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
+                        // 修正数据文件中，数据在 item.phosphorus 中（已经是亿元单位）
+                        const phosphorus = item.phosphorus || {};
+                        const companyRevenue = phosphorus.revenue || null;
+                        const companyCost = phosphorus.cost || null;
 
-                                    // 如果没找到，尝试从所有revenue和cost中找最大的（排除磷化工相关的）
-                                    if (!companyRevenue) {
-                                        const allRevenues = (allDataItem.revenue || [])
-                                            .filter(r => r.keyword && r.keyword.includes('营业收入') &&
-                                                        !r.line.includes('磷产品') && !r.line.includes('磷化工') && 
-                                                        !r.keyword.includes('磷产品') && !r.keyword.includes('磷化工'))
-                                            .map(r => r.value)
-                                            .filter(v => v && v > 0);
-                                        if (allRevenues.length > 0) {
-                                            companyRevenue = Math.max(...allRevenues);
-                                        }
-                                    }
+                        // 计算毛利率：优先使用计算值
+                        let grossMargin = null;
+                        if (companyRevenue && companyCost && companyRevenue > 0) {
+                            grossMargin = ((companyRevenue - companyCost) / companyRevenue) * 100;
+                        } else if (phosphorus.grossMargin !== null && phosphorus.grossMargin !== undefined) {
+                            grossMargin = phosphorus.grossMargin;
+                        }
 
-                                    if (!companyCost) {
-                                        const allCosts = (allDataItem.cost || [])
-                                            .filter(c => c.keyword && c.keyword.includes('营业成本') &&
-                                                        !c.line.includes('磷产品') && !c.line.includes('磷化工') && 
-                                                        !c.keyword.includes('磷产品') && !c.keyword.includes('磷化工'))
-                                            .map(c => c.value)
-                                            .filter(v => v && v > 0);
-                                        if (allCosts.length > 0) {
-                                            companyCost = Math.max(...allCosts);
-                                        }
-                                    }
-                                }
-
-                                // 计算毛利率：优先使用计算值
-                                if (companyRevenue && companyCost && companyRevenue > 0) {
-                                    grossMargin = ((companyRevenue - companyCost) / companyRevenue) * 100;
-                                    // 调试信息：如果是2024年上半年，输出日志
-                                    if (period.includes('2024年上半年')) {
-                                        console.log('2024年上半年公司整体财务数据:', {
-                                            period: period,
-                                            companyRevenue: companyRevenue,
-                                            companyCost: companyCost,
-                                            calculatedGrossMargin: grossMargin
-                                        });
-                                    }
-                } else {
-                                    // 如果无法从allData提取，设置为null
-                                    grossMargin = null;
-                                    // 调试信息
-                                    if (period.includes('2024年上半年')) {
-                                        console.log('2024年上半年公司整体财务数据提取失败:', {
-                                            period: period,
-                                            companyRevenue: companyRevenue,
-                                            companyCost: companyCost,
-                                            allDataItem: allDataItem ? 'found' : 'not found'
-                                        });
-                                    }
-                                }
-
-                                companyFinancialData.push({
-                                    period: period,
-                                    year: year,
-                                    month: month,
-                                    revenue: companyRevenue ? companyRevenue / 100000000 : null, // 转换为亿元
-                                    cost: companyCost ? companyCost / 100000000 : null, // 转换为亿元
-                                    grossMargin: grossMargin !== null ? parseFloat(grossMargin.toFixed(2)) : null
-                                });
-                            }
+                        companyFinancialData.push({
+                            period: period,
+                            year: year,
+                            month: month,
+                            revenue: companyRevenue, // 已经是亿元
+                            cost: companyCost, // 已经是亿元
+                            grossMargin: grossMargin !== null ? parseFloat(grossMargin.toFixed(2)) : null
                         });
-                    } else {
-                        // 如果没有summary，从allData中提取（原有逻辑）
-                        allData.forEach(item => {
-                            // 根据文件名确定报告期
-                            let period = '';
-                            let year = parseInt(item.year);
-                            let month = 0;
-                            
-                            if (item.filename.includes('第一季度')) {
-                                period = `${year}年1-3月`;
-                                month = 3;
-                            } else if (item.filename.includes('半年度') || item.filename.includes('半年')) {
-                                period = `${year}年上半年`;
-                                month = 6;
-                            } else if (item.filename.includes('第三季度')) {
-                                period = `${year}年1-9月`;
-                                month = 9;
-                            } else if ((item.filename.includes('年度报告') || item.filename.includes('年报')) && !item.filename.includes('半年度')) {
-                                period = `${year}年全年`;
-                                month = 12;
-                            }
-
-                            if (period) {
-                                // 从revenue和cost数组中提取公司整体的营业收入和营业成本
-                                // 查找最大的营业收入和营业成本（通常是公司整体的）
-                                let companyRevenue = null;
-                                let companyCost = null;
-
-                                // 查找"营业收入"（不是"磷产品"或"磷化工"）
-                                for (const rev of item.revenue || []) {
-                                    if (rev.keyword && rev.keyword.includes('营业收入') && 
-                                        !rev.keyword.includes('磷产品') && !rev.keyword.includes('磷化工') &&
-                                        !rev.line.includes('磷产品') && !rev.line.includes('磷化工')) {
-                                        if (!companyRevenue || rev.value > companyRevenue) {
-                                            companyRevenue = rev.value;
-                                        }
-                                    }
-                                }
-
-                                // 查找"营业成本"（不是"磷产品"或"磷化工"）
-                                for (const c of item.cost || []) {
-                                    if (c.keyword && c.keyword.includes('营业成本') && 
-                                        !c.keyword.includes('磷产品') && !c.keyword.includes('磷化工') &&
-                                        !c.line.includes('磷产品') && !c.line.includes('磷化工')) {
-                                        if (!companyCost || c.value > companyCost) {
-                                            companyCost = c.value;
-                                        }
-                                    }
-                                }
-
-                                // 如果没找到，尝试从所有revenue和cost中找最大的（排除磷化工相关的）
-                                if (!companyRevenue) {
-                                    const allRevenues = (item.revenue || [])
-                                        .filter(r => !r.line.includes('磷产品') && !r.line.includes('磷化工') && 
-                                                    !r.keyword.includes('磷产品') && !r.keyword.includes('磷化工'))
-                                        .map(r => r.value)
-                                        .filter(v => v && v > 0);
-                                    if (allRevenues.length > 0) {
-                                        companyRevenue = Math.max(...allRevenues);
-                                    }
-                                }
-
-                                if (!companyCost) {
-                                    const allCosts = (item.cost || [])
-                                        .filter(c => !c.line.includes('磷产品') && !c.line.includes('磷化工') && 
-                                                    !c.keyword.includes('磷产品') && !c.keyword.includes('磷化工'))
-                                        .map(c => c.value)
-                                        .filter(v => v && v > 0);
-                                    if (allCosts.length > 0) {
-                                        companyCost = Math.max(...allCosts);
-                                    }
-                                }
-
-                                // 计算毛利率
-                                let grossMargin = null;
-                                if (companyRevenue && companyCost && companyRevenue > 0) {
-                                    grossMargin = ((companyRevenue - companyCost) / companyRevenue) * 100;
-                                }
-
-                                companyFinancialData.push({
-                                    period: period,
-                                    year: year,
-                                    month: month,
-                                    revenue: companyRevenue ? companyRevenue / 100000000 : null, // 转换为亿元
-                                    cost: companyCost ? companyCost / 100000000 : null, // 转换为亿元
-                                    grossMargin: grossMargin !== null ? parseFloat(grossMargin.toFixed(2)) : null
-                                });
-                            }
-                        });
-                    }
+                    });
 
                     // 按时间排序
                     companyFinancialData.sort((a, b) => {
@@ -1793,7 +1603,7 @@
             async function renderProductSalesTable() {
                 try {
                     // 从JSON文件读取数据
-                    const response = await fetch('chuanheng_data.json');
+                    const response = await fetch('chuanheng_data_corrected.json');
                     if (!response.ok) {
                         throw new Error(`HTTP error! status: ${response.status}`);
                     }
