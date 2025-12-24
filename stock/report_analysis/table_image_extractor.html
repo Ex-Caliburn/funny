@@ -1,0 +1,2017 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片表格识别工具</title>
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5.0.4/dist/tesseract.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+            text-align: center;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .ocr-selector {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .ocr-selector label {
+            display: inline-flex;
+            align-items: center;
+            margin: 0 15px;
+            cursor: pointer;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .ocr-selector input[type="radio"] {
+            margin-right: 8px;
+            cursor: pointer;
+        }
+
+        .ocr-selector .hint {
+            display: block;
+            margin-top: 10px;
+            font-size: 12px;
+            color: #999;
+        }
+
+        .api-config {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f0f0f0;
+            border-radius: 6px;
+            display: none;
+        }
+
+        .api-config.active {
+            display: block;
+        }
+
+        .api-config input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .api-config label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .upload-section {
+            border: 2px dashed #667eea;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+            background: #f8f9ff;
+            transition: all 0.3s;
+        }
+
+        .upload-section.dragover {
+            border-color: #764ba2;
+            background: #f0f0ff;
+        }
+
+        .upload-icon {
+            font-size: 32px;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .upload-text {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        .file-input-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        .file-input {
+            position: absolute;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .preview-section {
+            margin-bottom: 30px;
+        }
+
+        .preview-image {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .processing {
+            text-align: center;
+            padding: 20px;
+            color: #667eea;
+            font-size: 16px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            width: 0%;
+            transition: width 0.3s;
+        }
+
+        .results-section {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .tabs-container {
+            margin-bottom: 20px;
+        }
+
+        .tabs-nav {
+            display: flex;
+            gap: 10px;
+            border-bottom: 2px solid #e0e0e0;
+            margin-bottom: 20px;
+        }
+
+        .tab-button {
+            padding: 10px 20px;
+            background: #f5f5f5;
+            border: none;
+            border-bottom: 3px solid transparent;
+            cursor: pointer;
+            font-size: 14px;
+            color: #666;
+            transition: all 0.3s;
+        }
+
+        .tab-button:hover {
+            background: #e8e8e8;
+        }
+
+        .tab-button.active {
+            background: #fff;
+            color: #667eea;
+            border-bottom-color: #667eea;
+            font-weight: bold;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .tab-view-switcher {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .view-button {
+            padding: 8px 16px;
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .view-button.active {
+            background: #667eea;
+            color: #fff;
+            border-color: #667eea;
+        }
+
+        .result-panel {
+            background: #f8f9ff;
+            border-radius: 8px;
+            padding: 20px;
+            width: 100%;
+        }
+
+        .result-panel h2 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 20px;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            overflow-y: visible;
+            margin-bottom: 20px;
+            width: 100%;
+            max-width: 100%;
+            position: relative;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .table-container::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .table-container::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        .table-container::-webkit-scrollbar-thumb {
+            background: #667eea;
+            border-radius: 4px;
+        }
+
+        .table-container::-webkit-scrollbar-thumb:hover {
+            background: #764ba2;
+        }
+
+        table {
+            width: 100%;
+            min-width: 600px;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            table-layout: auto;
+        }
+
+        th,
+        td {
+            padding: 12px 8px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+            word-wrap: break-word;
+            word-break: break-word;
+            max-width: 200px;
+            vertical-align: top;
+        }
+
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: 600;
+            white-space: nowrap;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        tr:hover {
+            background: #f5f5f5;
+        }
+
+        .editable-cell {
+            width: 100%;
+            min-width: 80px;
+            max-width: 200px;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            box-sizing: border-box;
+            word-wrap: break-word;
+            word-break: break-word;
+        }
+
+        .editable-cell:focus {
+            outline: 2px solid #667eea;
+            border-color: #667eea;
+        }
+
+        .json-container {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
+            max-height: 500px;
+            overflow-y: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            line-height: 1.5;
+            position: relative;
+        }
+
+        .json-container pre {
+            margin: 0;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .json-tree {
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .json-item {
+            margin: 2px 0;
+            padding-left: 20px;
+        }
+
+        .json-key {
+            color: #9cdcfe;
+            font-weight: bold;
+        }
+
+        .json-string {
+            color: #ce9178;
+        }
+
+        .json-number {
+            color: #b5cea8;
+        }
+
+        .json-boolean {
+            color: #569cd6;
+        }
+
+        .json-null {
+            color: #808080;
+        }
+
+        .json-toggle {
+            cursor: pointer;
+            user-select: none;
+            display: inline-block;
+            width: 16px;
+            margin-right: 4px;
+            color: #d4d4d4;
+            font-weight: bold;
+        }
+
+        .json-toggle:hover {
+            color: #fff;
+        }
+
+        .json-collapsed-content {
+            display: none;
+        }
+
+        .json-expanded .json-collapsed-content {
+            display: block;
+        }
+
+        .json-bracket {
+            color: #d4d4d4;
+            font-weight: bold;
+        }
+
+        .json-comma {
+            color: #d4d4d4;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+        }
+
+        .btn-success {
+            background: #28a745;
+        }
+
+        .error-message {
+            background: #fee;
+            color: #c33;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 20px 0;
+            border-left: 4px solid #c33;
+        }
+
+        .success-message {
+            background: #efe;
+            color: #3c3;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 20px 0;
+            border-left: 4px solid #3c3;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 22px;
+            }
+
+            .result-panel {
+                padding: 15px;
+            }
+
+            th,
+            td {
+                padding: 8px 6px;
+                font-size: 13px;
+                max-width: 150px;
+            }
+
+            .editable-cell {
+                font-size: 13px;
+                padding: 6px;
+                max-width: 150px;
+            }
+
+            table {
+                min-width: 500px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>📊 图片表格识别工具</h1>
+        <p class="subtitle">上传包含表格的图片，自动识别并转换为结构化数据</p>
+
+        <div class="ocr-selector">
+            <label>
+                <input type="radio" name="ocrEngine" value="tesseract">
+                <span>Tesseract.js（前端识别，无需后端）</span>
+            </label>
+            <label>
+                <input type="radio" name="ocrEngine" value="paddleocr" checked>
+                <span>PaddleOCR（后端识别，准确率更高）</span>
+            </label>
+            <div class="hint">💡 推荐使用 PaddleOCR 获得更好的中文识别效果</div>
+        </div>
+
+        <div class="api-config" id="apiConfig">
+            <label style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                <span>PaddleOCR 服务器地址：</span>
+                <input type="text" id="apiUrl" value="http://localhost:3001/api/ocr" placeholder="http://localhost:3001/api/ocr" style="flex: 1; min-width: 200px;">
+                <button type="button" class="btn btn-secondary" id="testConnectionBtn" style="font-size: 14px; padding: 8px 20px;">测试连接</button>
+                <span id="connectionStatus" style="font-size: 14px;"></span>
+            </label>
+        </div>
+
+        <div class="upload-section" id="uploadSection">
+            <div class="upload-icon">📁</div>
+            <div class="upload-text">拖拽图片到此处或点击选择文件（支持多张）</div>
+            <div class="file-input-wrapper">
+                <input type="file" id="fileInput" class="file-input" accept="image/*" multiple>
+                <button type="button" class="btn" id="selectBtn">选择图片</button>
+            </div>
+        </div>
+
+        <div id="previewSection" class="preview-section" style="display: none;">
+            <div id="previewImages" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; margin-bottom: 20px;"></div>
+            <div style="text-align: center; margin-top: 20px;">
+                <button type="button" class="btn btn-success" id="submitBtn" style="font-size: 16px; padding: 12px 40px; display: none;">确定提交识别</button>
+                <button type="button" class="btn btn-secondary" id="cancelBtn" style="font-size: 16px; padding: 12px 40px; margin-left: 15px; display: none;">取消</button>
+            </div>
+            <div class="processing" id="processing" style="display: none;">
+                <div>正在识别表格，请稍候...</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div id="progressText" style="margin-top: 10px; font-size: 14px;"></div>
+            </div>
+        </div>
+
+        <div id="errorMessage" class="error-message" style="display: none;"></div>
+        <div id="successMessage" class="success-message" style="display: none;"></div>
+
+        <!-- 图片预览模态框 -->
+        <div id="imagePreviewModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 10000;">
+            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); max-width: 90%; max-height: 90%; text-align: center;">
+                <button type="button" onclick="closeImagePreview()" style="position: absolute; top: -40px; right: 0; background: rgba(255,255,255,0.9); border: none; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; font-size: 24px; color: #333; display: flex; align-items: center; justify-content: center; line-height: 1; transition: all 0.3s;" onmouseover="this.style.background='rgba(255,255,255,1)'; this.style.transform='scale(1.1)'" onmouseout="this.style.background='rgba(255,255,255,0.9)'; this.style.transform='scale(1)'" title="关闭">×</button>
+                <img id="previewImage" src="" alt="预览图片" style="max-width: 100%; max-height: 90vh; object-fit: contain; display: block; margin: 0 auto;">
+            </div>
+        </div>
+
+        <div class="results-section" id="resultsSection" style="display: none;">
+            <!-- Tab 导航 -->
+            <div class="tabs-container" id="tabsContainer" style="display: none;">
+                <div class="tabs-nav" id="tabsNav"></div>
+            </div>
+
+            <!-- Tab 内容区域 -->
+            <div class="tabs-content" id="tabsContent"></div>
+        </div>
+    </div>
+
+    <script>
+        // 说明：Tesseract.js 可能会在控制台输出参数警告（如 "Parameter not found"），
+        // 这些警告是正常的，不影响 OCR 识别功能，可以安全忽略。
+        console.log('%c📊 图片表格识别工具', 'font-size: 16px; font-weight: bold; color: #667eea;');
+        console.log('%c提示：如果看到 Tesseract.js 的参数警告，这是正常的，不影响功能。', 'color: #999; font-size: 12px;');
+
+        // 监控页面卸载事件，帮助诊断页面刷新问题
+        let pageUnloadReason = '未知';
+        window.addEventListener('beforeunload', (e) => {
+            pageUnloadReason = 'beforeunload 事件触发';
+            console.warn('⚠️  页面即将卸载:', pageUnloadReason);
+            console.trace('页面卸载调用堆栈:');
+        });
+
+        window.addEventListener('unload', () => {
+            console.warn('⚠️  页面卸载:', pageUnloadReason);
+        });
+
+        // 监控页面可见性变化
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                console.log('📱 页面被隐藏');
+            } else {
+                console.log('📱 页面可见');
+            }
+        });
+
+        let recognizedData = null;
+        let tableData = [];
+        let ocrResults = []; // 存储多张图片的识别结果
+        let ws = null; // WebSocket 连接
+        let imageCache = {}; // 存储已识别的图片结果缓存，key: imageKey, value: { imageName, data }
+
+        // 文件选择处理
+        const fileInput = document.getElementById('fileInput');
+        const uploadSection = document.getElementById('uploadSection');
+        const previewSection = document.getElementById('previewSection');
+        // previewImage 已移除，改用 previewImages 显示多张图片
+        const processing = document.getElementById('processing');
+        const resultsSection = document.getElementById('resultsSection');
+        const tabsContainer = document.getElementById('tabsContainer');
+        const tabsNav = document.getElementById('tabsNav');
+        const tabsContent = document.getElementById('tabsContent');
+        const progressFill = document.getElementById('progressFill');
+        const progressText = document.getElementById('progressText');
+        const errorMessage = document.getElementById('errorMessage');
+        const successMessage = document.getElementById('successMessage');
+        const apiConfig = document.getElementById('apiConfig');
+        const apiUrlInput = document.getElementById('apiUrl');
+        const ocrEngineRadios = document.querySelectorAll('input[name="ocrEngine"]');
+        const testConnectionBtn = document.getElementById('testConnectionBtn');
+        const connectionStatus = document.getElementById('connectionStatus');
+        const submitBtn = document.getElementById('submitBtn');
+        const cancelBtn = document.getElementById('cancelBtn');
+        const previewImages = document.getElementById('previewImages');
+
+        // 存储选中的图片
+        let selectedImages = [];
+
+        // OCR 引擎选择器
+        ocrEngineRadios.forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                if (e.target.value === 'paddleocr') {
+                    apiConfig.classList.add('active');
+                    // 自动调整 API 地址以匹配当前页面协议和主机
+                    autoAdjustApiUrl();
+                    console.log('🔄 已自动调整 API 地址:', apiUrlInput.value);
+                    // 自动测试连接（延迟一下，让用户看到地址变化）
+                    setTimeout(() => {
+                        testServerConnection();
+                    }, 300);
+                } else {
+                    apiConfig.classList.remove('active');
+                }
+            });
+        });
+
+        // 页面加载时，默认选择 PaddleOCR，自动调整地址
+        window.addEventListener('DOMContentLoaded', () => {
+            const selectedEngine = document.querySelector('input[name="ocrEngine"]:checked');
+            if (selectedEngine && selectedEngine.value === 'paddleocr') {
+                apiConfig.classList.add('active');
+                autoAdjustApiUrl();
+                console.log('📋 页面加载，默认使用 PaddleOCR，API 地址:', apiUrlInput.value);
+            }
+        });
+
+        /**
+         * 自动调整 API 地址以匹配当前页面
+         */
+        function autoAdjustApiUrl() {
+            const currentUrl = window.location;
+            const defaultUrl = apiUrlInput.value || 'http://localhost:3001/api/ocr';
+
+            console.log('🔧 自动调整 API 地址:');
+            console.log('   当前页面:', currentUrl.href);
+            console.log('   当前 hostname:', currentUrl.hostname);
+            console.log('   默认 API 地址:', defaultUrl);
+
+            // 如果当前页面使用 127.0.0.1，也使用 127.0.0.1 访问 API
+            if (currentUrl.hostname === '127.0.0.1' && defaultUrl.includes('localhost')) {
+                const newUrl = defaultUrl.replace('localhost', '127.0.0.1');
+                apiUrlInput.value = newUrl;
+                console.log('   ✅ 已调整为:', newUrl);
+            }
+            // 如果当前页面使用 localhost，也使用 localhost 访问 API
+            else if (currentUrl.hostname === 'localhost' && defaultUrl.includes('127.0.0.1')) {
+                const newUrl = defaultUrl.replace('127.0.0.1', 'localhost');
+                apiUrlInput.value = newUrl;
+                console.log('   ✅ 已调整为:', newUrl);
+            } else {
+                console.log('   ℹ️  地址无需调整');
+            }
+        }
+
+        // 测试服务器连接
+        testConnectionBtn.addEventListener('click', testServerConnection);
+
+        /**
+         * 测试服务器连接
+         */
+        async function testServerConnection() {
+            const apiUrl = apiUrlInput.value || 'http://localhost:3001/api/ocr';
+            const baseUrl = apiUrl.replace('/api/ocr', '');
+            const healthUrl = baseUrl + '/api/health';
+
+            connectionStatus.textContent = '测试中...';
+            connectionStatus.style.color = '#667eea';
+            testConnectionBtn.disabled = true;
+
+            try {
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 5000);
+
+                const response = await fetch(healthUrl, {
+                    method: 'GET',
+                    signal: controller.signal
+                });
+
+                clearTimeout(timeoutId);
+
+                if (response.ok) {
+                    const data = await response.json();
+                    connectionStatus.textContent = `✓ ${data.service || '服务器连接正常'}`;
+                    connectionStatus.style.color = '#28a745';
+                } else {
+                    throw new Error(`服务器响应异常: ${response.status}`);
+                }
+            } catch (error) {
+                connectionStatus.textContent = '✗ 连接失败';
+                connectionStatus.style.color = '#dc3545';
+            } finally {
+                testConnectionBtn.disabled = false;
+            }
+        }
+
+        // 点击选择文件
+        const selectBtn = document.getElementById('selectBtn');
+        selectBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            fileInput.click();
+            return false;
+        });
+
+        // 确保按钮不会触发表单提交
+        selectBtn.type = 'button';
+
+        // 文件输入变化 - 支持多张图片
+        fileInput.addEventListener('change', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            const files = Array.from(e.target.files);
+            if (files.length > 0) {
+                handleFiles(files);
+            }
+        });
+
+        // 拖拽处理
+        uploadSection.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadSection.classList.add('dragover');
+        });
+
+        uploadSection.addEventListener('dragleave', () => {
+            uploadSection.classList.remove('dragover');
+        });
+
+        uploadSection.addEventListener('drop', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            uploadSection.classList.remove('dragover');
+            const files = Array.from(e.dataTransfer.files).filter(file => file.type.startsWith('image/'));
+            if (files.length > 0) {
+                handleFiles(files);
+            } else {
+                showError('请上传图片文件');
+            }
+            return false;
+        });
+
+        /**
+         * 生成图片的唯一 key（用于缓存）
+         * @param {Object} imageData - 图片数据对象
+         * @returns {Promise<string>} 图片的唯一 key
+         */
+        async function generateImageKey(imageData) {
+            // 使用文件名、大小和部分数据生成唯一 key
+            const name = imageData.name || 'unknown';
+            const size = imageData.size || 0;
+            // 使用 dataUrl 的前 100 个字符作为数据指纹
+            const dataFingerprint = imageData.dataUrl.substring(0, 100);
+            return `${name}_${size}_${dataFingerprint}`;
+        }
+
+        /**
+         * 检查图片是否已识别过
+         * @param {Object} imageData - 图片数据对象
+         * @returns {Promise<Object|null>} 如果已识别过，返回缓存的结果，否则返回 null
+         */
+        async function checkImageCache(imageData) {
+            const key = await generateImageKey(imageData);
+            return imageCache[key] || null;
+        }
+
+        /**
+         * 将识别结果存入缓存
+         * @param {Object} imageData - 图片数据对象
+         * @param {Object} result - 识别结果
+         */
+        async function saveToCache(imageData, result) {
+            const key = await generateImageKey(imageData);
+            imageCache[key] = {
+                imageName: imageData.name || '未知图片',
+                data: result
+            };
+            console.log(`💾 已缓存识别结果: ${imageData.name}`);
+        }
+
+        // 确定提交按钮
+        submitBtn.addEventListener('click', async () => {
+            if (selectedImages.length === 0) {
+                showError('请先选择图片');
+                return;
+            }
+
+            hideMessages();
+            submitBtn.disabled = true;
+            submitBtn.textContent = '正在检查...';
+
+            // 隐藏按钮，显示处理进度，但保持图片预览可见
+            submitBtn.style.display = 'none';
+            cancelBtn.style.display = 'none';
+            processing.style.display = 'block';
+            // 保持图片预览可见，不隐藏 previewImages
+
+            try {
+                // 检查缓存，分离已识别和未识别的图片
+                const cachedResults = [];
+                const uncachedImages = [];
+
+                progressText.textContent = '正在检查缓存...';
+                progressFill.style.width = '10%';
+
+                for (let i = 0; i < selectedImages.length; i++) {
+                    const imageData = selectedImages[i];
+                    const cached = await checkImageCache(imageData);
+
+                    if (cached) {
+                        console.log(`✅ 使用缓存结果: ${imageData.name}`);
+                        cachedResults.push({
+                            imageName: cached.imageName,
+                            imageIndex: i,
+                            data: cached.data
+                        });
+                    } else {
+                        uncachedImages.push({ imageData, index: i });
+                    }
+                }
+
+                // 如果有缓存结果，立即显示
+                if (cachedResults.length > 0) {
+                    if (!ocrResults) ocrResults = [];
+                    cachedResults.forEach(result => {
+                        const existingIndex = ocrResults.findIndex(r => r.imageIndex === result.imageIndex);
+                        if (existingIndex >= 0) {
+                            ocrResults[existingIndex] = result;
+                        } else {
+                            ocrResults.push(result);
+                        }
+                    });
+                    displayMultiImageResults(ocrResults);
+                    resultsSection.style.display = 'block';
+                }
+
+                // 如果有未识别的图片，进行识别
+                if (uncachedImages.length > 0) {
+                    progressText.textContent = `识别 ${uncachedImages.length} 张新图片...`;
+                    progressFill.style.width = '20%';
+
+                    // 使用第一张未识别图片的 dataUrl 触发识别流程
+                    // 实际识别会在 recognizeWithPaddleOCR 中处理所有未识别的图片
+                    const firstUncached = uncachedImages[0].imageData;
+                    await recognizeTable(firstUncached.dataUrl);
+                } else {
+                    // 所有图片都使用缓存，直接完成
+                    processing.style.display = 'none';
+                    previewSection.querySelector('#previewImages').style.display = 'grid';
+                    submitBtn.style.display = 'inline-block';
+                    cancelBtn.style.display = 'inline-block';
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = `确定提交识别 (${selectedImages.length} 张)`;
+                    showSuccess(`所有图片识别完成！(${cachedResults.length} 张使用缓存)`);
+                }
+            } catch (error) {
+                console.error('识别错误:', error);
+                showError('识别失败: ' + error.message);
+                processing.style.display = 'none';
+                if (selectedImages.length > 0) {
+                    previewSection.querySelector('#previewImages').style.display = 'grid';
+                    submitBtn.style.display = 'inline-block';
+                    cancelBtn.style.display = 'inline-block';
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = `确定提交识别 (${selectedImages.length} 张)`;
+                }
+            }
+        });
+
+        // 取消按钮
+        cancelBtn.addEventListener('click', () => {
+            selectedImages = [];
+            fileInput.value = '';
+            previewSection.style.display = 'none';
+            previewImages.innerHTML = '';
+        });
+
+        /**
+         * 处理上传的文件（支持多张）
+         * @param {File[]} files - 图片文件数组
+         */
+        function handleFiles(files) {
+            hideMessages();
+            // 不清空已选图片，追加新图片
+            // selectedImages 保持现有内容，只追加新文件
+
+            // 读取所有新图片
+            let loadedCount = 0;
+            const initialCount = selectedImages.length;
+
+            files.forEach((file, index) => {
+                // 检查是否已存在相同文件
+                const exists = selectedImages.some(img => img.name === file.name && img.size === file.size);
+                if (exists) {
+                    console.log(`跳过重复文件: ${file.name}`);
+                    loadedCount++;
+                    if (loadedCount === files.length) {
+                        updatePreviewDisplay();
+                    }
+                    return;
+                }
+
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const imageData = {
+                        file: file,
+                        dataUrl: e.target.result,
+                        name: file.name,
+                        size: file.size
+                    };
+                    selectedImages.push(imageData);
+
+                    // 显示预览（支持点击放大）
+                    const imgWrapper = document.createElement('div');
+                    imgWrapper.style.cssText = 'position: relative; border: 2px solid #667eea; border-radius: 8px; overflow: hidden; background: #f5f5f5; cursor: pointer;';
+                    imgWrapper.title = '点击预览大图';
+
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.style.cssText = 'width: 100%; height: auto; display: block; transition: transform 0.3s;';
+                    img.alt = file.name;
+                    img.onclick = () => showImagePreview(e.target.result, file.name);
+                    img.onmouseenter = () => img.style.transform = 'scale(1.05)';
+                    img.onmouseleave = () => img.style.transform = 'scale(1)';
+
+                    const nameLabel = document.createElement('div');
+                    nameLabel.style.cssText = 'padding: 8px; background: rgba(102, 126, 234, 0.1); font-size: 12px; color: #666; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;';
+                    nameLabel.textContent = file.name;
+
+                    imgWrapper.appendChild(img);
+                    imgWrapper.appendChild(nameLabel);
+                    previewImages.appendChild(imgWrapper);
+
+                    loadedCount++;
+                    if (loadedCount === files.length) {
+                        updatePreviewDisplay();
+                    }
+                };
+                reader.readAsDataURL(file);
+            });
+        }
+
+        /**
+         * 更新预览显示
+         */
+        function updatePreviewDisplay() {
+            // 显示预览区域和提交按钮
+            previewSection.style.display = 'block';
+            previewSection.querySelector('#previewImages').style.display = 'grid';
+            submitBtn.style.display = 'inline-block';
+            cancelBtn.style.display = 'inline-block';
+            submitBtn.disabled = false;
+            submitBtn.textContent = `确定提交识别 (${selectedImages.length} 张)`;
+            // 不清空文件输入，允许继续添加
+        }
+
+        /**
+         * 识别表格（根据选择的引擎）
+         * @param {string} imageDataUrl - 图片的 Data URL
+         */
+        async function recognizeTable(imageDataUrl) {
+            const selectedEngine = document.querySelector('input[name="ocrEngine"]:checked').value;
+
+            if (selectedEngine === 'paddleocr') {
+                await recognizeWithPaddleOCR(imageDataUrl);
+            } else {
+                await recognizeWithTesseract(imageDataUrl);
+            }
+        }
+
+        /**
+         * 使用 Tesseract.js 识别表格
+         * @param {string} imageDataUrl - 图片的 Data URL
+         */
+        async function recognizeWithTesseract(imageDataUrl) {
+            processing.style.display = 'block';
+            progressFill.style.width = '0%';
+            progressText.textContent = '初始化 OCR 引擎...';
+
+            try {
+                // 配置 Tesseract，使用中文和英文
+                // 注意：Tesseract.js 可能会输出一些参数警告，这些是正常的，不影响功能
+                const worker = await Tesseract.createWorker('chi_sim+eng', 1, {
+                    logger: (m) => {
+                        // 过滤掉警告信息，只显示进度
+                        if (m.status === 'recognizing text') {
+                            const progress = Math.round(m.progress * 100);
+                            progressFill.style.width = progress + '%';
+                            progressText.textContent = `识别进度: ${progress}%`;
+                        }
+                        // 忽略其他状态信息（包括警告）
+                        // 如果需要调试，可以取消下面的注释
+                        // else if (m.status !== 'loading tesseract core' && m.status !== 'initializing tesseract') {
+                        //     console.log('Tesseract:', m);
+                        // }
+                    }
+                });
+
+                progressText.textContent = '正在识别图片中的文字...';
+
+                // 执行 OCR 识别
+                const { data: { text, words } } = await worker.recognize(imageDataUrl, {
+                    tessedit_pageseg_mode: Tesseract.PSM.AUTO,
+                });
+
+                await worker.terminate();
+
+                progressText.textContent = '正在解析表格结构...';
+                progressFill.style.width = '90%';
+
+                // 解析文本为表格结构
+                const parsedData = parseTextToTable(text, words);
+
+                progressFill.style.width = '100%';
+                progressText.textContent = '识别完成！';
+
+                // 显示结果
+                displayResults(parsedData);
+
+                setTimeout(() => {
+                    processing.style.display = 'none';
+                    showSuccess('表格识别完成！您可以编辑表格内容，然后导出数据。');
+                }, 500);
+
+            } catch (error) {
+                console.error('识别错误:', error);
+                showError('识别失败: ' + error.message);
+                processing.style.display = 'none';
+                // 恢复预览区域和按钮（Tesseract 模式）
+                if (selectedImages.length > 0) {
+                    previewSection.querySelector('#previewImages').style.display = 'grid';
+                    submitBtn.style.display = 'inline-block';
+                    cancelBtn.style.display = 'inline-block';
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = `确定提交识别 (${selectedImages.length} 张)`;
+                }
+            }
+        }
+
+        /**
+         * 连接 WebSocket
+         */
+        function connectWebSocket() {
+            return new Promise((resolve, reject) => {
+                autoAdjustApiUrl();
+                const apiUrl = apiUrlInput.value || 'http://localhost:3001/api/ocr';
+                const wsUrl = apiUrl.replace('http://', 'ws://').replace('https://', 'wss://').replace('/api/ocr', '');
+
+                console.log(`🔌 连接 WebSocket: ${wsUrl}`);
+                ws = new WebSocket(wsUrl);
+
+                ws.onopen = () => {
+                    console.log('✅ WebSocket 连接成功');
+                    resolve(ws);
+                };
+
+                ws.onerror = (error) => {
+                    console.error('❌ WebSocket 连接错误:', error);
+                    reject(new Error('WebSocket 连接失败'));
+                };
+
+                ws.onclose = () => {
+                    console.log('🔌 WebSocket 连接已关闭');
+                    ws = null;
+                };
+            });
+        }
+
+        /**
+         * 使用 PaddleOCR 后端识别表格（支持多张图片，使用 WebSocket）
+         * @param {string} imageDataUrl - 图片的 Data URL（第一张）
+         */
+        async function recognizeWithPaddleOCR(imageDataUrl) {
+            processing.style.display = 'block';
+            progressFill.style.width = '0%';
+            progressText.textContent = '准备连接服务器...';
+
+            try {
+                // 连接 WebSocket
+                if (!ws || ws.readyState !== WebSocket.OPEN) {
+                    await connectWebSocket();
+                }
+
+                // 准备图片数据（需要先上传到服务器获取路径）
+                progressText.textContent = '正在上传图片...';
+                progressFill.style.width = '10%';
+
+                // 先通过 HTTP 上传图片获取临时路径
+                const apiUrl = apiUrlInput.value || 'http://localhost:3001/api/ocr';
+                const formData = new FormData();
+                const imagePaths = [];
+                const imageNames = [];
+
+                for (const imageData of selectedImages) {
+                    let blob;
+                    if (imageData.dataUrl.startsWith('data:')) {
+                        const base64Data = imageData.dataUrl.split(',')[1];
+                        const mimeType = imageData.dataUrl.match(/data:([^;]+);/)?.[1] || 'image/png';
+                        const byteCharacters = atob(base64Data);
+                        const byteNumbers = new Array(byteCharacters.length);
+                        for (let i = 0; i < byteCharacters.length; i++) {
+                            byteNumbers[i] = byteCharacters.charCodeAt(i);
+                        }
+                        const byteArray = new Uint8Array(byteNumbers);
+                        blob = new Blob([byteArray], { type: mimeType });
+                    } else {
+                        const response = await fetch(imageData.dataUrl);
+                        blob = await response.blob();
+                    }
+                    formData.append('image', blob, imageData.name || 'image.png');
+                    imageNames.push(imageData.name || `图片 ${selectedImages.indexOf(imageData) + 1}`);
+                }
+
+                // 上传图片获取临时路径（简化版：直接通过 WebSocket 发送 base64）
+                progressText.textContent = '正在准备图片数据...';
+                progressFill.style.width = '20%';
+
+                // 通过 WebSocket 发送 OCR 请求
+                return new Promise(async (resolve, reject) => {
+                    // 过滤掉已缓存的图片，只识别未缓存的
+                    const imagesToRecognize = [];
+                    const namesToRecognize = [];
+                    const indicesToRecognize = [];
+
+                    for (let i = 0; i < selectedImages.length; i++) {
+                        const imageData = selectedImages[i];
+                        const cached = await checkImageCache(imageData);
+
+                        if (!cached) {
+                            imagesToRecognize.push(imageData);
+                            namesToRecognize.push(imageData.name || `图片 ${i + 1}`);
+                            indicesToRecognize.push(i);
+                        } else {
+                            console.log(`⏭️  跳过已识别的图片: ${imageData.name}`);
+                            // 立即显示缓存结果
+                            if (!ocrResults) ocrResults = [];
+                            const existingIndex = ocrResults.findIndex(r => r.imageIndex === i);
+                            if (existingIndex >= 0) {
+                                ocrResults[existingIndex] = {
+                                    imageName: cached.imageName,
+                                    imageIndex: i,
+                                    data: cached.data
+                                };
+                            } else {
+                                ocrResults.push({
+                                    imageName: cached.imageName,
+                                    imageIndex: i,
+                                    data: cached.data
+                                });
+                            }
+                        }
+                    }
+
+                    // 如果所有图片都已缓存，直接返回
+                    if (imagesToRecognize.length === 0) {
+                        console.log('✅ 所有图片都已识别过，使用缓存结果');
+                        displayMultiImageResults(ocrResults);
+                        resultsSection.style.display = 'block';
+                        resolve();
+                        return;
+                    }
+
+                    // 转换 base64 数据
+                    const base64Images = imagesToRecognize.map(img => {
+                        const base64 = img.dataUrl.split(',')[1];
+                        return base64;
+                    });
+
+                    // 发送 OCR 请求（只识别未缓存的图片）
+                    ws.send(JSON.stringify({
+                        type: 'ocr_request',
+                        imagePaths: base64Images,
+                        imageNames: namesToRecognize,
+                        imageIndices: indicesToRecognize // 传递原始索引，用于正确显示
+                    }));
+
+                    // 监听 WebSocket 消息
+                    const messageHandler = (event) => {
+                        try {
+                            const data = JSON.parse(event.data);
+
+                            if (data.type === 'progress') {
+                                progressText.textContent = data.message;
+                                progressFill.style.width = data.progress + '%';
+                            } else if (data.type === 'image_result') {
+                                // 单张图片识别完成，立即显示并存入缓存
+                                if (!ocrResults) {
+                                    ocrResults = [];
+                                }
+
+                                // 找到对应的图片数据并存入缓存
+                                const imageData = selectedImages[data.imageIndex];
+                                if (imageData) {
+                                    saveToCache(imageData, data.data);
+                                }
+
+                                // 更新或添加结果
+                                const existingIndex = ocrResults.findIndex(r => r.imageIndex === data.imageIndex);
+                                if (existingIndex >= 0) {
+                                    ocrResults[existingIndex] = {
+                                        imageName: data.imageName,
+                                        imageIndex: data.imageIndex,
+                                        data: data.data
+                                    };
+                                } else {
+                                    ocrResults.push({
+                                        imageName: data.imageName,
+                                        imageIndex: data.imageIndex,
+                                        data: data.data
+                                    });
+                                }
+                                // 更新显示（如果已有结果）
+                                if (ocrResults.length > 0) {
+                                    displayMultiImageResults(ocrResults);
+                                    resultsSection.style.display = 'block';
+                                }
+                            } else if (data.type === 'all_complete') {
+                                // 所有图片识别完成
+                                ws.removeEventListener('message', messageHandler);
+                                processing.style.display = 'none';
+                                previewSection.querySelector('#previewImages').style.display = 'grid';
+                                submitBtn.style.display = 'inline-block';
+                                cancelBtn.style.display = 'inline-block';
+                                submitBtn.disabled = false;
+                                submitBtn.textContent = `确定提交识别 (${selectedImages.length} 张)`;
+                                showSuccess('所有图片识别完成！');
+                                resolve();
+                            } else if (data.type === 'error') {
+                                ws.removeEventListener('message', messageHandler);
+                                throw new Error(data.error);
+                            }
+                        } catch (e) {
+                            console.error('处理 WebSocket 消息错误:', e);
+                        }
+                    };
+
+                    ws.addEventListener('message', messageHandler);
+
+                    // 设置超时（600秒 = 10分钟，PaddleOCR 首次运行可能需要下载模型）
+                    setTimeout(() => {
+                        ws.removeEventListener('message', messageHandler);
+                        reject(new Error('识别超时（600秒）。PaddleOCR 首次运行可能需要下载模型，请稍候重试。'));
+                    }, 600000); // 10分钟超时
+                });
+
+            } catch (error) {
+                console.error('识别错误:', error);
+                showError('识别失败: ' + error.message);
+                processing.style.display = 'none';
+                // 恢复预览区域和按钮
+                if (selectedImages.length > 0) {
+                    previewSection.querySelector('#previewImages').style.display = 'grid';
+                    submitBtn.style.display = 'inline-block';
+                    cancelBtn.style.display = 'inline-block';
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = `确定提交识别 (${selectedImages.length} 张)`;
+                }
+            }
+        }
+
+        // 已删除未使用的 HTTP 方式代码，现在统一使用 WebSocket 方式
+
+        /**
+         * 解析文本为表格结构
+         * @param {string} text - OCR 识别的文本
+         * @param {Array} words - 识别的单词数组
+         * @returns {Object} 解析后的表格数据
+         */
+        function parseTextToTable(text, words) {
+            // 按行分割文本
+            const lines = text.split('\n').filter(line => line.trim().length > 0);
+
+            // 尝试识别表格结构
+            // 方法1: 基于空格和制表符分割
+            const rows = [];
+            let headers = [];
+
+            // 第一行通常是表头
+            if (lines.length > 0) {
+                // 尝试多种分割方式
+                const firstLine = lines[0].trim();
+                headers = splitTableRow(firstLine);
+
+                // 处理数据行
+                for (let i = 1; i < lines.length; i++) {
+                    const row = splitTableRow(lines[i].trim());
+                    if (row.length > 0) {
+                        rows.push(row);
+                    }
+                }
+            }
+
+            // 如果识别结果不理想，尝试基于单词位置分析
+            if (rows.length === 0 || headers.length < 2) {
+                return parseByWordPositions(words);
+            }
+
+            // 确保所有行的列数一致
+            const maxCols = Math.max(headers.length, ...rows.map(r => r.length));
+            headers = padArray(headers, maxCols, '');
+            rows.forEach(row => padArray(row, maxCols, ''));
+
+            tableData = [headers, ...rows];
+            recognizedData = {
+                headers: headers,
+                rows: rows,
+                rawText: text
+            };
+
+            return recognizedData;
+        }
+
+        /**
+         * 基于单词位置解析表格（更精确的方法）
+         * @param {Array} words - OCR 识别的单词数组
+         * @returns {Object} 解析后的表格数据
+         */
+        function parseByWordPositions(words) {
+            if (words.length === 0) return { headers: [], rows: [], rawText: '' };
+
+            // 按 Y 坐标分组（行）
+            const yGroups = {};
+            words.forEach(word => {
+                const y = Math.round(word.bbox.y0 / 10) * 10; // 取整到10像素
+                if (!yGroups[y]) yGroups[y] = [];
+                yGroups[y].push(word);
+            });
+
+            // 按 Y 坐标排序
+            const sortedY = Object.keys(yGroups).map(Number).sort((a, b) => a - b);
+
+            // 按 X 坐标排序每行的单词
+            sortedY.forEach(y => {
+                yGroups[y].sort((a, b) => a.bbox.x0 - b.bbox.x0);
+            });
+
+            // 构建表格
+            const rows = [];
+            sortedY.forEach((y, index) => {
+                const row = yGroups[y].map(word => word.text.trim()).filter(t => t);
+                if (row.length > 0) {
+                    rows.push(row);
+                }
+            });
+
+            // 第一行作为表头
+            const headers = rows[0] || [];
+            const dataRows = rows.slice(1);
+
+            // 统一列数
+            const maxCols = Math.max(headers.length, ...dataRows.map(r => r.length));
+            const paddedHeaders = padArray(headers, maxCols, '');
+            const paddedRows = dataRows.map(row => padArray(row, maxCols, ''));
+
+            tableData = [paddedHeaders, ...paddedRows];
+            recognizedData = {
+                headers: paddedHeaders,
+                rows: paddedRows,
+                rawText: words.map(w => w.text).join(' ')
+            };
+
+            return recognizedData;
+        }
+
+        /**
+         * 分割表格行
+         * @param {string} line - 表格行文本
+         * @returns {Array} 分割后的单元格数组
+         */
+        function splitTableRow(line) {
+            // 尝试多种分割方式
+            // 1. 制表符
+            if (line.includes('\t')) {
+                return line.split('\t').map(cell => cell.trim());
+            }
+
+            // 2. 多个空格
+            if (line.match(/\s{2,}/)) {
+                return line.split(/\s{2,}/).map(cell => cell.trim());
+            }
+
+            // 3. 单个空格（作为最后手段）
+            return line.split(/\s+/).map(cell => cell.trim());
+        }
+
+        /**
+         * 填充数组到指定长度
+         * @param {Array} arr - 原数组
+         * @param {number} length - 目标长度
+         * @param {*} fillValue - 填充值
+         * @returns {Array} 填充后的数组
+         */
+        function padArray(arr, length, fillValue) {
+            const result = [...arr];
+            while (result.length < length) {
+                result.push(fillValue);
+            }
+            return result;
+        }
+
+        /**
+         * 显示多图片识别结果（带 tab 切换）
+         * @param {Array} results - 多张图片的识别结果数组
+         */
+        function displayMultiImageResults(results) {
+            ocrResults = results;
+
+            // 清空之前的内容
+            tabsNav.innerHTML = '';
+            tabsContent.innerHTML = '';
+
+            // 创建 tab 按钮和内容
+            results.forEach((result, index) => {
+                // Tab 按钮
+                const tabBtn = document.createElement('button');
+                tabBtn.className = 'tab-button' + (index === 0 ? ' active' : '');
+                tabBtn.textContent = result.imageName || `图片 ${index + 1}`;
+                tabBtn.onclick = () => switchTab(index);
+                tabsNav.appendChild(tabBtn);
+
+                // Tab 内容
+                const tabContent = document.createElement('div');
+                tabContent.className = 'tab-content' + (index === 0 ? ' active' : '');
+                tabContent.id = `tab-content-${index}`;
+
+                // 解析表格数据
+                const parsedData = parseTextToTable(result.data.text || '', result.data.words || []);
+
+                // 视图切换按钮
+                const viewSwitcher = document.createElement('div');
+                viewSwitcher.className = 'tab-view-switcher';
+                viewSwitcher.innerHTML = `
+                    <button class="view-button active" data-view="table" onclick="switchView(${index}, 'table', event)">📋 表格</button>
+                    <button class="view-button" data-view="image" onclick="switchView(${index}, 'image', event)">🖼️ 图片</button>
+                    <button class="view-button" data-view="json" onclick="switchView(${index}, 'json', event)">📄 JSON</button>
+                    <button class="view-button" data-view="json" onclick="copyJSONFromTree(${index}, event)" style="margin-left: auto; background: #28a745; color: #fff;">📋 复制 JSON</button>
+                `;
+
+                // 表格视图
+                const tableView = document.createElement('div');
+                tableView.className = 'view-content table-view';
+                tableView.id = `table-view-${index}`;
+                tableView.style.display = 'block';
+
+                // 图片视图
+                const imageView = document.createElement('div');
+                imageView.className = 'view-content image-view';
+                imageView.id = `image-view-${index}`;
+                imageView.style.display = 'none';
+
+                // 查找对应的原始图片
+                const originalImage = selectedImages[index];
+                if (originalImage) {
+                    const imgContainer = document.createElement('div');
+                    imgContainer.style.cssText = 'text-align: center; padding: 20px;';
+
+                    const img = document.createElement('img');
+                    img.src = originalImage.dataUrl;
+                    img.style.cssText = 'max-width: 100%; max-height: 600px; border: 2px solid #667eea; border-radius: 8px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1);';
+                    img.alt = originalImage.name || '识别图片';
+                    img.title = '点击预览大图';
+                    img.onclick = () => showImagePreview(originalImage.dataUrl, originalImage.name);
+
+                    const imgName = document.createElement('div');
+                    imgName.style.cssText = 'margin-top: 10px; color: #666; font-size: 14px;';
+                    imgName.textContent = originalImage.name || `图片 ${index + 1}`;
+
+                    imgContainer.appendChild(img);
+                    imgContainer.appendChild(imgName);
+                    imageView.appendChild(imgContainer);
+                } else {
+                    imageView.innerHTML = '<div style="text-align: center; padding: 40px; color: #999;">图片数据不可用</div>';
+                }
+
+                // JSON 视图
+                const jsonView = document.createElement('div');
+                jsonView.className = 'view-content json-view';
+                jsonView.id = `json-view-${index}`;
+                jsonView.style.display = 'none';
+
+                // 渲染表格
+                renderTable(tableView, parsedData);
+
+                // 渲染 JSON
+                renderJSON(jsonView, parsedData, result.data);
+
+                tabContent.appendChild(viewSwitcher);
+                tabContent.appendChild(tableView);
+                tabContent.appendChild(imageView);
+                tabContent.appendChild(jsonView);
+                tabsContent.appendChild(tabContent);
+            });
+
+            // 显示结果区域
+            tabsContainer.style.display = 'block';
+            resultsSection.style.display = 'block';
+        }
+
+        /**
+         * 切换 Tab
+         */
+        function switchTab(index) {
+            // 更新按钮状态
+            document.querySelectorAll('.tab-button').forEach((btn, i) => {
+                btn.classList.toggle('active', i === index);
+            });
+
+            // 更新内容显示
+            document.querySelectorAll('.tab-content').forEach((content, i) => {
+                content.classList.toggle('active', i === index);
+            });
+        }
+
+        /**
+         * 显示图片预览
+         */
+        function showImagePreview(imageSrc, imageName) {
+            const modal = document.getElementById('imagePreviewModal');
+            const img = document.getElementById('previewImage');
+            if (modal && img) {
+                img.src = imageSrc;
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        /**
+         * 关闭图片预览
+         */
+        window.closeImagePreview = function() {
+            const modal = document.getElementById('imagePreviewModal');
+            if (modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = '';
+            }
+        }
+
+        /**
+         * 从 JSON 树复制 JSON 数据
+         */
+        window.copyJSONFromTree = function(imageIndex, event) {
+            event.preventDefault();
+            event.stopPropagation();
+
+            if (!ocrResults || !ocrResults[imageIndex]) {
+                showError('没有可复制的 JSON 数据');
+                return;
+            }
+
+            const result = ocrResults[imageIndex];
+            const jsonData = {
+                headers: result.data.headers || [],
+                rows: result.data.rows || [],
+                rawText: result.data.text || '',
+                words: result.data.words || []
+            };
+
+            const jsonString = JSON.stringify(jsonData, null, 2);
+            navigator.clipboard.writeText(jsonString).then(() => {
+                showSuccess('JSON 数据已复制到剪贴板');
+            }).catch(err => {
+                showError('复制失败: ' + err.message);
+            });
+        }
+
+        /**
+         * 切换视图（表格/图片/JSON）
+         */
+        window.switchView = function(imageIndex, viewType, event) {
+            event.preventDefault();
+
+            // 更新按钮状态
+            const tabContent = document.getElementById(`tab-content-${imageIndex}`);
+            tabContent.querySelectorAll('.view-button').forEach(btn => {
+                // 排除复制按钮
+                if (!btn.textContent.includes('复制')) {
+                    btn.classList.toggle('active', btn.dataset.view === viewType);
+                }
+            });
+
+            // 更新视图显示
+            const tableView = document.getElementById(`table-view-${imageIndex}`);
+            const imageView = document.getElementById(`image-view-${imageIndex}`);
+            const jsonView = document.getElementById(`json-view-${imageIndex}`);
+
+            // 隐藏所有视图
+            if (tableView) tableView.style.display = 'none';
+            if (imageView) imageView.style.display = 'none';
+            if (jsonView) jsonView.style.display = 'none';
+
+            // 显示选中的视图
+            if (viewType === 'table' && tableView) {
+                tableView.style.display = 'block';
+            } else if (viewType === 'image' && imageView) {
+                imageView.style.display = 'block';
+            } else if (viewType === 'json' && jsonView) {
+                jsonView.style.display = 'block';
+            }
+        };
+
+        /**
+         * 渲染表格
+         */
+        function renderTable(container, data) {
+            let tableHTML = '<div class="table-container"><table><thead><tr>';
+            data.headers.forEach(header => {
+                tableHTML += `<th>${escapeHtml(header || '')}</th>`;
+            });
+            tableHTML += '</tr></thead><tbody>';
+
+            data.rows.forEach((row, rowIndex) => {
+                tableHTML += '<tr>';
+                row.forEach((cell, colIndex) => {
+                    const cellId = `cell-${Date.now()}-${rowIndex}-${colIndex}`;
+                    tableHTML += `<td><input type="text" class="editable-cell" id="${cellId}" value="${escapeHtml(cell || '')}" data-row="${rowIndex}" data-col="${colIndex}"></td>`;
+                });
+                tableHTML += '</tr>';
+            });
+
+            tableHTML += '</tbody></table></div>';
+            container.innerHTML = tableHTML;
+        }
+
+        /**
+         * 渲染 JSON 树形结构（支持展开/收起）
+         */
+        function renderJSON(container, parsedData, rawData) {
+            const jsonData = {
+                headers: parsedData.headers,
+                rows: parsedData.rows,
+                rawText: rawData.text || '',
+                words: rawData.words || []
+            };
+
+            // 创建 JSON 容器
+            const jsonContainer = document.createElement('div');
+            jsonContainer.className = 'json-container';
+
+            // 创建 JSON 树形视图
+            const jsonTree = document.createElement('div');
+            jsonTree.className = 'json-tree';
+            jsonTree.innerHTML = renderJSONTree(jsonData, 0);
+
+            // 添加点击事件处理
+            jsonTree.addEventListener('click', function(e) {
+                if (e.target.classList.contains('json-toggle')) {
+                    const item = e.target.parentElement;
+                    const content = item.querySelector('.json-collapsed-content');
+                    if (content) {
+                        const isExpanded = content.style.display !== 'none';
+                        content.style.display = isExpanded ? 'none' : 'block';
+                        e.target.textContent = isExpanded ? '▶' : '▼';
+                    }
+                }
+            });
+
+            jsonContainer.appendChild(jsonTree);
+            container.innerHTML = '';
+            container.appendChild(jsonContainer);
+        }
+
+        /**
+         * 递归渲染 JSON 树形结构
+         */
+        function renderJSONTree(obj, depth = 0) {
+            if (obj === null) {
+                return '<span class="json-null">null</span>';
+            }
+
+            const type = typeof obj;
+
+            if (type === 'string') {
+                return `<span class="json-string">"${escapeHtml(obj)}"</span>`;
+            }
+
+            if (type === 'number') {
+                return `<span class="json-number">${obj}</span>`;
+            }
+
+            if (type === 'boolean') {
+                return `<span class="json-boolean">${obj}</span>`;
+            }
+
+            if (Array.isArray(obj)) {
+                if (obj.length === 0) {
+                    return '<span class="json-bracket">[]</span>';
+                }
+
+                let html = '<div class="json-item"><span class="json-toggle">▶</span><span class="json-bracket">[</span>';
+                html += '<div class="json-item json-collapsed-content" style="display: none;">';
+
+                obj.forEach((item, index) => {
+                    html += '<div class="json-item">';
+                    html += renderJSONTree(item, depth + 1);
+                    if (index < obj.length - 1) {
+                        html += '<span class="json-comma">,</span>';
+                    }
+                    html += '</div>';
+                });
+
+                html += '</div>';
+                html += '<span class="json-bracket">]</span></div>';
+                return html;
+            }
+
+            if (type === 'object') {
+                const keys = Object.keys(obj);
+                if (keys.length === 0) {
+                    return '<span class="json-bracket">{}</span>';
+                }
+
+                let html = '<div class="json-item"><span class="json-toggle">▶</span><span class="json-bracket">{</span>';
+                html += '<div class="json-item json-collapsed-content" style="display: none;">';
+
+                keys.forEach((key, index) => {
+                    html += '<div class="json-item">';
+                    html += `<span class="json-key">"${escapeHtml(key)}"</span>: `;
+                    html += renderJSONTree(obj[key], depth + 1);
+                    if (index < keys.length - 1) {
+                        html += '<span class="json-comma">,</span>';
+                    }
+                    html += '</div>';
+                });
+
+                html += '</div>';
+                html += '<span class="json-bracket">}</span></div>';
+                return html;
+            }
+
+            return escapeHtml(String(obj));
+        }
+
+        /**
+         * 显示识别结果（单图片，保留兼容性）
+         * @param {Object} data - 表格数据
+         */
+        function displayResults(data) {
+            // 显示表格
+            let tableHTML = '<table><thead><tr>';
+            data.headers.forEach(header => {
+                tableHTML += `<th>${escapeHtml(header || '')}</th>`;
+            });
+            tableHTML += '</tr></thead><tbody>';
+
+            data.rows.forEach((row, rowIndex) => {
+                tableHTML += '<tr>';
+                row.forEach((cell, colIndex) => {
+                    const cellId = `cell-${rowIndex}-${colIndex}`;
+                    tableHTML += `<td><input type="text" class="editable-cell" id="${cellId}" value="${escapeHtml(cell || '')}" data-row="${rowIndex}" data-col="${colIndex}"></td>`;
+                });
+                tableHTML += '</tr>';
+            });
+
+            tableHTML += '</tbody></table>';
+            tableContainer.innerHTML = tableHTML;
+
+            // 添加编辑事件监听
+            document.querySelectorAll('.editable-cell').forEach(cell => {
+                cell.addEventListener('input', updateDataFromTable);
+            });
+
+            // 显示 JSON
+            updateJSONOutput();
+
+            resultsSection.style.display = 'flex';
+        }
+
+        /**
+         * 从表格更新数据
+         */
+        function updateDataFromTable() {
+            const rows = [];
+            const rowElements = document.querySelectorAll('tbody tr');
+
+            rowElements.forEach(tr => {
+                const row = [];
+                tr.querySelectorAll('.editable-cell').forEach(cell => {
+                    row.push(cell.value);
+                });
+                rows.push(row);
+            });
+
+            recognizedData.rows = rows;
+            updateJSONOutput();
+        }
+
+        /**
+         * 更新 JSON 输出（支持树形展开/收起）
+         */
+        function updateJSONOutput() {
+            if (!recognizedData) return;
+
+            // 转换为结构化数据
+            const structuredData = {
+                headers: recognizedData.headers,
+                data: recognizedData.rows.map(row => {
+                    const obj = {};
+                    recognizedData.headers.forEach((header, index) => {
+                        obj[header || `列${index + 1}`] = row[index] || '';
+                    });
+                    return obj;
+                }),
+                rawText: recognizedData.rawText,
+                extractedAt: new Date().toISOString()
+            };
+
+            // 检查 jsonOutput 元素是否存在
+            const jsonOutputElement = document.getElementById('jsonOutput');
+            if (!jsonOutputElement) return;
+
+            // 检查是否已有 JSON 容器
+            let jsonContainer = jsonOutputElement.parentElement;
+            if (!jsonContainer || !jsonContainer.classList.contains('json-container')) {
+                // 创建新的容器
+                jsonContainer = document.createElement('div');
+                jsonContainer.className = 'json-container';
+                jsonOutputElement.parentElement.replaceChild(jsonContainer, jsonOutputElement);
+                jsonContainer.appendChild(jsonOutputElement);
+            }
+
+            // 创建 JSON 树形视图
+            const jsonTree = document.createElement('div');
+            jsonTree.className = 'json-tree';
+            jsonTree.innerHTML = renderJSONTree(structuredData, 0);
+
+            // 添加点击事件处理
+            jsonTree.addEventListener('click', function(e) {
+                if (e.target.classList.contains('json-toggle')) {
+                    const item = e.target.parentElement;
+                    item.classList.toggle('json-expanded');
+                    e.target.textContent = item.classList.contains('json-expanded') ? '▼' : '▶';
+                }
+            });
+
+            jsonOutputElement.innerHTML = '';
+            jsonOutputElement.appendChild(jsonTree);
+        }
+
+        /**
+         * HTML 转义
+         */
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        /**
+         * 导出为 CSV
+         */
+        function exportTable() {
+            if (!recognizedData) return;
+
+            let csv = '';
+            // 表头
+            csv += recognizedData.headers.map(h => `"${h}"`).join(',') + '\n';
+            // 数据行
+            recognizedData.rows.forEach(row => {
+                csv += row.map(cell => `"${cell}"`).join(',') + '\n';
+            });
+
+            const blob = new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `table_${Date.now()}.csv`;
+            link.click();
+        }
+
+        /**
+         * 保存 JSON 数据
+         */
+        function saveData() {
+            if (!recognizedData) return;
+            downloadJSON();
+        }
+
+        /**
+         * 下载 JSON
+         */
+        function downloadJSON() {
+            // 获取 JSON 内容（支持展开/收起后的内容）
+            const jsonOutputElement = document.getElementById('jsonOutput');
+            let json = '';
+            if (jsonOutputElement) {
+                json = jsonOutputElement.textContent || jsonOutputElement.innerText;
+            }
+
+            // 如果没有找到，从 recognizedData 重新生成
+            if (!json && recognizedData) {
+                const structuredData = {
+                    headers: recognizedData.headers,
+                    data: recognizedData.rows.map(row => {
+                        const obj = {};
+                        recognizedData.headers.forEach((header, index) => {
+                            obj[header || `列${index + 1}`] = row[index] || '';
+                        });
+                        return obj;
+                    }),
+                    rawText: recognizedData.rawText,
+                    extractedAt: new Date().toISOString()
+                };
+                json = JSON.stringify(structuredData, null, 2);
+            }
+
+            const blob = new Blob([json], { type: 'application/json' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `table_data_${Date.now()}.json`;
+            link.click();
+        }
+
+        /**
+         * 复制 JSON
+         */
+        function copyJSON() {
+            // 获取 JSON 内容（支持展开/收起后的内容）
+            const jsonOutputElement = document.getElementById('jsonOutput');
+            let json = '';
+            if (jsonOutputElement) {
+                json = jsonOutputElement.textContent || jsonOutputElement.innerText;
+            }
+
+            // 如果没有找到，从 recognizedData 重新生成
+            if (!json && recognizedData) {
+                const structuredData = {
+                    headers: recognizedData.headers,
+                    data: recognizedData.rows.map(row => {
+                        const obj = {};
+                        recognizedData.headers.forEach((header, index) => {
+                            obj[header || `列${index + 1}`] = row[index] || '';
+                        });
+                        return obj;
+                    }),
+                    rawText: recognizedData.rawText,
+                    extractedAt: new Date().toISOString()
+                };
+                json = JSON.stringify(structuredData, null, 2);
+            }
+
+            navigator.clipboard.writeText(json).then(() => {
+                showSuccess('JSON 数据已复制到剪贴板');
+            }).catch(err => {
+                showError('复制失败: ' + err.message);
+            });
+        }
+
+        /**
+         * 显示错误消息
+         */
+        function showError(message) {
+            errorMessage.textContent = message;
+            errorMessage.style.display = 'block';
+            successMessage.style.display = 'none';
+        }
+
+        /**
+         * 显示成功消息
+         */
+        function showSuccess(message) {
+            successMessage.textContent = message;
+            successMessage.style.display = 'block';
+            errorMessage.style.display = 'none';
+        }
+
+        /**
+         * 隐藏所有消息
+         */
+        function hideMessages() {
+            errorMessage.style.display = 'none';
+            successMessage.style.display = 'none';
+        }
+    </script>
+</body>
+
+</html>
