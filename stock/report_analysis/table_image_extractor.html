@@ -1309,11 +1309,20 @@
          * @returns {Object} 解析后的表格数据
          */
         function parseTextToTable(text, words) {
-            // 按行分割文本
+            // 优先使用基于位置的解析方法（更准确）
+            if (words && words.length > 0 && words[0].bbox) {
+                const positionBasedResult = parseByWordPositions(words);
+                // 验证结果质量
+                if (positionBasedResult.headers && positionBasedResult.headers.length >= 2 &&
+                    positionBasedResult.rows && positionBasedResult.rows.length > 0) {
+                    return positionBasedResult;
+                }
+            }
+
+            // 备用方法：基于文本行分割（当没有位置信息时）
             const lines = text.split('\n').filter(line => line.trim().length > 0);
 
             // 尝试识别表格结构
-            // 方法1: 基于空格和制表符分割
             const rows = [];
             let headers = [];
 
@@ -1332,9 +1341,11 @@
                 }
             }
 
-            // 如果识别结果不理想，尝试基于单词位置分析
+            // 如果识别结果不理想，尝试基于单词位置分析（即使没有bbox也尝试）
             if (rows.length === 0 || headers.length < 2) {
-                return parseByWordPositions(words);
+                if (words && words.length > 0) {
+                    return parseByWordPositions(words);
+                }
             }
 
             // 确保所有行的列数一致
@@ -1360,12 +1371,45 @@
         function parseByWordPositions(words) {
             if (words.length === 0) return { headers: [], rows: [], rawText: '' };
 
-            // 按 Y 坐标分组（行）
+            // 过滤出有位置信息的单词
+            const wordsWithBbox = words.filter(w => w && w.bbox &&
+                typeof w.bbox.x0 === 'number' && typeof w.bbox.y0 === 'number');
+
+            // 如果没有位置信息，回退到简单文本解析
+            if (wordsWithBbox.length === 0) {
+                const text = words.map(w => w.text || '').join(' ');
+                const lines = text.split('\n').filter(line => line.trim().length > 0);
+                const headers = lines[0] ? splitTableRow(lines[0].trim()) : [];
+                const rows = lines.slice(1).map(line => splitTableRow(line.trim())).filter(r => r.length > 0);
+                const maxCols = Math.max(headers.length, ...rows.map(r => r.length));
+                return {
+                    headers: padArray(headers, maxCols, ''),
+                    rows: rows.map(row => padArray(row, maxCols, '')),
+                    rawText: text
+                };
+            }
+
+            // 改进的行分组：使用更智能的Y坐标分组
             const yGroups = {};
-            words.forEach(word => {
-                const y = Math.round(word.bbox.y0 / 10) * 10; // 取整到10像素
-                if (!yGroups[y]) yGroups[y] = [];
-                yGroups[y].push(word);
+            const yTolerance = 15; // Y坐标容差（像素）
+
+            wordsWithBbox.forEach(word => {
+                // 找到最接近的Y坐标组
+                let matchedY = null;
+                for (const y in yGroups) {
+                    if (Math.abs(word.bbox.y0 - Number(y)) <= yTolerance) {
+                        matchedY = y;
+                        break;
+                    }
+                }
+
+                // 如果没有匹配的组，创建新组（使用该行的平均Y坐标）
+                if (matchedY === null) {
+                    matchedY = Math.round(word.bbox.y0 / 5) * 5; // 取整到5像素
+                }
+
+                if (!yGroups[matchedY]) yGroups[matchedY] = [];
+                yGroups[matchedY].push(word);
             });
 
             // 按 Y 坐标排序
@@ -1376,18 +1420,56 @@
                 yGroups[y].sort((a, b) => a.bbox.x0 - b.bbox.x0);
             });
 
-            // 构建表格
+            // 检测列边界（基于X坐标聚类）
+            const allXPositions = [];
+            wordsWithBbox.forEach(word => {
+                allXPositions.push(word.bbox.x0);
+                allXPositions.push((word.bbox.x0 + word.bbox.x1) / 2); // 中心点
+            });
+            allXPositions.sort((a, b) => a - b);
+
+            // 使用K-means聚类识别列边界
+            const columnPositions = detectColumnPositions(allXPositions, sortedY, yGroups);
+
+            // 构建表格：按列对齐
             const rows = [];
-            sortedY.forEach((y, index) => {
-                const row = yGroups[y].map(word => word.text.trim()).filter(t => t);
-                if (row.length > 0) {
+            sortedY.forEach((y, rowIndex) => {
+                const rowWords = yGroups[y];
+                const row = new Array(columnPositions.length).fill('');
+
+                rowWords.forEach(word => {
+                    // 找到该单词应该属于的列
+                    const wordCenterX = (word.bbox.x0 + word.bbox.x1) / 2;
+                    let bestColIndex = 0;
+                    let minDistance = Infinity;
+
+                    columnPositions.forEach((colX, colIndex) => {
+                        const distance = Math.abs(wordCenterX - colX);
+                        if (distance < minDistance) {
+                            minDistance = distance;
+                            bestColIndex = colIndex;
+                        }
+                    });
+
+                    // 如果该列已有内容，追加（处理同一列多个单词的情况）
+                    if (row[bestColIndex]) {
+                        row[bestColIndex] += ' ' + word.text.trim();
+                    } else {
+                        row[bestColIndex] = word.text.trim();
+                    }
+                });
+
+                // 清理空行（所有单元格都为空）
+                const hasContent = row.some(cell => cell.trim().length > 0);
+                if (hasContent) {
                     rows.push(row);
                 }
             });
 
-            // 第一行作为表头
-            const headers = rows[0] || [];
-            const dataRows = rows.slice(1);
+            // 智能识别表头：检测前几行，找出最可能是表头的行
+            const headerRowCount = detectHeaderRows(rows);
+            const headers = mergeHeaderRows(rows.slice(0, headerRowCount));
+            const dataRows = rows.slice(headerRowCount);
 
             // 统一列数
             const maxCols = Math.max(headers.length, ...dataRows.map(r => r.length));
@@ -1398,10 +1480,197 @@
             recognizedData = {
                 headers: paddedHeaders,
                 rows: paddedRows,
-                rawText: words.map(w => w.text).join(' ')
+                rawText: wordsWithBbox.map(w => w.text || '').join(' ')
             };
 
             return recognizedData;
+        }
+
+        /**
+         * 检测列位置（基于X坐标聚类）
+         * @param {Array} xPositions - 所有X坐标
+         * @param {Array} sortedY - 排序后的Y坐标
+         * @param {Object} yGroups - 按Y分组的单词
+         * @returns {Array} 列位置数组
+         */
+        function detectColumnPositions(xPositions, sortedY, yGroups) {
+            if (xPositions.length === 0) return [];
+
+            // 使用前几行来识别列结构（表头通常更规范）
+            const sampleRows = Math.min(3, sortedY.length);
+            const sampleXPositions = [];
+
+            for (let i = 0; i < sampleRows; i++) {
+                const y = sortedY[i];
+                const words = yGroups[y] || [];
+                words.forEach(word => {
+                    sampleXPositions.push(word.bbox.x0);
+                });
+            }
+
+            if (sampleXPositions.length === 0) {
+                sampleXPositions.push(...xPositions);
+            }
+
+            // 对X坐标进行聚类
+            sampleXPositions.sort((a, b) => a - b);
+            const clusters = [];
+            const clusterTolerance = 30; // 列聚类容差
+
+            sampleXPositions.forEach(x => {
+                let matched = false;
+                for (let i = 0; i < clusters.length; i++) {
+                    const clusterCenter = clusters[i];
+                    if (Math.abs(x - clusterCenter) <= clusterTolerance) {
+                        // 更新聚类中心（取平均值）
+                        clusters[i] = (clusters[i] + x) / 2;
+                        matched = true;
+                        break;
+                    }
+                }
+                if (!matched) {
+                    clusters.push(x);
+                }
+            });
+
+            // 排序并返回
+            return clusters.sort((a, b) => a - b);
+        }
+
+        /**
+         * 检测表头行数
+         * @param {Array} rows - 所有行
+         * @returns {number} 表头行数
+         */
+        function detectHeaderRows(rows) {
+            if (rows.length === 0) return 0;
+            if (rows.length === 1) return 1;
+
+            // 表头关键词（中文表头常见词汇）
+            const headerKeywords = [
+                '主要产品', '产品', '单位', '生产量', '销售量', '库存量', '产量', '销量',
+                '上年', '增减', '同比', '环比', '增长率', '变化率', '比例', '占比',
+                '比', '率', '量', '额', '金额', '收入', '成本', '利润',
+                '万吨', '吨', '元', '万元', '个', '件', '台', '套',
+                '年', '月', '日', '季度', '半年度', '年度', '百分比'
+            ];
+
+            // 单位行特征（包含单位、百分比符号等）
+            const unitPatterns = [
+                /^[%\s()（）]+$/,  // 纯符号行，如 "(%)"
+                /^[\s%()（）]+$/,  // 纯符号（不含数字）
+                /^(单位|万吨|吨|元|万元|个|件|台|套|年|月|日|季度|半年度|年度|百分比|比例|占比|增长率|变化率|增减|同比|环比)/i
+            ];
+
+            let headerRowCount = 1; // 至少有一行表头
+
+            // 检查前几行，找出所有表头行
+            for (let i = 1; i < Math.min(4, rows.length); i++) {
+                const row = rows[i];
+                const rowText = row.join(' ').trim();
+
+                // 跳过空行
+                if (!rowText || rowText.length === 0) {
+                    continue;
+                }
+
+                // 统计字符类型
+                const chineseCharCount = (rowText.match(/[\u4e00-\u9fa5]/g) || []).length;
+                const digitCount = (rowText.match(/\d/g) || []).length;
+                const commaCount = (rowText.match(/,/g) || []).length; // 千位分隔符
+                const dotCount = (rowText.match(/\./g) || []).length; // 小数点
+
+                // 判断是否为数据行的特征
+                // 数据行通常包含：大量数字、千位分隔符、小数点、少量中文
+                const hasLargeNumbers = digitCount >= 5; // 包含5个或更多数字
+                const hasNumberFormat = commaCount > 0 || (dotCount > 0 && digitCount > 3); // 有千位分隔符或小数
+                const isDataRow = hasLargeNumbers || (hasNumberFormat && digitCount > chineseCharCount * 2);
+
+                // 如果明显是数据行，停止识别表头
+                if (isDataRow) {
+                    break;
+                }
+
+                // 判断是否为表头行的特征
+                let isHeaderRow = false;
+
+                // 方法1: 检查是否包含表头关键词（且不是数据行）
+                const hasHeaderKeyword = headerKeywords.some(keyword =>
+                    rowText.includes(keyword)
+                ) && !isDataRow;
+
+                // 方法2: 检查是否是单位行（纯符号、单位词、短行等，且不含大量数字）
+                const isUnitRow = (unitPatterns.some(pattern => pattern.test(rowText)) ||
+                                 (rowText.length < 30 && digitCount < 3)) && !isDataRow;
+
+                // 方法3: 检查是否主要是中文文字（非数据行）
+                const isTextRow = chineseCharCount > digitCount && chineseCharCount > 2 && !isDataRow;
+
+                // 方法4: 检查是否包含分组标题特征（如"生产量比"、"销售量比"等）
+                const hasGroupHeader = /[比|率|量|额|增减|同比|环比]/.test(rowText) &&
+                                      chineseCharCount > 1 && !isDataRow;
+
+                // 必须满足表头条件，且不是数据行
+                if ((hasHeaderKeyword || isUnitRow || (isTextRow && hasGroupHeader)) && !isDataRow) {
+                    headerRowCount = i + 1;
+                    isHeaderRow = true;
+                } else {
+                    // 如果既不是明显的表头，也不是明显的数据行，保守处理：停止识别
+                    break;
+                }
+            }
+
+            return Math.min(headerRowCount, rows.length);
+        }
+
+        /**
+         * 合并多行表头
+         * @param {Array} headerRows - 表头行数组
+         * @returns {Array} 合并后的表头
+         */
+        function mergeHeaderRows(headerRows) {
+            if (headerRows.length === 0) return [];
+            if (headerRows.length === 1) return headerRows[0];
+
+            // 找到最大列数
+            const maxCols = Math.max(...headerRows.map(r => r.length));
+            const merged = new Array(maxCols).fill('');
+
+            // 智能合并多行表头
+            for (let col = 0; col < maxCols; col++) {
+                const cellContents = [];
+
+                headerRows.forEach((row, rowIndex) => {
+                    const cell = row[col];
+                    if (cell && cell.trim()) {
+                        const trimmed = cell.trim();
+
+                        // 跳过纯符号行（如单独的"%"或"()"），但保留有意义的单位
+                        if (trimmed === '%' || trimmed === '()' || trimmed === '(%)') {
+                            // 如果是单位符号，添加到上一行的内容中（如果有）
+                            if (cellContents.length > 0) {
+                                const lastIndex = cellContents.length - 1;
+                                cellContents[lastIndex] = cellContents[lastIndex] + trimmed;
+                            } else {
+                                // 如果没有上一行内容，保留它
+                                cellContents.push(trimmed);
+                            }
+                        } else {
+                            cellContents.push(trimmed);
+                        }
+                    }
+                });
+
+                // 合并单元格内容
+                if (cellContents.length > 0) {
+                    // 如果多个内容，用空格连接；如果只有一个，直接使用
+                    merged[col] = cellContents.join(' ');
+                } else {
+                    merged[col] = '';
+                }
+            }
+
+            return merged;
         }
 
         /**
