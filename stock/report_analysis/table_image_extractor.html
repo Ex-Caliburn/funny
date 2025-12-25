@@ -1475,7 +1475,9 @@
                     <button class="view-button active" data-view="table" onclick="switchView(${index}, 'table', event)">📋 表格</button>
                     <button class="view-button" data-view="image" onclick="switchView(${index}, 'image', event)">🖼️ 图片</button>
                     <button class="view-button" data-view="json" onclick="switchView(${index}, 'json', event)">📄 JSON</button>
-                    <button class="view-button" data-view="json" onclick="copyJSONFromTree(${index}, event)" style="margin-left: auto; background: #28a745; color: #fff;">📋 复制 JSON</button>
+                    <button class="view-button" onclick="exportTableToCSV(${index}, event)" style="margin-left: auto; background: #667eea; color: #fff;">📥 导出 CSV</button>
+                    <button class="view-button" onclick="exportTableToJSON(${index}, event)" style="background: #28a745; color: #fff;">💾 导出 JSON</button>
+                    <button class="view-button" onclick="copyJSONFromTree(${index}, event)" style="background: #17a2b8; color: #fff;">📋 复制 JSON</button>
                 `;
 
                 // 表格视图
@@ -1888,7 +1890,7 @@
         }
 
         /**
-         * 导出为 CSV
+         * 导出为 CSV（单图片，保留兼容性）
          */
         function exportTable() {
             if (!recognizedData) return;
@@ -1907,6 +1909,153 @@
             link.download = `table_${Date.now()}.csv`;
             link.click();
         }
+
+        /**
+         * 导出指定图片的表格为 CSV（多图片版本）
+         * @param {number} imageIndex - 图片索引
+         */
+        window.exportTableToCSV = function(imageIndex, event) {
+            if (event) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+
+            if (!ocrResults || !ocrResults[imageIndex]) {
+                showError('未找到表格数据');
+                return;
+            }
+
+            const result = ocrResults[imageIndex];
+            const parsedData = parseTextToTable(result.data.text || '', result.data.words || []);
+
+            // 从表格 DOM 中获取当前编辑后的数据
+            const tableView = document.getElementById(`table-view-${imageIndex}`);
+            if (tableView) {
+                const table = tableView.querySelector('table');
+                if (table) {
+                    // 重新解析表格数据（包含用户编辑的内容）
+                    const headers = [];
+                    const rows = [];
+
+                    // 获取表头
+                    const headerCells = table.querySelectorAll('thead th');
+                    headerCells.forEach(th => {
+                        headers.push(th.textContent.trim());
+                    });
+
+                    // 获取数据行
+                    const dataRows = table.querySelectorAll('tbody tr');
+                    dataRows.forEach(tr => {
+                        const row = [];
+                        const cells = tr.querySelectorAll('td input');
+                        cells.forEach(input => {
+                            row.push(input.value || '');
+                        });
+                        if (row.length > 0) {
+                            rows.push(row);
+                        }
+                    });
+
+                    // 使用编辑后的数据
+                    parsedData.headers = headers;
+                    parsedData.rows = rows;
+                }
+            }
+
+            let csv = '';
+            // 表头
+            csv += parsedData.headers.map(h => `"${String(h || '').replace(/"/g, '""')}"`).join(',') + '\n';
+            // 数据行
+            parsedData.rows.forEach(row => {
+                csv += row.map(cell => `"${String(cell || '').replace(/"/g, '""')}"`).join(',') + '\n';
+            });
+
+            const blob = new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            const imageName = result.imageName || `图片${imageIndex + 1}`;
+            link.download = `${imageName}_${Date.now()}.csv`;
+            link.click();
+            showSuccess('CSV 文件已导出');
+        };
+
+        /**
+         * 导出指定图片的表格为 JSON（多图片版本）
+         * @param {number} imageIndex - 图片索引
+         */
+        window.exportTableToJSON = function(imageIndex, event) {
+            if (event) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+
+            if (!ocrResults || !ocrResults[imageIndex]) {
+                showError('未找到表格数据');
+                return;
+            }
+
+            const result = ocrResults[imageIndex];
+            const parsedData = parseTextToTable(result.data.text || '', result.data.words || []);
+
+            // 从表格 DOM 中获取当前编辑后的数据
+            const tableView = document.getElementById(`table-view-${imageIndex}`);
+            if (tableView) {
+                const table = tableView.querySelector('table');
+                if (table) {
+                    // 重新解析表格数据（包含用户编辑的内容）
+                    const headers = [];
+                    const rows = [];
+
+                    // 获取表头
+                    const headerCells = table.querySelectorAll('thead th');
+                    headerCells.forEach(th => {
+                        headers.push(th.textContent.trim());
+                    });
+
+                    // 获取数据行
+                    const dataRows = table.querySelectorAll('tbody tr');
+                    dataRows.forEach(tr => {
+                        const row = [];
+                        const cells = tr.querySelectorAll('td input');
+                        cells.forEach(input => {
+                            row.push(input.value || '');
+                        });
+                        if (row.length > 0) {
+                            rows.push(row);
+                        }
+                    });
+
+                    // 使用编辑后的数据
+                    parsedData.headers = headers;
+                    parsedData.rows = rows;
+                }
+            }
+
+            // 构建结构化数据
+            const structuredData = {
+                imageName: result.imageName || `图片${imageIndex + 1}`,
+                headers: parsedData.headers,
+                data: parsedData.rows.map(row => {
+                    const obj = {};
+                    parsedData.headers.forEach((header, index) => {
+                        obj[header || `列${index + 1}`] = row[index] || '';
+                    });
+                    return obj;
+                }),
+                rawText: result.data.text || '',
+                words: result.data.words || [],
+                extractedAt: new Date().toISOString()
+            };
+
+            const json = JSON.stringify(structuredData, null, 2);
+            const blob = new Blob([json], { type: 'application/json' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            const imageName = result.imageName || `图片${imageIndex + 1}`;
+            link.download = `${imageName}_${Date.now()}.json`;
+            link.click();
+            showSuccess('JSON 文件已导出');
+        };
 
         /**
          * 保存 JSON 数据
