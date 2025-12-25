@@ -411,6 +411,7 @@ wss.on('connection', (ws, req) => {
                 }));
 
                 const pythonScript = path.join(__dirname, 'paddleocr_recognize.py');
+                const createdTempFiles = []; // 记录创建的临时文件
 
                 try {
                     // 处理所有图片，每识别完一张就立即返回结果
@@ -443,6 +444,7 @@ wss.on('connection', (ws, req) => {
                                 const tempFileName = `temp_${Date.now()}_${i}.png`;
                                 imagePath = path.join(uploadDir, tempFileName);
                                 fs.writeFileSync(imagePath, buffer);
+                                createdTempFiles.push(imagePath); // 记录临时文件
                                 console.log(`   💾 已保存临时文件: ${tempFileName} (${buffer.length} bytes)`);
                             } catch (e) {
                                 throw new Error(`Base64 解码失败: ${e.message}`);
@@ -455,32 +457,40 @@ wss.on('connection', (ws, req) => {
                             }
                         }
 
-                        // 识别单张图片
-                        const result = await runPaddleOCR(pythonScript, [imagePath]);
+                        try {
+                            // 识别单张图片
+                            const result = await runPaddleOCR(pythonScript, [imagePath]);
 
-                        // 立即发送单张图片的识别结果（使用原始索引）
-                        ws.send(JSON.stringify({
-                            type: 'image_result',
-                            imageName: imageName,
-                            imageIndex: originalIndex, // 使用原始索引，保持与前端一致
-                            data: result,
-                            progress: 20 + ((i + 1) / imagePaths.length) * 60
-                        }));
+                            // 立即发送单张图片的识别结果（使用原始索引）
+                            ws.send(JSON.stringify({
+                                type: 'image_result',
+                                imageName: imageName,
+                                imageIndex: originalIndex, // 使用原始索引，保持与前端一致
+                                data: result,
+                                progress: 20 + ((i + 1) / imagePaths.length) * 60
+                            }));
 
-                        // 清理临时文件
-                        if (imagePath.startsWith(uploadDir) && imagePath.includes('temp_')) {
-                            try {
-                                fs.unlinkSync(imagePath);
-                            } catch (e) {
-                                console.error(`清理临时文件失败: ${imagePath}`);
+                            ws.send(JSON.stringify({
+                                type: 'progress',
+                                message: `${imageName} 识别完成`,
+                                progress: 20 + ((i + 1) / imagePaths.length) * 60
+                            }));
+                        } finally {
+                            // 无论成功还是失败，都清理临时文件
+                            if (imagePath.startsWith(uploadDir) && imagePath.includes('temp_')) {
+                                try {
+                                    if (fs.existsSync(imagePath)) {
+                                        fs.unlinkSync(imagePath);
+                                        const index = createdTempFiles.indexOf(imagePath);
+                                        if (index > -1) {
+                                            createdTempFiles.splice(index, 1);
+                                        }
+                                    }
+                                } catch (e) {
+                                    console.error(`清理临时文件失败: ${imagePath}`, e.message);
+                                }
                             }
                         }
-
-                        ws.send(JSON.stringify({
-                            type: 'progress',
-                            message: `${imageName} 识别完成`,
-                            progress: 20 + ((i + 1) / imagePaths.length) * 60
-                        }));
                     }
 
                     // 发送完成信号
@@ -492,6 +502,19 @@ wss.on('connection', (ws, req) => {
 
                 } catch (error) {
                     console.error('WebSocket OCR 处理错误:', error);
+
+                    // 清理所有创建的临时文件
+                    createdTempFiles.forEach(tempFilePath => {
+                        try {
+                            if (fs.existsSync(tempFilePath)) {
+                                fs.unlinkSync(tempFilePath);
+                                console.log(`   🗑️  已清理临时文件: ${path.basename(tempFilePath)}`);
+                            }
+                        } catch (e) {
+                            console.error(`清理临时文件失败: ${tempFilePath}`, e.message);
+                        }
+                    });
+
                     ws.send(JSON.stringify({
                         type: 'error',
                         error: error.message
@@ -516,6 +539,67 @@ wss.on('connection', (ws, req) => {
     });
 });
 
+/**
+ * 清理 uploads 目录中的旧文件
+ * 删除超过 1 小时的临时文件
+ */
+function cleanupOldFiles() {
+    try {
+        const files = fs.readdirSync(uploadDir);
+        const now = Date.now();
+        const maxAge = 60 * 60 * 1000; // 1 小时
+        let deletedCount = 0;
+
+        files.forEach(file => {
+            const filePath = path.join(uploadDir, file);
+            try {
+                const stats = fs.statSync(filePath);
+                const age = now - stats.mtimeMs;
+
+                // 删除超过 1 小时的文件
+                if (age > maxAge) {
+                    fs.unlinkSync(filePath);
+                    deletedCount++;
+                    console.log(`   🗑️  已清理旧文件: ${file} (${Math.round(age / 1000 / 60)} 分钟前)`);
+                }
+            } catch (e) {
+                // 忽略无法访问的文件
+                console.error(`   ⚠️  无法访问文件: ${file}`, e.message);
+            }
+        });
+
+        if (deletedCount > 0) {
+            console.log(`   ✅ 清理完成，共删除 ${deletedCount} 个旧文件`);
+        }
+    } catch (e) {
+        console.error('   ❌ 清理旧文件失败:', e.message);
+    }
+}
+
+// 启动时清理一次
+cleanupOldFiles();
+
+// 每 30 分钟自动清理一次
+const cleanupInterval = setInterval(() => {
+    console.log('\n🧹 开始定期清理 uploads 目录...');
+    cleanupOldFiles();
+}, 30 * 60 * 1000); // 30 分钟
+
+// 优雅关闭时清理定时器
+process.on('SIGINT', () => {
+    console.log('\n🛑 正在关闭服务器...');
+    clearInterval(cleanupInterval);
+    cleanupOldFiles(); // 关闭前最后清理一次
+    process.exit(0);
+});
+
+process.on('SIGTERM', () => {
+    console.log('\n🛑 正在关闭服务器...');
+    clearInterval(cleanupInterval);
+    cleanupOldFiles(); // 关闭前最后清理一次
+    process.exit(0);
+});
+
 // 启动服务器（监听所有网络接口）
 server.listen(PORT, '0.0.0.0', () => {
     console.log(`🚀 PaddleOCR 服务器已启动`);
@@ -524,6 +608,7 @@ server.listen(PORT, '0.0.0.0', () => {
     console.log(`📋 API 接口: http://localhost:${PORT}/api/ocr`);
     console.log(`💚 健康检查: http://localhost:${PORT}/api/health`);
     console.log(`\n⚠️  请确保已安装 Python 3 和 PaddleOCR`);
-    console.log(`📝 使用说明: 查看 README_PADDLEOCR.md`);
+    console.log(`📝 使用说明: 查看 PADDLEOCR_README.md`);
+    console.log(`🧹 自动清理: uploads 目录中的文件将在 1 小时后自动清理`);
 });
 

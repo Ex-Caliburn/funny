@@ -59,6 +59,7 @@ node scripts/download_hk_reports.js --code 00700 --name 腾讯控股 --years 202
 ### 问题1：安装超时
 
 **解决方案**：
+
 - 使用国内镜像源
 - 检查网络连接
 - 增加npm超时时间：`npm install puppeteer --timeout=60000`
@@ -66,6 +67,7 @@ node scripts/download_hk_reports.js --code 00700 --name 腾讯控股 --years 202
 ### 问题2：Chromium下载失败
 
 **解决方案**：
+
 - 手动设置环境变量：`export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=false`
 - 使用代理或VPN
 - 手动下载Chromium并配置路径
@@ -73,6 +75,7 @@ node scripts/download_hk_reports.js --code 00700 --name 腾讯控股 --years 202
 ### 问题3：权限错误
 
 **解决方案**：
+
 - macOS/Linux: 确保有执行权限
 - 如果遇到sandbox问题，脚本已自动添加 `--no-sandbox` 参数
 
@@ -81,4 +84,3 @@ node scripts/download_hk_reports.js --code 00700 --name 腾讯控股 --years 202
 - 如果不安装Puppeteer，脚本仍可使用，但可能无法获取动态加载的内容
 - Puppeteer会占用更多内存，但能获取更完整的数据
 - 建议在网络稳定时使用Puppeteer模式
-

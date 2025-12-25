@@ -28,7 +28,8 @@
     "crawl:all": "node scripts/crawler/framework/crawler_main.js all",
     "crawl:all2": "node scripts/crawler/framework/crawler_main.js all 2",
     "download:reports": "node scripts/stock-reports/batch_download_reports.js",
-    "download:hk": "node scripts/stock-reports/download_hk_reports.js"
+    "download:hk": "node scripts/stock-reports/download_hk_reports.js",
+    "ocr:server": "DISABLE_MODEL_SOURCE_CHECK=True node scripts/tools/paddleocr_server.js"
   },
   "repository": {
     "type": "git",
@@ -57,7 +58,9 @@
     "multipassify": "^1.1.0",
     "number-precision": "^1.6.0",
     "pdf-parse": "^2.4.5",
+    "playwright": "^1.57.0",
     "puppeteer": "^24.33.0",
+    "ws": "^8.18.3",
     "xlsx": "0.18.5"
   }
 }
