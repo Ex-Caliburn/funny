@@ -582,40 +582,28 @@
             let rawData = [];
 
             // 从JSON文件加载数据
+            // 工作流程：PDF报告 → 自动提取(shanmei_data.json) → 增量更新(shanmei_data_corrected.json) → 手动修正 → 页面展示
             async function loadCorrectedData() {
                 try {
-                    // 优先加载包含所有年份的数据文件
-                    const response = await fetch('shanmei_data.json');
+                    const response = await fetch('shanmei_data_corrected.json');
                     if (!response.ok) {
                         throw new Error(`HTTP error! status: ${response.status}`);
                     }
                     const jsonData = await response.json();
-                    // shanmei_data.json 是数组格式，直接使用
-                    if (Array.isArray(jsonData)) {
+                    // 新格式：{ _metadata: {...}, summary: [...] }
+                    // 旧格式：数组
+                    if (jsonData._metadata && jsonData.summary) {
+                        rawData = jsonData.summary;
+                    } else if (Array.isArray(jsonData)) {
                         rawData = jsonData;
-                    } else if (jsonData.rawData) {
-                        // 如果是 {rawData: [...]} 格式
-                        rawData = jsonData.rawData;
                     } else {
                         rawData = [];
                     }
-                    console.log('已加载数据，共', rawData.length, '条记录');
+                    console.log('已加载修正后的数据，共', rawData.length, '条记录');
                 } catch (error) {
                     console.error('加载数据失败:', error);
-                    // 如果加载失败，尝试加载主数据文件作为后备
-                    try {
-                        const fallbackResponse = await fetch('shanmei_data.json');
-                        if (fallbackResponse.ok) {
-                            const fallbackData = await fallbackResponse.json();
-                            rawData = fallbackData.rawData || [];
-                            console.log('已加载修正后的数据作为后备，共', rawData.length, '条记录');
-                        } else {
-                            rawData = [];
-                        }
-                    } catch (fallbackError) {
-                        console.error('加载后备数据也失败:', fallbackError);
-                        rawData = [];
-                    }
+                    console.error('请确保已运行: node scripts/stock-reports/shanmei_report_parse.js correct');
+                    rawData = [];
                 }
             }
 
@@ -1208,19 +1196,21 @@
 
             // 计算变化百分比
             function calculateChange(current, previous) {
-                if (current === null || previous === null || previous === 0) {
+                if (current === null || previous === null || previous === 0 || isNaN(current) || isNaN(previous)) {
                     return null;
                 }
-                return ((current - previous) / previous * 100).toFixed(2);
+                const result = ((current - previous) / previous * 100); return isNaN(result) ? null : result.toFixed(2);
             }
 
             // 格式化变化百分比
             function formatChange(change) {
-                if (change === null) {
+                if (change === null || change === undefined || change === "NaN" || isNaN(parseFloat(change))) {
                     return '<span class="no-data">-</span>';
                 }
                 const num = parseFloat(change);
-                const className = num > 0 ? 'positive' : (num < 0 ? 'negative' : 'neutral');
+                if (isNaN(num)) {
+                    return '<span class="no-data">-</span>';
+                }                const className = num > 0 ? 'positive' : (num < 0 ? 'negative' : 'neutral');
                 const sign = num > 0 ? '+' : '';
                 return `<span class="change ${className}">${sign}${change}%</span>`;
             }
@@ -1450,86 +1440,80 @@
                 }
 
                 // 将山煤国际的数据结构转换为扁平结构（分别处理生产煤和贸易煤）
-                // 注意：shanmei_data.json 的数据结构是 {year, period, month, productData: {productionCoal, tradeCoal}}
+                // 新格式：{ period, year, productionCoal: {...}, tradeCoal: {...}, metallurgicalCoal: {...}, thermalCoal: {...} }
+                // 旧格式：{ year, period, month, productData: {productionCoal, tradeCoal} }
                 // 生产煤数据（只保留自产煤数据）
                 const productionData = rawData.map(item => {
-                    const pc = (item.productData && item.productData.productionCoal) || item.productionCoal || {};
-                    // 处理单位转换：productData.productionCoal中的revenue和cost单位是万元，需要转换为亿元
+                    // 支持新格式和旧格式
+                    const pc = item.productionCoal || (item.productData && item.productData.productionCoal) || {};
+
+                    // 新格式的数据单位是万元，需要转换为亿元
                     let revenue = pc.revenue;
                     if (revenue) {
-                        // 万元转换为亿元：除以10000
                         revenue = revenue / 10000;
                     }
-                    // 处理cost单位转换
                     let cost = pc.cost;
                     if (cost) {
-                        // 万元转换为亿元：除以10000
                         cost = cost / 10000;
                     }
-                    
-                    // 从quarterData中获取数据（如果存在）
+
+                    // 从quarterData中获取数据（旧格式兼容）
                     let finalRevenue = revenue;
                     let finalCost = cost;
                     let finalSales = pc.sales;
                     let finalProduction = pc.production;
-                    let inventory = null;
+                    let inventory = pc.inventory;
 
                     if (item.quarterData && item.quarterData.cumulative) {
                         const qd = item.quarterData.cumulative;
-                        // 优先使用quarterData中的数据（已经是正确单位）
                         finalRevenue = qd.revenue !== null && qd.revenue !== undefined ? qd.revenue : revenue;
                         finalCost = qd.cost !== null && qd.cost !== undefined ? qd.cost : cost;
                         finalSales = qd.sales !== null && qd.sales !== undefined ? qd.sales : pc.sales;
                         finalProduction = qd.production !== null && qd.production !== undefined ? qd.production : pc.production;
-                        inventory = qd.inventory;
+                        inventory = qd.inventory || inventory;
                     }
 
-                    // 获取库存量数据（从productionCoal.inventory，只在年报中有，单位：万吨）
-                    if (!inventory && item.productData && item.productData.productionCoal) {
-                        inventory = item.productData.productionCoal.inventory;
+                    // 从period解析month
+                    let month = item.month || 0;
+                    if (!month && item.period) {
+                        if (item.period.includes('全年')) month = 12;
+                        else if (item.period.includes('1-9月')) month = 9;
+                        else if (item.period.includes('上半年')) month = 6;
+                        else if (item.period.includes('1-3月')) month = 3;
                     }
-                    
+
                     return {
                         period: item.period,
                         year: parseInt(item.year) || item.year,
-                        month: item.month || 0,
+                        month: month,
                         type: item.type || 'cumulative',
                         revenue: finalRevenue,
                         cost: finalCost,
                         sales: finalSales,
                         production: finalProduction,
                         inventory: inventory,
-                        price: pc.price,
+                        price: pc.unitPrice || pc.price,
                         unitCost: pc.unitCost,
-                        salesType: pc.salesType, // 保留数据类型标记
-                        // 保留productData和quarterData以便在计算季度数据时使用
+                        grossMargin: pc.grossMargin,
+                        unitGrossProfit: pc.unitGrossProfit,
+                        // 保留原始数据以便在计算季度数据时使用
+                        productionCoal: item.productionCoal,
+                        tradeCoal: item.tradeCoal,
+                        metallurgicalCoal: item.metallurgicalCoal,
+                        thermalCoal: item.thermalCoal,
                         productData: item.productData,
                         quarterData: item.quarterData,
                         category: 'production'
                     };
                 }).filter(item => {
-                    // 过滤条件：
-                    // 1. 必须有年份
-                    if (!item.year) return false;
-                    
-                    // 2. 对于累计数据，显示所有报告期（年报、季报、半年报等）
-                    // 3. 对于2023年及以后的数据，如果有salesType标记，优先保留自产煤
-                    //    但如果没有salesType（季报/半年报），也应该保留（因为包含累计数据）
-                    const year = parseInt(item.year);
-                    
-                    // 2022年及之前的数据全部保留
-                    if (year <= 2022) return true;
-                    
-                    // 2023年及以后：
-                    // - 如果没有salesType标记（季报/半年报），保留（它们包含累计财务数据）
-                    // - 如果有salesType，只保留自产煤数据
-                    if (!item.salesType) return true;
-                    return item.salesType === 'ownCoal';
+                    // 过滤条件：必须有年份
+                    return !!item.year;
                 });
 
                 // 贸易煤数据
                 const tradeData = rawData.map(item => {
-                    const tc = (item.productData && item.productData.tradeCoal) || item.tradeCoal || {};
+                    // 支持新格式和旧格式
+                    const tc = item.tradeCoal || (item.productData && item.productData.tradeCoal) || {};
                     // 处理单位转换：productData.tradeCoal中的revenue和cost单位是万元，需要转换为亿元
                     let revenue = tc.revenue;
                     if (revenue) {
@@ -1842,19 +1826,21 @@
 
             // 计算变化百分比
             function calculateChange(current, previous) {
-                if (current === null || previous === null || previous === 0) {
+                if (current === null || previous === null || previous === 0 || isNaN(current) || isNaN(previous)) {
                     return null;
                 }
-                return ((current - previous) / previous * 100).toFixed(2);
+                const result = ((current - previous) / previous * 100); return isNaN(result) ? null : result.toFixed(2);
             }
 
             // 格式化变化百分比
             function formatChange(change) {
-                if (change === null) {
+                if (change === null || change === undefined || change === "NaN" || isNaN(parseFloat(change))) {
                     return '<span class="no-data">-</span>';
                 }
                 const num = parseFloat(change);
-                const className = num > 0 ? 'positive' : (num < 0 ? 'negative' : 'neutral');
+                if (isNaN(num)) {
+                    return '<span class="no-data">-</span>';
+                }                const className = num > 0 ? 'positive' : (num < 0 ? 'negative' : 'neutral');
                 const sign = num > 0 ? '+' : '';
                 return `<span class="change ${className}">${sign}${change}%</span>`;
             }
@@ -2131,67 +2117,70 @@
                     // 从主数据中提取分产品数据，显示所有全年记录
                     const productDataList = [];
 
-                    // 从shanmei_data.json加载数据
+                    // 从shanmei_data_corrected.json加载数据（优先使用修正后的数据）
                     try {
-                        const response = await fetch('shanmei_data.json');
+                        const response = await fetch('shanmei_data_corrected.json');
                         if (response.ok) {
                             const jsonData = await response.json();
-                            
+                            // 支持新格式和旧格式
+                            const dataArray = jsonData.summary || jsonData;
+
                             // 辅助函数：将万元转换为亿元
                             const convertToYi = (value) => value ? Number((value / 10000).toFixed(4)) : null;
-                            
+
                             // 显示所有全年记录（不限制年份）
-                            jsonData.forEach(item => {
+                            dataArray.forEach(item => {
                                 if (!item.period.includes('全年')) return;
-                                
-                                const breakdown = item.productData?.productBreakdown;
-                                if (!breakdown) return;
-                                
+
+                                // 新格式：直接从item获取 metallurgicalCoal, thermalCoal, tradeCoal
+                                // 旧格式：从 item.productData.productBreakdown 获取
+                                const mc = item.metallurgicalCoal || item.productData?.productBreakdown?.metallurgicalCoal;
+                                const thc = item.thermalCoal || item.productData?.productBreakdown?.thermalCoal;
+                                const tc = item.tradeCoal || item.productData?.productBreakdown?.tradeCoal || item.productData?.tradeCoal;
+                                const cokeCoal = item.productData?.productBreakdown?.cokeCoal;
+                                const anthracite = item.productData?.productBreakdown?.anthracite;
+
                                 // 检查是否有任何分产品数据
-                                const hasAnyData = (breakdown.metallurgicalCoal && breakdown.metallurgicalCoal.revenue) ||
-                                    (breakdown.thermalCoal && breakdown.thermalCoal.revenue) ||
-                                    (breakdown.tradeCoal && breakdown.tradeCoal.revenue) ||
-                                    (breakdown.cokeCoal && breakdown.cokeCoal.revenue) ||
-                                    (breakdown.anthracite && breakdown.anthracite.revenue);
-                                
+                                const hasAnyData = (mc && mc.revenue) || (thc && thc.revenue) || (tc && tc.revenue);
                                 if (!hasAnyData) return;
-                                
-                                // 贸易煤销量从productData.tradeCoal获取（如果分产品没有）
-                                const tradeCoalSales = breakdown.tradeCoal?.sales || item.productData?.tradeCoal?.sales;
-                                
+
                                 productDataList.push({
                                     period: item.period,
                                     year: parseInt(item.year) || item.year,
-                                    month: item.month || 0,
+                                    month: item.month || 12,
                                     metallurgicalCoal: {
-                                        production: breakdown.metallurgicalCoal?.production,
-                                        sales: breakdown.metallurgicalCoal?.sales,
-                                        revenue: convertToYi(breakdown.metallurgicalCoal?.revenue),
-                                        cost: convertToYi(breakdown.metallurgicalCoal?.cost),
-                                        grossMargin: breakdown.metallurgicalCoal?.grossMargin
+                                        production: mc?.production,
+                                        sales: mc?.sales,
+                                        revenue: convertToYi(mc?.revenue),
+                                        cost: convertToYi(mc?.cost),
+                                        grossMargin: mc?.grossMargin,
+                                        unitPrice: mc?.unitPrice,
+                                        unitCost: mc?.unitCost
                                     },
                                     thermalCoal: {
-                                        production: breakdown.thermalCoal?.production,
-                                        sales: breakdown.thermalCoal?.sales,
-                                        revenue: convertToYi(breakdown.thermalCoal?.revenue),
-                                        cost: convertToYi(breakdown.thermalCoal?.cost),
-                                        grossMargin: breakdown.thermalCoal?.grossMargin
+                                        production: thc?.production,
+                                        sales: thc?.sales,
+                                        revenue: convertToYi(thc?.revenue),
+                                        cost: convertToYi(thc?.cost),
+                                        grossMargin: thc?.grossMargin,
+                                        unitPrice: thc?.unitPrice,
+                                        unitCost: thc?.unitCost
                                     },
                                     cokeCoal: {
-                                        revenue: convertToYi(breakdown.cokeCoal?.revenue),
-                                        cost: convertToYi(breakdown.cokeCoal?.cost),
-                                        grossMargin: breakdown.cokeCoal?.grossMargin
+                                        revenue: convertToYi(cokeCoal?.revenue),
+                                        cost: convertToYi(cokeCoal?.cost),
+                                        grossMargin: cokeCoal?.grossMargin
                                     },
                                     anthracite: {
-                                        revenue: convertToYi(breakdown.anthracite?.revenue),
-                                        cost: convertToYi(breakdown.anthracite?.cost),
-                                        grossMargin: breakdown.anthracite?.grossMargin
+                                        revenue: convertToYi(anthracite?.revenue),
+                                        cost: convertToYi(anthracite?.cost),
+                                        grossMargin: anthracite?.grossMargin
                                     },
                                     tradeCoal: {
-                                        sales: tradeCoalSales,
-                                        revenue: convertToYi(breakdown.tradeCoal?.revenue),
-                                        cost: convertToYi(breakdown.tradeCoal?.cost),
-                                        grossMargin: breakdown.tradeCoal?.grossMargin
+                                        sales: tc?.sales,
+                                        revenue: convertToYi(tc?.revenue),
+                                        cost: convertToYi(tc?.cost),
+                                        grossMargin: tc?.grossMargin
                                     }
                                 });
                             });
@@ -2205,7 +2194,7 @@
                         return;
                     }
 
-                    // 按时间排序
+                    // 按时间排序（升序，从旧到新）
                     productDataList.sort((a, b) => {
                         if (a.year !== b.year) return a.year - b.year;
                         return a.month - b.month;

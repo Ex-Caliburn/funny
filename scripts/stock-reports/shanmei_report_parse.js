@@ -2766,8 +2766,6 @@ async function main() {
       await processAllPDFs();
       break;
 
-
-
     case 'production':
     case 'prod':
       // 解析生产经营数据PDF
@@ -2781,13 +2779,29 @@ async function main() {
       }
       break;
 
+    case 'correct':
+    case 'corrected':
+      // 生成/更新增量修正文件
+      generateCorrectedDataFile();
+      break;
+
+    case 'validate':
+      // 验证修正数据
+      validateCorrectedData();
+      break;
+
+    case 'summary':
+      // 导出数据摘要
+      exportDataSummary();
+      break;
+
     case 'test':
       // 测试数据
       testDataIntegrity();
       break;
 
     case 'all':
-      // 执行所有操作：解析生产经营数据PDF → 解析年报PDF → 合并季度数据 → 测试
+      // 执行所有操作：解析生产经营数据PDF → 解析年报PDF → 合并季度数据 → 生成修正文件 → 测试
       console.log('\n📋 执行完整流程...\n');
 
       // 1. 解析生产经营数据PDF
@@ -2801,7 +2815,11 @@ async function main() {
       // 3. 合并季度数据
       console.log('\n' + '='.repeat(60));
       if (mergeQuarterlyData()) {
-        // 4. 测试数据完整性
+        // 4. 生成增量修正文件
+        console.log('\n' + '='.repeat(60));
+        generateCorrectedDataFile();
+
+        // 5. 测试数据完整性
         console.log('\n' + '='.repeat(60));
         testDataIntegrity();
         console.log('\n✅ 所有操作完成！');
@@ -2819,9 +2837,15 @@ async function main() {
   production  - 解析生产经营数据PDF，生成 production_data_extracted.json
   parse/pdf   - 解析所有年报PDF文件，提取数据到 shanmei_data.json
   merge       - 从HTML提取季度数据并合并到主文件（一步到位）
+  correct     - 生成/更新增量修正文件 shanmei_data_corrected.json
+  validate    - 验证修正数据文件的完整性和正确性
+  summary     - 导出数据摘要到 data_summary.md
   test        - 测试数据完整性
-  all         - 执行完整流程：production → parse → merge → test
+  all         - 执行完整流程：production → parse → merge → correct → test
   help        - 显示帮助信息
+
+工作流程:
+  PDF报告 → 自动提取(shanmei_data.json) → 增量更新(shanmei_data_corrected.json) → 手动修正 → 页面展示
 
 常用流程:
   1. 首次使用或添加新PDF:
@@ -2833,14 +2857,22 @@ async function main() {
   3. 只更新季度数据:
      node shanmei_report_parse.js merge
 
-  4. 只测试数据:
-     node shanmei_report_parse.js test
+  4. 生成/更新修正文件（保留手动修正）:
+     node shanmei_report_parse.js correct
+
+  5. 验证数据:
+     node shanmei_report_parse.js validate
+
+  6. 导出摘要:
+     node shanmei_report_parse.js summary
 
 说明:
   - all 命令会依次执行所有步骤，适合完整更新数据
   - production 命令解析生产经营数据PDF（2020-2023年的季度数据）
   - parse 命令解析年报、半年报、季报PDF
   - merge 命令整合所有数据源并计算累积数据
+  - correct 命令生成增量修正文件，支持手动修正后保留
+  - 手动修正 shanmei_data_corrected.json 后，再次运行 correct 不会覆盖修正
       `);
       break;
 
@@ -2849,6 +2881,500 @@ async function main() {
       console.log('使用 "help" 查看帮助信息');
       break;
   }
+}
+
+// ==================== 增量更新与手动修正支持 ====================
+
+/**
+ * 生成增量更新文件 shanmei_data_corrected.json
+ * 工作流程：PDF报告 → 自动提取(shanmei_data.json) → 增量更新(shanmei_data_corrected.json) → 手动修正 → 页面展示
+ *
+ * 结构参考紫金矿业的 zijin_data_corrected.json:
+ * {
+ *   "_metadata": { ... },
+ *   "summary": [ { period, year, filename, productionCoal: {...}, tradeCoal: {...}, ... } ]
+ * }
+ *
+ * 规则：
+ * 1. 如果 shanmei_data_corrected.json 不存在，从 shanmei_data.json 转换创建
+ * 2. 如果存在，只更新新增的报告期数据，保留已有的手动修正
+ * 3. 手动修正的字段会被保留，不会被自动提取的数据覆盖
+ */
+function generateCorrectedDataFile() {
+  console.log('\n📝 生成/更新增量修正文件...\n');
+
+  const baseDir = path.join(__dirname, '../../stock/report_analysis/山煤国际');
+  const rawDataPath = path.join(baseDir, 'shanmei_data.json');
+  const correctedDataPath = path.join(baseDir, 'shanmei_data_corrected.json');
+
+  if (!fs.existsSync(rawDataPath)) {
+    console.error('❌ shanmei_data.json 不存在，请先运行 parse 命令');
+    return false;
+  }
+
+  const rawData = JSON.parse(fs.readFileSync(rawDataPath, 'utf-8'));
+  console.log(`  - 原始数据: ${rawData.length} 条记录`);
+
+  // 初始化修正文件结构
+  let correctedFile = {
+    _metadata: {
+      stockName: '山煤国际',
+      stockCode: '600546',
+      description: '此文件包含修正后的数据，用于页面展示。手动修正的数据会被标记。',
+      dataSource: 'shanmei_data.json',
+      lastUpdated: new Date().toISOString().split('T')[0],
+      products: ['productionCoal', 'tradeCoal'],
+      coalTypes: ['metallurgicalCoal', 'thermalCoal', 'cokeCoal', 'anthracite'],
+      dataFlow: 'PDF报告 → 自动提取(shanmei_data.json) → 手动修正(本文件) → 页面展示',
+      correctionRules: {
+        manual: '手动填入或修改的数据，标记 _corrected: true',
+        verified: '经过人工验证确认正确的数据，标记 _verified: true'
+      }
+    },
+    summary: []
+  };
+
+  let existingPeriods = new Map(); // period -> index in summary
+
+  // 如果修正文件已存在，加载它
+  if (fs.existsSync(correctedDataPath)) {
+    const existingFile = JSON.parse(fs.readFileSync(correctedDataPath, 'utf-8'));
+
+    // 兼容旧格式（数组）和新格式（对象）
+    if (Array.isArray(existingFile)) {
+      // 旧格式，需要转换
+      console.log('  - 检测到旧格式，将转换为新格式');
+    } else if (existingFile._metadata && existingFile.summary) {
+      // 新格式，保留
+      correctedFile._metadata = existingFile._metadata;
+      correctedFile.summary = existingFile.summary;
+      console.log(`  - 已有修正数据: ${correctedFile.summary.length} 条记录`);
+    }
+
+    // 记录已有的报告期
+    correctedFile.summary.forEach((item, index) => {
+      existingPeriods.set(item.period, index);
+    });
+  }
+
+  // 增量更新：只添加新的报告期
+  let addedCount = 0;
+  let updatedCount = 0;
+
+  rawData.forEach(rawItem => {
+    const period = rawItem.period;
+
+    // 转换为新格式的数据项
+    const newItem = convertToNewFormat(rawItem);
+
+    if (!existingPeriods.has(period)) {
+      // 新报告期，直接添加
+      correctedFile.summary.push(newItem);
+      addedCount++;
+      console.log(`  + 新增: ${period}`);
+    } else {
+      // 已存在的报告期，智能合并（保留手动修正，更新空值）
+      const existingIndex = existingPeriods.get(period);
+      const existingItem = correctedFile.summary[existingIndex];
+
+      const updated = smartMergeData(existingItem, newItem);
+      if (updated) {
+        updatedCount++;
+        console.log(`  ↻ 更新: ${period} (补充空值字段)`);
+      }
+    }
+  });
+
+  // 按年份和月份排序（升序，从旧到新）
+  correctedFile.summary.sort((a, b) => {
+    const yearA = parseInt(a.year);
+    const yearB = parseInt(b.year);
+    if (yearA !== yearB) return yearA - yearB; // 升序
+
+    // 同年按月份升序
+    const monthA = getMonthFromPeriod(a.period);
+    const monthB = getMonthFromPeriod(b.period);
+    return monthA - monthB;
+  });
+
+  // 更新最后修改时间
+  correctedFile._metadata.lastUpdated = new Date().toISOString().split('T')[0];
+
+  // 保存修正文件
+  fs.writeFileSync(correctedDataPath, JSON.stringify(correctedFile, null, 2), 'utf-8');
+
+  console.log(`\n✅ 增量更新完成:`);
+  console.log(`   - 新增: ${addedCount} 条`);
+  console.log(`   - 更新: ${updatedCount} 条`);
+  console.log(`   - 总计: ${correctedFile.summary.length} 条`);
+  console.log(`\n💾 已保存到: shanmei_data_corrected.json`);
+  console.log(`\n📌 提示: 可以手动编辑 shanmei_data_corrected.json 修正数据，再次运行不会覆盖手动修正`);
+
+  return true;
+}
+
+/**
+ * 从报告期字符串获取月份
+ */
+function getMonthFromPeriod(period) {
+  if (period.includes('全年')) return 12;
+  if (period.includes('1-9月')) return 9;
+  if (period.includes('上半年')) return 6;
+  if (period.includes('1-3月')) return 3;
+  return 0;
+}
+
+/**
+ * 将原始数据转换为新格式
+ * 保留所有原始数据，同时添加修正标记
+ */
+function convertToNewFormat(rawItem) {
+  const pd = rawItem.productData || {};
+  const qd = rawItem.quarterData || {};
+  const pb = pd.productBreakdown || {};
+
+  // 辅助函数：添加修正标记
+  const addCorrectionFlags = (obj) => ({
+    ...obj,
+    _corrected: false,
+    _verified: false,
+    _notes: null
+  });
+
+  // 辅助函数：计算单价（元/吨）- 根据数据单位自动判断
+  const calcUnitPrice = (revenue, sales) => {
+    if (revenue && sales && sales > 0) {
+      // 如果revenue很大（>1亿），说明是元单位，需要除以10000转换为元/吨
+      // 如果revenue较小（<10000），说明是万元单位
+      if (revenue > 100000000) {
+        return parseFloat((revenue / sales / 10000).toFixed(2)); // 元/万吨 = 元/吨 / 10000
+      } else {
+        return parseFloat((revenue / sales * 10000).toFixed(2)); // 万元/万吨 * 10000 = 元/吨
+      }
+    }
+    return null;
+  };
+
+  // 辅助函数：计算毛利率
+  const calcGrossMargin = (revenue, cost) => {
+    if (revenue && cost && revenue > 0) {
+      return parseFloat(((revenue - cost) / revenue * 100).toFixed(2));
+    }
+    return null;
+  };
+
+  // 生产煤数据 - 保留所有原始字段
+  const productionCoal = pd.productionCoal || {};
+  const productionCoalData = {
+    production: productionCoal.production || qd.cumulative?.production || null,
+    sales: productionCoal.sales || qd.cumulative?.sales || null,
+    inventory: productionCoal.inventory || qd.cumulative?.inventory || null,
+    revenue: productionCoal.revenue || null,
+    cost: productionCoal.cost || null,
+    unitPrice: productionCoal.price || null,
+    unitCost: productionCoal.unitCost || null,
+    unitGrossProfit: null,
+    grossMargin: null
+  };
+  // 计算毛利率
+  if (productionCoalData.revenue && productionCoalData.cost) {
+    productionCoalData.grossMargin = calcGrossMargin(productionCoalData.revenue, productionCoalData.cost);
+  }
+  // 计算单位毛利
+  if (productionCoalData.unitPrice && productionCoalData.unitCost) {
+    productionCoalData.unitGrossProfit = parseFloat((productionCoalData.unitPrice - productionCoalData.unitCost).toFixed(2));
+  }
+
+  // 贸易煤数据
+  const tradeCoal = pd.tradeCoal || {};
+  const tradeCoalBreakdown = pb.tradeCoal || {};
+  const tradeCoalData = {
+    sales: tradeCoal.sales || tradeCoal.volume || tradeCoalBreakdown.sales || null,
+    inventory: tradeCoal.inventory || tradeCoalBreakdown.inventory || null,
+    revenue: tradeCoal.revenue || tradeCoalBreakdown.revenue || null,
+    cost: tradeCoal.cost || tradeCoalBreakdown.cost || null,
+    unitPrice: tradeCoal.price || null,
+    unitCost: null,
+    grossMargin: tradeCoal.grossMargin || tradeCoalBreakdown.grossMargin || null
+  };
+
+  // 冶金煤数据
+  const metCoal = pb.metallurgicalCoal || {};
+  const metallurgicalCoalData = {
+    production: metCoal.production || null,
+    sales: metCoal.sales || null,
+    revenue: metCoal.revenue || null,
+    cost: metCoal.cost || null,
+    unitPrice: null,
+    unitCost: null,
+    grossMargin: metCoal.grossMargin || null
+  };
+  // 计算单价和毛利率（revenue单位是万元，sales单位是万吨）
+  if (metallurgicalCoalData.revenue && metallurgicalCoalData.sales) {
+    // 万元 / 万吨 = 元/吨（不需要乘10000）
+    metallurgicalCoalData.unitPrice = parseFloat((metallurgicalCoalData.revenue / metallurgicalCoalData.sales).toFixed(2));
+  }
+  if (metallurgicalCoalData.cost && metallurgicalCoalData.sales) {
+    metallurgicalCoalData.unitCost = parseFloat((metallurgicalCoalData.cost / metallurgicalCoalData.sales).toFixed(2));
+  }
+  if (metallurgicalCoalData.revenue && metallurgicalCoalData.cost) {
+    metallurgicalCoalData.grossMargin = calcGrossMargin(metallurgicalCoalData.revenue, metallurgicalCoalData.cost);
+  }
+
+  // 动力煤数据
+  const thermalCoal = pb.thermalCoal || {};
+  const thermalCoalData = {
+    production: thermalCoal.production || null,
+    sales: thermalCoal.sales || null,
+    revenue: thermalCoal.revenue || null,
+    cost: thermalCoal.cost || null,
+    unitPrice: null,
+    unitCost: null,
+    grossMargin: thermalCoal.grossMargin || null
+  };
+  // 计算单价和毛利率（revenue单位是万元，sales单位是万吨）
+  if (thermalCoalData.revenue && thermalCoalData.sales) {
+    // 万元 / 万吨 = 元/吨（不需要乘10000）
+    thermalCoalData.unitPrice = parseFloat((thermalCoalData.revenue / thermalCoalData.sales).toFixed(2));
+  }
+  if (thermalCoalData.cost && thermalCoalData.sales) {
+    thermalCoalData.unitCost = parseFloat((thermalCoalData.cost / thermalCoalData.sales).toFixed(2));
+  }
+  if (thermalCoalData.revenue && thermalCoalData.cost) {
+    thermalCoalData.grossMargin = calcGrossMargin(thermalCoalData.revenue, thermalCoalData.cost);
+  }
+
+  // 构建结果，保留quarterData用于页面计算单季度数据
+  const result = {
+    period: rawItem.period,
+    year: rawItem.year,
+    month: rawItem.month || getMonthFromPeriod(rawItem.period),
+    filename: rawItem.filename || null,
+    productionCoal: addCorrectionFlags(productionCoalData),
+    tradeCoal: addCorrectionFlags(tradeCoalData),
+    metallurgicalCoal: addCorrectionFlags(metallurgicalCoalData),
+    thermalCoal: addCorrectionFlags(thermalCoalData)
+  };
+
+  // 保留quarterData用于页面计算单季度数据
+  if (qd.quarterly || qd.cumulative) {
+    result.quarterData = {
+      quarter: qd.quarter || null,
+      quarterly: qd.quarterly || null,
+      cumulative: qd.cumulative || null
+    };
+  }
+
+  // 保留quarterlyData（年报中的季度明细）
+  if (pd.quarterlyData) {
+    result.quarterlyData = pd.quarterlyData;
+  }
+
+  return result;
+}
+
+/**
+ * 智能合并数据：保留已有值（特别是手动修正的），只更新空值
+ * @param {Object} existing 已有数据（可能包含手动修正）
+ * @param {Object} newData 新提取的数据
+ * @returns {boolean} 是否有更新
+ */
+function smartMergeData(existing, newData) {
+  let updated = false;
+
+  // 合并各产品数据
+  const products = ['productionCoal', 'tradeCoal', 'metallurgicalCoal', 'thermalCoal'];
+  const fields = ['production', 'sales', 'inventory', 'revenue', 'cost', 'unitPrice', 'unitCost', 'unitGrossProfit', 'grossMargin'];
+
+  products.forEach(product => {
+    if (!newData[product]) return;
+    if (!existing[product]) existing[product] = {};
+
+    // 如果已被手动修正，跳过
+    if (existing[product]._corrected) return;
+
+    fields.forEach(field => {
+      if (existing[product][field] == null && newData[product][field] != null) {
+        existing[product][field] = newData[product][field];
+        updated = true;
+      }
+    });
+  });
+
+  // 更新文件名（如果没有）
+  if (!existing.filename && newData.filename) {
+    existing.filename = newData.filename;
+    updated = true;
+  }
+
+  return updated;
+}
+
+/**
+ * 验证修正数据文件
+ */
+function validateCorrectedData() {
+  console.log('\n🔍 验证修正数据文件...\n');
+
+  const baseDir = path.join(__dirname, '../../stock/report_analysis/山煤国际');
+  const correctedDataPath = path.join(baseDir, 'shanmei_data_corrected.json');
+
+  if (!fs.existsSync(correctedDataPath)) {
+    console.error('❌ shanmei_data_corrected.json 不存在');
+    console.log('   请先运行: node shanmei_report_parse.js correct');
+    return false;
+  }
+
+  const fileData = JSON.parse(fs.readFileSync(correctedDataPath, 'utf-8'));
+
+  // 支持新格式（对象）和旧格式（数组）
+  const data = fileData.summary || fileData;
+  const isNewFormat = !!fileData._metadata;
+
+  console.log(`✓ 数据格式: ${isNewFormat ? '新格式（带_metadata）' : '旧格式'}`);
+  console.log(`✓ 总记录数: ${data.length}`);
+
+  // 统计数据完整性
+  const stats = {
+    withRevenue: 0,
+    withCost: 0,
+    withSales: 0,
+    withProduction: 0,
+    withMetallurgicalCoal: 0,
+    withThermalCoal: 0,
+    withTradeCoal: 0,
+    corrected: 0,
+    verified: 0
+  };
+
+  const issues = [];
+
+  data.forEach(item => {
+    const pc = item.productionCoal;
+    const tc = item.tradeCoal;
+    const mc = item.metallurgicalCoal;
+    const thc = item.thermalCoal;
+
+    if (pc?.revenue) stats.withRevenue++;
+    if (pc?.cost) stats.withCost++;
+    if (pc?.sales) stats.withSales++;
+    if (pc?.production) stats.withProduction++;
+    if (mc?.revenue) stats.withMetallurgicalCoal++;
+    if (thc?.revenue) stats.withThermalCoal++;
+    if (tc?.revenue) stats.withTradeCoal++;
+
+    // 统计修正和验证状态
+    if (pc?._corrected || tc?._corrected || mc?._corrected || thc?._corrected) stats.corrected++;
+    if (pc?._verified || tc?._verified || mc?._verified || thc?._verified) stats.verified++;
+
+    // 检查数据异常
+    if (pc?.revenue && pc?.cost && pc.cost > pc.revenue) {
+      issues.push(`${item.period}: 生产煤成本(${pc.cost})大于收入(${pc.revenue})`);
+    }
+    if (pc?.sales && pc?.production && pc.sales > pc.production * 1.5) {
+      issues.push(`${item.period}: 生产煤销量(${pc.sales})远大于产量(${pc.production})`);
+    }
+  });
+
+  console.log('\n📊 数据完整性统计:');
+  console.log(`   - 有生产煤收入: ${stats.withRevenue}/${data.length}`);
+  console.log(`   - 有生产煤成本: ${stats.withCost}/${data.length}`);
+  console.log(`   - 有生产煤销量: ${stats.withSales}/${data.length}`);
+  console.log(`   - 有生产煤产量: ${stats.withProduction}/${data.length}`);
+  console.log(`   - 有冶金煤数据: ${stats.withMetallurgicalCoal}/${data.length}`);
+  console.log(`   - 有动力煤数据: ${stats.withThermalCoal}/${data.length}`);
+  console.log(`   - 有贸易煤数据: ${stats.withTradeCoal}/${data.length}`);
+  console.log(`   - 已手动修正: ${stats.corrected}/${data.length}`);
+  console.log(`   - 已验证: ${stats.verified}/${data.length}`);
+
+  if (issues.length > 0) {
+    console.log('\n⚠️  发现数据异常:');
+    issues.forEach(issue => console.log(`   - ${issue}`));
+  } else {
+    console.log('\n✅ 未发现数据异常');
+  }
+
+  return true;
+}
+
+/**
+ * 导出数据摘要（用于快速查看）
+ */
+function exportDataSummary() {
+  console.log('\n📋 导出数据摘要...\n');
+
+  const baseDir = path.join(__dirname, '../../stock/report_analysis/山煤国际');
+  const correctedDataPath = path.join(baseDir, 'shanmei_data_corrected.json');
+  const summaryPath = path.join(baseDir, 'data_summary.md');
+
+  if (!fs.existsSync(correctedDataPath)) {
+    console.error('❌ shanmei_data_corrected.json 不存在');
+    return false;
+  }
+
+  const fileData = JSON.parse(fs.readFileSync(correctedDataPath, 'utf-8'));
+  const data = fileData.summary || fileData;
+
+  let markdown = '# 山煤国际数据摘要\n\n';
+  markdown += `生成时间: ${new Date().toLocaleString('zh-CN')}\n\n`;
+
+  // 生产煤数据
+  markdown += '## 生产煤数据\n\n';
+  markdown += '| 报告期 | 收入(万元) | 成本(万元) | 销量(万吨) | 产量(万吨) | 售价(元/吨) | 成本(元/吨) | 毛利率 | 修正 |\n';
+  markdown += '|--------|-----------|-----------|-----------|-----------|------------|------------|--------|------|\n';
+
+  data.forEach(item => {
+    const pc = item.productionCoal || {};
+    const revenue = pc.revenue != null ? pc.revenue.toFixed(2) : '-';
+    const cost = pc.cost != null ? pc.cost.toFixed(2) : '-';
+    const sales = pc.sales != null ? pc.sales.toFixed(2) : '-';
+    const production = pc.production != null ? pc.production.toFixed(2) : '-';
+    const price = pc.unitPrice != null ? pc.unitPrice.toFixed(2) : '-';
+    const unitCost = pc.unitCost != null ? pc.unitCost.toFixed(2) : '-';
+    const grossMargin = pc.grossMargin != null ? pc.grossMargin.toFixed(2) + '%' : '-';
+    const corrected = pc._corrected ? '✓' : '';
+
+    markdown += `| ${item.period} | ${revenue} | ${cost} | ${sales} | ${production} | ${price} | ${unitCost} | ${grossMargin} | ${corrected} |\n`;
+  });
+
+  // 贸易煤数据
+  markdown += '\n## 贸易煤数据\n\n';
+  markdown += '| 报告期 | 收入(万元) | 成本(万元) | 销量(万吨) | 毛利率 | 修正 |\n';
+  markdown += '|--------|-----------|-----------|-----------|--------|------|\n';
+
+  data.forEach(item => {
+    const tc = item.tradeCoal || {};
+    const revenue = tc.revenue != null ? tc.revenue.toFixed(2) : '-';
+    const cost = tc.cost != null ? tc.cost.toFixed(2) : '-';
+    const sales = tc.sales != null ? tc.sales.toFixed(2) : '-';
+    const grossMargin = tc.grossMargin != null ? tc.grossMargin.toFixed(2) + '%' : '-';
+    const corrected = tc._corrected ? '✓' : '';
+
+    markdown += `| ${item.period} | ${revenue} | ${cost} | ${sales} | ${grossMargin} | ${corrected} |\n`;
+  });
+
+  // 冶金煤和动力煤数据（仅年报有）
+  markdown += '\n## 分煤种数据（仅年报）\n\n';
+  markdown += '| 报告期 | 冶金煤收入 | 冶金煤销量 | 动力煤收入 | 动力煤销量 |\n';
+  markdown += '|--------|-----------|-----------|-----------|------------|\n';
+
+  data.forEach(item => {
+    if (!item.period.includes('全年')) return;
+    const mc = item.metallurgicalCoal || {};
+    const thc = item.thermalCoal || {};
+
+    const mcRevenue = mc.revenue != null ? mc.revenue.toFixed(2) : '-';
+    const mcSales = mc.sales != null ? mc.sales.toFixed(2) : '-';
+    const thcRevenue = thc.revenue != null ? thc.revenue.toFixed(2) : '-';
+    const thcSales = thc.sales != null ? thc.sales.toFixed(2) : '-';
+
+    markdown += `| ${item.period} | ${mcRevenue} | ${mcSales} | ${thcRevenue} | ${thcSales} |\n`;
+  });
+
+  fs.writeFileSync(summaryPath, markdown, 'utf-8');
+  console.log(`✅ 数据摘要已导出到: data_summary.md`);
+
+  return true;
 }
 
 // 运行脚本
@@ -2862,6 +3388,9 @@ module.exports = {
   parseProductionDataPDF,
   parseAllProductionDataPDFs,
   mergeQuarterlyData,
-  testDataIntegrity
+  testDataIntegrity,
+  generateCorrectedDataFile,
+  validateCorrectedData,
+  exportDataSummary
 };
 

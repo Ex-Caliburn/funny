@@ -1,0 +1,2064 @@
+{
+  "_metadata": {
+    "stockName": "山煤国际",
+    "stockCode": "600546",
+    "description": "此文件包含修正后的数据，用于页面展示。手动修正的数据会被标记。",
+    "dataSource": "shanmei_data.json",
+    "lastUpdated": "2025-12-26",
+    "products": [
+      "productionCoal",
+      "tradeCoal"
+    ],
+    "coalTypes": [
+      "metallurgicalCoal",
+      "thermalCoal",
+      "cokeCoal",
+      "anthracite"
+    ],
+    "dataFlow": "PDF报告 → 自动提取(shanmei_data.json) → 手动修正(本文件) → 页面展示",
+    "correctionRules": {
+      "manual": "手动填入或修改的数据，标记 _corrected: true",
+      "verified": "经过人工验证确认正确的数据，标记 _verified: true"
+    }
+  },
+  "summary": [
+    {
+      "period": "2021年1-3月",
+      "year": "2021",
+      "month": 3,
+      "filename": "山煤国际2021年第一季度报告.pdf",
+      "productionCoal": {
+        "production": 1003.32,
+        "sales": null,
+        "inventory": null,
+        "revenue": null,
+        "cost": null,
+        "unitPrice": null,
+        "unitCost": null,
+        "unitGrossProfit": null,
+        "grossMargin": null,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "tradeCoal": {
+        "sales": null,
+        "inventory": null,
+        "revenue": null,
+        "cost": null,
+        "unitPrice": null,
+        "unitCost": null,
+        "grossMargin": null,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "metallurgicalCoal": {
+        "production": null,
+        "sales": null,
+        "revenue": null,
+        "cost": null,
+        "unitPrice": null,
+        "unitCost": null,
+        "grossMargin": null,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "thermalCoal": {
+        "production": null,
+        "sales": null,
+        "revenue": null,
+        "cost": null,
+        "unitPrice": null,
+        "unitCost": null,
+        "grossMargin": null,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "quarterData": {
+        "quarter": "Q1",
+        "quarterly": {
+          "production": 1003.32
+        },
+        "cumulative": {
+          "production": 1003.32
+        }
+      },
+      "quarterlyData": {
+        "q1": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null,
+          "grossMargin": null
+        },
+        "q2": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        },
+        "q3": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        },
+        "q4": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        }
+      }
+    },
+    {
+      "period": "2021年上半年",
+      "year": "2021",
+      "month": 6,
+      "filename": "山煤国际2021年半年度报告.pdf",
+      "productionCoal": {
+        "production": 2029.8,
+        "sales": null,
+        "inventory": null,
+        "revenue": null,
+        "cost": null,
+        "unitPrice": null,
+        "unitCost": null,
+        "unitGrossProfit": null,
+        "grossMargin": null,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "tradeCoal": {
+        "sales": null,
+        "inventory": null,
+        "revenue": null,
+        "cost": null,
+        "unitPrice": null,
+        "unitCost": null,
+        "grossMargin": null,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "metallurgicalCoal": {
+        "production": null,
+        "sales": null,
+        "revenue": null,
+        "cost": null,
+        "unitPrice": null,
+        "unitCost": null,
+        "grossMargin": null,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "thermalCoal": {
+        "production": null,
+        "sales": null,
+        "revenue": null,
+        "cost": null,
+        "unitPrice": null,
+        "unitCost": null,
+        "grossMargin": null,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "quarterData": {
+        "quarter": "Q2",
+        "quarterly": {
+          "production": 1026.48
+        },
+        "cumulative": {
+          "revenue": 0,
+          "cost": 0,
+          "sales": 0,
+          "production": 2029.8
+        }
+      },
+      "quarterlyData": {
+        "q1": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        },
+        "q2": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        },
+        "q3": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        },
+        "q4": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        }
+      }
+    },
+    {
+      "period": "2021年1-9月",
+      "year": "2021",
+      "month": 9,
+      "filename": "山煤国际2021年第三季度报告.pdf",
+      "productionCoal": {
+        "production": 2937.85,
+        "sales": null,
+        "inventory": null,
+        "revenue": null,
+        "cost": null,
+        "unitPrice": null,
+        "unitCost": null,
+        "unitGrossProfit": null,
+        "grossMargin": null,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "tradeCoal": {
+        "sales": null,
+        "inventory": null,
+        "revenue": null,
+        "cost": null,
+        "unitPrice": null,
+        "unitCost": null,
+        "grossMargin": null,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "metallurgicalCoal": {
+        "production": null,
+        "sales": null,
+        "revenue": null,
+        "cost": null,
+        "unitPrice": null,
+        "unitCost": null,
+        "grossMargin": null,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "thermalCoal": {
+        "production": null,
+        "sales": null,
+        "revenue": null,
+        "cost": null,
+        "unitPrice": null,
+        "unitCost": null,
+        "grossMargin": null,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "quarterData": {
+        "quarter": "Q3",
+        "quarterly": {
+          "production": 908.05
+        },
+        "cumulative": {
+          "revenue": 0,
+          "cost": 0,
+          "sales": 0,
+          "production": 2937.85
+        }
+      },
+      "quarterlyData": {
+        "q1": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        },
+        "q2": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        },
+        "q3": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        },
+        "q4": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        }
+      }
+    },
+    {
+      "period": "2021年全年",
+      "year": "2021",
+      "month": 12,
+      "filename": "山煤国际2021年年度报告.pdf",
+      "productionCoal": {
+        "production": 4041.92,
+        "sales": 3737.96,
+        "inventory": 110.61,
+        "revenue": 3066646.3000000003,
+        "cost": 874776.8300000001,
+        "unitPrice": 820.41,
+        "unitCost": 234.03,
+        "unitGrossProfit": 586.38,
+        "grossMargin": 71.47,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "tradeCoal": {
+        "sales": 3142.95,
+        "inventory": 95.63,
+        "revenue": 2357213.69,
+        "cost": 2257651.55,
+        "unitPrice": null,
+        "unitCost": null,
+        "grossMargin": 4.22,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "metallurgicalCoal": {
+        "production": null,
+        "sales": null,
+        "revenue": 694855.67,
+        "cost": 198405.54,
+        "unitPrice": null,
+        "unitCost": null,
+        "grossMargin": 71.45,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "thermalCoal": {
+        "production": 2730.26,
+        "sales": 2542.17,
+        "revenue": 1292942.03,
+        "cost": 332236.74,
+        "unitPrice": 508.6,
+        "unitCost": 130.69,
+        "grossMargin": 74.3,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "quarterData": {
+        "quarter": "Q4",
+        "quarterly": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": 1104.07
+        },
+        "cumulative": {
+          "revenue": 0,
+          "cost": 0,
+          "sales": 0,
+          "production": 4041.92
+        }
+      },
+      "quarterlyData": {
+        "q1": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        },
+        "q2": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        },
+        "q3": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        },
+        "q4": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        }
+      }
+    },
+    {
+      "period": "2022年1-3月",
+      "year": "2022",
+      "month": 3,
+      "filename": "山煤国际2022年第一季度报告.pdf",
+      "productionCoal": {
+        "production": 912.67,
+        "sales": null,
+        "inventory": null,
+        "revenue": null,
+        "cost": null,
+        "unitPrice": null,
+        "unitCost": null,
+        "unitGrossProfit": null,
+        "grossMargin": null,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "tradeCoal": {
+        "sales": null,
+        "inventory": null,
+        "revenue": null,
+        "cost": null,
+        "unitPrice": null,
+        "unitCost": null,
+        "grossMargin": null,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "metallurgicalCoal": {
+        "production": null,
+        "sales": null,
+        "revenue": null,
+        "cost": null,
+        "unitPrice": null,
+        "unitCost": null,
+        "grossMargin": null,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "thermalCoal": {
+        "production": null,
+        "sales": null,
+        "revenue": null,
+        "cost": null,
+        "unitPrice": null,
+        "unitCost": null,
+        "grossMargin": null,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "quarterData": {
+        "quarter": "Q1",
+        "quarterly": {
+          "revenue": 0,
+          "cost": 0,
+          "sales": 0,
+          "production": 912.67
+        },
+        "cumulative": {
+          "revenue": 0,
+          "cost": 0,
+          "sales": 0,
+          "production": 912.67
+        }
+      },
+      "quarterlyData": {
+        "q1": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null,
+          "grossMargin": null
+        },
+        "q2": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        },
+        "q3": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        },
+        "q4": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        }
+      }
+    },
+    {
+      "period": "2022年上半年",
+      "year": "2022",
+      "month": 6,
+      "filename": "山煤国际2022年半年度报告.pdf",
+      "productionCoal": {
+        "production": 2019.68,
+        "sales": 971.5,
+        "inventory": null,
+        "revenue": null,
+        "cost": null,
+        "unitPrice": null,
+        "unitCost": null,
+        "unitGrossProfit": null,
+        "grossMargin": null,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "tradeCoal": {
+        "sales": null,
+        "inventory": null,
+        "revenue": null,
+        "cost": null,
+        "unitPrice": null,
+        "unitCost": null,
+        "grossMargin": null,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "metallurgicalCoal": {
+        "production": null,
+        "sales": null,
+        "revenue": null,
+        "cost": null,
+        "unitPrice": null,
+        "unitCost": null,
+        "grossMargin": null,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "thermalCoal": {
+        "production": null,
+        "sales": null,
+        "revenue": null,
+        "cost": null,
+        "unitPrice": null,
+        "unitCost": null,
+        "grossMargin": null,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "quarterData": {
+        "quarter": "Q2",
+        "quarterly": {
+          "production": 1107.01,
+          "sales": 971.5,
+          "salesSource": "production_pdf",
+          "revenue": 72.97958100000001,
+          "cost": 24.980193,
+          "grossMargin": 65.77
+        },
+        "cumulative": {
+          "revenue": 72.98,
+          "cost": 24.98,
+          "sales": 971.5,
+          "production": 2019.68
+        }
+      },
+      "quarterlyData": {
+        "q1": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        },
+        "q2": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        },
+        "q3": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        },
+        "q4": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        }
+      }
+    },
+    {
+      "period": "2022年1-9月",
+      "year": "2022",
+      "month": 9,
+      "filename": "山煤国际2022年第三季度报告.pdf",
+      "productionCoal": {
+        "production": 3105.09,
+        "sales": 1959.25,
+        "inventory": null,
+        "revenue": null,
+        "cost": null,
+        "unitPrice": null,
+        "unitCost": null,
+        "unitGrossProfit": null,
+        "grossMargin": null,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "tradeCoal": {
+        "sales": null,
+        "inventory": null,
+        "revenue": null,
+        "cost": null,
+        "unitPrice": null,
+        "unitCost": null,
+        "grossMargin": null,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "metallurgicalCoal": {
+        "production": null,
+        "sales": null,
+        "revenue": null,
+        "cost": null,
+        "unitPrice": null,
+        "unitCost": null,
+        "grossMargin": null,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "thermalCoal": {
+        "production": null,
+        "sales": null,
+        "revenue": null,
+        "cost": null,
+        "unitPrice": null,
+        "unitCost": null,
+        "grossMargin": null,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "quarterData": {
+        "quarter": "Q3",
+        "quarterly": {
+          "production": 1085.41,
+          "sales": 987.75,
+          "salesSource": "production_pdf",
+          "revenue": 79.747961,
+          "cost": 24.905424,
+          "grossMargin": 68.77
+        },
+        "cumulative": {
+          "revenue": 152.73,
+          "cost": 49.89,
+          "sales": 1959.25,
+          "production": 3105.09
+        }
+      },
+      "quarterlyData": {
+        "q1": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        },
+        "q2": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        },
+        "q3": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        },
+        "q4": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        }
+      }
+    },
+    {
+      "period": "2022年全年",
+      "year": "2022",
+      "month": 12,
+      "filename": "山煤国际2022年年度报告.pdf",
+      "productionCoal": {
+        "production": 4057.49,
+        "sales": 3695.8,
+        "inventory": 132.16,
+        "revenue": 2725765.9,
+        "cost": 722932.24,
+        "unitPrice": 737.53,
+        "unitCost": 195.61,
+        "unitGrossProfit": 541.92,
+        "grossMargin": 73.48,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "tradeCoal": {
+        "sales": 2484.01,
+        "inventory": 62.19,
+        "revenue": 1863007.32,
+        "cost": 1789057.79,
+        "unitPrice": null,
+        "unitCost": null,
+        "grossMargin": 3.97,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "metallurgicalCoal": {
+        "production": 1246.57,
+        "sales": 1112.57,
+        "revenue": 1264321.2,
+        "cost": 339601.61,
+        "unitPrice": 1136.4,
+        "unitCost": 305.24,
+        "grossMargin": 73.14,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "thermalCoal": {
+        "production": 2810.91,
+        "sales": 2583.23,
+        "revenue": 1461444.7,
+        "cost": 383330.63,
+        "unitPrice": 565.74,
+        "unitCost": 148.39,
+        "grossMargin": 73.77,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "quarterData": {
+        "quarter": "Q4",
+        "quarterly": {
+          "revenue": 119.85,
+          "cost": 22.4,
+          "sales": 1736.55,
+          "production": 952.4
+        },
+        "cumulative": {
+          "revenue": 272.58,
+          "cost": 72.29,
+          "sales": 3695.8,
+          "production": 4057.49
+        }
+      },
+      "quarterlyData": {
+        "q1": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        },
+        "q2": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        },
+        "q3": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        },
+        "q4": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        }
+      }
+    },
+    {
+      "period": "2023年1-3月",
+      "year": "2023",
+      "month": 3,
+      "filename": "山煤国际2023年第一季度报告.pdf",
+      "productionCoal": {
+        "production": 1062.83,
+        "sales": 970.73,
+        "inventory": null,
+        "revenue": null,
+        "cost": null,
+        "unitPrice": null,
+        "unitCost": null,
+        "unitGrossProfit": null,
+        "grossMargin": null,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "tradeCoal": {
+        "sales": null,
+        "inventory": null,
+        "revenue": null,
+        "cost": null,
+        "unitPrice": null,
+        "unitCost": null,
+        "grossMargin": null,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "metallurgicalCoal": {
+        "production": null,
+        "sales": null,
+        "revenue": null,
+        "cost": null,
+        "unitPrice": null,
+        "unitCost": null,
+        "grossMargin": null,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "thermalCoal": {
+        "production": null,
+        "sales": null,
+        "revenue": null,
+        "cost": null,
+        "unitPrice": null,
+        "unitCost": null,
+        "grossMargin": null,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "quarterData": {
+        "quarter": "Q1",
+        "quarterly": {
+          "production": 1062.83,
+          "sales": 970.73,
+          "salesSource": "production_pdf",
+          "revenue": 77.561607,
+          "cost": 29.23667,
+          "grossMargin": 62.31
+        },
+        "cumulative": {
+          "production": 1062.83,
+          "sales": 970.73,
+          "salesSource": "production_pdf",
+          "revenue": 77.561607,
+          "cost": 29.23667,
+          "grossMargin": 62.31
+        }
+      },
+      "quarterlyData": {
+        "q1": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null,
+          "grossMargin": null
+        },
+        "q2": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        },
+        "q3": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        },
+        "q4": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        }
+      }
+    },
+    {
+      "period": "2023年上半年",
+      "year": "2023",
+      "month": 6,
+      "filename": "山煤国际2023年半年度报告.pdf",
+      "productionCoal": {
+        "production": 2118.75,
+        "sales": 1938.25,
+        "inventory": null,
+        "revenue": 14160000000,
+        "cost": null,
+        "unitPrice": null,
+        "unitCost": null,
+        "unitGrossProfit": null,
+        "grossMargin": null,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "tradeCoal": {
+        "sales": 756.82,
+        "inventory": null,
+        "revenue": 6209000000,
+        "cost": null,
+        "unitPrice": 820.36,
+        "unitCost": null,
+        "grossMargin": null,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "metallurgicalCoal": {
+        "production": null,
+        "sales": null,
+        "revenue": null,
+        "cost": null,
+        "unitPrice": null,
+        "unitCost": null,
+        "grossMargin": null,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "thermalCoal": {
+        "production": null,
+        "sales": null,
+        "revenue": null,
+        "cost": null,
+        "unitPrice": null,
+        "unitCost": null,
+        "grossMargin": null,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "quarterData": {
+        "quarter": "Q2",
+        "quarterly": {
+          "production": 1055.92,
+          "sales": 967.52,
+          "salesSource": "production_pdf",
+          "revenue": 64.037971,
+          "cost": 25.004307,
+          "price": 661.88,
+          "unitCost": 258.44,
+          "grossMargin": 60.95
+        },
+        "cumulative": {
+          "revenue": 141.6,
+          "cost": 54.24,
+          "sales": 1938.25,
+          "production": 2118.75
+        }
+      },
+      "quarterlyData": {
+        "q1": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        },
+        "q2": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        },
+        "q3": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        },
+        "q4": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        }
+      }
+    },
+    {
+      "period": "2023年1-9月",
+      "year": "2023",
+      "month": 9,
+      "filename": "山煤国际2023年第三季度报告.pdf",
+      "productionCoal": {
+        "production": 3014.71,
+        "sales": 2695.64,
+        "inventory": null,
+        "revenue": null,
+        "cost": null,
+        "unitPrice": null,
+        "unitCost": null,
+        "unitGrossProfit": null,
+        "grossMargin": null,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "tradeCoal": {
+        "sales": null,
+        "inventory": null,
+        "revenue": null,
+        "cost": null,
+        "unitPrice": null,
+        "unitCost": null,
+        "grossMargin": null,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "metallurgicalCoal": {
+        "production": null,
+        "sales": null,
+        "revenue": null,
+        "cost": null,
+        "unitPrice": null,
+        "unitCost": null,
+        "grossMargin": null,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "thermalCoal": {
+        "production": null,
+        "sales": null,
+        "revenue": null,
+        "cost": null,
+        "unitPrice": null,
+        "unitCost": null,
+        "grossMargin": null,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "quarterData": {
+        "quarter": "Q3",
+        "quarterly": {
+          "production": 895.96,
+          "sales": 757.39,
+          "salesSource": "production_pdf",
+          "revenue": 48.5138,
+          "cost": 21.603908999999998,
+          "price": 640.54,
+          "unitCost": 285.24,
+          "grossMargin": 55.47
+        },
+        "cumulative": {
+          "revenue": 190.11,
+          "cost": 75.84,
+          "sales": 2695.64,
+          "production": 3014.71
+        }
+      },
+      "quarterlyData": {
+        "q1": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        },
+        "q2": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        },
+        "q3": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        },
+        "q4": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        }
+      }
+    },
+    {
+      "period": "2023年全年",
+      "year": "2023",
+      "month": 12,
+      "filename": "山煤国际2023年年度报告.pdf",
+      "productionCoal": {
+        "production": 3898.37,
+        "sales": 3485.99,
+        "inventory": 34.28,
+        "revenue": 2379763.08,
+        "cost": 979163.45,
+        "unitPrice": 682.66,
+        "unitCost": 280.89,
+        "unitGrossProfit": 401.77,
+        "grossMargin": 58.85,
+        "_corrected": true,
+        "_verified": true,
+        "_notes": "根据2023年报产销量情况分析表手动修正：生产量从3014.71修正为3898.37万吨"
+      },
+      "tradeCoal": {
+        "sales": 1764.54,
+        "inventory": 1,
+        "revenue": 1291168.89,
+        "cost": 1235176.3,
+        "unitPrice": null,
+        "unitCost": null,
+        "grossMargin": 4.34,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "metallurgicalCoal": {
+        "production": 1004.8,
+        "sales": 822.88,
+        "revenue": 1027014.91,
+        "cost": 470894.04,
+        "unitPrice": 1248.07,
+        "unitCost": 572.25,
+        "grossMargin": 54.15,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "thermalCoal": {
+        "production": 2893.57,
+        "sales": 2663.11,
+        "revenue": 1352748.17,
+        "cost": 508269.42,
+        "unitPrice": 507.96,
+        "unitCost": 190.86,
+        "grossMargin": 62.43,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "quarterData": {
+        "quarter": "Q4",
+        "quarterly": {
+          "revenue": 47.87,
+          "cost": 22.08,
+          "sales": 790.35,
+          "production": 883.66
+        },
+        "cumulative": {
+          "revenue": 237.98,
+          "cost": 97.92,
+          "sales": 3485.99,
+          "production": 3898.37
+        }
+      },
+      "quarterlyData": {
+        "q1": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        },
+        "q2": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        },
+        "q3": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        },
+        "q4": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        }
+      }
+    },
+    {
+      "period": "2024年1-3月",
+      "year": "2024",
+      "month": 3,
+      "filename": "山煤国际2024年第一季度报告.pdf",
+      "productionCoal": {
+        "production": 751.46,
+        "sales": 546.15,
+        "inventory": null,
+        "revenue": null,
+        "cost": null,
+        "unitPrice": null,
+        "unitCost": null,
+        "unitGrossProfit": null,
+        "grossMargin": null,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "tradeCoal": {
+        "sales": null,
+        "inventory": null,
+        "revenue": null,
+        "cost": null,
+        "unitPrice": null,
+        "unitCost": null,
+        "grossMargin": null,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "metallurgicalCoal": {
+        "production": null,
+        "sales": null,
+        "revenue": null,
+        "cost": null,
+        "unitPrice": null,
+        "unitCost": null,
+        "grossMargin": null,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "thermalCoal": {
+        "production": null,
+        "sales": null,
+        "revenue": null,
+        "cost": null,
+        "unitPrice": null,
+        "unitCost": null,
+        "grossMargin": null,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "quarterData": {
+        "quarter": "Q1",
+        "quarterly": {
+          "revenue": 36.17223,
+          "cost": 16.841735,
+          "sales": 546.15,
+          "production": 751.46,
+          "price": 662.31,
+          "unitCost": 308.37,
+          "grossMargin": 53.44,
+          "salesSource": "production_pdf"
+        },
+        "cumulative": {
+          "revenue": 36.17223,
+          "cost": 16.841735,
+          "sales": 546.15,
+          "production": 751.46,
+          "price": 662.31,
+          "unitCost": 308.37,
+          "grossMargin": 53.44,
+          "salesSource": "production_pdf"
+        }
+      },
+      "quarterlyData": {
+        "q1": {
+          "revenue": 63.5585800339,
+          "cost": 42.89726734,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null,
+          "grossMargin": null
+        },
+        "q2": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        },
+        "q3": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        },
+        "q4": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        }
+      }
+    },
+    {
+      "period": "2024年上半年",
+      "year": "2024",
+      "month": 6,
+      "filename": "山煤国际2024年半年度报告.pdf",
+      "productionCoal": {
+        "production": 1538.12,
+        "sales": 1191.75,
+        "inventory": null,
+        "revenue": 8173999999.999999,
+        "cost": null,
+        "unitPrice": 685.92,
+        "unitCost": null,
+        "unitGrossProfit": null,
+        "grossMargin": null,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "tradeCoal": {
+        "sales": 891.34,
+        "inventory": null,
+        "revenue": 5580000000,
+        "cost": null,
+        "unitPrice": 626.02,
+        "unitCost": null,
+        "grossMargin": null,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "metallurgicalCoal": {
+        "production": null,
+        "sales": null,
+        "revenue": null,
+        "cost": null,
+        "unitPrice": null,
+        "unitCost": null,
+        "grossMargin": null,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "thermalCoal": {
+        "production": null,
+        "sales": null,
+        "revenue": null,
+        "cost": null,
+        "unitPrice": null,
+        "unitCost": null,
+        "grossMargin": null,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "quarterData": {
+        "quarter": "Q2",
+        "quarterly": {
+          "production": 786.66,
+          "sales": 645.6,
+          "salesSource": "production_pdf",
+          "revenue": 45.57251,
+          "cost": 19.738343,
+          "price": 705.89,
+          "unitCost": 305.74,
+          "grossMargin": 56.69
+        },
+        "cumulative": {
+          "revenue": 81.74,
+          "cost": 36.58,
+          "sales": 1191.75,
+          "production": 1538.12
+        }
+      },
+      "quarterlyData": {
+        "q1": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        },
+        "q2": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        },
+        "q3": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        },
+        "q4": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        }
+      }
+    },
+    {
+      "period": "2024年1-9月",
+      "year": "2024",
+      "month": 9,
+      "filename": "山煤国际2024年第三季度报告.pdf",
+      "productionCoal": {
+        "production": 2450.3,
+        "sales": 1882.08,
+        "inventory": null,
+        "revenue": 12733000000,
+        "cost": 55.10353823999999,
+        "unitPrice": 676.52,
+        "unitCost": 292.78,
+        "unitGrossProfit": 383.74,
+        "grossMargin": 100,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "tradeCoal": {
+        "sales": 1428.92,
+        "inventory": null,
+        "revenue": 8794000000,
+        "cost": null,
+        "unitPrice": 615.41,
+        "unitCost": null,
+        "grossMargin": null,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "metallurgicalCoal": {
+        "production": null,
+        "sales": null,
+        "revenue": null,
+        "cost": null,
+        "unitPrice": null,
+        "unitCost": null,
+        "grossMargin": null,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "thermalCoal": {
+        "production": null,
+        "sales": null,
+        "revenue": null,
+        "cost": null,
+        "unitPrice": null,
+        "unitCost": null,
+        "grossMargin": null,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "quarterData": {
+        "quarter": "Q3",
+        "quarterly": {
+          "revenue": 45.582233,
+          "cost": 18.523644,
+          "sales": 690.33,
+          "production": 912.18,
+          "price": 660.3,
+          "unitCost": 268.33,
+          "salesSource": "production_pdf",
+          "grossMargin": 59.36
+        },
+        "cumulative": {
+          "revenue": 127.33,
+          "cost": 55.1,
+          "sales": 1882.08,
+          "production": 2450.3
+        }
+      },
+      "quarterlyData": {
+        "q1": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        },
+        "q2": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        },
+        "q3": {
+          "revenue": 45.582233,
+          "cost": 18.523644,
+          "sales": 690.33,
+          "production": 912.18,
+          "price": 660.3,
+          "unitCost": 268.33
+        },
+        "q4": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        }
+      }
+    },
+    {
+      "period": "2024年全年",
+      "year": "2024",
+      "month": 12,
+      "filename": "山煤国际2024年年度报告.pdf",
+      "productionCoal": {
+        "production": 3297.89,
+        "sales": 2673.36,
+        "inventory": 33.62,
+        "revenue": 1726595.63,
+        "cost": 823773.32,
+        "unitPrice": 645.85,
+        "unitCost": 308.14,
+        "unitGrossProfit": 337.71,
+        "grossMargin": 52.29,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "tradeCoal": {
+        "sales": 1899.63,
+        "inventory": 46.87,
+        "revenue": 11673000000,
+        "cost": 1130996.1,
+        "unitPrice": 614.49,
+        "unitCost": null,
+        "grossMargin": 3.11,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "metallurgicalCoal": {
+        "production": 1092.72,
+        "sales": 845.31,
+        "revenue": 871902.91,
+        "cost": 350268.34,
+        "unitPrice": 1031.46,
+        "unitCost": 414.37,
+        "grossMargin": 59.83,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "thermalCoal": {
+        "production": 2205.17,
+        "sales": 1828.05,
+        "revenue": 854692.72,
+        "cost": 473504.98,
+        "unitPrice": 467.54,
+        "unitCost": 259.02,
+        "grossMargin": 44.6,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "quarterData": {
+        "quarter": "Q4",
+        "quarterly": {
+          "revenue": 45.33259,
+          "cost": 27.273609999999998,
+          "sales": 791.28,
+          "production": 847.59,
+          "price": 572.9,
+          "unitCost": 344.68
+        },
+        "cumulative": {
+          "revenue": 172.66,
+          "cost": 82.38,
+          "sales": 2673.36,
+          "production": 3297.89
+        }
+      },
+      "quarterlyData": {
+        "q1": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        },
+        "q2": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        },
+        "q3": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        },
+        "q4": {
+          "revenue": 45.33259,
+          "cost": 27.273609999999998,
+          "sales": 791.28,
+          "production": 847.59,
+          "price": 572.9,
+          "unitCost": 344.68
+        }
+      }
+    },
+    {
+      "period": "2025年1-3月",
+      "year": "2025",
+      "month": 3,
+      "filename": "山煤国际2025年第一季度报告.pdf",
+      "productionCoal": {
+        "production": 908.64,
+        "sales": 441.55,
+        "inventory": null,
+        "revenue": 2624000000,
+        "cost": null,
+        "unitPrice": 594.38,
+        "unitCost": null,
+        "unitGrossProfit": null,
+        "grossMargin": null,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "tradeCoal": {
+        "sales": 321.28,
+        "inventory": null,
+        "revenue": 1672000000,
+        "cost": null,
+        "unitPrice": 520.54,
+        "unitCost": null,
+        "grossMargin": null,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "metallurgicalCoal": {
+        "production": null,
+        "sales": null,
+        "revenue": null,
+        "cost": null,
+        "unitPrice": null,
+        "unitCost": null,
+        "grossMargin": null,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "thermalCoal": {
+        "production": null,
+        "sales": null,
+        "revenue": null,
+        "cost": null,
+        "unitPrice": null,
+        "unitCost": null,
+        "grossMargin": null,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "quarterData": {
+        "quarter": "Q1",
+        "quarterly": {
+          "revenue": 26.244778000000004,
+          "cost": 11.978635,
+          "sales": 441.55,
+          "production": 908.64,
+          "price": 594.38,
+          "unitCost": 271.29,
+          "grossMargin": 54.36,
+          "salesSource": "production_pdf"
+        },
+        "cumulative": {
+          "revenue": 26.244778000000004,
+          "cost": 11.978635,
+          "sales": 441.55,
+          "production": 908.64,
+          "price": 594.38,
+          "unitCost": 271.29,
+          "grossMargin": 54.36,
+          "salesSource": "production_pdf"
+        }
+      },
+      "quarterlyData": {
+        "q1": {
+          "revenue": 26.244778000000004,
+          "cost": 11.978635,
+          "sales": 441.55,
+          "production": 908.64,
+          "price": 594.38,
+          "unitCost": 271.29,
+          "grossMargin": 54.36
+        },
+        "q2": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        },
+        "q3": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        },
+        "q4": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        }
+      }
+    },
+    {
+      "period": "2025年上半年",
+      "year": "2025",
+      "month": 6,
+      "filename": "山煤国际2025年半年度报告.pdf",
+      "productionCoal": {
+        "production": 1782.12,
+        "sales": 1034.56,
+        "inventory": null,
+        "revenue": 5756000000,
+        "cost": null,
+        "unitPrice": 556.34,
+        "unitCost": null,
+        "unitGrossProfit": null,
+        "grossMargin": null,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "tradeCoal": {
+        "sales": 753.79,
+        "inventory": null,
+        "revenue": 3543000000,
+        "cost": null,
+        "unitPrice": 469.98,
+        "unitCost": null,
+        "grossMargin": null,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "metallurgicalCoal": {
+        "production": null,
+        "sales": null,
+        "revenue": null,
+        "cost": null,
+        "unitPrice": null,
+        "unitCost": null,
+        "grossMargin": null,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "thermalCoal": {
+        "production": null,
+        "sales": null,
+        "revenue": null,
+        "cost": null,
+        "unitPrice": null,
+        "unitCost": null,
+        "grossMargin": null,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "quarterData": {
+        "quarter": "Q2",
+        "quarterly": {
+          "revenue": 31.311773,
+          "cost": 16.472171,
+          "sales": 593.01,
+          "production": 873.48,
+          "price": 528.01,
+          "unitCost": 277.77,
+          "salesSource": "production_pdf",
+          "grossMargin": 47.39
+        },
+        "cumulative": {
+          "revenue": 57.56,
+          "cost": 28.45,
+          "sales": 1034.56,
+          "production": 1782.12
+        }
+      },
+      "quarterlyData": {
+        "q1": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        },
+        "q2": {
+          "revenue": 31.311773,
+          "cost": 16.472171,
+          "sales": 593.01,
+          "production": 873.48,
+          "price": 528.02,
+          "unitCost": 277.77
+        },
+        "q3": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        },
+        "q4": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        }
+      }
+    },
+    {
+      "period": "2025年1-9月",
+      "year": "2025",
+      "month": 9,
+      "filename": "山煤国际2025年第三季度报告.pdf",
+      "productionCoal": {
+        "production": 2664.14,
+        "sales": 1981.99,
+        "inventory": null,
+        "revenue": 10095000000,
+        "cost": 50.30885217,
+        "unitPrice": 509.31,
+        "unitCost": 253.83,
+        "unitGrossProfit": 255.48,
+        "grossMargin": 100,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "tradeCoal": {
+        "sales": null,
+        "inventory": null,
+        "revenue": 4667000000,
+        "cost": null,
+        "unitPrice": 456.82,
+        "unitCost": null,
+        "grossMargin": null,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "metallurgicalCoal": {
+        "production": null,
+        "sales": null,
+        "revenue": null,
+        "cost": null,
+        "unitPrice": null,
+        "unitCost": null,
+        "grossMargin": null,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "thermalCoal": {
+        "production": null,
+        "sales": null,
+        "revenue": null,
+        "cost": null,
+        "unitPrice": null,
+        "unitCost": null,
+        "grossMargin": null,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "quarterData": {
+        "quarter": "Q3",
+        "quarterly": {
+          "revenue": 43.3886,
+          "cost": 21.858917,
+          "sales": 947.43,
+          "production": 882.02,
+          "price": 457.96,
+          "unitCost": 230.72,
+          "salesSource": "production_pdf",
+          "grossMargin": 49.62
+        },
+        "cumulative": {
+          "revenue": 100.95,
+          "cost": 50.31,
+          "sales": 1981.99,
+          "production": 2664.14
+        }
+      },
+      "quarterlyData": {
+        "q1": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        },
+        "q2": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        },
+        "q3": {
+          "revenue": 43.3886,
+          "cost": 21.858917,
+          "sales": 947.43,
+          "production": 882.02,
+          "price": 457.96,
+          "unitCost": 230.72
+        },
+        "q4": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        }
+      }
+    }
+  ]
+}
