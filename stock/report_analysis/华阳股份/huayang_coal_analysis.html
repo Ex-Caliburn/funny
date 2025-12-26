@@ -555,7 +555,7 @@
             // 原始累计数据（从修正后的JSON文件加载）
             let rawData = [];
 
-            // 从JSON文件加载数据
+            // 从JSON文件加载数据（新格式：_metadata + summary）
             async function loadCorrectedData() {
                 try {
                     const response = await fetch('huayang_data_corrected.json');
@@ -563,11 +563,42 @@
                         throw new Error(`HTTP error! status: ${response.status}`);
                     }
                     const jsonData = await response.json();
-                    rawData = jsonData.rawData || [];
-                    console.log('已加载修正后的数据，共', rawData.length, '条记录');
+
+                    // 支持新格式（_metadata + summary）和旧格式（rawData）
+                    if (jsonData._metadata && jsonData.summary) {
+                        // 新格式：从summary中提取数据
+                        rawData = jsonData.summary.map(item => {
+                            const coal = item.coal || {};
+                            return {
+                                period: item.period,
+                                year: item.year,
+                                month: item.month,
+                                type: item.type || 'cumulative',
+                                cost: coal.cost,
+                                purchase: coal.purchase,
+                                revenue: coal.revenue,
+                                production: coal.production,
+                                sales: coal.sales,
+                                inventory: coal.inventory,
+                                // 预计算的字段
+                                price: coal.unitPrice,
+                                unitCost: coal.unitCost,
+                                unitGrossProfit: coal.unitGrossProfit,
+                                grossMargin: coal.grossMargin,
+                                // 分产品销量
+                                productSales: item.productSales
+                            };
+                        });
+                        console.log('已加载新格式修正数据，共', rawData.length, '条记录');
+                    } else if (jsonData.rawData) {
+                        // 旧格式
+                        rawData = jsonData.rawData || [];
+                        console.log('已加载旧格式修正数据，共', rawData.length, '条记录');
+                    } else {
+                        rawData = [];
+                    }
                 } catch (error) {
                     console.error('加载修正后的数据失败:', error);
-                    // 如果加载失败，使用默认空数组
                     rawData = [];
                 }
             }
@@ -974,19 +1005,40 @@
                     // Q4 = 全年 - 1-9月
                     const fullYear = yearData.find(d => d.period.includes('全年'));
                     if (fullYear && q3Cum) {
-                        quarterlyData.push({
-                            period: `${year}年Q4`,
-                            year: year,
-                            month: 12,
-                            quarter: 4,
-                            type: 'quarterly',
-                            cost: fullYear.cost - (q3Cum.cost || 0),
-                            purchase: (fullYear.purchase !== null && q3Cum.purchase !== null) ? (fullYear.purchase - q3Cum.purchase) : null,
-                            revenue: (fullYear.revenue || 0) - (q3Cum.revenue || 0),
-                            production: (fullYear.production || 0) - (q3Cum.production || 0),
-                            sales: (fullYear.sales || 0) - (q3Cum.sales || 0),
-                            inventory: null  // 单季度不计算库存
-                        });
+                        // 检查1-9月数据是否有效（不是null）
+                        const hasValidQ3Data = q3Cum.production !== null && q3Cum.sales !== null &&
+                                               q3Cum.revenue !== null && q3Cum.cost !== null;
+
+                        if (hasValidQ3Data) {
+                            quarterlyData.push({
+                                period: `${year}年Q4`,
+                                year: year,
+                                month: 12,
+                                quarter: 4,
+                                type: 'quarterly',
+                                cost: fullYear.cost - (q3Cum.cost || 0),
+                                purchase: (fullYear.purchase !== null && q3Cum.purchase !== null) ? (fullYear.purchase - q3Cum.purchase) : null,
+                                revenue: (fullYear.revenue || 0) - (q3Cum.revenue || 0),
+                                production: (fullYear.production || 0) - (q3Cum.production || 0),
+                                sales: (fullYear.sales || 0) - (q3Cum.sales || 0),
+                                inventory: null  // 单季度不计算库存
+                            });
+                        } else {
+                            // 1-9月数据无效，Q4数据也设为null
+                            quarterlyData.push({
+                                period: `${year}年Q4`,
+                                year: year,
+                                month: 12,
+                                quarter: 4,
+                                type: 'quarterly',
+                                cost: null,
+                                purchase: null,
+                                revenue: null,
+                                production: null,
+                                sales: null,
+                                inventory: null
+                            });
+                        }
                     }
                 });
 
@@ -1061,18 +1113,23 @@
 
             // 计算变化百分比
             function calculateChange(current, previous) {
-                if (current === null || previous === null || previous === 0) {
+                if (current === null || current === undefined || isNaN(current) ||
+                    previous === null || previous === undefined || isNaN(previous) || previous === 0) {
                     return null;
                 }
-                return ((current - previous) / previous * 100).toFixed(2);
+                const change = ((current - previous) / previous * 100);
+                return isNaN(change) ? null : change.toFixed(2);
             }
 
             // 格式化变化百分比
             function formatChange(change) {
-                if (change === null) {
+                if (change === null || change === undefined || change === 'NaN' || isNaN(parseFloat(change))) {
                     return '<span class="no-data">-</span>';
                 }
                 const num = parseFloat(change);
+                if (isNaN(num)) {
+                    return '<span class="no-data">-</span>';
+                }
                 const className = num > 0 ? 'positive' : (num < 0 ? 'negative' : 'neutral');
                 const sign = num > 0 ? '+' : '';
                 return `<span class="change ${className}">${sign}${change}%</span>`;
@@ -1352,10 +1409,10 @@
                 });
 
                 console.log('数据加载和计算完成，准备渲染表格');
-                
+
                 // 渲染单季度数据表格
                 renderTable('quarterly');
-                
+
                 // 分产品销量表格只在累计数据视图显示，初始状态隐藏
                 const productSalesSection = document.getElementById('productSalesSection');
                 if (productSalesSection) {
@@ -1416,12 +1473,14 @@
             // 渲染分产品销量表格
             async function renderProductSalesTable() {
                 try {
-                    // 从JSON文件读取数据
-                    const response = await fetch('huayang_data.json');
+                    // 从修正后的JSON文件读取数据（新格式）
+                    const response = await fetch('huayang_data_corrected.json');
                     if (!response.ok) {
                         throw new Error(`HTTP error! status: ${response.status}`);
                     }
                     const jsonData = await response.json();
+
+                    // 支持新格式（_metadata + summary）
                     const summary = jsonData.summary || [];
 
                     if (summary.length === 0) {
@@ -1432,73 +1491,50 @@
                     // 将summary数据转换为表格数据格式（只显示累计数据，不显示单季度数据）
                     const productSalesData = [];
                     summary.forEach(item => {
-                        // 跳过单季度报告（只处理累计数据报告）
-                        if (item.filename.includes('Q1') || item.filename.includes('Q2') ||
-                            item.filename.includes('Q3') || item.filename.includes('Q4') ||
-                            item.filename.includes('单季度') || item.filename.includes('季度报告') && !item.filename.includes('第一') && !item.filename.includes('第三')) {
-                            return; // 跳过单季度数据
+                        // 新格式直接使用period字段
+                        const period = item.period;
+                        const year = item.year;
+                        const month = item.month;
+
+                        // 跳过单季度数据
+                        if (period.includes('Q1') || period.includes('Q2') ||
+                            period.includes('Q3') || period.includes('Q4')) {
+                            return;
                         }
 
-                        // 根据文件名确定报告期（只处理累计数据）
-                        let period = '';
-                        let year = parseInt(item.year);
-                        let month = 0;
+                        // 获取分产品销量数据（新格式中productSales是一个对象）
+                        const ps = item.productSales || {};
 
-                        if (item.filename.includes('第一季度')) {
-                            period = `${year}年1-3月`;
-                            month = 3;
-                        } else if (item.filename.includes('半年度') || item.filename.includes('半年')) {
-                            period = `${year}年上半年`;
-                            month = 6;
-                        } else if (item.filename.includes('第三季度')) {
-                            period = `${year}年1-9月`;
-                            month = 9;
-                        } else if ((item.filename.includes('年度报告') || item.filename.includes('年报')) && !item.filename.includes('半年度')) {
-                            period = `${year}年全年`;
-                            month = 12;
+                        // 检查是否有任何分产品销量数据
+                        const hasData = ps.lumpCoal !== null ||
+                            ps.washedLumpCoal !== null ||
+                            ps.pulverizedCoal !== null ||
+                            ps.washedPulverizedCoal !== null ||
+                            ps.selectedFineCoal !== null ||
+                            ps.washedFineCoal !== null ||
+                            ps.fineCoal !== null ||
+                            ps.slime !== null;
+
+                        if (hasData) {
+                            productSalesData.push({
+                                period: period,
+                                year: year,
+                                month: month,
+                                type: 'cumulative',
+                                lumpCoal: ps.lumpCoal || null,
+                                washedLumpCoal: ps.washedLumpCoal || null,
+                                pulverizedCoal: ps.pulverizedCoal || null,
+                                washedPulverizedCoal: ps.washedPulverizedCoal || null,
+                                selectedFineCoal: ps.selectedFineCoal || null,
+                                washedFineCoal: ps.washedFineCoal || null,
+                                fineCoal: ps.fineCoal || null,
+                                slime: ps.slime || null
+                            });
                         }
-
-                        // 只处理累计数据，不处理单季度数据
-                        if (period && !period.includes('Q') && item.productSales) {
-                            // 检查是否有任何分产品销量数据
-                            const hasData = item.productSales.lumpCoal !== null ||
-                                item.productSales.washedLumpCoal !== null ||
-                                item.productSales.pulverizedCoal !== null ||
-                                item.productSales.washedPulverizedCoal !== null ||
-                                item.productSales.selectedFineCoal !== null ||
-                                item.productSales.washedFineCoal !== null ||
-                                item.productSales.fineCoal !== null ||
-                                item.productSales.slime !== null;
-
-                            if (hasData) {
-                                productSalesData.push({
-                                    period: period,
-                                    year: year,
-                                    month: month,
-                                    type: 'cumulative',
-                                    lumpCoal: item.productSales.lumpCoal || null,
-                                    washedLumpCoal: item.productSales.washedLumpCoal || null,
-                                    pulverizedCoal: item.productSales.pulverizedCoal || null,
-                                    washedPulverizedCoal: item.productSales.washedPulverizedCoal || null,
-                                    selectedFineCoal: item.productSales.selectedFineCoal || null,
-                                    washedFineCoal: item.productSales.washedFineCoal || null,
-                                    fineCoal: item.productSales.fineCoal || null,
-                                    slime: item.productSales.slime || null
-                                });
-                            }
-                        }
-                    });
-
-                    // 再次过滤，确保不包含任何单季度数据（Q1、Q2、Q3、Q4）
-                    const filteredData = productSalesData.filter(item => {
-                        return !item.period.includes('Q1') &&
-                            !item.period.includes('Q2') &&
-                            !item.period.includes('Q3') &&
-                            !item.period.includes('Q4');
                     });
 
                     // 按时间排序
-                    filteredData.sort((a, b) => {
+                    productSalesData.sort((a, b) => {
                         if (a.year !== b.year) return a.year - b.year;
                         return a.month - b.month;
                     });
@@ -1507,12 +1543,12 @@
                     const tbody = document.getElementById('productSalesTableBody');
                     tbody.innerHTML = '';
 
-                    filteredData.forEach(item => {
+                    productSalesData.forEach(item => {
                         const row = document.createElement('tr');
                         row.innerHTML = `<td class="period">${item.period}</td>`;
 
                         // 查找同比数据（只在累计数据中查找，不查找环比）
-                        const baseYoY = filteredData.find(d => d.year === item.year - 1 && d.month === item.month);
+                        const baseYoY = productSalesData.find(d => d.year === item.year - 1 && d.month === item.month);
 
                         // 块煤
                         const lumpCoalYoY = baseYoY && baseYoY.lumpCoal !== null && item.lumpCoal !== null ? calculateChange(item.lumpCoal, baseYoY.lumpCoal) : null;
