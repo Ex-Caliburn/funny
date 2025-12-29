@@ -32,4 +32,5 @@ input[type=text]:focus, input[type=password]:focus, textarea:focus {
 ## 总结
 
 ### 参考文献
-1. https://lhajh.github.io/css/chrome/2018/04/17/The-chrome-browser-form-automatically-fills-in-the-default-style-autofill.html
+
+1. <https://lhajh.github.io/css/chrome/2018/04/17/The-chrome-browser-form-automatically-fills-in-the-default-style-autofill.html>
