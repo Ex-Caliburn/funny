@@ -1,228 +1,332 @@
-作者：戴嘉华3
-<https://github.com/livoras/blog/issues/7>
-目录
+# Funny - 前端学习与实践项目
+
+这是一个前端学习和实践项目，包含大量前端知识点、示例代码、学习笔记、算法实现、设计模式示例，以及股票数据分析工具。
+
+## 📋 项目简介
+
+本项目是一个综合性的前端学习仓库，涵盖了从基础语法到高级框架、从算法实现到工程化实践的各个方面。同时包含实用的数据爬取和分析工具，可用于股票数据研究。
+
+## 🛠️ 技术栈
+
+- **前端框架**: Vue 2/3, React (部分示例)
+- **构建工具**: Webpack, Vite (部分示例)
+- **语言**: JavaScript (ES6+), TypeScript
+- **样式**: CSS, SCSS, Less
+- **后端**: Node.js (用于爬虫和数据处理)
+- **数据可视化**: ECharts
+- **其他**: Lit, Petite-Vue (学习示例)
+
+## 📁 目录结构
+
+```text
+funny/
+├── scripts/                    # 自动化脚本目录
+│   ├── crawler/               # 通用爬虫框架
+│   │   ├── framework/         # 爬虫核心框架
+│   │   └── extractors/        # 各类数据提取器
+│   ├── stock-reports/         # 上市公司财报下载和解析
+│   ├── tools/                 # 数据解析和处理工具
+│   └── docs/                  # 使用文档和调试文件
+│
+├── stock/                     # 股票数据存储目录
+│   └── [各类数据文件]         # Excel、PDF、JSON 等数据文件
+│
+├── 工程化/                    # 工程化相关学习
+│   ├── webpack/               # Webpack 学习示例（17个示例）
+│   ├── ts/                    # TypeScript 学习
+│   ├── bable/                 # Babel 学习
+│   ├── learn_ast/             # AST 学习
+│   ├── 模块化/                # 模块化学习
+│   └── 微前端/                # 微前端学习
+│
+├── 算法/                      # 算法实现
+│   ├── leetcode/              # LeetCode 题解
+│   ├── 排序算法/               # 各种排序算法实现
+│   ├── 树结构/                 # 树相关算法
+│   ├── 动态规划/               # 动态规划算法
+│   └── [其他算法实现]
+│
+├── 设计模式/                   # 设计模式示例
+│   └── [各种设计模式实现]
+│
+├── 框架和库/                   # 框架学习
+│   └── [Vue、React 等框架示例]
+│
+├── css和动画/                  # CSS 和动画示例
+│   └── [75个示例文件]
+│
+├── 工具类/                     # 工具函数库
+│   ├── util.js                # 通用工具函数
+│   ├── dom.js                 # DOM 操作工具
+│   ├── validate.js            # 表单验证
+│   ├── 防抖和节流.js          # 防抖节流实现
+│   └── [其他工具函数]
+│
+├── 原型继承/                   # 原型和继承学习
+│   └── [相关示例和文档]
+│
+├── 浏览器/                     # 浏览器相关学习
+│   └── [浏览器原理、性能优化等]
+│
+├── http/                       # HTTP 协议学习
+│   └── [HTTP 相关文档和示例]
+│
+├── 安全/                       # 前端安全学习
+│   └── [安全相关文档]
+│
+├── 错误处理/                   # 错误处理和监控
+│   └── [错误捕获、上报系统等]
+│
+├── 项目优化/                   # 项目优化实践
+│   └── [性能优化、打包优化等]
+│
+├── 面试/                       # 面试题和解答
+│   └── [面试题集合]
+│
+├── 移动端/                     # 移动端开发
+│   └── [移动端相关文档]
+│
+├── 音视频/                     # 音视频处理
+│   └── [音视频相关示例]
+│
+├── 可视化/                     # 数据可视化
+│   └── [3D 可视化示例]
+│
+├── 二进制文件/                 # 二进制文件处理
+│   └── [二进制处理示例]
+│
+├── AI/                         # AI 相关学习
+│   └── [AI 相关示例]
+│
+├── shopify/                    # Shopify 开发
+│   └── [Shopify 相关文档]
+│
+├── 个人影响力/                 # 个人成长相关
+│   └── [博客系统设计、远程办公等]
+│
+├── 管理/                       # 项目管理相关
+│   └── [项目管理文档]
+│
+├── lib/                        # 第三方库封装
+│   └── [封装的库文件]
+│
+├── vue Base component/        # Vue 基础组件
+│   └── [Vue 组件示例]
+│
+├── es6+/                       # ES6+ 新特性学习
+│   └── [ES6+ 相关文档和示例]
+│
+├── 正则/                       # 正则表达式学习
+│   └── [正则表达式示例]
+│
+├── git/                        # Git 学习
+│   └── [Git 相关文档]
+│
+├── 后端和服务器/               # 后端和服务器学习
+│   ├── nodejs/                 # Node.js 示例
+│   └── 服务器/                 # 服务器相关文档
+│
+└── [根目录文件]                # 各种学习示例和笔记
+    ├── *.html                  # HTML 示例文件
+    ├── *.js                    # JavaScript 示例文件
+    └── *.md                    # Markdown 文档
+```
+
+## 🚀 快速开始
 
-前言
-仓库（Repository）
+### 1. 安装依赖
 
-- 源仓库
-- 开发者仓库
-分支（Branch）
+```bash
+# 克隆项目
+git clone https://github.com/Ex-Caliburn/funny.git
+
+# 进入项目目录
+cd funny
 
-- 永久性分支
-- 暂时性分支
-工作流（workflow）
-总结
-参考资料
-前言
+# 安装依赖
+npm install
+```
 
-（本文假设各位已经对基本git的基本概念、操作有一定的理解，如无相关git知识，可以参考Pro Git这本书进行相关的学习和练习）
+### 2. 运行爬虫（股票数据）
 
-很多项目开发都会采用git这一优秀的分布式版本管理工具进行项目版本管理，使用github开源平台作为代码仓库托管平台。由于git的使用非常灵活，在实践当中衍生了很多种不同的工作流程，不同的项目、不同的团队会有不同的协作方式。
+```bash
+# 爬取商品价格数据
+npm run crawl goodsPrice 3
 
-本文将介绍一种前人已经在各种大小项目中经过千锤百炼总结出来的一种比较成功的git工作流，这种工作流已经被成功用于许多团队开发当中。掌握git，掌握这种工作流，对大家以后的学习、开发工作大有好处。
+# 爬取所有类型数据
+npm run crawl:all 3
 
-先上一张图吓大家一下：
+# 查看所有可用命令
+npm run
+```
 
-workflow
+### 3. 下载股票财报
 
-上面一张图展示了一种使用git进行项目协同开发的模式，接下来会进行详细介绍。
+```bash
+# 批量下载财报
+npm run download:reports
 
-仓库（Repository）
+# 下载港股财报
+npm run download:hk
+```
 
-在项目的开始到结束，我们会有两种仓库。一种是源仓库（origin），一种是开发者仓库。上图中的每个矩形都表示一个仓库，正中间的是我们的源仓库，而其他围绕着源仓库的则是开发者仓库。
+### 4. 数据解析
 
-源仓库
+```bash
+# 解析商品价格数据
+npm run goods:parse
 
-在项目的开始，项目的发起者构建起一个项目的最原始的仓库，我们把它称为origin，例如我们的PingHackers网站，origin就是这个PingHackers/blog了。源仓库的有两个作用：
+# 解析能源数据
+npm run energy:parse
 
-汇总参与该项目的各个开发者的代码
-存放趋于稳定和可发布的代码
-源仓库应该是受保护的，开发者不应该直接对其进行开发工作。只有项目管理者（通常是项目发起人）能对其进行较高权限的操作。
+# 解析利润数据
+npm run profits:parse
+```
 
-开发者仓库
+## 📚 主要功能模块
 
-上面说过，任何开发者都不会对源仓库进行直接的操作，源仓库建立以后，每个开发者需要做的事情就是把源仓库的“复制”一份，作为自己日常开发的仓库。这个复制，也就是github上面的fork。
+### 1. 数据爬取系统
 
-每个开发者所fork的仓库是完全独立的，互不干扰，甚至与源仓库都无关。每个开发者仓库相当于一个源仓库实体的影像，开发者在这个影像中进行编码，提交到自己的仓库中，这样就可以轻易地实现团队成员之间的并行开发工作。而开发工作完成以后，开发者可以向源仓库发送pull request，请求管理员把自己的代码合并到源仓库中，这样就实现了分布式开发工作，和最后的集中式的管理。
+**位置**: `scripts/crawler/`
 
-分支（Branch）
+支持爬取国家统计局多种数据类型：
 
-分支是git中非常重要的一个概念，也是git这一个工具中的大杀器，必杀技。在其他集中式版本管理工具（SVN/CVS）把分支定位为高级技巧，而在git中，分支操作则是每个开发人员日常工作流。利用git的分支，可以非常方便地进行开发和测试，如果使用git没有让你感到轻松和愉悦，那是因为你还没有学会使用分支。不把分支用出一点翔来，不要轻易跟别人说你用过git。
+- 商品价格数据
+- 能源数据
+- 房地产数据
+- 消费数据
+- 投资数据
+- 利润数据
+- 分行业利润数据
 
-在文章开头的那张图中，每一个矩形内部纷繁的枝蔓便是git的分支模型。可以看出，每个开发者的仓库都有自己的分支路线，而这些分支路线会通过代码汇总映射到源仓库中去。
+**详细文档**: [scripts/crawler/README.md](./scripts/crawler/README.md)
 
-我们为git定下一种分支模型，在这种模型中，分支有两类，五种
+### 2. 股票财报下载工具
 
-永久性分支
-master branch：主分支
-develop branch：开发分支
-临时性分支
-feature branch：功能分支
-release branch：预发布分支
-hotfix branch：bug修复分支
-永久性分支
+**位置**: `scripts/stock-reports/`
 
-永久性分支是寿命无限的分支，存在于整个项目的开始、开发、迭代、终止过程中。永久性分支只有两个master和develop。
+功能：
 
-master：主分支从项目一开始便存在，它用于存放经过测试，已经完全稳定代码；在项目开发以后的任何时刻当中，master存放的代码应该是可作为产品供用户使用的代码。所以，应该随时保持master仓库代码的清洁和稳定，确保入库之前是通过完全测试和代码reivew的。master分支是所有分支中最不活跃的，大概每个月或每两个月更新一次，每一次master更新的时候都应该用git打上tag，说明你的产品有新版本发布了。
+- 批量下载 A 股和港股公司财报
+- 支持年报、半年报、季报
+- 自动解析财报数据
 
-develop：开发分支，一开始从master分支中分离出来，用于开发者存放基本稳定代码。之前说过，每个开发者的仓库相当于源仓库的一个镜像，每个开发者自己的仓库上也有master和develop。开发者把功能做好以后，是存放到自己的develop中，当测试完以后，可以向管理者发起一个pull request，请求把自己仓库的develop分支合并到源仓库的develop中。
+**详细文档**: [scripts/README.md](./scripts/README.md)
 
-所有开发者开发好的功能会在源仓库的develop分支中进行汇总，当develop中的代码经过不断的测试，已经逐渐趋于稳定了，接近产品目标了。这时候，我们就可以把develop分支合并到master分支中，发布一个新版本。所以，一个产品不断完善和发布过程就正如下图：
+### 3. Webpack 学习示例
 
-master & develop
+**位置**: `工程化/webpack/`
 
-注意，任何人不应该向master直接进行无意义的合并、提交操作。正常情况下，master只应该接受develop的合并，也就是说，master所有代码更新应该源于合并develop的代码。
+包含 17 个 Webpack 配置示例：
 
-暂时性分支
+- 基础配置
+- 样式处理
+- 图片和字体打包
+- 开发服务器
+- HMR（热模块替换）
+- Source Map
+- 生产环境配置
+- 插件开发
 
-暂时性分支和永久性分支不同，暂时性分支在开发过程中是一定会被删除的。所有暂时性分支，一般源于develop，最终也一定会回归合并到develop。
+### 4. 算法实现
 
-feature：功能性分支，是用于开发项目的功能的分支，是开发者主要战斗阵地。开发者在本地仓库从develop分支分出功能分支，在该分支上进行功能的开发，开发完成以后再合并到develop分支上，这时候功能性分支已经完成任务，可以删除。功能性分支的命名一般为feature-*，*为需要开发的功能的名称。
+**位置**: `算法/`
 
-feature branch
+包含：
 
-举一个例子，假设我是一名PingHackers网站的开发者，已经把源仓库fork了，并且clone到了本地。现在要开发PingHackers网站的“讨论”功能。我在本地仓库中可以这样做：
+- LeetCode 题解（30+ 道题）
+- 排序算法（快排、归并、堆排等）
+- 树结构算法（遍历、构建等）
+- 动态规划
+- 链表操作
+- 其他经典算法
 
-step 1: 切换到develop分支
+### 5. 设计模式
 
-    >>> git checkout develop
-step 2: 分出一个功能性分支
+**位置**: `设计模式/`
 
-    >>> git checkout -b feature-discuss
-step 3: 在功能性分支上进行开发工作，多次commit，测试以后...
+包含常见设计模式的 JavaScript 实现和说明文档。
 
-step 4: 把做好的功能合并到develop中
+### 6. 工具函数库
 
-    >>> git checkout develop
+**位置**: `工具类/`
 
-    # 回到develop分支
+提供常用的工具函数：
 
-    >>> git merge --no-ff feature-discuss
-    # 把做好的功能合并到develop中
+- DOM 操作
+- 表单验证
+- 日期处理
+- 防抖和节流
+- 数据格式化
+- 正则表达式
 
-    >>> git branch -d feature-discuss
-    # 删除功能性分支
+## 📖 使用说明
 
-    >>> git push origin develop
-    # 把develop提交到自己的远程仓库中
+### 学习示例
 
-这样，就完成一次功能的开发和提交。
+项目中的 HTML 文件可以直接在浏览器中打开查看效果，JavaScript 文件可以在 Node.js 环境中运行。
 
-release：预发布分支，当产品即将发布的时候，要进行最后的调整和测试，这时候就可以分出一个预发布分支，进行最后的bug fix。测试完全以后，发布新版本，就可以把预发布分支删除。预发布分支一般命名为release-*。
+### 爬虫使用
 
-hotfix：修复bug分支，当产品已经发布了，突然出现了重大的bug。这时候就要新建一个hotfix分支，继续紧急的bug修复工作，当bug修复完以后，把该分支合并到master和develop以后，就可以把该分支删除。修复bug分支命名一般为hotfix-*
+```bash
+# 基本用法
+node scripts/crawler/framework/crawler_main.js [数据类型] [页数]
 
-release和hotfix分支离我们还比较遥远。。就不详述，有兴趣的同学可以参考本文最后的参考资料进行学习。
+# 示例
+node scripts/crawler/framework/crawler_main.js goodsPrice 5
+node scripts/crawler/framework/crawler_main.js energy 3
+node scripts/crawler/framework/crawler_main.js all 3
+```
 
-工作流（Workflow）
+### 数据存储
 
-啰嗦讲了这么多，概念永远是抽象的。对于新手来说，都喜欢一步一步的步骤傻瓜教程，接下来，我们就一步一步来操作上面所说的工作流程，大家感受一下：
+- **原始数据**: `stock/[类型]/` 目录
+- **解析后数据**: `stock/[类型]_cleaned.json` 文件
 
-Step 1：源仓库的构建
+## 🔧 开发指南
 
-这一步通常由项目发起人来操作，我们这里把管理员设为PingHackers，假设PingHackers已经为我们建立起了一个源仓库PingHackers/git-demo，并且已经初始化了两个永久性分支master和develop，如图：
+### 添加新的爬虫类型
 
-origin
+1. 在 `scripts/crawler/extractors/` 创建新的提取器
+2. 在 `scripts/crawler/framework/crawler_config.js` 添加配置
+3. 在 `scripts/tools/` 创建对应的解析脚本
+4. 在 `package.json` 添加对应的 npm 脚本
 
-Step 2：开发者fork源仓库
+### 代码规范
 
-源仓库建立以后，每个开发就可以去复制一份源仓库到自己的github账号中，然后作为自己开发所用的仓库。假设我是一个项目中的开发者，我就到PingHackers/git-demo项目主页上去fork：
+- 使用 ES6+ 语法
+- 优先使用中文注释（项目包含大量学习笔记）
+- 遵循项目的命名规范
 
-fork
+## 📝 注意事项
 
-fork完以后，我就可以在我自己的仓库列表中看到一个和源仓库一模一样的复制品。这时就应该感叹，你以后要和它相依为命了：
+1. **爬虫使用**: 请遵守目标网站的使用条款，避免频繁请求
+2. **数据使用**: 下载的数据仅供学习研究使用
+3. **学习目的**: 本项目主要用于学习和实践，部分代码可能不是生产环境最佳实践
+4. **依赖管理**: 部分子目录（如 webpack 示例）有独立的 `package.json`
 
-fork-origin
+## 🤝 贡献
 
-Step 3：把自己开发者仓库clone到本地
+欢迎提交 Issue 和 Pull Request！
 
-这一步应该不用教，git clone
+## 📄 许可
 
-Step 4：构建功能分支进行开发
+本项目仅供学习和研究使用。
 
-进入仓库中，按照前面说所的构建功能分支的步骤，构建功能分支进行开发、合并，假设我现在要开发一个“讨论”功能：
+## 🔗 相关链接
 
-    >>> git checkout develop
-    # 切换到`develop`分支
+- [GitHub 仓库](https://github.com/Ex-Caliburn/funny)
+- [Issues](https://github.com/Ex-Caliburn/funny/issues)
 
-    >>> git checkout -b feature-discuss
-    # 分出一个功能性分支
+## 📊 项目统计
 
-    >> touch discuss.js
-    # 假装discuss.js就是我们要开发的功能
+- **文件总数**: 1000+ 文件
+- **代码示例**: 500+ 个示例文件
+- **学习文档**: 200+ 篇文档
+- **算法题解**: 30+ 道 LeetCode 题
+- **Webpack 示例**: 17 个配置示例
+- **设计模式**: 20+ 种设计模式实现
 
-    >> git add .
-    >> git commit -m 'finish discuss feature'
-    # 提交更改
+---
 
-    >>> git checkout develop
-    # 回到develop分支
-
-    >>> git merge --no-ff feature-discuss
-    # 把做好的功能合并到develop中
-
-    >>> git branch -d feature-discuss
-    # 删除功能性分支
-
-    >>> git push origin develop
-    # 把develop提交到自己的远程仓库中
-这时候，你上自己github的项目主页中develop分支中看看，已经有discuss.js这个文件了：
-
-push
-
-Step 5：向管理员提交pull request
-
-假设我完成了“讨论”功能（当然，你还可能对自己的develop进行了多次合并，完成了多个功能），经过测试以后，觉得没问题，就可以请求管理员把自己仓库的develop分支合并到源仓库的develop分支中，这就是传说中的pull request。
-
-pull-request
-
-点击上图的绿色按钮，开发者就可以就可以静静地等待管理员对你的提交的评审了。
-
-pull-finished
-
-Step 6 管理员测试、合并
-
-接下来就是管理员的操作了，作为管理员的PingHackers登陆github，便看到了我对源仓库发起的pull request。
-
-pull-request-origin
-
-这时候PingHackers需要做的事情就是：
-
-对我的代码进行review。github提供非常强大的代码review功能：
-reivew
-在他的本地测试新建一个测试分支，测试我的代码：
-    >> git checkout develop
-    # 进入他本地的develop分支
-
-    >> git checkout -b livoras-develop
-    # 从develop分支中分出一个叫livoras-develop的测试分支测试我的代码
-
-    >> git pull https://github.com/livoras/git-demo.git develop
-    # 把我的代码pull到测试分支中，进行测试
-判断是否同意合并到源仓库的develop中，如果经过测试没问题，可以把我的代码合并到源仓库的develop中：
-    >> git checkout develop
-    >> git merge --no-ff livoras-develop
-    >> git push origin develop
-注意，PingHakers一直在操作的仓库是源仓库。所以我们经过上面一系列操作以后，就可以在源仓库主页中看到：
-
-merge
-
-经过辗转曲折的路程，我们的discuss.js终于从我的开发仓库的功能分支到达了源仓库的develop分支中。以上，就是一个git & github协同工作流的基本步骤。
-
-总结
-
-git这一个工具博大精深，使用如此恶心而又如此灵活和优雅的工具；此又为一神器，大家还是多动手，多查资料，让git成为自己的一项基本技能，帮助自己处理各种项目团队协同工作的问题，成为一个高效的开发者、优秀的项目的管理者。送大家一张神图，好好领悟：
-
-Overview
-
-最后给出一些参考资料，供参考学习。
-
-参考资料
-
-A Successful Git Branching Model
-Understanding the Git Workflow
-Github flow
-Pro Git
-Git分支管理策略
+**最后更新**: 2024年
