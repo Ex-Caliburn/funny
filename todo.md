@@ -73,6 +73,8 @@
 
 ### 中海油
 
+可以使用chrome 插件来实现，只要比自己一个个点好；在无头浏览器无法实现的情况
+
 <https://www.cnoocltd.com/tzzgx/yjhtjcl/yj/>
 
 二零二三年上半年桶油作业费为7.16
