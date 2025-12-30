@@ -41,10 +41,10 @@
 
 ### 代码组织
 - **模块化**: 使用 ES6 模块 (`import/export`) 或 CommonJS (`require/module.exports`)
-- **目录结构**: 
+- **目录结构**:
   - `scripts/` - 爬虫和数据解析脚本
-  - `webpack/` - Webpack 学习示例
-  - `vue3/`, `vue基础/` - Vue 学习示例
+  - `工程化/webpack/` - Webpack 学习示例
+  - `框架和库/vue/` - Vue 学习示例（包含 vue基础/, vue3/, vue高级和源码研究/）
   - `算法/` - 算法实现
   - `设计模式/` - 设计模式示例
   - `stock/` - 股票数据分析相关
@@ -59,15 +59,15 @@
 - 关键依赖：`cheerio`, `xlsx`, `pdf-parse`, `axios`
 - 脚本命名：`*_parse.js`, `*_extractor.js`, `*_parser.js`
 
-### Webpack 学习示例 (`webpack/`)
+### Webpack 学习示例 (`工程化/webpack/`)
 - 每个子目录是一个独立的 Webpack 配置示例
 - 包含完整的 `package.json` 和 `webpack.config.js`
 - 示例命名：`数字. 功能描述/`
 
-### Vue 学习示例
-- `vue基础/` - Vue 2 基础示例
-- `vue3/` - Vue 3 相关学习和迁移指南
-- `vue高级和源码研究/` - 高级特性和源码分析
+### Vue 学习示例 (`框架和库/vue/`)
+- `框架和库/vue/vue基础/` - Vue 2 基础示例
+- `框架和库/vue/vue3/` - Vue 3 相关学习和迁移指南
+- `框架和库/vue/vue高级和源码研究/` - 高级特性和源码分析
 
 ## Git 提交规范
 遵循项目中的 `.cursorcommit` 配置：
