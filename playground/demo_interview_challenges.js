@@ -1,3 +1,8 @@
+/**
+ * @file demo_interview_challenges.js
+ * @description 常见大厂面试题实现：防抖、节流、树结构转换、全排列等
+ */
+
 // 1.封装一个Modal对话框组件
 // 第一道题反而是思路重要，什么都没给你
 // 几种方案，一种原生，一种框架， 原生中还有基础html和webComponent

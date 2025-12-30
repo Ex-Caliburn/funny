@@ -1,3 +1,8 @@
+/**
+ * @file demo_async_event_loop.js
+ * @description 深度测试 Promise, Async/Await 与 Event Loop 执行顺序
+ */
+
 function wait(time) {
   // 在这里实现
   return new Promise((resolve, reject) => {

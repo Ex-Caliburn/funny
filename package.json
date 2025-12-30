@@ -29,7 +29,10 @@
     "crawl:all2": "node scripts/crawler/framework/crawler_main.js all 2",
     "download:reports": "node scripts/stock-reports/batch_download_reports.js",
     "download:hk": "node scripts/stock-reports/download_hk_reports.js",
-    "ocr:server": "DISABLE_MODEL_SOURCE_CHECK=True node scripts/tools/paddleocr_server.js"
+    "ocr:server": "DISABLE_MODEL_SOURCE_CHECK=True node scripts/tools/paddleocr_server.js",
+    "stats": "node scripts/update_stats.js",
+    "fix-links": "node scripts/fix_links.js",
+    "format": "npx prettier --write ."
   },
   "repository": {
     "type": "git",

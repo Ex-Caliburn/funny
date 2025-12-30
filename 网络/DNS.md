@@ -1,4 +1,11 @@
-# DNS
+---
+topic: Domain Name System (DNS)
+category: Network
+complexity: ⭐⭐
+tags: [DNS, Networking, Protocol]
+---
+
+# DNS 原理与解析流程
 
 ## 前言
 

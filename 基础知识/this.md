@@ -1,4 +1,11 @@
-# this
+---
+topic: JavaScript Execution Context & This
+category: Advanced
+complexity: ⭐⭐⭐
+tags: [This, Context, ArrowFunction, Binding]
+---
+
+# JavaScript This 指向规则详解
 
 ## 前言
 

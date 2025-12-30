@@ -1,3 +1,9 @@
+/**
+ * @file prototype_chain.js
+ * @description 深入理解 JavaScript 原型链与继承机制
+ * @category Basic
+ */
+
 function fun() {};
 var f = new fun();
 f.__proto__ // === ? 1
