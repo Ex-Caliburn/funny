@@ -44,5 +44,5 @@
 - [接口竞态问题与解决方案](./接口竞态问题与解决方案.md)
 
 ## 🛠️ 测试工具
-- [app.js](./app.js) - 一个简单的 Node.js 服务器，用于测试网络请求。
+- [app.js](../playground/manage/app.js) - 一个简单的 Node.js 服务器，用于测试网络请求。
 
