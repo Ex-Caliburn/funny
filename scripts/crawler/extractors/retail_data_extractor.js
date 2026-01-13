@@ -1,23 +1,16 @@
-const axios = require('axios');
 const cheerio = require('cheerio');
-const xlsx = require('xlsx');
 const path = require('path');
 const fs = require('fs');
+const BaseDataExtractor = require('./base_data_extractor');
 
 /**
  * 零售数据提取器
  * 参考 stats-export-extension 的逻辑
  */
-class RetailDataExtractor {
+class RetailDataExtractor extends BaseDataExtractor {
   constructor() {
-    this.downloadDir = path.join(__dirname, '../../../stock/retail');
-    this.ensureDownloadDir();
-  }
-
-  ensureDownloadDir() {
-    if (!fs.existsSync(this.downloadDir)) {
-      fs.mkdirSync(this.downloadDir, { recursive: true });
-    }
+    const downloadDir = path.join(__dirname, '../../../stock/retail');
+    super(downloadDir);
   }
 
   /**
@@ -90,7 +83,7 @@ class RetailDataExtractor {
       const pageTitle = this.extractPageTitle($);
       
       // 下载Excel文件（使用arraybuffer以正确处理二进制数据）
-      const response = await this.fetchWithRetry(relatedUrl, { responseType: 'arraybuffer' });
+      const response = await this.fetchWithRetry(relatedUrl, 3, { responseType: 'arraybuffer' });
       
       // 生成文件名（使用页面标题）
       const dateInfo = this.extractDateInfo(detailUrl);
@@ -195,94 +188,7 @@ class RetailDataExtractor {
     return null;
   }
 
-  /**
-   * 将表格转换为行数组
-   */
-  tableToRowsArray($, table) {
-    const rows = [];
-    const $table = $(table);
-    const $rows = $table.find('tr');
-    
-    $rows.each((i, row) => {
-      const $row = $(row);
-      const rowData = [];
-      
-      $row.find('th, td').each((j, cell) => {
-        const $cell = $(cell);
-        let text = $cell.text().replace(/\r?\n/g, ' ').replace(/\s+/g, ' ').trim();
-        
-        // 如果单元格为空，检查子元素
-        if (!text && $cell.children().length > 0) {
-          const childTexts = [];
-          $cell.children().each((k, child) => {
-            const childText = $(child).text().trim();
-            if (childText) {
-              childTexts.push(childText);
-            }
-          });
-          text = childTexts.join(' ');
-        }
-        
-        rowData.push(text || '');
-      });
-      
-      rows.push(rowData);
-    });
-    
-    return rows;
-  }
 
-  /**
-   * 提取日期信息
-   */
-  extractDateInfo(url) {
-    // 从URL中提取日期
-    const urlMatch = url.match(/(\d{4})(\d{2})(\d{2})/);
-    let publishDate = '';
-    let periodInfo = '';
-    
-    if (urlMatch) {
-      publishDate = `${urlMatch[1]}-${urlMatch[2]}-${urlMatch[3]}`;
-    }
-    
-    return {
-      publishDate: publishDate || new Date().toISOString().split('T')[0],
-      periodInfo: periodInfo
-    };
-  }
-
-  /**
-   * 提取页面标题
-   */
-  extractPageTitle($) {
-    // 尝试从页面获取标题
-    let title = $('title').text().trim();
-    
-    // 如果没有title标签，尝试从h1获取
-    if (!title) {
-      title = $('h1').first().text().trim();
-    }
-    
-    // 如果还没有，尝试从h2获取
-    if (!title) {
-      title = $('h2').first().text().trim();
-    }
-    
-    return title || '相关数据表';
-  }
-
-  /**
-   * 构建文件名（参考扩展逻辑）
-   */
-  buildRawFilename(dateStr, title, ext) {
-    // 日期只保留数字和横杠
-    const base = (dateStr || '').replace(/[^0-9-]/g, '');
-    
-    // 标题移除所有空格，截取前40个字符
-    const t = (title || '').replace(/\s+/g, '').slice(0, 40) || '相关数据表';
-    
-    return (base ? base + '_' : '') + t + '.' + ext;
-  }
 
   /**
    * 生成文件名（已废弃，保留为兼容）
@@ -298,58 +204,6 @@ class RetailDataExtractor {
     }
   }
 
-  /**
-   * 生成Excel文件
-   */
-  async generateExcelFile(rows, filename) {
-    try {
-      // 创建工作簿
-      const workbook = xlsx.utils.book_new();
-      
-      // 创建工作表
-      const worksheet = xlsx.utils.aoa_to_sheet(rows);
-      
-      // 添加工作表到工作簿
-      xlsx.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
-      
-      // 保存文件（filename已经包含扩展名）
-      const filePath = path.join(this.downloadDir, filename);
-      xlsx.writeFile(workbook, filePath);
-      
-      console.log(`Excel文件已生成: ${filePath}`);
-      return filePath;
-      
-    } catch (error) {
-      console.error(`生成Excel文件失败: ${error.message}`);
-      return null;
-    }
-  }
-
-  /**
-   * 带重试的请求
-   */
-  async fetchWithRetry(url, options = {}) {
-    const maxRetries = options.maxRetries || 3;
-    const config = options.responseType ? { responseType: options.responseType } : {};
-    
-    for (let i = 0; i < maxRetries; i++) {
-      try {
-        console.log(`正在请求: ${url} (尝试 ${i + 1}/${maxRetries})`);
-        const response = await axios.get(url, {
-          timeout: 30000,
-          headers: {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
-          },
-          ...config
-        });
-        return response;
-      } catch (error) {
-        if (i === maxRetries - 1) throw error;
-        console.log(`请求失败，${1000 * (i + 1)}ms后重试...`);
-        await new Promise(resolve => setTimeout(resolve, 1000 * (i + 1)));
-      }
-    }
-  }
 
   /**
    * 批量处理多个详情页面

@@ -1,23 +1,17 @@
-const axios = require('axios');
 const cheerio = require('cheerio');
 const xlsx = require('xlsx');
 const path = require('path');
 const fs = require('fs');
+const BaseDataExtractor = require('./base_data_extractor');
 
 /**
  * 规模以上工业增加值数据提取器
  * 参考 stats-export-extension 和其他成功提取器的逻辑
  */
-class ProfitsDataExtractor {
+class ProfitsDataExtractor extends BaseDataExtractor {
   constructor() {
-    this.downloadDir = path.join(__dirname, '../../../stock/profits');
-    this.ensureDownloadDir();
-  }
-
-  ensureDownloadDir() {
-    if (!fs.existsSync(this.downloadDir)) {
-      fs.mkdirSync(this.downloadDir, { recursive: true });
-    }
+    const downloadDir = path.join(__dirname, '../../../stock/profits');
+    super(downloadDir);
   }
 
   /**
@@ -145,10 +139,8 @@ class ProfitsDataExtractor {
       const filename = this.buildRawFilename(dateInfo.publishDate, pageTitle, 'xlsx');
       const filePath = path.join(this.downloadDir, filename);
 
-      const ws = xlsx.utils.aoa_to_sheet(tableData);
-      const wb = xlsx.utils.book_new();
-      xlsx.utils.book_append_sheet(wb, ws, 'Sheet1');
-      xlsx.writeFile(wb, filePath);
+      // 使用基类的生成Excel方法
+      await this.generateExcelFile(tableData, filename);
 
       console.log(`已从页面表格生成文件: ${filename}`);
       return {
@@ -162,102 +154,6 @@ class ProfitsDataExtractor {
     }
   }
 
-  /**
-   * 提取页面标题
-   */
-  extractPageTitle($) {
-    // 尝试多种方式提取标题
-    const titleSelectors = [
-      'h1.title',
-      'h1',
-      '.article-title',
-      'title'
-    ];
-
-    for (const selector of titleSelectors) {
-      const title = $(selector).first().text().trim();
-      if (title && title.length > 0 && title !== '国家统计局') {
-        return title.replace(/-国家统计局$/, '').trim();
-      }
-    }
-
-    return '相关数据表';
-  }
-
-  /**
-   * 从URL提取日期信息
-   */
-  extractDateInfo(url) {
-    // 尝试从URL中提取日期: /202509/t20250927_xxx.html
-    const match = url.match(/\/(\d{6})\/t(\d{8})_/);
-    if (match) {
-      const yyyymm = match[1]; // 202509
-      const yyyymmdd = match[2]; // 20250927
-      
-      return {
-        publishDate: yyyymmdd.substring(0, 4) + '-' + 
-                     yyyymmdd.substring(4, 6) + '-' + 
-                     yyyymmdd.substring(6, 8),
-        yearMonth: yyyymm.substring(0, 4) + '-' + yyyymm.substring(4, 6)
-      };
-    }
-
-    // 如果无法从URL提取，使用当前日期
-    const now = new Date();
-    const yyyy = now.getFullYear();
-    const mm = String(now.getMonth() + 1).padStart(2, '0');
-    const dd = String(now.getDate()).padStart(2, '0');
-    
-    return {
-      publishDate: `${yyyy}-${mm}-${dd}`,
-      yearMonth: `${yyyy}-${mm}`
-    };
-  }
-
-  /**
-   * 猜测文件扩展名
-   */
-  guessExtFromUrl(url) {
-    const lower = url.toLowerCase();
-    if (lower.includes('.xlsx')) return 'xlsx';
-    if (lower.includes('.xls')) return 'xls';
-    return 'xlsx';
-  }
-
-  /**
-   * 构建文件名 (参考 stats-export-extension 的 buildRawFilename)
-   * 格式：日期_页面标题.ext
-   * 示例：2025-09-15_2025年8月份规模以上工业增加值增长5.1%-国家统计局.xlsx
-   */
-  buildRawFilename(dateStr, title, ext) {
-    // 日期只保留数字和横杠
-    const base = (dateStr || '').replace(/[^0-9-]/g, '');
-    // 标题移除所有空格，截取前40个字符
-    const t = (title || '').replace(/\s+/g, '').slice(0, 40) || '相关数据表';
-    return (base ? base + '_' : '') + t + '.' + ext;
-  }
-
-  /**
-   * 带重试的fetch
-   */
-  async fetchWithRetry(url, maxRetries = 3, options = {}) {
-    for (let i = 0; i < maxRetries; i++) {
-      try {
-        const response = await axios.get(url, {
-          timeout: 30000,
-          headers: {
-            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36'
-          },
-          ...options
-        });
-        return response;
-      } catch (error) {
-        if (i === maxRetries - 1) throw error;
-        console.log(`请求失败，重试 (${i + 1}/${maxRetries})...`);
-        await new Promise(resolve => setTimeout(resolve, 2000));
-      }
-    }
-  }
 
   /**
    * 批量处理多个页面

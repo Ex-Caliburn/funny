@@ -2720,6 +2720,101 @@
       "yoy": 5.9
     },
     {
+      "yearMonth": "2025-11",
+      "category": "原煤",
+      "value": "4.3",
+      "dailyAvg": "1423",
+      "unit": "亿吨",
+      "growthRate": null,
+      "yoy": 0,
+      "mom": 4.88
+    },
+    {
+      "yearMonth": "2025-11",
+      "category": "原油",
+      "value": "1763",
+      "dailyAvg": "1423",
+      "unit": "万吨",
+      "growthRate": null,
+      "yoy": 2.2,
+      "mom": -2.06
+    },
+    {
+      "yearMonth": "2025-11",
+      "category": "原油加工",
+      "value": "6083",
+      "dailyAvg": "1423",
+      "unit": "万吨",
+      "growthRate": null,
+      "yoy": 3.97,
+      "mom": -4.1
+    },
+    {
+      "yearMonth": "2025-11",
+      "category": "天然气",
+      "value": "219",
+      "dailyAvg": "1423",
+      "unit": "亿立方米",
+      "growthRate": null,
+      "yoy": 5.8,
+      "mom": -0.9
+    },
+    {
+      "yearMonth": "2025-11",
+      "category": "发电量",
+      "value": "7792",
+      "dailyAvg": "1423",
+      "unit": "亿千瓦时",
+      "growthRate": null,
+      "yoy": 3.96,
+      "mom": -2.62
+    },
+    {
+      "yearMonth": "2025-11",
+      "category": "发电量-火电",
+      "value": null,
+      "dailyAvg": null,
+      "unit": "亿千瓦时",
+      "growthRate": "-4.2",
+      "yoy": -4.2
+    },
+    {
+      "yearMonth": "2025-11",
+      "category": "发电量-水电",
+      "value": null,
+      "dailyAvg": null,
+      "unit": "亿千瓦时",
+      "growthRate": "17.1",
+      "yoy": 17.1
+    },
+    {
+      "yearMonth": "2025-11",
+      "category": "发电量-核电",
+      "value": null,
+      "dailyAvg": null,
+      "unit": "亿千瓦时",
+      "growthRate": "4.7",
+      "yoy": 4.7
+    },
+    {
+      "yearMonth": "2025-11",
+      "category": "发电量-风电",
+      "value": null,
+      "dailyAvg": null,
+      "unit": "亿千瓦时",
+      "growthRate": "22",
+      "yoy": 22
+    },
+    {
+      "yearMonth": "2025-11",
+      "category": "发电量-太阳能发电",
+      "value": null,
+      "dailyAvg": null,
+      "unit": "亿千瓦时",
+      "growthRate": "23.4",
+      "yoy": 23.4
+    },
+    {
       "yearMonth": "2025-08",
       "category": "原煤",
       "value": "3.9",
@@ -3575,16 +3670,6 @@
       "yoy": 21.1
     },
     {
-      "yearMonth": "2025-11",
-      "category": "原煤",
-      "value": null,
-      "dailyAvg": null,
-      "unit": "亿吨",
-      "growthRate": null,
-      "yoy": null,
-      "mom": null
-    },
-    {
       "yearMonth": "2025-12",
       "category": "原煤",
       "value": null,
@@ -3595,28 +3680,8 @@
       "mom": null
     },
     {
-      "yearMonth": "2025-11",
-      "category": "原油",
-      "value": null,
-      "dailyAvg": null,
-      "unit": "万吨",
-      "growthRate": null,
-      "yoy": null,
-      "mom": null
-    },
-    {
       "yearMonth": "2025-12",
       "category": "原油",
-      "value": null,
-      "dailyAvg": null,
-      "unit": "万吨",
-      "growthRate": null,
-      "yoy": null,
-      "mom": null
-    },
-    {
-      "yearMonth": "2025-11",
-      "category": "原油加工",
       "value": null,
       "dailyAvg": null,
       "unit": "万吨",
@@ -3635,16 +3700,6 @@
       "mom": null
     },
     {
-      "yearMonth": "2025-11",
-      "category": "天然气",
-      "value": null,
-      "dailyAvg": null,
-      "unit": "亿立方米",
-      "growthRate": null,
-      "yoy": null,
-      "mom": null
-    },
-    {
       "yearMonth": "2025-12",
       "category": "天然气",
       "value": null,
@@ -3655,28 +3710,8 @@
       "mom": null
     },
     {
-      "yearMonth": "2025-11",
-      "category": "发电量",
-      "value": null,
-      "dailyAvg": null,
-      "unit": "亿千瓦时",
-      "growthRate": null,
-      "yoy": null,
-      "mom": null
-    },
-    {
       "yearMonth": "2025-12",
       "category": "发电量",
-      "value": null,
-      "dailyAvg": null,
-      "unit": "亿千瓦时",
-      "growthRate": null,
-      "yoy": null,
-      "mom": null
-    },
-    {
-      "yearMonth": "2025-11",
-      "category": "发电量-火电",
       "value": null,
       "dailyAvg": null,
       "unit": "亿千瓦时",
@@ -3695,28 +3730,8 @@
       "mom": null
     },
     {
-      "yearMonth": "2025-11",
-      "category": "发电量-水电",
-      "value": null,
-      "dailyAvg": null,
-      "unit": "亿千瓦时",
-      "growthRate": null,
-      "yoy": null,
-      "mom": null
-    },
-    {
       "yearMonth": "2025-12",
       "category": "发电量-水电",
-      "value": null,
-      "dailyAvg": null,
-      "unit": "亿千瓦时",
-      "growthRate": null,
-      "yoy": null,
-      "mom": null
-    },
-    {
-      "yearMonth": "2025-11",
-      "category": "发电量-核电",
       "value": null,
       "dailyAvg": null,
       "unit": "亿千瓦时",
@@ -3735,28 +3750,8 @@
       "mom": null
     },
     {
-      "yearMonth": "2025-11",
-      "category": "发电量-风电",
-      "value": null,
-      "dailyAvg": null,
-      "unit": "亿千瓦时",
-      "growthRate": null,
-      "yoy": null,
-      "mom": null
-    },
-    {
       "yearMonth": "2025-12",
       "category": "发电量-风电",
-      "value": null,
-      "dailyAvg": null,
-      "unit": "亿千瓦时",
-      "growthRate": null,
-      "yoy": null,
-      "mom": null
-    },
-    {
-      "yearMonth": "2025-11",
-      "category": "发电量-太阳能发电",
       "value": null,
       "dailyAvg": null,
       "unit": "亿千瓦时",
@@ -4118,12 +4113,12 @@
       {
         "yearMonth": "2025-11",
         "category": "原煤",
-        "value": null,
-        "dailyAvg": null,
+        "value": "4.3",
+        "dailyAvg": "1423",
         "unit": "亿吨",
         "growthRate": null,
-        "yoy": null,
-        "mom": null
+        "yoy": 0,
+        "mom": 4.88
       },
       {
         "yearMonth": "2025-12",
@@ -4448,12 +4443,12 @@
       {
         "yearMonth": "2025-11",
         "category": "原油",
-        "value": null,
-        "dailyAvg": null,
+        "value": "1763",
+        "dailyAvg": "1423",
         "unit": "万吨",
         "growthRate": null,
-        "yoy": null,
-        "mom": null
+        "yoy": 2.2,
+        "mom": -2.06
       },
       {
         "yearMonth": "2025-12",
@@ -4778,12 +4773,12 @@
       {
         "yearMonth": "2025-11",
         "category": "原油加工",
-        "value": null,
-        "dailyAvg": null,
+        "value": "6083",
+        "dailyAvg": "1423",
         "unit": "万吨",
         "growthRate": null,
-        "yoy": null,
-        "mom": null
+        "yoy": 3.97,
+        "mom": -4.1
       },
       {
         "yearMonth": "2025-12",
@@ -5108,12 +5103,12 @@
       {
         "yearMonth": "2025-11",
         "category": "天然气",
-        "value": null,
-        "dailyAvg": null,
+        "value": "219",
+        "dailyAvg": "1423",
         "unit": "亿立方米",
         "growthRate": null,
-        "yoy": null,
-        "mom": null
+        "yoy": 5.8,
+        "mom": -0.9
       },
       {
         "yearMonth": "2025-12",
@@ -5438,12 +5433,12 @@
       {
         "yearMonth": "2025-11",
         "category": "发电量",
-        "value": null,
-        "dailyAvg": null,
+        "value": "7792",
+        "dailyAvg": "1423",
         "unit": "亿千瓦时",
         "growthRate": null,
-        "yoy": null,
-        "mom": null
+        "yoy": 3.96,
+        "mom": -2.62
       },
       {
         "yearMonth": "2025-12",
@@ -5751,9 +5746,8 @@
         "value": null,
         "dailyAvg": null,
         "unit": "亿千瓦时",
-        "growthRate": null,
-        "yoy": null,
-        "mom": null
+        "growthRate": "-4.2",
+        "yoy": -4.2
       },
       {
         "yearMonth": "2025-12",
@@ -6061,9 +6055,8 @@
         "value": null,
         "dailyAvg": null,
         "unit": "亿千瓦时",
-        "growthRate": null,
-        "yoy": null,
-        "mom": null
+        "growthRate": "17.1",
+        "yoy": 17.1
       },
       {
         "yearMonth": "2025-12",
@@ -6371,9 +6364,8 @@
         "value": null,
         "dailyAvg": null,
         "unit": "亿千瓦时",
-        "growthRate": null,
-        "yoy": null,
-        "mom": null
+        "growthRate": "4.7",
+        "yoy": 4.7
       },
       {
         "yearMonth": "2025-12",
@@ -6681,9 +6673,8 @@
         "value": null,
         "dailyAvg": null,
         "unit": "亿千瓦时",
-        "growthRate": null,
-        "yoy": null,
-        "mom": null
+        "growthRate": "22",
+        "yoy": 22
       },
       {
         "yearMonth": "2025-12",
@@ -6991,9 +6982,8 @@
         "value": null,
         "dailyAvg": null,
         "unit": "亿千瓦时",
-        "growthRate": null,
-        "yoy": null,
-        "mom": null
+        "growthRate": "23.4",
+        "yoy": 23.4
       },
       {
         "yearMonth": "2025-12",
