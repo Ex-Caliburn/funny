@@ -109,16 +109,6 @@ function parseExcelFile(filePath) {
       return { entries: entries, issues: issues };
     }
 
-    console.log(`Processing ${path.basename(filePath)}, Sheet: ${sheetName}, Rows: ${rows.length}`);
-
-    // Debug: Print first few rows to understand structure
-    console.log('First 10 rows (all columns):');
-    for (var debug_r = 0; debug_r < Math.min(10, rows.length); debug_r++) {
-      var debug_row = rows[debug_r];
-      if (debug_row && debug_row.length > 0) {
-        console.log(`Row ${debug_r}:`, debug_row); // All columns
-      }
-    }
 
     // Find all industry rows and extract data
     var headerRowIndex = -1;
@@ -126,7 +116,6 @@ function parseExcelFile(filePath) {
       var row = rows[r];
       if (row && row.length > 0 && String(row[0] || '').trim() === '行  业') {
         headerRowIndex = r;
-        console.log(`Found header row at index ${r}:`, row);
         break;
       }
     }
@@ -138,7 +127,6 @@ function parseExcelFile(filePath) {
     
     // Process all industry rows starting from header + 3 (skip header, subheader, unit rows)
     var dataStartRow = headerRowIndex + 3;
-    console.log(`Processing industry data starting from row ${dataStartRow}`);
     
     var metrics = [
       { name: '营业收入', valueCol: 1, yoyCol: 2 },
@@ -160,8 +148,6 @@ function parseExcelFile(filePath) {
           industryName === '分行业' || industryName.includes('小计')) {
         continue;
       }
-      
-      console.log(`Processing industry: "${industryName}"`);
       
       metrics.forEach(function(metric) {
         var currentValue = null;
@@ -202,10 +188,6 @@ function parseExcelFile(filePath) {
             yoy: yoyGrowth,
             mom: null // We'll compute this later
           });
-          
-          if (industryName === '总计') {
-            console.log(`Extracted ${industryName}-${metric.name}: value=${currentValue}, yoy=${yoyGrowth}`);
-          }
         }
       });
     }
