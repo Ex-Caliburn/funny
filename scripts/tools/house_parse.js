@@ -21,8 +21,6 @@ function parseHouseData() {
 
   files.forEach(filename => {
     try {
-      console.log(`处理文件: ${filename}`);
-      
       // 从文件名提取日期信息
       const dateMatch = filename.match(/(\d{4}-\d{2}-\d{2})/);
       const yearMonthMatch = filename.match(/(\d{4})年(?:(\d+)—(\d+)月份|(\d+)月份|全年|上半年|全国房地产市场基本情况)/);
@@ -270,12 +268,6 @@ function parseHouseData() {
       }
     }
 
-    // 统计转换结果
-    const monthlyCount = points.filter(p => p.valueMonthly != null).length;
-    const momCount = points.filter(p => p.mom != null).length;
-    if (monthlyCount > 0) {
-      console.log(`${metricName}: ${monthlyCount}/${points.length} 个数据点转换为当月值, ${momCount} 个环比数据`);
-    }
   });
 
   const result = {
@@ -299,13 +291,6 @@ function parseHouseData() {
   console.log(`提取指标数: ${result.metadata.totalMetrics}`);
   console.log(`数据年份范围: ${result.metadata.dateRange.start} - ${result.metadata.dateRange.end}`);
   
-  console.log('\n=== 主要指标 ===');
-  Object.keys(metrics).slice(0, 10).forEach(name => {
-    const count = metrics[name].length;
-    const latest = metrics[name][count - 1];
-    console.log(`${name}: ${count}个数据点, 最新值: ${latest.value} (${latest.yearMonth})`);
-  });
-
   // 保存到JSON文件
   const outputPath = path.join(__dirname, '../../stock/cleaned_data/house_cleaned.json');
   fs.writeFileSync(outputPath, JSON.stringify(result, null, 2), 'utf8');

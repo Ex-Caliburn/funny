@@ -285,8 +285,6 @@ function processSheet(sheet, sheetName, filename) {
   const rows = to2dArrayFromSheet(sheet);
   const results = [];
   
-  console.log(`Processing sheet: ${sheetName} from ${path.basename(filename)}`);
-  
   // Investment data format: Column 0 = metric name, Column 1 = YoY growth rate
   for (let i = 0; i < rows.length; i++) {
     const row = rows[i];
@@ -348,7 +346,6 @@ function processSheet(sheet, sheetName, filename) {
     }
   }
   
-  console.log(`Extracted ${results.length} metrics`);
   return results;
 }
 
@@ -375,8 +372,6 @@ function processAllFiles() {
   let allData = [];
   
   for (const file of files) {
-    console.log(`\nProcessing: ${path.basename(file)}`);
-    
     const yearMonth = parseYearMonthFromFilename(file);
     if (!yearMonth.key) {
       console.log(`Skipping file with unparseable date: ${file}`);
@@ -393,8 +388,6 @@ function processAllFiles() {
           label: yearMonth.label
         });
       }
-      
-      console.log(`Extracted ${results.length} metrics from ${path.basename(file)}`);
     } catch (error) {
       console.error(`Error processing ${file}:`, error.message);
     }

@@ -34,52 +34,52 @@ const RAW_DUMP = [];
 
 function normalizeMetricName(raw) {
   var name = String(raw || '').replace(/\s+/g, '');
-  
+
   // Remove "其中：/其中:" prefix (more comprehensive)
   name = name.replace(/^其中[:：]/, '');
-  
+
   // 通用零售/零售额统一处理
   // 将所有以"零售"结尾但不是"零售额"的指标统一为"零售额"
   if (name.endsWith('零售') && !name.endsWith('零售额')) {
     name = name + '额';
   }
-  
+
   // Canonical mappings for similar metric names
   if (name.indexOf('实物商品网上零售额') !== -1) {
     return '实物商品网上零售额';
   }
-  
+
   // 粮油、食品类的各种变体
   if (name.indexOf('粮油') !== -1 && name.indexOf('食品') !== -1) {
     return '粮油、食品类';
   }
-  
+
   // 其他可能的相似指标统一处理
   // 服装鞋帽类的统一
   if (name.indexOf('服装') !== -1 && name.indexOf('鞋帽') !== -1) {
     return '服装、鞋帽、针纺织品类';
   }
-  
+
   // 家用电器类的统一
   if (name.indexOf('家用电器') !== -1 && name.indexOf('音像器材') !== -1) {
     return '家用电器和音像器材类';
   }
-  
+
   // 文化办公用品类的统一
   if (name.indexOf('文化办公') !== -1 && name.indexOf('用品') !== -1) {
     return '文化办公用品类';
   }
-  
+
   // 体育娱乐用品类的统一
   if (name.indexOf('体育') !== -1 && name.indexOf('娱乐') !== -1 && name.indexOf('用品') !== -1) {
     return '体育、娱乐用品类';
   }
-  
+
   // 建筑装潢材料类的统一
   if (name.indexOf('建筑') !== -1 && name.indexOf('装潢') !== -1 && name.indexOf('材料') !== -1) {
     return '建筑及装潢材料类';
   }
-  
+
   return name;
 }
 
@@ -701,16 +701,6 @@ function main() {
   });
 
   fs.writeFileSync(OUTPUT_JSON, JSON.stringify({ updatedAt: new Date().toISOString(), data: results, metrics: metricsMap, issues: issues, debug: DEBUG_LOG, raw: RAW_DUMP }, null, 2), 'utf8');
-  try {
-    var keyClothes = Object.keys(metricsMap||{}).find(function(k){ return /服装/.test(k) && /鞋帽/.test(k); });
-    if (keyClothes) {
-      var ser = (metricsMap[keyClothes]||[]).map(function(x){ return { ym:x.yearMonth, valueMonthly:x.valueMonthly, value:x.value, cumulative:x.cumulative, src:x.debug&&x.debug.file }; });
-      console.log('DEBUG metric(服装鞋帽) =>', ser);
-    } else {
-      console.log('DEBUG metric(服装鞋帽) not found. keys:', Object.keys(metricsMap||{}).slice(0,20));
-    }
-    console.log('DEBUG rows captured:', DEBUG_LOG.length);
-  } catch (e) { /* noop */ }
 
   // Generate HTML (skipped if a custom page already exists)
   var html = '' +

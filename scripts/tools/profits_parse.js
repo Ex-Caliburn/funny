@@ -69,8 +69,6 @@ function safeNum(val) {
 }
 
 function parseExcelFile(filepath) {
-  console.log(`\n解析文件: ${path.basename(filepath)}`);
-  
   try {
     const workbook = xlsx.readFile(filepath, { cellDates: false, cellText: false });
     const sheetName = workbook.SheetNames[0];
@@ -94,8 +92,6 @@ function parseExcelFile(filepath) {
       console.log('  ⚠️  无法从文件名提取时间');
       return [];
     }
-    
-    console.log(`  时间: ${timeInfo.label}`);
     
     // 查找表头行（包含"指标"列）
     let headerRowIndex = -1;
@@ -122,9 +118,6 @@ function parseExcelFile(filepath) {
       return [];
     }
     
-    console.log(`  表头行: 第${headerRowIndex + 1}行`);
-    console.log(`  列数: ${headerRow.length}`);
-    
     // 找到"指标"列的位置
     let metricColIndex = -1;
     for (let i = 0; i < headerRow.length; i++) {
@@ -135,8 +128,6 @@ function parseExcelFile(filepath) {
       }
     }
     
-    console.log(`  指标列: 第${metricColIndex + 1}列`);
-    
     // 检查是否有子表头（下一行）
     let subHeaderRow = null;
     if (headerRowIndex + 1 < data.length) {
@@ -144,7 +135,6 @@ function parseExcelFile(filepath) {
       // 如果下一行不是指标行（没有指标名称），可能是子表头
       if (nextRow && !String(nextRow[metricColIndex] || '').trim()) {
         subHeaderRow = nextRow;
-        console.log(`  检测到子表头行: 第${headerRowIndex + 2}行`);
       }
     }
     
@@ -209,8 +199,6 @@ function parseExcelFile(filepath) {
       finalColumns[colIdx] = colType;
       usedTypes.add(colType);
     }
-    
-    console.log(`  单月数据列:`, finalColumns);
     
     // 数据起始行（跳过表头和子表头）
     const dataStartRow = subHeaderRow ? headerRowIndex + 2 : headerRowIndex + 1;
@@ -284,7 +272,6 @@ function parseExcelFile(filepath) {
       recordCount++;
     }
     
-    console.log(`  ✅ 提取 ${recordCount} 条记录`);
     return records;
     
   } catch (error) {
