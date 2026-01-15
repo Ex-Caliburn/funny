@@ -9,8 +9,9 @@ const fs = require('fs');
  * 包含所有提取器的公共方法
  */
 class BaseDataExtractor {
-  constructor(downloadDir) {
+  constructor(downloadDir, options = {}) {
     this.downloadDir = downloadDir;
+    this.skipExistingFiles = options.skipExistingFiles !== undefined ? options.skipExistingFiles : true; // 默认开启
     this.ensureDownloadDir();
   }
 
@@ -21,6 +22,26 @@ class BaseDataExtractor {
     if (!fs.existsSync(this.downloadDir)) {
       fs.mkdirSync(this.downloadDir, { recursive: true });
     }
+  }
+
+  /**
+   * 检查文件是否已存在
+   * @param {string} filePath - 文件路径
+   * @param {boolean} skipExisting - 是否跳过已存在的文件（从配置读取）
+   * @returns {boolean} - 如果文件存在且skipExisting为true，返回true（应该跳过）
+   */
+  shouldSkipExistingFile(filePath, skipExisting = true) {
+    if (!skipExisting) {
+      return false; // 如果开关关闭，不跳过
+    }
+
+    if (fs.existsSync(filePath)) {
+      const stats = fs.statSync(filePath);
+      console.log(`文件已存在，跳过下载: ${path.basename(filePath)} (大小: ${(stats.size / 1024).toFixed(2)} KB)`);
+      return true;
+    }
+
+    return false;
   }
 
   /**
@@ -44,6 +65,15 @@ class BaseDataExtractor {
         title = title.replace(/^var\s*\w+\s*=\s*['"]?/i, ''); // 移除 var xxx = ' 或 var xxx = "
         title = title.replace(/^vartitle\d+\s*=\s*['"]?/i, ''); // 移除 vartitle1=' 等
         title = title.replace(/['"]\s*;?\s*$/, ''); // 移除末尾的引号和分号
+
+        // 处理内嵌在标题中的 "vartitle2;" 等残留内容
+        // 有些页面的 <title> 文本类似于："2025年1—11月份...增长0.1%;vartitle2;"
+        // 这里统一把 ";vartitleX;" 这样的片段清理掉
+        title = title.replace(/;?\s*vartitle\d+\s*;?/gi, '');
+
+        // 再次清理可能残留在末尾的分号
+        title = title.replace(/;+$/g, '');
+
         title = title.replace(/-国家统计局$/, '').trim();
 
         // 如果清理后还有内容，返回
@@ -73,13 +103,26 @@ class BaseDataExtractor {
     t = t.replace(/^vartitle\d+\s*=\s*['"]?/i, '');
     t = t.replace(/['"]\s*;?\s*$/, '');
 
+    // 清理内嵌的 "vartitle2;" 等片段，避免出现在文件名中
+    t = t.replace(/;?\s*vartitle\d+\s*;?/gi, '');
+
+    // 进一步去掉末尾可能遗留的分号
+    t = t.replace(/;+$/g, '');
+
     // 移除文件名中不允许的字符：< > : " / \ | ? * 以及单引号、等号
     t = t.replace(/[<>:"/\\|?*'=]/g, '');
 
     // 移除所有空格，截取前40个字符
     t = t.replace(/\s+/g, '').slice(0, 40) || '相关数据表';
 
-    return (base ? base + '_' : '') + t + '.' + ext;
+    // 组合基础文件名
+    let filename = (base ? base + '_' : '') + t + '.' + ext;
+
+    // 最终兜底清理一次，防止任何位置残留 "vartitleX"
+    filename = filename.replace(/;?\s*vartitle\d+\s*;?/gi, '');
+    filename = filename.replace(/;+$/g, '');
+
+    return filename;
   }
 
   /**

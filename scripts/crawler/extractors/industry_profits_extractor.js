@@ -6,9 +6,10 @@ const path = require('path');
  * 继承自工业企业利润数据提取器，只是保存到不同的目录
  */
 class IndustryProfitsExtractor extends ProfitsDataExtractor {
-  constructor() {
-    super();
-    this.downloadDir = path.join(__dirname, '../../../stock/industry_profits');
+  constructor(downloadDir, options) {
+    const dir = downloadDir || path.join(__dirname, '../../../stock/industry_profits');
+    super(dir, options);
+    this.downloadDir = dir;
     this.ensureDownloadDir();
   }
 }

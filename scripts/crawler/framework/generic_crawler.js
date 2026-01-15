@@ -14,14 +14,14 @@ class GenericCrawler {
   constructor(targetType = 'goodsPrice') {
     this.config = config.statsGov;
     this.target = this.config.targets[targetType];
-    
+
     if (!this.target) {
       throw new Error(`不支持的目标类型: ${targetType}`);
     }
-    
+
     this.dataDir = path.join(__dirname, '../../../stock');
     this.downloadDir = path.join(this.dataDir, this.target.downloadDir);
-    
+
     // 确保目录存在
     this.ensureDirectories();
   }
@@ -49,7 +49,7 @@ class GenericCrawler {
     for (let i = 0; i < this.config.maxRetries; i++) {
       try {
         console.log(`正在请求: ${url} (尝试 ${i + 1}/${this.config.maxRetries})`);
-        
+
         const response = await axios({
           url,
           method: 'GET',
@@ -64,7 +64,7 @@ class GenericCrawler {
           },
           ...options
         });
-        
+
         await this.sleep(this.config.delayBetweenRequests);
         return response;
       } catch (error) {
@@ -84,7 +84,7 @@ class GenericCrawler {
     const start = startPage || this.config.pagination?.defaultStartPage || 1;
     const end = endPage || this.config.maxPages;
     const urls = [];
-    
+
     // 验证页码范围
     if (start < 1) {
       throw new Error('起始页码必须大于等于1');
@@ -95,7 +95,7 @@ class GenericCrawler {
     if (end > this.config.pagination?.maxAllowedPages) {
       throw new Error(`结束页码不能超过 ${this.config.pagination?.maxAllowedPages}`);
     }
-    
+
     for (let page = start; page <= end; page++) {
       let url;
       if (page === 1) {
@@ -106,7 +106,7 @@ class GenericCrawler {
       }
       urls.push(url);
     }
-    
+
     return urls;
   }
 
@@ -124,16 +124,16 @@ class GenericCrawler {
         const $link = $(element);
         const text = $link.text().trim();
         const href = $link.attr('href');
-        
+
         // 检查是否包含目标关键词
-        const isRelevant = this.target.keywords.some(keyword => 
+        const isRelevant = this.target.keywords.some(keyword =>
           text.includes(keyword)
         );
-        
+
         if (isRelevant && href) {
           const fullUrl = this.resolveUrl(href, pageUrl);
           const publishDate = this.extractPublishDate($link);
-          
+
           links.push({
             title: text,
             url: fullUrl,
@@ -159,14 +159,14 @@ class GenericCrawler {
       if (href.startsWith('http')) {
         return href;
       }
-      
+
       const base = new URL(baseUrl);
-      
+
       // 处理以 ./ 开头的相对路径
       if (href.startsWith('./')) {
         href = href.substring(2);
       }
-      
+
       if (href.startsWith('/')) {
         return `${base.protocol}//${base.host}${href}`;
       } else {
@@ -188,13 +188,13 @@ class GenericCrawler {
     const parent = $link.parent();
     const nextSibling = $link.next();
     const text = (parent.text() + ' ' + nextSibling.text()).trim();
-    
+
     // 匹配日期格式：YYYY-MM-DD
     const dateMatch = text.match(/(\d{4}-\d{2}-\d{2})/);
     if (dateMatch) {
       return dateMatch[1];
     }
-    
+
     return null;
   }
 
@@ -204,67 +204,67 @@ class GenericCrawler {
   async downloadExcelFromDetailPage(detailUrl) {
     try {
       console.log(`正在访问详情页: ${detailUrl}`);
-      
+
       // 对于配置了专门extractor的目标，直接使用对应的提取器
       if (this.target.extractor) {
         console.log(`使用专门的数据提取器: ${this.target.extractor}`);
-        
+
         if (this.target.name === '流通领域重要生产资料市场价格变动情况') {
           return await this.extractGoodsPriceData(detailUrl);
         }
-        
+
         if (this.target.name === '能源生产情况') {
           return await this.extractEnergyData(detailUrl);
         }
-        
+
         if (this.target.name === '社会消费品零售总额') {
           return await this.extractRetailData(detailUrl);
         }
-        
+
         if (this.target.name === '规模以上工业增加值') {
           return await this.extractProfitsData(detailUrl);
         }
-        
+
         if (this.target.name === '全国规模以上工业企业利润') {
           return await this.extractProfitsData(detailUrl);
         }
-        
+
         if (this.target.name === '全国固定资产投资') {
           return await this.extractInvestData(detailUrl);
         }
-        
+
         if (this.target.name === '全国房地产市场基本情况') {
           return await this.extractHouseData(detailUrl);
         }
       }
-      
+
       // 对于没有专门extractor的目标，使用通用下载逻辑
       const response = await this.fetchWithRetry(detailUrl);
       const $ = cheerio.load(response.data);
-      
+
       // 生成标准文件名
       const standardFilename = await this.getStandardFilename(detailUrl, $);
-      
+
       // 首先查找直接的Excel下载链接
       const excelLinks = [];
-      
+
       // 扩展查找规则
       $('a').each((index, element) => {
         const $link = $(element);
         const href = $link.attr('href');
         const text = $link.text().trim();
-        
+
         // 检查是否是Excel文件链接
         const isExcelFile = href && (
-          href.endsWith('.xls') || 
-          href.endsWith('.xlsx') || 
-          text.includes('相关数据表') || 
+          href.endsWith('.xls') ||
+          href.endsWith('.xlsx') ||
+          text.includes('相关数据表') ||
           text.includes('Excel') ||
           text.includes('数据表') ||
           text.includes('附件') ||
           text.includes('下载')
         );
-        
+
         if (isExcelFile) {
           const fullUrl = this.resolveUrl(href, detailUrl);
           excelLinks.push({
@@ -278,7 +278,7 @@ class GenericCrawler {
       // 如果有直接的Excel下载链接，直接下载
       if (excelLinks.length > 0) {
         console.log(`找到 ${excelLinks.length} 个Excel下载链接`);
-        
+
         const downloadedFiles = [];
         for (const link of excelLinks) {
           try {
@@ -290,24 +290,24 @@ class GenericCrawler {
             console.error(`下载失败 ${link.url}:`, error.message);
           }
         }
-        
+
         return downloadedFiles;
       }
 
       // 如果没有直接的Excel链接，尝试从页面内容提取数据生成Excel
       console.log('未找到直接Excel下载链接，尝试从页面内容提取数据...');
-      
+
       // 对于其他类型，查找其他可能的下载链接
       console.log('尝试查找其他下载链接...');
-      
+
       $('a').each((index, element) => {
         const $link = $(element);
         const href = $link.attr('href');
         const text = $link.text().trim();
-        
+
         // 查找可能包含数据的链接
         if (href && (
-          text.includes('数据') || 
+          text.includes('数据') ||
           text.includes('统计') ||
           text.includes('表格') ||
           href.includes('data') ||
@@ -323,7 +323,7 @@ class GenericCrawler {
       });
 
       console.log(`找到 ${excelLinks.length} 个其他下载链接`);
-      
+
       // 下载所有找到的文件
       const downloadedFiles = [];
       for (const link of excelLinks) {
@@ -336,7 +336,7 @@ class GenericCrawler {
           console.error(`下载失败 ${link.url}:`, error.message);
         }
       }
-      
+
       return downloadedFiles;
     } catch (error) {
       console.error(`访问详情页失败 ${detailUrl}:`, error.message);
@@ -350,15 +350,17 @@ class GenericCrawler {
   async extractGoodsPriceData(detailUrl) {
     try {
       const GoodsPriceExtractor = require('../extractors/goods_price_extractor');
-      const extractor = new GoodsPriceExtractor();
-      
+      const extractor = new GoodsPriceExtractor({
+        skipExistingFiles: config.fileProcessing.skipExistingFiles
+      });
+
       // 提取数据并生成Excel文件
       const result = await extractor.processDetailPage(detailUrl);
-      
+
       if (result && result.file) {
         return [result.file];
       }
-      
+
       return [];
     } catch (error) {
       console.error(`提取商品价格数据失败 ${detailUrl}:`, error.message);
@@ -373,14 +375,14 @@ class GenericCrawler {
     try {
       const EnergyDataExtractor = require('../extractors/energy_data_extractor');
       const extractor = new EnergyDataExtractor();
-      
+
       // 提取数据并生成Excel文件
       const result = await extractor.processDetailPage(detailUrl);
-      
+
       if (result && result.file) {
         return [result.file];
       }
-      
+
       return [];
     } catch (error) {
       console.error(`提取能源数据失败 ${detailUrl}:`, error.message);
@@ -394,15 +396,17 @@ class GenericCrawler {
   async extractRetailData(detailUrl) {
     try {
       const RetailDataExtractor = require('../extractors/retail_data_extractor');
-      const extractor = new RetailDataExtractor();
-      
+      const extractor = new RetailDataExtractor(undefined, {
+        skipExistingFiles: config.fileProcessing.skipExistingFiles
+      });
+
       // 提取数据并生成Excel文件
       const result = await extractor.processDetailPage(detailUrl);
-      
+
       if (result && result.file) {
         return [result.file];
       }
-      
+
       return [];
     } catch (error) {
       console.error(`提取零售数据失败 ${detailUrl}:`, error.message);
@@ -417,22 +421,27 @@ class GenericCrawler {
     try {
       // 根据配置选择合适的提取器
       let ExtractorClass;
+      let extractor;
       if (this.target.extractor === 'industry_profits_extractor.js') {
         ExtractorClass = require('../extractors/industry_profits_extractor');
+        extractor = new ExtractorClass(undefined, {
+          skipExistingFiles: config.fileProcessing.skipExistingFiles
+        });
       } else {
         ExtractorClass = require('../extractors/profits_data_extractor');
+        extractor = new ExtractorClass(undefined, {
+          skipExistingFiles: config.fileProcessing.skipExistingFiles
+        });
       }
-      
-      const extractor = new ExtractorClass();
-      
+
       // 提取数据并生成Excel文件
       const result = await extractor.processDetailPage(detailUrl);
-      
+
       // 提取器返回 { file: filePath, success: true }
       if (result && result.file) {
         return [result.file];
       }
-      
+
       return [];
     } catch (error) {
       console.error(`提取工业企业利润数据失败 ${detailUrl}:`, error.message);
@@ -446,15 +455,17 @@ class GenericCrawler {
   async extractInvestData(detailUrl) {
     try {
       const InvestDataExtractor = require('../extractors/invest_data_extractor');
-      const extractor = new InvestDataExtractor();
-      
+      const extractor = new InvestDataExtractor(undefined, {
+        skipExistingFiles: config.fileProcessing.skipExistingFiles
+      });
+
       // 提取数据并生成Excel文件
       const result = await extractor.processDetailPage(detailUrl);
-      
+
       if (result && result.file) {
         return [result.file];
       }
-      
+
       return [];
     } catch (error) {
       console.error(`提取固定资产投资数据失败 ${detailUrl}:`, error.message);
@@ -468,15 +479,17 @@ class GenericCrawler {
   async extractHouseData(detailUrl) {
     try {
       const HouseDataExtractor = require('../extractors/house_data_extractor');
-      const extractor = new HouseDataExtractor();
-      
+      const extractor = new HouseDataExtractor(undefined, {
+        skipExistingFiles: config.fileProcessing.skipExistingFiles
+      });
+
       // 提取数据并生成Excel文件
       const result = await extractor.processDetailPage(detailUrl);
-      
+
       if (result && result.file) {
         return [result.file];
       }
-      
+
       return [];
     } catch (error) {
       console.error(`提取房地产数据失败 ${detailUrl}:`, error.message);
@@ -503,7 +516,7 @@ class GenericCrawler {
         dateStr = new Date().toISOString().split('T')[0];
       }
     }
-    
+
     // 如果linkText是"相关数据表"等通用词，需要获取页面标题
     // 这里先返回一个占位符，实际标题会在downloadExcelFromDetailPage中设置
     return `${dateStr}_PLACEHOLDER`;
@@ -517,12 +530,12 @@ class GenericCrawler {
     if (match) {
       return `${match[1]}-${match[2]}-${match[3]}`;
     }
-    
+
     const match2 = url.match(/(\d{4})(\d{2})(\d{2})/);
     if (match2) {
       return `${match2[1]}-${match2[2]}-${match2[3]}`;
     }
-    
+
     return new Date().toISOString().split('T')[0];
   }
 
@@ -544,7 +557,7 @@ class GenericCrawler {
       const response = await this.fetchWithRetry(url, {
         responseType: 'stream'
       });
-      
+
       // 检查 filename 是否已经有扩展名
       let finalFilename = filename;
       if (!filename.endsWith('.xls') && !filename.endsWith('.xlsx')) {
@@ -557,19 +570,20 @@ class GenericCrawler {
         }
         finalFilename = `${filename}${extension}`;
       }
-      
+
       const filePath = path.join(this.downloadDir, finalFilename);
-      
-      // 检查文件是否已存在
-      if (fs.existsSync(filePath)) {
-        console.log(`文件已存在，跳过下载: ${filePath}`);
+
+      // 检查文件是否已存在（使用配置开关）
+      if (config.fileProcessing.skipExistingFiles && fs.existsSync(filePath)) {
+        const stats = fs.statSync(filePath);
+        console.log(`文件已存在，跳过下载: ${path.basename(filePath)} (大小: ${(stats.size / 1024).toFixed(2)} KB)`);
         return filePath;
       }
-      
+
       // 写入文件
       const writer = fs.createWriteStream(filePath);
       response.data.pipe(writer);
-      
+
       return new Promise((resolve, reject) => {
         writer.on('finish', () => {
           console.log(`下载完成: ${filePath}`);
@@ -589,28 +603,28 @@ class GenericCrawler {
   async runParsingScript() {
     // 使用配置中的 parseScript
     let scriptName = this.target.parseScript;
-    
+
     if (!scriptName) {
       console.error('未配置 parseScript，请在 crawler_config.js 中配置');
       throw new Error('未配置解析脚本');
     }
-    
+
     const scriptPath = path.join(__dirname, '../../tools', scriptName);
-    
+
     return new Promise((resolve, reject) => {
       console.log(`开始运行解析脚本: ${scriptName}`);
-      
+
       if (!fs.existsSync(scriptPath)) {
         console.error(`解析脚本不存在: ${scriptPath}`);
         reject(new Error('解析脚本不存在'));
         return;
       }
-      
+
       const child = spawn('node', [scriptPath], {
         cwd: __dirname,
         stdio: 'inherit'
       });
-      
+
       child.on('close', (code) => {
         if (code === 0) {
           console.log('解析脚本执行成功');
@@ -620,7 +634,7 @@ class GenericCrawler {
           reject(new Error(`脚本执行失败，退出码: ${code}`));
         }
       });
-      
+
       child.on('error', (error) => {
         console.error('解析脚本执行出错:', error.message);
         reject(error);
@@ -635,54 +649,112 @@ class GenericCrawler {
    */
   async crawlAndParse(startPage = null, endPage = null) {
     console.log(`开始自动化爬取流程 - 目标: ${this.target.name}`);
-    
+
     try {
       // 1. 获取所有分页URL
       const pageUrls = this.getPageUrls(startPage, endPage);
       const displayRange = startPage && endPage ? `第${startPage}-${endPage}页` : `${pageUrls.length}个分页`;
       console.log(`将爬取 ${displayRange} (共${pageUrls.length}个页面)`);
-      
-      // 2. 提取所有相关链接
+
+      // 2. 提取所有相关链接（去重）
       const allLinks = [];
+      const seenUrls = new Set(); // 用于链接去重
+
       for (const pageUrl of pageUrls) {
         const links = await this.extractRelevantLinks(pageUrl);
-        allLinks.push(...links);
+        for (const link of links) {
+          // 根据URL去重
+          if (link.url && !seenUrls.has(link.url)) {
+            seenUrls.add(link.url);
+            allLinks.push(link);
+          }
+        }
       }
-      
-      console.log(`总共找到 ${allLinks.length} 个相关链接`);
-      
+
+      console.log(`总共找到 ${allLinks.length} 个相关链接（已去重）`);
+
       if (allLinks.length === 0) {
         console.log('没有找到相关链接，流程结束');
         return { target: this.target.name, totalLinks: 0, downloadedFiles: 0, files: [] };
       }
-      
+
       // 3. 下载Excel文件
       const allDownloadedFiles = [];
+      const seenFiles = new Set(); // 用于去重
+      const fileStatsBefore = new Map(); // 记录下载前的文件状态
+
+      // 预先记录所有已存在的文件
+      if (fs.existsSync(this.downloadDir)) {
+        const existingFiles = fs.readdirSync(this.downloadDir)
+          .filter(f => f.endsWith('.xls') || f.endsWith('.xlsx'))
+          .map(f => path.join(this.downloadDir, f));
+        existingFiles.forEach(file => {
+          fileStatsBefore.set(file, fs.statSync(file).mtime.getTime());
+        });
+      }
+
       for (const link of allLinks) {
         const files = await this.downloadExcelFromDetailPage(link.url);
-        allDownloadedFiles.push(...files);
+        // 去重：只添加未出现过的文件
+        for (const file of files) {
+          if (file && !seenFiles.has(file)) {
+            seenFiles.add(file);
+            allDownloadedFiles.push(file);
+          }
+        }
       }
-      
-      console.log(`总共下载了 ${allDownloadedFiles.length} 个Excel文件`);
-      
-      if (allDownloadedFiles.length === 0) {
-        console.log('没有下载到任何文件，流程结束');
-        return { target: this.target.name, totalLinks: allLinks.length, downloadedFiles: 0, files: [] };
+
+      // 统计新下载的文件（通过文件修改时间判断）
+      const newFiles = [];
+      const existingFiles = [];
+      for (const file of allDownloadedFiles) {
+        if (fs.existsSync(file)) {
+          const stats = fs.statSync(file);
+          const mtime = stats.mtime.getTime();
+          const beforeMtime = fileStatsBefore.get(file);
+
+          // 如果文件在下载前不存在，或者修改时间更新了，说明是新下载的
+          if (!beforeMtime || mtime > beforeMtime + 1000) { // 1秒容差
+            newFiles.push(file);
+          } else {
+            existingFiles.push(file);
+          }
+        }
       }
-      
-      // 4. 运行解析脚本
+
+      console.log(`总共处理了 ${allDownloadedFiles.length} 个Excel文件（已去重）`);
+      if (newFiles.length > 0) {
+        console.log(`  - 新下载: ${newFiles.length} 个`);
+      }
+      if (existingFiles.length > 0) {
+        console.log(`  - 已存在（跳过）: ${existingFiles.length} 个`);
+      }
+
+      // 如果本次没有任何新文件，就不再运行解析脚本，避免重复处理
+      if (newFiles.length === 0) {
+        console.log('本次未发现新文件，跳过解析脚本执行');
+        return {
+          target: this.target.name,
+          totalLinks: allLinks.length,
+          downloadedFiles: 0,
+          files: allDownloadedFiles,
+          links: allLinks
+        };
+      }
+
+      // 4. 运行解析脚本（仅当有新文件时）
       await this.runParsingScript();
-      
+
       console.log('自动化爬取流程完成！');
-      
+
       return {
         target: this.target.name,
         totalLinks: allLinks.length,
-        downloadedFiles: allDownloadedFiles.length,
+        downloadedFiles: newFiles.length,
         files: allDownloadedFiles,
         links: allLinks
       };
-      
+
     } catch (error) {
       console.error('自动化爬取流程失败:', error.message);
       throw error;

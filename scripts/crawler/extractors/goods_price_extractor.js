@@ -10,11 +10,13 @@ const xlsx = require('xlsx');
  */
 
 class GoodsPriceExtractor {
-  constructor() {
+  constructor(options = {}) {
     this.dataDir = path.join(__dirname, '../../../stock');
     this.downloadDir = path.join(this.dataDir, 'goods_price');
     this.maxRetries = 3;
     this.delayBetweenRequests = 1000;
+    // 从配置读取是否跳过已存在的文件，默认开启
+    this.skipExistingFiles = options.skipExistingFiles !== undefined ? options.skipExistingFiles : true;
     
     // 确保目录存在
     this.ensureDirectories();
@@ -280,6 +282,13 @@ class GoodsPriceExtractor {
       
       // 生成文件路径，使用.xls扩展名以匹配现有文件
       const filePath = path.join(this.downloadDir, `${filename}.xls`);
+      
+      // 检查文件是否已存在
+      if (this.skipExistingFiles && fs.existsSync(filePath)) {
+        const stats = fs.statSync(filePath);
+        console.log(`文件已存在，跳过生成: ${path.basename(filePath)} (大小: ${(stats.size / 1024).toFixed(2)} KB)`);
+        return filePath;
+      }
       
       // 写入文件
       xlsx.writeFile(workbook, filePath);

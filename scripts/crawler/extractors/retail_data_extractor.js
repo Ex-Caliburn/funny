@@ -8,9 +8,10 @@ const BaseDataExtractor = require('./base_data_extractor');
  * 参考 stats-export-extension 的逻辑
  */
 class RetailDataExtractor extends BaseDataExtractor {
-  constructor() {
-    const downloadDir = path.join(__dirname, '../../../stock/retail');
-    super(downloadDir);
+  constructor(downloadDir, options) {
+    const dir = downloadDir || path.join(__dirname, '../../../stock/retail');
+    super(dir, options);
+    this.downloadDir = dir;
   }
 
   /**
@@ -82,13 +83,26 @@ class RetailDataExtractor extends BaseDataExtractor {
       const $ = cheerio.load(pageResponse.data);
       const pageTitle = this.extractPageTitle($);
       
-      // 下载Excel文件（使用arraybuffer以正确处理二进制数据）
-      const response = await this.fetchWithRetry(relatedUrl, 3, { responseType: 'arraybuffer' });
-      
       // 生成文件名（使用页面标题）
       const dateInfo = this.extractDateInfo(detailUrl);
       const filename = this.buildRawFilename(dateInfo.publishDate, pageTitle, 'xls');
       const filePath = path.join(this.downloadDir, filename);
+      
+      // 检查文件是否已存在
+      if (this.shouldSkipExistingFile(filePath, this.skipExistingFiles)) {
+        return {
+          url: detailUrl,
+          publishDate: dateInfo.publishDate,
+          periodInfo: dateInfo.periodInfo,
+          excelFile: filePath,
+          source: 'related_dataset',
+          title: pageTitle,
+          skipped: true
+        };
+      }
+      
+      // 下载Excel文件（使用arraybuffer以正确处理二进制数据）
+      const response = await this.fetchWithRetry(relatedUrl, 3, { responseType: 'arraybuffer' });
       
       // 保存文件（确保使用Buffer）
       fs.writeFileSync(filePath, Buffer.from(response.data));

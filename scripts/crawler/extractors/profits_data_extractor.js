@@ -9,9 +9,10 @@ const BaseDataExtractor = require('./base_data_extractor');
  * 参考 stats-export-extension 和其他成功提取器的逻辑
  */
 class ProfitsDataExtractor extends BaseDataExtractor {
-  constructor() {
-    const downloadDir = path.join(__dirname, '../../../stock/profits');
-    super(downloadDir);
+  constructor(downloadDir, options) {
+    const dir = downloadDir || path.join(__dirname, '../../../stock/profits');
+    super(dir, options);
+    this.downloadDir = dir;
   }
 
   /**
@@ -81,14 +82,24 @@ class ProfitsDataExtractor extends BaseDataExtractor {
       // 从详情页文档提取页面标题（而不是从相关数据表页面）
       const pageTitle = this.extractPageTitle(detailPageDoc);
       
-      // 下载Excel文件
-      const response = await this.fetchWithRetry(relatedUrl, 3, { responseType: 'arraybuffer' });
-      
       // 生成文件名（使用页面标题）
       const dateInfo = this.extractDateInfo(detailUrl);
       const ext = this.guessExtFromUrl(relatedUrl) || 'xlsx';
       const filename = this.buildRawFilename(dateInfo.publishDate, pageTitle, ext);
       const filePath = path.join(this.downloadDir, filename);
+      
+      // 检查文件是否已存在
+      if (this.shouldSkipExistingFile(filePath, this.skipExistingFiles)) {
+        return {
+          url: detailUrl,
+          file: filePath,
+          success: true,
+          skipped: true
+        };
+      }
+      
+      // 下载Excel文件
+      const response = await this.fetchWithRetry(relatedUrl, 3, { responseType: 'arraybuffer' });
       
       // 保存文件
       fs.writeFileSync(filePath, response.data);

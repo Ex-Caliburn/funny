@@ -10,7 +10,7 @@ module.exports = {
     delayBetweenRequests: 1000, // 请求间延迟(毫秒)
     maxRetries: 3,
     timeout: 30000, // 请求超时(毫秒)
-    
+
     // 分页区间配置
     pagination: {
       defaultStartPage: 1,
@@ -18,7 +18,7 @@ module.exports = {
       maxAllowedPages: 100,
       pageRangePattern: /^(\d+)-(\d+)$/  // 验证格式 "1-5"
     },
-    
+
     // 目标数据配置
     targets: {
       goodsPrice: {
@@ -79,15 +79,16 @@ module.exports = {
       }
     }
   },
-  
+
   // 文件处理配置
   fileProcessing: {
     allowedExtensions: ['.xls', '.xlsx', '.csv'],
     maxFileSize: 50 * 1024 * 1024, // 50MB
     backupOriginal: true,
-    cleanTempFiles: true
+    cleanTempFiles: true,
+    skipExistingFiles: true // 如果文件已存在，跳过下载（默认开启）
   },
-  
+
   // 日志配置
   logging: {
     level: 'info', // debug, info, warn, error
@@ -95,7 +96,7 @@ module.exports = {
     file: false,
     filePath: './logs/crawler.log'
   },
-  
+
   // 通知配置
   notifications: {
     enabled: false,
