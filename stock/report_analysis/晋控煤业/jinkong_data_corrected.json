@@ -13,6 +13,86 @@
   },
   "summary": [
     {
+      "period": "2021年1-3月",
+      "year": 2021,
+      "month": 3,
+      "type": "cumulative",
+      "coal": {
+        "production": 826.3,
+        "sales": 740.18,
+        "inventory": null,
+        "revenue": 24.42,
+        "cost": 11.42,
+        "unitPrice": 329.95,
+        "unitCost": 154.29,
+        "unitGrossProfit": 175.66,
+        "grossMargin": 53.19,
+        "_corrected": true,
+        "_verified": false,
+        "_notes": "手动修正：根据2021年第一季度报告文本修正。原煤产量826.30万吨，商品煤销量740.18万吨，销售收入244,178.57万元（24.42亿元），销售成本114,247.53万元（11.42亿元），毛利129,931.04万元（12.99亿元）"
+      }
+    },
+    {
+      "period": "2021年上半年",
+      "year": 2021,
+      "month": 6,
+      "type": "cumulative",
+      "coal": {
+        "production": 1671.76,
+        "sales": 1441.69,
+        "inventory": null,
+        "revenue": 68.27,
+        "cost": 39,
+        "unitPrice": 473.66,
+        "unitCost": 270.5,
+        "unitGrossProfit": 203.16,
+        "grossMargin": 42.87,
+        "_corrected": true,
+        "_verified": false,
+        "_notes": "手动修正：根据2021年半年度报告文本修正。原煤产量1671.76万吨，商品煤销量1441.69万吨，煤炭销售收入68.27亿元，销售成本39.00亿元，毛利29.27亿元"
+      }
+    },
+    {
+      "period": "2021年1-9月",
+      "year": 2021,
+      "month": 9,
+      "type": "cumulative",
+      "coal": {
+        "production": 2544.47,
+        "sales": 2122.26,
+        "inventory": null,
+        "revenue": 108.47,
+        "cost": 57.21,
+        "unitPrice": 511.19,
+        "unitCost": 269.65,
+        "unitGrossProfit": 241.54,
+        "grossMargin": 47.26,
+        "_corrected": true,
+        "_verified": false,
+        "_notes": "手动修正：根据2021年第三季度报告文本修正。原煤产量2,544.47万吨，商品煤销量2,122.26万吨，销售收入1,084,747.46万元（108.47亿元），销售成本572,128.68万元（57.21亿元），毛利512,618.78万元（51.26亿元）"
+      }
+    },
+    {
+      "period": "2021年全年",
+      "year": 2021,
+      "month": 12,
+      "type": "cumulative",
+      "coal": {
+        "production": 3497.27,
+        "sales": 3036.51,
+        "inventory": 15.96,
+        "revenue": 177.04411157669998,
+        "cost": 78.0794158757,
+        "unitPrice": 583.05,
+        "unitCost": 257.14,
+        "unitGrossProfit": 325.91,
+        "grossMargin": 55.9,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      }
+    },
+    {
       "period": "2022年1-3月",
       "year": 2022,
       "month": 3,

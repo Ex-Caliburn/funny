@@ -830,6 +830,40 @@ function extractCoalFinancials(text) {
     }
   }
 
+  // 匹配"公司 YYYY 年 1-3 月份经营指标情况...销售收入 X 万元，销售成本 X 万元"格式（2021年第一季度报告格式）
+  // 格式：公司 2021 年 1-3 月份经营指标情况：原煤产量 X 万吨，商品煤销量 X 万吨，销售收入 X 万元，销售成本 X 万元
+  if (!result.coalRevenue || !result.coalCost) {
+    const patternCompanyYearPeriod = /公司\s+(\d{4})\s+年\s+1[—\-]\d+\s+月份经营指标情况[：:][\s\S]*?销售收入\s+([\d,，]+\.?\d*)\s*万元[，,][\s\S]*?销售成本\s+([\d,，]+\.?\d*)\s*万元/g;
+    let matchCompanyYearPeriod = patternCompanyYearPeriod.exec(text);
+    if (matchCompanyYearPeriod) {
+      const revenueValue = extractNumber(matchCompanyYearPeriod[2] + '万元');
+      const costValue = extractNumber(matchCompanyYearPeriod[3] + '万元');
+      if (isValidValue(revenueValue, 'revenue')) {
+        result.coalRevenue = revenueValue;
+      }
+      if (isValidValue(costValue, 'cost')) {
+        result.coalCost = costValue;
+      }
+    }
+  }
+
+  // 匹配"公司 1—9 月...销售收入 X 万元，销售成本 X 万元"格式（2021年第三季度报告格式）
+  // 格式：公司 1—9 月原煤产量 X 万吨，商品煤销量 X 万吨，销售收入 X 万元，销售成本 X 万元，毛利 X 万元
+  if (!result.coalRevenue || !result.coalCost) {
+    const patternCompanyPeriod = /公司\s+1[—\-]\d+\s+月[\s\S]*?销售收入\s+([\d,，]+\.?\d*)\s*万元[，,][\s\S]*?销售成本\s+([\d,，]+\.?\d*)\s*万元/g;
+    let matchCompanyPeriod = patternCompanyPeriod.exec(text);
+    if (matchCompanyPeriod) {
+      const revenueValue = extractNumber(matchCompanyPeriod[1] + '万元');
+      const costValue = extractNumber(matchCompanyPeriod[2] + '万元');
+      if (isValidValue(revenueValue, 'revenue')) {
+        result.coalRevenue = revenueValue;
+      }
+      if (isValidValue(costValue, 'cost')) {
+        result.coalCost = costValue;
+      }
+    }
+  }
+
   // 匹配"销售收入 X 亿元，销售成本 X 亿元"格式（文字段落中的格式，允许换行）
   if (!result.coalRevenue || !result.coalCost) {
     const patternSales = /销[\s]*售收入\s+([\d,，]+\.?\d*)\s*亿元[，,]\s*销售成本\s+([\d,，]+\.?\d*)\s*亿元/g;
@@ -837,6 +871,22 @@ function extractCoalFinancials(text) {
     if (matchSales) {
       const revenueValue = extractNumber(matchSales[1] + '亿元');
       const costValue = extractNumber(matchSales[2] + '亿元');
+      if (isValidValue(revenueValue, 'revenue')) {
+        result.coalRevenue = revenueValue;
+      }
+      if (isValidValue(costValue, 'cost')) {
+        result.coalCost = costValue;
+      }
+    }
+  }
+
+  // 匹配"销售收入 X 万元，销售成本 X 万元"格式（支持万元单位）
+  if (!result.coalRevenue || !result.coalCost) {
+    const patternSalesWan = /销[\s]*售收入\s+([\d,，]+\.?\d*)\s*万元[，,]\s*销售成本\s+([\d,，]+\.?\d*)\s*万元/g;
+    let matchSalesWan = patternSalesWan.exec(text);
+    if (matchSalesWan) {
+      const revenueValue = extractNumber(matchSalesWan[1] + '万元');
+      const costValue = extractNumber(matchSalesWan[2] + '万元');
       if (isValidValue(revenueValue, 'revenue')) {
         result.coalRevenue = revenueValue;
       }

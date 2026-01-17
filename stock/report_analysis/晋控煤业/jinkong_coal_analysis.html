@@ -855,16 +855,17 @@
                     const h1 = yearData.find(d => d.period.includes('上半年'));
                     const q1Data = yearData.find(d => d.period.includes('1-3月'));
                     if (h1 && q1Data) {
+                        // 如果H1或Q1的某个字段为null，则Q2对应字段也为null（无法准确反推）
                         quarterlyData.push({
                             period: `${year}年Q2`,
                             year: year,
                             month: 6,
                             quarter: 2,
                             type: 'quarterly',
-                            cost: h1.cost - (q1Data.cost || 0),
-                            revenue: (h1.revenue || 0) - (q1Data.revenue || 0),
-                            production: (h1.production || 0) - (q1Data.production || 0),
-                            sales: (h1.sales || 0) - (q1Data.sales || 0),
+                            cost: (h1.cost != null && q1Data.cost != null) ? h1.cost - q1Data.cost : null,
+                            revenue: (h1.revenue != null && q1Data.revenue != null) ? h1.revenue - q1Data.revenue : null,
+                            production: (h1.production != null && q1Data.production != null) ? h1.production - q1Data.production : null,
+                            sales: (h1.sales != null && q1Data.sales != null) ? h1.sales - q1Data.sales : null,
                             inventory: null  // 单季度不计算库存
                         });
                     }

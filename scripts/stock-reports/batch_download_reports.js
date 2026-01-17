@@ -47,7 +47,7 @@ const DEFAULT_CONFIG = {
     },
   ],
   // years: [ 2021，2022, 2023, 2024, 2025 ],
-  years: [2022],
+  years: [2021],
   outputBase: '../stock/report_analysis',
   // 报告类型：支持字符串或数组
   // 字符串：'all' | 'annual' | 'semi' | 'quarterly' | 'q1' | 'q3' | 'production'

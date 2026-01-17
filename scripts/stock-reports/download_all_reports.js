@@ -317,7 +317,8 @@ function searchReport(stockCode, year, reportType, customKeywords = []) {
 
             // 筛选最匹配的报告
             const report = json.announcements.find(item => {
-              const title = item.announcementTitle || '';
+              // 清理HTML标签（如<em>标签），确保匹配逻辑正确
+              let title = (item.announcementTitle || '').replace(/<\/?em>/g, '').trim();
 
               // 排除扫描版，只保留文字版
               if (isScannedVersion(title)) return false;
@@ -330,17 +331,70 @@ function searchReport(stockCode, year, reportType, customKeywords = []) {
               // 重要：需要精确匹配，避免"年度报告"匹配到"半年度报告"或"季度报告"
               let hasKeyword = false;
               if (reportType === 'annual') {
-                // 年度报告：必须包含"年度报告"或"年报"，但不能是"半年度报告"或季度报告
-                hasKeyword = (title.includes('年度报告') || title.includes('年报')) &&
-                            !title.includes('半年度报告') && !title.includes('半年报') &&
-                            !title.includes('第一季度') && !title.includes('一季度') && !title.includes('一季报') &&
-                            !title.includes('第三季度') && !title.includes('三季度') && !title.includes('三季报') &&
-                            !title.includes('季度报告');
+                // 年度报告：必须先排除季度和半年度关键词，再检查年度关键词
+                // 这样可以避免"第一季度报告"被误匹配
+
+                // 先检查是否包含季度关键词（优先级最高，一旦包含就排除）
+                const hasQuarterKeyword = title.includes('第一季度') || title.includes('一季度') ||
+                                         title.includes('一季报') || title.includes('第三季度') ||
+                                         title.includes('三季度') || title.includes('三季报') ||
+                                         title.includes('季度报告') || title.includes('第二季度') ||
+                                         title.includes('二季度') || title.includes('二季报') ||
+                                         title.includes('第四季度') || title.includes('四季度') ||
+                                         title.includes('四季报');
+
+                // 如果包含季度关键词，直接排除（不可能是年度报告）
+                if (hasQuarterKeyword) {
+                  hasKeyword = false;
+                } else {
+                  // 检查是否包含半年度关键词
+                  const hasSemiKeyword = title.includes('半年度报告') || title.includes('半年报');
+
+                  // 如果包含半年度关键词，也排除
+                  if (hasSemiKeyword) {
+                    hasKeyword = false;
+                  } else {
+                    // 最后检查是否包含年度关键词
+                    // 使用正则表达式确保"年度报告"或"年报"是独立的词
+                    const annualPattern = /年度报告|年报/;
+                    const hasAnnualKeyword = annualPattern.test(title);
+                    hasKeyword = hasAnnualKeyword;
+                  }
+                }
               } else if (reportType === 'semi') {
                 // 半年度报告：必须包含"半年度报告"或"半年报"
                 hasKeyword = title.includes('半年度报告') || title.includes('半年报');
+              } else if (reportType === 'q1' || reportType === 'q3') {
+                // 季度报告：必须先排除年度和半年度关键词，再检查季度关键词
+                // 这样可以避免"年度报告"被误匹配为季度报告
+
+                // 先检查是否包含年度关键词（如果包含，直接排除）
+                const hasAnnualKeyword = title.includes('年度报告') || title.includes('年报');
+                if (hasAnnualKeyword) {
+                  hasKeyword = false;
+                } else {
+                  // 检查是否包含半年度关键词（如果包含，也排除）
+                  const hasSemiKeyword = title.includes('半年度报告') || title.includes('半年报');
+                  if (hasSemiKeyword) {
+                    hasKeyword = false;
+                  } else {
+                    // 最后检查是否包含季度关键词
+                    if (reportType === 'q1') {
+                      hasKeyword = title.includes('第一季度') || title.includes('一季度') ||
+                                  title.includes('一季报') || title.includes('第一季度报告') ||
+                                  title.includes('一季度报告');
+                    } else if (reportType === 'q3') {
+                      hasKeyword = title.includes('第三季度') || title.includes('三季度') ||
+                                  title.includes('三季报') || title.includes('第三季度报告') ||
+                                  title.includes('三季度报告');
+                    } else {
+                      // 其他季度报告类型，使用原有逻辑
+                      hasKeyword = typeConfig.keywords.some(kw => title.includes(kw));
+                    }
+                  }
+                }
               } else {
-                // 季度报告：使用原有逻辑
+                // 其他报告类型：使用原有逻辑
                 hasKeyword = typeConfig.keywords.some(kw => title.includes(kw));
               }
               if (!hasKeyword) return false;
@@ -372,11 +426,17 @@ function searchReport(stockCode, year, reportType, customKeywords = []) {
               if ((reportType === 'q1' || reportType === 'q3') && json.announcements.length > 0) {
                 // 尝试更宽松的匹配：只要包含年份和季度关键词即可
                 const fallbackReport = json.announcements.find(item => {
-                  const title = item.announcementTitle || '';
+                  // 清理HTML标签
+                  const title = (item.announcementTitle || '').replace(/<\/?em>/g, '').trim();
                   // 排除扫描版，只保留文字版
                   if (isScannedVersion(title)) return false;
                   const yearMatch = title.includes(`${year}年`);
                   if (!yearMatch) return false;
+
+                  // 先排除年度和半年度关键词（优先级最高）
+                  const hasAnnualKeyword = title.includes('年度报告') || title.includes('年报');
+                  const hasSemiKeyword = title.includes('半年度报告') || title.includes('半年报');
+                  if (hasAnnualKeyword || hasSemiKeyword) return false;
 
                   // 检查季度关键词（更宽松）
                   let quarterMatch = false;
@@ -387,6 +447,51 @@ function searchReport(stockCode, year, reportType, customKeywords = []) {
                   }
 
                   if (!quarterMatch) return false;
+
+                  // 排除不需要的
+                  const excludeWords = ['摘要', '更正', '取消', '补充', '修订', '业绩快报', '预告', '说明', '独立董事', '监事会', '问询函', '回复', '反馈意见', '专项说明'];
+                  const hasExclude = excludeWords.some(word => title.includes(word));
+                  if (hasExclude) return false;
+
+                  return true;
+                });
+
+                if (fallbackReport) {
+                  resolve({ report: fallbackReport, type: reportType, typeConfig });
+                  return;
+                }
+              }
+
+              // 如果年度报告没找到，尝试更宽松的搜索（但必须确保不是季度或半年度报告）
+              if (reportType === 'annual' && json.announcements.length > 0) {
+                const fallbackReport = json.announcements.find(item => {
+                  // 清理HTML标签
+                  const title = (item.announcementTitle || '').replace(/<\/?em>/g, '').trim();
+                  // 排除扫描版，只保留文字版
+                  if (isScannedVersion(title)) return false;
+                  const yearMatch = title.includes(`${year}年`);
+                  if (!yearMatch) return false;
+
+                  // 先检查是否包含季度关键词（优先级最高，一旦包含就排除）
+                  const hasQuarterKeyword = title.includes('第一季度') || title.includes('一季度') ||
+                                           title.includes('一季报') || title.includes('第三季度') ||
+                                           title.includes('三季度') || title.includes('三季报') ||
+                                           title.includes('季度报告') || title.includes('第二季度') ||
+                                           title.includes('二季度') || title.includes('二季报') ||
+                                           title.includes('第四季度') || title.includes('四季度') ||
+                                           title.includes('四季报');
+
+                  // 如果包含季度关键词，直接排除（不可能是年度报告）
+                  if (hasQuarterKeyword) return false;
+
+                  // 检查是否包含半年度关键词
+                  const hasSemiKeyword = title.includes('半年度报告') || title.includes('半年报');
+                  if (hasSemiKeyword) return false;
+
+                  // 必须包含年度关键词
+                  const annualPattern = /年度报告|年报/;
+                  const hasAnnualKeyword = annualPattern.test(title);
+                  if (!hasAnnualKeyword) return false;
 
                   // 排除不需要的
                   const excludeWords = ['摘要', '更正', '取消', '补充', '修订', '业绩快报', '预告', '说明', '独立董事', '监事会', '问询函', '回复', '反馈意见', '专项说明'];
