@@ -1,0 +1,1400 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>晋控煤业煤炭数据对比分析 - 成本、营收、产量、销量</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            padding: 4px;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 6px;
+            font-size: 22px;
+            text-align: center;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 12px;
+            font-size: 12px;
+        }
+
+        .controls {
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        .btn-group {
+            display: inline-flex;
+            background: #f0f0f0;
+            border-radius: 6px;
+            padding: 3px;
+            gap: 3px;
+        }
+
+        .btn {
+            padding: 6px 14px;
+            border: none;
+            border-radius: 4px;
+            background: transparent;
+            color: #666;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn:hover:not(.active) {
+            background: #e0e0e0;
+        }
+
+        .table-wrapper {
+            overflow: auto;
+            margin-bottom: 15px;
+            max-height: calc(100vh - 200px);
+            position: relative;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 6px;
+            overflow: hidden;
+            font-size: 11px;
+        }
+
+        thead {
+            background: #f9fafb;
+            color: #333;
+            border-bottom: 2px solid #667eea;
+        }
+
+        thead th {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: #f9fafb;
+        }
+
+        /* 表头第一行的第一列（报告期，rowspan=2）固定在顶部和左侧 */
+        thead tr:first-child th:first-child {
+            position: sticky;
+            top: 0;
+            left: 0;
+            z-index: 12;
+            background: #f9fafb;
+            box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
+        }
+
+        th {
+            padding: 6px 6px;
+            text-align: center;
+            font-weight: 600;
+            white-space: nowrap;
+            font-size: 11px;
+        }
+
+        tbody tr {
+            border-bottom: 1px solid #eee;
+            transition: background-color 0.2s;
+        }
+
+        tbody tr:hover {
+            background-color: #f8f9ff;
+        }
+
+        tbody tr:last-child {
+            border-bottom: none;
+        }
+
+        td {
+            padding: 6px 6px;
+            text-align: center;
+        }
+
+        .period {
+            font-weight: 600;
+            color: #333;
+            background: #f5f5f5;
+            text-align: left;
+            padding-left: 10px;
+            position: sticky;
+            left: 0;
+            z-index: 6;
+            box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
+            min-width: 100px;
+        }
+
+        thead th:first-child {
+            min-width: 100px;
+        }
+
+        tbody tr:hover .period {
+            background: #f8f9ff;
+        }
+
+        tbody tr.year-group .period {
+            background: #f0f0f0;
+        }
+
+        tbody tr.year-group:hover .period {
+            background: #f8f9ff;
+        }
+
+        /* 第一列数值（紧挨着报告期列）添加分隔样式 */
+        tbody td.period+td {
+            position: sticky;
+            left: 100px;
+            /* 等于报告期列的宽度 */
+            z-index: 5;
+            background: white;
+            box-shadow: -2px 0 4px rgba(0, 0, 0, 0.1);
+        }
+
+        tbody tr:hover td.period+td {
+            background: #f8f9ff;
+        }
+
+        tbody tr.year-group td.period+td {
+            background: #f0f0f0;
+        }
+
+        tbody tr.year-group:hover td.period+td {
+            background: #f8f9ff;
+        }
+
+        /* 表头第二行的第一个th（数值列）也需要sticky */
+        thead tr:nth-child(2) th:first-child {
+            position: sticky;
+            top: 0;
+            left: 100px;
+            /* 等于报告期列的宽度 */
+            z-index: 11;
+            background: #f9fafb;
+            box-shadow: -2px 0 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .value {
+            color: #333;
+            font-weight: 500;
+        }
+
+        .change {
+            font-weight: 600;
+            font-size: 12px;
+        }
+
+        .change.positive {
+            color: #10b981;
+        }
+
+        .change.negative {
+            color: #ef4444;
+        }
+
+        .change.neutral {
+            color: #6b7280;
+        }
+
+        .unit {
+            color: #6b7280;
+            font-size: 11px;
+            margin-left: 2px;
+        }
+
+        .no-data {
+            color: #9ca3af;
+            font-style: italic;
+        }
+
+        .legend {
+            margin-top: 12px;
+            padding: 10px;
+            background: #f9fafb;
+            border-radius: 6px;
+            font-size: 11px;
+            color: #6b7280;
+        }
+
+        .legend-item {
+            display: inline-block;
+            margin-right: 15px;
+        }
+
+        .legend-color {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 2px;
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+
+        .legend-color.positive {
+            background: #10b981;
+        }
+
+        .legend-color.negative {
+            background: #ef4444;
+        }
+
+        .year-group {
+            background: #f0f0f0;
+        }
+
+        th.selectable {
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        th.selectable:hover {
+            background: #e5e7eb;
+        }
+
+        th.selected {
+            background: #d1d5db !important;
+        }
+
+        /* 弹窗样式 */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .chart-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            width: 80%;
+            max-height: 90vh;
+            position: relative;
+            overflow: auto;
+        }
+
+        .chart-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 32px;
+            height: 32px;
+            border: none;
+            background: #f0f0f0;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            color: #666;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .chart-close:hover {
+            background: #e0e0e0;
+            color: #333;
+        }
+
+        .chart-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+            padding-right: 40px;
+        }
+
+        /* Loading样式 */
+        .chart-loading {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 300px;
+            color: #666;
+        }
+
+        .chart-loading.hidden {
+            display: none;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 15px;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .chart-canvas-wrapper {
+            display: none;
+        }
+
+        .chart-canvas-wrapper.visible {
+            display: block;
+        }
+
+        /* 隐藏列的样式 */
+        .hide-qoq {
+            display: none;
+        }
+
+        .hide-inventory {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>晋控煤业煤炭数据对比分析</h1>
+        <div class="controls">
+            <div class="btn-group">
+                <button class="btn active" onclick="switchView('quarterly', event)">单季度数据</button>
+                <button class="btn" onclick="switchView('cumulative', event)">累计数据</button>
+            </div>
+        </div>
+
+        <div id="content">
+            <div class="table-wrapper">
+                <table id="dataTable">
+                    <thead>
+                        <tr>
+                            <th rowspan="2">报告期</th>
+                            <th colspan="3" class="selectable" data-column="revenue" data-name="营收" data-unit="亿元"
+                                onclick="selectColumn('revenue', '营收', '亿元', event)">营收<br><span
+                                    style="font-size:9px;font-weight:normal">(亿元)</span></th>
+                            <th colspan="3" class="selectable" data-column="production" data-name="产量" data-unit="万吨"
+                                onclick="selectColumn('production', '产量', '万吨', event)">产量<br><span
+                                    style="font-size:9px;font-weight:normal">(万吨)</span></th>
+                            <th colspan="3" class="selectable" data-column="sales" data-name="销量" data-unit="万吨"
+                                onclick="selectColumn('sales', '销量', '万吨', event)">销量<br><span
+                                    style="font-size:9px;font-weight:normal">(万吨)</span></th>
+                            <th colspan="3" class="selectable" data-column="cost" data-name="成本" data-unit="亿元"
+                                onclick="selectColumn('cost', '成本', '亿元', event)">成本<br><span
+                                    style="font-size:9px;font-weight:normal">(亿元)</span></th>
+                            <th colspan="3" class="selectable" data-column="inventory" data-name="库存" data-unit="万吨"
+                                onclick="selectColumn('inventory', '库存', '万吨', event)">库存<br><span
+                                    style="font-size:9px;font-weight:normal">(万吨)</span></th>
+                            <th colspan="3" class="selectable" data-column="price" data-name="售价" data-unit="元/吨"
+                                onclick="selectColumn('price', '售价', '元/吨', event)">售价<br><span
+                                    style="font-size:9px;font-weight:normal">(元/吨)</span></th>
+                            <th colspan="3" class="selectable" data-column="unitCost" data-name="成本" data-unit="元/吨"
+                                onclick="selectColumn('unitCost', '成本', '元/吨', event)">成本<br><span
+                                    style="font-size:9px;font-weight:normal">(元/吨)</span></th>
+                            <th colspan="3" class="selectable" data-column="unitGrossProfit" data-name="毛利"
+                                data-unit="元/吨" onclick="selectColumn('unitGrossProfit', '毛利', '元/吨', event)">
+                                毛利<br><span style="font-size:9px;font-weight:normal">(元/吨)</span></th>
+                            <th colspan="3" class="selectable" data-column="grossMargin" data-name="毛利率" data-unit="%"
+                                onclick="selectColumn('grossMargin', '毛利率', '%', event)">毛利率<br><span
+                                    style="font-size:9px;font-weight:normal">(%)</span></th>
+                        </tr>
+                        <tr>
+                            <th>数值</th>
+                            <th>同比</th>
+                            <th>环比</th>
+                            <th>数值</th>
+                            <th>同比</th>
+                            <th>环比</th>
+                            <th>数值</th>
+                            <th>同比</th>
+                            <th>环比</th>
+                            <th>数值</th>
+                            <th>同比</th>
+                            <th>环比</th>
+                            <th>数值</th>
+                            <th>同比</th>
+                            <th>环比</th>
+                            <th>数值</th>
+                            <th>同比</th>
+                            <th>环比</th>
+                            <th>数值</th>
+                            <th>同比</th>
+                            <th>环比</th>
+                            <th>数值</th>
+                            <th>同比</th>
+                            <th>环比</th>
+                            <th>数值</th>
+                            <th>同比</th>
+                            <th>环比</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+        <!-- 图表弹窗 - 放在body最外层，确保全局可用 -->
+        <div id="chartModal" class="modal-overlay" onclick="closeChartModal(event)">
+            <div class="chart-container" onclick="event.stopPropagation()">
+                <button class="chart-close" onclick="closeChartModal()" title="关闭">×</button>
+                <div class="chart-title" id="chartTitle"></div>
+                <div class="chart-loading" id="chartLoading">
+                    <div class="spinner"></div>
+                    <div>正在加载图表...</div>
+                </div>
+                <div class="chart-canvas-wrapper" id="chartCanvasWrapper">
+                    <canvas id="dataChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            // 原始累计数据（从修正后的JSON文件加载）
+            let rawData = [];
+
+            // 从JSON文件加载数据（新格式：_metadata + summary）
+            async function loadCorrectedData() {
+                try {
+                    const response = await fetch('jinkong_data_corrected.json');
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    const jsonData = await response.json();
+
+                    // 支持新格式（_metadata + summary）和旧格式（rawData）
+                    if (jsonData._metadata && jsonData.summary) {
+                        // 新格式：从summary中提取数据
+                        rawData = jsonData.summary.map(item => {
+                            const coal = item.coal || {};
+                            return {
+                                period: item.period,
+                                year: item.year,
+                                month: item.month,
+                                type: item.type || 'cumulative',
+                                cost: coal.cost,
+                                revenue: coal.revenue,
+                                production: coal.production,
+                                sales: coal.sales,
+                                inventory: coal.inventory,
+                                // 预计算的字段
+                                price: coal.unitPrice,
+                                unitCost: coal.unitCost,
+                                unitGrossProfit: coal.unitGrossProfit,
+                                grossMargin: coal.grossMargin
+                            };
+                        });
+                        console.log('已加载新格式修正数据，共', rawData.length, '条记录');
+                    } else if (jsonData.rawData) {
+                        // 旧格式
+                        rawData = jsonData.rawData || [];
+                        console.log('已加载旧格式修正数据，共', rawData.length, '条记录');
+                    } else {
+                        rawData = [];
+                    }
+                } catch (error) {
+                    console.error('加载修正后的数据失败:', error);
+                    rawData = [];
+                }
+            }
+
+            // 图表相关变量（全局作用域）
+            let currentChart = null;
+            let currentViewType = 'quarterly';
+            let currentSelectedColumn = null;
+
+            // 关闭图表弹窗（全局作用域，供HTML onclick调用）
+            function closeChartModal(event) {
+                const chartModal = document.getElementById('chartModal');
+                const chartLoading = document.getElementById('chartLoading');
+                const chartCanvasWrapper = document.getElementById('chartCanvasWrapper');
+
+                // 如果没有event（直接调用），直接关闭
+                if (!event) {
+                    if (chartModal) chartModal.classList.remove('active');
+                    // 重置loading状态
+                    if (chartLoading) {
+                        chartLoading.classList.remove('hidden');
+                        chartLoading.innerHTML = '<div class="spinner"></div><div>正在加载图表...</div>';
+                    }
+                    if (chartCanvasWrapper) chartCanvasWrapper.classList.remove('visible');
+                    return;
+                }
+
+                // 如果点击的是关闭按钮，关闭
+                if (event.target.classList && event.target.classList.contains('chart-close')) {
+                    if (chartModal) chartModal.classList.remove('active');
+                    // 重置loading状态
+                    if (chartLoading) {
+                        chartLoading.classList.remove('hidden');
+                        chartLoading.innerHTML = '<div class="spinner"></div><div>正在加载图表...</div>';
+                    }
+                    if (chartCanvasWrapper) chartCanvasWrapper.classList.remove('visible');
+                    return;
+                }
+
+                // 如果点击的是遮罩层本身（不是chart-container），关闭
+                if (event.target === event.currentTarget) {
+                    if (chartModal) chartModal.classList.remove('active');
+                    // 重置loading状态
+                    if (chartLoading) {
+                        chartLoading.classList.remove('hidden');
+                        chartLoading.innerHTML = '<div class="spinner"></div><div>正在加载图表...</div>';
+                    }
+                    if (chartCanvasWrapper) chartCanvasWrapper.classList.remove('visible');
+                }
+            }
+
+            // 选择列并绘制图表（全局作用域，供HTML onclick调用）
+            function selectColumn(columnKey, columnName, unit, evt) {
+                try {
+                    console.log('selectColumn被调用:', columnKey, columnName, unit, '当前视图:', currentViewType);
+
+                    // 移除之前的选中状态
+                    document.querySelectorAll('th.selectable').forEach(th => {
+                        th.classList.remove('selected');
+                    });
+
+                    // 添加选中状态
+                    if (evt && evt.target) {
+                        const th = evt.target.closest('th.selectable');
+                        if (th) {
+                            th.classList.add('selected');
+                        }
+                    } else {
+                        // 如果没有event，通过columnKey和data-column属性查找
+                        const selectableThs = document.querySelectorAll('th.selectable');
+                        for (let i = 0; i < selectableThs.length; i++) {
+                            if (selectableThs[i].getAttribute('data-column') === columnKey) {
+                                selectableThs[i].classList.add('selected');
+                                break;
+                            }
+                        }
+                    }
+
+                    // 立即显示弹窗和loading
+                    const chartModal = document.getElementById('chartModal');
+                    const chartLoading = document.getElementById('chartLoading');
+                    const chartCanvasWrapper = document.getElementById('chartCanvasWrapper');
+
+                    if (!chartModal || !chartLoading || !chartCanvasWrapper) {
+                        console.error('弹窗元素未找到');
+                        alert('弹窗元素未找到，请刷新页面重试');
+                        return;
+                    }
+
+                    // 显示loading，隐藏图表
+                    chartLoading.classList.remove('hidden');
+                    chartCanvasWrapper.classList.remove('visible');
+
+                    // 设置标题
+                    const chartTitle = document.getElementById('chartTitle');
+                    if (chartTitle) {
+                        chartTitle.textContent = `${columnName}趋势图 (${unit})`;
+                    }
+
+                    // 先显示弹窗，使用requestAnimationFrame确保立即渲染
+                    chartModal.classList.add('active');
+                    console.log('弹窗已显示');
+
+                    // 强制浏览器立即渲染弹窗
+                    requestAnimationFrame(() => {
+                        // 在下一帧异步处理图表渲染，避免阻塞UI
+                        setTimeout(() => {
+                            try {
+                                // 获取当前数据（需要确保getAllData函数已定义）
+                                if (typeof getAllData !== 'function') {
+                                    throw new Error('getAllData函数未定义，请等待页面加载完成');
+                                }
+                                const allData = getAllData(currentViewType);
+
+                                if (!allData || allData.length === 0) {
+                                    throw new Error('没有可用的数据');
+                                }
+
+                                // 准备图表数据
+                                const labels = [];
+                                const values = [];
+                                const yoyChanges = [];
+                                const qoqChanges = [];
+                                const isCumulative = currentViewType === 'cumulative';
+
+                                allData.forEach((item, index) => {
+                                    labels.push(item.period);
+                                    const value = item[columnKey];
+                                    values.push(value !== null && value !== undefined ? value : null);
+
+                                    // 计算同比和环比
+                                    const baseYoY = findYoYData(item, allData);
+                                    const baseQoQ = !isCumulative ? findQoQData(item, allData, index) : null;
+
+                                    const yoyChange = baseYoY && baseYoY[columnKey] !== null && value !== null
+                                        ? calculateChange(value, baseYoY[columnKey])
+                                        : null;
+                                    const qoqChange = !isCumulative && baseQoQ && baseQoQ[columnKey] !== null && value !== null
+                                        ? calculateChange(value, baseQoQ[columnKey])
+                                        : null;
+
+                                    yoyChanges.push(yoyChange !== null ? parseFloat(yoyChange) : null);
+                                    qoqChanges.push(qoqChange !== null ? parseFloat(qoqChange) : null);
+                                });
+
+                                // 检查是否有有效数据
+                                const hasValidData = values.some(v => v !== null && v !== undefined);
+                                if (!hasValidData) {
+                                    throw new Error('该列没有有效数据');
+                                }
+
+                                // 构建数据集
+                                const datasets = [
+                                    {
+                                        label: columnName + ' (数值)',
+                                        data: values,
+                                        borderColor: 'rgb(102, 126, 234)',
+                                        backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                                        borderWidth: 2,
+                                        fill: true,
+                                        tension: 0.4,
+                                        yAxisID: 'y'
+                                    },
+                                    {
+                                        label: '同比变化 (%)',
+                                        data: yoyChanges,
+                                        borderColor: 'rgb(16, 185, 129)',
+                                        backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                                        borderWidth: 2,
+                                        borderDash: [5, 5],
+                                        fill: false,
+                                        tension: 0.4,
+                                        yAxisID: 'y1'
+                                    }
+                                ];
+
+                                // 累计视图不显示环比
+                                if (!isCumulative) {
+                                    datasets.push({
+                                        label: '环比变化 (%)',
+                                        data: qoqChanges,
+                                        borderColor: 'rgb(239, 68, 68)',
+                                        backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                                        borderWidth: 2,
+                                        borderDash: [10, 5],
+                                        fill: false,
+                                        tension: 0.4,
+                                        yAxisID: 'y1'
+                                    });
+                                }
+
+                                // 销毁之前的图表
+                                if (currentChart) {
+                                    currentChart.destroy();
+                                }
+
+                                // 创建新图表
+                                const ctx = document.getElementById('dataChart').getContext('2d');
+                                currentChart = new Chart(ctx, {
+                                    type: 'line',
+                                    data: {
+                                        labels: labels,
+                                        datasets: datasets
+                                    },
+                                    options: {
+                                        responsive: true,
+                                        maintainAspectRatio: true,
+                                        aspectRatio: 2,
+                                        interaction: {
+                                            mode: 'index',
+                                            intersect: false,
+                                        },
+                                        plugins: {
+                                            legend: {
+                                                display: true,
+                                                position: 'top',
+                                            },
+                                            tooltip: {
+                                                callbacks: {
+                                                    label: function (context) {
+                                                        let label = context.dataset.label || '';
+                                                        if (label) {
+                                                            label += ': ';
+                                                        }
+                                                        if (context.parsed.y !== null) {
+                                                            if (context.datasetIndex === 0) {
+                                                                label += context.parsed.y.toFixed(2) + ' ' + unit;
+                                                            } else {
+                                                                label += context.parsed.y.toFixed(2) + '%';
+                                                            }
+                                                        } else {
+                                                            label += '-';
+                                                        }
+                                                        return label;
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        scales: {
+                                            y: {
+                                                type: 'linear',
+                                                display: true,
+                                                position: 'left',
+                                                title: {
+                                                    display: true,
+                                                    text: columnName + ' (' + unit + ')'
+                                                }
+                                            },
+                                            y1: {
+                                                type: 'linear',
+                                                display: true,
+                                                position: 'right',
+                                                title: {
+                                                    display: true,
+                                                    text: '变化率 (%)'
+                                                },
+                                                grid: {
+                                                    drawOnChartArea: false,
+                                                },
+                                            }
+                                        }
+                                    }
+                                });
+
+                                // 隐藏loading，显示图表
+                                chartLoading.classList.add('hidden');
+                                chartCanvasWrapper.classList.add('visible');
+
+                                currentSelectedColumn = columnKey;
+                            } catch (error) {
+                                console.error('渲染图表失败:', error);
+                                chartLoading.innerHTML = '<div style="color: #ef4444; text-align: center; padding: 20px;">图表加载失败: ' + (error.message || '未知错误') + '<br><button onclick="closeChartModal()" style="margin-top: 10px; padding: 8px 16px; background: #667eea; color: white; border: none; border-radius: 4px; cursor: pointer;">关闭</button></div>';
+                            }
+                        }, 50); // 给浏览器一点时间渲染弹窗
+                    });
+                } catch (error) {
+                    console.error('selectColumn函数执行失败:', error);
+                    alert('打开图表失败: ' + (error.message || '未知错误'));
+                }
+            }
+
+            // ========== 全局函数定义（供HTML和内部调用） ==========
+
+            // 计算季度数据
+            function calculateQuarterlyData() {
+                const quarterlyData = [];
+
+                // 从数据中动态获取所有年份
+                const years = [...new Set(rawData.map(d => d.year))].filter(y => y != null).sort();
+
+                // 按年份分组处理
+                years.forEach(year => {
+                    const yearData = rawData.filter(d => d.year === year).sort((a, b) => a.month - b.month);
+
+                    // Q1 = 1-3月数据
+                    const q1 = yearData.find(d => d.period.includes('1-3月'));
+                    if (q1) {
+                        quarterlyData.push({
+                            period: `${year}年Q1`,
+                            year: year,
+                            month: 3,
+                            quarter: 1,
+                            type: 'quarterly',
+                            cost: q1.cost,
+                            revenue: q1.revenue,
+                            production: q1.production,
+                            sales: q1.sales,
+                            inventory: null  // 单季度不计算库存
+                        });
+                    }
+
+                    // Q2 = 上半年 - 1-3月
+                    const h1 = yearData.find(d => d.period.includes('上半年'));
+                    const q1Data = yearData.find(d => d.period.includes('1-3月'));
+                    if (h1 && q1Data) {
+                        quarterlyData.push({
+                            period: `${year}年Q2`,
+                            year: year,
+                            month: 6,
+                            quarter: 2,
+                            type: 'quarterly',
+                            cost: h1.cost - (q1Data.cost || 0),
+                            revenue: (h1.revenue || 0) - (q1Data.revenue || 0),
+                            production: (h1.production || 0) - (q1Data.production || 0),
+                            sales: (h1.sales || 0) - (q1Data.sales || 0),
+                            inventory: null  // 单季度不计算库存
+                        });
+                    }
+
+                    // Q3 = 1-9月 - 上半年
+                    const q3Cum = yearData.find(d => d.period.includes('1-9月'));
+                    if (q3Cum && h1) {
+                        // 如果1-9月的产量或销量为null，或者数据异常，Q3数据全部设置为null
+                        const hasValidData = q3Cum.production !== null && q3Cum.sales !== null &&
+                            h1.production !== null && h1.sales !== null;
+
+                        if (hasValidData) {
+                            const q3Production = q3Cum.production - h1.production;
+                            const q3Sales = q3Cum.sales - h1.sales;
+
+                            // 验证计算出的Q3数据是否合理（产量和销量应该大于0）
+                            if (q3Production > 0 && q3Sales > 0) {
+                                quarterlyData.push({
+                                    period: `${year}年Q3`,
+                                    year: year,
+                                    month: 9,
+                                    quarter: 3,
+                                    type: 'quarterly',
+                                    cost: q3Cum.cost !== null && h1.cost !== null ? (q3Cum.cost - h1.cost) : null,
+                                    revenue: (q3Cum.revenue !== null && h1.revenue !== null) ? (q3Cum.revenue - h1.revenue) : null,
+                                    production: q3Production,
+                                    sales: q3Sales,
+                                    inventory: null  // 单季度不计算库存
+                                });
+                            } else {
+                                // 数据异常，Q3全部设置为null
+                                quarterlyData.push({
+                                    period: `${year}年Q3`,
+                                    year: year,
+                                    month: 9,
+                                    quarter: 3,
+                                    type: 'quarterly',
+                                    cost: null,
+                                    revenue: null,
+                                    production: null,
+                                    sales: null,
+                                    inventory: null
+                                });
+                            }
+                        } else {
+                            // 1-9月或上半年的产量/销量数据缺失，Q3全部设置为null
+                            quarterlyData.push({
+                                period: `${year}年Q3`,
+                                year: year,
+                                month: 9,
+                                quarter: 3,
+                                type: 'quarterly',
+                                cost: null,
+                                revenue: null,
+                                production: null,
+                                sales: null,
+                                inventory: null
+                            });
+                        }
+                    }
+
+                    // Q4 = 全年 - 1-9月
+                    const fullYear = yearData.find(d => d.period.includes('全年'));
+                    if (fullYear && q3Cum) {
+                        // 检查1-9月数据是否有效（不是null）
+                        const hasValidQ3Data = q3Cum.production !== null && q3Cum.sales !== null &&
+                                               q3Cum.revenue !== null && q3Cum.cost !== null;
+
+                        if (hasValidQ3Data) {
+                            quarterlyData.push({
+                                period: `${year}年Q4`,
+                                year: year,
+                                month: 12,
+                                quarter: 4,
+                                type: 'quarterly',
+                                cost: fullYear.cost - (q3Cum.cost || 0),
+                                revenue: (fullYear.revenue || 0) - (q3Cum.revenue || 0),
+                                production: (fullYear.production || 0) - (q3Cum.production || 0),
+                                sales: (fullYear.sales || 0) - (q3Cum.sales || 0),
+                                inventory: null  // 单季度不计算库存
+                            });
+                        } else {
+                            // 1-9月数据无效，Q4数据也设为null
+                            quarterlyData.push({
+                                period: `${year}年Q4`,
+                                year: year,
+                                month: 12,
+                                quarter: 4,
+                                type: 'quarterly',
+                                cost: null,
+                                revenue: null,
+                                production: null,
+                                sales: null,
+                                inventory: null
+                            });
+                        }
+                    }
+                });
+
+                // 对季度数据也计算售价、成本(元/吨)、毛利(元/吨)和毛利率
+                quarterlyData.forEach(item => {
+                    if (item.revenue && item.sales && item.sales > 0 && !isNaN(item.revenue) && !isNaN(item.sales)) {
+                        // 售价(元/吨) = 营收(亿元) / 销量(万吨) × 10000
+                        const calculatedPrice = (item.revenue / item.sales) * 10000;
+                        item.price = !isNaN(calculatedPrice) ? calculatedPrice : null;
+                    } else {
+                        item.price = null;
+                    }
+
+                    if (item.cost && item.sales && item.sales > 0 && !isNaN(item.cost) && !isNaN(item.sales)) {
+                        // 成本(元/吨) = 成本(亿元) / 销量(万吨) × 10000
+                        const calculatedCost = (item.cost / item.sales) * 10000;
+                        item.unitCost = !isNaN(calculatedCost) ? calculatedCost : null;
+                    } else {
+                        item.unitCost = null;
+                    }
+
+                    if (item.price !== null && item.unitCost !== null && !isNaN(item.price) && !isNaN(item.unitCost)) {
+                        // 毛利(元/吨) = 售价(元/吨) - 成本(元/吨)
+                        const calculatedProfit = item.price - item.unitCost;
+                        item.unitGrossProfit = !isNaN(calculatedProfit) ? calculatedProfit : null;
+
+                        // 毛利率 = 毛利(元/吨) / 售价(元/吨) × 100%
+                        if (item.price > 0) {
+                            const calculatedMargin = (item.unitGrossProfit / item.price) * 100;
+                            item.grossMargin = !isNaN(calculatedMargin) ? calculatedMargin.toFixed(2) : null;
+                        } else {
+                            item.grossMargin = null;
+                        }
+                    } else {
+                        item.unitGrossProfit = null;
+                    }
+                });
+
+                return quarterlyData;
+            }
+
+            // 合并累计数据和季度数据，按时间顺序排列
+            function getAllData(viewType) {
+                let data = [];
+
+                if (viewType === 'quarterly') {
+                    // 单季度数据
+                    data = calculateQuarterlyData();
+                } else {
+                    // 累计数据
+                    data = rawData.map(d => ({ ...d, isCumulative: true }));
+                }
+
+                // 按时间顺序排序
+                return data.sort((a, b) => {
+                    if (a.year !== b.year) return a.year - b.year;
+                    return (a.month || 0) - (b.month || 0);
+                });
+            }
+
+            // 格式化数字（不显示单位，单位在表头显示）
+            function formatValue(value, unit = '亿元') {
+                if (value === null || value === undefined || isNaN(value)) {
+                    return '<span class="no-data">-</span>';
+                }
+                const numValue = typeof value === 'string' ? parseFloat(value) : value;
+                if (isNaN(numValue)) {
+                    return '<span class="no-data">-</span>';
+                }
+                return numValue.toFixed(2);
+            }
+
+            // 计算变化百分比
+            function calculateChange(current, previous) {
+                if (current === null || current === undefined || isNaN(current) ||
+                    previous === null || previous === undefined || isNaN(previous) || previous === 0) {
+                    return null;
+                }
+                const change = ((current - previous) / previous * 100);
+                return isNaN(change) ? null : change.toFixed(2);
+            }
+
+            // 格式化变化百分比
+            function formatChange(change) {
+                if (change === null || change === undefined || change === 'NaN' || isNaN(parseFloat(change))) {
+                    return '<span class="no-data">-</span>';
+                }
+                const num = parseFloat(change);
+                if (isNaN(num)) {
+                    return '<span class="no-data">-</span>';
+                }
+                const className = num > 0 ? 'positive' : (num < 0 ? 'negative' : 'neutral');
+                const sign = num > 0 ? '+' : '';
+                return `<span class="change ${className}">${sign}${change}%</span>`;
+            }
+
+            // 查找同比数据（上一年同期）
+            function findYoYData(currentItem, dataArray) {
+                // 提取报告期类型
+                let periodType = '';
+                if (currentItem.period.includes('Q1')) periodType = 'Q1';
+                else if (currentItem.period.includes('Q2')) periodType = 'Q2';
+                else if (currentItem.period.includes('Q3')) periodType = 'Q3';
+                else if (currentItem.period.includes('Q4')) periodType = 'Q4';
+                else if (currentItem.period.includes('1-3月')) periodType = '1-3月';
+                else if (currentItem.period.includes('上半年')) periodType = '上半年';
+                else if (currentItem.period.includes('1-9月')) periodType = '1-9月';
+                else if (currentItem.period.includes('全年')) periodType = '全年';
+
+                // 查找上一年相同类型的报告期
+                const samePeriod = dataArray.find(item =>
+                    item.year === currentItem.year - 1 &&
+                    item.period.includes(periodType)
+                );
+                return samePeriod;
+            }
+
+            // 查找环比数据（上一个报告期）
+            function findQoQData(currentItem, dataArray, currentIndex) {
+                if (currentIndex > 0) {
+                    return dataArray[currentIndex - 1];
+                }
+                return null;
+            }
+
+            // 渲染表格头部
+            function renderTableHeader(viewType) {
+                const thead = document.querySelector('#dataTable thead');
+                const isCumulative = viewType === 'cumulative';
+                const isQuarterly = viewType === 'quarterly';
+
+                // 构建表头HTML
+                let headerRow1 = '<tr><th rowspan="2">报告期</th>';
+                let headerRow2 = '<tr>';
+
+                // 定义所有列
+                const columns = [
+                    { key: 'revenue', name: '营收', unit: '亿元' },
+                    { key: 'production', name: '产量', unit: '万吨' },
+                    { key: 'sales', name: '销量', unit: '万吨' },
+                    { key: 'cost', name: '成本', unit: '亿元' },
+                    { key: 'inventory', name: '库存', unit: '万吨', hideInQuarterly: true },
+                    { key: 'price', name: '售价', unit: '元/吨' },
+                    { key: 'unitCost', name: '成本', unit: '元/吨' },
+                    { key: 'unitGrossProfit', name: '毛利', unit: '元/吨' },
+                    { key: 'grossMargin', name: '毛利率', unit: '%' }
+                ];
+
+                columns.forEach(col => {
+                    // 单季度视图隐藏库存列
+                    if (isQuarterly && col.hideInQuarterly) {
+                        return;
+                    }
+
+                    // 累计视图显示2列（数值、同比），单季度视图显示3列（数值、同比、环比）
+                    const colspan = isCumulative ? 2 : 3;
+                    headerRow1 += `<th colspan="${colspan}" class="selectable" data-column="${col.key}" data-name="${col.name}" data-unit="${col.unit}" onclick="selectColumn('${col.key}', '${col.name}', '${col.unit}', event)">${col.name}<br><span style="font-size:9px;font-weight:normal">(${col.unit})</span></th>`;
+
+                    headerRow2 += '<th>数值</th><th>同比</th>';
+                    if (!isCumulative) {
+                        headerRow2 += '<th>环比</th>';
+                    } else {
+                        // 累计视图不显示环比列，但不需要添加hide-qoq类，因为根本没有生成这个th元素
+                    }
+                });
+
+                headerRow1 += '</tr>';
+                headerRow2 += '</tr>';
+
+                thead.innerHTML = headerRow1 + headerRow2;
+            }
+
+            // 渲染表格
+            function renderTable(viewType) {
+                // 先渲染表头
+                renderTableHeader(viewType);
+
+                const tbody = document.getElementById('tableBody');
+                tbody.innerHTML = '';
+
+                const allData = getAllData(viewType);
+                const isCumulative = viewType === 'cumulative';
+                const isQuarterly = viewType === 'quarterly';
+                let lastYear = null;
+
+                // 计算总列数（用于分隔行的colspan）
+                // 累计视图：1(报告期) + 9列 × 2(数值、同比) = 19
+                // 单季度视图：1(报告期) + 8列 × 3(数值、同比、环比，不含库存) = 25
+                let totalCols = 1; // 报告期列
+                const columns = [
+                    { key: 'revenue' }, { key: 'production' },
+                    { key: 'sales' }, { key: 'cost' }, { key: 'inventory', hideInQuarterly: true },
+                    { key: 'price' }, { key: 'unitCost' }, { key: 'unitGrossProfit' }, { key: 'grossMargin' }
+                ];
+                columns.forEach(col => {
+                    if (isQuarterly && col.hideInQuarterly) {
+                        return; // 单季度视图跳过库存列
+                    }
+                    totalCols += isCumulative ? 2 : 3; // 累计视图2列，单季度视图3列
+                });
+
+                allData.forEach((item, index) => {
+                    // 添加年份分组标识
+                    if (lastYear !== item.year) {
+                        if (lastYear !== null) {
+                            // 添加空行分隔
+                            const separatorRow = document.createElement('tr');
+                            separatorRow.innerHTML = `<td colspan="${totalCols}" style="height: 5px; background: #f5f5f5;"></td>`;
+                            tbody.appendChild(separatorRow);
+                        }
+                        lastYear = item.year;
+                    }
+
+                    const row = document.createElement('tr');
+                    if (item.isCumulative) {
+                        row.classList.add('year-group');
+                    }
+
+                    // 报告期
+                    row.innerHTML += `<td class="period">${item.period}</td>`;
+
+                    // 获取同比和环比数据
+                    const baseYoY = findYoYData(item, allData);
+                    const baseQoQ = findQoQData(item, allData, index);
+
+                    // 1. 营收
+                    const revenueYoYChange = baseYoY && baseYoY.revenue !== null ? calculateChange(item.revenue, baseYoY.revenue) : null;
+                    const revenueQoQChange = !isCumulative && baseQoQ && baseQoQ.revenue !== null ? calculateChange(item.revenue, baseQoQ.revenue) : null;
+                    row.innerHTML += `<td class="value">${formatValue(item.revenue)}</td>`;
+                    row.innerHTML += `<td>${formatChange(revenueYoYChange)}</td>`;
+                    if (!isCumulative) {
+                        row.innerHTML += `<td>${formatChange(revenueQoQChange)}</td>`;
+                    }
+
+                    // 2. 产量
+                    const productionYoYChange = baseYoY && baseYoY.production !== null ? calculateChange(item.production, baseYoY.production) : null;
+                    const productionQoQChange = !isCumulative && baseQoQ && baseQoQ.production !== null ? calculateChange(item.production, baseQoQ.production) : null;
+                    row.innerHTML += `<td class="value">${formatValue(item.production, '万吨')}</td>`;
+                    row.innerHTML += `<td>${formatChange(productionYoYChange)}</td>`;
+                    if (!isCumulative) {
+                        row.innerHTML += `<td>${formatChange(productionQoQChange)}</td>`;
+                    }
+
+                    // 3. 销量
+                    const salesYoYChange = baseYoY && baseYoY.sales !== null ? calculateChange(item.sales, baseYoY.sales) : null;
+                    const salesQoQChange = !isCumulative && baseQoQ && baseQoQ.sales !== null ? calculateChange(item.sales, baseQoQ.sales) : null;
+                    row.innerHTML += `<td class="value">${formatValue(item.sales, '万吨')}</td>`;
+                    row.innerHTML += `<td>${formatChange(salesYoYChange)}</td>`;
+                    if (!isCumulative) {
+                        row.innerHTML += `<td>${formatChange(salesQoQChange)}</td>`;
+                    }
+
+                    // 4. 成本
+                    const costYoYChange = baseYoY ? calculateChange(item.cost, baseYoY.cost) : null;
+                    const costQoQChange = !isCumulative && baseQoQ ? calculateChange(item.cost, baseQoQ.cost) : null;
+                    row.innerHTML += `<td class="value">${formatValue(item.cost)}</td>`;
+                    row.innerHTML += `<td>${formatChange(costYoYChange)}</td>`;
+                    if (!isCumulative) {
+                        row.innerHTML += `<td>${formatChange(costQoQChange)}</td>`;
+                    }
+
+                    // 5. 库存（单季度视图不显示）
+                    if (!isQuarterly) {
+                        const inventoryYoYChange = baseYoY && baseYoY.inventory !== null && item.inventory !== null ? calculateChange(item.inventory, baseYoY.inventory) : null;
+                        const inventoryQoQChange = !isCumulative && baseQoQ && baseQoQ.inventory !== null && item.inventory !== null ? calculateChange(item.inventory, baseQoQ.inventory) : null;
+                        row.innerHTML += `<td class="value">${formatValue(item.inventory, '万吨')}</td>`;
+                        row.innerHTML += `<td>${formatChange(inventoryYoYChange)}</td>`;
+                        if (!isCumulative) {
+                            row.innerHTML += `<td>${formatChange(inventoryQoQChange)}</td>`;
+                        }
+                    }
+
+                    // 6. 售价
+                    const priceYoYChange = baseYoY && baseYoY.price !== null && item.price !== null ? calculateChange(item.price, baseYoY.price) : null;
+                    const priceQoQChange = !isCumulative && baseQoQ && baseQoQ.price !== null && item.price !== null ? calculateChange(item.price, baseQoQ.price) : null;
+                    row.innerHTML += `<td class="value">${formatValue(item.price, '元/吨')}</td>`;
+                    row.innerHTML += `<td>${formatChange(priceYoYChange)}</td>`;
+                    if (!isCumulative) {
+                        row.innerHTML += `<td>${formatChange(priceQoQChange)}</td>`;
+                    }
+
+                    // 7. 成本(元/吨)
+                    const unitCostYoYChange = baseYoY && baseYoY.unitCost !== null && item.unitCost !== null ? calculateChange(item.unitCost, baseYoY.unitCost) : null;
+                    const unitCostQoQChange = !isCumulative && baseQoQ && baseQoQ.unitCost !== null && item.unitCost !== null ? calculateChange(item.unitCost, baseQoQ.unitCost) : null;
+                    row.innerHTML += `<td class="value">${formatValue(item.unitCost, '元/吨')}</td>`;
+                    row.innerHTML += `<td>${formatChange(unitCostYoYChange)}</td>`;
+                    if (!isCumulative) {
+                        row.innerHTML += `<td>${formatChange(unitCostQoQChange)}</td>`;
+                    }
+
+                    // 8. 毛利(元/吨)
+                    const unitGrossProfitYoYChange = baseYoY && baseYoY.unitGrossProfit !== null && item.unitGrossProfit !== null ? calculateChange(item.unitGrossProfit, baseYoY.unitGrossProfit) : null;
+                    const unitGrossProfitQoQChange = !isCumulative && baseQoQ && baseQoQ.unitGrossProfit !== null && item.unitGrossProfit !== null ? calculateChange(item.unitGrossProfit, baseQoQ.unitGrossProfit) : null;
+                    row.innerHTML += `<td class="value">${formatValue(item.unitGrossProfit, '元/吨')}</td>`;
+                    row.innerHTML += `<td>${formatChange(unitGrossProfitYoYChange)}</td>`;
+                    if (!isCumulative) {
+                        row.innerHTML += `<td>${formatChange(unitGrossProfitQoQChange)}</td>`;
+                    }
+
+                    // 9. 毛利率
+                    const grossMarginYoYChange = baseYoY && baseYoY.grossMargin !== null && item.grossMargin !== null ? calculateChange(parseFloat(item.grossMargin), parseFloat(baseYoY.grossMargin)) : null;
+                    const grossMarginQoQChange = !isCumulative && baseQoQ && baseQoQ.grossMargin !== null && item.grossMargin !== null ? calculateChange(parseFloat(item.grossMargin), parseFloat(baseQoQ.grossMargin)) : null;
+                    const grossMarginValue = item.grossMargin !== null && item.grossMargin !== undefined && !isNaN(item.grossMargin) ? parseFloat(item.grossMargin) : null;
+                    row.innerHTML += `<td class="value">${grossMarginValue !== null ? grossMarginValue.toFixed(2) + '%' : '<span class="no-data">-</span>'}</td>`;
+                    row.innerHTML += `<td>${formatChange(grossMarginYoYChange)}</td>`;
+                    if (!isCumulative) {
+                        row.innerHTML += `<td>${formatChange(grossMarginQoQChange)}</td>`;
+                    }
+
+                    tbody.appendChild(row);
+                });
+            }
+
+            // ========== 初始化函数：加载数据并渲染页面 ==========
+            async function initialize() {
+                // 先加载修正后的数据
+                await loadCorrectedData();
+
+                // 如果加载失败或数据为空，显示错误
+                if (!rawData || rawData.length === 0) {
+                    console.error('数据加载失败');
+                    return;
+                }
+
+                // 计算售价、成本(元/吨)、毛利(元/吨)和毛利率
+                rawData.forEach(item => {
+                    if (item.revenue && item.sales && item.sales > 0 && !isNaN(item.revenue) && !isNaN(item.sales)) {
+                        // 售价(元/吨) = 营收(亿元) / 销量(万吨) × 10000
+                        const calculatedPrice = (item.revenue / item.sales) * 10000;
+                        item.price = !isNaN(calculatedPrice) ? calculatedPrice : null;
+                    } else {
+                        item.price = null;
+                    }
+
+                    if (item.cost && item.sales && item.sales > 0 && !isNaN(item.cost) && !isNaN(item.sales)) {
+                        // 成本(元/吨) = 成本(亿元) / 销量(万吨) × 10000
+                        const calculatedCost = (item.cost / item.sales) * 10000;
+                        item.unitCost = !isNaN(calculatedCost) ? calculatedCost : null;
+                    } else {
+                        item.unitCost = null;
+                    }
+
+                    if (item.price !== null && item.unitCost !== null && !isNaN(item.price) && !isNaN(item.unitCost)) {
+                        // 毛利(元/吨) = 售价(元/吨) - 成本(元/吨)
+                        const calculatedProfit = item.price - item.unitCost;
+                        item.unitGrossProfit = !isNaN(calculatedProfit) ? calculatedProfit : null;
+
+                        // 毛利率 = 毛利(元/吨) / 售价(元/吨) × 100%
+                        if (item.price > 0) {
+                            const calculatedMargin = (item.unitGrossProfit / item.price) * 100;
+                            item.grossMargin = !isNaN(calculatedMargin) ? calculatedMargin.toFixed(2) : null;
+                        } else {
+                            item.grossMargin = null;
+                        }
+                    } else {
+                        item.unitGrossProfit = null;
+                    }
+                });
+
+                console.log('数据加载和计算完成，准备渲染表格');
+
+                // 渲染单季度数据表格
+                renderTable('quarterly');
+
+            }
+
+
+            // selectColumn函数已在全局作用域定义，这里不再重复定义
+
+            // 保存原始的switchView函数
+            const originalSwitchView = window.switchView;
+
+            // 重写switchView函数，保持选中状态
+            window.switchView = function (viewType, event) {
+                // 更新按钮状态
+                document.querySelectorAll('.btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                // 如果传入了事件对象，更新点击的按钮状态
+                if (event && event.target) {
+                    event.target.classList.add('active');
+                } else {
+                    // 否则根据viewType找到对应的按钮
+                    const buttons = document.querySelectorAll('.btn');
+                    buttons.forEach(btn => {
+                        if ((viewType === 'quarterly' && btn.textContent.includes('单季度')) ||
+                            (viewType === 'cumulative' && btn.textContent.includes('累计'))) {
+                            btn.classList.add('active');
+                        }
+                    });
+                }
+
+                currentViewType = viewType;
+
+
+                // 切换视图时关闭弹窗
+                closeChartModal();
+                currentSelectedColumn = null;
+
+                // 重新渲染表格
+                renderTable(viewType);
+            };
+
+            // closeChartModal函数已在全局作用域定义，这里不再重复定义
+
+
+            // 使用事件委托处理表头点击（只对主表格生效）
+            document.addEventListener('click', function (event) {
+                // 检查是否点击了主表格的表头
+                const th = event.target.closest('th.selectable');
+                if (th) {
+                    // 确保只处理主表格（#dataTable）内的表头
+                    const dataTable = document.getElementById('dataTable');
+                    if (dataTable && dataTable.contains(th)) {
+                        const columnKey = th.getAttribute('data-column');
+                        const columnName = th.getAttribute('data-name');
+                        const unit = th.getAttribute('data-unit');
+                        if (columnKey && columnName && unit) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                            console.log('点击了列:', columnKey, columnName, unit);
+                            selectColumn(columnKey, columnName, unit, event);
+                        }
+                    }
+                }
+            });
+
+            // 页面加载完成后初始化
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initialize);
+            } else {
+                initialize();
+            }
+        </script>
+</body>
+
+</html>

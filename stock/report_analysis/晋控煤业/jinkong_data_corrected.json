@@ -1,0 +1,315 @@
+{
+  "_metadata": {
+    "stockName": "晋控煤业",
+    "stockCode": "601001",
+    "description": "此文件包含修正后的数据，用于页面展示。手动修正的数据会被标记。",
+    "dataSource": "jinkong_data.json",
+    "lastUpdated": "2026-01-17",
+    "dataFlow": "PDF报告 → 自动提取(jinkong_data.json) → 手动修正(本文件) → 页面展示",
+    "correctionRules": {
+      "manual": "手动填入或修改的数据，标记 _corrected: true",
+      "verified": "经过人工验证确认正确的数据，标记 _verified: true"
+    }
+  },
+  "summary": [
+    {
+      "period": "2022年1-3月",
+      "year": 2022,
+      "month": 3,
+      "type": "cumulative",
+      "coal": {
+        "production": 863.01,
+        "sales": 699.6,
+        "inventory": null,
+        "revenue": 40.08421,
+        "cost": 19.607502,
+        "unitPrice": 572.96,
+        "unitCost": 280.28,
+        "unitGrossProfit": 292.68,
+        "grossMargin": 51.09,
+        "_corrected": true,
+        "_verified": false,
+        "_notes": "手动修正：根据2022年第一季度报告修正销售收入和销售成本。原数据：销售收入 400,842.10 万元，销售成本 196,075.02 万元"
+      }
+    },
+    {
+      "period": "2022年上半年",
+      "year": 2022,
+      "month": 6,
+      "type": "cumulative",
+      "coal": {
+        "production": 1715.55,
+        "sales": 1432.96,
+        "revenue": 85.96,
+        "cost": null,
+        "unitPrice": 599.88,
+        "unitCost": null,
+        "unitGrossProfit": null,
+        "grossMargin": null,
+        "_corrected": true,
+        "_verified": false,
+        "_notes": "手动修正：成本数据已清空（成本抓不到）"
+      }
+    },
+    {
+      "period": "2022年1-9月",
+      "year": 2022,
+      "month": 9,
+      "type": "cumulative",
+      "coal": {
+        "production": 2402.87,
+        "sales": 2052.41,
+        "inventory": null,
+        "revenue": 124.03,
+        "cost": 52.31,
+        "unitPrice": 604.31,
+        "unitCost": 254.87,
+        "unitGrossProfit": 349.44,
+        "grossMargin": 57.82,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      }
+    },
+    {
+      "period": "2022年全年",
+      "year": 2022,
+      "month": 12,
+      "type": "cumulative",
+      "coal": {
+        "production": 3280.17,
+        "sales": 2730.77,
+        "inventory": 25.92,
+        "revenue": 156.8041815617,
+        "cost": 76.5372136532,
+        "unitPrice": 574.21,
+        "unitCost": 280.28,
+        "unitGrossProfit": 293.93,
+        "grossMargin": 51.19,
+        "_corrected": true,
+        "_verified": false,
+        "_notes": "手动修正：根据2022年上半年的实际数据修正（需从PDF重新提取正确的全年数据）"
+      }
+    },
+    {
+      "period": "2023年1-3月",
+      "year": 2023,
+      "month": 3,
+      "type": "cumulative",
+      "coal": {
+        "production": 852.52,
+        "sales": 699.67,
+        "inventory": null,
+        "revenue": 36.5,
+        "cost": null,
+        "unitPrice": 521.64,
+        "unitCost": null,
+        "unitGrossProfit": null,
+        "grossMargin": null,
+        "_corrected": true,
+        "_verified": false,
+        "_notes": "手动修正：根据2023年第一季度报告文本修正。文本中只有销售收入36.50亿元，没有销售成本数据"
+      }
+    },
+    {
+      "period": "2023年上半年",
+      "year": 2023,
+      "month": 6,
+      "type": "cumulative",
+      "coal": {
+        "production": 1700.68,
+        "sales": 1448.41,
+        "inventory": null,
+        "revenue": 73.07,
+        "cost": null,
+        "unitPrice": 504.48,
+        "unitCost": null,
+        "unitGrossProfit": null,
+        "grossMargin": null,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      }
+    },
+    {
+      "period": "2023年1-9月",
+      "year": 2023,
+      "month": 9,
+      "type": "cumulative",
+      "coal": {
+        "production": 2541.99,
+        "sales": 2213.67,
+        "inventory": null,
+        "revenue": 109.4,
+        "cost": 58.33,
+        "unitPrice": 494.2,
+        "unitCost": 263.5,
+        "unitGrossProfit": 230.7,
+        "grossMargin": 46.68,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      }
+    },
+    {
+      "period": "2023年全年",
+      "year": 2023,
+      "month": 12,
+      "type": "cumulative",
+      "coal": {
+        "production": 3468.76,
+        "sales": 3009.57,
+        "inventory": 31.97,
+        "revenue": 149.1800777268,
+        "cost": 73.3776600483,
+        "unitPrice": 495.69,
+        "unitCost": 243.81,
+        "unitGrossProfit": 251.88,
+        "grossMargin": 50.81,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      }
+    },
+    {
+      "period": "2024年1-3月",
+      "year": 2024,
+      "month": 3,
+      "type": "cumulative",
+      "coal": {
+        "production": 844.91,
+        "sales": 695.33,
+        "inventory": null,
+        "revenue": 35.45,
+        "cost": null,
+        "unitPrice": 509.75,
+        "unitCost": null,
+        "unitGrossProfit": null,
+        "grossMargin": null,
+        "_corrected": true,
+        "_verified": false,
+        "_notes": "手动修正：根据2024年第一季度报告文本修正。文本中只有销售收入35.45亿元，没有销售成本数据"
+      }
+    },
+    {
+      "period": "2024年上半年",
+      "year": 2024,
+      "month": 6,
+      "type": "cumulative",
+      "coal": {
+        "production": 1692.75,
+        "sales": 1445.18,
+        "inventory": null,
+        "revenue": 71.57,
+        "cost": null,
+        "unitPrice": 495.23,
+        "unitCost": null,
+        "unitGrossProfit": null,
+        "grossMargin": null,
+        "_corrected": true,
+        "_verified": false,
+        "_notes": "手动修正：成本数据已清空"
+      }
+    },
+    {
+      "period": "2024年1-9月",
+      "year": 2024,
+      "month": 9,
+      "type": "cumulative",
+      "coal": {
+        "production": 2579.41,
+        "sales": 2206.96,
+        "inventory": null,
+        "revenue": 109.07,
+        "cost": 57.79,
+        "unitPrice": 494.21,
+        "unitCost": 261.85,
+        "unitGrossProfit": 232.36,
+        "grossMargin": 47.02,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      }
+    },
+    {
+      "period": "2024年全年",
+      "year": 2024,
+      "month": 12,
+      "type": "cumulative",
+      "coal": {
+        "production": 3466.64,
+        "sales": 2996.65,
+        "inventory": 81.27,
+        "revenue": 147.0029694417,
+        "cost": 73.8173244253,
+        "unitPrice": 490.56,
+        "unitCost": 246.33,
+        "unitGrossProfit": 244.23,
+        "grossMargin": 49.79,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      }
+    },
+    {
+      "period": "2025年1-3月",
+      "year": 2025,
+      "month": 3,
+      "type": "cumulative",
+      "coal": {
+        "production": 786.26,
+        "sales": 526.17,
+        "inventory": null,
+        "revenue": 22.42,
+        "cost": null,
+        "unitPrice": 425.66,
+        "unitCost": null,
+        "unitGrossProfit": null,
+        "grossMargin": null,
+        "_corrected": true,
+        "_verified": false,
+        "_notes": "手动修正：根据2025年第一季度报告文本修正。文本中只有销售收入22.42亿元，没有销售成本数据"
+      }
+    },
+    {
+      "period": "2025年上半年",
+      "year": 2025,
+      "month": 6,
+      "type": "cumulative",
+      "coal": {
+        "production": 1721.91,
+        "sales": 1329.49,
+        "inventory": null,
+        "revenue": 56.07,
+        "cost": null,
+        "unitPrice": 421.74,
+        "unitCost": null,
+        "unitGrossProfit": null,
+        "grossMargin": null,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      }
+    },
+    {
+      "period": "2025年1-9月",
+      "year": 2025,
+      "month": 9,
+      "type": "cumulative",
+      "coal": {
+        "production": 2618.51,
+        "sales": 2085.64,
+        "inventory": null,
+        "revenue": 88.19,
+        "cost": 54.69,
+        "unitPrice": 422.84,
+        "unitCost": 262.22,
+        "unitGrossProfit": 160.62,
+        "grossMargin": 37.99,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      }
+    }
+  ]
+}
