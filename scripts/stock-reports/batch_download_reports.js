@@ -2,14 +2,14 @@
  * 批量下载多个公司的财报
  * 支持：年度报告、半年度报告、季度报告、生产经营数据公告
  * 使用配置文件或命令行参数
- * 
+ *
  * 使用方法：
  * # 使用默认配置（下载所有类型报告）
  * node batch_download_reports.js
- * 
+ *
  * # 使用配置文件
  * node batch_download_reports.js --config config.json
- * 
+ *
  * 配置文件示例 (config.json):
  * {
  *   "companies": [
@@ -21,7 +21,7 @@
  *   "reportTypes": ["annual", "production"],  // 支持数组，同时下载年报和运营报告
  *   "keywords": ["生产经营数据公告"]  // 用于生产经营数据公告的关键词
  * }
- * 
+ *
  * reportTypes 支持的值：
  * - "all": 年报 + 半年报 + 季报
  * - "annual": 年度报告
@@ -30,7 +30,7 @@
  * - "q1": 第一季度报告
  * - "q3": 第三季度报告
  * - "production": 生产经营数据公告
- * 
+ *
  * 可以同时指定多个类型，如：["annual", "production"] 表示同时下载年报和运营报告
  */
 
@@ -42,12 +42,12 @@ const path = require('path');
 const DEFAULT_CONFIG = {
   companies: [
     {
-      "code": "600938",
-      "name": "中国海洋石油"
+      "code": "601001",
+      "name": "晋控煤业"
     },
   ],
-  years: [ 2021],
-  // years: [2022, 2023, 2024, 2025],
+  // years: [ 2021，2022, 2023, ],
+  years: [2023, 2024, 2025],
   outputBase: '../stock/report_analysis',
   // 报告类型：支持字符串或数组
   // 字符串：'all' | 'annual' | 'semi' | 'quarterly' | 'q1' | 'q3' | 'production'
@@ -66,7 +66,7 @@ function downloadCompanyReports(company, years, outputBase, reportTypes, keyword
   return new Promise((resolve, reject) => {
     // 将 reportTypes 标准化为数组
     const typesArray = Array.isArray(reportTypes) ? reportTypes : [reportTypes];
-    
+
     const args = [
       path.join(__dirname, './download_all_reports.js'), // 使用全功能版本
       '--code', company.code,
@@ -166,7 +166,7 @@ async function main() {
   if (config.reportType && !config.reportTypes) {
     config.reportTypes = config.reportType;
   }
-  
+
   // 确保配置有默认值
   if (!config.reportTypes) {
     config.reportTypes = 'all';
@@ -176,8 +176,8 @@ async function main() {
   }
 
   // 将 reportTypes 标准化为数组
-  const reportTypesArray = Array.isArray(config.reportTypes) 
-    ? config.reportTypes 
+  const reportTypesArray = Array.isArray(config.reportTypes)
+    ? config.reportTypes
     : [config.reportTypes];
 
   // 报告类型描述
@@ -217,7 +217,7 @@ async function main() {
   // 串行下载每个公司的财报
   for (let i = 0; i < config.companies.length; i++) {
     const company = config.companies[i];
-    
+
     try {
       const result = await downloadCompanyReports(
         company,
