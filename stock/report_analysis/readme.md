@@ -118,6 +118,108 @@ if (require.main === module) {
 - 营收/成本：通常在 100万-500亿之间（根据公司规模调整）
 - 过滤掉百分比、页码等误提取数据
 
+**重要规范：价格数量判断不要写死数字**
+
+在实现数据验证函数时，**禁止硬编码具体的数值范围**，应使用可配置的常量或基于历史数据动态计算。这样可以提高代码的可维护性和适应性。
+
+**错误示例**（❌ 不推荐）：
+
+```javascript
+// ❌ 硬编码数值范围
+function isValidValue(value, type) {
+  switch (type) {
+    case 'revenue':
+    case 'cost':
+      return value >= 1000000;  // 硬编码：100万元
+    case 'production':
+    case 'sales':
+      return value >= 0.1;      // 硬编码：0.1万吨
+  }
+}
+
+// ❌ 硬编码价格范围
+if (isOilPrice && priceValue >= 20 && priceValue <= 200) {
+  // 硬编码：20-200美元
+}
+```
+
+**正确示例**（✅ 推荐）：
+
+```javascript
+// ✅ 使用配置常量
+const VALIDATION_THRESHOLDS = {
+  revenue: {
+    min: 1000000,  // 100万元（可根据公司规模调整）
+    max: 50000000000  // 500亿元
+  },
+  cost: {
+    min: 1000000,
+    max: 50000000000
+  },
+  production: {
+    min: 0.1,  // 0.1万吨
+    max: 100000  // 10亿吨
+  },
+  sales: {
+    min: 0.1,
+    max: 100000
+  }
+};
+
+// 或者基于历史数据动态计算
+function getValidationRange(type, historicalData) {
+  if (!historicalData || historicalData.length === 0) {
+    // 如果没有历史数据，使用默认配置
+    return VALIDATION_THRESHOLDS[type] || { min: 0, max: Infinity };
+  }
+  
+  // 基于历史数据计算合理范围（如：历史最小值的10% 到 历史最大值的10倍）
+  const values = historicalData.map(d => d[type]).filter(v => v != null);
+  const min = Math.min(...values);
+  const max = Math.max(...values);
+  
+  return {
+    min: min * 0.1,  // 允许10%的波动下限
+    max: max * 10     // 允许10倍的波动上限
+  };
+}
+
+function isValidValue(value, type, historicalData = null) {
+  if (!value || isNaN(value) || value <= 0) {
+    return false;
+  }
+  
+  const range = getValidationRange(type, historicalData);
+  return value >= range.min && value <= range.max;
+}
+```
+
+**价格判断示例**：
+
+```javascript
+// ✅ 使用配置常量
+const PRICE_RANGES = {
+  oil: { min: 20, max: 200 },      // 美元/桶（可根据市场情况调整）
+  gas: { min: 1, max: 20 },         // 美元/千立方英尺
+  copper: { min: 3000, max: 15000 }, // 元/吨
+  gold: { min: 200, max: 600 }      // 元/克
+};
+
+function isValidPrice(price, productType) {
+  const range = PRICE_RANGES[productType];
+  if (!range) return true;  // 未知产品类型，不限制
+  
+  return price >= range.min && price <= range.max;
+}
+```
+
+**实施建议**：
+
+1. **配置化**：将验证阈值提取为配置常量，放在文件顶部或单独的配置文件中
+2. **可调整**：根据公司规模、产品特性、市场情况等因素调整阈值
+3. **动态计算**：如果可能，基于历史数据动态计算合理范围
+4. **文档化**：在代码注释中说明阈值的选择依据和调整方法
+
 #### 3.3 库存数据提取
 
 **重要说明**：库存数据只在**年度报告**中提取，季度报告和半年度报告通常不包含库存数据。
@@ -496,7 +598,7 @@ node scripts/stock-reports/[股票代码]_report_parse.js
    }
    ```
 
-6. **修正标记说明**：
+1. **修正标记说明**：
    - `_corrected: true`：此行包含手动修正的数据，页面显示 ✏️
    - `_verified: true`：此行数据已验证，页面显示 ✓
    - `_corrections`：记录修正日志（原始值、修正值、原因、来源、时间）
