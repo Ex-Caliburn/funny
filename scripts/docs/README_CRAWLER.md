@@ -183,7 +183,7 @@ stock/
 │   ├── house_cleaned.json
 │   ├── retail_cleaned.json
 │   ├── invest_cleaned.json
-│   ├── profits_cleaned.json
+│   ├── industrial_value_added_cleaned.json
 │   └── industry_profits_cleaned.json
 ```
 

@@ -1,10 +1,10 @@
 /*
   Parse monthly industrial value-added data Excel files in /stock/profits
-  Output: /stock/cleaned_data/profits_cleaned.json
+  Output: /stock/cleaned_data/industrial_value_added_cleaned.json
 
   规模以上工业增加值数据解析器
   - 提取指标名称、绝对值、环比增长率、同比增长率
-  - 输出格式适配 profits_chart.html
+  - 输出格式适配 industrial_value_added_chart.html
 */
 
 const fs = require('fs');
@@ -16,7 +16,7 @@ NP.enableBoundaryChecking(false);
 const ROOT = '/Users/lijiye/work/funny';
 const STOCK_DIR = path.join(ROOT, 'stock');
 const PROFITS_DIR = path.join(STOCK_DIR, 'profits');
-const OUTPUT_JSON = path.join(STOCK_DIR, 'cleaned_data', 'profits_cleaned.json');
+const OUTPUT_JSON = path.join(STOCK_DIR, 'cleaned_data', 'industrial_value_added_cleaned.json');
 
 function normalizeMetricName(raw) {
   var name = String(raw || '').replace(/\s+/g, '');

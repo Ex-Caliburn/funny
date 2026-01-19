@@ -2,10 +2,10 @@
 
 ## 文件说明
 
-- `html/profits_chart.html` - 规模以上工业增加值数据可视化页面
-- `cleaned_data/profits_cleaned.json` - 清洗后的数据文件
-- `../scripts/tools/profits_parse.js` - 数据解析脚本
-- `../scripts/crawler/extractors/profits_data_extractor.js` - 数据提取器
+- `html/industrial_value_added_chart.html` - 规模以上工业增加值数据可视化页面
+- `cleaned_data/industrial_value_added_cleaned.json` - 清洗后的数据文件
+- `../scripts/tools/industrial_value_added_parse.js` - 数据解析脚本
+- `../scripts/crawler/extractors/industrial_value_added_extractor.js` - 数据提取器
 
 ## 数据说明
 
@@ -43,7 +43,7 @@ npm run profits:parse
 
 # 启动本地服务器查看
 npm run serve
-# 访问 http://localhost:8080/html/profits_chart.html
+# 访问 http://localhost:8080/html/industrial_value_added_chart.html
 ```
 
 ## 主要指标示例
@@ -83,8 +83,8 @@ npm run serve
 
 ## 技术实现
 
-- **数据提取**：`profits_data_extractor.js` 参考 `stats-export-extension` 逻辑
-- **数据解析**：`profits_parse.js` 提取指标、绝对值、环比、同比
+- **数据提取**：`industrial_value_added_extractor.js` 参考 `stats-export-extension` 逻辑
+- **数据解析**：`industrial_value_added_parse.js` 提取指标、绝对值、环比、同比
 - **数据格式**：JSON 输出适配 ECharts 可视化
 - **前端展示**：ECharts + 深色主题
 

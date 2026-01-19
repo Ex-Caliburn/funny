@@ -190,7 +190,7 @@
       }
     });
     const payload = { "data": [] };
-    fetch("../cleaned_data/profits_cleaned.json?t=" + Date.now()).then(r => r.json()).then(json => {
+    fetch("../cleaned_data/industrial_value_added_cleaned.json?t=" + Date.now()).then(r => r.json()).then(json => {
 
       const allMetricNames = Object.keys(json.metrics || {});
       // 只显示有绝对值数据的指标

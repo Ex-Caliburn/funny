@@ -9,7 +9,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "retail:parse": "node scripts/tools/retail_parse.js",
-    "profits:parse": "node scripts/tools/profits_parse.js",
+    "profits:parse": "node scripts/tools/industrial_value_added_parse.js",
     "industry:parse": "node scripts/tools/industry_profits_parse.js",
     "energy:parse": "node scripts/tools/energy_parser.js",
     "goods:parse": "node scripts/tools/goods_price_parse.js",

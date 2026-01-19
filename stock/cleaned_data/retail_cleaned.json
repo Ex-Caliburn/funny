@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2025-12-08T12:25:37.028Z",
+  "updatedAt": "2026-01-19T07:56:57.707Z",
   "data": [
     {
       "metric": "社会消费品零售总额",
@@ -4680,6 +4680,708 @@
       "cumulative": null,
       "mom": null,
       "yoy": -8.3
+    },
+    {
+      "metric": "社会消费品零售总额",
+      "yearMonth": "2025-11",
+      "label": "2025-11",
+      "value": 43898,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 1.252728534919683
+    },
+    {
+      "metric": "除汽车以外的消费品零售额",
+      "yearMonth": "2025-11",
+      "label": "2025-11",
+      "value": 39444,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 2.451517613105267
+    },
+    {
+      "metric": "限额以上单位消费品零售额",
+      "yearMonth": "2025-11",
+      "label": "2025-11",
+      "value": 17810,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -1.9600616217496025
+    },
+    {
+      "metric": "实物商品网上零售额",
+      "yearMonth": "2025-11",
+      "label": "2025-11",
+      "value": 118193,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 5.7
+    },
+    {
+      "metric": "城镇",
+      "yearMonth": "2025-11",
+      "label": "2025-11",
+      "value": 37684,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 1.0042585369828743
+    },
+    {
+      "metric": "乡村",
+      "yearMonth": "2025-11",
+      "label": "2025-11",
+      "value": 6214,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 2.7859880546104563
+    },
+    {
+      "metric": "餐饮收入",
+      "yearMonth": "2025-11",
+      "label": "2025-11",
+      "value": 6057,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 3.1729342259436635
+    },
+    {
+      "metric": "限额以上单位餐饮收入",
+      "yearMonth": "2025-11",
+      "label": "2025-11",
+      "value": 1380,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 1.2
+    },
+    {
+      "metric": "商品零售额",
+      "yearMonth": "2025-11",
+      "label": "2025-11",
+      "value": 37841,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 0.9519851783865079
+    },
+    {
+      "metric": "限额以上单位商品零售额",
+      "yearMonth": "2025-11",
+      "label": "2025-11",
+      "value": 16430,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -2.2176806202595856
+    },
+    {
+      "metric": "粮油、食品类",
+      "yearMonth": "2025-11",
+      "label": "2025-11",
+      "value": 2060,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 6.1
+    },
+    {
+      "metric": "饮料类",
+      "yearMonth": "2025-11",
+      "label": "2025-11",
+      "value": 269,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 2.9
+    },
+    {
+      "metric": "烟酒类",
+      "yearMonth": "2025-11",
+      "label": "2025-11",
+      "value": 502,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -3.4
+    },
+    {
+      "metric": "服装、鞋帽、针纺织品类",
+      "yearMonth": "2025-11",
+      "label": "2025-11",
+      "value": 1542,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 3.5
+    },
+    {
+      "metric": "化妆品类",
+      "yearMonth": "2025-11",
+      "label": "2025-11",
+      "value": 468,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 6.1
+    },
+    {
+      "metric": "金银珠宝类",
+      "yearMonth": "2025-11",
+      "label": "2025-11",
+      "value": 292,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 8.5
+    },
+    {
+      "metric": "日用品类",
+      "yearMonth": "2025-11",
+      "label": "2025-11",
+      "value": 763,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -0.8
+    },
+    {
+      "metric": "体育、娱乐用品类",
+      "yearMonth": "2025-11",
+      "label": "2025-11",
+      "value": 154,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 0.4
+    },
+    {
+      "metric": "家用电器和音像器材类",
+      "yearMonth": "2025-11",
+      "label": "2025-11",
+      "value": 1000,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -19.4
+    },
+    {
+      "metric": "中西药品类",
+      "yearMonth": "2025-11",
+      "label": "2025-11",
+      "value": 660,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 4.9
+    },
+    {
+      "metric": "文化办公用品类",
+      "yearMonth": "2025-11",
+      "label": "2025-11",
+      "value": 524,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 11.7
+    },
+    {
+      "metric": "家具类",
+      "yearMonth": "2025-11",
+      "label": "2025-11",
+      "value": 195,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -3.8
+    },
+    {
+      "metric": "通讯器材类",
+      "yearMonth": "2025-11",
+      "label": "2025-11",
+      "value": 998,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 20.6
+    },
+    {
+      "metric": "石油及制品类",
+      "yearMonth": "2025-11",
+      "label": "2025-11",
+      "value": 1722,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -8
+    },
+    {
+      "metric": "汽车类",
+      "yearMonth": "2025-11",
+      "label": "2025-11",
+      "value": 4454,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -8.3
+    },
+    {
+      "metric": "建筑及装潢材料类",
+      "yearMonth": "2025-11",
+      "label": "2025-11",
+      "value": 149,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -17
+    },
+    {
+      "metric": "社会消费品零售总额",
+      "yearMonth": "2025-11",
+      "label": "2025-11",
+      "value": 43898,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 1.252728534919683
+    },
+    {
+      "metric": "除汽车以外的消费品零售额",
+      "yearMonth": "2025-11",
+      "label": "2025-11",
+      "value": 39444,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 2.451517613105267
+    },
+    {
+      "metric": "限额以上单位消费品零售额",
+      "yearMonth": "2025-11",
+      "label": "2025-11",
+      "value": 17810,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -1.9600616217496025
+    },
+    {
+      "metric": "实物商品网上零售额",
+      "yearMonth": "2025-11",
+      "label": "2025-11",
+      "value": 118193,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 5.7
+    },
+    {
+      "metric": "城镇",
+      "yearMonth": "2025-11",
+      "label": "2025-11",
+      "value": 37684,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 1.0042585369828743
+    },
+    {
+      "metric": "乡村",
+      "yearMonth": "2025-11",
+      "label": "2025-11",
+      "value": 6214,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 2.7859880546104563
+    },
+    {
+      "metric": "餐饮收入",
+      "yearMonth": "2025-11",
+      "label": "2025-11",
+      "value": 6057,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 3.1729342259436635
+    },
+    {
+      "metric": "限额以上单位餐饮收入",
+      "yearMonth": "2025-11",
+      "label": "2025-11",
+      "value": 1380,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 1.2
+    },
+    {
+      "metric": "商品零售额",
+      "yearMonth": "2025-11",
+      "label": "2025-11",
+      "value": 37841,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 0.9519851783865079
+    },
+    {
+      "metric": "限额以上单位商品零售额",
+      "yearMonth": "2025-11",
+      "label": "2025-11",
+      "value": 16430,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -2.2176806202595856
+    },
+    {
+      "metric": "粮油、食品类",
+      "yearMonth": "2025-11",
+      "label": "2025-11",
+      "value": 2060,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 6.1
+    },
+    {
+      "metric": "饮料类",
+      "yearMonth": "2025-11",
+      "label": "2025-11",
+      "value": 269,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 2.9
+    },
+    {
+      "metric": "烟酒类",
+      "yearMonth": "2025-11",
+      "label": "2025-11",
+      "value": 502,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -3.4
+    },
+    {
+      "metric": "服装、鞋帽、针纺织品类",
+      "yearMonth": "2025-11",
+      "label": "2025-11",
+      "value": 1542,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 3.5
+    },
+    {
+      "metric": "化妆品类",
+      "yearMonth": "2025-11",
+      "label": "2025-11",
+      "value": 468,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 6.1
+    },
+    {
+      "metric": "金银珠宝类",
+      "yearMonth": "2025-11",
+      "label": "2025-11",
+      "value": 292,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 8.5
+    },
+    {
+      "metric": "日用品类",
+      "yearMonth": "2025-11",
+      "label": "2025-11",
+      "value": 763,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -0.8
+    },
+    {
+      "metric": "体育、娱乐用品类",
+      "yearMonth": "2025-11",
+      "label": "2025-11",
+      "value": 154,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 0.4
+    },
+    {
+      "metric": "家用电器和音像器材类",
+      "yearMonth": "2025-11",
+      "label": "2025-11",
+      "value": 1000,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -19.4
+    },
+    {
+      "metric": "中西药品类",
+      "yearMonth": "2025-11",
+      "label": "2025-11",
+      "value": 660,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 4.9
+    },
+    {
+      "metric": "文化办公用品类",
+      "yearMonth": "2025-11",
+      "label": "2025-11",
+      "value": 524,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 11.7
+    },
+    {
+      "metric": "家具类",
+      "yearMonth": "2025-11",
+      "label": "2025-11",
+      "value": 195,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -3.8
+    },
+    {
+      "metric": "通讯器材类",
+      "yearMonth": "2025-11",
+      "label": "2025-11",
+      "value": 998,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 20.6
+    },
+    {
+      "metric": "石油及制品类",
+      "yearMonth": "2025-11",
+      "label": "2025-11",
+      "value": 1722,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -8
+    },
+    {
+      "metric": "汽车类",
+      "yearMonth": "2025-11",
+      "label": "2025-11",
+      "value": 4454,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -8.3
+    },
+    {
+      "metric": "建筑及装潢材料类",
+      "yearMonth": "2025-11",
+      "label": "2025-11",
+      "value": 149,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -17
+    },
+    {
+      "metric": "社会消费品零售总额",
+      "yearMonth": "2025-12",
+      "label": "2025-12",
+      "value": 45136,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 0.8617016352587115
+    },
+    {
+      "metric": "除汽车以外的消费品零售额",
+      "yearMonth": "2025-12",
+      "label": "2025-12",
+      "value": 39654,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 1.7272004463231099
+    },
+    {
+      "metric": "限额以上单位消费品零售额",
+      "yearMonth": "2025-12",
+      "label": "2025-12",
+      "value": 19547,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -1.9416646880495847
+    },
+    {
+      "metric": "实物商品网上零售额",
+      "yearMonth": "2025-12",
+      "label": "2025-12",
+      "value": 130923,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 5.165679154541564
+    },
+    {
+      "metric": "城镇",
+      "yearMonth": "2025-12",
+      "label": "2025-12",
+      "value": 38429,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 0.7154850382915043
+    },
+    {
+      "metric": "乡村",
+      "yearMonth": "2025-12",
+      "label": "2025-12",
+      "value": 6707,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 1.7077342461515599
+    },
+    {
+      "metric": "餐饮收入",
+      "yearMonth": "2025-12",
+      "label": "2025-12",
+      "value": 5738,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 2.191012697851491
+    },
+    {
+      "metric": "限额以上单位餐饮收入",
+      "yearMonth": "2025-12",
+      "label": "2025-12",
+      "value": 1463,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -1.1
+    },
+    {
+      "metric": "商品零售额",
+      "yearMonth": "2025-12",
+      "label": "2025-12",
+      "value": 39398,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 0.6709947077594052
+    },
+    {
+      "metric": "限额以上单位商品零售额",
+      "yearMonth": "2025-12",
+      "label": "2025-12",
+      "value": 18084,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -2.0103208668844843
+    },
+    {
+      "metric": "粮油、食品类",
+      "yearMonth": "2025-12",
+      "label": "2025-12",
+      "value": 2323,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 3.9
+    },
+    {
+      "metric": "饮料类",
+      "yearMonth": "2025-12",
+      "label": "2025-12",
+      "value": 275,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 1.7
+    },
+    {
+      "metric": "烟酒类",
+      "yearMonth": "2025-12",
+      "label": "2025-12",
+      "value": 623,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -2.9
+    },
+    {
+      "metric": "服装、鞋帽、针纺织品类",
+      "yearMonth": "2025-12",
+      "label": "2025-12",
+      "value": 1661,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 0.6
+    },
+    {
+      "metric": "化妆品类",
+      "yearMonth": "2025-12",
+      "label": "2025-12",
+      "value": 380,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 8.8
+    },
+    {
+      "metric": "金银珠宝类",
+      "yearMonth": "2025-12",
+      "label": "2025-12",
+      "value": 328,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 5.9
+    },
+    {
+      "metric": "日用品类",
+      "yearMonth": "2025-12",
+      "label": "2025-12",
+      "value": 776,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 3.7
+    },
+    {
+      "metric": "体育、娱乐用品类",
+      "yearMonth": "2025-12",
+      "label": "2025-12",
+      "value": 152,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 9
+    },
+    {
+      "metric": "家用电器和音像器材类",
+      "yearMonth": "2025-12",
+      "label": "2025-12",
+      "value": 971,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -18.7
+    },
+    {
+      "metric": "中西药品类",
+      "yearMonth": "2025-12",
+      "label": "2025-12",
+      "value": 711,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 1.2
+    },
+    {
+      "metric": "文化办公用品类",
+      "yearMonth": "2025-12",
+      "label": "2025-12",
+      "value": 506,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 9.2
+    },
+    {
+      "metric": "家具类",
+      "yearMonth": "2025-12",
+      "label": "2025-12",
+      "value": 207,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -2.2
+    },
+    {
+      "metric": "通讯器材类",
+      "yearMonth": "2025-12",
+      "label": "2025-12",
+      "value": 949,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 20.9
+    },
+    {
+      "metric": "石油及制品类",
+      "yearMonth": "2025-12",
+      "label": "2025-12",
+      "value": 1819,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -11
+    },
+    {
+      "metric": "汽车类",
+      "yearMonth": "2025-12",
+      "label": "2025-12",
+      "value": 5482,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -5
+    },
+    {
+      "metric": "建筑及装潢材料类",
+      "yearMonth": "2025-12",
+      "label": "2025-12",
+      "value": 172,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -11.8
     }
   ],
   "metrics": {
@@ -4863,6 +5565,24 @@
         "cumulative": null,
         "mom": 10.29,
         "yoy": 2.93
+      },
+      {
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 43898,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 0,
+        "yoy": 1.25
+      },
+      {
+        "yearMonth": "2025-12",
+        "label": "2025-12",
+        "value": 45136,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 2.82,
+        "yoy": 0.86
       }
     ],
     "除汽车以外的消费品零售额": [
@@ -5045,6 +5765,24 @@
         "cumulative": null,
         "mom": 12.82,
         "yoy": 4
+      },
+      {
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 39444,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 0,
+        "yoy": 2.45
+      },
+      {
+        "yearMonth": "2025-12",
+        "label": "2025-12",
+        "value": 39654,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 0.53,
+        "yoy": 1.73
       }
     ],
     "限额以上单位消费品零售额": [
@@ -5227,6 +5965,24 @@
         "cumulative": null,
         "mom": 0.03,
         "yoy": 1.61
+      },
+      {
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 17810,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 0,
+        "yoy": -1.96
+      },
+      {
+        "yearMonth": "2025-12",
+        "label": "2025-12",
+        "value": 19547,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 9.75,
+        "yoy": -1.94
       }
     ],
     "实物商品网上零售额": [
@@ -5409,6 +6165,24 @@
         "cumulative": null,
         "mom": 17.91,
         "yoy": 6.26
+      },
+      {
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 0,
+        "valueMonthly": 0,
+        "cumulative": null,
+        "mom": -100,
+        "yoy": 5.7
+      },
+      {
+        "yearMonth": "2025-12",
+        "label": "2025-12",
+        "value": 12730,
+        "valueMonthly": 12730,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 5.17
       }
     ],
     "城镇": [
@@ -5591,6 +6365,24 @@
         "cumulative": null,
         "mom": 11.84,
         "yoy": 2.75
+      },
+      {
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 37684,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 0,
+        "yoy": 1
+      },
+      {
+        "yearMonth": "2025-12",
+        "label": "2025-12",
+        "value": 38429,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 1.98,
+        "yoy": 0.72
       }
     ],
     "乡村": [
@@ -5773,6 +6565,24 @@
         "cumulative": null,
         "mom": 1.33,
         "yoy": 4.14
+      },
+      {
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 6214,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 0,
+        "yoy": 2.79
+      },
+      {
+        "yearMonth": "2025-12",
+        "label": "2025-12",
+        "value": 6707,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 7.93,
+        "yoy": 1.71
       }
     ],
     "餐饮收入": [
@@ -5955,6 +6765,24 @@
         "cumulative": null,
         "mom": 15.3,
         "yoy": 3.76
+      },
+      {
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 6057,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 0,
+        "yoy": 3.17
+      },
+      {
+        "yearMonth": "2025-12",
+        "label": "2025-12",
+        "value": 5738,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": -5.27,
+        "yoy": 2.19
       }
     ],
     "限额以上单位餐饮收入": [
@@ -6137,6 +6965,24 @@
         "cumulative": null,
         "mom": 8.31,
         "yoy": 3.7
+      },
+      {
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 1380,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 0,
+        "yoy": 1.2
+      },
+      {
+        "yearMonth": "2025-12",
+        "label": "2025-12",
+        "value": 1463,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 6.01,
+        "yoy": -1.1
       }
     ],
     "商品零售额": [
@@ -6319,6 +7165,24 @@
         "cumulative": null,
         "mom": 9.69,
         "yoy": 2.83
+      },
+      {
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 37841,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 0,
+        "yoy": 0.95
+      },
+      {
+        "yearMonth": "2025-12",
+        "label": "2025-12",
+        "value": 39398,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 4.11,
+        "yoy": 0.67
       }
     ],
     "限额以上单位商品零售额": [
@@ -6501,6 +7365,24 @@
         "cumulative": null,
         "mom": -0.65,
         "yoy": 1.43
+      },
+      {
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 16430,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 0,
+        "yoy": -2.22
+      },
+      {
+        "yearMonth": "2025-12",
+        "label": "2025-12",
+        "value": 18084,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 10.07,
+        "yoy": -2.01
       }
     ],
     "粮油、食品类": [
@@ -6683,6 +7565,24 @@
         "cumulative": null,
         "mom": -6.89,
         "yoy": 9.1
+      },
+      {
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 2060,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 0,
+        "yoy": 6.1
+      },
+      {
+        "yearMonth": "2025-12",
+        "label": "2025-12",
+        "value": 2323,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 12.77,
+        "yoy": 3.9
       }
     ],
     "饮料类": [
@@ -6865,6 +7765,24 @@
         "cumulative": null,
         "mom": -8.44,
         "yoy": 7.1
+      },
+      {
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 269,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 0,
+        "yoy": 2.9
+      },
+      {
+        "yearMonth": "2025-12",
+        "label": "2025-12",
+        "value": 275,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 2.23,
+        "yoy": 1.7
       }
     ],
     "烟酒类": [
@@ -7047,6 +7965,24 @@
         "cumulative": null,
         "mom": -16.91,
         "yoy": 4.1
+      },
+      {
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 502,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 0,
+        "yoy": -3.4
+      },
+      {
+        "yearMonth": "2025-12",
+        "label": "2025-12",
+        "value": 623,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 24.1,
+        "yoy": -2.9
       }
     ],
     "服装、鞋帽、针纺织品类": [
@@ -7229,6 +8165,24 @@
         "cumulative": null,
         "mom": 19.5,
         "yoy": 6.3
+      },
+      {
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 1542,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 0,
+        "yoy": 3.5
+      },
+      {
+        "yearMonth": "2025-12",
+        "label": "2025-12",
+        "value": 1661,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 7.72,
+        "yoy": 0.6
       }
     ],
     "化妆品类": [
@@ -7411,6 +8365,24 @@
         "cumulative": null,
         "mom": 42.12,
         "yoy": 9.6
+      },
+      {
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 468,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 0,
+        "yoy": 6.1
+      },
+      {
+        "yearMonth": "2025-12",
+        "label": "2025-12",
+        "value": 380,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": -18.8,
+        "yoy": 8.8
       }
     ],
     "金银珠宝类": [
@@ -7593,6 +8565,24 @@
         "cumulative": null,
         "mom": 25.26,
         "yoy": 37.6
+      },
+      {
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 292,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 0,
+        "yoy": 8.5
+      },
+      {
+        "yearMonth": "2025-12",
+        "label": "2025-12",
+        "value": 328,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 12.33,
+        "yoy": 5.9
       }
     ],
     "日用品类": [
@@ -7775,6 +8765,24 @@
         "cumulative": null,
         "mom": 4.37,
         "yoy": 7.4
+      },
+      {
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 763,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 0,
+        "yoy": -0.8
+      },
+      {
+        "yearMonth": "2025-12",
+        "label": "2025-12",
+        "value": 776,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 1.7,
+        "yoy": 3.7
       }
     ],
     "体育、娱乐用品类": [
@@ -7957,6 +8965,24 @@
         "cumulative": null,
         "mom": 21.71,
         "yoy": 10.1
+      },
+      {
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 154,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 0,
+        "yoy": 0.4
+      },
+      {
+        "yearMonth": "2025-12",
+        "label": "2025-12",
+        "value": 152,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": -1.3,
+        "yoy": 9
       }
     ],
     "家用电器和音像器材类": [
@@ -8139,6 +9165,24 @@
         "cumulative": null,
         "mom": -1.44,
         "yoy": -14.6
+      },
+      {
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 1000,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 0,
+        "yoy": -19.4
+      },
+      {
+        "yearMonth": "2025-12",
+        "label": "2025-12",
+        "value": 971,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": -2.9,
+        "yoy": -18.7
       }
     ],
     "中西药品类": [
@@ -8321,6 +9365,24 @@
         "cumulative": null,
         "mom": -3.92,
         "yoy": 3.6
+      },
+      {
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 660,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 0,
+        "yoy": 4.9
+      },
+      {
+        "yearMonth": "2025-12",
+        "label": "2025-12",
+        "value": 711,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 7.73,
+        "yoy": 1.2
       }
     ],
     "文化办公用品类": [
@@ -8503,6 +9565,24 @@
         "cumulative": null,
         "mom": 6.39,
         "yoy": 13.5
+      },
+      {
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 524,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 0,
+        "yoy": 11.7
+      },
+      {
+        "yearMonth": "2025-12",
+        "label": "2025-12",
+        "value": 506,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": -3.44,
+        "yoy": 9.2
       }
     ],
     "家具类": [
@@ -8685,6 +9765,24 @@
         "cumulative": null,
         "mom": 1.7,
         "yoy": 9.6
+      },
+      {
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 195,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 0,
+        "yoy": -3.8
+      },
+      {
+        "yearMonth": "2025-12",
+        "label": "2025-12",
+        "value": 207,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 6.15,
+        "yoy": -2.2
       }
     ],
     "通讯器材类": [
@@ -8867,6 +9965,24 @@
         "cumulative": null,
         "mom": 33,
         "yoy": 23.2
+      },
+      {
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 998,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 0,
+        "yoy": 20.6
+      },
+      {
+        "yearMonth": "2025-12",
+        "label": "2025-12",
+        "value": 949,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": -4.91,
+        "yoy": 20.9
       }
     ],
     "石油及制品类": [
@@ -9049,6 +10165,24 @@
         "cumulative": null,
         "mom": -3.95,
         "yoy": -5.9
+      },
+      {
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 1722,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 0,
+        "yoy": -8
+      },
+      {
+        "yearMonth": "2025-12",
+        "label": "2025-12",
+        "value": 1819,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 5.63,
+        "yoy": -11
       }
     ],
     "汽车类": [
@@ -9231,6 +10365,24 @@
         "cumulative": null,
         "mom": -9.68,
         "yoy": -6.6
+      },
+      {
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 4454,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 0,
+        "yoy": -8.3
+      },
+      {
+        "yearMonth": "2025-12",
+        "label": "2025-12",
+        "value": 5482,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 23.08,
+        "yoy": -5
       }
     ],
     "建筑及装潢材料类": [
@@ -9413,12 +10565,30 @@
         "cumulative": null,
         "mom": -2.04,
         "yoy": -8.3
+      },
+      {
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 149,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 0,
+        "yoy": -17
+      },
+      {
+        "yearMonth": "2025-12",
+        "label": "2025-12",
+        "value": 172,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 15.44,
+        "yoy": -11.8
       }
     ]
   },
   "issues": [
     {
-      "file": "2024-03-18_2024年1—2月份社会消费品零售总额增长5.5%-国家统计局.xls",
+      "file": "2024-03-18_2024年1—2月份社会消费品零售总额增长5.5%.xls",
       "metric": "社会消费品零售总额",
       "extracted": {
         "metric": "社会消费品零售总额",
@@ -9431,7 +10601,7 @@
       }
     },
     {
-      "file": "2024-03-18_2024年1—2月份社会消费品零售总额增长5.5%-国家统计局.xls",
+      "file": "2024-03-18_2024年1—2月份社会消费品零售总额增长5.5%.xls",
       "metric": "除汽车以外的消费品零售额",
       "extracted": {
         "metric": "除汽车以外的消费品零售额",
@@ -9444,7 +10614,7 @@
       }
     },
     {
-      "file": "2024-03-18_2024年1—2月份社会消费品零售总额增长5.5%-国家统计局.xls",
+      "file": "2024-03-18_2024年1—2月份社会消费品零售总额增长5.5%.xls",
       "metric": "限额以上单位消费品零售额",
       "extracted": {
         "metric": "限额以上单位消费品零售额",
@@ -9457,7 +10627,7 @@
       }
     },
     {
-      "file": "2024-03-18_2024年1—2月份社会消费品零售总额增长5.5%-国家统计局.xls",
+      "file": "2024-03-18_2024年1—2月份社会消费品零售总额增长5.5%.xls",
       "metric": "实物商品网上零售额",
       "extracted": {
         "metric": "实物商品网上零售额",
@@ -9470,7 +10640,7 @@
       }
     },
     {
-      "file": "2024-03-18_2024年1—2月份社会消费品零售总额增长5.5%-国家统计局.xls",
+      "file": "2024-03-18_2024年1—2月份社会消费品零售总额增长5.5%.xls",
       "metric": "城镇",
       "extracted": {
         "metric": "城镇",
@@ -9483,7 +10653,7 @@
       }
     },
     {
-      "file": "2024-03-18_2024年1—2月份社会消费品零售总额增长5.5%-国家统计局.xls",
+      "file": "2024-03-18_2024年1—2月份社会消费品零售总额增长5.5%.xls",
       "metric": "乡村",
       "extracted": {
         "metric": "乡村",
@@ -9496,7 +10666,7 @@
       }
     },
     {
-      "file": "2024-03-18_2024年1—2月份社会消费品零售总额增长5.5%-国家统计局.xls",
+      "file": "2024-03-18_2024年1—2月份社会消费品零售总额增长5.5%.xls",
       "metric": "餐饮收入",
       "extracted": {
         "metric": "餐饮收入",
@@ -9509,7 +10679,7 @@
       }
     },
     {
-      "file": "2024-03-18_2024年1—2月份社会消费品零售总额增长5.5%-国家统计局.xls",
+      "file": "2024-03-18_2024年1—2月份社会消费品零售总额增长5.5%.xls",
       "metric": "限额以上单位餐饮收入",
       "extracted": {
         "metric": "限额以上单位餐饮收入",
@@ -9522,7 +10692,7 @@
       }
     },
     {
-      "file": "2024-03-18_2024年1—2月份社会消费品零售总额增长5.5%-国家统计局.xls",
+      "file": "2024-03-18_2024年1—2月份社会消费品零售总额增长5.5%.xls",
       "metric": "商品零售额",
       "extracted": {
         "metric": "商品零售额",
@@ -9535,7 +10705,7 @@
       }
     },
     {
-      "file": "2024-03-18_2024年1—2月份社会消费品零售总额增长5.5%-国家统计局.xls",
+      "file": "2024-03-18_2024年1—2月份社会消费品零售总额增长5.5%.xls",
       "metric": "限额以上单位商品零售额",
       "extracted": {
         "metric": "限额以上单位商品零售额",
@@ -9548,7 +10718,7 @@
       }
     },
     {
-      "file": "2024-03-18_2024年1—2月份社会消费品零售总额增长5.5%-国家统计局.xls",
+      "file": "2024-03-18_2024年1—2月份社会消费品零售总额增长5.5%.xls",
       "metric": "粮油、食品类",
       "extracted": {
         "metric": "粮油、食品类",
@@ -9561,7 +10731,7 @@
       }
     },
     {
-      "file": "2024-03-18_2024年1—2月份社会消费品零售总额增长5.5%-国家统计局.xls",
+      "file": "2024-03-18_2024年1—2月份社会消费品零售总额增长5.5%.xls",
       "metric": "饮料类",
       "extracted": {
         "metric": "饮料类",
@@ -9574,7 +10744,7 @@
       }
     },
     {
-      "file": "2024-03-18_2024年1—2月份社会消费品零售总额增长5.5%-国家统计局.xls",
+      "file": "2024-03-18_2024年1—2月份社会消费品零售总额增长5.5%.xls",
       "metric": "烟酒类",
       "extracted": {
         "metric": "烟酒类",
@@ -9587,7 +10757,7 @@
       }
     },
     {
-      "file": "2024-03-18_2024年1—2月份社会消费品零售总额增长5.5%-国家统计局.xls",
+      "file": "2024-03-18_2024年1—2月份社会消费品零售总额增长5.5%.xls",
       "metric": "服装、鞋帽、针纺织品类",
       "extracted": {
         "metric": "服装、鞋帽、针纺织品类",
@@ -9600,7 +10770,7 @@
       }
     },
     {
-      "file": "2024-03-18_2024年1—2月份社会消费品零售总额增长5.5%-国家统计局.xls",
+      "file": "2024-03-18_2024年1—2月份社会消费品零售总额增长5.5%.xls",
       "metric": "化妆品类",
       "extracted": {
         "metric": "化妆品类",
@@ -9613,7 +10783,7 @@
       }
     },
     {
-      "file": "2024-03-18_2024年1—2月份社会消费品零售总额增长5.5%-国家统计局.xls",
+      "file": "2024-03-18_2024年1—2月份社会消费品零售总额增长5.5%.xls",
       "metric": "金银珠宝类",
       "extracted": {
         "metric": "金银珠宝类",
@@ -9626,7 +10796,7 @@
       }
     },
     {
-      "file": "2024-03-18_2024年1—2月份社会消费品零售总额增长5.5%-国家统计局.xls",
+      "file": "2024-03-18_2024年1—2月份社会消费品零售总额增长5.5%.xls",
       "metric": "日用品类",
       "extracted": {
         "metric": "日用品类",
@@ -9639,7 +10809,7 @@
       }
     },
     {
-      "file": "2024-03-18_2024年1—2月份社会消费品零售总额增长5.5%-国家统计局.xls",
+      "file": "2024-03-18_2024年1—2月份社会消费品零售总额增长5.5%.xls",
       "metric": "体育、娱乐用品类",
       "extracted": {
         "metric": "体育、娱乐用品类",
@@ -9652,7 +10822,7 @@
       }
     },
     {
-      "file": "2024-03-18_2024年1—2月份社会消费品零售总额增长5.5%-国家统计局.xls",
+      "file": "2024-03-18_2024年1—2月份社会消费品零售总额增长5.5%.xls",
       "metric": "家用电器和音像器材类",
       "extracted": {
         "metric": "家用电器和音像器材类",
@@ -9665,7 +10835,7 @@
       }
     },
     {
-      "file": "2024-03-18_2024年1—2月份社会消费品零售总额增长5.5%-国家统计局.xls",
+      "file": "2024-03-18_2024年1—2月份社会消费品零售总额增长5.5%.xls",
       "metric": "中西药品类",
       "extracted": {
         "metric": "中西药品类",
@@ -9678,7 +10848,7 @@
       }
     },
     {
-      "file": "2024-03-18_2024年1—2月份社会消费品零售总额增长5.5%-国家统计局.xls",
+      "file": "2024-03-18_2024年1—2月份社会消费品零售总额增长5.5%.xls",
       "metric": "文化办公用品类",
       "extracted": {
         "metric": "文化办公用品类",
@@ -9691,7 +10861,7 @@
       }
     },
     {
-      "file": "2024-03-18_2024年1—2月份社会消费品零售总额增长5.5%-国家统计局.xls",
+      "file": "2024-03-18_2024年1—2月份社会消费品零售总额增长5.5%.xls",
       "metric": "家具类",
       "extracted": {
         "metric": "家具类",
@@ -9704,7 +10874,7 @@
       }
     },
     {
-      "file": "2024-03-18_2024年1—2月份社会消费品零售总额增长5.5%-国家统计局.xls",
+      "file": "2024-03-18_2024年1—2月份社会消费品零售总额增长5.5%.xls",
       "metric": "通讯器材类",
       "extracted": {
         "metric": "通讯器材类",
@@ -9717,7 +10887,7 @@
       }
     },
     {
-      "file": "2024-03-18_2024年1—2月份社会消费品零售总额增长5.5%-国家统计局.xls",
+      "file": "2024-03-18_2024年1—2月份社会消费品零售总额增长5.5%.xls",
       "metric": "石油及制品类",
       "extracted": {
         "metric": "石油及制品类",
@@ -9730,7 +10900,7 @@
       }
     },
     {
-      "file": "2024-03-18_2024年1—2月份社会消费品零售总额增长5.5%-国家统计局.xls",
+      "file": "2024-03-18_2024年1—2月份社会消费品零售总额增长5.5%.xls",
       "metric": "汽车类",
       "extracted": {
         "metric": "汽车类",
@@ -9743,7 +10913,7 @@
       }
     },
     {
-      "file": "2024-03-18_2024年1—2月份社会消费品零售总额增长5.5%-国家统计局.xls",
+      "file": "2024-03-18_2024年1—2月份社会消费品零售总额增长5.5%.xls",
       "metric": "建筑及装潢材料类",
       "extracted": {
         "metric": "建筑及装潢材料类",
@@ -9756,7 +10926,7 @@
       }
     },
     {
-      "file": "2024-04-16_2024年3月份社会消费品零售总额增长3.1%-国家统计局.xls",
+      "file": "2024-04-16_2024年3月份社会消费品零售总额增长3.1%.xls",
       "metric": "社会消费品零售总额",
       "extracted": {
         "metric": "社会消费品零售总额",
@@ -9769,7 +10939,7 @@
       }
     },
     {
-      "file": "2024-04-16_2024年3月份社会消费品零售总额增长3.1%-国家统计局.xls",
+      "file": "2024-04-16_2024年3月份社会消费品零售总额增长3.1%.xls",
       "metric": "除汽车以外的消费品零售额",
       "extracted": {
         "metric": "除汽车以外的消费品零售额",
@@ -9782,7 +10952,7 @@
       }
     },
     {
-      "file": "2024-04-16_2024年3月份社会消费品零售总额增长3.1%-国家统计局.xls",
+      "file": "2024-04-16_2024年3月份社会消费品零售总额增长3.1%.xls",
       "metric": "限额以上单位消费品零售额",
       "extracted": {
         "metric": "限额以上单位消费品零售额",
@@ -9795,7 +10965,7 @@
       }
     },
     {
-      "file": "2024-04-16_2024年3月份社会消费品零售总额增长3.1%-国家统计局.xls",
+      "file": "2024-04-16_2024年3月份社会消费品零售总额增长3.1%.xls",
       "metric": "实物商品网上零售额",
       "extracted": {
         "metric": "实物商品网上零售额",
@@ -9808,7 +10978,7 @@
       }
     },
     {
-      "file": "2024-04-16_2024年3月份社会消费品零售总额增长3.1%-国家统计局.xls",
+      "file": "2024-04-16_2024年3月份社会消费品零售总额增长3.1%.xls",
       "metric": "城镇",
       "extracted": {
         "metric": "城镇",
@@ -9821,7 +10991,7 @@
       }
     },
     {
-      "file": "2024-04-16_2024年3月份社会消费品零售总额增长3.1%-国家统计局.xls",
+      "file": "2024-04-16_2024年3月份社会消费品零售总额增长3.1%.xls",
       "metric": "乡村",
       "extracted": {
         "metric": "乡村",
@@ -9834,7 +11004,7 @@
       }
     },
     {
-      "file": "2024-04-16_2024年3月份社会消费品零售总额增长3.1%-国家统计局.xls",
+      "file": "2024-04-16_2024年3月份社会消费品零售总额增长3.1%.xls",
       "metric": "餐饮收入",
       "extracted": {
         "metric": "餐饮收入",
@@ -9847,7 +11017,7 @@
       }
     },
     {
-      "file": "2024-04-16_2024年3月份社会消费品零售总额增长3.1%-国家统计局.xls",
+      "file": "2024-04-16_2024年3月份社会消费品零售总额增长3.1%.xls",
       "metric": "限额以上单位餐饮收入",
       "extracted": {
         "metric": "限额以上单位餐饮收入",
@@ -9860,7 +11030,7 @@
       }
     },
     {
-      "file": "2024-04-16_2024年3月份社会消费品零售总额增长3.1%-国家统计局.xls",
+      "file": "2024-04-16_2024年3月份社会消费品零售总额增长3.1%.xls",
       "metric": "商品零售额",
       "extracted": {
         "metric": "商品零售额",
@@ -9873,7 +11043,7 @@
       }
     },
     {
-      "file": "2024-04-16_2024年3月份社会消费品零售总额增长3.1%-国家统计局.xls",
+      "file": "2024-04-16_2024年3月份社会消费品零售总额增长3.1%.xls",
       "metric": "限额以上单位商品零售额",
       "extracted": {
         "metric": "限额以上单位商品零售额",
@@ -9886,7 +11056,7 @@
       }
     },
     {
-      "file": "2024-04-16_2024年3月份社会消费品零售总额增长3.1%-国家统计局.xls",
+      "file": "2024-04-16_2024年3月份社会消费品零售总额增长3.1%.xls",
       "metric": "粮油、食品类",
       "extracted": {
         "metric": "粮油、食品类",
@@ -9899,7 +11069,7 @@
       }
     },
     {
-      "file": "2024-04-16_2024年3月份社会消费品零售总额增长3.1%-国家统计局.xls",
+      "file": "2024-04-16_2024年3月份社会消费品零售总额增长3.1%.xls",
       "metric": "饮料类",
       "extracted": {
         "metric": "饮料类",
@@ -9912,7 +11082,7 @@
       }
     },
     {
-      "file": "2024-04-16_2024年3月份社会消费品零售总额增长3.1%-国家统计局.xls",
+      "file": "2024-04-16_2024年3月份社会消费品零售总额增长3.1%.xls",
       "metric": "烟酒类",
       "extracted": {
         "metric": "烟酒类",
@@ -9925,7 +11095,7 @@
       }
     },
     {
-      "file": "2024-04-16_2024年3月份社会消费品零售总额增长3.1%-国家统计局.xls",
+      "file": "2024-04-16_2024年3月份社会消费品零售总额增长3.1%.xls",
       "metric": "服装、鞋帽、针纺织品类",
       "extracted": {
         "metric": "服装、鞋帽、针纺织品类",
@@ -9938,7 +11108,7 @@
       }
     },
     {
-      "file": "2024-04-16_2024年3月份社会消费品零售总额增长3.1%-国家统计局.xls",
+      "file": "2024-04-16_2024年3月份社会消费品零售总额增长3.1%.xls",
       "metric": "化妆品类",
       "extracted": {
         "metric": "化妆品类",
@@ -9951,7 +11121,7 @@
       }
     },
     {
-      "file": "2024-04-16_2024年3月份社会消费品零售总额增长3.1%-国家统计局.xls",
+      "file": "2024-04-16_2024年3月份社会消费品零售总额增长3.1%.xls",
       "metric": "金银珠宝类",
       "extracted": {
         "metric": "金银珠宝类",
@@ -9964,7 +11134,7 @@
       }
     },
     {
-      "file": "2024-04-16_2024年3月份社会消费品零售总额增长3.1%-国家统计局.xls",
+      "file": "2024-04-16_2024年3月份社会消费品零售总额增长3.1%.xls",
       "metric": "日用品类",
       "extracted": {
         "metric": "日用品类",
@@ -9977,7 +11147,7 @@
       }
     },
     {
-      "file": "2024-04-16_2024年3月份社会消费品零售总额增长3.1%-国家统计局.xls",
+      "file": "2024-04-16_2024年3月份社会消费品零售总额增长3.1%.xls",
       "metric": "体育、娱乐用品类",
       "extracted": {
         "metric": "体育、娱乐用品类",
@@ -9990,7 +11160,7 @@
       }
     },
     {
-      "file": "2024-04-16_2024年3月份社会消费品零售总额增长3.1%-国家统计局.xls",
+      "file": "2024-04-16_2024年3月份社会消费品零售总额增长3.1%.xls",
       "metric": "家用电器和音像器材类",
       "extracted": {
         "metric": "家用电器和音像器材类",
@@ -10003,7 +11173,7 @@
       }
     },
     {
-      "file": "2024-04-16_2024年3月份社会消费品零售总额增长3.1%-国家统计局.xls",
+      "file": "2024-04-16_2024年3月份社会消费品零售总额增长3.1%.xls",
       "metric": "中西药品类",
       "extracted": {
         "metric": "中西药品类",
@@ -10016,7 +11186,7 @@
       }
     },
     {
-      "file": "2024-04-16_2024年3月份社会消费品零售总额增长3.1%-国家统计局.xls",
+      "file": "2024-04-16_2024年3月份社会消费品零售总额增长3.1%.xls",
       "metric": "文化办公用品类",
       "extracted": {
         "metric": "文化办公用品类",
@@ -10029,7 +11199,7 @@
       }
     },
     {
-      "file": "2024-04-16_2024年3月份社会消费品零售总额增长3.1%-国家统计局.xls",
+      "file": "2024-04-16_2024年3月份社会消费品零售总额增长3.1%.xls",
       "metric": "家具类",
       "extracted": {
         "metric": "家具类",
@@ -10042,7 +11212,7 @@
       }
     },
     {
-      "file": "2024-04-16_2024年3月份社会消费品零售总额增长3.1%-国家统计局.xls",
+      "file": "2024-04-16_2024年3月份社会消费品零售总额增长3.1%.xls",
       "metric": "通讯器材类",
       "extracted": {
         "metric": "通讯器材类",
@@ -10055,7 +11225,7 @@
       }
     },
     {
-      "file": "2024-04-16_2024年3月份社会消费品零售总额增长3.1%-国家统计局.xls",
+      "file": "2024-04-16_2024年3月份社会消费品零售总额增长3.1%.xls",
       "metric": "石油及制品类",
       "extracted": {
         "metric": "石油及制品类",
@@ -10068,7 +11238,7 @@
       }
     },
     {
-      "file": "2024-04-16_2024年3月份社会消费品零售总额增长3.1%-国家统计局.xls",
+      "file": "2024-04-16_2024年3月份社会消费品零售总额增长3.1%.xls",
       "metric": "汽车类",
       "extracted": {
         "metric": "汽车类",
@@ -10081,7 +11251,7 @@
       }
     },
     {
-      "file": "2024-04-16_2024年3月份社会消费品零售总额增长3.1%-国家统计局.xls",
+      "file": "2024-04-16_2024年3月份社会消费品零售总额增长3.1%.xls",
       "metric": "建筑及装潢材料类",
       "extracted": {
         "metric": "建筑及装潢材料类",
@@ -10094,7 +11264,7 @@
       }
     },
     {
-      "file": "2024-05-17_2024年4月份社会消费品零售总额增长2.3%-国家统计局.xls",
+      "file": "2024-05-17_2024年4月份社会消费品零售总额增长2.3%.xls",
       "metric": "社会消费品零售总额",
       "extracted": {
         "metric": "社会消费品零售总额",
@@ -10107,7 +11277,7 @@
       }
     },
     {
-      "file": "2024-05-17_2024年4月份社会消费品零售总额增长2.3%-国家统计局.xls",
+      "file": "2024-05-17_2024年4月份社会消费品零售总额增长2.3%.xls",
       "metric": "除汽车以外的消费品零售额",
       "extracted": {
         "metric": "除汽车以外的消费品零售额",
@@ -10120,7 +11290,7 @@
       }
     },
     {
-      "file": "2024-05-17_2024年4月份社会消费品零售总额增长2.3%-国家统计局.xls",
+      "file": "2024-05-17_2024年4月份社会消费品零售总额增长2.3%.xls",
       "metric": "限额以上单位消费品零售额",
       "extracted": {
         "metric": "限额以上单位消费品零售额",
@@ -10133,7 +11303,7 @@
       }
     },
     {
-      "file": "2024-05-17_2024年4月份社会消费品零售总额增长2.3%-国家统计局.xls",
+      "file": "2024-05-17_2024年4月份社会消费品零售总额增长2.3%.xls",
       "metric": "实物商品网上零售额",
       "extracted": {
         "metric": "实物商品网上零售额",
@@ -10146,7 +11316,7 @@
       }
     },
     {
-      "file": "2024-05-17_2024年4月份社会消费品零售总额增长2.3%-国家统计局.xls",
+      "file": "2024-05-17_2024年4月份社会消费品零售总额增长2.3%.xls",
       "metric": "城镇",
       "extracted": {
         "metric": "城镇",
@@ -10159,7 +11329,7 @@
       }
     },
     {
-      "file": "2024-05-17_2024年4月份社会消费品零售总额增长2.3%-国家统计局.xls",
+      "file": "2024-05-17_2024年4月份社会消费品零售总额增长2.3%.xls",
       "metric": "乡村",
       "extracted": {
         "metric": "乡村",
@@ -10172,7 +11342,7 @@
       }
     },
     {
-      "file": "2024-05-17_2024年4月份社会消费品零售总额增长2.3%-国家统计局.xls",
+      "file": "2024-05-17_2024年4月份社会消费品零售总额增长2.3%.xls",
       "metric": "餐饮收入",
       "extracted": {
         "metric": "餐饮收入",
@@ -10185,7 +11355,7 @@
       }
     },
     {
-      "file": "2024-05-17_2024年4月份社会消费品零售总额增长2.3%-国家统计局.xls",
+      "file": "2024-05-17_2024年4月份社会消费品零售总额增长2.3%.xls",
       "metric": "限额以上单位餐饮收入",
       "extracted": {
         "metric": "限额以上单位餐饮收入",
@@ -10198,7 +11368,7 @@
       }
     },
     {
-      "file": "2024-05-17_2024年4月份社会消费品零售总额增长2.3%-国家统计局.xls",
+      "file": "2024-05-17_2024年4月份社会消费品零售总额增长2.3%.xls",
       "metric": "商品零售额",
       "extracted": {
         "metric": "商品零售额",
@@ -10211,7 +11381,7 @@
       }
     },
     {
-      "file": "2024-05-17_2024年4月份社会消费品零售总额增长2.3%-国家统计局.xls",
+      "file": "2024-05-17_2024年4月份社会消费品零售总额增长2.3%.xls",
       "metric": "限额以上单位商品零售额",
       "extracted": {
         "metric": "限额以上单位商品零售额",
@@ -10224,7 +11394,7 @@
       }
     },
     {
-      "file": "2024-05-17_2024年4月份社会消费品零售总额增长2.3%-国家统计局.xls",
+      "file": "2024-05-17_2024年4月份社会消费品零售总额增长2.3%.xls",
       "metric": "粮油、食品类",
       "extracted": {
         "metric": "粮油、食品类",
@@ -10237,7 +11407,7 @@
       }
     },
     {
-      "file": "2024-05-17_2024年4月份社会消费品零售总额增长2.3%-国家统计局.xls",
+      "file": "2024-05-17_2024年4月份社会消费品零售总额增长2.3%.xls",
       "metric": "饮料类",
       "extracted": {
         "metric": "饮料类",
@@ -10250,7 +11420,7 @@
       }
     },
     {
-      "file": "2024-05-17_2024年4月份社会消费品零售总额增长2.3%-国家统计局.xls",
+      "file": "2024-05-17_2024年4月份社会消费品零售总额增长2.3%.xls",
       "metric": "烟酒类",
       "extracted": {
         "metric": "烟酒类",
@@ -10263,7 +11433,7 @@
       }
     },
     {
-      "file": "2024-05-17_2024年4月份社会消费品零售总额增长2.3%-国家统计局.xls",
+      "file": "2024-05-17_2024年4月份社会消费品零售总额增长2.3%.xls",
       "metric": "服装、鞋帽、针纺织品类",
       "extracted": {
         "metric": "服装、鞋帽、针纺织品类",
@@ -10276,7 +11446,7 @@
       }
     },
     {
-      "file": "2024-05-17_2024年4月份社会消费品零售总额增长2.3%-国家统计局.xls",
+      "file": "2024-05-17_2024年4月份社会消费品零售总额增长2.3%.xls",
       "metric": "化妆品类",
       "extracted": {
         "metric": "化妆品类",
@@ -10289,7 +11459,7 @@
       }
     },
     {
-      "file": "2024-05-17_2024年4月份社会消费品零售总额增长2.3%-国家统计局.xls",
+      "file": "2024-05-17_2024年4月份社会消费品零售总额增长2.3%.xls",
       "metric": "金银珠宝类",
       "extracted": {
         "metric": "金银珠宝类",
@@ -10302,7 +11472,7 @@
       }
     },
     {
-      "file": "2024-05-17_2024年4月份社会消费品零售总额增长2.3%-国家统计局.xls",
+      "file": "2024-05-17_2024年4月份社会消费品零售总额增长2.3%.xls",
       "metric": "日用品类",
       "extracted": {
         "metric": "日用品类",
@@ -10315,7 +11485,7 @@
       }
     },
     {
-      "file": "2024-05-17_2024年4月份社会消费品零售总额增长2.3%-国家统计局.xls",
+      "file": "2024-05-17_2024年4月份社会消费品零售总额增长2.3%.xls",
       "metric": "体育、娱乐用品类",
       "extracted": {
         "metric": "体育、娱乐用品类",
@@ -10328,7 +11498,7 @@
       }
     },
     {
-      "file": "2024-05-17_2024年4月份社会消费品零售总额增长2.3%-国家统计局.xls",
+      "file": "2024-05-17_2024年4月份社会消费品零售总额增长2.3%.xls",
       "metric": "家用电器和音像器材类",
       "extracted": {
         "metric": "家用电器和音像器材类",
@@ -10341,7 +11511,7 @@
       }
     },
     {
-      "file": "2024-05-17_2024年4月份社会消费品零售总额增长2.3%-国家统计局.xls",
+      "file": "2024-05-17_2024年4月份社会消费品零售总额增长2.3%.xls",
       "metric": "中西药品类",
       "extracted": {
         "metric": "中西药品类",
@@ -10354,7 +11524,7 @@
       }
     },
     {
-      "file": "2024-05-17_2024年4月份社会消费品零售总额增长2.3%-国家统计局.xls",
+      "file": "2024-05-17_2024年4月份社会消费品零售总额增长2.3%.xls",
       "metric": "文化办公用品类",
       "extracted": {
         "metric": "文化办公用品类",
@@ -10367,7 +11537,7 @@
       }
     },
     {
-      "file": "2024-05-17_2024年4月份社会消费品零售总额增长2.3%-国家统计局.xls",
+      "file": "2024-05-17_2024年4月份社会消费品零售总额增长2.3%.xls",
       "metric": "家具类",
       "extracted": {
         "metric": "家具类",
@@ -10380,7 +11550,7 @@
       }
     },
     {
-      "file": "2024-05-17_2024年4月份社会消费品零售总额增长2.3%-国家统计局.xls",
+      "file": "2024-05-17_2024年4月份社会消费品零售总额增长2.3%.xls",
       "metric": "通讯器材类",
       "extracted": {
         "metric": "通讯器材类",
@@ -10393,7 +11563,7 @@
       }
     },
     {
-      "file": "2024-05-17_2024年4月份社会消费品零售总额增长2.3%-国家统计局.xls",
+      "file": "2024-05-17_2024年4月份社会消费品零售总额增长2.3%.xls",
       "metric": "石油及制品类",
       "extracted": {
         "metric": "石油及制品类",
@@ -10406,7 +11576,7 @@
       }
     },
     {
-      "file": "2024-05-17_2024年4月份社会消费品零售总额增长2.3%-国家统计局.xls",
+      "file": "2024-05-17_2024年4月份社会消费品零售总额增长2.3%.xls",
       "metric": "汽车类",
       "extracted": {
         "metric": "汽车类",
@@ -10419,7 +11589,7 @@
       }
     },
     {
-      "file": "2024-05-17_2024年4月份社会消费品零售总额增长2.3%-国家统计局.xls",
+      "file": "2024-05-17_2024年4月份社会消费品零售总额增长2.3%.xls",
       "metric": "建筑及装潢材料类",
       "extracted": {
         "metric": "建筑及装潢材料类",
@@ -10432,7 +11602,7 @@
       }
     },
     {
-      "file": "2024-06-17_2024年5月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2024-06-17_2024年5月份社会消费品零售总额增长3.7%.xls",
       "metric": "社会消费品零售总额",
       "extracted": {
         "metric": "社会消费品零售总额",
@@ -10445,7 +11615,7 @@
       }
     },
     {
-      "file": "2024-06-17_2024年5月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2024-06-17_2024年5月份社会消费品零售总额增长3.7%.xls",
       "metric": "除汽车以外的消费品零售额",
       "extracted": {
         "metric": "除汽车以外的消费品零售额",
@@ -10458,7 +11628,7 @@
       }
     },
     {
-      "file": "2024-06-17_2024年5月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2024-06-17_2024年5月份社会消费品零售总额增长3.7%.xls",
       "metric": "限额以上单位消费品零售额",
       "extracted": {
         "metric": "限额以上单位消费品零售额",
@@ -10471,7 +11641,7 @@
       }
     },
     {
-      "file": "2024-06-17_2024年5月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2024-06-17_2024年5月份社会消费品零售总额增长3.7%.xls",
       "metric": "实物商品网上零售额",
       "extracted": {
         "metric": "实物商品网上零售额",
@@ -10484,7 +11654,7 @@
       }
     },
     {
-      "file": "2024-06-17_2024年5月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2024-06-17_2024年5月份社会消费品零售总额增长3.7%.xls",
       "metric": "城镇",
       "extracted": {
         "metric": "城镇",
@@ -10497,7 +11667,7 @@
       }
     },
     {
-      "file": "2024-06-17_2024年5月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2024-06-17_2024年5月份社会消费品零售总额增长3.7%.xls",
       "metric": "乡村",
       "extracted": {
         "metric": "乡村",
@@ -10510,7 +11680,7 @@
       }
     },
     {
-      "file": "2024-06-17_2024年5月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2024-06-17_2024年5月份社会消费品零售总额增长3.7%.xls",
       "metric": "餐饮收入",
       "extracted": {
         "metric": "餐饮收入",
@@ -10523,7 +11693,7 @@
       }
     },
     {
-      "file": "2024-06-17_2024年5月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2024-06-17_2024年5月份社会消费品零售总额增长3.7%.xls",
       "metric": "限额以上单位餐饮收入",
       "extracted": {
         "metric": "限额以上单位餐饮收入",
@@ -10536,7 +11706,7 @@
       }
     },
     {
-      "file": "2024-06-17_2024年5月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2024-06-17_2024年5月份社会消费品零售总额增长3.7%.xls",
       "metric": "商品零售额",
       "extracted": {
         "metric": "商品零售额",
@@ -10549,7 +11719,7 @@
       }
     },
     {
-      "file": "2024-06-17_2024年5月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2024-06-17_2024年5月份社会消费品零售总额增长3.7%.xls",
       "metric": "限额以上单位商品零售额",
       "extracted": {
         "metric": "限额以上单位商品零售额",
@@ -10562,7 +11732,7 @@
       }
     },
     {
-      "file": "2024-06-17_2024年5月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2024-06-17_2024年5月份社会消费品零售总额增长3.7%.xls",
       "metric": "粮油、食品类",
       "extracted": {
         "metric": "粮油、食品类",
@@ -10575,7 +11745,7 @@
       }
     },
     {
-      "file": "2024-06-17_2024年5月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2024-06-17_2024年5月份社会消费品零售总额增长3.7%.xls",
       "metric": "饮料类",
       "extracted": {
         "metric": "饮料类",
@@ -10588,7 +11758,7 @@
       }
     },
     {
-      "file": "2024-06-17_2024年5月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2024-06-17_2024年5月份社会消费品零售总额增长3.7%.xls",
       "metric": "烟酒类",
       "extracted": {
         "metric": "烟酒类",
@@ -10601,7 +11771,7 @@
       }
     },
     {
-      "file": "2024-06-17_2024年5月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2024-06-17_2024年5月份社会消费品零售总额增长3.7%.xls",
       "metric": "服装、鞋帽、针纺织品类",
       "extracted": {
         "metric": "服装、鞋帽、针纺织品类",
@@ -10614,7 +11784,7 @@
       }
     },
     {
-      "file": "2024-06-17_2024年5月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2024-06-17_2024年5月份社会消费品零售总额增长3.7%.xls",
       "metric": "化妆品类",
       "extracted": {
         "metric": "化妆品类",
@@ -10627,7 +11797,7 @@
       }
     },
     {
-      "file": "2024-06-17_2024年5月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2024-06-17_2024年5月份社会消费品零售总额增长3.7%.xls",
       "metric": "金银珠宝类",
       "extracted": {
         "metric": "金银珠宝类",
@@ -10640,7 +11810,7 @@
       }
     },
     {
-      "file": "2024-06-17_2024年5月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2024-06-17_2024年5月份社会消费品零售总额增长3.7%.xls",
       "metric": "日用品类",
       "extracted": {
         "metric": "日用品类",
@@ -10653,7 +11823,7 @@
       }
     },
     {
-      "file": "2024-06-17_2024年5月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2024-06-17_2024年5月份社会消费品零售总额增长3.7%.xls",
       "metric": "体育、娱乐用品类",
       "extracted": {
         "metric": "体育、娱乐用品类",
@@ -10666,7 +11836,7 @@
       }
     },
     {
-      "file": "2024-06-17_2024年5月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2024-06-17_2024年5月份社会消费品零售总额增长3.7%.xls",
       "metric": "家用电器和音像器材类",
       "extracted": {
         "metric": "家用电器和音像器材类",
@@ -10679,7 +11849,7 @@
       }
     },
     {
-      "file": "2024-06-17_2024年5月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2024-06-17_2024年5月份社会消费品零售总额增长3.7%.xls",
       "metric": "中西药品类",
       "extracted": {
         "metric": "中西药品类",
@@ -10692,7 +11862,7 @@
       }
     },
     {
-      "file": "2024-06-17_2024年5月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2024-06-17_2024年5月份社会消费品零售总额增长3.7%.xls",
       "metric": "文化办公用品类",
       "extracted": {
         "metric": "文化办公用品类",
@@ -10705,7 +11875,7 @@
       }
     },
     {
-      "file": "2024-06-17_2024年5月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2024-06-17_2024年5月份社会消费品零售总额增长3.7%.xls",
       "metric": "家具类",
       "extracted": {
         "metric": "家具类",
@@ -10718,7 +11888,7 @@
       }
     },
     {
-      "file": "2024-06-17_2024年5月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2024-06-17_2024年5月份社会消费品零售总额增长3.7%.xls",
       "metric": "通讯器材类",
       "extracted": {
         "metric": "通讯器材类",
@@ -10731,7 +11901,7 @@
       }
     },
     {
-      "file": "2024-06-17_2024年5月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2024-06-17_2024年5月份社会消费品零售总额增长3.7%.xls",
       "metric": "石油及制品类",
       "extracted": {
         "metric": "石油及制品类",
@@ -10744,7 +11914,7 @@
       }
     },
     {
-      "file": "2024-06-17_2024年5月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2024-06-17_2024年5月份社会消费品零售总额增长3.7%.xls",
       "metric": "汽车类",
       "extracted": {
         "metric": "汽车类",
@@ -10757,7 +11927,7 @@
       }
     },
     {
-      "file": "2024-06-17_2024年5月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2024-06-17_2024年5月份社会消费品零售总额增长3.7%.xls",
       "metric": "建筑及装潢材料类",
       "extracted": {
         "metric": "建筑及装潢材料类",
@@ -10770,7 +11940,7 @@
       }
     },
     {
-      "file": "2024-07-15_2024年6月份社会消费品零售总额同比增长3.7%-国家统计局.xls",
+      "file": "2024-07-15_2024年6月份社会消费品零售总额同比增长3.7%.xls",
       "metric": "社会消费品零售总额",
       "extracted": {
         "metric": "社会消费品零售总额",
@@ -10783,7 +11953,7 @@
       }
     },
     {
-      "file": "2024-07-15_2024年6月份社会消费品零售总额同比增长3.7%-国家统计局.xls",
+      "file": "2024-07-15_2024年6月份社会消费品零售总额同比增长3.7%.xls",
       "metric": "除汽车以外的消费品零售额",
       "extracted": {
         "metric": "除汽车以外的消费品零售额",
@@ -10796,7 +11966,7 @@
       }
     },
     {
-      "file": "2024-07-15_2024年6月份社会消费品零售总额同比增长3.7%-国家统计局.xls",
+      "file": "2024-07-15_2024年6月份社会消费品零售总额同比增长3.7%.xls",
       "metric": "限额以上单位消费品零售额",
       "extracted": {
         "metric": "限额以上单位消费品零售额",
@@ -10809,7 +11979,7 @@
       }
     },
     {
-      "file": "2024-07-15_2024年6月份社会消费品零售总额同比增长3.7%-国家统计局.xls",
+      "file": "2024-07-15_2024年6月份社会消费品零售总额同比增长3.7%.xls",
       "metric": "实物商品网上零售额",
       "extracted": {
         "metric": "实物商品网上零售额",
@@ -10822,7 +11992,7 @@
       }
     },
     {
-      "file": "2024-07-15_2024年6月份社会消费品零售总额同比增长3.7%-国家统计局.xls",
+      "file": "2024-07-15_2024年6月份社会消费品零售总额同比增长3.7%.xls",
       "metric": "城镇",
       "extracted": {
         "metric": "城镇",
@@ -10835,7 +12005,7 @@
       }
     },
     {
-      "file": "2024-07-15_2024年6月份社会消费品零售总额同比增长3.7%-国家统计局.xls",
+      "file": "2024-07-15_2024年6月份社会消费品零售总额同比增长3.7%.xls",
       "metric": "乡村",
       "extracted": {
         "metric": "乡村",
@@ -10848,7 +12018,7 @@
       }
     },
     {
-      "file": "2024-07-15_2024年6月份社会消费品零售总额同比增长3.7%-国家统计局.xls",
+      "file": "2024-07-15_2024年6月份社会消费品零售总额同比增长3.7%.xls",
       "metric": "餐饮收入",
       "extracted": {
         "metric": "餐饮收入",
@@ -10861,7 +12031,7 @@
       }
     },
     {
-      "file": "2024-07-15_2024年6月份社会消费品零售总额同比增长3.7%-国家统计局.xls",
+      "file": "2024-07-15_2024年6月份社会消费品零售总额同比增长3.7%.xls",
       "metric": "限额以上单位餐饮收入",
       "extracted": {
         "metric": "限额以上单位餐饮收入",
@@ -10874,7 +12044,7 @@
       }
     },
     {
-      "file": "2024-07-15_2024年6月份社会消费品零售总额同比增长3.7%-国家统计局.xls",
+      "file": "2024-07-15_2024年6月份社会消费品零售总额同比增长3.7%.xls",
       "metric": "商品零售额",
       "extracted": {
         "metric": "商品零售额",
@@ -10887,7 +12057,7 @@
       }
     },
     {
-      "file": "2024-07-15_2024年6月份社会消费品零售总额同比增长3.7%-国家统计局.xls",
+      "file": "2024-07-15_2024年6月份社会消费品零售总额同比增长3.7%.xls",
       "metric": "限额以上单位商品零售额",
       "extracted": {
         "metric": "限额以上单位商品零售额",
@@ -10900,7 +12070,7 @@
       }
     },
     {
-      "file": "2024-07-15_2024年6月份社会消费品零售总额同比增长3.7%-国家统计局.xls",
+      "file": "2024-07-15_2024年6月份社会消费品零售总额同比增长3.7%.xls",
       "metric": "粮油、食品类",
       "extracted": {
         "metric": "粮油、食品类",
@@ -10913,7 +12083,7 @@
       }
     },
     {
-      "file": "2024-07-15_2024年6月份社会消费品零售总额同比增长3.7%-国家统计局.xls",
+      "file": "2024-07-15_2024年6月份社会消费品零售总额同比增长3.7%.xls",
       "metric": "饮料类",
       "extracted": {
         "metric": "饮料类",
@@ -10926,7 +12096,7 @@
       }
     },
     {
-      "file": "2024-07-15_2024年6月份社会消费品零售总额同比增长3.7%-国家统计局.xls",
+      "file": "2024-07-15_2024年6月份社会消费品零售总额同比增长3.7%.xls",
       "metric": "烟酒类",
       "extracted": {
         "metric": "烟酒类",
@@ -10939,7 +12109,7 @@
       }
     },
     {
-      "file": "2024-07-15_2024年6月份社会消费品零售总额同比增长3.7%-国家统计局.xls",
+      "file": "2024-07-15_2024年6月份社会消费品零售总额同比增长3.7%.xls",
       "metric": "服装、鞋帽、针纺织品类",
       "extracted": {
         "metric": "服装、鞋帽、针纺织品类",
@@ -10952,7 +12122,7 @@
       }
     },
     {
-      "file": "2024-07-15_2024年6月份社会消费品零售总额同比增长3.7%-国家统计局.xls",
+      "file": "2024-07-15_2024年6月份社会消费品零售总额同比增长3.7%.xls",
       "metric": "化妆品类",
       "extracted": {
         "metric": "化妆品类",
@@ -10965,7 +12135,7 @@
       }
     },
     {
-      "file": "2024-07-15_2024年6月份社会消费品零售总额同比增长3.7%-国家统计局.xls",
+      "file": "2024-07-15_2024年6月份社会消费品零售总额同比增长3.7%.xls",
       "metric": "金银珠宝类",
       "extracted": {
         "metric": "金银珠宝类",
@@ -10978,7 +12148,7 @@
       }
     },
     {
-      "file": "2024-07-15_2024年6月份社会消费品零售总额同比增长3.7%-国家统计局.xls",
+      "file": "2024-07-15_2024年6月份社会消费品零售总额同比增长3.7%.xls",
       "metric": "日用品类",
       "extracted": {
         "metric": "日用品类",
@@ -10991,7 +12161,7 @@
       }
     },
     {
-      "file": "2024-07-15_2024年6月份社会消费品零售总额同比增长3.7%-国家统计局.xls",
+      "file": "2024-07-15_2024年6月份社会消费品零售总额同比增长3.7%.xls",
       "metric": "体育、娱乐用品类",
       "extracted": {
         "metric": "体育、娱乐用品类",
@@ -11004,7 +12174,7 @@
       }
     },
     {
-      "file": "2024-07-15_2024年6月份社会消费品零售总额同比增长3.7%-国家统计局.xls",
+      "file": "2024-07-15_2024年6月份社会消费品零售总额同比增长3.7%.xls",
       "metric": "家用电器和音像器材类",
       "extracted": {
         "metric": "家用电器和音像器材类",
@@ -11017,7 +12187,7 @@
       }
     },
     {
-      "file": "2024-07-15_2024年6月份社会消费品零售总额同比增长3.7%-国家统计局.xls",
+      "file": "2024-07-15_2024年6月份社会消费品零售总额同比增长3.7%.xls",
       "metric": "中西药品类",
       "extracted": {
         "metric": "中西药品类",
@@ -11030,7 +12200,7 @@
       }
     },
     {
-      "file": "2024-07-15_2024年6月份社会消费品零售总额同比增长3.7%-国家统计局.xls",
+      "file": "2024-07-15_2024年6月份社会消费品零售总额同比增长3.7%.xls",
       "metric": "文化办公用品类",
       "extracted": {
         "metric": "文化办公用品类",
@@ -11043,7 +12213,7 @@
       }
     },
     {
-      "file": "2024-07-15_2024年6月份社会消费品零售总额同比增长3.7%-国家统计局.xls",
+      "file": "2024-07-15_2024年6月份社会消费品零售总额同比增长3.7%.xls",
       "metric": "家具类",
       "extracted": {
         "metric": "家具类",
@@ -11056,7 +12226,7 @@
       }
     },
     {
-      "file": "2024-07-15_2024年6月份社会消费品零售总额同比增长3.7%-国家统计局.xls",
+      "file": "2024-07-15_2024年6月份社会消费品零售总额同比增长3.7%.xls",
       "metric": "通讯器材类",
       "extracted": {
         "metric": "通讯器材类",
@@ -11069,7 +12239,7 @@
       }
     },
     {
-      "file": "2024-07-15_2024年6月份社会消费品零售总额同比增长3.7%-国家统计局.xls",
+      "file": "2024-07-15_2024年6月份社会消费品零售总额同比增长3.7%.xls",
       "metric": "石油及制品类",
       "extracted": {
         "metric": "石油及制品类",
@@ -11082,7 +12252,7 @@
       }
     },
     {
-      "file": "2024-07-15_2024年6月份社会消费品零售总额同比增长3.7%-国家统计局.xls",
+      "file": "2024-07-15_2024年6月份社会消费品零售总额同比增长3.7%.xls",
       "metric": "汽车类",
       "extracted": {
         "metric": "汽车类",
@@ -11095,7 +12265,7 @@
       }
     },
     {
-      "file": "2024-07-15_2024年6月份社会消费品零售总额同比增长3.7%-国家统计局.xls",
+      "file": "2024-07-15_2024年6月份社会消费品零售总额同比增长3.7%.xls",
       "metric": "建筑及装潢材料类",
       "extracted": {
         "metric": "建筑及装潢材料类",
@@ -11108,7 +12278,7 @@
       }
     },
     {
-      "file": "2024-08-15_2024年7月份社会消费品零售总额增长2.7%-国家统计局.xls",
+      "file": "2024-08-15_2024年7月份社会消费品零售总额增长2.7%.xls",
       "metric": "社会消费品零售总额",
       "extracted": {
         "metric": "社会消费品零售总额",
@@ -11121,7 +12291,7 @@
       }
     },
     {
-      "file": "2024-08-15_2024年7月份社会消费品零售总额增长2.7%-国家统计局.xls",
+      "file": "2024-08-15_2024年7月份社会消费品零售总额增长2.7%.xls",
       "metric": "除汽车以外的消费品零售额",
       "extracted": {
         "metric": "除汽车以外的消费品零售额",
@@ -11134,7 +12304,7 @@
       }
     },
     {
-      "file": "2024-08-15_2024年7月份社会消费品零售总额增长2.7%-国家统计局.xls",
+      "file": "2024-08-15_2024年7月份社会消费品零售总额增长2.7%.xls",
       "metric": "限额以上单位消费品零售额",
       "extracted": {
         "metric": "限额以上单位消费品零售额",
@@ -11147,7 +12317,7 @@
       }
     },
     {
-      "file": "2024-08-15_2024年7月份社会消费品零售总额增长2.7%-国家统计局.xls",
+      "file": "2024-08-15_2024年7月份社会消费品零售总额增长2.7%.xls",
       "metric": "实物商品网上零售额",
       "extracted": {
         "metric": "实物商品网上零售额",
@@ -11160,7 +12330,7 @@
       }
     },
     {
-      "file": "2024-08-15_2024年7月份社会消费品零售总额增长2.7%-国家统计局.xls",
+      "file": "2024-08-15_2024年7月份社会消费品零售总额增长2.7%.xls",
       "metric": "城镇",
       "extracted": {
         "metric": "城镇",
@@ -11173,7 +12343,7 @@
       }
     },
     {
-      "file": "2024-08-15_2024年7月份社会消费品零售总额增长2.7%-国家统计局.xls",
+      "file": "2024-08-15_2024年7月份社会消费品零售总额增长2.7%.xls",
       "metric": "乡村",
       "extracted": {
         "metric": "乡村",
@@ -11186,7 +12356,7 @@
       }
     },
     {
-      "file": "2024-08-15_2024年7月份社会消费品零售总额增长2.7%-国家统计局.xls",
+      "file": "2024-08-15_2024年7月份社会消费品零售总额增长2.7%.xls",
       "metric": "餐饮收入",
       "extracted": {
         "metric": "餐饮收入",
@@ -11199,7 +12369,7 @@
       }
     },
     {
-      "file": "2024-08-15_2024年7月份社会消费品零售总额增长2.7%-国家统计局.xls",
+      "file": "2024-08-15_2024年7月份社会消费品零售总额增长2.7%.xls",
       "metric": "限额以上单位餐饮收入",
       "extracted": {
         "metric": "限额以上单位餐饮收入",
@@ -11212,7 +12382,7 @@
       }
     },
     {
-      "file": "2024-08-15_2024年7月份社会消费品零售总额增长2.7%-国家统计局.xls",
+      "file": "2024-08-15_2024年7月份社会消费品零售总额增长2.7%.xls",
       "metric": "商品零售额",
       "extracted": {
         "metric": "商品零售额",
@@ -11225,7 +12395,7 @@
       }
     },
     {
-      "file": "2024-08-15_2024年7月份社会消费品零售总额增长2.7%-国家统计局.xls",
+      "file": "2024-08-15_2024年7月份社会消费品零售总额增长2.7%.xls",
       "metric": "限额以上单位商品零售额",
       "extracted": {
         "metric": "限额以上单位商品零售额",
@@ -11238,7 +12408,7 @@
       }
     },
     {
-      "file": "2024-08-15_2024年7月份社会消费品零售总额增长2.7%-国家统计局.xls",
+      "file": "2024-08-15_2024年7月份社会消费品零售总额增长2.7%.xls",
       "metric": "粮油、食品类",
       "extracted": {
         "metric": "粮油、食品类",
@@ -11251,7 +12421,7 @@
       }
     },
     {
-      "file": "2024-08-15_2024年7月份社会消费品零售总额增长2.7%-国家统计局.xls",
+      "file": "2024-08-15_2024年7月份社会消费品零售总额增长2.7%.xls",
       "metric": "饮料类",
       "extracted": {
         "metric": "饮料类",
@@ -11264,7 +12434,7 @@
       }
     },
     {
-      "file": "2024-08-15_2024年7月份社会消费品零售总额增长2.7%-国家统计局.xls",
+      "file": "2024-08-15_2024年7月份社会消费品零售总额增长2.7%.xls",
       "metric": "烟酒类",
       "extracted": {
         "metric": "烟酒类",
@@ -11277,7 +12447,7 @@
       }
     },
     {
-      "file": "2024-08-15_2024年7月份社会消费品零售总额增长2.7%-国家统计局.xls",
+      "file": "2024-08-15_2024年7月份社会消费品零售总额增长2.7%.xls",
       "metric": "服装、鞋帽、针纺织品类",
       "extracted": {
         "metric": "服装、鞋帽、针纺织品类",
@@ -11290,7 +12460,7 @@
       }
     },
     {
-      "file": "2024-08-15_2024年7月份社会消费品零售总额增长2.7%-国家统计局.xls",
+      "file": "2024-08-15_2024年7月份社会消费品零售总额增长2.7%.xls",
       "metric": "化妆品类",
       "extracted": {
         "metric": "化妆品类",
@@ -11303,7 +12473,7 @@
       }
     },
     {
-      "file": "2024-08-15_2024年7月份社会消费品零售总额增长2.7%-国家统计局.xls",
+      "file": "2024-08-15_2024年7月份社会消费品零售总额增长2.7%.xls",
       "metric": "金银珠宝类",
       "extracted": {
         "metric": "金银珠宝类",
@@ -11316,7 +12486,7 @@
       }
     },
     {
-      "file": "2024-08-15_2024年7月份社会消费品零售总额增长2.7%-国家统计局.xls",
+      "file": "2024-08-15_2024年7月份社会消费品零售总额增长2.7%.xls",
       "metric": "日用品类",
       "extracted": {
         "metric": "日用品类",
@@ -11329,7 +12499,7 @@
       }
     },
     {
-      "file": "2024-08-15_2024年7月份社会消费品零售总额增长2.7%-国家统计局.xls",
+      "file": "2024-08-15_2024年7月份社会消费品零售总额增长2.7%.xls",
       "metric": "体育、娱乐用品类",
       "extracted": {
         "metric": "体育、娱乐用品类",
@@ -11342,7 +12512,7 @@
       }
     },
     {
-      "file": "2024-08-15_2024年7月份社会消费品零售总额增长2.7%-国家统计局.xls",
+      "file": "2024-08-15_2024年7月份社会消费品零售总额增长2.7%.xls",
       "metric": "家用电器和音像器材类",
       "extracted": {
         "metric": "家用电器和音像器材类",
@@ -11355,7 +12525,7 @@
       }
     },
     {
-      "file": "2024-08-15_2024年7月份社会消费品零售总额增长2.7%-国家统计局.xls",
+      "file": "2024-08-15_2024年7月份社会消费品零售总额增长2.7%.xls",
       "metric": "中西药品类",
       "extracted": {
         "metric": "中西药品类",
@@ -11368,7 +12538,7 @@
       }
     },
     {
-      "file": "2024-08-15_2024年7月份社会消费品零售总额增长2.7%-国家统计局.xls",
+      "file": "2024-08-15_2024年7月份社会消费品零售总额增长2.7%.xls",
       "metric": "文化办公用品类",
       "extracted": {
         "metric": "文化办公用品类",
@@ -11381,7 +12551,7 @@
       }
     },
     {
-      "file": "2024-08-15_2024年7月份社会消费品零售总额增长2.7%-国家统计局.xls",
+      "file": "2024-08-15_2024年7月份社会消费品零售总额增长2.7%.xls",
       "metric": "家具类",
       "extracted": {
         "metric": "家具类",
@@ -11394,7 +12564,7 @@
       }
     },
     {
-      "file": "2024-08-15_2024年7月份社会消费品零售总额增长2.7%-国家统计局.xls",
+      "file": "2024-08-15_2024年7月份社会消费品零售总额增长2.7%.xls",
       "metric": "通讯器材类",
       "extracted": {
         "metric": "通讯器材类",
@@ -11407,7 +12577,7 @@
       }
     },
     {
-      "file": "2024-08-15_2024年7月份社会消费品零售总额增长2.7%-国家统计局.xls",
+      "file": "2024-08-15_2024年7月份社会消费品零售总额增长2.7%.xls",
       "metric": "石油及制品类",
       "extracted": {
         "metric": "石油及制品类",
@@ -11420,7 +12590,7 @@
       }
     },
     {
-      "file": "2024-08-15_2024年7月份社会消费品零售总额增长2.7%-国家统计局.xls",
+      "file": "2024-08-15_2024年7月份社会消费品零售总额增长2.7%.xls",
       "metric": "汽车类",
       "extracted": {
         "metric": "汽车类",
@@ -11433,7 +12603,7 @@
       }
     },
     {
-      "file": "2024-08-15_2024年7月份社会消费品零售总额增长2.7%-国家统计局.xls",
+      "file": "2024-08-15_2024年7月份社会消费品零售总额增长2.7%.xls",
       "metric": "建筑及装潢材料类",
       "extracted": {
         "metric": "建筑及装潢材料类",
@@ -11446,7 +12616,7 @@
       }
     },
     {
-      "file": "2024-09-14_2024年8月份社会消费品零售总额增长2.1%-国家统计局.xls",
+      "file": "2024-09-14_2024年8月份社会消费品零售总额增长2.1%.xls",
       "metric": "社会消费品零售总额",
       "extracted": {
         "metric": "社会消费品零售总额",
@@ -11459,7 +12629,7 @@
       }
     },
     {
-      "file": "2024-09-14_2024年8月份社会消费品零售总额增长2.1%-国家统计局.xls",
+      "file": "2024-09-14_2024年8月份社会消费品零售总额增长2.1%.xls",
       "metric": "除汽车以外的消费品零售额",
       "extracted": {
         "metric": "除汽车以外的消费品零售额",
@@ -11472,7 +12642,7 @@
       }
     },
     {
-      "file": "2024-09-14_2024年8月份社会消费品零售总额增长2.1%-国家统计局.xls",
+      "file": "2024-09-14_2024年8月份社会消费品零售总额增长2.1%.xls",
       "metric": "限额以上单位消费品零售额",
       "extracted": {
         "metric": "限额以上单位消费品零售额",
@@ -11485,7 +12655,7 @@
       }
     },
     {
-      "file": "2024-09-14_2024年8月份社会消费品零售总额增长2.1%-国家统计局.xls",
+      "file": "2024-09-14_2024年8月份社会消费品零售总额增长2.1%.xls",
       "metric": "实物商品网上零售额",
       "extracted": {
         "metric": "实物商品网上零售额",
@@ -11498,7 +12668,7 @@
       }
     },
     {
-      "file": "2024-09-14_2024年8月份社会消费品零售总额增长2.1%-国家统计局.xls",
+      "file": "2024-09-14_2024年8月份社会消费品零售总额增长2.1%.xls",
       "metric": "城镇",
       "extracted": {
         "metric": "城镇",
@@ -11511,7 +12681,7 @@
       }
     },
     {
-      "file": "2024-09-14_2024年8月份社会消费品零售总额增长2.1%-国家统计局.xls",
+      "file": "2024-09-14_2024年8月份社会消费品零售总额增长2.1%.xls",
       "metric": "乡村",
       "extracted": {
         "metric": "乡村",
@@ -11524,7 +12694,7 @@
       }
     },
     {
-      "file": "2024-09-14_2024年8月份社会消费品零售总额增长2.1%-国家统计局.xls",
+      "file": "2024-09-14_2024年8月份社会消费品零售总额增长2.1%.xls",
       "metric": "餐饮收入",
       "extracted": {
         "metric": "餐饮收入",
@@ -11537,7 +12707,7 @@
       }
     },
     {
-      "file": "2024-09-14_2024年8月份社会消费品零售总额增长2.1%-国家统计局.xls",
+      "file": "2024-09-14_2024年8月份社会消费品零售总额增长2.1%.xls",
       "metric": "限额以上单位餐饮收入",
       "extracted": {
         "metric": "限额以上单位餐饮收入",
@@ -11550,7 +12720,7 @@
       }
     },
     {
-      "file": "2024-09-14_2024年8月份社会消费品零售总额增长2.1%-国家统计局.xls",
+      "file": "2024-09-14_2024年8月份社会消费品零售总额增长2.1%.xls",
       "metric": "商品零售额",
       "extracted": {
         "metric": "商品零售额",
@@ -11563,7 +12733,7 @@
       }
     },
     {
-      "file": "2024-09-14_2024年8月份社会消费品零售总额增长2.1%-国家统计局.xls",
+      "file": "2024-09-14_2024年8月份社会消费品零售总额增长2.1%.xls",
       "metric": "限额以上单位商品零售额",
       "extracted": {
         "metric": "限额以上单位商品零售额",
@@ -11576,7 +12746,7 @@
       }
     },
     {
-      "file": "2024-09-14_2024年8月份社会消费品零售总额增长2.1%-国家统计局.xls",
+      "file": "2024-09-14_2024年8月份社会消费品零售总额增长2.1%.xls",
       "metric": "粮油、食品类",
       "extracted": {
         "metric": "粮油、食品类",
@@ -11589,7 +12759,7 @@
       }
     },
     {
-      "file": "2024-09-14_2024年8月份社会消费品零售总额增长2.1%-国家统计局.xls",
+      "file": "2024-09-14_2024年8月份社会消费品零售总额增长2.1%.xls",
       "metric": "饮料类",
       "extracted": {
         "metric": "饮料类",
@@ -11602,7 +12772,7 @@
       }
     },
     {
-      "file": "2024-09-14_2024年8月份社会消费品零售总额增长2.1%-国家统计局.xls",
+      "file": "2024-09-14_2024年8月份社会消费品零售总额增长2.1%.xls",
       "metric": "烟酒类",
       "extracted": {
         "metric": "烟酒类",
@@ -11615,7 +12785,7 @@
       }
     },
     {
-      "file": "2024-09-14_2024年8月份社会消费品零售总额增长2.1%-国家统计局.xls",
+      "file": "2024-09-14_2024年8月份社会消费品零售总额增长2.1%.xls",
       "metric": "服装、鞋帽、针纺织品类",
       "extracted": {
         "metric": "服装、鞋帽、针纺织品类",
@@ -11628,7 +12798,7 @@
       }
     },
     {
-      "file": "2024-09-14_2024年8月份社会消费品零售总额增长2.1%-国家统计局.xls",
+      "file": "2024-09-14_2024年8月份社会消费品零售总额增长2.1%.xls",
       "metric": "化妆品类",
       "extracted": {
         "metric": "化妆品类",
@@ -11641,7 +12811,7 @@
       }
     },
     {
-      "file": "2024-09-14_2024年8月份社会消费品零售总额增长2.1%-国家统计局.xls",
+      "file": "2024-09-14_2024年8月份社会消费品零售总额增长2.1%.xls",
       "metric": "金银珠宝类",
       "extracted": {
         "metric": "金银珠宝类",
@@ -11654,7 +12824,7 @@
       }
     },
     {
-      "file": "2024-09-14_2024年8月份社会消费品零售总额增长2.1%-国家统计局.xls",
+      "file": "2024-09-14_2024年8月份社会消费品零售总额增长2.1%.xls",
       "metric": "日用品类",
       "extracted": {
         "metric": "日用品类",
@@ -11667,7 +12837,7 @@
       }
     },
     {
-      "file": "2024-09-14_2024年8月份社会消费品零售总额增长2.1%-国家统计局.xls",
+      "file": "2024-09-14_2024年8月份社会消费品零售总额增长2.1%.xls",
       "metric": "体育、娱乐用品类",
       "extracted": {
         "metric": "体育、娱乐用品类",
@@ -11680,7 +12850,7 @@
       }
     },
     {
-      "file": "2024-09-14_2024年8月份社会消费品零售总额增长2.1%-国家统计局.xls",
+      "file": "2024-09-14_2024年8月份社会消费品零售总额增长2.1%.xls",
       "metric": "家用电器和音像器材类",
       "extracted": {
         "metric": "家用电器和音像器材类",
@@ -11693,7 +12863,7 @@
       }
     },
     {
-      "file": "2024-09-14_2024年8月份社会消费品零售总额增长2.1%-国家统计局.xls",
+      "file": "2024-09-14_2024年8月份社会消费品零售总额增长2.1%.xls",
       "metric": "中西药品类",
       "extracted": {
         "metric": "中西药品类",
@@ -11706,7 +12876,7 @@
       }
     },
     {
-      "file": "2024-09-14_2024年8月份社会消费品零售总额增长2.1%-国家统计局.xls",
+      "file": "2024-09-14_2024年8月份社会消费品零售总额增长2.1%.xls",
       "metric": "文化办公用品类",
       "extracted": {
         "metric": "文化办公用品类",
@@ -11719,7 +12889,7 @@
       }
     },
     {
-      "file": "2024-09-14_2024年8月份社会消费品零售总额增长2.1%-国家统计局.xls",
+      "file": "2024-09-14_2024年8月份社会消费品零售总额增长2.1%.xls",
       "metric": "家具类",
       "extracted": {
         "metric": "家具类",
@@ -11732,7 +12902,7 @@
       }
     },
     {
-      "file": "2024-09-14_2024年8月份社会消费品零售总额增长2.1%-国家统计局.xls",
+      "file": "2024-09-14_2024年8月份社会消费品零售总额增长2.1%.xls",
       "metric": "通讯器材类",
       "extracted": {
         "metric": "通讯器材类",
@@ -11745,7 +12915,7 @@
       }
     },
     {
-      "file": "2024-09-14_2024年8月份社会消费品零售总额增长2.1%-国家统计局.xls",
+      "file": "2024-09-14_2024年8月份社会消费品零售总额增长2.1%.xls",
       "metric": "石油及制品类",
       "extracted": {
         "metric": "石油及制品类",
@@ -11758,7 +12928,7 @@
       }
     },
     {
-      "file": "2024-09-14_2024年8月份社会消费品零售总额增长2.1%-国家统计局.xls",
+      "file": "2024-09-14_2024年8月份社会消费品零售总额增长2.1%.xls",
       "metric": "汽车类",
       "extracted": {
         "metric": "汽车类",
@@ -11771,7 +12941,7 @@
       }
     },
     {
-      "file": "2024-09-14_2024年8月份社会消费品零售总额增长2.1%-国家统计局.xls",
+      "file": "2024-09-14_2024年8月份社会消费品零售总额增长2.1%.xls",
       "metric": "建筑及装潢材料类",
       "extracted": {
         "metric": "建筑及装潢材料类",
@@ -11784,7 +12954,7 @@
       }
     },
     {
-      "file": "2024-10-18_2024年9月份社会消费品零售总额增长3.2%-国家统计局.xls",
+      "file": "2024-10-18_2024年9月份社会消费品零售总额增长3.2%.xls",
       "metric": "社会消费品零售总额",
       "extracted": {
         "metric": "社会消费品零售总额",
@@ -11797,7 +12967,7 @@
       }
     },
     {
-      "file": "2024-10-18_2024年9月份社会消费品零售总额增长3.2%-国家统计局.xls",
+      "file": "2024-10-18_2024年9月份社会消费品零售总额增长3.2%.xls",
       "metric": "除汽车以外的消费品零售额",
       "extracted": {
         "metric": "除汽车以外的消费品零售额",
@@ -11810,7 +12980,7 @@
       }
     },
     {
-      "file": "2024-10-18_2024年9月份社会消费品零售总额增长3.2%-国家统计局.xls",
+      "file": "2024-10-18_2024年9月份社会消费品零售总额增长3.2%.xls",
       "metric": "限额以上单位消费品零售额",
       "extracted": {
         "metric": "限额以上单位消费品零售额",
@@ -11823,7 +12993,7 @@
       }
     },
     {
-      "file": "2024-10-18_2024年9月份社会消费品零售总额增长3.2%-国家统计局.xls",
+      "file": "2024-10-18_2024年9月份社会消费品零售总额增长3.2%.xls",
       "metric": "实物商品网上零售额",
       "extracted": {
         "metric": "实物商品网上零售额",
@@ -11836,7 +13006,7 @@
       }
     },
     {
-      "file": "2024-10-18_2024年9月份社会消费品零售总额增长3.2%-国家统计局.xls",
+      "file": "2024-10-18_2024年9月份社会消费品零售总额增长3.2%.xls",
       "metric": "城镇",
       "extracted": {
         "metric": "城镇",
@@ -11849,7 +13019,7 @@
       }
     },
     {
-      "file": "2024-10-18_2024年9月份社会消费品零售总额增长3.2%-国家统计局.xls",
+      "file": "2024-10-18_2024年9月份社会消费品零售总额增长3.2%.xls",
       "metric": "乡村",
       "extracted": {
         "metric": "乡村",
@@ -11862,7 +13032,7 @@
       }
     },
     {
-      "file": "2024-10-18_2024年9月份社会消费品零售总额增长3.2%-国家统计局.xls",
+      "file": "2024-10-18_2024年9月份社会消费品零售总额增长3.2%.xls",
       "metric": "餐饮收入",
       "extracted": {
         "metric": "餐饮收入",
@@ -11875,7 +13045,7 @@
       }
     },
     {
-      "file": "2024-10-18_2024年9月份社会消费品零售总额增长3.2%-国家统计局.xls",
+      "file": "2024-10-18_2024年9月份社会消费品零售总额增长3.2%.xls",
       "metric": "限额以上单位餐饮收入",
       "extracted": {
         "metric": "限额以上单位餐饮收入",
@@ -11888,7 +13058,7 @@
       }
     },
     {
-      "file": "2024-10-18_2024年9月份社会消费品零售总额增长3.2%-国家统计局.xls",
+      "file": "2024-10-18_2024年9月份社会消费品零售总额增长3.2%.xls",
       "metric": "商品零售额",
       "extracted": {
         "metric": "商品零售额",
@@ -11901,7 +13071,7 @@
       }
     },
     {
-      "file": "2024-10-18_2024年9月份社会消费品零售总额增长3.2%-国家统计局.xls",
+      "file": "2024-10-18_2024年9月份社会消费品零售总额增长3.2%.xls",
       "metric": "限额以上单位商品零售额",
       "extracted": {
         "metric": "限额以上单位商品零售额",
@@ -11914,7 +13084,7 @@
       }
     },
     {
-      "file": "2024-10-18_2024年9月份社会消费品零售总额增长3.2%-国家统计局.xls",
+      "file": "2024-10-18_2024年9月份社会消费品零售总额增长3.2%.xls",
       "metric": "粮油、食品类",
       "extracted": {
         "metric": "粮油、食品类",
@@ -11927,7 +13097,7 @@
       }
     },
     {
-      "file": "2024-10-18_2024年9月份社会消费品零售总额增长3.2%-国家统计局.xls",
+      "file": "2024-10-18_2024年9月份社会消费品零售总额增长3.2%.xls",
       "metric": "饮料类",
       "extracted": {
         "metric": "饮料类",
@@ -11940,7 +13110,7 @@
       }
     },
     {
-      "file": "2024-10-18_2024年9月份社会消费品零售总额增长3.2%-国家统计局.xls",
+      "file": "2024-10-18_2024年9月份社会消费品零售总额增长3.2%.xls",
       "metric": "烟酒类",
       "extracted": {
         "metric": "烟酒类",
@@ -11953,7 +13123,7 @@
       }
     },
     {
-      "file": "2024-10-18_2024年9月份社会消费品零售总额增长3.2%-国家统计局.xls",
+      "file": "2024-10-18_2024年9月份社会消费品零售总额增长3.2%.xls",
       "metric": "服装、鞋帽、针纺织品类",
       "extracted": {
         "metric": "服装、鞋帽、针纺织品类",
@@ -11966,7 +13136,7 @@
       }
     },
     {
-      "file": "2024-10-18_2024年9月份社会消费品零售总额增长3.2%-国家统计局.xls",
+      "file": "2024-10-18_2024年9月份社会消费品零售总额增长3.2%.xls",
       "metric": "化妆品类",
       "extracted": {
         "metric": "化妆品类",
@@ -11979,7 +13149,7 @@
       }
     },
     {
-      "file": "2024-10-18_2024年9月份社会消费品零售总额增长3.2%-国家统计局.xls",
+      "file": "2024-10-18_2024年9月份社会消费品零售总额增长3.2%.xls",
       "metric": "金银珠宝类",
       "extracted": {
         "metric": "金银珠宝类",
@@ -11992,7 +13162,7 @@
       }
     },
     {
-      "file": "2024-10-18_2024年9月份社会消费品零售总额增长3.2%-国家统计局.xls",
+      "file": "2024-10-18_2024年9月份社会消费品零售总额增长3.2%.xls",
       "metric": "日用品类",
       "extracted": {
         "metric": "日用品类",
@@ -12005,7 +13175,7 @@
       }
     },
     {
-      "file": "2024-10-18_2024年9月份社会消费品零售总额增长3.2%-国家统计局.xls",
+      "file": "2024-10-18_2024年9月份社会消费品零售总额增长3.2%.xls",
       "metric": "体育、娱乐用品类",
       "extracted": {
         "metric": "体育、娱乐用品类",
@@ -12018,7 +13188,7 @@
       }
     },
     {
-      "file": "2024-10-18_2024年9月份社会消费品零售总额增长3.2%-国家统计局.xls",
+      "file": "2024-10-18_2024年9月份社会消费品零售总额增长3.2%.xls",
       "metric": "家用电器和音像器材类",
       "extracted": {
         "metric": "家用电器和音像器材类",
@@ -12031,7 +13201,7 @@
       }
     },
     {
-      "file": "2024-10-18_2024年9月份社会消费品零售总额增长3.2%-国家统计局.xls",
+      "file": "2024-10-18_2024年9月份社会消费品零售总额增长3.2%.xls",
       "metric": "中西药品类",
       "extracted": {
         "metric": "中西药品类",
@@ -12044,7 +13214,7 @@
       }
     },
     {
-      "file": "2024-10-18_2024年9月份社会消费品零售总额增长3.2%-国家统计局.xls",
+      "file": "2024-10-18_2024年9月份社会消费品零售总额增长3.2%.xls",
       "metric": "文化办公用品类",
       "extracted": {
         "metric": "文化办公用品类",
@@ -12057,7 +13227,7 @@
       }
     },
     {
-      "file": "2024-10-18_2024年9月份社会消费品零售总额增长3.2%-国家统计局.xls",
+      "file": "2024-10-18_2024年9月份社会消费品零售总额增长3.2%.xls",
       "metric": "家具类",
       "extracted": {
         "metric": "家具类",
@@ -12070,7 +13240,7 @@
       }
     },
     {
-      "file": "2024-10-18_2024年9月份社会消费品零售总额增长3.2%-国家统计局.xls",
+      "file": "2024-10-18_2024年9月份社会消费品零售总额增长3.2%.xls",
       "metric": "通讯器材类",
       "extracted": {
         "metric": "通讯器材类",
@@ -12083,7 +13253,7 @@
       }
     },
     {
-      "file": "2024-10-18_2024年9月份社会消费品零售总额增长3.2%-国家统计局.xls",
+      "file": "2024-10-18_2024年9月份社会消费品零售总额增长3.2%.xls",
       "metric": "石油及制品类",
       "extracted": {
         "metric": "石油及制品类",
@@ -12096,7 +13266,7 @@
       }
     },
     {
-      "file": "2024-10-18_2024年9月份社会消费品零售总额增长3.2%-国家统计局.xls",
+      "file": "2024-10-18_2024年9月份社会消费品零售总额增长3.2%.xls",
       "metric": "汽车类",
       "extracted": {
         "metric": "汽车类",
@@ -12109,7 +13279,7 @@
       }
     },
     {
-      "file": "2024-10-18_2024年9月份社会消费品零售总额增长3.2%-国家统计局.xls",
+      "file": "2024-10-18_2024年9月份社会消费品零售总额增长3.2%.xls",
       "metric": "建筑及装潢材料类",
       "extracted": {
         "metric": "建筑及装潢材料类",
@@ -12122,7 +13292,7 @@
       }
     },
     {
-      "file": "2024-11-15_2024年10月份社会消费品零售总额增长4.8%-国家统计局.xls",
+      "file": "2024-11-15_2024年10月份社会消费品零售总额增长4.8%.xls",
       "metric": "社会消费品零售总额",
       "extracted": {
         "metric": "社会消费品零售总额",
@@ -12135,7 +13305,7 @@
       }
     },
     {
-      "file": "2024-11-15_2024年10月份社会消费品零售总额增长4.8%-国家统计局.xls",
+      "file": "2024-11-15_2024年10月份社会消费品零售总额增长4.8%.xls",
       "metric": "除汽车以外的消费品零售额",
       "extracted": {
         "metric": "除汽车以外的消费品零售额",
@@ -12148,7 +13318,7 @@
       }
     },
     {
-      "file": "2024-11-15_2024年10月份社会消费品零售总额增长4.8%-国家统计局.xls",
+      "file": "2024-11-15_2024年10月份社会消费品零售总额增长4.8%.xls",
       "metric": "限额以上单位消费品零售额",
       "extracted": {
         "metric": "限额以上单位消费品零售额",
@@ -12161,7 +13331,7 @@
       }
     },
     {
-      "file": "2024-11-15_2024年10月份社会消费品零售总额增长4.8%-国家统计局.xls",
+      "file": "2024-11-15_2024年10月份社会消费品零售总额增长4.8%.xls",
       "metric": "实物商品网上零售额",
       "extracted": {
         "metric": "实物商品网上零售额",
@@ -12174,7 +13344,7 @@
       }
     },
     {
-      "file": "2024-11-15_2024年10月份社会消费品零售总额增长4.8%-国家统计局.xls",
+      "file": "2024-11-15_2024年10月份社会消费品零售总额增长4.8%.xls",
       "metric": "城镇",
       "extracted": {
         "metric": "城镇",
@@ -12187,7 +13357,7 @@
       }
     },
     {
-      "file": "2024-11-15_2024年10月份社会消费品零售总额增长4.8%-国家统计局.xls",
+      "file": "2024-11-15_2024年10月份社会消费品零售总额增长4.8%.xls",
       "metric": "乡村",
       "extracted": {
         "metric": "乡村",
@@ -12200,7 +13370,7 @@
       }
     },
     {
-      "file": "2024-11-15_2024年10月份社会消费品零售总额增长4.8%-国家统计局.xls",
+      "file": "2024-11-15_2024年10月份社会消费品零售总额增长4.8%.xls",
       "metric": "餐饮收入",
       "extracted": {
         "metric": "餐饮收入",
@@ -12213,7 +13383,7 @@
       }
     },
     {
-      "file": "2024-11-15_2024年10月份社会消费品零售总额增长4.8%-国家统计局.xls",
+      "file": "2024-11-15_2024年10月份社会消费品零售总额增长4.8%.xls",
       "metric": "限额以上单位餐饮收入",
       "extracted": {
         "metric": "限额以上单位餐饮收入",
@@ -12226,7 +13396,7 @@
       }
     },
     {
-      "file": "2024-11-15_2024年10月份社会消费品零售总额增长4.8%-国家统计局.xls",
+      "file": "2024-11-15_2024年10月份社会消费品零售总额增长4.8%.xls",
       "metric": "商品零售额",
       "extracted": {
         "metric": "商品零售额",
@@ -12239,7 +13409,7 @@
       }
     },
     {
-      "file": "2024-11-15_2024年10月份社会消费品零售总额增长4.8%-国家统计局.xls",
+      "file": "2024-11-15_2024年10月份社会消费品零售总额增长4.8%.xls",
       "metric": "限额以上单位商品零售额",
       "extracted": {
         "metric": "限额以上单位商品零售额",
@@ -12252,7 +13422,7 @@
       }
     },
     {
-      "file": "2024-11-15_2024年10月份社会消费品零售总额增长4.8%-国家统计局.xls",
+      "file": "2024-11-15_2024年10月份社会消费品零售总额增长4.8%.xls",
       "metric": "粮油、食品类",
       "extracted": {
         "metric": "粮油、食品类",
@@ -12265,7 +13435,7 @@
       }
     },
     {
-      "file": "2024-11-15_2024年10月份社会消费品零售总额增长4.8%-国家统计局.xls",
+      "file": "2024-11-15_2024年10月份社会消费品零售总额增长4.8%.xls",
       "metric": "饮料类",
       "extracted": {
         "metric": "饮料类",
@@ -12278,7 +13448,7 @@
       }
     },
     {
-      "file": "2024-11-15_2024年10月份社会消费品零售总额增长4.8%-国家统计局.xls",
+      "file": "2024-11-15_2024年10月份社会消费品零售总额增长4.8%.xls",
       "metric": "烟酒类",
       "extracted": {
         "metric": "烟酒类",
@@ -12291,7 +13461,7 @@
       }
     },
     {
-      "file": "2024-11-15_2024年10月份社会消费品零售总额增长4.8%-国家统计局.xls",
+      "file": "2024-11-15_2024年10月份社会消费品零售总额增长4.8%.xls",
       "metric": "服装、鞋帽、针纺织品类",
       "extracted": {
         "metric": "服装、鞋帽、针纺织品类",
@@ -12304,7 +13474,7 @@
       }
     },
     {
-      "file": "2024-11-15_2024年10月份社会消费品零售总额增长4.8%-国家统计局.xls",
+      "file": "2024-11-15_2024年10月份社会消费品零售总额增长4.8%.xls",
       "metric": "化妆品类",
       "extracted": {
         "metric": "化妆品类",
@@ -12317,7 +13487,7 @@
       }
     },
     {
-      "file": "2024-11-15_2024年10月份社会消费品零售总额增长4.8%-国家统计局.xls",
+      "file": "2024-11-15_2024年10月份社会消费品零售总额增长4.8%.xls",
       "metric": "金银珠宝类",
       "extracted": {
         "metric": "金银珠宝类",
@@ -12330,7 +13500,7 @@
       }
     },
     {
-      "file": "2024-11-15_2024年10月份社会消费品零售总额增长4.8%-国家统计局.xls",
+      "file": "2024-11-15_2024年10月份社会消费品零售总额增长4.8%.xls",
       "metric": "日用品类",
       "extracted": {
         "metric": "日用品类",
@@ -12343,7 +13513,7 @@
       }
     },
     {
-      "file": "2024-11-15_2024年10月份社会消费品零售总额增长4.8%-国家统计局.xls",
+      "file": "2024-11-15_2024年10月份社会消费品零售总额增长4.8%.xls",
       "metric": "体育、娱乐用品类",
       "extracted": {
         "metric": "体育、娱乐用品类",
@@ -12356,7 +13526,7 @@
       }
     },
     {
-      "file": "2024-11-15_2024年10月份社会消费品零售总额增长4.8%-国家统计局.xls",
+      "file": "2024-11-15_2024年10月份社会消费品零售总额增长4.8%.xls",
       "metric": "家用电器和音像器材类",
       "extracted": {
         "metric": "家用电器和音像器材类",
@@ -12369,7 +13539,7 @@
       }
     },
     {
-      "file": "2024-11-15_2024年10月份社会消费品零售总额增长4.8%-国家统计局.xls",
+      "file": "2024-11-15_2024年10月份社会消费品零售总额增长4.8%.xls",
       "metric": "中西药品类",
       "extracted": {
         "metric": "中西药品类",
@@ -12382,7 +13552,7 @@
       }
     },
     {
-      "file": "2024-11-15_2024年10月份社会消费品零售总额增长4.8%-国家统计局.xls",
+      "file": "2024-11-15_2024年10月份社会消费品零售总额增长4.8%.xls",
       "metric": "文化办公用品类",
       "extracted": {
         "metric": "文化办公用品类",
@@ -12395,7 +13565,7 @@
       }
     },
     {
-      "file": "2024-11-15_2024年10月份社会消费品零售总额增长4.8%-国家统计局.xls",
+      "file": "2024-11-15_2024年10月份社会消费品零售总额增长4.8%.xls",
       "metric": "家具类",
       "extracted": {
         "metric": "家具类",
@@ -12408,7 +13578,7 @@
       }
     },
     {
-      "file": "2024-11-15_2024年10月份社会消费品零售总额增长4.8%-国家统计局.xls",
+      "file": "2024-11-15_2024年10月份社会消费品零售总额增长4.8%.xls",
       "metric": "通讯器材类",
       "extracted": {
         "metric": "通讯器材类",
@@ -12421,7 +13591,7 @@
       }
     },
     {
-      "file": "2024-11-15_2024年10月份社会消费品零售总额增长4.8%-国家统计局.xls",
+      "file": "2024-11-15_2024年10月份社会消费品零售总额增长4.8%.xls",
       "metric": "石油及制品类",
       "extracted": {
         "metric": "石油及制品类",
@@ -12434,7 +13604,7 @@
       }
     },
     {
-      "file": "2024-11-15_2024年10月份社会消费品零售总额增长4.8%-国家统计局.xls",
+      "file": "2024-11-15_2024年10月份社会消费品零售总额增长4.8%.xls",
       "metric": "汽车类",
       "extracted": {
         "metric": "汽车类",
@@ -12447,7 +13617,7 @@
       }
     },
     {
-      "file": "2024-11-15_2024年10月份社会消费品零售总额增长4.8%-国家统计局.xls",
+      "file": "2024-11-15_2024年10月份社会消费品零售总额增长4.8%.xls",
       "metric": "建筑及装潢材料类",
       "extracted": {
         "metric": "建筑及装潢材料类",
@@ -12460,7 +13630,7 @@
       }
     },
     {
-      "file": "2024-12-16_2024年11月份社会消费品零售总额增长3.0%-国家统计局.xls",
+      "file": "2024-12-16_2024年11月份社会消费品零售总额增长3.0%.xls",
       "metric": "社会消费品零售总额",
       "extracted": {
         "metric": "社会消费品零售总额",
@@ -12473,7 +13643,7 @@
       }
     },
     {
-      "file": "2024-12-16_2024年11月份社会消费品零售总额增长3.0%-国家统计局.xls",
+      "file": "2024-12-16_2024年11月份社会消费品零售总额增长3.0%.xls",
       "metric": "除汽车以外的消费品零售额",
       "extracted": {
         "metric": "除汽车以外的消费品零售额",
@@ -12486,7 +13656,7 @@
       }
     },
     {
-      "file": "2024-12-16_2024年11月份社会消费品零售总额增长3.0%-国家统计局.xls",
+      "file": "2024-12-16_2024年11月份社会消费品零售总额增长3.0%.xls",
       "metric": "限额以上单位消费品零售额",
       "extracted": {
         "metric": "限额以上单位消费品零售额",
@@ -12499,7 +13669,7 @@
       }
     },
     {
-      "file": "2024-12-16_2024年11月份社会消费品零售总额增长3.0%-国家统计局.xls",
+      "file": "2024-12-16_2024年11月份社会消费品零售总额增长3.0%.xls",
       "metric": "实物商品网上零售额",
       "extracted": {
         "metric": "实物商品网上零售额",
@@ -12512,7 +13682,7 @@
       }
     },
     {
-      "file": "2024-12-16_2024年11月份社会消费品零售总额增长3.0%-国家统计局.xls",
+      "file": "2024-12-16_2024年11月份社会消费品零售总额增长3.0%.xls",
       "metric": "城镇",
       "extracted": {
         "metric": "城镇",
@@ -12525,7 +13695,7 @@
       }
     },
     {
-      "file": "2024-12-16_2024年11月份社会消费品零售总额增长3.0%-国家统计局.xls",
+      "file": "2024-12-16_2024年11月份社会消费品零售总额增长3.0%.xls",
       "metric": "乡村",
       "extracted": {
         "metric": "乡村",
@@ -12538,7 +13708,7 @@
       }
     },
     {
-      "file": "2024-12-16_2024年11月份社会消费品零售总额增长3.0%-国家统计局.xls",
+      "file": "2024-12-16_2024年11月份社会消费品零售总额增长3.0%.xls",
       "metric": "餐饮收入",
       "extracted": {
         "metric": "餐饮收入",
@@ -12551,7 +13721,7 @@
       }
     },
     {
-      "file": "2024-12-16_2024年11月份社会消费品零售总额增长3.0%-国家统计局.xls",
+      "file": "2024-12-16_2024年11月份社会消费品零售总额增长3.0%.xls",
       "metric": "限额以上单位餐饮收入",
       "extracted": {
         "metric": "限额以上单位餐饮收入",
@@ -12564,7 +13734,7 @@
       }
     },
     {
-      "file": "2024-12-16_2024年11月份社会消费品零售总额增长3.0%-国家统计局.xls",
+      "file": "2024-12-16_2024年11月份社会消费品零售总额增长3.0%.xls",
       "metric": "商品零售额",
       "extracted": {
         "metric": "商品零售额",
@@ -12577,7 +13747,7 @@
       }
     },
     {
-      "file": "2024-12-16_2024年11月份社会消费品零售总额增长3.0%-国家统计局.xls",
+      "file": "2024-12-16_2024年11月份社会消费品零售总额增长3.0%.xls",
       "metric": "限额以上单位商品零售额",
       "extracted": {
         "metric": "限额以上单位商品零售额",
@@ -12590,7 +13760,7 @@
       }
     },
     {
-      "file": "2024-12-16_2024年11月份社会消费品零售总额增长3.0%-国家统计局.xls",
+      "file": "2024-12-16_2024年11月份社会消费品零售总额增长3.0%.xls",
       "metric": "粮油、食品类",
       "extracted": {
         "metric": "粮油、食品类",
@@ -12603,7 +13773,7 @@
       }
     },
     {
-      "file": "2024-12-16_2024年11月份社会消费品零售总额增长3.0%-国家统计局.xls",
+      "file": "2024-12-16_2024年11月份社会消费品零售总额增长3.0%.xls",
       "metric": "饮料类",
       "extracted": {
         "metric": "饮料类",
@@ -12616,7 +13786,7 @@
       }
     },
     {
-      "file": "2024-12-16_2024年11月份社会消费品零售总额增长3.0%-国家统计局.xls",
+      "file": "2024-12-16_2024年11月份社会消费品零售总额增长3.0%.xls",
       "metric": "烟酒类",
       "extracted": {
         "metric": "烟酒类",
@@ -12629,7 +13799,7 @@
       }
     },
     {
-      "file": "2024-12-16_2024年11月份社会消费品零售总额增长3.0%-国家统计局.xls",
+      "file": "2024-12-16_2024年11月份社会消费品零售总额增长3.0%.xls",
       "metric": "服装、鞋帽、针纺织品类",
       "extracted": {
         "metric": "服装、鞋帽、针纺织品类",
@@ -12642,7 +13812,7 @@
       }
     },
     {
-      "file": "2024-12-16_2024年11月份社会消费品零售总额增长3.0%-国家统计局.xls",
+      "file": "2024-12-16_2024年11月份社会消费品零售总额增长3.0%.xls",
       "metric": "化妆品类",
       "extracted": {
         "metric": "化妆品类",
@@ -12655,7 +13825,7 @@
       }
     },
     {
-      "file": "2024-12-16_2024年11月份社会消费品零售总额增长3.0%-国家统计局.xls",
+      "file": "2024-12-16_2024年11月份社会消费品零售总额增长3.0%.xls",
       "metric": "金银珠宝类",
       "extracted": {
         "metric": "金银珠宝类",
@@ -12668,7 +13838,7 @@
       }
     },
     {
-      "file": "2024-12-16_2024年11月份社会消费品零售总额增长3.0%-国家统计局.xls",
+      "file": "2024-12-16_2024年11月份社会消费品零售总额增长3.0%.xls",
       "metric": "日用品类",
       "extracted": {
         "metric": "日用品类",
@@ -12681,7 +13851,7 @@
       }
     },
     {
-      "file": "2024-12-16_2024年11月份社会消费品零售总额增长3.0%-国家统计局.xls",
+      "file": "2024-12-16_2024年11月份社会消费品零售总额增长3.0%.xls",
       "metric": "体育、娱乐用品类",
       "extracted": {
         "metric": "体育、娱乐用品类",
@@ -12694,7 +13864,7 @@
       }
     },
     {
-      "file": "2024-12-16_2024年11月份社会消费品零售总额增长3.0%-国家统计局.xls",
+      "file": "2024-12-16_2024年11月份社会消费品零售总额增长3.0%.xls",
       "metric": "家用电器和音像器材类",
       "extracted": {
         "metric": "家用电器和音像器材类",
@@ -12707,7 +13877,7 @@
       }
     },
     {
-      "file": "2024-12-16_2024年11月份社会消费品零售总额增长3.0%-国家统计局.xls",
+      "file": "2024-12-16_2024年11月份社会消费品零售总额增长3.0%.xls",
       "metric": "中西药品类",
       "extracted": {
         "metric": "中西药品类",
@@ -12720,7 +13890,7 @@
       }
     },
     {
-      "file": "2024-12-16_2024年11月份社会消费品零售总额增长3.0%-国家统计局.xls",
+      "file": "2024-12-16_2024年11月份社会消费品零售总额增长3.0%.xls",
       "metric": "文化办公用品类",
       "extracted": {
         "metric": "文化办公用品类",
@@ -12733,7 +13903,7 @@
       }
     },
     {
-      "file": "2024-12-16_2024年11月份社会消费品零售总额增长3.0%-国家统计局.xls",
+      "file": "2024-12-16_2024年11月份社会消费品零售总额增长3.0%.xls",
       "metric": "家具类",
       "extracted": {
         "metric": "家具类",
@@ -12746,7 +13916,7 @@
       }
     },
     {
-      "file": "2024-12-16_2024年11月份社会消费品零售总额增长3.0%-国家统计局.xls",
+      "file": "2024-12-16_2024年11月份社会消费品零售总额增长3.0%.xls",
       "metric": "通讯器材类",
       "extracted": {
         "metric": "通讯器材类",
@@ -12759,7 +13929,7 @@
       }
     },
     {
-      "file": "2024-12-16_2024年11月份社会消费品零售总额增长3.0%-国家统计局.xls",
+      "file": "2024-12-16_2024年11月份社会消费品零售总额增长3.0%.xls",
       "metric": "石油及制品类",
       "extracted": {
         "metric": "石油及制品类",
@@ -12772,7 +13942,7 @@
       }
     },
     {
-      "file": "2024-12-16_2024年11月份社会消费品零售总额增长3.0%-国家统计局.xls",
+      "file": "2024-12-16_2024年11月份社会消费品零售总额增长3.0%.xls",
       "metric": "汽车类",
       "extracted": {
         "metric": "汽车类",
@@ -12785,7 +13955,7 @@
       }
     },
     {
-      "file": "2024-12-16_2024年11月份社会消费品零售总额增长3.0%-国家统计局.xls",
+      "file": "2024-12-16_2024年11月份社会消费品零售总额增长3.0%.xls",
       "metric": "建筑及装潢材料类",
       "extracted": {
         "metric": "建筑及装潢材料类",
@@ -12798,7 +13968,7 @@
       }
     },
     {
-      "file": "2025-01-17_2024年12月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2025-01-17_2024年12月份社会消费品零售总额增长3.7%.xls",
       "metric": "社会消费品零售总额",
       "extracted": {
         "metric": "社会消费品零售总额",
@@ -12811,7 +13981,7 @@
       }
     },
     {
-      "file": "2025-01-17_2024年12月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2025-01-17_2024年12月份社会消费品零售总额增长3.7%.xls",
       "metric": "除汽车以外的消费品零售额",
       "extracted": {
         "metric": "除汽车以外的消费品零售额",
@@ -12824,7 +13994,7 @@
       }
     },
     {
-      "file": "2025-01-17_2024年12月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2025-01-17_2024年12月份社会消费品零售总额增长3.7%.xls",
       "metric": "限额以上单位消费品零售额",
       "extracted": {
         "metric": "限额以上单位消费品零售额",
@@ -12837,7 +14007,7 @@
       }
     },
     {
-      "file": "2025-01-17_2024年12月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2025-01-17_2024年12月份社会消费品零售总额增长3.7%.xls",
       "metric": "实物商品网上零售额",
       "extracted": {
         "metric": "实物商品网上零售额",
@@ -12850,7 +14020,7 @@
       }
     },
     {
-      "file": "2025-01-17_2024年12月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2025-01-17_2024年12月份社会消费品零售总额增长3.7%.xls",
       "metric": "城镇",
       "extracted": {
         "metric": "城镇",
@@ -12863,7 +14033,7 @@
       }
     },
     {
-      "file": "2025-01-17_2024年12月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2025-01-17_2024年12月份社会消费品零售总额增长3.7%.xls",
       "metric": "乡村",
       "extracted": {
         "metric": "乡村",
@@ -12876,7 +14046,7 @@
       }
     },
     {
-      "file": "2025-01-17_2024年12月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2025-01-17_2024年12月份社会消费品零售总额增长3.7%.xls",
       "metric": "餐饮收入",
       "extracted": {
         "metric": "餐饮收入",
@@ -12889,7 +14059,7 @@
       }
     },
     {
-      "file": "2025-01-17_2024年12月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2025-01-17_2024年12月份社会消费品零售总额增长3.7%.xls",
       "metric": "限额以上单位餐饮收入",
       "extracted": {
         "metric": "限额以上单位餐饮收入",
@@ -12902,7 +14072,7 @@
       }
     },
     {
-      "file": "2025-01-17_2024年12月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2025-01-17_2024年12月份社会消费品零售总额增长3.7%.xls",
       "metric": "商品零售额",
       "extracted": {
         "metric": "商品零售额",
@@ -12915,7 +14085,7 @@
       }
     },
     {
-      "file": "2025-01-17_2024年12月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2025-01-17_2024年12月份社会消费品零售总额增长3.7%.xls",
       "metric": "限额以上单位商品零售额",
       "extracted": {
         "metric": "限额以上单位商品零售额",
@@ -12928,7 +14098,7 @@
       }
     },
     {
-      "file": "2025-01-17_2024年12月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2025-01-17_2024年12月份社会消费品零售总额增长3.7%.xls",
       "metric": "粮油、食品类",
       "extracted": {
         "metric": "粮油、食品类",
@@ -12941,7 +14111,7 @@
       }
     },
     {
-      "file": "2025-01-17_2024年12月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2025-01-17_2024年12月份社会消费品零售总额增长3.7%.xls",
       "metric": "饮料类",
       "extracted": {
         "metric": "饮料类",
@@ -12954,7 +14124,7 @@
       }
     },
     {
-      "file": "2025-01-17_2024年12月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2025-01-17_2024年12月份社会消费品零售总额增长3.7%.xls",
       "metric": "烟酒类",
       "extracted": {
         "metric": "烟酒类",
@@ -12967,7 +14137,7 @@
       }
     },
     {
-      "file": "2025-01-17_2024年12月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2025-01-17_2024年12月份社会消费品零售总额增长3.7%.xls",
       "metric": "服装、鞋帽、针纺织品类",
       "extracted": {
         "metric": "服装、鞋帽、针纺织品类",
@@ -12980,7 +14150,7 @@
       }
     },
     {
-      "file": "2025-01-17_2024年12月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2025-01-17_2024年12月份社会消费品零售总额增长3.7%.xls",
       "metric": "化妆品类",
       "extracted": {
         "metric": "化妆品类",
@@ -12993,7 +14163,7 @@
       }
     },
     {
-      "file": "2025-01-17_2024年12月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2025-01-17_2024年12月份社会消费品零售总额增长3.7%.xls",
       "metric": "金银珠宝类",
       "extracted": {
         "metric": "金银珠宝类",
@@ -13006,7 +14176,7 @@
       }
     },
     {
-      "file": "2025-01-17_2024年12月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2025-01-17_2024年12月份社会消费品零售总额增长3.7%.xls",
       "metric": "日用品类",
       "extracted": {
         "metric": "日用品类",
@@ -13019,7 +14189,7 @@
       }
     },
     {
-      "file": "2025-01-17_2024年12月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2025-01-17_2024年12月份社会消费品零售总额增长3.7%.xls",
       "metric": "体育、娱乐用品类",
       "extracted": {
         "metric": "体育、娱乐用品类",
@@ -13032,7 +14202,7 @@
       }
     },
     {
-      "file": "2025-01-17_2024年12月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2025-01-17_2024年12月份社会消费品零售总额增长3.7%.xls",
       "metric": "家用电器和音像器材类",
       "extracted": {
         "metric": "家用电器和音像器材类",
@@ -13045,7 +14215,7 @@
       }
     },
     {
-      "file": "2025-01-17_2024年12月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2025-01-17_2024年12月份社会消费品零售总额增长3.7%.xls",
       "metric": "中西药品类",
       "extracted": {
         "metric": "中西药品类",
@@ -13058,7 +14228,7 @@
       }
     },
     {
-      "file": "2025-01-17_2024年12月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2025-01-17_2024年12月份社会消费品零售总额增长3.7%.xls",
       "metric": "文化办公用品类",
       "extracted": {
         "metric": "文化办公用品类",
@@ -13071,7 +14241,7 @@
       }
     },
     {
-      "file": "2025-01-17_2024年12月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2025-01-17_2024年12月份社会消费品零售总额增长3.7%.xls",
       "metric": "家具类",
       "extracted": {
         "metric": "家具类",
@@ -13084,7 +14254,7 @@
       }
     },
     {
-      "file": "2025-01-17_2024年12月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2025-01-17_2024年12月份社会消费品零售总额增长3.7%.xls",
       "metric": "通讯器材类",
       "extracted": {
         "metric": "通讯器材类",
@@ -13097,7 +14267,7 @@
       }
     },
     {
-      "file": "2025-01-17_2024年12月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2025-01-17_2024年12月份社会消费品零售总额增长3.7%.xls",
       "metric": "石油及制品类",
       "extracted": {
         "metric": "石油及制品类",
@@ -13110,7 +14280,7 @@
       }
     },
     {
-      "file": "2025-01-17_2024年12月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2025-01-17_2024年12月份社会消费品零售总额增长3.7%.xls",
       "metric": "汽车类",
       "extracted": {
         "metric": "汽车类",
@@ -13123,7 +14293,7 @@
       }
     },
     {
-      "file": "2025-01-17_2024年12月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2025-01-17_2024年12月份社会消费品零售总额增长3.7%.xls",
       "metric": "建筑及装潢材料类",
       "extracted": {
         "metric": "建筑及装潢材料类",
@@ -13136,7 +14306,7 @@
       }
     },
     {
-      "file": "2025-03-17_2025年1—2月份社会消费品零售总额增长4.0%-国家统计局.xls",
+      "file": "2025-03-17_2025年1—2月份社会消费品零售总额增长4.0%.xls",
       "metric": "社会消费品零售总额",
       "extracted": {
         "metric": "社会消费品零售总额",
@@ -13149,7 +14319,7 @@
       }
     },
     {
-      "file": "2025-03-17_2025年1—2月份社会消费品零售总额增长4.0%-国家统计局.xls",
+      "file": "2025-03-17_2025年1—2月份社会消费品零售总额增长4.0%.xls",
       "metric": "除汽车以外的消费品零售额",
       "extracted": {
         "metric": "除汽车以外的消费品零售额",
@@ -13162,7 +14332,7 @@
       }
     },
     {
-      "file": "2025-03-17_2025年1—2月份社会消费品零售总额增长4.0%-国家统计局.xls",
+      "file": "2025-03-17_2025年1—2月份社会消费品零售总额增长4.0%.xls",
       "metric": "限额以上单位消费品零售额",
       "extracted": {
         "metric": "限额以上单位消费品零售额",
@@ -13175,7 +14345,7 @@
       }
     },
     {
-      "file": "2025-03-17_2025年1—2月份社会消费品零售总额增长4.0%-国家统计局.xls",
+      "file": "2025-03-17_2025年1—2月份社会消费品零售总额增长4.0%.xls",
       "metric": "实物商品网上零售额",
       "extracted": {
         "metric": "实物商品网上零售额",
@@ -13188,7 +14358,7 @@
       }
     },
     {
-      "file": "2025-03-17_2025年1—2月份社会消费品零售总额增长4.0%-国家统计局.xls",
+      "file": "2025-03-17_2025年1—2月份社会消费品零售总额增长4.0%.xls",
       "metric": "城镇",
       "extracted": {
         "metric": "城镇",
@@ -13201,7 +14371,7 @@
       }
     },
     {
-      "file": "2025-03-17_2025年1—2月份社会消费品零售总额增长4.0%-国家统计局.xls",
+      "file": "2025-03-17_2025年1—2月份社会消费品零售总额增长4.0%.xls",
       "metric": "乡村",
       "extracted": {
         "metric": "乡村",
@@ -13214,7 +14384,7 @@
       }
     },
     {
-      "file": "2025-03-17_2025年1—2月份社会消费品零售总额增长4.0%-国家统计局.xls",
+      "file": "2025-03-17_2025年1—2月份社会消费品零售总额增长4.0%.xls",
       "metric": "餐饮收入",
       "extracted": {
         "metric": "餐饮收入",
@@ -13227,7 +14397,7 @@
       }
     },
     {
-      "file": "2025-03-17_2025年1—2月份社会消费品零售总额增长4.0%-国家统计局.xls",
+      "file": "2025-03-17_2025年1—2月份社会消费品零售总额增长4.0%.xls",
       "metric": "限额以上单位餐饮收入",
       "extracted": {
         "metric": "限额以上单位餐饮收入",
@@ -13240,7 +14410,7 @@
       }
     },
     {
-      "file": "2025-03-17_2025年1—2月份社会消费品零售总额增长4.0%-国家统计局.xls",
+      "file": "2025-03-17_2025年1—2月份社会消费品零售总额增长4.0%.xls",
       "metric": "商品零售额",
       "extracted": {
         "metric": "商品零售额",
@@ -13253,7 +14423,7 @@
       }
     },
     {
-      "file": "2025-03-17_2025年1—2月份社会消费品零售总额增长4.0%-国家统计局.xls",
+      "file": "2025-03-17_2025年1—2月份社会消费品零售总额增长4.0%.xls",
       "metric": "限额以上单位商品零售额",
       "extracted": {
         "metric": "限额以上单位商品零售额",
@@ -13266,7 +14436,7 @@
       }
     },
     {
-      "file": "2025-03-17_2025年1—2月份社会消费品零售总额增长4.0%-国家统计局.xls",
+      "file": "2025-03-17_2025年1—2月份社会消费品零售总额增长4.0%.xls",
       "metric": "粮油、食品类",
       "extracted": {
         "metric": "粮油、食品类",
@@ -13279,7 +14449,7 @@
       }
     },
     {
-      "file": "2025-03-17_2025年1—2月份社会消费品零售总额增长4.0%-国家统计局.xls",
+      "file": "2025-03-17_2025年1—2月份社会消费品零售总额增长4.0%.xls",
       "metric": "饮料类",
       "extracted": {
         "metric": "饮料类",
@@ -13292,7 +14462,7 @@
       }
     },
     {
-      "file": "2025-03-17_2025年1—2月份社会消费品零售总额增长4.0%-国家统计局.xls",
+      "file": "2025-03-17_2025年1—2月份社会消费品零售总额增长4.0%.xls",
       "metric": "烟酒类",
       "extracted": {
         "metric": "烟酒类",
@@ -13305,7 +14475,7 @@
       }
     },
     {
-      "file": "2025-03-17_2025年1—2月份社会消费品零售总额增长4.0%-国家统计局.xls",
+      "file": "2025-03-17_2025年1—2月份社会消费品零售总额增长4.0%.xls",
       "metric": "服装、鞋帽、针纺织品类",
       "extracted": {
         "metric": "服装、鞋帽、针纺织品类",
@@ -13318,7 +14488,7 @@
       }
     },
     {
-      "file": "2025-03-17_2025年1—2月份社会消费品零售总额增长4.0%-国家统计局.xls",
+      "file": "2025-03-17_2025年1—2月份社会消费品零售总额增长4.0%.xls",
       "metric": "化妆品类",
       "extracted": {
         "metric": "化妆品类",
@@ -13331,7 +14501,7 @@
       }
     },
     {
-      "file": "2025-03-17_2025年1—2月份社会消费品零售总额增长4.0%-国家统计局.xls",
+      "file": "2025-03-17_2025年1—2月份社会消费品零售总额增长4.0%.xls",
       "metric": "金银珠宝类",
       "extracted": {
         "metric": "金银珠宝类",
@@ -13344,7 +14514,7 @@
       }
     },
     {
-      "file": "2025-03-17_2025年1—2月份社会消费品零售总额增长4.0%-国家统计局.xls",
+      "file": "2025-03-17_2025年1—2月份社会消费品零售总额增长4.0%.xls",
       "metric": "日用品类",
       "extracted": {
         "metric": "日用品类",
@@ -13357,7 +14527,7 @@
       }
     },
     {
-      "file": "2025-03-17_2025年1—2月份社会消费品零售总额增长4.0%-国家统计局.xls",
+      "file": "2025-03-17_2025年1—2月份社会消费品零售总额增长4.0%.xls",
       "metric": "体育、娱乐用品类",
       "extracted": {
         "metric": "体育、娱乐用品类",
@@ -13370,7 +14540,7 @@
       }
     },
     {
-      "file": "2025-03-17_2025年1—2月份社会消费品零售总额增长4.0%-国家统计局.xls",
+      "file": "2025-03-17_2025年1—2月份社会消费品零售总额增长4.0%.xls",
       "metric": "家用电器和音像器材类",
       "extracted": {
         "metric": "家用电器和音像器材类",
@@ -13383,7 +14553,7 @@
       }
     },
     {
-      "file": "2025-03-17_2025年1—2月份社会消费品零售总额增长4.0%-国家统计局.xls",
+      "file": "2025-03-17_2025年1—2月份社会消费品零售总额增长4.0%.xls",
       "metric": "中西药品类",
       "extracted": {
         "metric": "中西药品类",
@@ -13396,7 +14566,7 @@
       }
     },
     {
-      "file": "2025-03-17_2025年1—2月份社会消费品零售总额增长4.0%-国家统计局.xls",
+      "file": "2025-03-17_2025年1—2月份社会消费品零售总额增长4.0%.xls",
       "metric": "文化办公用品类",
       "extracted": {
         "metric": "文化办公用品类",
@@ -13409,7 +14579,7 @@
       }
     },
     {
-      "file": "2025-03-17_2025年1—2月份社会消费品零售总额增长4.0%-国家统计局.xls",
+      "file": "2025-03-17_2025年1—2月份社会消费品零售总额增长4.0%.xls",
       "metric": "家具类",
       "extracted": {
         "metric": "家具类",
@@ -13422,7 +14592,7 @@
       }
     },
     {
-      "file": "2025-03-17_2025年1—2月份社会消费品零售总额增长4.0%-国家统计局.xls",
+      "file": "2025-03-17_2025年1—2月份社会消费品零售总额增长4.0%.xls",
       "metric": "通讯器材类",
       "extracted": {
         "metric": "通讯器材类",
@@ -13435,7 +14605,7 @@
       }
     },
     {
-      "file": "2025-03-17_2025年1—2月份社会消费品零售总额增长4.0%-国家统计局.xls",
+      "file": "2025-03-17_2025年1—2月份社会消费品零售总额增长4.0%.xls",
       "metric": "石油及制品类",
       "extracted": {
         "metric": "石油及制品类",
@@ -13448,7 +14618,7 @@
       }
     },
     {
-      "file": "2025-03-17_2025年1—2月份社会消费品零售总额增长4.0%-国家统计局.xls",
+      "file": "2025-03-17_2025年1—2月份社会消费品零售总额增长4.0%.xls",
       "metric": "汽车类",
       "extracted": {
         "metric": "汽车类",
@@ -13461,7 +14631,7 @@
       }
     },
     {
-      "file": "2025-03-17_2025年1—2月份社会消费品零售总额增长4.0%-国家统计局.xls",
+      "file": "2025-03-17_2025年1—2月份社会消费品零售总额增长4.0%.xls",
       "metric": "建筑及装潢材料类",
       "extracted": {
         "metric": "建筑及装潢材料类",
@@ -13474,7 +14644,7 @@
       }
     },
     {
-      "file": "2025-04-16_2025年3月份社会消费品零售总额增长5.9%-国家统计局.xls",
+      "file": "2025-04-16_2025年3月份社会消费品零售总额增长5.9%.xls",
       "metric": "社会消费品零售总额",
       "extracted": {
         "metric": "社会消费品零售总额",
@@ -13487,7 +14657,7 @@
       }
     },
     {
-      "file": "2025-04-16_2025年3月份社会消费品零售总额增长5.9%-国家统计局.xls",
+      "file": "2025-04-16_2025年3月份社会消费品零售总额增长5.9%.xls",
       "metric": "除汽车以外的消费品零售额",
       "extracted": {
         "metric": "除汽车以外的消费品零售额",
@@ -13500,7 +14670,7 @@
       }
     },
     {
-      "file": "2025-04-16_2025年3月份社会消费品零售总额增长5.9%-国家统计局.xls",
+      "file": "2025-04-16_2025年3月份社会消费品零售总额增长5.9%.xls",
       "metric": "限额以上单位消费品零售额",
       "extracted": {
         "metric": "限额以上单位消费品零售额",
@@ -13513,7 +14683,7 @@
       }
     },
     {
-      "file": "2025-04-16_2025年3月份社会消费品零售总额增长5.9%-国家统计局.xls",
+      "file": "2025-04-16_2025年3月份社会消费品零售总额增长5.9%.xls",
       "metric": "实物商品网上零售额",
       "extracted": {
         "metric": "实物商品网上零售额",
@@ -13526,7 +14696,7 @@
       }
     },
     {
-      "file": "2025-04-16_2025年3月份社会消费品零售总额增长5.9%-国家统计局.xls",
+      "file": "2025-04-16_2025年3月份社会消费品零售总额增长5.9%.xls",
       "metric": "城镇",
       "extracted": {
         "metric": "城镇",
@@ -13539,7 +14709,7 @@
       }
     },
     {
-      "file": "2025-04-16_2025年3月份社会消费品零售总额增长5.9%-国家统计局.xls",
+      "file": "2025-04-16_2025年3月份社会消费品零售总额增长5.9%.xls",
       "metric": "乡村",
       "extracted": {
         "metric": "乡村",
@@ -13552,7 +14722,7 @@
       }
     },
     {
-      "file": "2025-04-16_2025年3月份社会消费品零售总额增长5.9%-国家统计局.xls",
+      "file": "2025-04-16_2025年3月份社会消费品零售总额增长5.9%.xls",
       "metric": "餐饮收入",
       "extracted": {
         "metric": "餐饮收入",
@@ -13565,7 +14735,7 @@
       }
     },
     {
-      "file": "2025-04-16_2025年3月份社会消费品零售总额增长5.9%-国家统计局.xls",
+      "file": "2025-04-16_2025年3月份社会消费品零售总额增长5.9%.xls",
       "metric": "限额以上单位餐饮收入",
       "extracted": {
         "metric": "限额以上单位餐饮收入",
@@ -13578,7 +14748,7 @@
       }
     },
     {
-      "file": "2025-04-16_2025年3月份社会消费品零售总额增长5.9%-国家统计局.xls",
+      "file": "2025-04-16_2025年3月份社会消费品零售总额增长5.9%.xls",
       "metric": "商品零售额",
       "extracted": {
         "metric": "商品零售额",
@@ -13591,7 +14761,7 @@
       }
     },
     {
-      "file": "2025-04-16_2025年3月份社会消费品零售总额增长5.9%-国家统计局.xls",
+      "file": "2025-04-16_2025年3月份社会消费品零售总额增长5.9%.xls",
       "metric": "限额以上单位商品零售额",
       "extracted": {
         "metric": "限额以上单位商品零售额",
@@ -13604,7 +14774,7 @@
       }
     },
     {
-      "file": "2025-04-16_2025年3月份社会消费品零售总额增长5.9%-国家统计局.xls",
+      "file": "2025-04-16_2025年3月份社会消费品零售总额增长5.9%.xls",
       "metric": "粮油、食品类",
       "extracted": {
         "metric": "粮油、食品类",
@@ -13617,7 +14787,7 @@
       }
     },
     {
-      "file": "2025-04-16_2025年3月份社会消费品零售总额增长5.9%-国家统计局.xls",
+      "file": "2025-04-16_2025年3月份社会消费品零售总额增长5.9%.xls",
       "metric": "饮料类",
       "extracted": {
         "metric": "饮料类",
@@ -13630,7 +14800,7 @@
       }
     },
     {
-      "file": "2025-04-16_2025年3月份社会消费品零售总额增长5.9%-国家统计局.xls",
+      "file": "2025-04-16_2025年3月份社会消费品零售总额增长5.9%.xls",
       "metric": "烟酒类",
       "extracted": {
         "metric": "烟酒类",
@@ -13643,7 +14813,7 @@
       }
     },
     {
-      "file": "2025-04-16_2025年3月份社会消费品零售总额增长5.9%-国家统计局.xls",
+      "file": "2025-04-16_2025年3月份社会消费品零售总额增长5.9%.xls",
       "metric": "服装、鞋帽、针纺织品类",
       "extracted": {
         "metric": "服装、鞋帽、针纺织品类",
@@ -13656,7 +14826,7 @@
       }
     },
     {
-      "file": "2025-04-16_2025年3月份社会消费品零售总额增长5.9%-国家统计局.xls",
+      "file": "2025-04-16_2025年3月份社会消费品零售总额增长5.9%.xls",
       "metric": "化妆品类",
       "extracted": {
         "metric": "化妆品类",
@@ -13669,7 +14839,7 @@
       }
     },
     {
-      "file": "2025-04-16_2025年3月份社会消费品零售总额增长5.9%-国家统计局.xls",
+      "file": "2025-04-16_2025年3月份社会消费品零售总额增长5.9%.xls",
       "metric": "金银珠宝类",
       "extracted": {
         "metric": "金银珠宝类",
@@ -13682,7 +14852,7 @@
       }
     },
     {
-      "file": "2025-04-16_2025年3月份社会消费品零售总额增长5.9%-国家统计局.xls",
+      "file": "2025-04-16_2025年3月份社会消费品零售总额增长5.9%.xls",
       "metric": "日用品类",
       "extracted": {
         "metric": "日用品类",
@@ -13695,7 +14865,7 @@
       }
     },
     {
-      "file": "2025-04-16_2025年3月份社会消费品零售总额增长5.9%-国家统计局.xls",
+      "file": "2025-04-16_2025年3月份社会消费品零售总额增长5.9%.xls",
       "metric": "体育、娱乐用品类",
       "extracted": {
         "metric": "体育、娱乐用品类",
@@ -13708,7 +14878,7 @@
       }
     },
     {
-      "file": "2025-04-16_2025年3月份社会消费品零售总额增长5.9%-国家统计局.xls",
+      "file": "2025-04-16_2025年3月份社会消费品零售总额增长5.9%.xls",
       "metric": "家用电器和音像器材类",
       "extracted": {
         "metric": "家用电器和音像器材类",
@@ -13721,7 +14891,7 @@
       }
     },
     {
-      "file": "2025-04-16_2025年3月份社会消费品零售总额增长5.9%-国家统计局.xls",
+      "file": "2025-04-16_2025年3月份社会消费品零售总额增长5.9%.xls",
       "metric": "中西药品类",
       "extracted": {
         "metric": "中西药品类",
@@ -13734,7 +14904,7 @@
       }
     },
     {
-      "file": "2025-04-16_2025年3月份社会消费品零售总额增长5.9%-国家统计局.xls",
+      "file": "2025-04-16_2025年3月份社会消费品零售总额增长5.9%.xls",
       "metric": "文化办公用品类",
       "extracted": {
         "metric": "文化办公用品类",
@@ -13747,7 +14917,7 @@
       }
     },
     {
-      "file": "2025-04-16_2025年3月份社会消费品零售总额增长5.9%-国家统计局.xls",
+      "file": "2025-04-16_2025年3月份社会消费品零售总额增长5.9%.xls",
       "metric": "家具类",
       "extracted": {
         "metric": "家具类",
@@ -13760,7 +14930,7 @@
       }
     },
     {
-      "file": "2025-04-16_2025年3月份社会消费品零售总额增长5.9%-国家统计局.xls",
+      "file": "2025-04-16_2025年3月份社会消费品零售总额增长5.9%.xls",
       "metric": "通讯器材类",
       "extracted": {
         "metric": "通讯器材类",
@@ -13773,7 +14943,7 @@
       }
     },
     {
-      "file": "2025-04-16_2025年3月份社会消费品零售总额增长5.9%-国家统计局.xls",
+      "file": "2025-04-16_2025年3月份社会消费品零售总额增长5.9%.xls",
       "metric": "石油及制品类",
       "extracted": {
         "metric": "石油及制品类",
@@ -13786,7 +14956,7 @@
       }
     },
     {
-      "file": "2025-04-16_2025年3月份社会消费品零售总额增长5.9%-国家统计局.xls",
+      "file": "2025-04-16_2025年3月份社会消费品零售总额增长5.9%.xls",
       "metric": "汽车类",
       "extracted": {
         "metric": "汽车类",
@@ -13799,7 +14969,7 @@
       }
     },
     {
-      "file": "2025-04-16_2025年3月份社会消费品零售总额增长5.9%-国家统计局.xls",
+      "file": "2025-04-16_2025年3月份社会消费品零售总额增长5.9%.xls",
       "metric": "建筑及装潢材料类",
       "extracted": {
         "metric": "建筑及装潢材料类",
@@ -13812,7 +14982,7 @@
       }
     },
     {
-      "file": "2025-05-19_2025年4月份社会消费品零售总额增长5.1%-国家统计局.xls",
+      "file": "2025-05-19_2025年4月份社会消费品零售总额增长5.1%.xls",
       "metric": "社会消费品零售总额",
       "extracted": {
         "metric": "社会消费品零售总额",
@@ -13825,7 +14995,7 @@
       }
     },
     {
-      "file": "2025-05-19_2025年4月份社会消费品零售总额增长5.1%-国家统计局.xls",
+      "file": "2025-05-19_2025年4月份社会消费品零售总额增长5.1%.xls",
       "metric": "除汽车以外的消费品零售额",
       "extracted": {
         "metric": "除汽车以外的消费品零售额",
@@ -13838,7 +15008,7 @@
       }
     },
     {
-      "file": "2025-05-19_2025年4月份社会消费品零售总额增长5.1%-国家统计局.xls",
+      "file": "2025-05-19_2025年4月份社会消费品零售总额增长5.1%.xls",
       "metric": "限额以上单位消费品零售额",
       "extracted": {
         "metric": "限额以上单位消费品零售额",
@@ -13851,7 +15021,7 @@
       }
     },
     {
-      "file": "2025-05-19_2025年4月份社会消费品零售总额增长5.1%-国家统计局.xls",
+      "file": "2025-05-19_2025年4月份社会消费品零售总额增长5.1%.xls",
       "metric": "实物商品网上零售额",
       "extracted": {
         "metric": "实物商品网上零售额",
@@ -13864,7 +15034,7 @@
       }
     },
     {
-      "file": "2025-05-19_2025年4月份社会消费品零售总额增长5.1%-国家统计局.xls",
+      "file": "2025-05-19_2025年4月份社会消费品零售总额增长5.1%.xls",
       "metric": "城镇",
       "extracted": {
         "metric": "城镇",
@@ -13877,7 +15047,7 @@
       }
     },
     {
-      "file": "2025-05-19_2025年4月份社会消费品零售总额增长5.1%-国家统计局.xls",
+      "file": "2025-05-19_2025年4月份社会消费品零售总额增长5.1%.xls",
       "metric": "乡村",
       "extracted": {
         "metric": "乡村",
@@ -13890,7 +15060,7 @@
       }
     },
     {
-      "file": "2025-05-19_2025年4月份社会消费品零售总额增长5.1%-国家统计局.xls",
+      "file": "2025-05-19_2025年4月份社会消费品零售总额增长5.1%.xls",
       "metric": "餐饮收入",
       "extracted": {
         "metric": "餐饮收入",
@@ -13903,7 +15073,7 @@
       }
     },
     {
-      "file": "2025-05-19_2025年4月份社会消费品零售总额增长5.1%-国家统计局.xls",
+      "file": "2025-05-19_2025年4月份社会消费品零售总额增长5.1%.xls",
       "metric": "限额以上单位餐饮收入",
       "extracted": {
         "metric": "限额以上单位餐饮收入",
@@ -13916,7 +15086,7 @@
       }
     },
     {
-      "file": "2025-05-19_2025年4月份社会消费品零售总额增长5.1%-国家统计局.xls",
+      "file": "2025-05-19_2025年4月份社会消费品零售总额增长5.1%.xls",
       "metric": "商品零售额",
       "extracted": {
         "metric": "商品零售额",
@@ -13929,7 +15099,7 @@
       }
     },
     {
-      "file": "2025-05-19_2025年4月份社会消费品零售总额增长5.1%-国家统计局.xls",
+      "file": "2025-05-19_2025年4月份社会消费品零售总额增长5.1%.xls",
       "metric": "限额以上单位商品零售额",
       "extracted": {
         "metric": "限额以上单位商品零售额",
@@ -13942,7 +15112,7 @@
       }
     },
     {
-      "file": "2025-05-19_2025年4月份社会消费品零售总额增长5.1%-国家统计局.xls",
+      "file": "2025-05-19_2025年4月份社会消费品零售总额增长5.1%.xls",
       "metric": "粮油、食品类",
       "extracted": {
         "metric": "粮油、食品类",
@@ -13955,7 +15125,7 @@
       }
     },
     {
-      "file": "2025-05-19_2025年4月份社会消费品零售总额增长5.1%-国家统计局.xls",
+      "file": "2025-05-19_2025年4月份社会消费品零售总额增长5.1%.xls",
       "metric": "饮料类",
       "extracted": {
         "metric": "饮料类",
@@ -13968,7 +15138,7 @@
       }
     },
     {
-      "file": "2025-05-19_2025年4月份社会消费品零售总额增长5.1%-国家统计局.xls",
+      "file": "2025-05-19_2025年4月份社会消费品零售总额增长5.1%.xls",
       "metric": "烟酒类",
       "extracted": {
         "metric": "烟酒类",
@@ -13981,7 +15151,7 @@
       }
     },
     {
-      "file": "2025-05-19_2025年4月份社会消费品零售总额增长5.1%-国家统计局.xls",
+      "file": "2025-05-19_2025年4月份社会消费品零售总额增长5.1%.xls",
       "metric": "服装、鞋帽、针纺织品类",
       "extracted": {
         "metric": "服装、鞋帽、针纺织品类",
@@ -13994,7 +15164,7 @@
       }
     },
     {
-      "file": "2025-05-19_2025年4月份社会消费品零售总额增长5.1%-国家统计局.xls",
+      "file": "2025-05-19_2025年4月份社会消费品零售总额增长5.1%.xls",
       "metric": "化妆品类",
       "extracted": {
         "metric": "化妆品类",
@@ -14007,7 +15177,7 @@
       }
     },
     {
-      "file": "2025-05-19_2025年4月份社会消费品零售总额增长5.1%-国家统计局.xls",
+      "file": "2025-05-19_2025年4月份社会消费品零售总额增长5.1%.xls",
       "metric": "金银珠宝类",
       "extracted": {
         "metric": "金银珠宝类",
@@ -14020,7 +15190,7 @@
       }
     },
     {
-      "file": "2025-05-19_2025年4月份社会消费品零售总额增长5.1%-国家统计局.xls",
+      "file": "2025-05-19_2025年4月份社会消费品零售总额增长5.1%.xls",
       "metric": "日用品类",
       "extracted": {
         "metric": "日用品类",
@@ -14033,7 +15203,7 @@
       }
     },
     {
-      "file": "2025-05-19_2025年4月份社会消费品零售总额增长5.1%-国家统计局.xls",
+      "file": "2025-05-19_2025年4月份社会消费品零售总额增长5.1%.xls",
       "metric": "体育、娱乐用品类",
       "extracted": {
         "metric": "体育、娱乐用品类",
@@ -14046,7 +15216,7 @@
       }
     },
     {
-      "file": "2025-05-19_2025年4月份社会消费品零售总额增长5.1%-国家统计局.xls",
+      "file": "2025-05-19_2025年4月份社会消费品零售总额增长5.1%.xls",
       "metric": "家用电器和音像器材类",
       "extracted": {
         "metric": "家用电器和音像器材类",
@@ -14059,7 +15229,7 @@
       }
     },
     {
-      "file": "2025-05-19_2025年4月份社会消费品零售总额增长5.1%-国家统计局.xls",
+      "file": "2025-05-19_2025年4月份社会消费品零售总额增长5.1%.xls",
       "metric": "中西药品类",
       "extracted": {
         "metric": "中西药品类",
@@ -14072,7 +15242,7 @@
       }
     },
     {
-      "file": "2025-05-19_2025年4月份社会消费品零售总额增长5.1%-国家统计局.xls",
+      "file": "2025-05-19_2025年4月份社会消费品零售总额增长5.1%.xls",
       "metric": "文化办公用品类",
       "extracted": {
         "metric": "文化办公用品类",
@@ -14085,7 +15255,7 @@
       }
     },
     {
-      "file": "2025-05-19_2025年4月份社会消费品零售总额增长5.1%-国家统计局.xls",
+      "file": "2025-05-19_2025年4月份社会消费品零售总额增长5.1%.xls",
       "metric": "家具类",
       "extracted": {
         "metric": "家具类",
@@ -14098,7 +15268,7 @@
       }
     },
     {
-      "file": "2025-05-19_2025年4月份社会消费品零售总额增长5.1%-国家统计局.xls",
+      "file": "2025-05-19_2025年4月份社会消费品零售总额增长5.1%.xls",
       "metric": "通讯器材类",
       "extracted": {
         "metric": "通讯器材类",
@@ -14111,7 +15281,7 @@
       }
     },
     {
-      "file": "2025-05-19_2025年4月份社会消费品零售总额增长5.1%-国家统计局.xls",
+      "file": "2025-05-19_2025年4月份社会消费品零售总额增长5.1%.xls",
       "metric": "石油及制品类",
       "extracted": {
         "metric": "石油及制品类",
@@ -14124,7 +15294,7 @@
       }
     },
     {
-      "file": "2025-05-19_2025年4月份社会消费品零售总额增长5.1%-国家统计局.xls",
+      "file": "2025-05-19_2025年4月份社会消费品零售总额增长5.1%.xls",
       "metric": "汽车类",
       "extracted": {
         "metric": "汽车类",
@@ -14137,7 +15307,7 @@
       }
     },
     {
-      "file": "2025-05-19_2025年4月份社会消费品零售总额增长5.1%-国家统计局.xls",
+      "file": "2025-05-19_2025年4月份社会消费品零售总额增长5.1%.xls",
       "metric": "建筑及装潢材料类",
       "extracted": {
         "metric": "建筑及装潢材料类",
@@ -14150,7 +15320,7 @@
       }
     },
     {
-      "file": "2025-06-16_2025年5月份社会消费品零售总额增长6.4%-国家统计局.xls",
+      "file": "2025-06-16_2025年5月份社会消费品零售总额增长6.4%.xls",
       "metric": "社会消费品零售总额",
       "extracted": {
         "metric": "社会消费品零售总额",
@@ -14163,7 +15333,7 @@
       }
     },
     {
-      "file": "2025-06-16_2025年5月份社会消费品零售总额增长6.4%-国家统计局.xls",
+      "file": "2025-06-16_2025年5月份社会消费品零售总额增长6.4%.xls",
       "metric": "除汽车以外的消费品零售额",
       "extracted": {
         "metric": "除汽车以外的消费品零售额",
@@ -14176,7 +15346,7 @@
       }
     },
     {
-      "file": "2025-06-16_2025年5月份社会消费品零售总额增长6.4%-国家统计局.xls",
+      "file": "2025-06-16_2025年5月份社会消费品零售总额增长6.4%.xls",
       "metric": "限额以上单位消费品零售额",
       "extracted": {
         "metric": "限额以上单位消费品零售额",
@@ -14189,7 +15359,7 @@
       }
     },
     {
-      "file": "2025-06-16_2025年5月份社会消费品零售总额增长6.4%-国家统计局.xls",
+      "file": "2025-06-16_2025年5月份社会消费品零售总额增长6.4%.xls",
       "metric": "实物商品网上零售额",
       "extracted": {
         "metric": "实物商品网上零售额",
@@ -14202,7 +15372,7 @@
       }
     },
     {
-      "file": "2025-06-16_2025年5月份社会消费品零售总额增长6.4%-国家统计局.xls",
+      "file": "2025-06-16_2025年5月份社会消费品零售总额增长6.4%.xls",
       "metric": "城镇",
       "extracted": {
         "metric": "城镇",
@@ -14215,7 +15385,7 @@
       }
     },
     {
-      "file": "2025-06-16_2025年5月份社会消费品零售总额增长6.4%-国家统计局.xls",
+      "file": "2025-06-16_2025年5月份社会消费品零售总额增长6.4%.xls",
       "metric": "乡村",
       "extracted": {
         "metric": "乡村",
@@ -14228,7 +15398,7 @@
       }
     },
     {
-      "file": "2025-06-16_2025年5月份社会消费品零售总额增长6.4%-国家统计局.xls",
+      "file": "2025-06-16_2025年5月份社会消费品零售总额增长6.4%.xls",
       "metric": "餐饮收入",
       "extracted": {
         "metric": "餐饮收入",
@@ -14241,7 +15411,7 @@
       }
     },
     {
-      "file": "2025-06-16_2025年5月份社会消费品零售总额增长6.4%-国家统计局.xls",
+      "file": "2025-06-16_2025年5月份社会消费品零售总额增长6.4%.xls",
       "metric": "限额以上单位餐饮收入",
       "extracted": {
         "metric": "限额以上单位餐饮收入",
@@ -14254,7 +15424,7 @@
       }
     },
     {
-      "file": "2025-06-16_2025年5月份社会消费品零售总额增长6.4%-国家统计局.xls",
+      "file": "2025-06-16_2025年5月份社会消费品零售总额增长6.4%.xls",
       "metric": "商品零售额",
       "extracted": {
         "metric": "商品零售额",
@@ -14267,7 +15437,7 @@
       }
     },
     {
-      "file": "2025-06-16_2025年5月份社会消费品零售总额增长6.4%-国家统计局.xls",
+      "file": "2025-06-16_2025年5月份社会消费品零售总额增长6.4%.xls",
       "metric": "限额以上单位商品零售额",
       "extracted": {
         "metric": "限额以上单位商品零售额",
@@ -14280,7 +15450,7 @@
       }
     },
     {
-      "file": "2025-06-16_2025年5月份社会消费品零售总额增长6.4%-国家统计局.xls",
+      "file": "2025-06-16_2025年5月份社会消费品零售总额增长6.4%.xls",
       "metric": "粮油、食品类",
       "extracted": {
         "metric": "粮油、食品类",
@@ -14293,7 +15463,7 @@
       }
     },
     {
-      "file": "2025-06-16_2025年5月份社会消费品零售总额增长6.4%-国家统计局.xls",
+      "file": "2025-06-16_2025年5月份社会消费品零售总额增长6.4%.xls",
       "metric": "饮料类",
       "extracted": {
         "metric": "饮料类",
@@ -14306,7 +15476,7 @@
       }
     },
     {
-      "file": "2025-06-16_2025年5月份社会消费品零售总额增长6.4%-国家统计局.xls",
+      "file": "2025-06-16_2025年5月份社会消费品零售总额增长6.4%.xls",
       "metric": "烟酒类",
       "extracted": {
         "metric": "烟酒类",
@@ -14319,7 +15489,7 @@
       }
     },
     {
-      "file": "2025-06-16_2025年5月份社会消费品零售总额增长6.4%-国家统计局.xls",
+      "file": "2025-06-16_2025年5月份社会消费品零售总额增长6.4%.xls",
       "metric": "服装、鞋帽、针纺织品类",
       "extracted": {
         "metric": "服装、鞋帽、针纺织品类",
@@ -14332,7 +15502,7 @@
       }
     },
     {
-      "file": "2025-06-16_2025年5月份社会消费品零售总额增长6.4%-国家统计局.xls",
+      "file": "2025-06-16_2025年5月份社会消费品零售总额增长6.4%.xls",
       "metric": "化妆品类",
       "extracted": {
         "metric": "化妆品类",
@@ -14345,7 +15515,7 @@
       }
     },
     {
-      "file": "2025-06-16_2025年5月份社会消费品零售总额增长6.4%-国家统计局.xls",
+      "file": "2025-06-16_2025年5月份社会消费品零售总额增长6.4%.xls",
       "metric": "金银珠宝类",
       "extracted": {
         "metric": "金银珠宝类",
@@ -14358,7 +15528,7 @@
       }
     },
     {
-      "file": "2025-06-16_2025年5月份社会消费品零售总额增长6.4%-国家统计局.xls",
+      "file": "2025-06-16_2025年5月份社会消费品零售总额增长6.4%.xls",
       "metric": "日用品类",
       "extracted": {
         "metric": "日用品类",
@@ -14371,7 +15541,7 @@
       }
     },
     {
-      "file": "2025-06-16_2025年5月份社会消费品零售总额增长6.4%-国家统计局.xls",
+      "file": "2025-06-16_2025年5月份社会消费品零售总额增长6.4%.xls",
       "metric": "体育、娱乐用品类",
       "extracted": {
         "metric": "体育、娱乐用品类",
@@ -14384,7 +15554,7 @@
       }
     },
     {
-      "file": "2025-06-16_2025年5月份社会消费品零售总额增长6.4%-国家统计局.xls",
+      "file": "2025-06-16_2025年5月份社会消费品零售总额增长6.4%.xls",
       "metric": "家用电器和音像器材类",
       "extracted": {
         "metric": "家用电器和音像器材类",
@@ -14397,7 +15567,7 @@
       }
     },
     {
-      "file": "2025-06-16_2025年5月份社会消费品零售总额增长6.4%-国家统计局.xls",
+      "file": "2025-06-16_2025年5月份社会消费品零售总额增长6.4%.xls",
       "metric": "中西药品类",
       "extracted": {
         "metric": "中西药品类",
@@ -14410,7 +15580,7 @@
       }
     },
     {
-      "file": "2025-06-16_2025年5月份社会消费品零售总额增长6.4%-国家统计局.xls",
+      "file": "2025-06-16_2025年5月份社会消费品零售总额增长6.4%.xls",
       "metric": "文化办公用品类",
       "extracted": {
         "metric": "文化办公用品类",
@@ -14423,7 +15593,7 @@
       }
     },
     {
-      "file": "2025-06-16_2025年5月份社会消费品零售总额增长6.4%-国家统计局.xls",
+      "file": "2025-06-16_2025年5月份社会消费品零售总额增长6.4%.xls",
       "metric": "家具类",
       "extracted": {
         "metric": "家具类",
@@ -14436,7 +15606,7 @@
       }
     },
     {
-      "file": "2025-06-16_2025年5月份社会消费品零售总额增长6.4%-国家统计局.xls",
+      "file": "2025-06-16_2025年5月份社会消费品零售总额增长6.4%.xls",
       "metric": "通讯器材类",
       "extracted": {
         "metric": "通讯器材类",
@@ -14449,7 +15619,7 @@
       }
     },
     {
-      "file": "2025-06-16_2025年5月份社会消费品零售总额增长6.4%-国家统计局.xls",
+      "file": "2025-06-16_2025年5月份社会消费品零售总额增长6.4%.xls",
       "metric": "石油及制品类",
       "extracted": {
         "metric": "石油及制品类",
@@ -14462,7 +15632,7 @@
       }
     },
     {
-      "file": "2025-06-16_2025年5月份社会消费品零售总额增长6.4%-国家统计局.xls",
+      "file": "2025-06-16_2025年5月份社会消费品零售总额增长6.4%.xls",
       "metric": "汽车类",
       "extracted": {
         "metric": "汽车类",
@@ -14475,7 +15645,7 @@
       }
     },
     {
-      "file": "2025-06-16_2025年5月份社会消费品零售总额增长6.4%-国家统计局.xls",
+      "file": "2025-06-16_2025年5月份社会消费品零售总额增长6.4%.xls",
       "metric": "建筑及装潢材料类",
       "extracted": {
         "metric": "建筑及装潢材料类",
@@ -14488,7 +15658,7 @@
       }
     },
     {
-      "file": "2025-07-15_2025年6月份社会消费品零售总额增长4.8%-国家统计局.xls",
+      "file": "2025-07-15_2025年6月份社会消费品零售总额增长4.8%.xls",
       "metric": "社会消费品零售总额",
       "extracted": {
         "metric": "社会消费品零售总额",
@@ -14501,7 +15671,7 @@
       }
     },
     {
-      "file": "2025-07-15_2025年6月份社会消费品零售总额增长4.8%-国家统计局.xls",
+      "file": "2025-07-15_2025年6月份社会消费品零售总额增长4.8%.xls",
       "metric": "除汽车以外的消费品零售额",
       "extracted": {
         "metric": "除汽车以外的消费品零售额",
@@ -14514,7 +15684,7 @@
       }
     },
     {
-      "file": "2025-07-15_2025年6月份社会消费品零售总额增长4.8%-国家统计局.xls",
+      "file": "2025-07-15_2025年6月份社会消费品零售总额增长4.8%.xls",
       "metric": "限额以上单位消费品零售额",
       "extracted": {
         "metric": "限额以上单位消费品零售额",
@@ -14527,7 +15697,7 @@
       }
     },
     {
-      "file": "2025-07-15_2025年6月份社会消费品零售总额增长4.8%-国家统计局.xls",
+      "file": "2025-07-15_2025年6月份社会消费品零售总额增长4.8%.xls",
       "metric": "实物商品网上零售额",
       "extracted": {
         "metric": "实物商品网上零售额",
@@ -14540,7 +15710,7 @@
       }
     },
     {
-      "file": "2025-07-15_2025年6月份社会消费品零售总额增长4.8%-国家统计局.xls",
+      "file": "2025-07-15_2025年6月份社会消费品零售总额增长4.8%.xls",
       "metric": "城镇",
       "extracted": {
         "metric": "城镇",
@@ -14553,7 +15723,7 @@
       }
     },
     {
-      "file": "2025-07-15_2025年6月份社会消费品零售总额增长4.8%-国家统计局.xls",
+      "file": "2025-07-15_2025年6月份社会消费品零售总额增长4.8%.xls",
       "metric": "乡村",
       "extracted": {
         "metric": "乡村",
@@ -14566,7 +15736,7 @@
       }
     },
     {
-      "file": "2025-07-15_2025年6月份社会消费品零售总额增长4.8%-国家统计局.xls",
+      "file": "2025-07-15_2025年6月份社会消费品零售总额增长4.8%.xls",
       "metric": "餐饮收入",
       "extracted": {
         "metric": "餐饮收入",
@@ -14579,7 +15749,7 @@
       }
     },
     {
-      "file": "2025-07-15_2025年6月份社会消费品零售总额增长4.8%-国家统计局.xls",
+      "file": "2025-07-15_2025年6月份社会消费品零售总额增长4.8%.xls",
       "metric": "限额以上单位餐饮收入",
       "extracted": {
         "metric": "限额以上单位餐饮收入",
@@ -14592,7 +15762,7 @@
       }
     },
     {
-      "file": "2025-07-15_2025年6月份社会消费品零售总额增长4.8%-国家统计局.xls",
+      "file": "2025-07-15_2025年6月份社会消费品零售总额增长4.8%.xls",
       "metric": "商品零售额",
       "extracted": {
         "metric": "商品零售额",
@@ -14605,7 +15775,7 @@
       }
     },
     {
-      "file": "2025-07-15_2025年6月份社会消费品零售总额增长4.8%-国家统计局.xls",
+      "file": "2025-07-15_2025年6月份社会消费品零售总额增长4.8%.xls",
       "metric": "限额以上单位商品零售额",
       "extracted": {
         "metric": "限额以上单位商品零售额",
@@ -14618,7 +15788,7 @@
       }
     },
     {
-      "file": "2025-07-15_2025年6月份社会消费品零售总额增长4.8%-国家统计局.xls",
+      "file": "2025-07-15_2025年6月份社会消费品零售总额增长4.8%.xls",
       "metric": "粮油、食品类",
       "extracted": {
         "metric": "粮油、食品类",
@@ -14631,7 +15801,7 @@
       }
     },
     {
-      "file": "2025-07-15_2025年6月份社会消费品零售总额增长4.8%-国家统计局.xls",
+      "file": "2025-07-15_2025年6月份社会消费品零售总额增长4.8%.xls",
       "metric": "饮料类",
       "extracted": {
         "metric": "饮料类",
@@ -14644,7 +15814,7 @@
       }
     },
     {
-      "file": "2025-07-15_2025年6月份社会消费品零售总额增长4.8%-国家统计局.xls",
+      "file": "2025-07-15_2025年6月份社会消费品零售总额增长4.8%.xls",
       "metric": "烟酒类",
       "extracted": {
         "metric": "烟酒类",
@@ -14657,7 +15827,7 @@
       }
     },
     {
-      "file": "2025-07-15_2025年6月份社会消费品零售总额增长4.8%-国家统计局.xls",
+      "file": "2025-07-15_2025年6月份社会消费品零售总额增长4.8%.xls",
       "metric": "服装、鞋帽、针纺织品类",
       "extracted": {
         "metric": "服装、鞋帽、针纺织品类",
@@ -14670,7 +15840,7 @@
       }
     },
     {
-      "file": "2025-07-15_2025年6月份社会消费品零售总额增长4.8%-国家统计局.xls",
+      "file": "2025-07-15_2025年6月份社会消费品零售总额增长4.8%.xls",
       "metric": "化妆品类",
       "extracted": {
         "metric": "化妆品类",
@@ -14683,7 +15853,7 @@
       }
     },
     {
-      "file": "2025-07-15_2025年6月份社会消费品零售总额增长4.8%-国家统计局.xls",
+      "file": "2025-07-15_2025年6月份社会消费品零售总额增长4.8%.xls",
       "metric": "金银珠宝类",
       "extracted": {
         "metric": "金银珠宝类",
@@ -14696,7 +15866,7 @@
       }
     },
     {
-      "file": "2025-07-15_2025年6月份社会消费品零售总额增长4.8%-国家统计局.xls",
+      "file": "2025-07-15_2025年6月份社会消费品零售总额增长4.8%.xls",
       "metric": "日用品类",
       "extracted": {
         "metric": "日用品类",
@@ -14709,7 +15879,7 @@
       }
     },
     {
-      "file": "2025-07-15_2025年6月份社会消费品零售总额增长4.8%-国家统计局.xls",
+      "file": "2025-07-15_2025年6月份社会消费品零售总额增长4.8%.xls",
       "metric": "体育、娱乐用品类",
       "extracted": {
         "metric": "体育、娱乐用品类",
@@ -14722,7 +15892,7 @@
       }
     },
     {
-      "file": "2025-07-15_2025年6月份社会消费品零售总额增长4.8%-国家统计局.xls",
+      "file": "2025-07-15_2025年6月份社会消费品零售总额增长4.8%.xls",
       "metric": "家用电器和音像器材类",
       "extracted": {
         "metric": "家用电器和音像器材类",
@@ -14735,7 +15905,7 @@
       }
     },
     {
-      "file": "2025-07-15_2025年6月份社会消费品零售总额增长4.8%-国家统计局.xls",
+      "file": "2025-07-15_2025年6月份社会消费品零售总额增长4.8%.xls",
       "metric": "中西药品类",
       "extracted": {
         "metric": "中西药品类",
@@ -14748,7 +15918,7 @@
       }
     },
     {
-      "file": "2025-07-15_2025年6月份社会消费品零售总额增长4.8%-国家统计局.xls",
+      "file": "2025-07-15_2025年6月份社会消费品零售总额增长4.8%.xls",
       "metric": "文化办公用品类",
       "extracted": {
         "metric": "文化办公用品类",
@@ -14761,7 +15931,7 @@
       }
     },
     {
-      "file": "2025-07-15_2025年6月份社会消费品零售总额增长4.8%-国家统计局.xls",
+      "file": "2025-07-15_2025年6月份社会消费品零售总额增长4.8%.xls",
       "metric": "家具类",
       "extracted": {
         "metric": "家具类",
@@ -14774,7 +15944,7 @@
       }
     },
     {
-      "file": "2025-07-15_2025年6月份社会消费品零售总额增长4.8%-国家统计局.xls",
+      "file": "2025-07-15_2025年6月份社会消费品零售总额增长4.8%.xls",
       "metric": "通讯器材类",
       "extracted": {
         "metric": "通讯器材类",
@@ -14787,7 +15957,7 @@
       }
     },
     {
-      "file": "2025-07-15_2025年6月份社会消费品零售总额增长4.8%-国家统计局.xls",
+      "file": "2025-07-15_2025年6月份社会消费品零售总额增长4.8%.xls",
       "metric": "石油及制品类",
       "extracted": {
         "metric": "石油及制品类",
@@ -14800,7 +15970,7 @@
       }
     },
     {
-      "file": "2025-07-15_2025年6月份社会消费品零售总额增长4.8%-国家统计局.xls",
+      "file": "2025-07-15_2025年6月份社会消费品零售总额增长4.8%.xls",
       "metric": "汽车类",
       "extracted": {
         "metric": "汽车类",
@@ -14813,7 +15983,7 @@
       }
     },
     {
-      "file": "2025-07-15_2025年6月份社会消费品零售总额增长4.8%-国家统计局.xls",
+      "file": "2025-07-15_2025年6月份社会消费品零售总额增长4.8%.xls",
       "metric": "建筑及装潢材料类",
       "extracted": {
         "metric": "建筑及装潢材料类",
@@ -14826,7 +15996,7 @@
       }
     },
     {
-      "file": "2025-08-15_2025年7月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2025-08-15_2025年7月份社会消费品零售总额增长3.7%.xls",
       "metric": "社会消费品零售总额",
       "extracted": {
         "metric": "社会消费品零售总额",
@@ -14839,7 +16009,7 @@
       }
     },
     {
-      "file": "2025-08-15_2025年7月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2025-08-15_2025年7月份社会消费品零售总额增长3.7%.xls",
       "metric": "除汽车以外的消费品零售额",
       "extracted": {
         "metric": "除汽车以外的消费品零售额",
@@ -14852,7 +16022,7 @@
       }
     },
     {
-      "file": "2025-08-15_2025年7月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2025-08-15_2025年7月份社会消费品零售总额增长3.7%.xls",
       "metric": "限额以上单位消费品零售额",
       "extracted": {
         "metric": "限额以上单位消费品零售额",
@@ -14865,7 +16035,7 @@
       }
     },
     {
-      "file": "2025-08-15_2025年7月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2025-08-15_2025年7月份社会消费品零售总额增长3.7%.xls",
       "metric": "实物商品网上零售额",
       "extracted": {
         "metric": "实物商品网上零售额",
@@ -14878,7 +16048,7 @@
       }
     },
     {
-      "file": "2025-08-15_2025年7月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2025-08-15_2025年7月份社会消费品零售总额增长3.7%.xls",
       "metric": "城镇",
       "extracted": {
         "metric": "城镇",
@@ -14891,7 +16061,7 @@
       }
     },
     {
-      "file": "2025-08-15_2025年7月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2025-08-15_2025年7月份社会消费品零售总额增长3.7%.xls",
       "metric": "乡村",
       "extracted": {
         "metric": "乡村",
@@ -14904,7 +16074,7 @@
       }
     },
     {
-      "file": "2025-08-15_2025年7月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2025-08-15_2025年7月份社会消费品零售总额增长3.7%.xls",
       "metric": "餐饮收入",
       "extracted": {
         "metric": "餐饮收入",
@@ -14917,7 +16087,7 @@
       }
     },
     {
-      "file": "2025-08-15_2025年7月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2025-08-15_2025年7月份社会消费品零售总额增长3.7%.xls",
       "metric": "限额以上单位餐饮收入",
       "extracted": {
         "metric": "限额以上单位餐饮收入",
@@ -14930,7 +16100,7 @@
       }
     },
     {
-      "file": "2025-08-15_2025年7月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2025-08-15_2025年7月份社会消费品零售总额增长3.7%.xls",
       "metric": "商品零售额",
       "extracted": {
         "metric": "商品零售额",
@@ -14943,7 +16113,7 @@
       }
     },
     {
-      "file": "2025-08-15_2025年7月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2025-08-15_2025年7月份社会消费品零售总额增长3.7%.xls",
       "metric": "限额以上单位商品零售额",
       "extracted": {
         "metric": "限额以上单位商品零售额",
@@ -14956,7 +16126,7 @@
       }
     },
     {
-      "file": "2025-08-15_2025年7月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2025-08-15_2025年7月份社会消费品零售总额增长3.7%.xls",
       "metric": "粮油、食品类",
       "extracted": {
         "metric": "粮油、食品类",
@@ -14969,7 +16139,7 @@
       }
     },
     {
-      "file": "2025-08-15_2025年7月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2025-08-15_2025年7月份社会消费品零售总额增长3.7%.xls",
       "metric": "饮料类",
       "extracted": {
         "metric": "饮料类",
@@ -14982,7 +16152,7 @@
       }
     },
     {
-      "file": "2025-08-15_2025年7月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2025-08-15_2025年7月份社会消费品零售总额增长3.7%.xls",
       "metric": "烟酒类",
       "extracted": {
         "metric": "烟酒类",
@@ -14995,7 +16165,7 @@
       }
     },
     {
-      "file": "2025-08-15_2025年7月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2025-08-15_2025年7月份社会消费品零售总额增长3.7%.xls",
       "metric": "服装、鞋帽、针纺织品类",
       "extracted": {
         "metric": "服装、鞋帽、针纺织品类",
@@ -15008,7 +16178,7 @@
       }
     },
     {
-      "file": "2025-08-15_2025年7月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2025-08-15_2025年7月份社会消费品零售总额增长3.7%.xls",
       "metric": "化妆品类",
       "extracted": {
         "metric": "化妆品类",
@@ -15021,7 +16191,7 @@
       }
     },
     {
-      "file": "2025-08-15_2025年7月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2025-08-15_2025年7月份社会消费品零售总额增长3.7%.xls",
       "metric": "金银珠宝类",
       "extracted": {
         "metric": "金银珠宝类",
@@ -15034,7 +16204,7 @@
       }
     },
     {
-      "file": "2025-08-15_2025年7月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2025-08-15_2025年7月份社会消费品零售总额增长3.7%.xls",
       "metric": "日用品类",
       "extracted": {
         "metric": "日用品类",
@@ -15047,7 +16217,7 @@
       }
     },
     {
-      "file": "2025-08-15_2025年7月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2025-08-15_2025年7月份社会消费品零售总额增长3.7%.xls",
       "metric": "体育、娱乐用品类",
       "extracted": {
         "metric": "体育、娱乐用品类",
@@ -15060,7 +16230,7 @@
       }
     },
     {
-      "file": "2025-08-15_2025年7月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2025-08-15_2025年7月份社会消费品零售总额增长3.7%.xls",
       "metric": "家用电器和音像器材类",
       "extracted": {
         "metric": "家用电器和音像器材类",
@@ -15073,7 +16243,7 @@
       }
     },
     {
-      "file": "2025-08-15_2025年7月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2025-08-15_2025年7月份社会消费品零售总额增长3.7%.xls",
       "metric": "中西药品类",
       "extracted": {
         "metric": "中西药品类",
@@ -15086,7 +16256,7 @@
       }
     },
     {
-      "file": "2025-08-15_2025年7月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2025-08-15_2025年7月份社会消费品零售总额增长3.7%.xls",
       "metric": "文化办公用品类",
       "extracted": {
         "metric": "文化办公用品类",
@@ -15099,7 +16269,7 @@
       }
     },
     {
-      "file": "2025-08-15_2025年7月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2025-08-15_2025年7月份社会消费品零售总额增长3.7%.xls",
       "metric": "家具类",
       "extracted": {
         "metric": "家具类",
@@ -15112,7 +16282,7 @@
       }
     },
     {
-      "file": "2025-08-15_2025年7月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2025-08-15_2025年7月份社会消费品零售总额增长3.7%.xls",
       "metric": "通讯器材类",
       "extracted": {
         "metric": "通讯器材类",
@@ -15125,7 +16295,7 @@
       }
     },
     {
-      "file": "2025-08-15_2025年7月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2025-08-15_2025年7月份社会消费品零售总额增长3.7%.xls",
       "metric": "石油及制品类",
       "extracted": {
         "metric": "石油及制品类",
@@ -15138,7 +16308,7 @@
       }
     },
     {
-      "file": "2025-08-15_2025年7月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2025-08-15_2025年7月份社会消费品零售总额增长3.7%.xls",
       "metric": "汽车类",
       "extracted": {
         "metric": "汽车类",
@@ -15151,7 +16321,7 @@
       }
     },
     {
-      "file": "2025-08-15_2025年7月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2025-08-15_2025年7月份社会消费品零售总额增长3.7%.xls",
       "metric": "建筑及装潢材料类",
       "extracted": {
         "metric": "建筑及装潢材料类",
@@ -15164,7 +16334,7 @@
       }
     },
     {
-      "file": "2025-09-15_2025年8月份社会消费品零售总额增长3.4%-国家统计局.xls",
+      "file": "2025-09-15_2025年8月份社会消费品零售总额增长3.4%.xls",
       "metric": "社会消费品零售总额",
       "extracted": {
         "metric": "社会消费品零售总额",
@@ -15177,7 +16347,7 @@
       }
     },
     {
-      "file": "2025-09-15_2025年8月份社会消费品零售总额增长3.4%-国家统计局.xls",
+      "file": "2025-09-15_2025年8月份社会消费品零售总额增长3.4%.xls",
       "metric": "除汽车以外的消费品零售额",
       "extracted": {
         "metric": "除汽车以外的消费品零售额",
@@ -15190,7 +16360,7 @@
       }
     },
     {
-      "file": "2025-09-15_2025年8月份社会消费品零售总额增长3.4%-国家统计局.xls",
+      "file": "2025-09-15_2025年8月份社会消费品零售总额增长3.4%.xls",
       "metric": "限额以上单位消费品零售额",
       "extracted": {
         "metric": "限额以上单位消费品零售额",
@@ -15203,7 +16373,7 @@
       }
     },
     {
-      "file": "2025-09-15_2025年8月份社会消费品零售总额增长3.4%-国家统计局.xls",
+      "file": "2025-09-15_2025年8月份社会消费品零售总额增长3.4%.xls",
       "metric": "实物商品网上零售额",
       "extracted": {
         "metric": "实物商品网上零售额",
@@ -15216,7 +16386,7 @@
       }
     },
     {
-      "file": "2025-09-15_2025年8月份社会消费品零售总额增长3.4%-国家统计局.xls",
+      "file": "2025-09-15_2025年8月份社会消费品零售总额增长3.4%.xls",
       "metric": "城镇",
       "extracted": {
         "metric": "城镇",
@@ -15229,7 +16399,7 @@
       }
     },
     {
-      "file": "2025-09-15_2025年8月份社会消费品零售总额增长3.4%-国家统计局.xls",
+      "file": "2025-09-15_2025年8月份社会消费品零售总额增长3.4%.xls",
       "metric": "乡村",
       "extracted": {
         "metric": "乡村",
@@ -15242,7 +16412,7 @@
       }
     },
     {
-      "file": "2025-09-15_2025年8月份社会消费品零售总额增长3.4%-国家统计局.xls",
+      "file": "2025-09-15_2025年8月份社会消费品零售总额增长3.4%.xls",
       "metric": "餐饮收入",
       "extracted": {
         "metric": "餐饮收入",
@@ -15255,7 +16425,7 @@
       }
     },
     {
-      "file": "2025-09-15_2025年8月份社会消费品零售总额增长3.4%-国家统计局.xls",
+      "file": "2025-09-15_2025年8月份社会消费品零售总额增长3.4%.xls",
       "metric": "限额以上单位餐饮收入",
       "extracted": {
         "metric": "限额以上单位餐饮收入",
@@ -15268,7 +16438,7 @@
       }
     },
     {
-      "file": "2025-09-15_2025年8月份社会消费品零售总额增长3.4%-国家统计局.xls",
+      "file": "2025-09-15_2025年8月份社会消费品零售总额增长3.4%.xls",
       "metric": "商品零售额",
       "extracted": {
         "metric": "商品零售额",
@@ -15281,7 +16451,7 @@
       }
     },
     {
-      "file": "2025-09-15_2025年8月份社会消费品零售总额增长3.4%-国家统计局.xls",
+      "file": "2025-09-15_2025年8月份社会消费品零售总额增长3.4%.xls",
       "metric": "限额以上单位商品零售额",
       "extracted": {
         "metric": "限额以上单位商品零售额",
@@ -15294,7 +16464,7 @@
       }
     },
     {
-      "file": "2025-09-15_2025年8月份社会消费品零售总额增长3.4%-国家统计局.xls",
+      "file": "2025-09-15_2025年8月份社会消费品零售总额增长3.4%.xls",
       "metric": "粮油、食品类",
       "extracted": {
         "metric": "粮油、食品类",
@@ -15307,7 +16477,7 @@
       }
     },
     {
-      "file": "2025-09-15_2025年8月份社会消费品零售总额增长3.4%-国家统计局.xls",
+      "file": "2025-09-15_2025年8月份社会消费品零售总额增长3.4%.xls",
       "metric": "饮料类",
       "extracted": {
         "metric": "饮料类",
@@ -15320,7 +16490,7 @@
       }
     },
     {
-      "file": "2025-09-15_2025年8月份社会消费品零售总额增长3.4%-国家统计局.xls",
+      "file": "2025-09-15_2025年8月份社会消费品零售总额增长3.4%.xls",
       "metric": "烟酒类",
       "extracted": {
         "metric": "烟酒类",
@@ -15333,7 +16503,7 @@
       }
     },
     {
-      "file": "2025-09-15_2025年8月份社会消费品零售总额增长3.4%-国家统计局.xls",
+      "file": "2025-09-15_2025年8月份社会消费品零售总额增长3.4%.xls",
       "metric": "服装、鞋帽、针纺织品类",
       "extracted": {
         "metric": "服装、鞋帽、针纺织品类",
@@ -15346,7 +16516,7 @@
       }
     },
     {
-      "file": "2025-09-15_2025年8月份社会消费品零售总额增长3.4%-国家统计局.xls",
+      "file": "2025-09-15_2025年8月份社会消费品零售总额增长3.4%.xls",
       "metric": "化妆品类",
       "extracted": {
         "metric": "化妆品类",
@@ -15359,7 +16529,7 @@
       }
     },
     {
-      "file": "2025-09-15_2025年8月份社会消费品零售总额增长3.4%-国家统计局.xls",
+      "file": "2025-09-15_2025年8月份社会消费品零售总额增长3.4%.xls",
       "metric": "金银珠宝类",
       "extracted": {
         "metric": "金银珠宝类",
@@ -15372,7 +16542,7 @@
       }
     },
     {
-      "file": "2025-09-15_2025年8月份社会消费品零售总额增长3.4%-国家统计局.xls",
+      "file": "2025-09-15_2025年8月份社会消费品零售总额增长3.4%.xls",
       "metric": "日用品类",
       "extracted": {
         "metric": "日用品类",
@@ -15385,7 +16555,7 @@
       }
     },
     {
-      "file": "2025-09-15_2025年8月份社会消费品零售总额增长3.4%-国家统计局.xls",
+      "file": "2025-09-15_2025年8月份社会消费品零售总额增长3.4%.xls",
       "metric": "体育、娱乐用品类",
       "extracted": {
         "metric": "体育、娱乐用品类",
@@ -15398,7 +16568,7 @@
       }
     },
     {
-      "file": "2025-09-15_2025年8月份社会消费品零售总额增长3.4%-国家统计局.xls",
+      "file": "2025-09-15_2025年8月份社会消费品零售总额增长3.4%.xls",
       "metric": "家用电器和音像器材类",
       "extracted": {
         "metric": "家用电器和音像器材类",
@@ -15411,7 +16581,7 @@
       }
     },
     {
-      "file": "2025-09-15_2025年8月份社会消费品零售总额增长3.4%-国家统计局.xls",
+      "file": "2025-09-15_2025年8月份社会消费品零售总额增长3.4%.xls",
       "metric": "中西药品类",
       "extracted": {
         "metric": "中西药品类",
@@ -15424,7 +16594,7 @@
       }
     },
     {
-      "file": "2025-09-15_2025年8月份社会消费品零售总额增长3.4%-国家统计局.xls",
+      "file": "2025-09-15_2025年8月份社会消费品零售总额增长3.4%.xls",
       "metric": "文化办公用品类",
       "extracted": {
         "metric": "文化办公用品类",
@@ -15437,7 +16607,7 @@
       }
     },
     {
-      "file": "2025-09-15_2025年8月份社会消费品零售总额增长3.4%-国家统计局.xls",
+      "file": "2025-09-15_2025年8月份社会消费品零售总额增长3.4%.xls",
       "metric": "家具类",
       "extracted": {
         "metric": "家具类",
@@ -15450,7 +16620,7 @@
       }
     },
     {
-      "file": "2025-09-15_2025年8月份社会消费品零售总额增长3.4%-国家统计局.xls",
+      "file": "2025-09-15_2025年8月份社会消费品零售总额增长3.4%.xls",
       "metric": "通讯器材类",
       "extracted": {
         "metric": "通讯器材类",
@@ -15463,7 +16633,7 @@
       }
     },
     {
-      "file": "2025-09-15_2025年8月份社会消费品零售总额增长3.4%-国家统计局.xls",
+      "file": "2025-09-15_2025年8月份社会消费品零售总额增长3.4%.xls",
       "metric": "石油及制品类",
       "extracted": {
         "metric": "石油及制品类",
@@ -15476,7 +16646,7 @@
       }
     },
     {
-      "file": "2025-09-15_2025年8月份社会消费品零售总额增长3.4%-国家统计局.xls",
+      "file": "2025-09-15_2025年8月份社会消费品零售总额增长3.4%.xls",
       "metric": "汽车类",
       "extracted": {
         "metric": "汽车类",
@@ -15489,7 +16659,7 @@
       }
     },
     {
-      "file": "2025-09-15_2025年8月份社会消费品零售总额增长3.4%-国家统计局.xls",
+      "file": "2025-09-15_2025年8月份社会消费品零售总额增长3.4%.xls",
       "metric": "建筑及装潢材料类",
       "extracted": {
         "metric": "建筑及装潢材料类",
@@ -15502,7 +16672,7 @@
       }
     },
     {
-      "file": "2025-10-20_2025年9月份社会消费品零售总额增长3.0%-国家统计局.xls",
+      "file": "2025-10-20_2025年9月份社会消费品零售总额增长3.0%.xls",
       "metric": "社会消费品零售总额",
       "extracted": {
         "metric": "社会消费品零售总额",
@@ -15515,7 +16685,7 @@
       }
     },
     {
-      "file": "2025-10-20_2025年9月份社会消费品零售总额增长3.0%-国家统计局.xls",
+      "file": "2025-10-20_2025年9月份社会消费品零售总额增长3.0%.xls",
       "metric": "除汽车以外的消费品零售额",
       "extracted": {
         "metric": "除汽车以外的消费品零售额",
@@ -15528,7 +16698,7 @@
       }
     },
     {
-      "file": "2025-10-20_2025年9月份社会消费品零售总额增长3.0%-国家统计局.xls",
+      "file": "2025-10-20_2025年9月份社会消费品零售总额增长3.0%.xls",
       "metric": "限额以上单位消费品零售额",
       "extracted": {
         "metric": "限额以上单位消费品零售额",
@@ -15541,7 +16711,7 @@
       }
     },
     {
-      "file": "2025-10-20_2025年9月份社会消费品零售总额增长3.0%-国家统计局.xls",
+      "file": "2025-10-20_2025年9月份社会消费品零售总额增长3.0%.xls",
       "metric": "实物商品网上零售额",
       "extracted": {
         "metric": "实物商品网上零售额",
@@ -15554,7 +16724,7 @@
       }
     },
     {
-      "file": "2025-10-20_2025年9月份社会消费品零售总额增长3.0%-国家统计局.xls",
+      "file": "2025-10-20_2025年9月份社会消费品零售总额增长3.0%.xls",
       "metric": "城镇",
       "extracted": {
         "metric": "城镇",
@@ -15567,7 +16737,7 @@
       }
     },
     {
-      "file": "2025-10-20_2025年9月份社会消费品零售总额增长3.0%-国家统计局.xls",
+      "file": "2025-10-20_2025年9月份社会消费品零售总额增长3.0%.xls",
       "metric": "乡村",
       "extracted": {
         "metric": "乡村",
@@ -15580,7 +16750,7 @@
       }
     },
     {
-      "file": "2025-10-20_2025年9月份社会消费品零售总额增长3.0%-国家统计局.xls",
+      "file": "2025-10-20_2025年9月份社会消费品零售总额增长3.0%.xls",
       "metric": "餐饮收入",
       "extracted": {
         "metric": "餐饮收入",
@@ -15593,7 +16763,7 @@
       }
     },
     {
-      "file": "2025-10-20_2025年9月份社会消费品零售总额增长3.0%-国家统计局.xls",
+      "file": "2025-10-20_2025年9月份社会消费品零售总额增长3.0%.xls",
       "metric": "限额以上单位餐饮收入",
       "extracted": {
         "metric": "限额以上单位餐饮收入",
@@ -15606,7 +16776,7 @@
       }
     },
     {
-      "file": "2025-10-20_2025年9月份社会消费品零售总额增长3.0%-国家统计局.xls",
+      "file": "2025-10-20_2025年9月份社会消费品零售总额增长3.0%.xls",
       "metric": "商品零售额",
       "extracted": {
         "metric": "商品零售额",
@@ -15619,7 +16789,7 @@
       }
     },
     {
-      "file": "2025-10-20_2025年9月份社会消费品零售总额增长3.0%-国家统计局.xls",
+      "file": "2025-10-20_2025年9月份社会消费品零售总额增长3.0%.xls",
       "metric": "限额以上单位商品零售额",
       "extracted": {
         "metric": "限额以上单位商品零售额",
@@ -15632,7 +16802,7 @@
       }
     },
     {
-      "file": "2025-10-20_2025年9月份社会消费品零售总额增长3.0%-国家统计局.xls",
+      "file": "2025-10-20_2025年9月份社会消费品零售总额增长3.0%.xls",
       "metric": "粮油、食品类",
       "extracted": {
         "metric": "粮油、食品类",
@@ -15645,7 +16815,7 @@
       }
     },
     {
-      "file": "2025-10-20_2025年9月份社会消费品零售总额增长3.0%-国家统计局.xls",
+      "file": "2025-10-20_2025年9月份社会消费品零售总额增长3.0%.xls",
       "metric": "饮料类",
       "extracted": {
         "metric": "饮料类",
@@ -15658,7 +16828,7 @@
       }
     },
     {
-      "file": "2025-10-20_2025年9月份社会消费品零售总额增长3.0%-国家统计局.xls",
+      "file": "2025-10-20_2025年9月份社会消费品零售总额增长3.0%.xls",
       "metric": "烟酒类",
       "extracted": {
         "metric": "烟酒类",
@@ -15671,7 +16841,7 @@
       }
     },
     {
-      "file": "2025-10-20_2025年9月份社会消费品零售总额增长3.0%-国家统计局.xls",
+      "file": "2025-10-20_2025年9月份社会消费品零售总额增长3.0%.xls",
       "metric": "服装、鞋帽、针纺织品类",
       "extracted": {
         "metric": "服装、鞋帽、针纺织品类",
@@ -15684,7 +16854,7 @@
       }
     },
     {
-      "file": "2025-10-20_2025年9月份社会消费品零售总额增长3.0%-国家统计局.xls",
+      "file": "2025-10-20_2025年9月份社会消费品零售总额增长3.0%.xls",
       "metric": "化妆品类",
       "extracted": {
         "metric": "化妆品类",
@@ -15697,7 +16867,7 @@
       }
     },
     {
-      "file": "2025-10-20_2025年9月份社会消费品零售总额增长3.0%-国家统计局.xls",
+      "file": "2025-10-20_2025年9月份社会消费品零售总额增长3.0%.xls",
       "metric": "金银珠宝类",
       "extracted": {
         "metric": "金银珠宝类",
@@ -15710,7 +16880,7 @@
       }
     },
     {
-      "file": "2025-10-20_2025年9月份社会消费品零售总额增长3.0%-国家统计局.xls",
+      "file": "2025-10-20_2025年9月份社会消费品零售总额增长3.0%.xls",
       "metric": "日用品类",
       "extracted": {
         "metric": "日用品类",
@@ -15723,7 +16893,7 @@
       }
     },
     {
-      "file": "2025-10-20_2025年9月份社会消费品零售总额增长3.0%-国家统计局.xls",
+      "file": "2025-10-20_2025年9月份社会消费品零售总额增长3.0%.xls",
       "metric": "体育、娱乐用品类",
       "extracted": {
         "metric": "体育、娱乐用品类",
@@ -15736,7 +16906,7 @@
       }
     },
     {
-      "file": "2025-10-20_2025年9月份社会消费品零售总额增长3.0%-国家统计局.xls",
+      "file": "2025-10-20_2025年9月份社会消费品零售总额增长3.0%.xls",
       "metric": "家用电器和音像器材类",
       "extracted": {
         "metric": "家用电器和音像器材类",
@@ -15749,7 +16919,7 @@
       }
     },
     {
-      "file": "2025-10-20_2025年9月份社会消费品零售总额增长3.0%-国家统计局.xls",
+      "file": "2025-10-20_2025年9月份社会消费品零售总额增长3.0%.xls",
       "metric": "中西药品类",
       "extracted": {
         "metric": "中西药品类",
@@ -15762,7 +16932,7 @@
       }
     },
     {
-      "file": "2025-10-20_2025年9月份社会消费品零售总额增长3.0%-国家统计局.xls",
+      "file": "2025-10-20_2025年9月份社会消费品零售总额增长3.0%.xls",
       "metric": "文化办公用品类",
       "extracted": {
         "metric": "文化办公用品类",
@@ -15775,7 +16945,7 @@
       }
     },
     {
-      "file": "2025-10-20_2025年9月份社会消费品零售总额增长3.0%-国家统计局.xls",
+      "file": "2025-10-20_2025年9月份社会消费品零售总额增长3.0%.xls",
       "metric": "家具类",
       "extracted": {
         "metric": "家具类",
@@ -15788,7 +16958,7 @@
       }
     },
     {
-      "file": "2025-10-20_2025年9月份社会消费品零售总额增长3.0%-国家统计局.xls",
+      "file": "2025-10-20_2025年9月份社会消费品零售总额增长3.0%.xls",
       "metric": "通讯器材类",
       "extracted": {
         "metric": "通讯器材类",
@@ -15801,7 +16971,7 @@
       }
     },
     {
-      "file": "2025-10-20_2025年9月份社会消费品零售总额增长3.0%-国家统计局.xls",
+      "file": "2025-10-20_2025年9月份社会消费品零售总额增长3.0%.xls",
       "metric": "石油及制品类",
       "extracted": {
         "metric": "石油及制品类",
@@ -15814,7 +16984,7 @@
       }
     },
     {
-      "file": "2025-10-20_2025年9月份社会消费品零售总额增长3.0%-国家统计局.xls",
+      "file": "2025-10-20_2025年9月份社会消费品零售总额增长3.0%.xls",
       "metric": "汽车类",
       "extracted": {
         "metric": "汽车类",
@@ -15827,7 +16997,7 @@
       }
     },
     {
-      "file": "2025-10-20_2025年9月份社会消费品零售总额增长3.0%-国家统计局.xls",
+      "file": "2025-10-20_2025年9月份社会消费品零售总额增长3.0%.xls",
       "metric": "建筑及装潢材料类",
       "extracted": {
         "metric": "建筑及装潢材料类",
@@ -15840,7 +17010,7 @@
       }
     },
     {
-      "file": "2025-11-14_2025年10月份社会消费品零售总额增长2.9%-国家统计局.xls",
+      "file": "2025-11-14_2025年10月份社会消费品零售总额增长2.9%.xls",
       "metric": "社会消费品零售总额",
       "extracted": {
         "metric": "社会消费品零售总额",
@@ -15853,7 +17023,7 @@
       }
     },
     {
-      "file": "2025-11-14_2025年10月份社会消费品零售总额增长2.9%-国家统计局.xls",
+      "file": "2025-11-14_2025年10月份社会消费品零售总额增长2.9%.xls",
       "metric": "除汽车以外的消费品零售额",
       "extracted": {
         "metric": "除汽车以外的消费品零售额",
@@ -15866,7 +17036,7 @@
       }
     },
     {
-      "file": "2025-11-14_2025年10月份社会消费品零售总额增长2.9%-国家统计局.xls",
+      "file": "2025-11-14_2025年10月份社会消费品零售总额增长2.9%.xls",
       "metric": "限额以上单位消费品零售额",
       "extracted": {
         "metric": "限额以上单位消费品零售额",
@@ -15879,7 +17049,7 @@
       }
     },
     {
-      "file": "2025-11-14_2025年10月份社会消费品零售总额增长2.9%-国家统计局.xls",
+      "file": "2025-11-14_2025年10月份社会消费品零售总额增长2.9%.xls",
       "metric": "实物商品网上零售额",
       "extracted": {
         "metric": "实物商品网上零售额",
@@ -15892,7 +17062,7 @@
       }
     },
     {
-      "file": "2025-11-14_2025年10月份社会消费品零售总额增长2.9%-国家统计局.xls",
+      "file": "2025-11-14_2025年10月份社会消费品零售总额增长2.9%.xls",
       "metric": "城镇",
       "extracted": {
         "metric": "城镇",
@@ -15905,7 +17075,7 @@
       }
     },
     {
-      "file": "2025-11-14_2025年10月份社会消费品零售总额增长2.9%-国家统计局.xls",
+      "file": "2025-11-14_2025年10月份社会消费品零售总额增长2.9%.xls",
       "metric": "乡村",
       "extracted": {
         "metric": "乡村",
@@ -15918,7 +17088,7 @@
       }
     },
     {
-      "file": "2025-11-14_2025年10月份社会消费品零售总额增长2.9%-国家统计局.xls",
+      "file": "2025-11-14_2025年10月份社会消费品零售总额增长2.9%.xls",
       "metric": "餐饮收入",
       "extracted": {
         "metric": "餐饮收入",
@@ -15931,7 +17101,7 @@
       }
     },
     {
-      "file": "2025-11-14_2025年10月份社会消费品零售总额增长2.9%-国家统计局.xls",
+      "file": "2025-11-14_2025年10月份社会消费品零售总额增长2.9%.xls",
       "metric": "限额以上单位餐饮收入",
       "extracted": {
         "metric": "限额以上单位餐饮收入",
@@ -15944,7 +17114,7 @@
       }
     },
     {
-      "file": "2025-11-14_2025年10月份社会消费品零售总额增长2.9%-国家统计局.xls",
+      "file": "2025-11-14_2025年10月份社会消费品零售总额增长2.9%.xls",
       "metric": "商品零售额",
       "extracted": {
         "metric": "商品零售额",
@@ -15957,7 +17127,7 @@
       }
     },
     {
-      "file": "2025-11-14_2025年10月份社会消费品零售总额增长2.9%-国家统计局.xls",
+      "file": "2025-11-14_2025年10月份社会消费品零售总额增长2.9%.xls",
       "metric": "限额以上单位商品零售额",
       "extracted": {
         "metric": "限额以上单位商品零售额",
@@ -15970,7 +17140,7 @@
       }
     },
     {
-      "file": "2025-11-14_2025年10月份社会消费品零售总额增长2.9%-国家统计局.xls",
+      "file": "2025-11-14_2025年10月份社会消费品零售总额增长2.9%.xls",
       "metric": "粮油、食品类",
       "extracted": {
         "metric": "粮油、食品类",
@@ -15983,7 +17153,7 @@
       }
     },
     {
-      "file": "2025-11-14_2025年10月份社会消费品零售总额增长2.9%-国家统计局.xls",
+      "file": "2025-11-14_2025年10月份社会消费品零售总额增长2.9%.xls",
       "metric": "饮料类",
       "extracted": {
         "metric": "饮料类",
@@ -15996,7 +17166,7 @@
       }
     },
     {
-      "file": "2025-11-14_2025年10月份社会消费品零售总额增长2.9%-国家统计局.xls",
+      "file": "2025-11-14_2025年10月份社会消费品零售总额增长2.9%.xls",
       "metric": "烟酒类",
       "extracted": {
         "metric": "烟酒类",
@@ -16009,7 +17179,7 @@
       }
     },
     {
-      "file": "2025-11-14_2025年10月份社会消费品零售总额增长2.9%-国家统计局.xls",
+      "file": "2025-11-14_2025年10月份社会消费品零售总额增长2.9%.xls",
       "metric": "服装、鞋帽、针纺织品类",
       "extracted": {
         "metric": "服装、鞋帽、针纺织品类",
@@ -16022,7 +17192,7 @@
       }
     },
     {
-      "file": "2025-11-14_2025年10月份社会消费品零售总额增长2.9%-国家统计局.xls",
+      "file": "2025-11-14_2025年10月份社会消费品零售总额增长2.9%.xls",
       "metric": "化妆品类",
       "extracted": {
         "metric": "化妆品类",
@@ -16035,7 +17205,7 @@
       }
     },
     {
-      "file": "2025-11-14_2025年10月份社会消费品零售总额增长2.9%-国家统计局.xls",
+      "file": "2025-11-14_2025年10月份社会消费品零售总额增长2.9%.xls",
       "metric": "金银珠宝类",
       "extracted": {
         "metric": "金银珠宝类",
@@ -16048,7 +17218,7 @@
       }
     },
     {
-      "file": "2025-11-14_2025年10月份社会消费品零售总额增长2.9%-国家统计局.xls",
+      "file": "2025-11-14_2025年10月份社会消费品零售总额增长2.9%.xls",
       "metric": "日用品类",
       "extracted": {
         "metric": "日用品类",
@@ -16061,7 +17231,7 @@
       }
     },
     {
-      "file": "2025-11-14_2025年10月份社会消费品零售总额增长2.9%-国家统计局.xls",
+      "file": "2025-11-14_2025年10月份社会消费品零售总额增长2.9%.xls",
       "metric": "体育、娱乐用品类",
       "extracted": {
         "metric": "体育、娱乐用品类",
@@ -16074,7 +17244,7 @@
       }
     },
     {
-      "file": "2025-11-14_2025年10月份社会消费品零售总额增长2.9%-国家统计局.xls",
+      "file": "2025-11-14_2025年10月份社会消费品零售总额增长2.9%.xls",
       "metric": "家用电器和音像器材类",
       "extracted": {
         "metric": "家用电器和音像器材类",
@@ -16087,7 +17257,7 @@
       }
     },
     {
-      "file": "2025-11-14_2025年10月份社会消费品零售总额增长2.9%-国家统计局.xls",
+      "file": "2025-11-14_2025年10月份社会消费品零售总额增长2.9%.xls",
       "metric": "中西药品类",
       "extracted": {
         "metric": "中西药品类",
@@ -16100,7 +17270,7 @@
       }
     },
     {
-      "file": "2025-11-14_2025年10月份社会消费品零售总额增长2.9%-国家统计局.xls",
+      "file": "2025-11-14_2025年10月份社会消费品零售总额增长2.9%.xls",
       "metric": "文化办公用品类",
       "extracted": {
         "metric": "文化办公用品类",
@@ -16113,7 +17283,7 @@
       }
     },
     {
-      "file": "2025-11-14_2025年10月份社会消费品零售总额增长2.9%-国家统计局.xls",
+      "file": "2025-11-14_2025年10月份社会消费品零售总额增长2.9%.xls",
       "metric": "家具类",
       "extracted": {
         "metric": "家具类",
@@ -16126,7 +17296,7 @@
       }
     },
     {
-      "file": "2025-11-14_2025年10月份社会消费品零售总额增长2.9%-国家统计局.xls",
+      "file": "2025-11-14_2025年10月份社会消费品零售总额增长2.9%.xls",
       "metric": "通讯器材类",
       "extracted": {
         "metric": "通讯器材类",
@@ -16139,7 +17309,7 @@
       }
     },
     {
-      "file": "2025-11-14_2025年10月份社会消费品零售总额增长2.9%-国家统计局.xls",
+      "file": "2025-11-14_2025年10月份社会消费品零售总额增长2.9%.xls",
       "metric": "石油及制品类",
       "extracted": {
         "metric": "石油及制品类",
@@ -16152,7 +17322,7 @@
       }
     },
     {
-      "file": "2025-11-14_2025年10月份社会消费品零售总额增长2.9%-国家统计局.xls",
+      "file": "2025-11-14_2025年10月份社会消费品零售总额增长2.9%.xls",
       "metric": "汽车类",
       "extracted": {
         "metric": "汽车类",
@@ -16165,7 +17335,7 @@
       }
     },
     {
-      "file": "2025-11-14_2025年10月份社会消费品零售总额增长2.9%-国家统计局.xls",
+      "file": "2025-11-14_2025年10月份社会消费品零售总额增长2.9%.xls",
       "metric": "建筑及装潢材料类",
       "extracted": {
         "metric": "建筑及装潢材料类",
@@ -16176,12 +17346,1026 @@
         "mom": null,
         "yoy": -8.3
       }
+    },
+    {
+      "file": "2025-12-15_2025年11月份社会消费品零售总额增长1.3%.xls",
+      "metric": "社会消费品零售总额",
+      "extracted": {
+        "metric": "社会消费品零售总额",
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 43898,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 1.252728534919683
+      }
+    },
+    {
+      "file": "2025-12-15_2025年11月份社会消费品零售总额增长1.3%.xls",
+      "metric": "除汽车以外的消费品零售额",
+      "extracted": {
+        "metric": "除汽车以外的消费品零售额",
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 39444,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 2.451517613105267
+      }
+    },
+    {
+      "file": "2025-12-15_2025年11月份社会消费品零售总额增长1.3%.xls",
+      "metric": "限额以上单位消费品零售额",
+      "extracted": {
+        "metric": "限额以上单位消费品零售额",
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 17810,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -1.9600616217496025
+      }
+    },
+    {
+      "file": "2025-12-15_2025年11月份社会消费品零售总额增长1.3%.xls",
+      "metric": "实物商品网上零售额",
+      "extracted": {
+        "metric": "实物商品网上零售额",
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 118193,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 5.7
+      }
+    },
+    {
+      "file": "2025-12-15_2025年11月份社会消费品零售总额增长1.3%.xls",
+      "metric": "城镇",
+      "extracted": {
+        "metric": "城镇",
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 37684,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 1.0042585369828743
+      }
+    },
+    {
+      "file": "2025-12-15_2025年11月份社会消费品零售总额增长1.3%.xls",
+      "metric": "乡村",
+      "extracted": {
+        "metric": "乡村",
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 6214,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 2.7859880546104563
+      }
+    },
+    {
+      "file": "2025-12-15_2025年11月份社会消费品零售总额增长1.3%.xls",
+      "metric": "餐饮收入",
+      "extracted": {
+        "metric": "餐饮收入",
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 6057,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 3.1729342259436635
+      }
+    },
+    {
+      "file": "2025-12-15_2025年11月份社会消费品零售总额增长1.3%.xls",
+      "metric": "限额以上单位餐饮收入",
+      "extracted": {
+        "metric": "限额以上单位餐饮收入",
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 1380,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 1.2
+      }
+    },
+    {
+      "file": "2025-12-15_2025年11月份社会消费品零售总额增长1.3%.xls",
+      "metric": "商品零售额",
+      "extracted": {
+        "metric": "商品零售额",
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 37841,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 0.9519851783865079
+      }
+    },
+    {
+      "file": "2025-12-15_2025年11月份社会消费品零售总额增长1.3%.xls",
+      "metric": "限额以上单位商品零售额",
+      "extracted": {
+        "metric": "限额以上单位商品零售额",
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 16430,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -2.2176806202595856
+      }
+    },
+    {
+      "file": "2025-12-15_2025年11月份社会消费品零售总额增长1.3%.xls",
+      "metric": "粮油、食品类",
+      "extracted": {
+        "metric": "粮油、食品类",
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 2060,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 6.1
+      }
+    },
+    {
+      "file": "2025-12-15_2025年11月份社会消费品零售总额增长1.3%.xls",
+      "metric": "饮料类",
+      "extracted": {
+        "metric": "饮料类",
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 269,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 2.9
+      }
+    },
+    {
+      "file": "2025-12-15_2025年11月份社会消费品零售总额增长1.3%.xls",
+      "metric": "烟酒类",
+      "extracted": {
+        "metric": "烟酒类",
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 502,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -3.4
+      }
+    },
+    {
+      "file": "2025-12-15_2025年11月份社会消费品零售总额增长1.3%.xls",
+      "metric": "服装、鞋帽、针纺织品类",
+      "extracted": {
+        "metric": "服装、鞋帽、针纺织品类",
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 1542,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 3.5
+      }
+    },
+    {
+      "file": "2025-12-15_2025年11月份社会消费品零售总额增长1.3%.xls",
+      "metric": "化妆品类",
+      "extracted": {
+        "metric": "化妆品类",
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 468,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 6.1
+      }
+    },
+    {
+      "file": "2025-12-15_2025年11月份社会消费品零售总额增长1.3%.xls",
+      "metric": "金银珠宝类",
+      "extracted": {
+        "metric": "金银珠宝类",
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 292,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 8.5
+      }
+    },
+    {
+      "file": "2025-12-15_2025年11月份社会消费品零售总额增长1.3%.xls",
+      "metric": "日用品类",
+      "extracted": {
+        "metric": "日用品类",
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 763,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -0.8
+      }
+    },
+    {
+      "file": "2025-12-15_2025年11月份社会消费品零售总额增长1.3%.xls",
+      "metric": "体育、娱乐用品类",
+      "extracted": {
+        "metric": "体育、娱乐用品类",
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 154,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 0.4
+      }
+    },
+    {
+      "file": "2025-12-15_2025年11月份社会消费品零售总额增长1.3%.xls",
+      "metric": "家用电器和音像器材类",
+      "extracted": {
+        "metric": "家用电器和音像器材类",
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 1000,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -19.4
+      }
+    },
+    {
+      "file": "2025-12-15_2025年11月份社会消费品零售总额增长1.3%.xls",
+      "metric": "中西药品类",
+      "extracted": {
+        "metric": "中西药品类",
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 660,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 4.9
+      }
+    },
+    {
+      "file": "2025-12-15_2025年11月份社会消费品零售总额增长1.3%.xls",
+      "metric": "文化办公用品类",
+      "extracted": {
+        "metric": "文化办公用品类",
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 524,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 11.7
+      }
+    },
+    {
+      "file": "2025-12-15_2025年11月份社会消费品零售总额增长1.3%.xls",
+      "metric": "家具类",
+      "extracted": {
+        "metric": "家具类",
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 195,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -3.8
+      }
+    },
+    {
+      "file": "2025-12-15_2025年11月份社会消费品零售总额增长1.3%.xls",
+      "metric": "通讯器材类",
+      "extracted": {
+        "metric": "通讯器材类",
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 998,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 20.6
+      }
+    },
+    {
+      "file": "2025-12-15_2025年11月份社会消费品零售总额增长1.3%.xls",
+      "metric": "石油及制品类",
+      "extracted": {
+        "metric": "石油及制品类",
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 1722,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -8
+      }
+    },
+    {
+      "file": "2025-12-15_2025年11月份社会消费品零售总额增长1.3%.xls",
+      "metric": "汽车类",
+      "extracted": {
+        "metric": "汽车类",
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 4454,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -8.3
+      }
+    },
+    {
+      "file": "2025-12-15_2025年11月份社会消费品零售总额增长1.3%.xls",
+      "metric": "建筑及装潢材料类",
+      "extracted": {
+        "metric": "建筑及装潢材料类",
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 149,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -17
+      }
+    },
+    {
+      "file": "2025-12-15_2025年11月份社会消费品零售总额增长1.3%.xls",
+      "metric": "社会消费品零售总额",
+      "extracted": {
+        "metric": "社会消费品零售总额",
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 43898,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 1.252728534919683
+      }
+    },
+    {
+      "file": "2025-12-15_2025年11月份社会消费品零售总额增长1.3%.xls",
+      "metric": "除汽车以外的消费品零售额",
+      "extracted": {
+        "metric": "除汽车以外的消费品零售额",
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 39444,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 2.451517613105267
+      }
+    },
+    {
+      "file": "2025-12-15_2025年11月份社会消费品零售总额增长1.3%.xls",
+      "metric": "限额以上单位消费品零售额",
+      "extracted": {
+        "metric": "限额以上单位消费品零售额",
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 17810,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -1.9600616217496025
+      }
+    },
+    {
+      "file": "2025-12-15_2025年11月份社会消费品零售总额增长1.3%.xls",
+      "metric": "实物商品网上零售额",
+      "extracted": {
+        "metric": "实物商品网上零售额",
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 118193,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 5.7
+      }
+    },
+    {
+      "file": "2025-12-15_2025年11月份社会消费品零售总额增长1.3%.xls",
+      "metric": "城镇",
+      "extracted": {
+        "metric": "城镇",
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 37684,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 1.0042585369828743
+      }
+    },
+    {
+      "file": "2025-12-15_2025年11月份社会消费品零售总额增长1.3%.xls",
+      "metric": "乡村",
+      "extracted": {
+        "metric": "乡村",
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 6214,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 2.7859880546104563
+      }
+    },
+    {
+      "file": "2025-12-15_2025年11月份社会消费品零售总额增长1.3%.xls",
+      "metric": "餐饮收入",
+      "extracted": {
+        "metric": "餐饮收入",
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 6057,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 3.1729342259436635
+      }
+    },
+    {
+      "file": "2025-12-15_2025年11月份社会消费品零售总额增长1.3%.xls",
+      "metric": "限额以上单位餐饮收入",
+      "extracted": {
+        "metric": "限额以上单位餐饮收入",
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 1380,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 1.2
+      }
+    },
+    {
+      "file": "2025-12-15_2025年11月份社会消费品零售总额增长1.3%.xls",
+      "metric": "商品零售额",
+      "extracted": {
+        "metric": "商品零售额",
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 37841,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 0.9519851783865079
+      }
+    },
+    {
+      "file": "2025-12-15_2025年11月份社会消费品零售总额增长1.3%.xls",
+      "metric": "限额以上单位商品零售额",
+      "extracted": {
+        "metric": "限额以上单位商品零售额",
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 16430,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -2.2176806202595856
+      }
+    },
+    {
+      "file": "2025-12-15_2025年11月份社会消费品零售总额增长1.3%.xls",
+      "metric": "粮油、食品类",
+      "extracted": {
+        "metric": "粮油、食品类",
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 2060,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 6.1
+      }
+    },
+    {
+      "file": "2025-12-15_2025年11月份社会消费品零售总额增长1.3%.xls",
+      "metric": "饮料类",
+      "extracted": {
+        "metric": "饮料类",
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 269,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 2.9
+      }
+    },
+    {
+      "file": "2025-12-15_2025年11月份社会消费品零售总额增长1.3%.xls",
+      "metric": "烟酒类",
+      "extracted": {
+        "metric": "烟酒类",
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 502,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -3.4
+      }
+    },
+    {
+      "file": "2025-12-15_2025年11月份社会消费品零售总额增长1.3%.xls",
+      "metric": "服装、鞋帽、针纺织品类",
+      "extracted": {
+        "metric": "服装、鞋帽、针纺织品类",
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 1542,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 3.5
+      }
+    },
+    {
+      "file": "2025-12-15_2025年11月份社会消费品零售总额增长1.3%.xls",
+      "metric": "化妆品类",
+      "extracted": {
+        "metric": "化妆品类",
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 468,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 6.1
+      }
+    },
+    {
+      "file": "2025-12-15_2025年11月份社会消费品零售总额增长1.3%.xls",
+      "metric": "金银珠宝类",
+      "extracted": {
+        "metric": "金银珠宝类",
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 292,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 8.5
+      }
+    },
+    {
+      "file": "2025-12-15_2025年11月份社会消费品零售总额增长1.3%.xls",
+      "metric": "日用品类",
+      "extracted": {
+        "metric": "日用品类",
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 763,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -0.8
+      }
+    },
+    {
+      "file": "2025-12-15_2025年11月份社会消费品零售总额增长1.3%.xls",
+      "metric": "体育、娱乐用品类",
+      "extracted": {
+        "metric": "体育、娱乐用品类",
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 154,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 0.4
+      }
+    },
+    {
+      "file": "2025-12-15_2025年11月份社会消费品零售总额增长1.3%.xls",
+      "metric": "家用电器和音像器材类",
+      "extracted": {
+        "metric": "家用电器和音像器材类",
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 1000,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -19.4
+      }
+    },
+    {
+      "file": "2025-12-15_2025年11月份社会消费品零售总额增长1.3%.xls",
+      "metric": "中西药品类",
+      "extracted": {
+        "metric": "中西药品类",
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 660,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 4.9
+      }
+    },
+    {
+      "file": "2025-12-15_2025年11月份社会消费品零售总额增长1.3%.xls",
+      "metric": "文化办公用品类",
+      "extracted": {
+        "metric": "文化办公用品类",
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 524,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 11.7
+      }
+    },
+    {
+      "file": "2025-12-15_2025年11月份社会消费品零售总额增长1.3%.xls",
+      "metric": "家具类",
+      "extracted": {
+        "metric": "家具类",
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 195,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -3.8
+      }
+    },
+    {
+      "file": "2025-12-15_2025年11月份社会消费品零售总额增长1.3%.xls",
+      "metric": "通讯器材类",
+      "extracted": {
+        "metric": "通讯器材类",
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 998,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 20.6
+      }
+    },
+    {
+      "file": "2025-12-15_2025年11月份社会消费品零售总额增长1.3%.xls",
+      "metric": "石油及制品类",
+      "extracted": {
+        "metric": "石油及制品类",
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 1722,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -8
+      }
+    },
+    {
+      "file": "2025-12-15_2025年11月份社会消费品零售总额增长1.3%.xls",
+      "metric": "汽车类",
+      "extracted": {
+        "metric": "汽车类",
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 4454,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -8.3
+      }
+    },
+    {
+      "file": "2025-12-15_2025年11月份社会消费品零售总额增长1.3%.xls",
+      "metric": "建筑及装潢材料类",
+      "extracted": {
+        "metric": "建筑及装潢材料类",
+        "yearMonth": "2025-11",
+        "label": "2025-11",
+        "value": 149,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -17
+      }
+    },
+    {
+      "file": "2026-01-19_2025年12月份社会消费品零售总额增长0.9%.xls",
+      "metric": "社会消费品零售总额",
+      "extracted": {
+        "metric": "社会消费品零售总额",
+        "yearMonth": "2025-12",
+        "label": "2025-12",
+        "value": 45136,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 0.8617016352587115
+      }
+    },
+    {
+      "file": "2026-01-19_2025年12月份社会消费品零售总额增长0.9%.xls",
+      "metric": "除汽车以外的消费品零售额",
+      "extracted": {
+        "metric": "除汽车以外的消费品零售额",
+        "yearMonth": "2025-12",
+        "label": "2025-12",
+        "value": 39654,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 1.7272004463231099
+      }
+    },
+    {
+      "file": "2026-01-19_2025年12月份社会消费品零售总额增长0.9%.xls",
+      "metric": "限额以上单位消费品零售额",
+      "extracted": {
+        "metric": "限额以上单位消费品零售额",
+        "yearMonth": "2025-12",
+        "label": "2025-12",
+        "value": 19547,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -1.9416646880495847
+      }
+    },
+    {
+      "file": "2026-01-19_2025年12月份社会消费品零售总额增长0.9%.xls",
+      "metric": "实物商品网上零售额",
+      "extracted": {
+        "metric": "实物商品网上零售额",
+        "yearMonth": "2025-12",
+        "label": "2025-12",
+        "value": 130923,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 5.165679154541564
+      }
+    },
+    {
+      "file": "2026-01-19_2025年12月份社会消费品零售总额增长0.9%.xls",
+      "metric": "城镇",
+      "extracted": {
+        "metric": "城镇",
+        "yearMonth": "2025-12",
+        "label": "2025-12",
+        "value": 38429,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 0.7154850382915043
+      }
+    },
+    {
+      "file": "2026-01-19_2025年12月份社会消费品零售总额增长0.9%.xls",
+      "metric": "乡村",
+      "extracted": {
+        "metric": "乡村",
+        "yearMonth": "2025-12",
+        "label": "2025-12",
+        "value": 6707,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 1.7077342461515599
+      }
+    },
+    {
+      "file": "2026-01-19_2025年12月份社会消费品零售总额增长0.9%.xls",
+      "metric": "餐饮收入",
+      "extracted": {
+        "metric": "餐饮收入",
+        "yearMonth": "2025-12",
+        "label": "2025-12",
+        "value": 5738,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 2.191012697851491
+      }
+    },
+    {
+      "file": "2026-01-19_2025年12月份社会消费品零售总额增长0.9%.xls",
+      "metric": "限额以上单位餐饮收入",
+      "extracted": {
+        "metric": "限额以上单位餐饮收入",
+        "yearMonth": "2025-12",
+        "label": "2025-12",
+        "value": 1463,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -1.1
+      }
+    },
+    {
+      "file": "2026-01-19_2025年12月份社会消费品零售总额增长0.9%.xls",
+      "metric": "商品零售额",
+      "extracted": {
+        "metric": "商品零售额",
+        "yearMonth": "2025-12",
+        "label": "2025-12",
+        "value": 39398,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 0.6709947077594052
+      }
+    },
+    {
+      "file": "2026-01-19_2025年12月份社会消费品零售总额增长0.9%.xls",
+      "metric": "限额以上单位商品零售额",
+      "extracted": {
+        "metric": "限额以上单位商品零售额",
+        "yearMonth": "2025-12",
+        "label": "2025-12",
+        "value": 18084,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -2.0103208668844843
+      }
+    },
+    {
+      "file": "2026-01-19_2025年12月份社会消费品零售总额增长0.9%.xls",
+      "metric": "粮油、食品类",
+      "extracted": {
+        "metric": "粮油、食品类",
+        "yearMonth": "2025-12",
+        "label": "2025-12",
+        "value": 2323,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 3.9
+      }
+    },
+    {
+      "file": "2026-01-19_2025年12月份社会消费品零售总额增长0.9%.xls",
+      "metric": "饮料类",
+      "extracted": {
+        "metric": "饮料类",
+        "yearMonth": "2025-12",
+        "label": "2025-12",
+        "value": 275,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 1.7
+      }
+    },
+    {
+      "file": "2026-01-19_2025年12月份社会消费品零售总额增长0.9%.xls",
+      "metric": "烟酒类",
+      "extracted": {
+        "metric": "烟酒类",
+        "yearMonth": "2025-12",
+        "label": "2025-12",
+        "value": 623,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -2.9
+      }
+    },
+    {
+      "file": "2026-01-19_2025年12月份社会消费品零售总额增长0.9%.xls",
+      "metric": "服装、鞋帽、针纺织品类",
+      "extracted": {
+        "metric": "服装、鞋帽、针纺织品类",
+        "yearMonth": "2025-12",
+        "label": "2025-12",
+        "value": 1661,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 0.6
+      }
+    },
+    {
+      "file": "2026-01-19_2025年12月份社会消费品零售总额增长0.9%.xls",
+      "metric": "化妆品类",
+      "extracted": {
+        "metric": "化妆品类",
+        "yearMonth": "2025-12",
+        "label": "2025-12",
+        "value": 380,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 8.8
+      }
+    },
+    {
+      "file": "2026-01-19_2025年12月份社会消费品零售总额增长0.9%.xls",
+      "metric": "金银珠宝类",
+      "extracted": {
+        "metric": "金银珠宝类",
+        "yearMonth": "2025-12",
+        "label": "2025-12",
+        "value": 328,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 5.9
+      }
+    },
+    {
+      "file": "2026-01-19_2025年12月份社会消费品零售总额增长0.9%.xls",
+      "metric": "日用品类",
+      "extracted": {
+        "metric": "日用品类",
+        "yearMonth": "2025-12",
+        "label": "2025-12",
+        "value": 776,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 3.7
+      }
+    },
+    {
+      "file": "2026-01-19_2025年12月份社会消费品零售总额增长0.9%.xls",
+      "metric": "体育、娱乐用品类",
+      "extracted": {
+        "metric": "体育、娱乐用品类",
+        "yearMonth": "2025-12",
+        "label": "2025-12",
+        "value": 152,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 9
+      }
+    },
+    {
+      "file": "2026-01-19_2025年12月份社会消费品零售总额增长0.9%.xls",
+      "metric": "家用电器和音像器材类",
+      "extracted": {
+        "metric": "家用电器和音像器材类",
+        "yearMonth": "2025-12",
+        "label": "2025-12",
+        "value": 971,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -18.7
+      }
+    },
+    {
+      "file": "2026-01-19_2025年12月份社会消费品零售总额增长0.9%.xls",
+      "metric": "中西药品类",
+      "extracted": {
+        "metric": "中西药品类",
+        "yearMonth": "2025-12",
+        "label": "2025-12",
+        "value": 711,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 1.2
+      }
+    },
+    {
+      "file": "2026-01-19_2025年12月份社会消费品零售总额增长0.9%.xls",
+      "metric": "文化办公用品类",
+      "extracted": {
+        "metric": "文化办公用品类",
+        "yearMonth": "2025-12",
+        "label": "2025-12",
+        "value": 506,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 9.2
+      }
+    },
+    {
+      "file": "2026-01-19_2025年12月份社会消费品零售总额增长0.9%.xls",
+      "metric": "家具类",
+      "extracted": {
+        "metric": "家具类",
+        "yearMonth": "2025-12",
+        "label": "2025-12",
+        "value": 207,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -2.2
+      }
+    },
+    {
+      "file": "2026-01-19_2025年12月份社会消费品零售总额增长0.9%.xls",
+      "metric": "通讯器材类",
+      "extracted": {
+        "metric": "通讯器材类",
+        "yearMonth": "2025-12",
+        "label": "2025-12",
+        "value": 949,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 20.9
+      }
+    },
+    {
+      "file": "2026-01-19_2025年12月份社会消费品零售总额增长0.9%.xls",
+      "metric": "石油及制品类",
+      "extracted": {
+        "metric": "石油及制品类",
+        "yearMonth": "2025-12",
+        "label": "2025-12",
+        "value": 1819,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -11
+      }
+    },
+    {
+      "file": "2026-01-19_2025年12月份社会消费品零售总额增长0.9%.xls",
+      "metric": "汽车类",
+      "extracted": {
+        "metric": "汽车类",
+        "yearMonth": "2025-12",
+        "label": "2025-12",
+        "value": 5482,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -5
+      }
+    },
+    {
+      "file": "2026-01-19_2025年12月份社会消费品零售总额增长0.9%.xls",
+      "metric": "建筑及装潢材料类",
+      "extracted": {
+        "metric": "建筑及装潢材料类",
+        "yearMonth": "2025-12",
+        "label": "2025-12",
+        "value": 172,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -11.8
+      }
     }
   ],
   "debug": [],
   "raw": [
     {
-      "file": "2024-03-18_2024年1—2月份社会消费品零售总额增长5.5%-国家统计局.xls",
+      "file": "2024-03-18_2024年1—2月份社会消费品零售总额增长5.5%.xls",
       "sheet": "表",
       "sample": [
         [
@@ -16327,7 +18511,7 @@
       ]
     },
     {
-      "file": "2024-04-16_2024年3月份社会消费品零售总额增长3.1%-国家统计局.xls",
+      "file": "2024-04-16_2024年3月份社会消费品零售总额增长3.1%.xls",
       "sheet": "表",
       "sample": [
         [
@@ -16513,7 +18697,7 @@
       ]
     },
     {
-      "file": "2024-05-17_2024年4月份社会消费品零售总额增长2.3%-国家统计局.xls",
+      "file": "2024-05-17_2024年4月份社会消费品零售总额增长2.3%.xls",
       "sheet": "表",
       "sample": [
         [
@@ -16659,7 +18843,7 @@
       ]
     },
     {
-      "file": "2024-06-17_2024年5月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2024-06-17_2024年5月份社会消费品零售总额增长3.7%.xls",
       "sheet": "表",
       "sample": [
         [
@@ -16805,7 +18989,7 @@
       ]
     },
     {
-      "file": "2024-07-15_2024年6月份社会消费品零售总额同比增长3.7%-国家统计局.xls",
+      "file": "2024-07-15_2024年6月份社会消费品零售总额同比增长3.7%.xls",
       "sheet": "表",
       "sample": [
         [
@@ -16951,7 +19135,7 @@
       ]
     },
     {
-      "file": "2024-08-15_2024年7月份社会消费品零售总额增长2.7%-国家统计局.xls",
+      "file": "2024-08-15_2024年7月份社会消费品零售总额增长2.7%.xls",
       "sheet": "表",
       "sample": [
         [
@@ -17097,7 +19281,7 @@
       ]
     },
     {
-      "file": "2024-09-14_2024年8月份社会消费品零售总额增长2.1%-国家统计局.xls",
+      "file": "2024-09-14_2024年8月份社会消费品零售总额增长2.1%.xls",
       "sheet": "表",
       "sample": [
         [
@@ -17243,7 +19427,7 @@
       ]
     },
     {
-      "file": "2024-10-18_2024年9月份社会消费品零售总额增长3.2%-国家统计局.xls",
+      "file": "2024-10-18_2024年9月份社会消费品零售总额增长3.2%.xls",
       "sheet": "表",
       "sample": [
         [
@@ -17389,7 +19573,7 @@
       ]
     },
     {
-      "file": "2024-11-15_2024年10月份社会消费品零售总额增长4.8%-国家统计局.xls",
+      "file": "2024-11-15_2024年10月份社会消费品零售总额增长4.8%.xls",
       "sheet": "表",
       "sample": [
         [
@@ -17535,7 +19719,7 @@
       ]
     },
     {
-      "file": "2024-12-16_2024年11月份社会消费品零售总额增长3.0%-国家统计局.xls",
+      "file": "2024-12-16_2024年11月份社会消费品零售总额增长3.0%.xls",
       "sheet": "表",
       "sample": [
         [
@@ -17681,7 +19865,7 @@
       ]
     },
     {
-      "file": "2025-01-17_2024年12月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2025-01-17_2024年12月份社会消费品零售总额增长3.7%.xls",
       "sheet": "表",
       "sample": [
         [
@@ -17827,7 +20011,7 @@
       ]
     },
     {
-      "file": "2025-03-17_2025年1—2月份社会消费品零售总额增长4.0%-国家统计局.xls",
+      "file": "2025-03-17_2025年1—2月份社会消费品零售总额增长4.0%.xls",
       "sheet": "表",
       "sample": [
         [
@@ -17933,7 +20117,7 @@
       ]
     },
     {
-      "file": "2025-04-16_2025年3月份社会消费品零售总额增长5.9%-国家统计局.xls",
+      "file": "2025-04-16_2025年3月份社会消费品零售总额增长5.9%.xls",
       "sheet": "表",
       "sample": [
         [
@@ -18079,7 +20263,7 @@
       ]
     },
     {
-      "file": "2025-05-19_2025年4月份社会消费品零售总额增长5.1%-国家统计局.xls",
+      "file": "2025-05-19_2025年4月份社会消费品零售总额增长5.1%.xls",
       "sheet": "表",
       "sample": [
         [
@@ -18225,7 +20409,7 @@
       ]
     },
     {
-      "file": "2025-06-16_2025年5月份社会消费品零售总额增长6.4%-国家统计局.xls",
+      "file": "2025-06-16_2025年5月份社会消费品零售总额增长6.4%.xls",
       "sheet": "表",
       "sample": [
         [
@@ -18371,7 +20555,7 @@
       ]
     },
     {
-      "file": "2025-07-15_2025年6月份社会消费品零售总额增长4.8%-国家统计局.xls",
+      "file": "2025-07-15_2025年6月份社会消费品零售总额增长4.8%.xls",
       "sheet": "表",
       "sample": [
         [
@@ -18517,7 +20701,7 @@
       ]
     },
     {
-      "file": "2025-08-15_2025年7月份社会消费品零售总额增长3.7%-国家统计局.xls",
+      "file": "2025-08-15_2025年7月份社会消费品零售总额增长3.7%.xls",
       "sheet": "表",
       "sample": [
         [
@@ -18663,7 +20847,7 @@
       ]
     },
     {
-      "file": "2025-09-15_2025年8月份社会消费品零售总额增长3.4%-国家统计局.xls",
+      "file": "2025-09-15_2025年8月份社会消费品零售总额增长3.4%.xls",
       "sheet": "表",
       "sample": [
         [
@@ -18809,7 +20993,7 @@
       ]
     },
     {
-      "file": "2025-10-20_2025年9月份社会消费品零售总额增长3.0%-国家统计局.xls",
+      "file": "2025-10-20_2025年9月份社会消费品零售总额增长3.0%.xls",
       "sheet": "表",
       "sample": [
         [
@@ -18955,7 +21139,7 @@
       ]
     },
     {
-      "file": "2025-11-14_2025年10月份社会消费品零售总额增长2.9%-国家统计局.xls",
+      "file": "2025-11-14_2025年10月份社会消费品零售总额增长2.9%.xls",
       "sheet": "表",
       "sample": [
         [
@@ -19097,6 +21281,444 @@
           "6.3",
           "12053",
           "3.500448015977909"
+        ]
+      ]
+    },
+    {
+      "file": "2025-12-15_2025年11月份社会消费品零售总额增长1.3%.xls",
+      "sheet": "表",
+      "sample": [
+        [
+          "2025年11月份社会消费品零售总额主要数据",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "指标",
+          "11月",
+          "",
+          "1—11月",
+          ""
+        ],
+        [
+          "",
+          "绝对量",
+          "同比增长",
+          "绝对量",
+          "同比增长"
+        ],
+        [
+          "",
+          "（亿元）",
+          "（%）",
+          "（亿元）",
+          "（%）"
+        ],
+        [
+          "社会消费品零售总额",
+          "43898",
+          "1.252728534919683",
+          "456067",
+          "3.983666142805518"
+        ],
+        [
+          "其中：除汽车以外的消费品零售额",
+          "39444",
+          "2.451517613105267",
+          "411637",
+          "4.6187995188743685"
+        ],
+        [
+          "其中：限额以上单位消费品零售额",
+          "17810",
+          "-1.9600616217496025",
+          "182665",
+          "3.8394254132016528"
+        ],
+        [
+          "其中：实物商品网上零售额",
+          "-",
+          "-",
+          "118193",
+          "5.7"
+        ],
+        [
+          "按经营地分",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "城镇",
+          "37684",
+          "1.0042585369828743",
+          "394544",
+          "3.9209188196467153"
+        ],
+        [
+          "乡村",
+          "6214",
+          "2.7859880546104563",
+          "61523",
+          "4.387868874730287"
+        ],
+        [
+          "按消费类型分",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "餐饮收入",
+          "6057",
+          "3.1729342259436635",
+          "52245",
+          "3.321287779894817"
+        ],
+        [
+          "其中：限额以上单位餐饮收入",
+          "1380",
+          "1.2",
+          "14933",
+          "2.317972840142943"
+        ],
+        [
+          "商品零售额",
+          "37841",
+          "0.9519851783865079",
+          "403822",
+          "4.0699710666302025"
+        ],
+        [
+          "其中：限额以上单位商品零售额",
+          "16430",
+          "-2.2176806202595856",
+          "167732",
+          "3.9747682477746764"
+        ],
+        [
+          "其中：粮油、食品类",
+          "2060",
+          "6.1",
+          "21766",
+          "9.87057754104292"
+        ],
+        [
+          "饮料类",
+          "269",
+          "2.9",
+          "3045",
+          "0.9515046554830633"
+        ],
+        [
+          "烟酒类",
+          "502",
+          "-3.4",
+          "5790",
+          "3.2879481720021744"
+        ],
+        [
+          "服装、鞋帽、针纺织品类",
+          "1542",
+          "3.5",
+          "13597",
+          "3.496795959169404"
+        ]
+      ]
+    },
+    {
+      "file": "2025-12-15_2025年11月份社会消费品零售总额增长1.3%.xls",
+      "sheet": "表",
+      "sample": [
+        [
+          "2025年11月份社会消费品零售总额主要数据",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "指标",
+          "11月",
+          "",
+          "1—11月",
+          ""
+        ],
+        [
+          "",
+          "绝对量",
+          "同比增长",
+          "绝对量",
+          "同比增长"
+        ],
+        [
+          "",
+          "（亿元）",
+          "（%）",
+          "（亿元）",
+          "（%）"
+        ],
+        [
+          "社会消费品零售总额",
+          "43898",
+          "1.252728534919683",
+          "456067",
+          "3.983666142805518"
+        ],
+        [
+          "其中：除汽车以外的消费品零售额",
+          "39444",
+          "2.451517613105267",
+          "411637",
+          "4.6187995188743685"
+        ],
+        [
+          "其中：限额以上单位消费品零售额",
+          "17810",
+          "-1.9600616217496025",
+          "182665",
+          "3.8394254132016528"
+        ],
+        [
+          "其中：实物商品网上零售额",
+          "-",
+          "-",
+          "118193",
+          "5.7"
+        ],
+        [
+          "按经营地分",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "城镇",
+          "37684",
+          "1.0042585369828743",
+          "394544",
+          "3.9209188196467153"
+        ],
+        [
+          "乡村",
+          "6214",
+          "2.7859880546104563",
+          "61523",
+          "4.387868874730287"
+        ],
+        [
+          "按消费类型分",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "餐饮收入",
+          "6057",
+          "3.1729342259436635",
+          "52245",
+          "3.321287779894817"
+        ],
+        [
+          "其中：限额以上单位餐饮收入",
+          "1380",
+          "1.2",
+          "14933",
+          "2.317972840142943"
+        ],
+        [
+          "商品零售额",
+          "37841",
+          "0.9519851783865079",
+          "403822",
+          "4.0699710666302025"
+        ],
+        [
+          "其中：限额以上单位商品零售额",
+          "16430",
+          "-2.2176806202595856",
+          "167732",
+          "3.9747682477746764"
+        ],
+        [
+          "其中：粮油、食品类",
+          "2060",
+          "6.1",
+          "21766",
+          "9.87057754104292"
+        ],
+        [
+          "饮料类",
+          "269",
+          "2.9",
+          "3045",
+          "0.9515046554830633"
+        ],
+        [
+          "烟酒类",
+          "502",
+          "-3.4",
+          "5790",
+          "3.2879481720021744"
+        ],
+        [
+          "服装、鞋帽、针纺织品类",
+          "1542",
+          "3.5",
+          "13597",
+          "3.496795959169404"
+        ]
+      ]
+    },
+    {
+      "file": "2026-01-19_2025年12月份社会消费品零售总额增长0.9%.xls",
+      "sheet": "表",
+      "sample": [
+        [
+          "2025年12月份社会消费品零售总额主要数据",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "指标",
+          "12月",
+          "",
+          "1—12月",
+          ""
+        ],
+        [
+          "",
+          "绝对量",
+          "同比增长",
+          "绝对量",
+          "同比增长"
+        ],
+        [
+          "",
+          "（亿元）",
+          "（%）",
+          "（亿元）",
+          "（%）"
+        ],
+        [
+          "社会消费品零售总额",
+          "45136",
+          "0.8617016352587115",
+          "501202",
+          "3.6946202219480853"
+        ],
+        [
+          "其中：除汽车以外的消费品零售额",
+          "39654",
+          "1.7272004463231099",
+          "451413",
+          "4.35725715787008"
+        ],
+        [
+          "其中：限额以上单位消费品零售额",
+          "19547",
+          "-1.9416646880495847",
+          "201618",
+          "3.2538403992200244"
+        ],
+        [
+          "其中：实物商品网上零售额",
+          "-",
+          "-",
+          "130923",
+          "5.165679154541564"
+        ],
+        [
+          "按经营地分",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "城镇",
+          "38429",
+          "0.7154850382915043",
+          "432972",
+          "3.628189207342018"
+        ],
+        [
+          "乡村",
+          "6707",
+          "1.7077342461515599",
+          "68230",
+          "4.118169823557423"
+        ],
+        [
+          "按消费类型分",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "餐饮收入",
+          "5738",
+          "2.191012697851491",
+          "57982",
+          "3.2083303428305925"
+        ],
+        [
+          "其中：限额以上单位餐饮收入",
+          "1463",
+          "-1.1",
+          "16337",
+          "2.0018699563467948"
+        ],
+        [
+          "商品零售额",
+          "39398",
+          "0.6709947077594052",
+          "443220",
+          "3.758565280988904"
+        ],
+        [
+          "其中：限额以上单位商品零售额",
+          "18084",
+          "-2.0103208668844843",
+          "185281",
+          "3.3640878152279186"
+        ],
+        [
+          "其中：粮油、食品类",
+          "2323",
+          "3.9",
+          "23991",
+          "9.274730484518571"
+        ],
+        [
+          "饮料类",
+          "275",
+          "1.7",
+          "3295",
+          "1.0103757676804435"
+        ],
+        [
+          "烟酒类",
+          "623",
+          "-2.9",
+          "6425",
+          "2.6573636078675236"
+        ],
+        [
+          "服装、鞋帽、针纺织品类",
+          "1661",
+          "0.6",
+          "15215",
+          "3.1757151026663877"
         ]
       ]
     }

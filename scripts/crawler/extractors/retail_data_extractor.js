@@ -20,21 +20,21 @@ class RetailDataExtractor extends BaseDataExtractor {
   async processDetailPage(detailUrl) {
     try {
       console.log(`正在提取零售数据: ${detailUrl}`);
-      
+
       const response = await this.fetchWithRetry(detailUrl);
       const $ = cheerio.load(response.data);
-      
+
       // 1. 优先查找"相关数据表"链接
       const relatedDatasetLink = this.findRelatedDatasetLink($, detailUrl);
       if (relatedDatasetLink) {
         console.log(`找到相关数据表链接: ${relatedDatasetLink}`);
         return await this.downloadRelatedDataset(relatedDatasetLink, detailUrl);
       }
-      
+
       // 2. 如果没有相关数据表，从页面表格中提取
       console.log('未找到相关数据表，从页面表格提取数据...');
       return await this.extractFromPageTable($, detailUrl);
-      
+
     } catch (error) {
       console.error(`处理零售数据失败 ${detailUrl}:`, error.message);
       return null;
@@ -77,46 +77,46 @@ class RetailDataExtractor extends BaseDataExtractor {
   async downloadRelatedDataset(relatedUrl, detailUrl) {
     try {
       console.log(`正在下载相关数据表: ${relatedUrl}`);
-      
+
       // 先获取页面标题
       const pageResponse = await this.fetchWithRetry(detailUrl);
       const $ = cheerio.load(pageResponse.data);
       const pageTitle = this.extractPageTitle($);
-      
+
       // 生成文件名（使用页面标题）
       const dateInfo = this.extractDateInfo(detailUrl);
       const filename = this.buildRawFilename(dateInfo.publishDate, pageTitle, 'xls');
       const filePath = path.join(this.downloadDir, filename);
-      
+
       // 检查文件是否已存在
       if (this.shouldSkipExistingFile(filePath, this.skipExistingFiles)) {
         return {
           url: detailUrl,
           publishDate: dateInfo.publishDate,
           periodInfo: dateInfo.periodInfo,
-          excelFile: filePath,
+          file: filePath,
           source: 'related_dataset',
           title: pageTitle,
           skipped: true
         };
       }
-      
+
       // 下载Excel文件（使用arraybuffer以正确处理二进制数据）
       const response = await this.fetchWithRetry(relatedUrl, 3, { responseType: 'arraybuffer' });
-      
+
       // 保存文件（确保使用Buffer）
       fs.writeFileSync(filePath, Buffer.from(response.data));
       console.log(`相关数据表已保存: ${filePath}`);
-      
+
       return {
         url: detailUrl,
         publishDate: dateInfo.publishDate,
         periodInfo: dateInfo.periodInfo,
-        excelFile: filePath,
+        file: filePath,
         source: 'related_dataset',
         title: pageTitle
       };
-      
+
     } catch (error) {
       console.error(`下载相关数据表失败: ${error.message}`);
       return null;
@@ -134,24 +134,24 @@ class RetailDataExtractor extends BaseDataExtractor {
         console.log('未找到零售数据表格');
         return null;
       }
-      
+
       // 提取表格数据
       const rows = this.tableToRowsArray($, table);
       if (rows.length === 0) {
         console.log('表格数据为空');
         return null;
       }
-      
+
       console.log(`提取到 ${rows.length} 行数据`);
-      
+
       // 提取日期信息和页面标题
       const dateInfo = this.extractDateInfo(detailUrl);
       const pageTitle = this.extractPageTitle($);
-      
+
       // 生成Excel文件（使用页面标题）
       const filename = this.buildRawFilename(dateInfo.publishDate, pageTitle, 'xls');
       const excelFile = await this.generateExcelFile(rows, filename);
-      
+
       return {
         url: detailUrl,
         publishDate: dateInfo.publishDate,
@@ -161,7 +161,7 @@ class RetailDataExtractor extends BaseDataExtractor {
         source: 'page_table',
         title: pageTitle
       };
-      
+
     } catch (error) {
       console.error(`从页面表格提取数据失败: ${error.message}`);
       return null;
@@ -175,20 +175,20 @@ class RetailDataExtractor extends BaseDataExtractor {
     const tables = $('table');
     let best = null;
     let bestScore = -1;
-    
+
     tables.each((i, table) => {
       const $table = $(table);
       const rows = $table.find('tr').length;
       const score = rows * 100; // 按行数评分
-      
+
       if (score > bestScore) {
         bestScore = score;
         best = table;
       }
     });
-    
+
     if (best) return best;
-    
+
     // 如果没找到，尝试在标题附近查找
     const headings = $('h1, h2, h3, h4, h5, h6');
     if (headings.length > 0) {
@@ -198,7 +198,7 @@ class RetailDataExtractor extends BaseDataExtractor {
         return nearbyTable[0];
       }
     }
-    
+
     return null;
   }
 
@@ -210,11 +210,11 @@ class RetailDataExtractor extends BaseDataExtractor {
   generateFilename(dateInfo, url) {
     const publishDate = dateInfo.publishDate || new Date().toISOString().split('T')[0];
     const periodInfo = dateInfo.periodInfo || '';
-    
+
     if (periodInfo) {
-      return `${publishDate}_${periodInfo}社会消费品零售总额主要数据-国家统计局`;
+      return `${publishDate}_${periodInfo}社会消费品零售总额主要数据`;
     } else {
-      return `${publishDate}_社会消费品零售总额主要数据-国家统计局`;
+      return `${publishDate}_社会消费品零售总额主要数据`;
     }
   }
 
@@ -224,9 +224,9 @@ class RetailDataExtractor extends BaseDataExtractor {
    */
   async processMultiplePages(detailUrls) {
     console.log(`开始处理 ${detailUrls.length} 个详情页面...`);
-    
+
     const results = [];
-    
+
     for (const detailUrl of detailUrls) {
       try {
         const result = await this.processDetailPage(detailUrl);
@@ -237,7 +237,7 @@ class RetailDataExtractor extends BaseDataExtractor {
         console.error(`处理页面失败 ${detailUrl}:`, error.message);
       }
     }
-    
+
     console.log(`处理完成，成功处理 ${results.length} 个页面`);
     return results;
   }
@@ -246,12 +246,12 @@ class RetailDataExtractor extends BaseDataExtractor {
 // 如果直接运行此文件，执行测试
 if (require.main === module) {
   const extractor = new RetailDataExtractor();
-  
+
   // 测试URL
   const testUrls = [
     'https://www.stats.gov.cn/sj/zxfb/202510/t20251009_1961456.html'
   ];
-  
+
   extractor.processMultiplePages(testUrls).then(results => {
     console.log('提取结果:', results);
   }).catch(error => {

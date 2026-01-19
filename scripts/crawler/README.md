@@ -18,7 +18,7 @@ crawler/
     ├── retail_data_extractor.js          # 零售数据提取器
     ├── invest_data_extractor.js          # 投资数据提取器
     ├── house_data_extractor.js           # 房地产数据提取器
-    ├── profits_data_extractor.js         # 工业利润提取器
+    ├── industrial_value_added_extractor.js  # 工业增加值提取器
     ├── industry_profits_extractor.js     # 分行业利润提取器
     └── capacity_utilization_extractor.js # 产能利用率提取器
 ```
@@ -63,7 +63,7 @@ node scripts/crawler/framework/crawler_main.js goodsPrice 2
 | `house` | 全国房地产市场基本情况 | 国家统计局 | `npm run crawl house 3` |
 | `retail` | 社会消费品零售总额 | 国家统计局 | `npm run crawl retail 3` |
 | `invest` | 全国固定资产投资 | 国家统计局 | `npm run crawl invest 3` |
-| `profits` | 全国规模以上工业企业利润 | 国家统计局 | `npm run crawl profits 3` |
+| `profits` | 规模以上工业增加值 | 国家统计局 | `npm run crawl profits 3` |
 | `industryProfits` | 分行业工业企业利润 | 国家统计局 | `npm run crawl industryProfits 3` |
 
 ### 命令行参数格式

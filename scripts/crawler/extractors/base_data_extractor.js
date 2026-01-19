@@ -50,11 +50,12 @@ class BaseDataExtractor {
    */
   extractPageTitle($) {
     // 尝试多种方式提取标题
+    // 优先使用 <title> 标签，因为它是 HTML 标准中专门用来表示页面标题的
     const titleSelectors = [
+      'title',
       'h1.title',
       'h1',
       '.article-title',
-      'title',
       'h2'
     ];
 
@@ -71,10 +72,34 @@ class BaseDataExtractor {
         // 这里统一把 ";vartitleX;" 这样的片段清理掉
         title = title.replace(/;?\s*vartitle\d+\s*;?/gi, '');
 
+        // 清理 "varti" 变体（可能是 vartitle 被截断的结果）
+        // 匹配各种情况：varti、;varti、varti;、;varti;、varti（前后可能有空格）
+        title = title.replace(/;?\s*varti\s*;?/gi, '');
+        // 额外清理：直接跟在文本后面的 varti（没有分号，可能在任意位置）
+        title = title.replace(/varti/gi, '');
+
+        // 清理 JavaScript 关键字和代码片段（如 if、else、for、while、function 等）
+        // 匹配常见的 JavaScript 代码模式
+        title = title.replace(/\s*if\s*\([^)]*\)/gi, ''); // 清理 if (...) 语句
+        title = title.replace(/\s*else\s*\{?/gi, ''); // 清理 else
+        title = title.replace(/\s*for\s*\([^)]*\)/gi, ''); // 清理 for (...) 循环
+        title = title.replace(/\s*while\s*\([^)]*\)/gi, ''); // 清理 while (...) 循环
+        title = title.replace(/\s*function\s*[^(]*\([^)]*\)/gi, ''); // 清理 function 定义
+        title = title.replace(/\s*var\s+\w+\s*=/gi, ''); // 清理 var 声明（更全面的匹配）
+        title = title.replace(/\s*document\.write\([^)]*\)/gi, ''); // 清理 document.write()
+        title = title.replace(/\s*length\s*>/gi, ''); // 清理 length 比较
+        title = title.replace(/\s*\.length\s*>/gi, ''); // 清理 .length 比较
+        // 清理单独的 JavaScript 关键字（在末尾或独立出现）
+        title = title.replace(/\s+if\s*$/gi, ''); // 清理末尾的 if
+        title = title.replace(/^if\s+/gi, ''); // 清理开头的 if
+        title = title.replace(/\s+else\s*$/gi, ''); // 清理末尾的 else
+        title = title.replace(/^else\s+/gi, ''); // 清理开头的 else
+
         // 再次清理可能残留在末尾的分号
         title = title.replace(/;+$/g, '');
 
-        title = title.replace(/-国家统计局$/, '').trim();
+        // 清理 "-国家统计局" 后缀（包括可能的空格变体）
+        title = title.replace(/\s*-?\s*国家统计局\s*$/g, '').trim();
 
         // 如果清理后还有内容，返回
         if (title && title.length > 0) {
@@ -89,7 +114,7 @@ class BaseDataExtractor {
   /**
    * 构建文件名 (参考 stats-export-extension 的 buildRawFilename)
    * 格式：日期_页面标题.ext
-   * 示例：2025-09-15_2025年8月份规模以上工业增加值增长5.1%-国家统计局.xlsx
+   * 示例：2025-09-15_2025年8月份规模以上工业增加值增长5.1%.xlsx
    */
   buildRawFilename(dateStr, title, ext) {
     // 日期只保留数字和横杠
@@ -106,6 +131,29 @@ class BaseDataExtractor {
     // 清理内嵌的 "vartitle2;" 等片段，避免出现在文件名中
     t = t.replace(/;?\s*vartitle\d+\s*;?/gi, '');
 
+    // 清理 "varti" 变体（可能是 vartitle 被截断的结果）
+    // 匹配各种情况：varti、;varti、varti;、;varti;、varti（前后可能有空格）
+    t = t.replace(/;?\s*varti\s*;?/gi, '');
+    // 额外清理：直接跟在文本后面的 varti（没有分号，可能在任意位置）
+    t = t.replace(/varti/gi, '');
+
+    // 清理 JavaScript 关键字和代码片段（如 if、else、for、while、function 等）
+    // 匹配常见的 JavaScript 代码模式
+    t = t.replace(/\s*if\s*\([^)]*\)/gi, ''); // 清理 if (...) 语句
+    t = t.replace(/\s*else\s*\{?/gi, ''); // 清理 else
+    t = t.replace(/\s*for\s*\([^)]*\)/gi, ''); // 清理 for (...) 循环
+    t = t.replace(/\s*while\s*\([^)]*\)/gi, ''); // 清理 while (...) 循环
+    t = t.replace(/\s*function\s*[^(]*\([^)]*\)/gi, ''); // 清理 function 定义
+    t = t.replace(/\s*var\s+\w+\s*=/gi, ''); // 清理 var 声明（更全面的匹配）
+    t = t.replace(/\s*document\.write\([^)]*\)/gi, ''); // 清理 document.write()
+    t = t.replace(/\s*length\s*>/gi, ''); // 清理 length 比较
+    t = t.replace(/\s*\.length\s*>/gi, ''); // 清理 .length 比较
+    // 清理单独的 JavaScript 关键字（在末尾或独立出现）
+    t = t.replace(/\s+if\s*$/gi, ''); // 清理末尾的 if
+    t = t.replace(/^if\s+/gi, ''); // 清理开头的 if
+    t = t.replace(/\s+else\s*$/gi, ''); // 清理末尾的 else
+    t = t.replace(/^else\s+/gi, ''); // 清理开头的 else
+
     // 进一步去掉末尾可能遗留的分号
     t = t.replace(/;+$/g, '');
 
@@ -118,8 +166,19 @@ class BaseDataExtractor {
     // 组合基础文件名
     let filename = (base ? base + '_' : '') + t + '.' + ext;
 
-    // 最终兜底清理一次，防止任何位置残留 "vartitleX"
+    // 最终兜底清理一次，防止任何位置残留 "vartitleX" 或 "varti" 以及 JavaScript 代码
     filename = filename.replace(/;?\s*vartitle\d+\s*;?/gi, '');
+    filename = filename.replace(/;?\s*varti\s*;?/gi, '');
+    filename = filename.replace(/varti/gi, ''); // 清理所有位置的 varti
+    // 清理 JavaScript 关键字和代码片段
+    filename = filename.replace(/\s*if\s*\([^)]*\)/gi, '');
+    filename = filename.replace(/\s*else\s*\{?/gi, '');
+    filename = filename.replace(/\s+if\s*$/gi, ''); // 清理末尾的 if
+    filename = filename.replace(/^if\s+/gi, ''); // 清理开头的 if
+    filename = filename.replace(/\s+else\s*$/gi, ''); // 清理末尾的 else
+    filename = filename.replace(/^else\s+/gi, ''); // 清理开头的 else
+    filename = filename.replace(/\s*var\s+\w+\s*=/gi, '');
+    filename = filename.replace(/\s*document\.write\([^)]*\)/gi, '');
     filename = filename.replace(/;+$/g, '');
 
     return filename;

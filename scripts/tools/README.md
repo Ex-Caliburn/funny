@@ -11,7 +11,7 @@
 | `house_parse.js` | 房地产数据解析 | Excel 文件 | JSON 数据 |
 | `retail_parse.js` | 零售数据解析 | Excel 文件 | JSON 数据 |
 | `invest_parse.js` | 投资数据解析 | Excel 文件 | JSON 数据 |
-| `profits_parse.js` | 工业利润数据解析 | Excel 文件 | JSON 数据 |
+| `industrial_value_added_parse.js` | 工业增加值数据解析 | Excel 文件 | JSON 数据 |
 | `industry_profits_parse.js` | 分行业利润数据解析 | Excel 文件 | JSON 数据 |
 | `capacity_utilization_parser.js` | 产能利用率数据解析 | Excel 文件 | JSON 数据 |
 | `search_multiple_keywords.js` | 关键词搜索工具 | PDF/Excel 文件 | 搜索结果 |
@@ -164,15 +164,15 @@ const config = {
 **输入目录：** `stock/invest/`  
 **输出文件：** `stock/cleaned_data/invest_cleaned.json`
 
-### profits_parse.js - 工业利润解析
+### industrial_value_added_parse.js - 工业增加值解析
 
 **功能：**
-- 解析全国规模以上工业企业利润数据
-- 提取利润总额、增长率、主营业务收入等
+- 解析规模以上工业增加值数据
+- 提取指标名称、绝对值、环比增长率、同比增长率
 - 按时间序列组织
 
 **输入目录：** `stock/profits/`  
-**输出文件：** `stock/cleaned_data/profits_cleaned.json`
+**输出文件：** `stock/cleaned_data/industrial_value_added_cleaned.json`
 
 ### industry_profits_parse.js - 分行业利润解析
 

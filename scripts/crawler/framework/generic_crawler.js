@@ -236,6 +236,10 @@ class GenericCrawler {
         if (this.target.name === '全国房地产市场基本情况') {
           return await this.extractHouseData(detailUrl);
         }
+
+        if (this.target.name === '全国规模以上工业产能利用率') {
+          return await this.extractCapacityUtilizationData(detailUrl);
+        }
       }
 
       // 对于没有专门extractor的目标，使用通用下载逻辑
@@ -428,7 +432,7 @@ class GenericCrawler {
           skipExistingFiles: config.fileProcessing.skipExistingFiles
         });
       } else {
-        ExtractorClass = require('../extractors/profits_data_extractor');
+        ExtractorClass = require('../extractors/industrial_value_added_extractor');
         extractor = new ExtractorClass(undefined, {
           skipExistingFiles: config.fileProcessing.skipExistingFiles
         });
@@ -498,8 +502,32 @@ class GenericCrawler {
   }
 
   /**
+   * 提取产能利用率数据
+   */
+  async extractCapacityUtilizationData(detailUrl) {
+    try {
+      const CapacityUtilizationExtractor = require('../extractors/capacity_utilization_extractor');
+      const extractor = new CapacityUtilizationExtractor(undefined, {
+        skipExistingFiles: config.fileProcessing.skipExistingFiles
+      });
+
+      // 提取数据并生成Excel文件
+      const result = await extractor.processDetailPage(detailUrl);
+
+      if (result && result.file) {
+        return [result.file];
+      }
+
+      return [];
+    } catch (error) {
+      console.error(`提取产能利用率数据失败 ${detailUrl}:`, error.message);
+      return [];
+    }
+  }
+
+  /**
    * 生成文件名（标准格式）
-   * 格式：YYYY-MM-DD_文章标题-国家统计局.xlsx
+   * 格式：YYYY-MM-DD_文章标题.xlsx
    */
   generateFilename(linkText, detailUrl) {
     // 从URL提取发布日期（格式：tYYYYMMDD）
@@ -543,9 +571,34 @@ class GenericCrawler {
    * 从页面获取标题并生成标准文件名
    */
   async getStandardFilename(detailUrl, $) {
-    const title = $('h1, .title, .article-title').first().text().trim();
+    // 优先使用 <title> 标签，然后才是 h1 等
+    let title = $('title').first().text().trim();
+    if (!title || title.length === 0 || title === '国家统计局') {
+      title = $('h1, .title, .article-title').first().text().trim();
+    }
+
+    // 清理 JavaScript 变量赋值格式和残留内容
+    title = title.replace(/^var\s*\w+\s*=\s*['"]?/i, '');
+    title = title.replace(/^vartitle\d+\s*=\s*['"]?/i, '');
+    title = title.replace(/['"]\s*;?\s*$/, '');
+    title = title.replace(/;?\s*vartitle\d+\s*;?/gi, '');
+    title = title.replace(/;?\s*varti\s*;?/gi, ''); // 清理 "varti" 变体
+    title = title.replace(/varti/gi, ''); // 清理所有位置的 varti
+    // 清理 JavaScript 关键字和代码片段
+    title = title.replace(/\s*if\s*\([^)]*\)/gi, '');
+    title = title.replace(/\s*else\s*\{?/gi, '');
+    title = title.replace(/\s+if\s*$/gi, ''); // 清理末尾的 if
+    title = title.replace(/^if\s+/gi, ''); // 清理开头的 if
+    title = title.replace(/\s+else\s*$/gi, ''); // 清理末尾的 else
+    title = title.replace(/^else\s+/gi, ''); // 清理开头的 else
+    title = title.replace(/\s*var\s+\w+\s*=/gi, '');
+    title = title.replace(/\s*document\.write\([^)]*\)/gi, '');
+    title = title.replace(/;+$/g, '');
+    // 清理 "-国家统计局" 后缀（包括可能的空格变体）
+    title = title.replace(/\s*-?\s*国家统计局\s*$/g, '').trim();
+
     const publishDate = this.extractPublishDateFromUrl(detailUrl);
-    return `${publishDate}_${title}-国家统计局.xlsx`;
+    return `${publishDate}_${title}.xlsx`;
   }
 
   /**

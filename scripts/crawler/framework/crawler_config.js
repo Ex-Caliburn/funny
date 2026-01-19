@@ -60,8 +60,8 @@ module.exports = {
         name: '规模以上工业增加值',
         keywords: ['规模以上工业增加值增长', '工业增加值增长'],
         downloadDir: 'profits',
-        extractor: 'profits_data_extractor.js',
-        parseScript: 'profits_parse.js'
+        extractor: 'industrial_value_added_extractor.js',
+        parseScript: 'industrial_value_added_parse.js'
       },
       industryProfits: {
         name: '全国规模以上工业企业利润',

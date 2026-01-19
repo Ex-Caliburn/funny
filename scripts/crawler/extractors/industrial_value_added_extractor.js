@@ -8,7 +8,7 @@ const BaseDataExtractor = require('./base_data_extractor');
  * 规模以上工业增加值数据提取器
  * 参考 stats-export-extension 和其他成功提取器的逻辑
  */
-class ProfitsDataExtractor extends BaseDataExtractor {
+class IndustrialValueAddedExtractor extends BaseDataExtractor {
   constructor(downloadDir, options) {
     const dir = downloadDir || path.join(__dirname, '../../../stock/profits');
     super(dir, options);
@@ -185,7 +185,7 @@ class ProfitsDataExtractor extends BaseDataExtractor {
 
 // 如果直接运行此文件，执行测试
 if (require.main === module) {
-  const extractor = new ProfitsDataExtractor();
+  const extractor = new IndustrialValueAddedExtractor();
   
   // 测试URL - 规模以上工业增加值
   const testUrls = [
@@ -199,5 +199,4 @@ if (require.main === module) {
   });
 }
 
-module.exports = ProfitsDataExtractor;
-
+module.exports = IndustrialValueAddedExtractor;

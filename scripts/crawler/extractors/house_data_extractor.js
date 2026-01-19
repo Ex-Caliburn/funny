@@ -1,5 +1,6 @@
 const cheerio = require('cheerio');
 const path = require('path');
+const fs = require('fs');
 const BaseDataExtractor = require('./base_data_extractor');
 
 /**
@@ -19,21 +20,21 @@ class HouseDataExtractor extends BaseDataExtractor {
   async processDetailPage(detailUrl) {
     try {
       console.log(`正在提取房地产数据: ${detailUrl}`);
-      
+
       const response = await this.fetchWithRetry(detailUrl);
       const $ = cheerio.load(response.data);
-      
+
       // 1. 优先查找"相关数据表"链接
       const relatedDatasetLink = this.findRelatedDatasetLink($, detailUrl);
       if (relatedDatasetLink) {
         console.log(`找到相关数据表链接: ${relatedDatasetLink}`);
         return await this.downloadRelatedDataset(relatedDatasetLink, detailUrl, $);
       }
-      
+
       // 2. 如果没有相关数据表，从页面表格中提取
       console.log('未找到相关数据表，从页面表格提取数据...');
       return await this.extractFromPageTable($, detailUrl);
-      
+
     } catch (error) {
       console.error(`处理房地产数据失败 ${detailUrl}:`, error.message);
       return null;
@@ -76,45 +77,45 @@ class HouseDataExtractor extends BaseDataExtractor {
   async downloadRelatedDataset(relatedUrl, detailUrl, detailPageDoc) {
     try {
       console.log(`正在下载相关数据表: ${relatedUrl}`);
-      
+
       // 从详情页文档提取页面标题
       const pageTitle = this.extractPageTitle(detailPageDoc);
-      
+
       // 生成文件名（使用页面标题）
       const dateInfo = this.extractDateInfo(detailUrl);
       const ext = this.guessExtFromUrl(relatedUrl) || 'xlsx';
       const filename = this.buildRawFilename(dateInfo.publishDate, pageTitle, ext);
       const filePath = path.join(this.downloadDir, filename);
-      
+
       // 检查文件是否已存在
       if (this.shouldSkipExistingFile(filePath, this.skipExistingFiles)) {
         return {
           url: detailUrl,
           publishDate: dateInfo.publishDate,
           periodInfo: dateInfo.periodInfo,
-          excelFile: filePath,
+          file: filePath,
           source: 'related_dataset',
           title: pageTitle,
           skipped: true
         };
       }
-      
+
       // 下载Excel文件
       const response = await this.fetchWithRetry(relatedUrl, 3, { responseType: 'arraybuffer' });
-      
+
       // 保存文件
       fs.writeFileSync(filePath, response.data);
       console.log(`相关数据表已保存: ${filePath}`);
-      
+
       return {
         url: detailUrl,
         publishDate: dateInfo.publishDate,
         periodInfo: dateInfo.periodInfo,
-        excelFile: filePath,
+        file: filePath,
         source: 'related_dataset',
         title: pageTitle
       };
-      
+
     } catch (error) {
       console.error(`下载相关数据表失败: ${error.message}`);
       return null;
@@ -132,17 +133,17 @@ class HouseDataExtractor extends BaseDataExtractor {
         console.log('未找到房地产数据表格');
         return null;
       }
-      
+
       console.log(`找到 ${tables.length} 个表格`);
-      
+
       // 提取日期信息和页面标题
       const dateInfo = this.extractDateInfo(detailUrl);
       const pageTitle = this.extractPageTitle($);
-      
+
       // 生成Excel文件（使用页面标题）
       const filename = this.buildRawFilename(dateInfo.publishDate, pageTitle, 'xlsx');
       const excelFile = await this.generateExcelFile(tables, filename);
-      
+
       return {
         url: detailUrl,
         publishDate: dateInfo.publishDate,
@@ -152,7 +153,7 @@ class HouseDataExtractor extends BaseDataExtractor {
         source: 'page_table',
         title: pageTitle
       };
-      
+
     } catch (error) {
       console.error(`从页面表格提取数据失败: ${error.message}`);
       return null;
@@ -164,11 +165,11 @@ class HouseDataExtractor extends BaseDataExtractor {
    */
   findHouseTables($) {
     const tables = [];
-    
+
     $('table').each((i, table) => {
       const $table = $(table);
       const rows = this.tableToRowsArray($, table);
-      
+
       if (rows.length > 0) {
         // 提取表格标题（通常在第一行或表格前的标题）
         let title = '';
@@ -176,14 +177,14 @@ class HouseDataExtractor extends BaseDataExtractor {
         if (firstRow && firstRow.length === 1) {
           title = firstRow[0];
         }
-        
+
         tables.push({
           title: title || `表${i + 1}`,
           rows: rows
         });
       }
     });
-    
+
     return tables;
   }
 
