@@ -106,6 +106,8 @@
         <button id="toggleYoy" style="background:#0f172a;color:#e5e7eb;border:1px solid #334155;padding:4px 8px;border-radius:4px;cursor:pointer;font-size:12px;">同比</button>
         <span style="opacity:.7; font-size:12px; margin-left:12px;">历史年份：</span>
         <button id="toggleHistorical" style="background:#0f172a;color:#e5e7eb;border:1px solid #334155;padding:4px 8px;border-radius:4px;cursor:pointer;font-size:12px;">显示</button>
+        <span style="opacity:.7; font-size:12px; margin-left:12px;">增速参考线：</span>
+        <button id="toggleGrowthLines" style="background:#0f172a;color:#e5e7eb;border:1px solid #334155;padding:4px 8px;border-radius:4px;cursor:pointer;font-size:12px;">关闭</button>
       </div>
     </div>
     <div id="grid"
@@ -127,11 +129,11 @@
       const copyTitleBtn = document.getElementById('copyTitleBtn');
       const copyTitleOk = document.getElementById('copyTitleOk');
       const h2 = document.querySelector('h2');
-      
+
       if (copyTitleBtn && h2) {
         copyTitleBtn.addEventListener('click', function() {
           const title = h2.textContent.trim();
-          
+
           if (navigator.clipboard && navigator.clipboard.writeText) {
             navigator.clipboard.writeText(title).then(function() {
               showCopySuccess();
@@ -156,7 +158,7 @@
           }
         });
       }
-      
+
       function showCopySuccess() {
         if (copyTitleOk) {
           copyTitleOk.style.display = 'inline';
@@ -259,10 +261,10 @@
       }
       function renderPowerGen() {
         const container = document.getElementById('powerGenChart');
-        
+
         // 获取发电量相关指标
         const powerGenMetrics = ['发电量-火电', '发电量-水电', '发电量-核电', '发电量-风电', '发电量-太阳能发电'];
-        
+
         // 收集所有时间点
         const keySet = new Set();
         powerGenMetrics.forEach(function(metricName) {
@@ -273,56 +275,56 @@
             }
           });
         });
-        
+
         // 自定义排序，确保1-2月排在年初
         const keys = Array.from(keySet).sort((a, b) => {
           const aYear = parseInt(a.split('-')[0]);
           const bYear = parseInt(b.split('-')[0]);
           if (aYear !== bYear) return aYear - bYear;
-          
+
           // 同一年内，1-2月排在最前面
           if (a.endsWith('-1-2') && !b.endsWith('-1-2')) return -1;
           if (!a.endsWith('-1-2') && b.endsWith('-1-2')) return 1;
-          
+
           // 其他情况按月份排序
           const aMonth = parseInt(a.split('-')[1]);
           const bMonth = parseInt(b.split('-')[1]);
           return aMonth - bMonth;
         });
-        
+
         // 为每个指标创建数据序列
         const series = powerGenMetrics.map(function(metricName, index) {
           const records = json.metrics[metricName] || [];
           const dataMap = {};
-          
+
           records.forEach(function(record) {
             if (record.yoy != null) {
               dataMap[record.yearMonth] = record.yoy;
             }
           });
-          
+
           const colors = ['#ef4444', '#3b82f6', '#f59e0b', '#8b5cf6', '#ec4899']; // 橙色替代绿色
           const displayName = metricName.replace('发电量-', '');
-          
+
           return {
             name: displayName,
             type: 'line',
             smooth: true,
             symbol: 'circle',
             symbolSize: 6,
-            lineStyle: { 
+            lineStyle: {
               width: 3,
               color: colors[index % colors.length]
             },
-            itemStyle: { 
-              color: colors[index % colors.length] 
+            itemStyle: {
+              color: colors[index % colors.length]
             },
             data: keys.map(function(key) {
               return dataMap[key] != null ? dataMap[key] : null;
             })
           };
         });
-        
+
         const chart = echarts.init(container);
         const option = {
           backgroundColor: '#0b0f19',
@@ -358,11 +360,11 @@
             pageIconInactiveColor: '#64748b',
             pageTextStyle: { color: '#cbd5e1' }
           },
-          grid: { 
-            left: 60, 
-            right: 40, 
-            top: 80, 
-            bottom: 80 
+          grid: {
+            left: 60,
+            right: 40,
+            top: 80,
+            bottom: 80
           },
           xAxis: {
             type: 'category',
@@ -375,8 +377,8 @@
               const parts = key.split('-');
               return parts[0] + '年' + parseInt(parts[1]) + '月';
             }),
-            axisLabel: { 
-              color: '#9aa4b2', 
+            axisLabel: {
+              color: '#9aa4b2',
               fontSize: 11,
               rotate: 45
             },
@@ -391,13 +393,13 @@
               color: '#9aa4b2',
               fontSize: 12
             },
-            axisLabel: { 
-              color: '#9aa4b2', 
+            axisLabel: {
+              color: '#9aa4b2',
               fontSize: 11,
               formatter: '{value}%'
             },
-            splitLine: { 
-              lineStyle: { color: '#1f2937' } 
+            splitLine: {
+              lineStyle: { color: '#1f2937' }
             },
             axisLine: {
               lineStyle: { color: '#334155' }
@@ -424,7 +426,7 @@
             }
           ]
         };
-        
+
         chart.setOption(option, true);
       }
       function renderGrid() {
@@ -433,12 +435,12 @@
         const metricCount = document.getElementById('metricCount');
         const keyword = (filter.value || '').trim();
         grid.innerHTML = '';
-        
+
         // 定义指标分类
         const productionMetrics = ['发电量', '原煤', '原油', '原油加工', '天然气'];
         const importMetrics = ['原煤-进口', '原油-进口', '天然气-进口'];
         const allNames = Object.keys(json.metrics || {});
-        
+
         let names = [];
         if (!keyword) {
           // 没有关键字时，显示生产指标和进口指标
@@ -503,23 +505,23 @@
         // 暴露给全局用于调试（控制台直接访问）
         if (typeof window !== 'undefined') { window.yearToPlacedData = yearToPlacedData; }
           const latestYear = years[years.length - 1]; // 获取最新年份
-          
+
           // 遍历年份，添加曲线
           years.forEach(function (y, idx) {
             const isLatestYear = (y === latestYear);
             const isHistoricalYear = !isLatestYear;
-            
+
             // 如果是历史年份且用户选择隐藏历史年份，则跳过
             if (isHistoricalYear && !showHistoricalYears) {
               return;
             }
-            
+
             const data = new Array(11).fill(null);
             const yoyDataArray = new Array(11).fill(null);
             const momDataArray = new Array(11).fill(null);
-            
+
             // 填充数据
-            (yearData[y] || []).forEach(function (it) { 
+            (yearData[y] || []).forEach(function (it) {
               const monthStr = it.month;
               if (!monthStr) return;
 
@@ -546,56 +548,72 @@
                 }
               }
             });
-            
+
             // 添加绝对值曲线
-            option.series.push({ 
-              type: 'line', 
-              name: y + '年', 
-              yAxisIndex: 0, 
-              data: data, 
-              smooth: true, 
-              connectNulls: true, 
-              symbol: 'circle', 
-              symbolSize: 4, 
-              lineStyle: { color: colors[idx % colors.length], width: 2 }, 
-              itemStyle: { color: colors[idx % colors.length] } 
+            option.series.push({
+              type: 'line',
+              name: y + '年',
+              yAxisIndex: 0,
+              data: data,
+              smooth: true,
+              connectNulls: true,
+              symbol: 'circle',
+              symbolSize: 4,
+              lineStyle: { color: colors[idx % colors.length], width: 2 },
+              itemStyle: { color: colors[idx % colors.length] }
             });
 
             // 只为最新年份添加同比和环比曲线
             if (isLatestYear) {
               // 同比曲线
               if (showYoyCurve && yoyDataArray.some(v => v != null)) {
-                option.series.push({ 
-                  type: 'line', 
-                  name: y + '年同比', 
-                  yAxisIndex: 1, 
-                  data: yoyDataArray, 
-                  smooth: true, 
-                  connectNulls: true, 
-                  symbol: 'diamond', 
-                  symbolSize: 3, 
-                  lineStyle: { color: '#10b981', width: 2, type: 'solid' }, 
-                  itemStyle: { color: '#10b981' } 
+                option.series.push({
+                  type: 'line',
+                  name: y + '年同比',
+                  yAxisIndex: 1,
+                  data: yoyDataArray,
+                  smooth: true,
+                  connectNulls: true,
+                  symbol: 'diamond',
+                  symbolSize: 3,
+                  lineStyle: { color: '#10b981', width: 2, type: 'solid' },
+                  itemStyle: { color: '#10b981' }
                 });
               }
 
               // 环比曲线
               if (showMomCurve && momDataArray.some(v => v != null)) {
-                option.series.push({ 
-                  type: 'line', 
-                  name: y + '年环比', 
-                  yAxisIndex: 1, 
-                  data: momDataArray, 
-                  smooth: true, 
-                  connectNulls: true, 
-                  symbol: 'triangle', 
-                  symbolSize: 3, 
-                  lineStyle: { color: '#f59e0b', width: 2, type: 'dashed' }, 
-                  itemStyle: { color: '#f59e0b' } 
+                option.series.push({
+                  type: 'line',
+                  name: y + '年环比',
+                  yAxisIndex: 1,
+                  data: momDataArray,
+                  smooth: true,
+                  connectNulls: true,
+                  symbol: 'triangle',
+                  symbolSize: 3,
+                  lineStyle: { color: '#f59e0b', width: 2, type: 'dashed' },
+                  itemStyle: { color: '#f59e0b' }
                 });
               }
             }
           });
+
+          // 添加增速参考线（如果启用）
+          if (showGrowthLines) {
+            const lastRightAxisSeries = option.series.filter(s => s.yAxisIndex === 1).pop();
+            if (lastRightAxisSeries) {
+              lastRightAxisSeries.markLine = {
+                silent: true,
+                symbol: 'none',
+                data: [
+                  { yAxis: 10, lineStyle: { color: '#10b981', type: 'dashed', width: 1.5, opacity: 0.7 }, label: { show: true, position: 'end', formatter: '10%', color: '#10b981', fontSize: 10 } },
+                  { yAxis: 20, lineStyle: { color: '#3b82f6', type: 'dashed', width: 1.5, opacity: 0.7 }, label: { show: true, position: 'end', formatter: '20%', color: '#3b82f6', fontSize: 10 } }
+                ]
+              };
+            }
+          }
+
           c.setOption(option);
           // 放大功能
           zoomBtn.onclick = function (e) {
@@ -610,12 +628,12 @@
         const container = document.getElementById('overall');
         const filterInput = document.getElementById('tableFilter');
         const keyword = (filterInput.value || '').trim();
-        
+
         // 定义指标分类
         const productionMetrics = ['发电量', '原煤', '原油', '原油加工', '天然气'];
         const importMetrics = ['原煤-进口', '原油-进口', '天然气-进口'];
         const allNames = Object.keys(json.metrics || {});
-        
+
         let names = [];
         if (!keyword) {
           // 没有关键字时，显示生产指标和进口指标
@@ -633,18 +651,18 @@
             return isNotPowerSubtype && matchesKeyword;
           });
         }
-        
-        const keySet = new Set(); 
-        names.forEach(function (n) { 
-          (json.metrics[n] || []).forEach(function (d) { 
+
+        const keySet = new Set();
+        names.forEach(function (n) {
+          (json.metrics[n] || []).forEach(function (d) {
             // 过滤掉独立1月/2月，只保留1-2合并
             if (d.yearMonth && (d.yearMonth.endsWith('-1-2') || (d.yearMonth.split('-').length === 2 && parseInt(d.yearMonth.split('-')[1], 10) >= 3))) {
               keySet.add(d.yearMonth);
             }
-          }); 
+          });
         });
         // 自定义排序：同年1-2在最前，其余按月份3..12
-        const keys = Array.from(keySet).sort(function (a, b) { 
+        const keys = Array.from(keySet).sort(function (a, b) {
           const ay = parseInt(a.split('-')[0], 10);
           const by = parseInt(b.split('-')[0], 10);
           if (ay !== by) return ay - by;
@@ -655,8 +673,8 @@
           if (ap.length === 2 && bp.length === 2) return parseInt(ap[1], 10) - parseInt(bp[1], 10);
           return a.localeCompare(b);
         });
-        
-        const series = names.map(function (n) { 
+
+        const series = names.map(function (n) {
           const arr = (json.metrics[n] || []).filter(function (d) {
             if (!d.yearMonth) return false;
             if (d.yearMonth.endsWith('-1-2')) return true;
@@ -666,28 +684,28 @@
               return mm >= 3; // 去掉独立1、2月
             }
             return false;
-          }); 
-          const map = {}; 
-          arr.forEach(function (d) { 
-            map[d.yearMonth] = d.value; 
-          }); 
-          return { 
-            name: n, 
-            type: 'line', 
-            yAxisIndex: 0, 
-            smooth: true, 
+          });
+          const map = {};
+          arr.forEach(function (d) {
+            map[d.yearMonth] = d.value;
+          });
+          return {
+            name: n,
+            type: 'line',
+            yAxisIndex: 0,
+            smooth: true,
             connectNulls: true,
             symbol: 'circle',
             symbolSize: 4,
             lineStyle: { width: 2 },
-            data: keys.map(function (k) { return (map[k] == null ? null : map[k]); }) 
-          }; 
+            data: keys.map(function (k) { return (map[k] == null ? null : map[k]); })
+          };
         });
-        
+
         const chart2 = echarts.init(container);
-        const option = { 
-          backgroundColor: '#0b0f19', 
-          tooltip: { 
+        const option = {
+          backgroundColor: '#0b0f19',
+          tooltip: {
             trigger: 'axis',
             backgroundColor: 'rgba(15, 23, 42, 0.95)',
             borderColor: '#1f2937',
@@ -709,10 +727,10 @@
               });
               return s;
             }
-          }, 
-          legend: { 
-            type: 'scroll', 
-            top: 0, 
+          },
+          legend: {
+            type: 'scroll',
+            top: 0,
             left: 'center',
             textStyle: { color: '#cbd5e1', fontSize: 11 },
             pageButtonItemGap: 5,
@@ -732,24 +750,24 @@
             selectorLabel: { color: '#cbd5e1', fontSize: 11 },
             selectorItemGap: 7,
             selectorButtonGap: 10
-          }, 
-          grid: { left: 70, right: 20, top: 60, bottom: 40 }, 
-          xAxis: { 
-            type: 'category', 
-            data: keys.map(function (k) { 
+          },
+          grid: { left: 70, right: 20, top: 60, bottom: 40 },
+          xAxis: {
+            type: 'category',
+            data: keys.map(function (k) {
               if (k.endsWith('-1-2')) return k.split('-')[0] + '年1-2月';
               const p = k.split('-');
               return p[0] + '年' + parseInt(p[1], 10) + '月';
-            }), 
-            axisLabel: { color: '#9aa4b2', fontSize: 11 } 
-          }, 
-          yAxis: [{ 
-            type: 'value', 
-            name: '当月值', 
-            axisLabel: { color: '#9aa4b2', fontSize: 11 }, 
+            }),
+            axisLabel: { color: '#9aa4b2', fontSize: 11 }
+          },
+          yAxis: [{
+            type: 'value',
+            name: '当月值',
+            axisLabel: { color: '#9aa4b2', fontSize: 11 },
             splitLine: { lineStyle: { color: '#1f2937' } },
             nameTextStyle: { color: '#9aa4b2', fontSize: 11 }
-          }], 
+          }],
           series: series,
           dataZoom: [
             {
@@ -771,7 +789,7 @@
             }
           ]
         };
-        
+
         chart2.setOption(option, true);
         filterInput.oninput = renderTable;
       }
@@ -786,21 +804,21 @@
         const btnTable = document.getElementById('tabTable');
         const filter = document.getElementById('filter');
         const metricCount = document.getElementById('metricCount');
-        
+
         singleWrap.style.display = (mode === 'single') ? 'block' : 'none';
         powerGenWrap.style.display = (mode === 'powergen') ? 'block' : 'none';
         dashWrap.style.display = (mode === 'dash') ? 'block' : 'none';
         tableWrap.style.display = (mode === 'table') ? 'block' : 'none';
-        
-        btnSingle.style.background = (mode === 'single') ? '#3b82f6' : 'transparent'; 
+
+        btnSingle.style.background = (mode === 'single') ? '#3b82f6' : 'transparent';
         btnSingle.style.color = (mode === 'single') ? '#ffffff' : '#94a3b8';
-        btnPowerGen.style.background = (mode === 'powergen') ? '#3b82f6' : 'transparent'; 
+        btnPowerGen.style.background = (mode === 'powergen') ? '#3b82f6' : 'transparent';
         btnPowerGen.style.color = (mode === 'powergen') ? '#ffffff' : '#94a3b8';
-        btnDash.style.background = (mode === 'dash') ? '#3b82f6' : 'transparent'; 
+        btnDash.style.background = (mode === 'dash') ? '#3b82f6' : 'transparent';
         btnDash.style.color = (mode === 'dash') ? '#ffffff' : '#94a3b8';
-        btnTable.style.background = (mode === 'table') ? '#3b82f6' : 'transparent'; 
+        btnTable.style.background = (mode === 'table') ? '#3b82f6' : 'transparent';
         btnTable.style.color = (mode === 'table') ? '#ffffff' : '#94a3b8';
-        
+
         // 添加悬停效果
         [btnSingle, btnPowerGen, btnDash, btnTable].forEach(btn => {
           btn.onmouseenter = function() {
@@ -810,9 +828,9 @@
             }
           };
           btn.onmouseleave = function() {
-            const isActive = (this === btnSingle && mode === 'single') || 
-                           (this === btnPowerGen && mode === 'powergen') || 
-                           (this === btnDash && mode === 'dash') || 
+            const isActive = (this === btnSingle && mode === 'single') ||
+                           (this === btnPowerGen && mode === 'powergen') ||
+                           (this === btnDash && mode === 'dash') ||
                            (this === btnTable && mode === 'table');
             if (!isActive) {
               this.style.background = 'transparent';
@@ -820,46 +838,47 @@
             }
           };
         });
-        
-        if (mode === 'dash') { 
-          renderGrid(); 
-          updateButtonStyles(); 
-          filter && filter.addEventListener('input', renderGrid); 
-        } else { 
-          filter && filter.removeEventListener('input', renderGrid); 
-          metricCount && (metricCount.textContent = ''); 
+
+        if (mode === 'dash') {
+          renderGrid();
+          updateButtonStyles();
+          filter && filter.addEventListener('input', renderGrid);
+        } else {
+          filter && filter.removeEventListener('input', renderGrid);
+          metricCount && (metricCount.textContent = '');
         }
-        
+
         if (mode === 'single') { renderSingle(select.value); }
         if (mode === 'powergen') { renderPowerGen(); }
         if (mode === 'table') { renderTable(); }
       }
-      
+
       // 全局变量存储当前放大图表实例
       var currentZoomChart = null;
       var zoomResizeHandler = null;
-      
+
       // 全局状态控制曲线显示
       var showMomCurve = true;  // 默认显示环比
       var showYoyCurve = true;  // 默认显示同比
       var showHistoricalYears = true;  // 默认显示历史年份
-      
+      var showGrowthLines = false;  // 默认关闭增速参考线
+
       // 更新按钮样式
       function updateButtonStyles() {
         const momBtn = document.getElementById('toggleMom');
         const yoyBtn = document.getElementById('toggleYoy');
         const historicalBtn = document.getElementById('toggleHistorical');
-        
+
         momBtn.style.background = showMomCurve ? '#3b82f6' : '#0f172a';
         momBtn.style.color = showMomCurve ? '#ffffff' : '#e5e7eb';
-        
+
         yoyBtn.style.background = showYoyCurve ? '#3b82f6' : '#0f172a';
         yoyBtn.style.color = showYoyCurve ? '#ffffff' : '#e5e7eb';
-        
+
         historicalBtn.style.background = showHistoricalYears ? '#3b82f6' : '#0f172a';
         historicalBtn.style.color = showHistoricalYears ? '#ffffff' : '#e5e7eb';
       }
-      
+
       // 放大图表功能
       function showZoomChart(name, rows, yearData, yoyData) {
         const modal = document.getElementById('zoomModal');
@@ -908,7 +927,7 @@
                 if (p.seriesName.includes('同比') || p.seriesName.includes('环比')) {
                   s += p.seriesName + ': ' + (p.value != null ? p.value + '%' : '-') + '<br/>';
                 } else {
-                  const unit = name.includes('发电量') ? '亿千瓦时' : 
+                  const unit = name.includes('发电量') ? '亿千瓦时' :
                              name.includes('原煤') ? '亿吨' :
                              name.includes('原油') ? '万吨' :
                              name.includes('天然气') ? '亿立方米' : '';
@@ -931,7 +950,7 @@
           const momDataArray = new Array(11).fill(null);
 
           // 填充数据
-          (yearData[y] || []).forEach(function (it) { 
+          (yearData[y] || []).forEach(function (it) {
             const monthStr = it.month;
             if (!monthStr) return;
 
@@ -961,45 +980,45 @@
 
           // 5. 添加曲线
           // 绝对值曲线
-          option.series.push({ 
-            type: 'line', 
-            name: y + '年', 
-            yAxisIndex: 0, 
-            data: data, 
-            smooth: true, 
-            symbol: 'circle', 
-            symbolSize: 8, 
-            lineStyle: { color: colors[idx % colors.length], width: 3.5 }, 
-            itemStyle: { color: colors[idx % colors.length] } 
+          option.series.push({
+            type: 'line',
+            name: y + '年',
+            yAxisIndex: 0,
+            data: data,
+            smooth: true,
+            symbol: 'circle',
+            symbolSize: 8,
+            lineStyle: { color: colors[idx % colors.length], width: 3.5 },
+            itemStyle: { color: colors[idx % colors.length] }
           });
 
           // 同比曲线（绿色）
           if (yoyDataArray.some(v => v != null)) {
-            option.series.push({ 
-              type: 'line', 
-              name: y + '年同比', 
-              yAxisIndex: 1, 
-              data: yoyDataArray, 
-              smooth: true, 
-              symbol: 'diamond', 
-              symbolSize: 6, 
-              lineStyle: { color: '#10b981', width: 2.5, type: 'solid' }, 
-              itemStyle: { color: '#10b981' } 
+            option.series.push({
+              type: 'line',
+              name: y + '年同比',
+              yAxisIndex: 1,
+              data: yoyDataArray,
+              smooth: true,
+              symbol: 'diamond',
+              symbolSize: 6,
+              lineStyle: { color: '#10b981', width: 2.5, type: 'solid' },
+              itemStyle: { color: '#10b981' }
             });
           }
 
           // 环比曲线（橙色）
           if (momDataArray.some(v => v != null)) {
-            option.series.push({ 
-              type: 'line', 
-              name: y + '年环比', 
-              yAxisIndex: 1, 
-              data: momDataArray, 
-              smooth: true, 
-              symbol: 'triangle', 
-              symbolSize: 6, 
-              lineStyle: { color: '#f59e0b', width: 2.5, type: 'dashed' }, 
-              itemStyle: { color: '#f59e0b' } 
+            option.series.push({
+              type: 'line',
+              name: y + '年环比',
+              yAxisIndex: 1,
+              data: momDataArray,
+              smooth: true,
+              symbol: 'triangle',
+              symbolSize: 6,
+              lineStyle: { color: '#f59e0b', width: 2.5, type: 'dashed' },
+              itemStyle: { color: '#f59e0b' }
             });
           }
         });
@@ -1015,12 +1034,12 @@
           window.addEventListener('resize', zoomResizeHandler);
         }, 100);
       }
-      
+
       // 关闭放大模态框
       function closeZoomModal() {
         const modal = document.getElementById('zoomModal');
         modal.style.display = 'none';
-        
+
         // 销毁图表实例和事件监听器
         if (currentZoomChart) {
           currentZoomChart.dispose();
@@ -1038,7 +1057,7 @@
       document.getElementById('tabPowerGen').addEventListener('click', function () { switchTab('powergen'); });
       document.getElementById('tabDashboard').addEventListener('click', function () { switchTab('dash'); });
       document.getElementById('tabTable').addEventListener('click', function () { switchTab('table'); });
-      
+
       // 环比同比按钮事件监听器
       document.getElementById('toggleMom').addEventListener('click', function () {
         showMomCurve = !showMomCurve;
@@ -1055,6 +1074,27 @@
         updateButtonStyles();
         renderGrid();
       });
+
+      // 更新增速参考线按钮样式
+      function updateGrowthLinesButtonStyle() {
+        const btn = document.getElementById('toggleGrowthLines');
+        if (btn) {
+          btn.style.background = showGrowthLines ? '#3b82f6' : '#0f172a';
+          btn.style.color = showGrowthLines ? '#ffffff' : '#e5e7eb';
+          btn.textContent = showGrowthLines ? '开启' : '关闭';
+        }
+      }
+
+      // 增速参考线按钮事件监听器
+      const toggleGrowthLinesBtn = document.getElementById('toggleGrowthLines');
+      if (toggleGrowthLinesBtn) {
+        toggleGrowthLinesBtn.addEventListener('click', function () {
+          showGrowthLines = !showGrowthLines;
+          updateGrowthLinesButtonStyle();
+          renderGrid();
+        });
+        updateGrowthLinesButtonStyle();
+      }
 
       // 模态框关闭事件
       document.getElementById('zoomModal').addEventListener('click', function () {

@@ -103,6 +103,8 @@
         <button id="toggleYoy" style="background:#0f172a;color:#e5e7eb;border:1px solid #334155;padding:4px 8px;border-radius:4px;cursor:pointer;font-size:12px;">同比</button>
         <span style="opacity:.7; font-size:12px; margin-left:12px;">历史年份：</span>
         <button id="toggleHistorical" style="background:#0f172a;color:#e5e7eb;border:1px solid #334155;padding:4px 8px;border-radius:4px;cursor:pointer;font-size:12px;">显示</button>
+        <span style="opacity:.7; font-size:12px; margin-left:12px;">增速参考线：</span>
+        <button id="toggleGrowthLines" style="background:#0f172a;color:#e5e7eb;border:1px solid #334155;padding:4px 8px;border-radius:4px;cursor:pointer;font-size:12px;">关闭</button>
       </div>
     </div>
     <div id="grid"
@@ -128,11 +130,11 @@
     // 年份曲线颜色（5种完全不同色系，避开绿色）
     const YEAR_COLORS = ['#ef4444', '#f59e0b', '#3b82f6', '#8b5cf6', '#ec4899'];
     // 说明：红色、橙色、蓝色、紫色、粉色 - 完全避开绿色系
-    
+
     // 增长率曲线颜色
     const YOY_COLOR = '#10b981';  // 同比：绿色（独占绿色系）
     const MOM_COLOR = '#fbbf24';  // 环比：亮黄色
-    
+
     // 单指标视图颜色
     const SINGLE_VALUE_COLOR = '#06b6d4';  // 青色：当月值（避免与年份蓝冲突）
     const SINGLE_MOM_COLOR = '#f59e0b';    // 橙色：环比
@@ -144,11 +146,11 @@
       const copyTitleBtn = document.getElementById('copyTitleBtn');
       const copyTitleOk = document.getElementById('copyTitleOk');
       const h2 = document.querySelector('h2');
-      
+
       if (copyTitleBtn && h2) {
         copyTitleBtn.addEventListener('click', function() {
           const title = h2.textContent.trim();
-          
+
           if (navigator.clipboard && navigator.clipboard.writeText) {
             navigator.clipboard.writeText(title).then(function() {
               showCopySuccess();
@@ -173,7 +175,7 @@
           }
         });
       }
-      
+
       function showCopySuccess() {
         if (copyTitleOk) {
           copyTitleOk.style.display = 'inline';
@@ -195,25 +197,25 @@
     });
     const payload = { "data": [] };
     fetch("../cleaned_data/industry_profits_cleaned.json?t=" + Date.now()).then(r => r.json()).then(json => {
-      
+
       // Extract industries and metrics from the data
       const industries = new Set();
       const metricTypes = ['营业收入', '营业成本', '利润总额'];
-      
+
       Object.keys(json.metrics || {}).forEach(key => {
         if (key.includes('-')) {
           const industry = key.split('-')[0];
           industries.add(industry);
         }
       });
-      
+
       const industryList = Array.from(industries).sort();
       console.log('Available industries:', industryList);
-      
+
       // Initialize industry selectors
       const industrySelect = document.getElementById("industry");
       const dashboardIndustrySelect = document.getElementById("dashboardIndustry");
-      
+
       // Initialize single view selector
       if (industrySelect) {
         industrySelect.innerHTML = '';
@@ -225,7 +227,7 @@
           industrySelect.appendChild(opt);
         });
       }
-      
+
       // Initialize dashboard view selector (with "全部" option)
       if (dashboardIndustrySelect) {
         dashboardIndustrySelect.innerHTML = '';
@@ -243,7 +245,7 @@
           dashboardIndustrySelect.appendChild(opt);
         });
       }
-      
+
       // Initialize table metric selector
       const tableMetricSelect = document.getElementById("tableMetric");
       tableMetricSelect.innerHTML = '';
@@ -254,7 +256,7 @@
         if (metric === '营业收入') opt.selected = true;
         tableMetricSelect.appendChild(opt);
       });
-      
+
       // Initialize metric selector
       const metricSelect = document.getElementById("metric");
       metricSelect.innerHTML = '';
@@ -267,18 +269,18 @@
       });
   const el = document.getElementById("app");
   const chart = echarts.init(el, null, { renderer: "canvas" });
-  
+
       // 计算当月数据的函数
       function calculateMonthlyData(cumulativeData) {
         if (!cumulativeData || cumulativeData.length === 0) return [];
-        
+
         const monthlyData = [];
         const sortedData = [...cumulativeData].sort((a, b) => a.yearMonth.localeCompare(b.yearMonth));
-        
+
         for (let i = 0; i < sortedData.length; i++) {
           const current = sortedData[i];
           const currentYear = current.yearMonth.slice(0, 4);
-          
+
           if (current.yearMonth.endsWith('-01-02')) {
             // 1-2月的数据就是当月数据
             monthlyData.push({
@@ -304,7 +306,7 @@
             const currentMonth = parseInt(current.yearMonth.slice(5, 7), 10);
             let prevMonth = currentMonth - 1;
             let prevMonthKey;
-            
+
             if (prevMonth === 2) {
               prevMonthKey = currentYear + '-01-02'; // 2月的上一个是1-2月
             } else if (prevMonth >= 3) {
@@ -312,9 +314,9 @@
             } else {
               prevMonthKey = null;
             }
-            
+
             const prev = prevMonthKey ? sortedData.find(d => d.yearMonth === prevMonthKey) : null;
-            
+
             if (prev && current.value !== null && prev.value !== null) {
               monthlyData.push({
                 ...current,
@@ -328,58 +330,58 @@
             }
           }
         }
-        
+
         // 计算当月同比
         return calculateMonthlyYoY(monthlyData);
       }
 
       function calculateMonthlyYoY(monthlyData) {
         const result = [];
-        
+
         for (let i = 0; i < monthlyData.length; i++) {
           const current = monthlyData[i];
           const currentYear = parseInt(current.yearMonth.slice(0, 4));
           const prevYear = currentYear - 1;
           const prevYearKey = current.yearMonth.replace(String(currentYear), String(prevYear));
-          
+
           // 查找去年同期的当月数据
           const prevYearData = monthlyData.find(d => d.yearMonth === prevYearKey);
-          
+
           let monthlyYoY = null;
           if (prevYearData && current.value !== null && prevYearData.value !== null && prevYearData.value !== 0) {
             monthlyYoY = parseFloat(((current.value - prevYearData.value) / Math.abs(prevYearData.value) * 100).toFixed(2));
           }
-          
+
           result.push({
             ...current,
             yoy: monthlyYoY !== null ? monthlyYoY : current.yoy // 如果计算不出当月同比，使用原始累积同比
           });
         }
-        
+
         return result;
       }
       function renderSingle() {
         const industry = industrySelect.value;
         const metric = metricSelect.value;
         const metricKey = industry + '-' + metric;
-        
+
         const rows = (json.metrics && json.metrics[metricKey]) || [];
-        
+
         // 计算当月数据
         const monthlyRows = calculateMonthlyData(rows);
-        
+
         const x = monthlyRows.map(d => d.yearMonth);
         const abs = monthlyRows.map(d => d.value);
-        
+
         // 使用当月数据中已经计算好的环比和同比
         const mom = monthlyRows.map(d => d.mom);
         const yoy = monthlyRows.map(d => d.yoy);
-        
+
         const displayName = industry + '-' + metric;
   const option = {
     backgroundColor: "#0b0f19",
-    tooltip: { 
-      trigger: "axis", 
+    tooltip: {
+      trigger: "axis",
       valueFormatter: v => v == null ? "-" : (typeof v === 'number' ? v.toFixed(2) : v)
     },
           legend: { data: [displayName + "-当月值", displayName + "-环比%", displayName + "-同比%"], textStyle: { color: "#cbd5e1" } },
@@ -404,7 +406,7 @@
         const selectedIndustry = dashboardIndustrySelect.value;
         const keyword = (filter.value || '').trim().toLowerCase();
         grid.innerHTML = '';
-        
+
         // 根据选择的行业决定显示哪些指标
         let allMetrics;
         if (selectedIndustry === '全部') {
@@ -420,7 +422,7 @@
               return json.metrics[metricKey] && (!keyword || metricKey.toLowerCase().includes(keyword));
             });
         }
-        
+
         metricCount.textContent = allMetrics.length + ' 个指标';
         allMetrics.forEach(function (name) {
           const card = document.createElement('div'); card.style.background = '#0f172a'; card.style.border = '1px solid #1f2937'; card.style.borderRadius = '12px'; card.style.padding = '12px'; card.style.transition = 'all 0.3s ease'; card.style.boxShadow = '0 2px 8px rgba(0,0,0,0.3)'; card.style.position = 'relative';
@@ -437,10 +439,10 @@
           const div = document.createElement('div'); div.style.height = '200px';
           card.appendChild(titleWrapper); card.appendChild(div); grid.appendChild(card);
           const rows = (json.metrics && json.metrics[name]) || [];
-          
+
           // 计算当月数据
           const monthlyRows = calculateMonthlyData(rows);
-          
+
           const yearData = {}; const yoyData = {}; const momData = {};
           monthlyRows.forEach(function (d) {
             const y = d.yearMonth ? d.yearMonth.slice(0, 4) : '';
@@ -449,7 +451,7 @@
               (yearData[y] || (yearData[y] = [])).push({ month: d.yearMonth, value: v });
             }
           });
-          
+
           // 同比和环比数据改为使用当月数据（此前为累积数据，导致显示错误）
           monthlyRows.forEach(function (d) {
             const y = d.yearMonth ? d.yearMonth.slice(0, 4) : '';
@@ -463,55 +465,58 @@
             }
           });
           const c = echarts.init(div);
-          const option = { 
-            backgroundColor: '#0f172a', 
-            grid: { left: 50, right: 50, top: 35, bottom: 35 }, 
-            xAxis: { 
-              type: 'category', 
-              data: ['1-2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'], 
-              axisLabel: { color: '#9aa4b2', fontSize: 11 } 
-            }, 
+          const option = {
+            backgroundColor: '#0f172a',
+            grid: { left: 50, right: 50, top: 35, bottom: 35 },
+            xAxis: {
+              type: 'category',
+              data: ['1-2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+              axisLabel: { color: '#9aa4b2', fontSize: 11 }
+            },
             yAxis: [
-              { type: 'value', position: 'left', axisLabel: { color: '#9aa4b2', fontSize: 11 }, splitLine: { lineStyle: { color: '#1f2937' } } }, 
+              { type: 'value', position: 'left', axisLabel: { color: '#9aa4b2', fontSize: 11 }, splitLine: { lineStyle: { color: '#1f2937' } } },
               { type: 'value', position: 'right', axisLabel: { color: '#9aa4b2', fontSize: 11, formatter: '{value}%' }, splitLine: { show: false } }
-            ], 
-            series: [], 
-            legend: { show: true, top: 0, textStyle: { color: '#cbd5e1', fontSize: 11 } }, 
-            tooltip: { 
-              trigger: 'axis', 
-              backgroundColor: 'rgba(15, 23, 42, 0.95)', 
-              borderColor: '#1f2937', 
-              textStyle: { color: '#e2e8f0' }, 
-              formatter: function (ps) { 
-                let s = ps[0].name + '<br/>'; 
-                ps.forEach(function (p) { 
-                  if (p.seriesName.includes('同比') || p.seriesName.includes('环比')) { 
-                    s += p.seriesName + ': ' + (p.value != null ? p.value.toFixed(2) + '%' : '-') + '<br/>'; 
-                  } else { 
-                    s += p.seriesName + ': ' + (p.value != null ? p.value.toFixed(2) + '亿元（当月）' : '-') + '<br/>'; 
-                  } 
-                }); 
-                return s; 
-              } 
-            } 
+            ],
+            series: [],
+            legend: { show: true, top: 0, textStyle: { color: '#cbd5e1', fontSize: 11 } },
+            tooltip: {
+              trigger: 'axis',
+              backgroundColor: 'rgba(15, 23, 42, 0.95)',
+              borderColor: '#1f2937',
+              textStyle: { color: '#e2e8f0' },
+              formatter: function (ps) {
+                let s = ps[0].name + '<br/>';
+                ps.forEach(function (p) {
+                  if (p.seriesName && p.seriesName.includes('增速参考线')) {
+                    return; // 跳过参考线系列
+                  }
+                  if (p.seriesName.includes('同比') || p.seriesName.includes('环比')) {
+                    s += p.seriesName + ': ' + (p.value != null ? p.value.toFixed(2) + '%' : '-') + '<br/>';
+                  } else {
+                    s += p.seriesName + ': ' + (p.value != null ? p.value.toFixed(2) + '亿元（当月）' : '-') + '<br/>';
+                  }
+                });
+                return s;
+              }
+            }
           };
           const years = Object.keys(yearData).sort();
           const latestYear = years[years.length - 1]; // 获取最新年份
-          
+
           years.forEach(function (y, idx) {
             const isLatestYear = (y === latestYear);
             const isHistoricalYear = !isLatestYear;
-            
+
             // 如果是历史年份且用户选择隐藏历史年份，则跳过
             if (isHistoricalYear && !showHistoricalYears) {
               return;
             }
-            
+
             const data = new Array(11).fill(null);
             const yoyDataArray = new Array(11).fill(null);
             const momDataArray = new Array(11).fill(null);
-            
-            (yearData[y] || []).forEach(function (it) { 
+
+            (yearData[y] || []).forEach(function (it) {
               const month = it.month;
               let idx = -1;
               if (month.endsWith('-01-02')) { idx = 0; } // 1-2月
@@ -525,11 +530,11 @@
               else if (month.endsWith('-10')) { idx = 8; }
               else if (month.endsWith('-11')) { idx = 9; }
               else if (month.endsWith('-12')) { idx = 10; }
-              
+
               if (idx >= 0) { data[idx] = it.value; }
             });
-            
-            (yoyData[y] || []).forEach(function (it) { 
+
+            (yoyData[y] || []).forEach(function (it) {
               const month = it.month;
               let idx = -1;
               if (month.endsWith('-01-02')) { idx = 0; } // 1-2月
@@ -543,11 +548,11 @@
               else if (month.endsWith('-10')) { idx = 8; }
               else if (month.endsWith('-11')) { idx = 9; }
               else if (month.endsWith('-12')) { idx = 10; }
-              
+
               if (idx >= 0) { yoyDataArray[idx] = it.yoy; }
             });
-            
-            (momData[y] || []).forEach(function (it) { 
+
+            (momData[y] || []).forEach(function (it) {
               const month = it.month;
               let idx = -1;
               if (month.endsWith('-01-02')) { idx = 0; } // 1-2月
@@ -561,13 +566,13 @@
               else if (month.endsWith('-10')) { idx = 8; }
               else if (month.endsWith('-11')) { idx = 9; }
               else if (month.endsWith('-12')) { idx = 10; }
-              
+
               if (idx >= 0) { momDataArray[idx] = it.mom; }
             });
-            
+
             // 添加绝对值曲线
             option.series.push({ type: 'line', name: y + '年', yAxisIndex: 0, data: data, smooth: true, symbol: 'circle', symbolSize: 4, lineStyle: { color: YEAR_COLORS[idx % YEAR_COLORS.length], width: 2 }, itemStyle: { color: YEAR_COLORS[idx % YEAR_COLORS.length] } });
-            
+
             // 只为最新年份添加同比和环比曲线
             if (isLatestYear) {
               if (showYoyCurve) {
@@ -578,6 +583,22 @@
               }
             }
           });
+
+          // 添加增速参考线（如果启用）- 直接在最后一个右Y轴系列上添加 markLine
+          if (showGrowthLines) {
+            const lastRightAxisSeries = option.series.filter(s => s.yAxisIndex === 1).pop();
+            if (lastRightAxisSeries) {
+              lastRightAxisSeries.markLine = {
+                silent: true,
+                symbol: 'none',
+                data: [
+                  { yAxis: 10, lineStyle: { color: '#10b981', type: 'dashed', width: 1.5, opacity: 0.7 }, label: { show: true, position: 'end', formatter: '10%', color: '#10b981', fontSize: 10 } },
+                  { yAxis: 20, lineStyle: { color: '#3b82f6', type: 'dashed', width: 1.5, opacity: 0.7 }, label: { show: true, position: 'end', formatter: '20%', color: '#3b82f6', fontSize: 10 } }
+                ]
+              };
+            }
+          }
+
           c.setOption(option);
           // 放大功能
           zoomBtn.onclick = function (e) {
@@ -595,57 +616,65 @@
         const selectedMetric = tableMetricSelect.value;
         const showMonthly = document.getElementById('showMonthlyData').checked;
         const keyword = (filterInput.value || '').trim();
-        
+
         // Get all industries for selected metric, excluding "总计"
         const filteredIndustries = industryList
           .filter(industry => industry !== '总计' && (!keyword || industry.includes(keyword)));
-        
+
         const names = filteredIndustries
           .map(industry => industry + '-' + selectedMetric)
           .filter(metricKey => json.metrics[metricKey]);
-        
-        const keySet = new Set(); 
-        names.forEach(function (n) { 
-          (json.metrics[n] || []).forEach(function (d) { keySet.add(d.yearMonth); }); 
+
+        const keySet = new Set();
+        names.forEach(function (n) {
+          (json.metrics[n] || []).forEach(function (d) { keySet.add(d.yearMonth); });
         });
-        const keys = Array.from(keySet).sort(function (a, b) { 
-          function keyNum(k) { 
-            if (!k) return -Infinity; 
-            if (/-01-02$/.test(k)) { return parseInt(k.slice(0, 4), 10) * 100 + 2; } 
-            if (/\d{4}-\d{2}/.test(k)) { return parseInt(k.slice(0, 4), 10) * 100 + parseInt(k.slice(5, 7), 10); } 
-            return -Infinity; 
-          } 
-          return keyNum(a) - keyNum(b); 
+        const keys = Array.from(keySet).sort(function (a, b) {
+          function keyNum(k) {
+            if (!k) return -Infinity;
+            if (/-01-02$/.test(k)) { return parseInt(k.slice(0, 4), 10) * 100 + 2; }
+            if (/\d{4}-\d{2}/.test(k)) { return parseInt(k.slice(0, 4), 10) * 100 + parseInt(k.slice(5, 7), 10); }
+            return -Infinity;
+          }
+          return keyNum(a) - keyNum(b);
         });
-        
-        const series = names.map(function (n) { 
+
+        const series = names.map(function (n) {
           const arr = json.metrics[n] || [];
           const industryName = n.split('-')[0];
-          
+
           // 根据用户选择决定使用累积数据还是当月数据
           const dataToUse = showMonthly ? calculateMonthlyData(arr) : arr;
-          
-          const map = {}; 
-          dataToUse.forEach(function (d) { 
-            map[d.yearMonth] = d.value; 
-          }); 
-          
-          return { 
+
+          const map = {};
+          dataToUse.forEach(function (d) {
+            map[d.yearMonth] = d.value;
+          });
+
+          return {
             name: industryName, // 只显示行业名称，不包含指标名称
-            type: 'line', 
-            yAxisIndex: 0, 
-            smooth: true, 
+            type: 'line',
+            yAxisIndex: 0,
+            smooth: true,
             symbol: 'circle',
             symbolSize: 4,
             lineStyle: { width: 2 },
-            data: keys.map(function (k) { return (map[k] == null ? null : map[k]); }) 
-          }; 
+            data: keys.map(function (k) { return (map[k] == null ? null : map[k]); })
+          };
         });
-        
+
         const chart2 = echarts.init(container);
-        const option = { 
-          backgroundColor: '#0b0f19', 
-          tooltip: { 
+        const yAxisConfig = [{
+          type: 'value',
+          name: (showMonthly ? '当月值' : '累积值') + '（亿元）',
+          axisLabel: { color: '#9aa4b2', fontSize: 11 },
+          splitLine: { lineStyle: { color: '#1f2937' } },
+          nameTextStyle: { color: '#9aa4b2', fontSize: 11 }
+        }];
+
+        const option = {
+          backgroundColor: '#0b0f19',
+          tooltip: {
             trigger: 'axis',
             backgroundColor: 'rgba(15, 23, 42, 0.95)',
             borderColor: '#1f2937',
@@ -657,10 +686,10 @@
               });
               return s;
             }
-          }, 
-          legend: { 
-            type: 'scroll', 
-            top: 0, 
+          },
+          legend: {
+            type: 'scroll',
+            top: 0,
             left: 'center',
             textStyle: { color: '#cbd5e1', fontSize: 11 },
             pageButtonItemGap: 5,
@@ -680,22 +709,16 @@
             selectorLabel: { color: '#cbd5e1', fontSize: 11 },
             selectorItemGap: 7,
             selectorButtonGap: 10
-          }, 
-          grid: { left: 70, right: 20, top: 60, bottom: 40 }, 
-          xAxis: { 
-            type: 'category', 
-            data: keys.map(function (k) { 
-              return k.indexOf('-01-02') > -1 ? (k.slice(0, 4) + '-01~02') : k; 
-            }), 
-            axisLabel: { color: '#9aa4b2', fontSize: 11 } 
-          }, 
-          yAxis: [{ 
-            type: 'value', 
-            name: (showMonthly ? '当月值' : '累积值') + '（亿元）', 
-            axisLabel: { color: '#9aa4b2', fontSize: 11 }, 
-            splitLine: { lineStyle: { color: '#1f2937' } },
-            nameTextStyle: { color: '#9aa4b2', fontSize: 11 }
-          }], 
+          },
+          grid: { left: 70, right: 20, top: 60, bottom: 40 },
+          xAxis: {
+            type: 'category',
+            data: keys.map(function (k) {
+              return k.indexOf('-01-02') > -1 ? (k.slice(0, 4) + '-01~02') : k;
+            }),
+            axisLabel: { color: '#9aa4b2', fontSize: 11 }
+          },
+          yAxis: yAxisConfig,
           series: series,
           dataZoom: [
             {
@@ -717,7 +740,7 @@
             }
           ]
         };
-        
+
         chart2.setOption(option, true);
       }
       function switchTab(mode) {
@@ -735,7 +758,7 @@
         btnSingle.style.background = (mode === 'single') ? '#3b82f6' : 'transparent'; btnSingle.style.color = (mode === 'single') ? '#ffffff' : '#94a3b8';
         btnDash.style.background = (mode === 'dash') ? '#3b82f6' : 'transparent'; btnDash.style.color = (mode === 'dash') ? '#ffffff' : '#94a3b8';
         btnTable.style.background = (mode === 'table') ? '#3b82f6' : 'transparent'; btnTable.style.color = (mode === 'table') ? '#ffffff' : '#94a3b8';
-        
+
         // 添加悬停效果
         [btnSingle, btnDash, btnTable].forEach(btn => {
           btn.onmouseenter = function() {
@@ -745,8 +768,8 @@
             }
           };
           btn.onmouseleave = function() {
-            const isActive = (this === btnSingle && mode === 'single') || 
-                           (this === btnDash && mode === 'dash') || 
+            const isActive = (this === btnSingle && mode === 'single') ||
+                           (this === btnDash && mode === 'dash') ||
                            (this === btnTable && mode === 'table');
             if (!isActive) {
               this.style.background = 'transparent';
@@ -758,32 +781,33 @@
         if (mode === 'single') { renderSingle(); }
         if (mode === 'table') { renderTable(); }
       }
-      
+
       // 全局变量存储当前放大图表实例
       var currentZoomChart = null;
       var zoomResizeHandler = null;
-      
+
       // 全局状态控制曲线显示
       var showMomCurve = true;  // 默认显示环比
       var showYoyCurve = true;  // 默认显示同比
       var showHistoricalYears = true;  // 默认显示历史年份
-      
+      var showGrowthLines = false;  // 默认关闭增速参考线
+
       // 更新按钮样式
       function updateButtonStyles() {
         const momBtn = document.getElementById('toggleMom');
         const yoyBtn = document.getElementById('toggleYoy');
         const historicalBtn = document.getElementById('toggleHistorical');
-        
+
         momBtn.style.background = showMomCurve ? '#3b82f6' : '#0f172a';
         momBtn.style.color = showMomCurve ? '#ffffff' : '#e5e7eb';
-        
+
         yoyBtn.style.background = showYoyCurve ? '#3b82f6' : '#0f172a';
         yoyBtn.style.color = showYoyCurve ? '#ffffff' : '#e5e7eb';
-        
+
         historicalBtn.style.background = showHistoricalYears ? '#3b82f6' : '#0f172a';
         historicalBtn.style.color = showHistoricalYears ? '#ffffff' : '#e5e7eb';
       }
-      
+
       // 放大图表功能
       function showZoomChart(name, rows, yearData, yoyData) {
         const modal = document.getElementById('zoomModal');
@@ -847,7 +871,7 @@
         Object.keys(yearData).sort().forEach(function (y, idx) {
           const data = new Array(11).fill(null);
           const yoyDataArray = new Array(11).fill(null);
-          (yearData[y] || []).forEach(function (it) { 
+          (yearData[y] || []).forEach(function (it) {
             const month = it.month;
             let idx = -1;
             if (month.endsWith('-01-02')) { idx = 0; } // 1-2月
@@ -861,10 +885,10 @@
             else if (month.endsWith('-10')) { idx = 8; }
             else if (month.endsWith('-11')) { idx = 9; }
             else if (month.endsWith('-12')) { idx = 10; }
-            
+
             if (idx >= 0) { data[idx] = it.value; }
           });
-          (yoyData[y] || []).forEach(function (it) { 
+          (yoyData[y] || []).forEach(function (it) {
             const month = it.month;
             let idx = -1;
             if (month.endsWith('-01-02')) { idx = 0; } // 1-2月
@@ -878,7 +902,7 @@
             else if (month.endsWith('-10')) { idx = 8; }
             else if (month.endsWith('-11')) { idx = 9; }
             else if (month.endsWith('-12')) { idx = 10; }
-            
+
             if (idx >= 0) { yoyDataArray[idx] = it.yoy; }
           });
           option.series.push({ type: 'line', name: y + '年', yAxisIndex: 0, data: data, smooth: true, symbol: 'circle', symbolSize: 8, lineStyle: { color: YEAR_COLORS[idx % YEAR_COLORS.length], width: 3.5 }, itemStyle: { color: YEAR_COLORS[idx % YEAR_COLORS.length] } });
@@ -896,12 +920,12 @@
           window.addEventListener('resize', zoomResizeHandler);
         }, 100);
       }
-      
+
       // 关闭放大模态框
       function closeZoomModal() {
         const modal = document.getElementById('zoomModal');
         modal.style.display = 'none';
-        
+
         // 销毁图表实例和事件监听器
         if (currentZoomChart) {
           currentZoomChart.dispose();
@@ -916,7 +940,7 @@
       renderSingle();
       industrySelect.addEventListener("change", function () { renderSingle(); });
       metricSelect.addEventListener("change", function () { renderSingle(); });
-      
+
       // 趋势图事件监听器
       tableMetricSelect.addEventListener("change", function () { renderTable(); });
       document.getElementById('showMonthlyData').addEventListener('change', function () { renderTable(); });
@@ -924,7 +948,29 @@
       document.getElementById('tabSingle').addEventListener('click', function () { switchTab('single'); });
       document.getElementById('tabDashboard').addEventListener('click', function () { switchTab('dash'); });
       document.getElementById('tabTable').addEventListener('click', function () { switchTab('table'); });
-      
+
+      // 更新增速参考线按钮样式
+      function updateGrowthLinesButtonStyle() {
+        const btn = document.getElementById('toggleGrowthLines');
+        if (btn) {
+          btn.style.background = showGrowthLines ? '#3b82f6' : '#0f172a';
+          btn.style.color = showGrowthLines ? '#ffffff' : '#e5e7eb';
+          btn.textContent = showGrowthLines ? '开启' : '关闭';
+        }
+      }
+
+      // 增速参考线按钮事件监听器（只在总表页面）
+      const toggleGrowthLinesBtn = document.getElementById('toggleGrowthLines');
+      if (toggleGrowthLinesBtn) {
+        toggleGrowthLinesBtn.addEventListener('click', function () {
+          showGrowthLines = !showGrowthLines;
+          updateGrowthLinesButtonStyle();
+          renderGrid();  // 只更新总表页面
+        });
+        // 初始化按钮样式
+        updateGrowthLinesButtonStyle();
+      }
+
       // 环比同比按钮事件监听器
       document.getElementById('toggleMom').addEventListener('click', function () {
         showMomCurve = !showMomCurve;

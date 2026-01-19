@@ -99,6 +99,8 @@
         <span style="opacity:.5; font-size:12px; margin-left:8px;">注：投资数据仅包含同比增速</span>
         <span style="opacity:.7; font-size:12px; margin-left:12px;">历史年份：</span>
         <button id="toggleHistorical" style="background:#0f172a;color:#e5e7eb;border:1px solid #334155;padding:4px 8px;border-radius:4px;cursor:pointer;font-size:12px;">显示</button>
+        <span style="opacity:.7; font-size:12px; margin-left:12px;">增速参考线：</span>
+        <button id="toggleGrowthLines" style="background:#0f172a;color:#e5e7eb;border:1px solid #334155;padding:4px 8px;border-radius:4px;cursor:pointer;font-size:12px;">关闭</button>
       </div>
     </div>
     <div id="grid"
@@ -120,11 +122,11 @@
       const copyTitleBtn = document.getElementById('copyTitleBtn');
       const copyTitleOk = document.getElementById('copyTitleOk');
       const h2 = document.querySelector('h2');
-      
+
       if (copyTitleBtn && h2) {
         copyTitleBtn.addEventListener('click', function() {
           const title = h2.textContent.trim();
-          
+
           if (navigator.clipboard && navigator.clipboard.writeText) {
             navigator.clipboard.writeText(title).then(function() {
               showCopySuccess();
@@ -149,7 +151,7 @@
           }
         });
       }
-      
+
       function showCopySuccess() {
         if (copyTitleOk) {
           copyTitleOk.style.display = 'inline';
@@ -232,37 +234,54 @@
           const option = { backgroundColor: '#0f172a', grid: { left: 50, right: 50, top: 35, bottom: 35 }, xAxis: { type: 'category', data: ['1-2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'], axisLabel: { color: '#9aa4b2', fontSize: 11 } }, yAxis: [{ type: 'value', position: 'left', axisLabel: { color: '#9aa4b2', fontSize: 11, formatter: '{value}%' }, splitLine: { lineStyle: { color: '#1f2937' } } }], series: [], legend: { show: true, top: 0, textStyle: { color: '#cbd5e1', fontSize: 11 } }, tooltip: { trigger: 'axis', backgroundColor: 'rgba(15, 23, 42, 0.95)', borderColor: '#1f2937', textStyle: { color: '#e2e8f0' }, formatter: function (ps) { let s = ps[0].name + '<br/>'; ps.forEach(function (p) { s += p.seriesName + ': ' + (p.value != null ? p.value + '%' : '-') + '<br/>'; }); return s; } } };
           const colors = ['#ef4444', '#3b82f6', '#10b981', '#8b5cf6', '#06b6d4'];
           const years = Object.keys(yoyData).sort();
-          
+
           years.forEach(function (y, idx) {
             // 如果是历史年份且用户选择隐藏历史年份，则跳过
             if (years.length > 1 && idx < years.length - 1 && !showHistoricalYears) {
               return;
             }
-            
+
             const yoyDataArray = new Array(11).fill(null);
-            
-            (yoyData[y] || []).forEach(function (it) { 
-              const m = it.month ? parseInt(it.month.slice(5, 7), 10) : 0; 
-              if (m === 1 || m === 2) { 
-                yoyDataArray[0] = it.yoy; 
-              } else if (m >= 3 && m <= 12) { 
-                yoyDataArray[m - 2] = it.yoy; 
-              } 
+
+            (yoyData[y] || []).forEach(function (it) {
+              const m = it.month ? parseInt(it.month.slice(5, 7), 10) : 0;
+              if (m === 1 || m === 2) {
+                yoyDataArray[0] = it.yoy;
+              } else if (m >= 3 && m <= 12) {
+                yoyDataArray[m - 2] = it.yoy;
+              }
             });
-            
+
             // 添加同比增速曲线
-            option.series.push({ 
-              type: 'line', 
-              name: y + '年同比', 
-              yAxisIndex: 0, 
-              data: yoyDataArray, 
-              smooth: true, 
-              symbol: 'circle', 
-              symbolSize: 4, 
-              lineStyle: { color: colors[idx % colors.length], width: 2 }, 
-              itemStyle: { color: colors[idx % colors.length] } 
-            });
+            const seriesItem = {
+              type: 'line',
+              name: y + '年同比',
+              yAxisIndex: 0,
+              data: yoyDataArray,
+              smooth: true,
+              symbol: 'circle',
+              symbolSize: 4,
+              lineStyle: { color: colors[idx % colors.length], width: 2 },
+              itemStyle: { color: colors[idx % colors.length] }
+            };
+            option.series.push(seriesItem);
           });
+
+          // 添加增速参考线（如果启用）
+          if (showGrowthLines) {
+            const lastSeries = option.series[option.series.length - 1];
+            if (lastSeries) {
+              lastSeries.markLine = {
+                silent: true,
+                symbol: 'none',
+                data: [
+                  { yAxis: 10, lineStyle: { color: '#10b981', type: 'dashed', width: 1.5, opacity: 0.7 }, label: { show: true, position: 'end', formatter: '10%', color: '#10b981', fontSize: 10 } },
+                  { yAxis: 20, lineStyle: { color: '#3b82f6', type: 'dashed', width: 1.5, opacity: 0.7 }, label: { show: true, position: 'end', formatter: '20%', color: '#3b82f6', fontSize: 10 } }
+                ]
+              };
+            }
+          }
+
           c.setOption(option);
           // 放大功能
           zoomBtn.onclick = function (e) {
@@ -279,43 +298,43 @@
         const keyword = (filterInput.value || '').trim();
         const allNames = Object.keys(json.metrics || {});
         const names = allNames.filter(n => !keyword || n.includes(keyword));
-        
-        const keySet = new Set(); 
-        names.forEach(function (n) { 
-          (json.metrics[n] || []).forEach(function (d) { keySet.add(d.yearMonth); }); 
+
+        const keySet = new Set();
+        names.forEach(function (n) {
+          (json.metrics[n] || []).forEach(function (d) { keySet.add(d.yearMonth); });
         });
-        const keys = Array.from(keySet).sort(function (a, b) { 
-          function keyNum(k) { 
-            if (!k) return -Infinity; 
-            if (/-01-02$/.test(k)) { return parseInt(k.slice(0, 4), 10) * 100 + 2; } 
-            if (/\d{4}-\d{2}/.test(k)) { return parseInt(k.slice(0, 4), 10) * 100 + parseInt(k.slice(5, 7), 10); } 
-            return -Infinity; 
-          } 
-          return keyNum(a) - keyNum(b); 
+        const keys = Array.from(keySet).sort(function (a, b) {
+          function keyNum(k) {
+            if (!k) return -Infinity;
+            if (/-01-02$/.test(k)) { return parseInt(k.slice(0, 4), 10) * 100 + 2; }
+            if (/\d{4}-\d{2}/.test(k)) { return parseInt(k.slice(0, 4), 10) * 100 + parseInt(k.slice(5, 7), 10); }
+            return -Infinity;
+          }
+          return keyNum(a) - keyNum(b);
         });
-        
-        const series = names.map(function (n) { 
-          const arr = json.metrics[n] || []; 
-          const map = {}; 
-          arr.forEach(function (d) { 
+
+        const series = names.map(function (n) {
+          const arr = json.metrics[n] || [];
+          const map = {};
+          arr.forEach(function (d) {
             map[d.yearMonth] = d.yoy; // 使用同比增速
-          }); 
-          return { 
-            name: n, 
-            type: 'line', 
-            yAxisIndex: 0, 
-            smooth: true, 
+          });
+          return {
+            name: n,
+            type: 'line',
+            yAxisIndex: 0,
+            smooth: true,
             symbol: 'circle',
             symbolSize: 4,
             lineStyle: { width: 2 },
-            data: keys.map(function (k) { return (map[k] == null ? null : map[k]); }) 
-          }; 
+            data: keys.map(function (k) { return (map[k] == null ? null : map[k]); })
+          };
         });
-        
+
         const chart2 = echarts.init(container);
-        const option = { 
-          backgroundColor: '#0b0f19', 
-          tooltip: { 
+        const option = {
+          backgroundColor: '#0b0f19',
+          tooltip: {
             trigger: 'axis',
             backgroundColor: 'rgba(15, 23, 42, 0.95)',
             borderColor: '#1f2937',
@@ -327,10 +346,10 @@
               });
               return s;
             }
-          }, 
-          legend: { 
-            type: 'scroll', 
-            top: 0, 
+          },
+          legend: {
+            type: 'scroll',
+            top: 0,
             left: 'center',
             textStyle: { color: '#cbd5e1', fontSize: 11 },
             pageButtonItemGap: 5,
@@ -350,22 +369,22 @@
             selectorLabel: { color: '#cbd5e1', fontSize: 11 },
             selectorItemGap: 7,
             selectorButtonGap: 10
-          }, 
-          grid: { left: 70, right: 20, top: 60, bottom: 40 }, 
-          xAxis: { 
-            type: 'category', 
-            data: keys.map(function (k) { 
-              return k.indexOf('-01-02') > -1 ? (k.slice(0, 4) + '-01~02') : k; 
-            }), 
-            axisLabel: { color: '#9aa4b2', fontSize: 11 } 
-          }, 
-          yAxis: [{ 
-            type: 'value', 
-            name: '同比增速(%)', 
-            axisLabel: { color: '#9aa4b2', fontSize: 11, formatter: '{value}%' }, 
+          },
+          grid: { left: 70, right: 20, top: 60, bottom: 40 },
+          xAxis: {
+            type: 'category',
+            data: keys.map(function (k) {
+              return k.indexOf('-01-02') > -1 ? (k.slice(0, 4) + '-01~02') : k;
+            }),
+            axisLabel: { color: '#9aa4b2', fontSize: 11 }
+          },
+          yAxis: [{
+            type: 'value',
+            name: '同比增速(%)',
+            axisLabel: { color: '#9aa4b2', fontSize: 11, formatter: '{value}%' },
             splitLine: { lineStyle: { color: '#1f2937' } },
             nameTextStyle: { color: '#9aa4b2', fontSize: 11 }
-          }], 
+          }],
           series: series,
           dataZoom: [
             {
@@ -387,7 +406,7 @@
             }
           ]
         };
-        
+
         chart2.setOption(option, true);
         filterInput.oninput = renderTable;
       }
@@ -406,7 +425,7 @@
         btnSingle.style.background = (mode === 'single') ? '#3b82f6' : 'transparent'; btnSingle.style.color = (mode === 'single') ? '#ffffff' : '#94a3b8';
         btnDash.style.background = (mode === 'dash') ? '#3b82f6' : 'transparent'; btnDash.style.color = (mode === 'dash') ? '#ffffff' : '#94a3b8';
         btnTable.style.background = (mode === 'table') ? '#3b82f6' : 'transparent'; btnTable.style.color = (mode === 'table') ? '#ffffff' : '#94a3b8';
-        
+
         // 添加悬停效果
         [btnSingle, btnDash, btnTable].forEach(btn => {
           btn.onmouseenter = function() {
@@ -416,8 +435,8 @@
             }
           };
           btn.onmouseleave = function() {
-            const isActive = (this === btnSingle && mode === 'single') || 
-                           (this === btnDash && mode === 'dash') || 
+            const isActive = (this === btnSingle && mode === 'single') ||
+                           (this === btnDash && mode === 'dash') ||
                            (this === btnTable && mode === 'table');
             if (!isActive) {
               this.style.background = 'transparent';
@@ -429,28 +448,29 @@
         if (mode === 'single') { renderSingle(select.value); }
         if (mode === 'table') { renderTable(); }
       }
-      
+
       // 全局变量存储当前放大图表实例
       var currentZoomChart = null;
       var zoomResizeHandler = null;
-      
+
       // 全局状态控制曲线显示
       var showYoyCurve = true;  // 默认显示同比
       var showHistoricalYears = true;  // 默认显示历史年份
-      
+      var showGrowthLines = false;  // 默认关闭增速参考线
+
       // 更新按钮样式
       function updateButtonStyles() {
         const yoyBtn = document.getElementById('toggleYoy');
         const historicalBtn = document.getElementById('toggleHistorical');
-        
+
         // 同比按钮始终激活（因为只有同比数据）
         yoyBtn.style.background = '#3b82f6';
         yoyBtn.style.color = '#ffffff';
-        
+
         historicalBtn.style.background = showHistoricalYears ? '#3b82f6' : '#0f172a';
         historicalBtn.style.color = showHistoricalYears ? '#ffffff' : '#e5e7eb';
       }
-      
+
       // 放大图表功能
       function showZoomChart(name, rows, yoyData) {
         const modal = document.getElementById('zoomModal');
@@ -509,24 +529,24 @@
         const colors = ['#ef4444', '#3b82f6', '#10b981', '#8b5cf6', '#06b6d4'];
         Object.keys(yoyData).sort().forEach(function (y, idx) {
           const yoyDataArray = new Array(11).fill(null);
-          (yoyData[y] || []).forEach(function (it) { 
-            const m = it.month ? parseInt(it.month.slice(5, 7), 10) : 0; 
-            if (m === 1 || m === 2) { 
-              yoyDataArray[0] = it.yoy; 
-            } else if (m >= 3 && m <= 12) { 
-              yoyDataArray[m - 2] = it.yoy; 
-            } 
+          (yoyData[y] || []).forEach(function (it) {
+            const m = it.month ? parseInt(it.month.slice(5, 7), 10) : 0;
+            if (m === 1 || m === 2) {
+              yoyDataArray[0] = it.yoy;
+            } else if (m >= 3 && m <= 12) {
+              yoyDataArray[m - 2] = it.yoy;
+            }
           });
-          option.series.push({ 
-            type: 'line', 
-            name: y + '年同比', 
-            yAxisIndex: 0, 
-            data: yoyDataArray, 
-            smooth: true, 
-            symbol: 'circle', 
-            symbolSize: 8, 
-            lineStyle: { color: colors[idx % colors.length], width: 3.5 }, 
-            itemStyle: { color: colors[idx % colors.length] } 
+          option.series.push({
+            type: 'line',
+            name: y + '年同比',
+            yAxisIndex: 0,
+            data: yoyDataArray,
+            smooth: true,
+            symbol: 'circle',
+            symbolSize: 8,
+            lineStyle: { color: colors[idx % colors.length], width: 3.5 },
+            itemStyle: { color: colors[idx % colors.length] }
           });
         });
 
@@ -541,12 +561,12 @@
           window.addEventListener('resize', zoomResizeHandler);
         }, 100);
       }
-      
+
       // 关闭放大模态框
       function closeZoomModal() {
         const modal = document.getElementById('zoomModal');
         modal.style.display = 'none';
-        
+
         // 销毁图表实例和事件监听器
         if (currentZoomChart) {
           currentZoomChart.dispose();
@@ -563,7 +583,7 @@
       document.getElementById('tabSingle').addEventListener('click', function () { switchTab('single'); });
       document.getElementById('tabDashboard').addEventListener('click', function () { switchTab('dash'); });
       document.getElementById('tabTable').addEventListener('click', function () { switchTab('table'); });
-      
+
       // 同比按钮事件监听器（投资数据只有同比，所以按钮不切换状态）
       document.getElementById('toggleYoy').addEventListener('click', function () {
         // 投资数据只有同比增速，按钮保持激活状态
@@ -574,6 +594,27 @@
         updateButtonStyles();
         renderGrid();
       });
+
+      // 更新增速参考线按钮样式
+      function updateGrowthLinesButtonStyle() {
+        const btn = document.getElementById('toggleGrowthLines');
+        if (btn) {
+          btn.style.background = showGrowthLines ? '#3b82f6' : '#0f172a';
+          btn.style.color = showGrowthLines ? '#ffffff' : '#e5e7eb';
+          btn.textContent = showGrowthLines ? '开启' : '关闭';
+        }
+      }
+
+      // 增速参考线按钮事件监听器
+      const toggleGrowthLinesBtn = document.getElementById('toggleGrowthLines');
+      if (toggleGrowthLinesBtn) {
+        toggleGrowthLinesBtn.addEventListener('click', function () {
+          showGrowthLines = !showGrowthLines;
+          updateGrowthLinesButtonStyle();
+          renderGrid();
+        });
+        updateGrowthLinesButtonStyle();
+      }
 
       // 模态框关闭事件
       document.getElementById('zoomModal').addEventListener('click', function () {
