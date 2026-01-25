@@ -1,0 +1,256 @@
+.hk-reports-panel {
+  position: fixed;
+  right: 16px;
+  top: 16px;
+  width: 360px;
+  z-index: 999999;
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif;
+  font-size: 14px;
+  color: #333;
+  user-select: none;
+}
+
+.hk-panel-header {
+  padding: 12px 16px;
+  border-bottom: 1px solid #eee;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f8f9fa;
+  border-radius: 8px 8px 0 0;
+  cursor: grab;
+}
+
+.hk-panel-header:active {
+  cursor: grabbing;
+}
+
+.hk-close-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: #999;
+  cursor: pointer;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+}
+
+.hk-close-btn:hover {
+  color: #333;
+}
+
+.hk-panel-body {
+  padding: 16px;
+}
+
+.hk-form-row {
+  margin-bottom: 12px;
+}
+
+.hk-form-row label {
+  display: inline-block;
+  width: 80px;
+  font-weight: 500;
+}
+
+.hk-form-row input {
+  padding: 6px 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.hk-form-row input[type="date"] {
+  padding: 6px 8px;
+  font-family: inherit;
+}
+
+.hk-btn {
+  display: inline-block;
+  padding: 8px 16px;
+  background: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-right: 8px;
+}
+
+.hk-btn:hover {
+  background: #e9e9e9;
+}
+
+.hk-btn-primary {
+  background: #1677ff;
+  color: #fff;
+  border-color: #1677ff;
+}
+
+.hk-btn-primary:hover {
+  background: #0f5ed7;
+}
+
+.hk-btn-start {
+  background: #52c41a;
+  color: #fff;
+  border-color: #52c41a;
+  font-weight: 500;
+}
+
+.hk-btn-start:hover {
+  background: #73d13d;
+  border-color: #73d13d;
+}
+
+.hk-btn:disabled,
+.hk-btn-start:disabled,
+.hk-btn-search:disabled {
+  background: #d9d9d9;
+  color: #999;
+  border-color: #d9d9d9;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.hk-btn:disabled:hover,
+.hk-btn-start:disabled:hover,
+.hk-btn-search:disabled:hover {
+  background: #d9d9d9;
+  border-color: #d9d9d9;
+}
+
+.hk-btn-search {
+  background: #1677ff;
+  color: #fff;
+  border-color: #1677ff;
+  font-weight: 500;
+}
+
+.hk-btn-search:hover {
+  background: #4096ff;
+  border-color: #4096ff;
+}
+
+.hk-btn-search:disabled {
+  background: #d9d9d9;
+  color: #999;
+  border-color: #d9d9d9;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.hk-btn-search:disabled:hover {
+  background: #d9d9d9;
+  border-color: #d9d9d9;
+}
+
+.hk-status {
+  padding: 8px 12px;
+  margin: 12px 0;
+  border-radius: 4px;
+  background: #f0f0f0;
+  font-size: 13px;
+}
+
+.hk-status-success {
+  background: #d4edda;
+  color: #155724;
+}
+
+.hk-status-error {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.hk-status-warning {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.hk-status-info {
+  background: #d1ecf1;
+  color: #0c5460;
+}
+
+.hk-progress {
+  width: 100%;
+  height: 24px;
+  background: #f0f0f0;
+  border-radius: 12px;
+  margin: 12px 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.hk-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #1677ff, #0f5ed7);
+  border-radius: 12px;
+  transition: width 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.hk-log {
+  max-height: 200px;
+  overflow-y: auto;
+  margin-top: 12px;
+  padding: 8px;
+  background: #f8f9fa;
+  border-radius: 4px;
+  font-size: 12px;
+  font-family: 'Courier New', monospace;
+}
+
+.hk-log-item {
+  margin-bottom: 4px;
+  padding: 2px 0;
+  word-break: break-word;
+}
+
+.hk-log-success {
+  color: #155724;
+}
+
+.hk-log-error {
+  color: #721c24;
+}
+
+.hk-log-warning {
+  color: #856404;
+}
+
+.hk-log-info {
+  color: #0c5460;
+}
+
+/* 滚动条样式 */
+.hk-log::-webkit-scrollbar {
+  width: 6px;
+}
+
+.hk-log::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.hk-log::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 3px;
+}
+
+.hk-log::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

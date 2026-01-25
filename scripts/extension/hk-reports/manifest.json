@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "港股业绩报自动下载",
+  "version": "1.0.0",
+  "description": "在港交所披露易页面自动填写表单、搜索并下载业绩报。支持自定义日期范围、选择所有财报类型，文件自动保存到downloads/股票代码/目录。",
+  "host_permissions": [
+    "https://www1.hkexnews.hk/*",
+    "https://www.hkexnews.hk/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www1.hkexnews.hk/*",
+        "https://www.hkexnews.hk/*"
+      ],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "permissions": [
+    "downloads"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  }
+}

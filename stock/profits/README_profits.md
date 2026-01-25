@@ -60,7 +60,7 @@ npm run serve
 
 ## 文件命名规则
 
-参考 `stats-export-extension` 的命名规则：
+参考 `extension` 的命名规则：
 
 ```
 日期_页面标题.ext
@@ -83,7 +83,7 @@ npm run serve
 
 ## 技术实现
 
-- **数据提取**：`industrial_value_added_extractor.js` 参考 `stats-export-extension` 逻辑
+- **数据提取**：`industrial_value_added_extractor.js` 参考 `extension` 逻辑
 - **数据解析**：`industrial_value_added_parse.js` 提取指标、绝对值、环比、同比
 - **数据格式**：JSON 输出适配 ECharts 可视化
 - **前端展示**：ECharts + 深色主题
