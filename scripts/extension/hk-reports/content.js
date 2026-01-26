@@ -260,10 +260,8 @@
   async function fillStockCode(code) {
     try {
       updateStatus('填写股票代码...');
-      console.log('开始填写股票代码:', code);
 
       const stockInput = await waitForElement('#searchStockCode');
-      console.log('找到股票代码输入框:', stockInput);
 
       // 清空并输入代码
       stockInput.value = '';
@@ -276,7 +274,6 @@
         stockInput.dispatchEvent(new Event('input', { bubbles: true }));
         await delay(100);
       }
-      console.log('已输入股票代码:', stockInput.value);
 
       stockInput.dispatchEvent(new Event('change', { bubbles: true }));
       await delay(1000); // 等待自动完成建议出现
@@ -285,43 +282,64 @@
       try {
         const suggestion = await waitForElement('#autocomplete-list-0 tr.autocomplete-suggestion', 5000);
         if (suggestion) {
-          console.log('找到自动完成建议');
           // 查找包含股票代码的建议
           const suggestions = document.querySelectorAll('#autocomplete-list-0 tr.autocomplete-suggestion');
-          console.log(`找到 ${suggestions.length} 个建议`);
 
           let targetSuggestion = null;
 
           for (const sug of suggestions) {
             const text = sug.textContent || '';
-            console.log('建议文本:', text);
             if (text.includes(code)) {
               targetSuggestion = sug;
-              console.log('找到匹配的建议:', text);
               break;
             }
           }
 
           if (targetSuggestion) {
+            // 提取股票简称（从建议文本中，格式通常是 "代码 简称"）
+            const suggestionText = targetSuggestion.textContent || '';
+            let stockName = code; // 默认使用代码
+            const parts = suggestionText.trim().split(/\s+/);
+            if (parts.length >= 2) {
+              // 如果包含多个部分，取第二部分作为简称
+              stockName = parts.slice(1).join(' ').trim();
+            } else if (parts.length === 1 && parts[0] !== code) {
+              stockName = parts[0];
+            }
+
+            // 保存股票简称到 localStorage
+            if (stockName && stockName !== code) {
+              localStorage.setItem('hk-reports-stock-name', stockName);
+            }
+
             targetSuggestion.click();
             await delay(2000); // 等待自动完成设置stockId
 
             // 验证是否设置成功
             const stockId = document.querySelector('#stockId')?.value;
-            console.log('选择后stockId值:', stockId);
             updateStatus('已选择股票代码', 'success');
           } else {
             // 点击第一个建议
-            console.log('未找到匹配建议，点击第一个建议');
+            const suggestionText = suggestion.textContent || '';
+            let stockName = code;
+            const parts = suggestionText.trim().split(/\s+/);
+            if (parts.length >= 2) {
+              stockName = parts.slice(1).join(' ').trim();
+            } else if (parts.length === 1 && parts[0] !== code) {
+              stockName = parts[0];
+            }
+
+            if (stockName && stockName !== code) {
+              localStorage.setItem('hk-reports-stock-name', stockName);
+            }
+
             suggestion.click();
             await delay(2000);
             const stockId = document.querySelector('#stockId')?.value;
-            console.log('选择后stockId值:', stockId);
             updateStatus('已选择股票代码（第一个建议）', 'success');
           }
         }
       } catch (e) {
-        console.log('自动完成建议未出现:', e.message);
         updateStatus('自动完成建议未出现，继续执行...', 'warning');
       }
 
@@ -344,11 +362,25 @@
     const month = parseInt(dateParts[1]) - 1; // 月份是0-11，需要减1
     const year = parseInt(dateParts[2]);
 
-    console.log('准备选择日期:', { day, month: month + 1, year, dateStr });
+    // 添加临时错误处理器，捕获页面内部错误（这些错误不影响功能）
+    const errorHandler = (event) => {
+      // 捕获来自 main.js 的日期选择器相关错误
+      if (event.error && event.error.message &&
+          (event.error.message.includes("Cannot set properties of null") ||
+           event.error.message.includes("setting 'year'") ||
+           event.error.message.includes("setting 'month'") ||
+           event.error.message.includes("setting 'day'"))) {
+        // 这些是页面内部的错误，不影响日期选择功能，可以忽略
+        event.preventDefault();
+        return true;
+      }
+    };
 
-    // 记录原始值
-    const originalValue = input.value || input.getAttribute('value') || '';
-    console.log('输入框原始值:', originalValue);
+    window.addEventListener('error', errorHandler);
+
+    try {
+      // 记录原始值
+      const originalValue = input.value || input.getAttribute('value') || '';
 
     // 点击输入框打开日期选择器
     input.click();
@@ -383,19 +415,10 @@
         const testYearButtons = document.querySelectorAll('b.year button, .year button');
         if (testYearButtons.length > 0) {
           yearButtonsReady = true;
-          console.log(`找到 ${testYearButtons.length} 个年份按钮，日期选择器已初始化`);
         }
       }
 
       waitCount++;
-    }
-
-    if (calendar && yearButtonsReady) {
-      console.log('✓ 日期选择器已完全加载并初始化');
-    } else if (calendar) {
-      console.log('⚠ 找到日期选择器，但年份按钮可能未完全加载');
-    } else {
-      console.log('⚠ 未找到日期选择器，尝试直接查找按钮');
     }
 
     // 额外等待，确保日期选择器完全就绪
@@ -412,7 +435,6 @@
       const testButtons = document.querySelectorAll('b.year button, .year button');
       if (testButtons.length > 0) {
         yearButtonsLoaded = true;
-        console.log(`年份按钮已加载，共 ${testButtons.length} 个`);
       }
       yearButtonWaitCount++;
     }
@@ -432,8 +454,6 @@
 
     if (yearButton) {
       const buttonYear = yearButton.getAttribute('data-value');
-      const buttonText = yearButton.textContent.trim();
-      console.log('找到年份按钮:', { expected: year, dataValue: buttonYear, text: buttonText });
 
       // 验证按钮的年份是否正确
       if (buttonYear && parseInt(buttonYear) !== year) {
@@ -447,44 +467,32 @@
                        yearButton.offsetParent !== null;
 
       if (!isVisible) {
-        console.warn('警告：年份按钮不可见，可能未完全加载');
         await delay(500);
       }
 
       yearButton.scrollIntoView({ behavior: 'smooth', block: 'center' });
       await delay(400);
 
-      // 使用更安全的方式点击：先触发 mousedown 和 mouseup，再触发 click
-      // 这样可以确保日期选择器的内部状态正确初始化
+      // 使用更自然的方式点击：直接使用 click()，让浏览器处理事件序列
+      // 使用 setTimeout 确保在下一个事件循环中执行，给页面 JavaScript 时间初始化
       try {
-        console.log('准备点击年份按钮，触发鼠标事件...');
-        yearButton.dispatchEvent(new MouseEvent('mousedown', { bubbles: true, cancelable: true, view: window }));
-        await delay(100);
-        yearButton.dispatchEvent(new MouseEvent('mouseup', { bubbles: true, cancelable: true, view: window }));
-        await delay(100);
-        yearButton.click();
-        console.log('已点击年份按钮');
+        // 使用 setTimeout 延迟点击，确保日期选择器状态已初始化
+        await new Promise(resolve => {
+          setTimeout(() => {
+            try {
+              yearButton.click();
+            } catch (error) {
+              console.error('点击年份按钮时出错:', error);
+            }
+            resolve();
+          }, 100);
+        });
         await delay(1200); // 增加等待时间，让年份选择生效并初始化月份选择器
       } catch (error) {
         console.error('点击年份按钮时出错:', error);
-        // 如果出错，尝试直接点击
         yearButton.click();
         await delay(1200);
       }
-
-      // 验证年份是否已选择（检查按钮是否被选中或高亮）
-      const selectedYearButton = document.querySelector(`b.year button[data-value="${year}"].selected, .year button[data-value="${year}"].selected, b.year button[data-value="${year}"][class*="selected"], .year button[data-value="${year}"][class*="selected"]`);
-      if (selectedYearButton) {
-        console.log('✓ 年份已选择（按钮已标记为选中）');
-      }
-    } else {
-      console.log('未找到年份按钮:', year);
-      // 输出所有年份按钮用于调试
-      const allYearButtons = document.querySelectorAll('b.year button, .year button');
-      console.log('所有年份按钮:', Array.from(allYearButtons).map(btn => ({
-        dataValue: btn.getAttribute('data-value'),
-        text: btn.textContent.trim()
-      })));
     }
 
     // 步骤2：选择月份（注意月份是0-11）
@@ -498,7 +506,6 @@
       const testButtons = document.querySelectorAll('b.month button, .month button');
       if (testButtons.length > 0) {
         monthButtonsLoaded = true;
-        console.log(`月份按钮已加载，共 ${testButtons.length} 个`);
       }
       monthButtonWaitCount++;
     }
@@ -517,8 +524,6 @@
 
     if (monthButton) {
       const buttonMonth = monthButton.getAttribute('data-value');
-      const buttonText = monthButton.textContent.trim();
-      console.log('找到月份按钮:', { expected: month, expectedDisplay: month + 1, dataValue: buttonMonth, text: buttonText });
 
       // 验证按钮的月份是否正确
       if (buttonMonth && parseInt(buttonMonth) !== month) {
@@ -532,42 +537,31 @@
                        monthButton.offsetParent !== null;
 
       if (!isVisible) {
-        console.warn('警告：月份按钮不可见，可能未完全加载');
         await delay(500);
       }
 
       monthButton.scrollIntoView({ behavior: 'smooth', block: 'center' });
       await delay(400);
 
-      // 使用更安全的方式点击
+      // 使用更自然的方式点击：直接使用 click()
       try {
-        console.log('准备点击月份按钮，触发鼠标事件...');
-        monthButton.dispatchEvent(new MouseEvent('mousedown', { bubbles: true, cancelable: true, view: window }));
-        await delay(100);
-        monthButton.dispatchEvent(new MouseEvent('mouseup', { bubbles: true, cancelable: true, view: window }));
-        await delay(100);
-        monthButton.click();
-        console.log('已点击月份按钮');
+        // 使用 setTimeout 延迟点击，确保月份选择器状态已初始化
+        await new Promise(resolve => {
+          setTimeout(() => {
+            try {
+              monthButton.click();
+            } catch (error) {
+              console.error('点击月份按钮时出错:', error);
+            }
+            resolve();
+          }, 100);
+        });
         await delay(1200); // 增加等待时间，让月份选择生效并初始化日期选择器
       } catch (error) {
         console.error('点击月份按钮时出错:', error);
         monthButton.click();
         await delay(1200);
       }
-
-      // 验证月份是否已选择
-      const selectedMonthButton = document.querySelector(`b.month button[data-value="${month}"].selected, .month button[data-value="${month}"].selected, b.month button[data-value="${month}"][class*="selected"], .month button[data-value="${month}"][class*="selected"]`);
-      if (selectedMonthButton) {
-        console.log('✓ 月份已选择（按钮已标记为选中）');
-      }
-    } else {
-      console.log('未找到月份按钮:', month + 1, '(data-value:', month, ')');
-      // 输出所有月份按钮用于调试
-      const allMonthButtons = document.querySelectorAll('b.month button, .month button');
-      console.log('所有月份按钮:', Array.from(allMonthButtons).map(btn => ({
-        value: btn.getAttribute('data-value'),
-        text: btn.textContent
-      })));
     }
 
     // 步骤3：选择日期
@@ -581,7 +575,6 @@
       const testButtons = document.querySelectorAll('b.day button, .day button');
       if (testButtons.length > 0) {
         dayButtonsLoaded = true;
-        console.log(`日期按钮已加载，共 ${testButtons.length} 个`);
       }
       dayButtonWaitCount++;
     }
@@ -600,8 +593,6 @@
 
     if (dayButton) {
       const buttonDay = dayButton.getAttribute('data-value');
-      const buttonText = dayButton.textContent.trim();
-      console.log('找到日期按钮:', { expected: day, dataValue: buttonDay, text: buttonText });
 
       // 验证按钮的日期是否正确
       if (buttonDay && parseInt(buttonDay) !== day) {
@@ -615,7 +606,6 @@
                        dayButton.offsetParent !== null;
 
       if (!isVisible) {
-        console.warn('警告：日期按钮不可见，可能未完全加载');
         await delay(500);
       }
 
@@ -624,30 +614,25 @@
 
       // 记录点击前的值
       const beforeClickValue = input.value || input.getAttribute('value') || '';
-      console.log('点击日期按钮前的值:', beforeClickValue);
 
-      // 使用更安全的方式点击日期按钮
+      // 使用更自然的方式点击：直接使用 click()
       try {
-        console.log('准备点击日期按钮，触发鼠标事件...');
-        dayButton.dispatchEvent(new MouseEvent('mousedown', { bubbles: true, cancelable: true, view: window }));
-        await delay(100);
-        dayButton.dispatchEvent(new MouseEvent('mouseup', { bubbles: true, cancelable: true, view: window }));
-        await delay(100);
-        dayButton.click();
-        console.log('已点击日期按钮');
+        // 使用 setTimeout 延迟点击，确保日期选择器状态已初始化
+        await new Promise(resolve => {
+          setTimeout(() => {
+            try {
+              dayButton.click();
+            } catch (error) {
+              console.error('点击日期按钮时出错:', error);
+            }
+            resolve();
+          }, 100);
+        });
         await delay(1000);
       } catch (error) {
         console.error('点击日期按钮时出错:', error);
         dayButton.click();
         await delay(1000);
-      }
-
-      // 立即检查输入框值是否有变化
-      const afterClickValue = input.value || input.getAttribute('value') || '';
-      if (afterClickValue !== beforeClickValue) {
-        console.log('✓ 点击后输入框值已更新:', afterClickValue);
-      } else {
-        console.log('⚠ 点击后输入框值未更新');
       }
 
       // 验证日期选择器是否已关闭（说明选择成功）
@@ -659,10 +644,7 @@
         checkCount++;
       }
 
-      if (!calendarStillOpen) {
-        console.log('日期选择器已关闭，选择可能成功');
-      } else {
-        console.log('日期选择器仍然打开，尝试关闭');
+      if (calendarStillOpen) {
         // 尝试点击输入框外部关闭
         if (input.blur) {
           input.blur();
@@ -673,14 +655,6 @@
       }
 
       await delay(500); // 额外等待，确保输入框值更新
-    } else {
-      console.log('未找到日期按钮:', day);
-      // 输出所有日期按钮用于调试
-      const allDayButtons = document.querySelectorAll('b.day button, .day button');
-      console.log('所有日期按钮:', Array.from(allDayButtons).slice(0, 10).map(btn => ({
-        value: btn.getAttribute('data-value'),
-        text: btn.textContent
-      })));
     }
 
     // 关闭日期选择器（点击输入框外部或按ESC）
@@ -698,7 +672,6 @@
 
     // 验证输入框的值是否正确
     let currentValue = input.value || input.getAttribute('value') || '';
-    console.log('选择日期完成:', dateStr, '当前值:', currentValue);
 
     // 如果值不正确，尝试直接设置值
     // 港交所网站使用的日期格式可能是 YYYY/MM/DD
@@ -730,19 +703,13 @@
         isValueCorrect = currentYear === year &&
                         currentMonth === (month + 1) &&
                         currentDay === day;
-
-        console.log('解析当前值:', { currentYear, currentMonth, currentDay, expectedYear: year, expectedMonth: month + 1, expectedDay: day });
       }
     }
 
     // 如果值不正确，尝试重试或直接设置
     if (!isValueCorrect) {
-      console.log('日期值不正确，预期:', expectedValue, '或', expectedValueAlt, '实际:', currentValue);
-
       // 如果值完全没有改变，说明选择可能失败，尝试重试一次
       if (currentValue === originalValue) {
-        console.log('警告：日期值未更新，尝试重试选择日期');
-
         // 重试：再次打开日期选择器并选择
         await delay(500);
         input.click();
@@ -755,7 +722,6 @@
         const retryDayButton = document.querySelector(`b.day button[data-value="${day}"], .day button[data-value="${day}"]`);
 
         if (retryYearButton && retryMonthButton && retryDayButton) {
-          console.log('重试选择日期...');
           retryYearButton.click();
           await delay(500);
           retryMonthButton.click();
@@ -770,7 +736,6 @@
 
           // 再次检查值
           currentValue = input.value || input.getAttribute('value') || '';
-          console.log('重试后的值:', currentValue);
         }
       }
 
@@ -783,7 +748,6 @@
                              !currentValue.includes(String(day)));
 
       if (stillIncorrect) {
-        console.log('重试后值仍不正确，尝试直接设置值');
         // 尝试直接设置值（多种格式）
         const formats = [
           expectedValue, // YYYY/MM/DD
@@ -805,49 +769,18 @@
             // 检查是否成功
             const newValue = input.value || input.getAttribute('value') || '';
             if (newValue && newValue !== originalValue) {
-              console.log('直接设置值成功:', format, '新值:', newValue);
               currentValue = newValue;
               break;
             }
           } catch (e) {
-            console.log('设置值失败:', format, e);
+            // 设置值失败，继续尝试下一个格式
           }
         }
       }
-    } else {
-      console.log('✓ 日期值验证通过:', currentValue);
     }
-
-    // 最终验证
-    const finalValue = input.value || input.getAttribute('value') || '';
-    console.log('最终日期值:', finalValue);
-
-    // 最终验证：检查是否包含正确的年月日
-    if (finalValue) {
-      const finalParts = finalValue.split(/[\/\-]/);
-      if (finalParts.length === 3) {
-        let finalYear, finalMonth, finalDay;
-        if (finalParts[0].length === 4) {
-          finalYear = parseInt(finalParts[0]);
-          finalMonth = parseInt(finalParts[1]);
-          finalDay = parseInt(finalParts[2]);
-        } else {
-          finalDay = parseInt(finalParts[0]);
-          finalMonth = parseInt(finalParts[1]);
-          finalYear = parseInt(finalParts[2]);
-        }
-
-        if (finalYear === year && finalMonth === (month + 1) && finalDay === day) {
-          console.log('✓ 最终验证通过：日期选择成功');
-        } else {
-          console.warn('⚠ 最终验证失败：日期不匹配', {
-            expected: `${year}/${month + 1}/${day}`,
-            actual: `${finalYear}/${finalMonth}/${finalDay}`
-          });
-        }
-      }
-    } else {
-      console.warn('⚠ 最终验证失败：日期值为空');
+    } finally {
+      // 移除临时错误处理器
+      window.removeEventListener('error', errorHandler);
     }
   }
 
@@ -855,11 +788,9 @@
   async function fillDateRange(startDate, endDate) {
     try {
       updateStatus('填写日期范围...');
-      console.log('开始填写日期范围:', startDate, '至', endDate);
 
       const fromInput = await waitForElement('#searchDate-From');
       const toInput = await waitForElement('#searchDate-To');
-      console.log('找到日期输入框:', fromInput, toInput);
 
       // 使用日期选择器选择开始日期
       await selectDate(fromInput, startDate);
@@ -872,7 +803,6 @@
       // 验证是否填写成功
       const fromValue = fromInput.value || fromInput.getAttribute('value') || '';
       const toValue = toInput.value || toInput.getAttribute('value') || '';
-      console.log('验证日期填写结果 - 开始日期:', fromValue, '结束日期:', toValue);
 
       if (fromValue && toValue) {
         updateStatus(`已填写日期范围: ${fromValue} 至 ${toValue}`, 'success');
@@ -2115,17 +2045,13 @@
     try {
       // 等待结果加载
       updateStatus('等待搜索结果加载...', 'info');
-      console.log('等待搜索结果加载...');
       await delay(3000); // 等待结果加载
 
       // 提取业绩报链接
       updateStatus('提取业绩报链接...', 'info');
-      console.log('开始提取业绩报链接...');
       const reports = extractReportLinks();
-      console.log(`提取到 ${reports.length} 份业绩报`);
 
       if (reports.length === 0) {
-        console.log('未找到业绩报');
         updateStatus('未找到业绩报，请先填入搜索条件', 'warning');
         isRunning = false;
         const fillBtn = document.getElementById('hk-fill-btn');
@@ -2146,9 +2072,12 @@
       }
 
       updateStatus(`找到 ${reports.length} 份业绩报，开始下载...`, 'success');
-      console.log(`找到 ${reports.length} 份业绩报，开始下载`);
-      console.log('业绩报列表:', reports.map(r => `${r.date} - ${r.title}`));
       updateProgress(0, reports.length);
+
+      // 获取股票简称（用于文件夹名）
+      const stockName = localStorage.getItem('hk-reports-stock-name') || stockCode;
+      // 清理文件夹名中的非法字符
+      const folderName = stockName.replace(/[<>:"/\\|?*]/g, '_');
 
       // 下载业绩报
       let successCount = 0;
@@ -2162,15 +2091,12 @@
 
         const report = reports[i];
         updateStatus(`下载 ${i + 1}/${reports.length}: ${report.title}`, 'info');
-        console.log(`下载 ${i + 1}/${reports.length}: ${report.title}`);
-        console.log('下载URL:', report.url);
 
         try {
           const filename = `${stockCode}_${report.date}_${report.title.replace(/[<>:"/\\|?*]/g, '_')}.pdf`;
-          console.log('文件名:', filename);
-          await downloadFile(report.url, filename, stockCode);
+          // 使用简称作为文件夹名
+          await downloadFile(report.url, filename, folderName);
           successCount++;
-          console.log(`✓ 下载成功: ${report.title}`);
           updateStatus(`✓ 下载成功: ${report.title}`, 'success');
         } catch (error) {
           failCount++;
@@ -2186,7 +2112,6 @@
         }
       }
 
-      console.log(`下载完成：成功 ${successCount} 份，失败 ${failCount} 份`);
       updateStatus(`下载完成：成功 ${successCount} 份，失败 ${failCount} 份`, 'success');
 
     } catch (error) {
