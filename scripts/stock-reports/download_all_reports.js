@@ -9,6 +9,12 @@
  * # 只下载年报
  * node download_all_reports.js --code 600348 --name 华阳股份 --years 2023 --type annual
  *
+ * # 下载多年数据（使用 --start 和 --end）
+ * node download_all_reports.js --code 600348 --name 华阳股份 --start 2021 --end 2023 --type annual
+ *
+ * # 下载多年数据（使用 --years，逗号分隔）
+ * node download_all_reports.js --code 600348 --name 华阳股份 --years 2021,2022,2023 --type annual
+ *
  * # 同时下载年报和运营报告（推荐）
  * node download_all_reports.js --code 600348 --name 华阳股份 --years 2023 --types annual,production --keywords "生产经营数据公告"
  *
@@ -87,11 +93,8 @@ function parseArgs() {
         break;
       case '--end':
         params.end = parseInt(args[++i]);
-        if (params.start) {
-          params.years = [];
-          for (let y = params.start; y <= params.end; y++) {
-            params.years.push(y);
-          }
+        if (params.start !== undefined) {
+          params.years = Array.from({ length: params.end - params.start + 1 }, (_, i) => params.start + i);
         }
         break;
       case '--output':
@@ -1375,6 +1378,10 @@ async function main() {
     console.log('  node download_all_reports.js --code 600348 --name 华阳股份 --years 2023 --type all\n');
     console.log('  # 只下载年报');
     console.log('  node download_all_reports.js --code 600348 --name 华阳股份 --years 2023 --type annual\n');
+    console.log('  # 下载多年数据（使用 --start 和 --end）');
+    console.log('  node download_all_reports.js --code 600348 --name 华阳股份 --start 2021 --end 2023 --type annual\n');
+    console.log('  # 下载多年数据（使用 --years，逗号分隔）');
+    console.log('  node download_all_reports.js --code 600348 --name 华阳股份 --years 2021,2022,2023 --type annual\n');
     console.log('  # 同时下载年报和运营报告（推荐）');
     console.log('  node download_all_reports.js --code 600348 --name 华阳股份 --years 2023 --types annual,production --keywords "生产经营数据公告"\n');
     console.log('  # 同时下载多个类型');
