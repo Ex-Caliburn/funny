@@ -1533,7 +1533,7 @@ async function searchHKReportWithPlaywright(stockCode, year, reportType, lang = 
     throw error;
   } finally {
     // 注释掉关闭浏览器，方便用户手动操作和检查结果
-    // await browser.close();
+    await browser.close();
     console.log(`      💡 提示：浏览器窗口保持打开，您可以手动操作和检查结果`);
   }
 }
