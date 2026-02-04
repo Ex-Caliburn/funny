@@ -27,6 +27,7 @@
       "sales": null,
       "inventory": null,
       "grossMargin": null,
+      "operatingProfit": 56.26,
       "productSales": {
         "cathodeCopper": null,
         "copperConcentrate": null,
@@ -37,6 +38,7 @@
           "revenue": null,
           "cost": null,
           "grossMargin": null,
+          "operatingProfit": null,
           "_corrected": false,
           "_verified": false
         },
@@ -44,6 +46,7 @@
           "revenue": null,
           "cost": null,
           "grossMargin": null,
+          "operatingProfit": null,
           "_corrected": false,
           "_verified": false
         }
@@ -62,6 +65,7 @@
       "sales": null,
       "inventory": null,
       "grossMargin": 8,
+      "operatingProfit": 40.53,
       "productSales": {
         "cathodeCopper": null,
         "copperConcentrate": null,
@@ -69,18 +73,22 @@
       },
       "otherProducts": {
         "goldByproduct": {
-          "revenue": 103.32616011379999,
-          "cost": 87.2436362232,
-          "grossMargin": 15.56,
-          "_corrected": false,
-          "_verified": false
+          "revenue": 103.32616011,
+          "cost": 87.64646179,
+          "grossMargin": 15.17,
+          "operatingProfit": 15.68,
+          "_corrected": true,
+          "_verified": true,
+          "_notes": "根据营收和成本计算：(103.32616011 - 87.64646179  ) / 103.32616011 * 100 = 约 15.17%"
         },
         "chemical": {
           "revenue": 16.5799541897,
-          "cost": 17.2329268855,
-          "grossMargin": -3.94,
-          "_corrected": false,
-          "_verified": false
+          "cost": 7.45471485,
+          "grossMargin": 55.75,
+          "operatingProfit": 9.13,
+          "_corrected": true,
+          "_verified": true,
+          "_notes": "根据营收和成本计算：(16.5799541897 - 7.45471485) / 16.5799541897 * 100 = 55.75%"
         }
       },
       "_corrected": false,
@@ -97,6 +105,7 @@
       "sales": null,
       "inventory": null,
       "grossMargin": null,
+      "operatingProfit": 18.55,
       "productSales": {
         "cathodeCopper": null,
         "copperConcentrate": null,
@@ -107,6 +116,7 @@
           "revenue": null,
           "cost": null,
           "grossMargin": null,
+          "operatingProfit": null,
           "_corrected": false,
           "_verified": false
         },
@@ -114,6 +124,7 @@
           "revenue": null,
           "cost": null,
           "grossMargin": null,
+          "operatingProfit": null,
           "_corrected": false,
           "_verified": false
         }
@@ -132,6 +143,7 @@
       "sales": null,
       "inventory": null,
       "grossMargin": 18,
+      "operatingProfit": 58.58,
       "productSales": {
         "cathodeCopper": 176.8,
         "copperConcentrate": 15.52,
@@ -142,6 +154,7 @@
           "revenue": 192.73117131880002,
           "cost": 155.7386364425,
           "grossMargin": 19.19,
+          "operatingProfit": 36.99,
           "_corrected": false,
           "_verified": false
         },
@@ -149,6 +162,7 @@
           "revenue": 22.9269951102,
           "cost": 11.5804339294,
           "grossMargin": 49.49,
+          "operatingProfit": 11.35,
           "_corrected": false,
           "_verified": false
         }
@@ -167,6 +181,7 @@
       "sales": null,
       "inventory": null,
       "grossMargin": null,
+      "operatingProfit": 51.03,
       "productSales": {
         "cathodeCopper": null,
         "copperConcentrate": null,
@@ -177,6 +192,7 @@
           "revenue": null,
           "cost": null,
           "grossMargin": null,
+          "operatingProfit": null,
           "_corrected": false,
           "_verified": false
         },
@@ -184,6 +200,7 @@
           "revenue": null,
           "cost": null,
           "grossMargin": null,
+          "operatingProfit": null,
           "_corrected": false,
           "_verified": false
         }
@@ -202,6 +219,7 @@
       "sales": null,
       "inventory": null,
       "grossMargin": 7.79,
+      "operatingProfit": 40.39,
       "_corrected": true,
       "_verified": true,
       "_notes": "根据营收和成本计算：(605.21 - 558.04) / 605.21 * 100 = 7.79%",
@@ -215,6 +233,7 @@
           "revenue": 87.2436362232,
           "cost": 77.4537175929,
           "grossMargin": 11.22,
+          "operatingProfit": 9.79,
           "_corrected": true,
           "_verified": true,
           "_notes": "根据营收和成本计算：(87.24 - 77.45) / 87.24 * 100 = 11.22%"
@@ -223,6 +242,7 @@
           "revenue": 17.2329268855,
           "cost": 14.4777154072,
           "grossMargin": 15.99,
+          "operatingProfit": 2.76,
           "_corrected": false,
           "_verified": false
         }
@@ -241,6 +261,7 @@
       "sales": null,
       "inventory": null,
       "grossMargin": null,
+      "operatingProfit": 18.55,
       "productSales": {
         "cathodeCopper": null,
         "copperConcentrate": null,
@@ -251,6 +272,7 @@
           "revenue": null,
           "cost": null,
           "grossMargin": null,
+          "operatingProfit": null,
           "_corrected": false,
           "_verified": false
         },
@@ -258,6 +280,7 @@
           "revenue": null,
           "cost": null,
           "grossMargin": null,
+          "operatingProfit": null,
           "_corrected": false,
           "_verified": false
         }

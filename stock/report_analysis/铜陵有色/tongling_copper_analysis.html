@@ -418,11 +418,17 @@
                                 <th colspan="2">黄金等副产品营收<br><span style="font-size:9px;font-weight:normal">(亿元)</span></th>
                                 <th colspan="2">黄金等副产品营业成本<br><span style="font-size:9px;font-weight:normal">(亿元)</span></th>
                                 <th colspan="2">黄金等副产品毛利率<br><span style="font-size:9px;font-weight:normal">(%)</span></th>
+                                <th colspan="2">黄金等副产品毛利<br><span style="font-size:9px;font-weight:normal">(亿元)</span></th>
                                 <th colspan="2">化工及其他产品营收<br><span style="font-size:9px;font-weight:normal">(亿元)</span></th>
                                 <th colspan="2">化工及其他产品营业成本<br><span style="font-size:9px;font-weight:normal">(亿元)</span></th>
                                 <th colspan="2">化工及其他产品毛利率<br><span style="font-size:9px;font-weight:normal">(%)</span></th>
+                                <th colspan="2">化工及其他产品毛利<br><span style="font-size:9px;font-weight:normal">(亿元)</span></th>
                             </tr>
                             <tr>
+                                <th>数值</th>
+                                <th>同比</th>
+                                <th>数值</th>
+                                <th>同比</th>
                                 <th>数值</th>
                                 <th>同比</th>
                                 <th>数值</th>
@@ -505,6 +511,7 @@
                                 sales: item.sales || null,
                                 inventory: item.inventory || null,
                                 grossMargin: item.grossMargin !== null && item.grossMargin !== undefined ? item.grossMargin : null,
+                                operatingProfit: item.operatingProfit != null ? item.operatingProfit : null,
                                 productSales: item.productSales || {}
                             };
                         }).filter(item => item.period); // 过滤掉没有period的数据
@@ -1058,6 +1065,7 @@
                     { key: 'production', name: '产量', unit: '万吨' },
                     { key: 'sales', name: '销量', unit: '万吨' },
                     { key: 'cost', name: '成本', unit: '亿元' },
+                    { key: 'operatingProfit', name: '毛利', unit: '亿元' },
                     { key: 'inventory', name: '库存', unit: '万吨', hideInQuarterly: true },
                     { key: 'price', name: '售价', unit: '元/吨' },
                     { key: 'unitCost', name: '成本', unit: '元/吨' },
@@ -1102,7 +1110,7 @@
                 let totalCols = 1; // 报告期列
                 const columns = [
                     { key: 'revenue' }, { key: 'production' },
-                    { key: 'sales' }, { key: 'cost' }, { key: 'inventory' },
+                    { key: 'sales' }, { key: 'cost' }, { key: 'operatingProfit' }, { key: 'inventory' },
                     { key: 'price' }, { key: 'unitCost' }, { key: 'unitGrossProfit' }, { key: 'grossMargin' }
                 ];
                 columns.forEach(col => {
@@ -1151,6 +1159,11 @@
                     const costYoYChange = baseYoY ? calculateChange(item.cost, baseYoY.cost) : null;
                     row.innerHTML += `<td class="value">${formatValue(item.cost)}</td>`;
                     row.innerHTML += `<td>${formatChange(costYoYChange)}</td>`;
+
+                    // 5.1 营业利润
+                    const operatingProfitYoYChange = baseYoY && baseYoY.operatingProfit !== null && item.operatingProfit !== null ? calculateChange(item.operatingProfit, baseYoY.operatingProfit) : null;
+                    row.innerHTML += `<td class="value">${formatValue(item.operatingProfit)}</td>`;
+                    row.innerHTML += `<td>${formatChange(operatingProfitYoYChange)}</td>`;
 
                     // 6. 库存
                     const inventoryYoYChange = baseYoY && baseYoY.inventory !== null && item.inventory !== null ? calculateChange(item.inventory, baseYoY.inventory) : null;
@@ -1279,10 +1292,11 @@
                         if (period.includes('上半年')) month = 6;
                         else if (period.includes('全年')) month = 12;
 
-                        // 计算黄金等副产品毛利率
+                        // 计算黄金等副产品毛利率和毛利
                         let goldRevenue = null;
                         let goldCost = null;
                         let goldGrossMargin = null;
+                        let goldOperatingProfit = null;
                         if (item.otherProducts && item.otherProducts.goldByproduct) {
                             // corrected.json数据已经是亿元单位，直接使用
                             goldRevenue = item.otherProducts.goldByproduct.revenue || null;
@@ -1295,12 +1309,19 @@
                                 const calculatedMargin = ((goldRevenue - goldCost) / goldRevenue) * 100;
                                 goldGrossMargin = !isNaN(calculatedMargin) ? parseFloat(calculatedMargin.toFixed(2)) : null;
                             }
+                            // 毛利 = 营业收入 - 营业成本
+                            if (item.otherProducts.goldByproduct.operatingProfit !== null && item.otherProducts.goldByproduct.operatingProfit !== undefined) {
+                                goldOperatingProfit = item.otherProducts.goldByproduct.operatingProfit;
+                            } else if (goldRevenue !== null && goldCost !== null && !isNaN(goldRevenue) && !isNaN(goldCost)) {
+                                goldOperatingProfit = goldRevenue - goldCost;
+                            }
                         }
 
-                        // 计算化工及其他产品毛利率
+                        // 计算化工及其他产品毛利率和毛利
                         let chemicalRevenue = null;
                         let chemicalCost = null;
                         let chemicalGrossMargin = null;
+                        let chemicalOperatingProfit = null;
                         if (item.otherProducts && item.otherProducts.chemical) {
                             // corrected.json数据已经是亿元单位，直接使用
                             chemicalRevenue = item.otherProducts.chemical.revenue || null;
@@ -1313,6 +1334,12 @@
                                 const calculatedMargin = ((chemicalRevenue - chemicalCost) / chemicalRevenue) * 100;
                                 chemicalGrossMargin = !isNaN(calculatedMargin) ? parseFloat(calculatedMargin.toFixed(2)) : null;
                             }
+                            // 毛利 = 营业收入 - 营业成本
+                            if (item.otherProducts.chemical.operatingProfit !== null && item.otherProducts.chemical.operatingProfit !== undefined) {
+                                chemicalOperatingProfit = item.otherProducts.chemical.operatingProfit;
+                            } else if (chemicalRevenue !== null && chemicalCost !== null && !isNaN(chemicalRevenue) && !isNaN(chemicalCost)) {
+                                chemicalOperatingProfit = chemicalRevenue - chemicalCost;
+                            }
                         }
 
                         // 所有累计数据都添加到表格中，即使数据为null也显示（显示为"-"）
@@ -1324,12 +1351,14 @@
                             goldByproduct: {
                                 revenue: goldRevenue,
                                 cost: goldCost,
-                                grossMargin: goldGrossMargin
+                                grossMargin: goldGrossMargin,
+                                operatingProfit: goldOperatingProfit
                             },
                             chemical: {
                                 revenue: chemicalRevenue,
                                 cost: chemicalCost,
-                                grossMargin: chemicalGrossMargin
+                                grossMargin: chemicalGrossMargin,
+                                operatingProfit: chemicalOperatingProfit
                             }
                         });
                     });
@@ -1375,6 +1404,11 @@
                         row.innerHTML += `<td class="value">${goldGrossMarginValue !== null ? goldGrossMarginValue.toFixed(2) + '%' : '<span class="no-data">-</span>'}</td>`;
                         row.innerHTML += `<td>${formatChange(goldGrossMarginYoY)}</td>`;
 
+                        // 3.1 黄金等副产品毛利
+                        const goldOperatingProfitYoY = baseYoY && baseYoY.goldByproduct && baseYoY.goldByproduct.operatingProfit !== null && item.goldByproduct.operatingProfit !== null ? calculateChange(item.goldByproduct.operatingProfit, baseYoY.goldByproduct.operatingProfit) : null;
+                        row.innerHTML += `<td class="value">${formatValue(item.goldByproduct.operatingProfit, '亿元')}</td>`;
+                        row.innerHTML += `<td>${formatChange(goldOperatingProfitYoY)}</td>`;
+
                         // 4. 化工及其他产品营收
                         const chemicalRevenueYoY = baseYoY && baseYoY.chemical && baseYoY.chemical.revenue !== null && item.chemical.revenue !== null ? calculateChange(item.chemical.revenue, baseYoY.chemical.revenue) : null;
                         row.innerHTML += `<td class="value">${formatValue(item.chemical.revenue, '亿元')}</td>`;
@@ -1391,17 +1425,22 @@
                         row.innerHTML += `<td class="value">${chemicalGrossMarginValue !== null ? chemicalGrossMarginValue.toFixed(2) + '%' : '<span class="no-data">-</span>'}</td>`;
                         row.innerHTML += `<td>${formatChange(chemicalGrossMarginYoY)}</td>`;
 
+                        // 6.1 化工及其他产品毛利
+                        const chemicalOperatingProfitYoY = baseYoY && baseYoY.chemical && baseYoY.chemical.operatingProfit !== null && item.chemical.operatingProfit !== null ? calculateChange(item.chemical.operatingProfit, baseYoY.chemical.operatingProfit) : null;
+                        row.innerHTML += `<td class="value">${formatValue(item.chemical.operatingProfit, '亿元')}</td>`;
+                        row.innerHTML += `<td>${formatChange(chemicalOperatingProfitYoY)}</td>`;
+
                         tbody.appendChild(row);
                     });
 
                     if (filteredData.length === 0) {
-                        tbody.innerHTML = '<tr><td colspan="13" style="text-align:center;color:#999;">暂无分产品数据</td></tr>';
+                        tbody.innerHTML = '<tr><td colspan="17" style="text-align:center;color:#999;">暂无分产品数据</td></tr>';
                     }
                 } catch (error) {
                     console.error('加载分产品数据失败:', error);
                     const tbody = document.getElementById('productSalesTableBody');
                     if (tbody) {
-                        tbody.innerHTML = '<tr><td colspan="13" style="text-align:center;color:#999;">数据加载失败: ' + error.message + '</td></tr>';
+                        tbody.innerHTML = '<tr><td colspan="17" style="text-align:center;color:#999;">数据加载失败: ' + error.message + '</td></tr>';
                     }
                 }
             }

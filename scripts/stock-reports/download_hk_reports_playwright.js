@@ -74,14 +74,14 @@ function extractYearFromTitle(title) {
     const match = title.match(pattern);
     if (match) {
       if (pattern === yearPatterns[3] || pattern === yearPatterns[4]) {
-        // 处理中文数字年份（如"二零二四年"）
+        // 处理中文数字年份（如"二零二四年"），只转换捕获的那部分（例如 "二四"）
         const chineseNumbers = {
           '零': 0, '一': 1, '二': 2, '三': 3, '四': 4,
           '五': 5, '六': 6, '七': 7, '八': 8, '九': 9
         };
+        const captured = match[1] || '';
         let yearStr = '';
-        for (let i = 1; i < match[0].length - 1; i++) {
-          const char = match[0][i];
+        for (const char of captured) {
           if (chineseNumbers[char] !== undefined) {
             yearStr += chineseNumbers[char];
           }
@@ -243,7 +243,34 @@ function parseArgs() {
 /**
  * 使用Playwright搜索港股报告
  */
-async function searchHKReportWithPlaywright(stockCode, year, reportType, lang = 'ZH') {
+async function createPlaywrightSession(lang = 'ZH') {
+  if (!playwright) {
+    throw new Error('Playwright未安装');
+  }
+
+  // 始终使用非headless模式，方便用户手动操作
+  const browser = await playwright.chromium.launch({
+    headless: false, // 始终显示浏览器窗口
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    slowMo: 300 // 减慢操作速度，方便观察
+  });
+
+  const context = await browser.newContext({
+    userAgent: CONFIG.HEADERS['User-Agent'],
+    locale: lang.toLowerCase() === 'zh' ? 'zh-CN' : 'en-US'
+  });
+
+  const page = await context.newPage();
+
+  return { browser, context, page };
+}
+
+/**
+ * 使用Playwright搜索港股报告
+ * - 默认：函数内创建/关闭浏览器（兼容旧用法）
+ * - 传入session：复用同一浏览器/页面（多年份/多类型时推荐）
+ */
+async function searchHKReportWithPlaywright(stockCode, year, reportType, lang = 'ZH', session = null) {
   if (!playwright) {
     throw new Error('Playwright未安装');
   }
@@ -256,21 +283,10 @@ async function searchHKReportWithPlaywright(stockCode, year, reportType, lang = 
   // 港股代码处理：保持原始格式（00700），但确保是字符串
   const stockId = stockCode.toString().padStart(5, '0'); // 保持5位，前导零
 
-  // 始终使用非headless模式，方便用户手动操作
-  const browser = await playwright.chromium.launch({
-    headless: false, // 始终显示浏览器窗口
-    args: ['--no-sandbox', '--disable-setuid-sandbox'],
-    slowMo: 300 // 减慢操作速度，方便观察
-  });
+  const localSession = session || await createPlaywrightSession(lang);
+  const { browser, page } = localSession;
 
   try {
-    const context = await browser.newContext({
-      userAgent: CONFIG.HEADERS['User-Agent'],
-      locale: lang.toLowerCase() === 'zh' ? 'zh-CN' : 'en-US'
-    });
-
-    const page = await context.newPage();
-
     // 访问搜索页面
     const searchUrl = `${CONFIG.SEARCH_API}?lang=${lang.toLowerCase() === 'zh' ? 'zh' : 'en'}`;
     console.log(`      🔍 访问搜索页面: ${searchUrl}`);
@@ -1391,14 +1407,14 @@ async function searchHKReportWithPlaywright(stockCode, year, reportType, lang = 
             const match = title.match(pattern);
             if (match) {
               if (pattern === yearPatterns[3] || pattern === yearPatterns[4]) {
-                // 处理中文数字年份（如"二零二四年"）
+                // 处理中文数字年份（如"二零二四年"），只转换捕获的那部分（例如 "二四"）
                 const chineseNumbers = {
                   '零': 0, '一': 1, '二': 2, '三': 3, '四': 4,
                   '五': 5, '六': 6, '七': 7, '八': 8, '九': 9
                 };
+                const captured = match[1] || '';
                 let yearStr = '';
-                for (let i = 1; i < match[0].length - 1; i++) {
-                  const char = match[0][i];
+                for (const char of captured) {
                   if (chineseNumbers[char] !== undefined) {
                     yearStr += chineseNumbers[char];
                   }
@@ -1532,9 +1548,10 @@ async function searchHKReportWithPlaywright(stockCode, year, reportType, lang = 
     console.error(`      ❌ Playwright搜索失败: ${error.message}`);
     throw error;
   } finally {
-    // 注释掉关闭浏览器，方便用户手动操作和检查结果
-    await browser.close();
-    console.log(`      💡 提示：浏览器窗口保持打开，您可以手动操作和检查结果`);
+    // 如果外部没有传入session，则由本函数负责关闭（兼容旧用法）
+    if (!session) {
+      await browser.close();
+    }
   }
 }
 
@@ -1584,7 +1601,7 @@ async function downloadFile(url, filePath) {
 /**
  * 下载报告
  */
-async function downloadReport(params, year, reportType) {
+async function downloadReport(params, year, reportType, session = null) {
   const typeConfig = CONFIG.REPORT_TYPES[reportType];
   if (!typeConfig) {
     console.log(`   ❌ 未知的报告类型: ${reportType}`);
@@ -1594,7 +1611,7 @@ async function downloadReport(params, year, reportType) {
   console.log(`   📄 查找${typeConfig.name}...`);
 
   try {
-    const searchResult = await searchHKReportWithPlaywright(params.code, year, reportType, params.lang);
+    const searchResult = await searchHKReportWithPlaywright(params.code, year, reportType, params.lang, session);
 
     if (!searchResult || !searchResult.reports || searchResult.reports.length === 0) {
       console.log(`      ⚠ 未找到`);
@@ -1720,20 +1737,26 @@ async function main() {
 
   const results = [];
 
-  for (const year of params.years) {
-    console.log(`\n============================================================`);
-    console.log(`📊 ${params.name} ${year} 年`);
-    console.log(`============================================================\n`);
+  // 多年份/多类型：复用同一个浏览器会话，避免反复打开/关闭
+  const session = await createPlaywrightSession(params.lang);
+  try {
+    for (const year of params.years) {
+      console.log(`\n============================================================`);
+      console.log(`📊 ${params.name} ${year} 年`);
+      console.log(`============================================================\n`);
 
-    for (const reportType of params.reportTypes) {
-      const result = await downloadReport(params, year, reportType);
-      results.push(result);
+      for (const reportType of params.reportTypes) {
+        const result = await downloadReport(params, year, reportType, session);
+        results.push(result);
 
-      // 添加延迟，避免请求过快
-      if (reportType !== params.reportTypes[params.reportTypes.length - 1] || year !== params.years[params.years.length - 1]) {
-        await new Promise(resolve => setTimeout(resolve, 2000));
+        // 添加延迟，避免请求过快
+        if (reportType !== params.reportTypes[params.reportTypes.length - 1] || year !== params.years[params.years.length - 1]) {
+          await new Promise(resolve => setTimeout(resolve, 2000));
+        }
       }
     }
+  } finally {
+    await session.browser.close();
   }
 
   // 输出总结
@@ -1833,5 +1856,5 @@ if (require.main === module) {
   });
 }
 
-module.exports = { searchHKReportWithPlaywright, downloadReport };
+module.exports = { createPlaywrightSession, searchHKReportWithPlaywright, downloadReport };
 
