@@ -213,7 +213,7 @@
           tooltip: { trigger: "axis", valueFormatter: function (v, s) { return v == null ? "-" : (s && /当期值/.test(s.seriesName) ? (v + (u ? u : '')) : v + '%'); } },
           legend: { data: [dn + "-当期值", dn + "-环比%", dn + "-同比%"], textStyle: { color: "#cbd5e1" } },
           grid: { left: 60, right: 60, top: 40, bottom: 40 },
-          xAxis: { type: "category", data: x, axisLabel: { color: "#9aa4b2" } },
+          xAxis: { type: "category", data: x, axisLabel: { color: "#9aa4b2", formatter: function (val) { return val ? val.replace(/旬$/g, '') : val; } } },
           yAxis: [
             { type: "value", name: "当期值" + (u ? '（' + u + '）' : ''), position: "left", axisLabel: { color: "#9aa4b2" }, splitLine: { lineStyle: { color: "#1f2937" } } },
             { type: "value", name: "%", position: "right", axisLabel: { color: "#9aa4b2" }, splitLine: { show: false } }
@@ -242,7 +242,7 @@
           // 关闭动画以提升性能
           animation: false,
           grid: { left: 50, right: 50, top: 35, bottom: 35 },
-          xAxis: { type: 'category', data: [], axisLabel: { color: '#9aa4b2', fontSize: 11, interval: 0 } },
+          xAxis: { type: 'category', data: [], axisLabel: { color: '#9aa4b2', fontSize: 11, interval: 0, formatter: function (val) { return val ? val.replace(/旬$/g, '') : val; } } },
           yAxis: [
             { type: 'value', position: 'left', name: unit ? ('当期值（' + unit + '）') : '当期值', axisLabel: { color: '#9aa4b2', fontSize: 11 }, splitLine: { lineStyle: { color: '#1f2937' } } },
             { type: 'value', position: 'right', axisLabel: { color: '#9aa4b2', fontSize: 11, formatter: '{value}%' }, splitLine: { show: false } }
@@ -706,7 +706,7 @@
           backgroundColor: '#0b0f19', tooltip: { trigger: 'axis', backgroundColor: 'rgba(15, 23, 42, 0.95)', borderColor: '#1f2937', textStyle: { color: '#e2e8f0', fontSize: 12 }, formatter: function (params) { var s = params[0].name + '<br/>'; params.forEach(function (p) { s += p.seriesName + ': ' + (p.value != null ? p.value : '-') + '<br/>'; }); return s; } }, legend: { type: 'scroll', top: 0, left: 'center', textStyle: { color: '#cbd5e1', fontSize: 11 }, pageButtonItemGap: 5, pageIconColor: '#cbd5e1', pageIconInactiveColor: '#64748b', pageTextStyle: { color: '#cbd5e1' }, selector: [{ type: 'all', title: '全选' }, { type: 'inverse', title: '反选' }], selectorLabel: { color: '#cbd5e1', fontSize: 11 }, selectorItemGap: 7, selectorButtonGap: 10 }, grid: { left: 70, right: 20, top: 60, bottom: 40 },           xAxis: {
             type: 'category',
             data: yearKeys,
-            axisLabel: { color: '#9aa4b2', fontSize: 11, interval: 0 }
+            axisLabel: { color: '#9aa4b2', fontSize: 11, interval: 0, formatter: function (val) { return val ? val.replace(/旬$/g, '') : val; } }
           }, yAxis: [{ type: 'value', name: '当期值', axisLabel: { color: '#9aa4b2', fontSize: 11 }, splitLine: { lineStyle: { color: '#1f2937' } }, nameTextStyle: { color: '#9aa4b2', fontSize: 11 } }], series: series, dataZoom: [{ type: 'slider', show: true, xAxisIndex: [0], start: 0, end: 100, bottom: 10, height: 20, handleIcon: 'M10.7,11.9v-1.3H9.3v1.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4v1.3h1.3v-1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23.1h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z', handleSize: '80%', handleStyle: { color: '#cbd5e1' }, textStyle: { color: '#9aa4b2', fontSize: 10 } }, { type: 'inside', xAxisIndex: [0] }]
         };
         chart2.setOption(option, true);
@@ -773,7 +773,7 @@
             xAxis: {
               type: 'category',
               data: xKeys,
-              axisLabel: { color: '#9aa4b2', fontSize: 14, interval: 0 }
+              axisLabel: { color: '#9aa4b2', fontSize: 14, interval: 0, formatter: function (val) { return val ? val.replace(/旬$/g, '') : val; } }
             },
             yAxis: [
               {
