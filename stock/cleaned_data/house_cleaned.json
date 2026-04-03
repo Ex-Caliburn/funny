@@ -1,12 +1,12 @@
 {
   "metadata": {
-    "totalFiles": 22,
+    "totalFiles": 23,
     "totalMetrics": 34,
     "dateRange": {
       "start": 2024,
-      "end": 2025
+      "end": 2026
     },
-    "processedAt": "2026-01-19T08:02:32.476Z",
+    "processedAt": "2026-03-17T06:06:28.472Z",
     "description": "全国房地产市场基本情况数据，包含开发投资、施工面积、销售等指标。累积数据已转换为当月数据（1-2月为合并数据）"
   },
   "files": [
@@ -162,6 +162,13 @@
       "publishDate": "2026-01-19",
       "year": "2025",
       "endMonth": 12,
+      "sheetName": "表1"
+    },
+    {
+      "filename": "2026-03-16_2026年1—2月份全国房地产市场基本情况.xlsx",
+      "publishDate": "2026-03-16",
+      "year": "2026",
+      "endMonth": 2,
       "sheetName": "表1"
     }
   ],
@@ -386,6 +393,16 @@
         "filename": "2026-01-19_2025年全国房地产市场基本情况.xlsx",
         "isStockData": false,
         "valueMonthly": 4197
+      },
+      {
+        "yearMonth": "2026-02",
+        "publishDate": "2026-03-16",
+        "value": 9612,
+        "yoy": -11.1,
+        "mom": 129,
+        "filename": "2026-03-16_2026年1—2月份全国房地产市场基本情况.xlsx",
+        "isStockData": false,
+        "valueMonthly": 9612
       }
     ],
     "房地产开发投资 - 住宅": [
@@ -608,6 +625,16 @@
         "filename": "2026-01-19_2025年全国房地产市场基本情况.xlsx",
         "isStockData": false,
         "valueMonthly": 3082
+      },
+      {
+        "yearMonth": "2026-02",
+        "publishDate": "2026-03-16",
+        "value": 7282,
+        "yoy": -10.7,
+        "mom": 136.3,
+        "filename": "2026-03-16_2026年1—2月份全国房地产市场基本情况.xlsx",
+        "isStockData": false,
+        "valueMonthly": 7282
       }
     ],
     "房地产开发投资 - 办公楼": [
@@ -830,6 +857,16 @@
         "filename": "2026-01-19_2025年全国房地产市场基本情况.xlsx",
         "isStockData": false,
         "valueMonthly": 224
+      },
+      {
+        "yearMonth": "2026-02",
+        "publishDate": "2026-03-16",
+        "value": 407,
+        "yoy": -17.3,
+        "mom": 81.7,
+        "filename": "2026-03-16_2026年1—2月份全国房地产市场基本情况.xlsx",
+        "isStockData": false,
+        "valueMonthly": 407
       }
     ],
     "房地产开发投资 - 商业营业用房": [
@@ -1052,6 +1089,16 @@
         "filename": "2026-01-19_2025年全国房地产市场基本情况.xlsx",
         "isStockData": false,
         "valueMonthly": 344
+      },
+      {
+        "yearMonth": "2026-02",
+        "publishDate": "2026-03-16",
+        "value": 640,
+        "yoy": -18.2,
+        "mom": 86,
+        "filename": "2026-03-16_2026年1—2月份全国房地产市场基本情况.xlsx",
+        "isStockData": false,
+        "valueMonthly": 640
       }
     ],
     "房屋施工面积": [
@@ -1274,6 +1321,16 @@
         "filename": "2026-01-19_2025年全国房地产市场基本情况.xlsx",
         "isStockData": true,
         "valueMonthly": 659890
+      },
+      {
+        "yearMonth": "2026-02",
+        "publishDate": "2026-03-16",
+        "value": 535372,
+        "yoy": -11.7,
+        "mom": -18.9,
+        "filename": "2026-03-16_2026年1—2月份全国房地产市场基本情况.xlsx",
+        "isStockData": true,
+        "valueMonthly": 535372
       }
     ],
     "房屋施工面积 - 住宅": [
@@ -1496,6 +1553,16 @@
         "filename": "2026-01-19_2025年全国房地产市场基本情况.xlsx",
         "isStockData": true,
         "valueMonthly": 460123
+      },
+      {
+        "yearMonth": "2026-02",
+        "publishDate": "2026-03-16",
+        "value": 371347,
+        "yoy": -11.9,
+        "mom": -19.3,
+        "filename": "2026-03-16_2026年1—2月份全国房地产市场基本情况.xlsx",
+        "isStockData": true,
+        "valueMonthly": 371347
       }
     ],
     "房屋施工面积 - 办公楼": [
@@ -1718,6 +1785,16 @@
         "filename": "2026-01-19_2025年全国房地产市场基本情况.xlsx",
         "isStockData": true,
         "valueMonthly": 27979
+      },
+      {
+        "yearMonth": "2026-02",
+        "publishDate": "2026-03-16",
+        "value": 23971,
+        "yoy": -9.4,
+        "mom": -14.3,
+        "filename": "2026-03-16_2026年1—2月份全国房地产市场基本情况.xlsx",
+        "isStockData": true,
+        "valueMonthly": 23971
       }
     ],
     "房屋施工面积 - 商业营业用房": [
@@ -1940,6 +2017,16 @@
         "filename": "2026-01-19_2025年全国房地产市场基本情况.xlsx",
         "isStockData": true,
         "valueMonthly": 56975
+      },
+      {
+        "yearMonth": "2026-02",
+        "publishDate": "2026-03-16",
+        "value": 47006,
+        "yoy": -12.3,
+        "mom": -17.5,
+        "filename": "2026-03-16_2026年1—2月份全国房地产市场基本情况.xlsx",
+        "isStockData": true,
+        "valueMonthly": 47006
       }
     ],
     "房屋新开工面积": [
@@ -2162,6 +2249,16 @@
         "filename": "2026-01-19_2025年全国房地产市场基本情况.xlsx",
         "isStockData": false,
         "valueMonthly": 5313
+      },
+      {
+        "yearMonth": "2026-02",
+        "publishDate": "2026-03-16",
+        "value": 5084,
+        "yoy": -23.1,
+        "mom": -4.3,
+        "filename": "2026-03-16_2026年1—2月份全国房地产市场基本情况.xlsx",
+        "isStockData": false,
+        "valueMonthly": 5084
       }
     ],
     "房屋新开工面积 - 住宅": [
@@ -2384,6 +2481,16 @@
         "filename": "2026-01-19_2025年全国房地产市场基本情况.xlsx",
         "isStockData": false,
         "valueMonthly": 3795
+      },
+      {
+        "yearMonth": "2026-02",
+        "publishDate": "2026-03-16",
+        "value": 3695,
+        "yoy": -23.3,
+        "mom": -2.6,
+        "filename": "2026-03-16_2026年1—2月份全国房地产市场基本情况.xlsx",
+        "isStockData": false,
+        "valueMonthly": 3695
       }
     ],
     "房屋新开工面积 - 办公楼": [
@@ -2606,6 +2713,16 @@
         "filename": "2026-01-19_2025年全国房地产市场基本情况.xlsx",
         "isStockData": false,
         "valueMonthly": 199
+      },
+      {
+        "yearMonth": "2026-02",
+        "publishDate": "2026-03-16",
+        "value": 168,
+        "yoy": -22.7,
+        "mom": -15.6,
+        "filename": "2026-03-16_2026年1—2月份全国房地产市场基本情况.xlsx",
+        "isStockData": false,
+        "valueMonthly": 168
       }
     ],
     "房屋新开工面积 - 商业营业用房": [
@@ -2828,6 +2945,16 @@
         "filename": "2026-01-19_2025年全国房地产市场基本情况.xlsx",
         "isStockData": false,
         "valueMonthly": 318
+      },
+      {
+        "yearMonth": "2026-02",
+        "publishDate": "2026-03-16",
+        "value": 292,
+        "yoy": -29,
+        "mom": -8.2,
+        "filename": "2026-03-16_2026年1—2月份全国房地产市场基本情况.xlsx",
+        "isStockData": false,
+        "valueMonthly": 292
       }
     ],
     "房屋竣工面积": [
@@ -3050,6 +3177,16 @@
         "filename": "2026-01-19_2025年全国房地产市场基本情况.xlsx",
         "isStockData": true,
         "valueMonthly": 60348
+      },
+      {
+        "yearMonth": "2026-02",
+        "publishDate": "2026-03-16",
+        "value": 6320,
+        "yoy": -27.9,
+        "mom": -89.5,
+        "filename": "2026-03-16_2026年1—2月份全国房地产市场基本情况.xlsx",
+        "isStockData": true,
+        "valueMonthly": 6320
       }
     ],
     "房屋竣工面积 - 住宅": [
@@ -3272,6 +3409,16 @@
         "filename": "2026-01-19_2025年全国房地产市场基本情况.xlsx",
         "isStockData": true,
         "valueMonthly": 42830
+      },
+      {
+        "yearMonth": "2026-02",
+        "publishDate": "2026-03-16",
+        "value": 4625,
+        "yoy": -26.9,
+        "mom": -89.2,
+        "filename": "2026-03-16_2026年1—2月份全国房地产市场基本情况.xlsx",
+        "isStockData": true,
+        "valueMonthly": 4625
       }
     ],
     "房屋竣工面积 - 办公楼": [
@@ -3494,6 +3641,16 @@
         "filename": "2026-01-19_2025年全国房地产市场基本情况.xlsx",
         "isStockData": true,
         "valueMonthly": 2071
+      },
+      {
+        "yearMonth": "2026-02",
+        "publishDate": "2026-03-16",
+        "value": 133,
+        "yoy": -52.4,
+        "mom": -93.6,
+        "filename": "2026-03-16_2026年1—2月份全国房地产市场基本情况.xlsx",
+        "isStockData": true,
+        "valueMonthly": 133
       }
     ],
     "房屋竣工面积 - 商业营业用房": [
@@ -3716,6 +3873,16 @@
         "filename": "2026-01-19_2025年全国房地产市场基本情况.xlsx",
         "isStockData": true,
         "valueMonthly": 4259
+      },
+      {
+        "yearMonth": "2026-02",
+        "publishDate": "2026-03-16",
+        "value": 399,
+        "yoy": -37.4,
+        "mom": -90.6,
+        "filename": "2026-03-16_2026年1—2月份全国房地产市场基本情况.xlsx",
+        "isStockData": true,
+        "valueMonthly": 399
       }
     ],
     "新建商品房销售面积": [
@@ -3938,6 +4105,16 @@
         "filename": "2026-01-19_2025年全国房地产市场基本情况.xlsx",
         "isStockData": false,
         "valueMonthly": 9399
+      },
+      {
+        "yearMonth": "2026-02",
+        "publishDate": "2026-03-16",
+        "value": 9293,
+        "yoy": -13.5,
+        "mom": -1.1,
+        "filename": "2026-03-16_2026年1—2月份全国房地产市场基本情况.xlsx",
+        "isStockData": false,
+        "valueMonthly": 9293
       }
     ],
     "新建商品房销售面积 - 住宅": [
@@ -4160,6 +4337,16 @@
         "filename": "2026-01-19_2025年全国房地产市场基本情况.xlsx",
         "isStockData": false,
         "valueMonthly": 7481
+      },
+      {
+        "yearMonth": "2026-02",
+        "publishDate": "2026-03-16",
+        "value": 7736,
+        "yoy": -15.9,
+        "mom": 3.4,
+        "filename": "2026-03-16_2026年1—2月份全国房地产市场基本情况.xlsx",
+        "isStockData": false,
+        "valueMonthly": 7736
       }
     ],
     "新建商品房销售面积 - 办公楼": [
@@ -4382,6 +4569,16 @@
         "filename": "2026-01-19_2025年全国房地产市场基本情况.xlsx",
         "isStockData": false,
         "valueMonthly": 344
+      },
+      {
+        "yearMonth": "2026-02",
+        "publishDate": "2026-03-16",
+        "value": 237,
+        "yoy": 25.3,
+        "mom": -31.1,
+        "filename": "2026-03-16_2026年1—2月份全国房地产市场基本情况.xlsx",
+        "isStockData": false,
+        "valueMonthly": 237
       }
     ],
     "新建商品房销售面积 - 商业营业用房": [
@@ -4604,6 +4801,16 @@
         "filename": "2026-01-19_2025年全国房地产市场基本情况.xlsx",
         "isStockData": false,
         "valueMonthly": 683
+      },
+      {
+        "yearMonth": "2026-02",
+        "publishDate": "2026-03-16",
+        "value": 542,
+        "yoy": -7.4,
+        "mom": -20.6,
+        "filename": "2026-03-16_2026年1—2月份全国房地产市场基本情况.xlsx",
+        "isStockData": false,
+        "valueMonthly": 542
       }
     ],
     "新建商品房销售额": [
@@ -4826,6 +5033,16 @@
         "filename": "2026-01-19_2025年全国房地产市场基本情况.xlsx",
         "isStockData": false,
         "valueMonthly": 8807
+      },
+      {
+        "yearMonth": "2026-02",
+        "publishDate": "2026-03-16",
+        "value": 8186,
+        "yoy": -20.2,
+        "mom": -7.1,
+        "filename": "2026-03-16_2026年1—2月份全国房地产市场基本情况.xlsx",
+        "isStockData": false,
+        "valueMonthly": 8186
       }
     ],
     "新建商品房销售额 - 住宅": [
@@ -5048,6 +5265,16 @@
         "filename": "2026-01-19_2025年全国房地产市场基本情况.xlsx",
         "isStockData": false,
         "valueMonthly": 7327
+      },
+      {
+        "yearMonth": "2026-02",
+        "publishDate": "2026-03-16",
+        "value": 7163,
+        "yoy": -21.8,
+        "mom": -2.2,
+        "filename": "2026-03-16_2026年1—2月份全国房地产市场基本情况.xlsx",
+        "isStockData": false,
+        "valueMonthly": 7163
       }
     ],
     "新建商品房销售额 - 办公楼": [
@@ -5270,6 +5497,16 @@
         "filename": "2026-01-19_2025年全国房地产市场基本情况.xlsx",
         "isStockData": false,
         "valueMonthly": 496
+      },
+      {
+        "yearMonth": "2026-02",
+        "publishDate": "2026-03-16",
+        "value": 257,
+        "yoy": 3.9,
+        "mom": -48.2,
+        "filename": "2026-03-16_2026年1—2月份全国房地产市场基本情况.xlsx",
+        "isStockData": false,
+        "valueMonthly": 257
       }
     ],
     "新建商品房销售额 - 商业营业用房": [
@@ -5492,6 +5729,16 @@
         "filename": "2026-01-19_2025年全国房地产市场基本情况.xlsx",
         "isStockData": false,
         "valueMonthly": 643
+      },
+      {
+        "yearMonth": "2026-02",
+        "publishDate": "2026-03-16",
+        "value": 466,
+        "yoy": -15.4,
+        "mom": -27.5,
+        "filename": "2026-03-16_2026年1—2月份全国房地产市场基本情况.xlsx",
+        "isStockData": false,
+        "valueMonthly": 466
       }
     ],
     "商品房待售面积": [
@@ -5714,6 +5961,16 @@
         "filename": "2026-01-19_2025年全国房地产市场基本情况.xlsx",
         "isStockData": true,
         "valueMonthly": 76632
+      },
+      {
+        "yearMonth": "2026-02",
+        "publishDate": "2026-03-16",
+        "value": 79998,
+        "yoy": 0.1,
+        "mom": 4.4,
+        "filename": "2026-03-16_2026年1—2月份全国房地产市场基本情况.xlsx",
+        "isStockData": true,
+        "valueMonthly": 79998
       }
     ],
     "商品房待售面积 - 住宅": [
@@ -5936,6 +6193,16 @@
         "filename": "2026-01-19_2025年全国房地产市场基本情况.xlsx",
         "isStockData": true,
         "valueMonthly": 40236
+      },
+      {
+        "yearMonth": "2026-02",
+        "publishDate": "2026-03-16",
+        "value": 43752,
+        "yoy": 1.3,
+        "mom": 8.7,
+        "filename": "2026-03-16_2026年1—2月份全国房地产市场基本情况.xlsx",
+        "isStockData": true,
+        "valueMonthly": 43752
       }
     ],
     "商品房待售面积 - 办公楼": [
@@ -6158,6 +6425,16 @@
         "filename": "2026-01-19_2025年全国房地产市场基本情况.xlsx",
         "isStockData": true,
         "valueMonthly": 5330
+      },
+      {
+        "yearMonth": "2026-02",
+        "publishDate": "2026-03-16",
+        "value": 5321,
+        "yoy": 1.5,
+        "mom": -0.2,
+        "filename": "2026-03-16_2026年1—2月份全国房地产市场基本情况.xlsx",
+        "isStockData": true,
+        "valueMonthly": 5321
       }
     ],
     "商品房待售面积 - 商业营业用房": [
@@ -6380,6 +6657,16 @@
         "filename": "2026-01-19_2025年全国房地产市场基本情况.xlsx",
         "isStockData": true,
         "valueMonthly": 14247
+      },
+      {
+        "yearMonth": "2026-02",
+        "publishDate": "2026-03-16",
+        "value": 13760,
+        "yoy": -5.3,
+        "mom": -3.4,
+        "filename": "2026-03-16_2026年1—2月份全国房地产市场基本情况.xlsx",
+        "isStockData": true,
+        "valueMonthly": 13760
       }
     ],
     "房地产开发企业本年到位资金": [
@@ -6602,6 +6889,16 @@
         "filename": "2026-01-19_2025年全国房地产市场基本情况.xlsx",
         "isStockData": false,
         "valueMonthly": 7972
+      },
+      {
+        "yearMonth": "2026-02",
+        "publishDate": "2026-03-16",
+        "value": 13047,
+        "yoy": -16.5,
+        "mom": 63.7,
+        "filename": "2026-03-16_2026年1—2月份全国房地产市场基本情况.xlsx",
+        "isStockData": false,
+        "valueMonthly": 13047
       }
     ],
     "房地产开发企业本年到位资金 - 国内贷款": [
@@ -6824,6 +7121,16 @@
         "filename": "2026-01-19_2025年全国房地产市场基本情况.xlsx",
         "isStockData": false,
         "valueMonthly": 945
+      },
+      {
+        "yearMonth": "2026-02",
+        "publishDate": "2026-03-16",
+        "value": 2570,
+        "yoy": -13.9,
+        "mom": 172,
+        "filename": "2026-03-16_2026年1—2月份全国房地产市场基本情况.xlsx",
+        "isStockData": false,
+        "valueMonthly": 2570
       }
     ],
     "房地产开发企业本年到位资金 - 利用外资": [
@@ -7046,6 +7353,16 @@
         "filename": "2026-01-19_2025年全国房地产市场基本情况.xlsx",
         "isStockData": false,
         "valueMonthly": 2
+      },
+      {
+        "yearMonth": "2026-02",
+        "publishDate": "2026-03-16",
+        "value": 3,
+        "yoy": null,
+        "mom": 50,
+        "filename": "2026-03-16_2026年1—2月份全国房地产市场基本情况.xlsx",
+        "isStockData": false,
+        "valueMonthly": 3
       }
     ],
     "房地产开发企业本年到位资金 - 自筹资金": [
@@ -7268,6 +7585,16 @@
         "filename": "2026-01-19_2025年全国房地产市场基本情况.xlsx",
         "isStockData": false,
         "valueMonthly": 2521
+      },
+      {
+        "yearMonth": "2026-02",
+        "publishDate": "2026-03-16",
+        "value": 4939,
+        "yoy": -5.9,
+        "mom": 95.9,
+        "filename": "2026-03-16_2026年1—2月份全国房地产市场基本情况.xlsx",
+        "isStockData": false,
+        "valueMonthly": 4939
       }
     ],
     "房地产开发企业本年到位资金 - 定金及预收款": [
@@ -7490,6 +7817,16 @@
         "filename": "2026-01-19_2025年全国房地产市场基本情况.xlsx",
         "isStockData": false,
         "valueMonthly": 2991
+      },
+      {
+        "yearMonth": "2026-02",
+        "publishDate": "2026-03-16",
+        "value": 3589,
+        "yoy": -21.5,
+        "mom": 20,
+        "filename": "2026-03-16_2026年1—2月份全国房地产市场基本情况.xlsx",
+        "isStockData": false,
+        "valueMonthly": 3589
       }
     ],
     "房地产开发企业本年到位资金 - 个人按揭贷款": [
@@ -7712,6 +8049,16 @@
         "filename": "2026-01-19_2025年全国房地产市场基本情况.xlsx",
         "isStockData": false,
         "valueMonthly": 1066
+      },
+      {
+        "yearMonth": "2026-02",
+        "publishDate": "2026-03-16",
+        "value": 1128,
+        "yoy": -41.9,
+        "mom": 5.8,
+        "filename": "2026-03-16_2026年1—2月份全国房地产市场基本情况.xlsx",
+        "isStockData": false,
+        "valueMonthly": 1128
       }
     ]
   }
