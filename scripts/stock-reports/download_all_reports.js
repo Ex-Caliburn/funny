@@ -980,10 +980,10 @@ async function downloadReportByType(params, year, reportType) {
   }
 
   if (reportType === 'annual') {
-    // 年报通常在次年4月底前发布
-    // 如果当前年份等于报告年份+1，且当前月份小于5月，则年报可能还未发布
-    if (year === currentYear - 1 && currentMonth < 5) {
-      console.log(`      ⚠️  ${year}年年度报告可能尚未发布（通常在${year + 1}年3-4月发布），跳过下载`);
+    // 年报通常在次年 3–4 月集中披露；仅在上一年结束后的 1–2 月跳过，避免无效请求
+    // 注意：不能用 currentMonth < 5，否则 3、4 月也会被误跳过（与披露窗口矛盾）
+    if (year === currentYear - 1 && currentMonth < 3) {
+      console.log(`      ⚠️  ${year}年年度报告披露高峰多在${year + 1}年3-4月，当前为${year + 1}年1-2月，跳过下载`);
       return { year, type: reportType, success: false, reason: '报告可能尚未发布' };
     } else if (year >= currentYear) {
       console.log(`      ⚠️  ${year}年年度报告尚未发布（需等到${year + 1}年3-4月），跳过下载`);

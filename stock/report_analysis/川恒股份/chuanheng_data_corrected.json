@@ -4,7 +4,7 @@
     "stockCode": "002895",
     "description": "此文件包含修正后的数据，用于页面展示。手动修正的数据会被标记。",
     "dataSource": "chuanheng_data.json",
-    "lastUpdated": "2025-12-23",
+    "lastUpdated": "2026-04-09",
     "products": [
       "phosphorus"
     ],
@@ -15,6 +15,55 @@
     }
   },
   "summary": [
+    {
+      "period": "2025年全年",
+      "year": "2025",
+      "filename": "川恒股份2025年年度报告.pdf",
+      "phosphorus": {
+        "production": 131.468747,
+        "sales": 131.33187900000001,
+        "inventory": 7.1399300000000006,
+        "revenue": 83.28106422569999,
+        "cost": 58.0797239827,
+        "unitPrice": null,
+        "unitCost": null,
+        "unitGrossProfit": null,
+        "grossMargin": 26.38,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "productSales": {
+        "feedGradeMCP": null,
+        "phosphoricAcid": null,
+        "map": null,
+        "phosphateRock": 74.91
+      },
+      "productFinancials": {
+        "feedGradeMCP": {
+          "revenue": 2093632069.44,
+          "cost": 1429737731.25,
+          "grossMargin": 31.71,
+          "_corrected": true,
+          "_notes": "根据2025年报分产品表格"
+        },
+        "map": {
+          "revenue": 1375166077.64,
+          "cost": 700007758.07,
+          "grossMargin": 49.1
+        },
+        "phosphateRock": {
+          "revenue": 563391325.07,
+          "cost": 106462193.68,
+          "grossMargin": 81.1
+        },
+        "phosphoricAcid": {
+          "revenue": 2810161088.39,
+          "cost": 2311164690.34,
+          "grossMargin": 17.76
+        }
+      }
+    },
     {
       "period": "2025年1-9月",
       "year": "2025",

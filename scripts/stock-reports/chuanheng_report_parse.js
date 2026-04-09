@@ -1439,6 +1439,250 @@ function generateSummary(allData) {
 }
 
 /**
+ * 从文件名解析报告期（与 jinkong_report_parse / zijin_report_parse 一致）
+ * @param {string} filename
+ * @param {string|number} year
+ * @returns {string|null}
+ */
+function getPeriodFromFilename(filename, year) {
+  if (!filename) return null;
+  const y = String(year);
+  if (filename.includes('第一季度')) {
+    return `${y}年1-3月`;
+  }
+  if (filename.includes('半年度') || filename.includes('半年')) {
+    return `${y}年上半年`;
+  }
+  if (filename.includes('第三季度')) {
+    return `${y}年1-9月`;
+  }
+  if ((filename.includes('年度报告') || filename.includes('年报')) && !filename.includes('半年度')) {
+    return `${y}年全年`;
+  }
+  return null;
+}
+
+/** 报告期排序权重：与现有 chuanheng_data_corrected.json 展示顺序一致（同年份内由大到小） */
+function periodEndRank(period) {
+  if (!period) return 0;
+  if (period.includes('全年')) return 12;
+  if (period.includes('1-9月')) return 9;
+  if (period.includes('上半年')) return 6;
+  if (period.includes('1-3月')) return 3;
+  return 0;
+}
+
+function emptyProductFinancials() {
+  return {
+    feedGradeMCP: { revenue: null, cost: null, grossMargin: null },
+    map: { revenue: null, cost: null, grossMargin: null },
+    phosphateRock: { revenue: null, cost: null, grossMargin: null },
+    phosphoricAcid: { revenue: null, cost: null, grossMargin: null }
+  };
+}
+
+/**
+ * 将 generateSummary 的一条记录转为修正表结构（磷化工营收/成本为亿元）
+ * @param {object} item
+ * @returns {object|null}
+ */
+function buildCorrectedItemFromRaw(item) {
+  const yearStr = String(item.year);
+  const period = getPeriodFromFilename(item.filename, yearStr);
+  if (!period) return null;
+
+  const pf = emptyProductFinancials();
+  const src = item.productFinancials || {};
+  for (const key of Object.keys(pf)) {
+    if (src[key]) {
+      pf[key].revenue = src[key].revenue != null ? src[key].revenue : null;
+      pf[key].cost = src[key].cost != null ? src[key].cost : null;
+      pf[key].grossMargin = src[key].grossMargin != null ? src[key].grossMargin : null;
+    }
+  }
+
+  const ps = item.productSales || {};
+  return {
+    period,
+    year: yearStr,
+    filename: item.filename,
+    phosphorus: {
+      production: item.production ?? null,
+      sales: item.sales ?? null,
+      inventory: item.inventory ?? null,
+      revenue: item.revenue != null ? item.revenue / 100000000 : null,
+      cost: item.cost != null ? item.cost / 100000000 : null,
+      unitPrice: null,
+      unitCost: null,
+      unitGrossProfit: null,
+      grossMargin: item.grossMargin != null ? item.grossMargin : null,
+      _corrected: false,
+      _verified: false,
+      _notes: null
+    },
+    productSales: {
+      feedGradeMCP: ps.feedGradeMCP ?? null,
+      phosphoricAcid: ps.phosphoricAcid ?? null,
+      map: ps.map ?? null,
+      phosphateRock: ps.phosphateRock ?? null
+    },
+    productFinancials: pf
+  };
+}
+
+/**
+ * 智能合并：保留 phosphorus._corrected 及分产品 _corrected，只向空字段填入新提取值
+ * @param {object} existing
+ * @param {object} incoming
+ * @returns {boolean} 是否有字段被更新
+ */
+function smartMergeChuanheng(existing, incoming) {
+  let updated = false;
+
+  if (existing.phosphorus && !existing.phosphorus._corrected) {
+    const fields = [
+      'production',
+      'sales',
+      'inventory',
+      'revenue',
+      'cost',
+      'unitPrice',
+      'unitCost',
+      'unitGrossProfit',
+      'grossMargin'
+    ];
+    for (const f of fields) {
+      if (existing.phosphorus[f] == null && incoming.phosphorus[f] != null) {
+        existing.phosphorus[f] = incoming.phosphorus[f];
+        updated = true;
+      }
+    }
+    if (incoming.filename && existing.filename !== incoming.filename) {
+      existing.filename = incoming.filename;
+      updated = true;
+    }
+  }
+
+  const psKeys = ['feedGradeMCP', 'phosphoricAcid', 'map', 'phosphateRock'];
+  for (const k of psKeys) {
+    if (existing.productSales[k] == null && incoming.productSales[k] != null) {
+      existing.productSales[k] = incoming.productSales[k];
+      updated = true;
+    }
+  }
+
+  const finKeys = ['feedGradeMCP', 'map', 'phosphateRock', 'phosphoricAcid'];
+  for (const k of finKeys) {
+    const ex = existing.productFinancials[k];
+    const inc = incoming.productFinancials[k];
+    if (!ex || ex._corrected) continue;
+    for (const f of ['revenue', 'cost', 'grossMargin']) {
+      if (ex[f] == null && inc && inc[f] != null) {
+        ex[f] = inc[f];
+        updated = true;
+      }
+    }
+  }
+
+  return updated;
+}
+
+/**
+ * 解析完成后同步 chuanheng_data_corrected.json（新增报告期 + 对未修正记录补全空字段）
+ */
+function updateCorrectedData() {
+  const baseDir = path.join(__dirname, '../../stock/report_analysis/川恒股份');
+  const rawPath = path.join(baseDir, 'chuanheng_data.json');
+  const correctedPath = path.join(baseDir, 'chuanheng_data_corrected.json');
+
+  console.log('\n' + '='.repeat(60));
+  console.log('同步 chuanheng_data_corrected.json ...');
+
+  if (!fs.existsSync(rawPath)) {
+    console.error('❌ chuanheng_data.json 不存在，跳过修正文件同步');
+    console.log('='.repeat(60));
+    return;
+  }
+
+  const rawFile = JSON.parse(fs.readFileSync(rawPath, 'utf8'));
+  const rawSummary = rawFile.summary || [];
+  console.log(`  原始 summary: ${rawSummary.length} 条`);
+
+  let correctedData;
+  if (fs.existsSync(correctedPath)) {
+    correctedData = JSON.parse(fs.readFileSync(correctedPath, 'utf8'));
+    console.log(`  已有修正记录: ${(correctedData.summary || []).length} 条`);
+  } else {
+    correctedData = {
+      _metadata: {
+        stockName: '川恒股份',
+        stockCode: '002895',
+        description: '此文件包含修正后的数据，用于页面展示。手动修正的数据会被标记。',
+        dataSource: 'chuanheng_data.json',
+        lastUpdated: new Date().toISOString().split('T')[0],
+        products: ['phosphorus'],
+        dataFlow: 'PDF报告 → 自动提取(chuanheng_data.json) → 增量更新(本文件) → 手动修正 → 页面展示',
+        correctionRules: {
+          manual: '手动填入或修改的数据，标记 _source: "manual"',
+          verified: '经过人工验证确认正确的数据，标记 _verified: true'
+        }
+      },
+      summary: []
+    };
+    console.log('  将创建新的 chuanheng_data_corrected.json');
+  }
+
+  if (!Array.isArray(correctedData.summary)) {
+    correctedData.summary = [];
+  }
+
+  const periodToIndex = new Map();
+  correctedData.summary.forEach((row, idx) => {
+    if (row.period) periodToIndex.set(row.period, idx);
+  });
+
+  let added = 0;
+  let merged = 0;
+
+  for (const rawItem of rawSummary) {
+    const newItem = buildCorrectedItemFromRaw(rawItem);
+    if (!newItem) continue;
+
+    if (!periodToIndex.has(newItem.period)) {
+      correctedData.summary.push(newItem);
+      periodToIndex.set(newItem.period, correctedData.summary.length - 1);
+      added++;
+      console.log(`  + 新增: ${newItem.period}`);
+    } else {
+      const idx = periodToIndex.get(newItem.period);
+      const existing = correctedData.summary[idx];
+      if (smartMergeChuanheng(existing, newItem)) {
+        merged++;
+        console.log(`  ↻ 合并: ${newItem.period}（仅填充空字段）`);
+      }
+    }
+  }
+
+  correctedData.summary.sort((a, b) => {
+    const yA = parseInt(a.year, 10);
+    const yB = parseInt(b.year, 10);
+    if (yA !== yB) return yB - yA;
+    return periodEndRank(b.period) - periodEndRank(a.period);
+  });
+
+  correctedData._metadata = correctedData._metadata || {};
+  correctedData._metadata.lastUpdated = new Date().toISOString().split('T')[0];
+  correctedData._metadata.dataSource = 'chuanheng_data.json';
+
+  fs.writeFileSync(correctedPath, JSON.stringify(correctedData, null, 2), 'utf8');
+
+  console.log(`\n✅ 已写入: ${correctedPath}`);
+  console.log(`   总记录: ${correctedData.summary.length}，新增: ${added}，合并更新: ${merged}`);
+  console.log('📌 已标记 _corrected / 分产品 _corrected 的条目不会被自动覆盖');
+  console.log('='.repeat(60));
+}
+
+/**
  * 主函数
  */
 async function main() {
@@ -1492,6 +1736,8 @@ async function main() {
   fs.writeFileSync(outputPath, JSON.stringify({ allData, summary }, null, 2), 'utf8');
   console.log(`\n数据已保存到: ${outputPath}`);
 
+  updateCorrectedData();
+
   return { allData, summary };
 }
 
@@ -1500,5 +1746,12 @@ if (require.main === module) {
   main().catch(console.error);
 }
 
-module.exports = { parsePDF, processAllPDFs, generateSummary };
+module.exports = {
+  parsePDF,
+  processAllPDFs,
+  generateSummary,
+  updateCorrectedData,
+  getPeriodFromFilename,
+  buildCorrectedItemFromRaw
+};
 
