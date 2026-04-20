@@ -93,14 +93,14 @@
             font-size: 11px;
             table-layout: auto; /* 改为auto以自动调整列宽 */
         }
-        
+
         /* 确保表头列对齐 */
         thead th {
             white-space: nowrap;
             text-align: center;
             vertical-align: middle;
         }
-        
+
         tbody td {
             text-align: center;
             vertical-align: middle;
@@ -418,7 +418,7 @@
         <div class="controls">
             <div class="btn-group">
                 <!-- 暂时隐藏单季度数据按钮 -->
-                <!-- <button class="btn active" onclick="switchView('quarterly', event)">单季度数据</button> -->
+                <button class="btn active" onclick="switchView('quarterly', event)">单季度数据</button>
                 <button class="btn active" onclick="switchView('cumulative', event)">累计数据</button>
             </div>
         </div>
@@ -711,7 +711,7 @@
 
                                 allData.forEach((item, index) => {
                                     labels.push(item.period);
-                                    
+
                                     // 处理计算字段（单位价格、单位成本、毛利率）
                                     let value = item[columnKey];
                                     if (value === null || value === undefined) {
@@ -763,7 +763,7 @@
                                     // 计算同比和环比的值（也需要处理计算字段）
                                     let yoyValue = baseYoY ? baseYoY[columnKey] : null;
                                     let qoqValue = baseQoQ ? baseQoQ[columnKey] : null;
-                                    
+
                                     if (yoyValue === null || yoyValue === undefined) {
                                         if (columnKey === 'silver_unitPrice' && baseYoY) {
                                             const silverYoY = baseYoY.silver || {};
@@ -803,7 +803,7 @@
                                             yoyValue = calc !== null && !isNaN(calc) ? calc : null;
                                         }
                                     }
-                                    
+
                                     if (qoqValue === null || qoqValue === undefined) {
                                         if (columnKey === 'silver_unitPrice' && baseQoQ) {
                                             const silverQoQ = baseQoQ.silver || {};
@@ -1285,7 +1285,7 @@
                     // 银产量
                     // 优先使用lastYearProduction字段（如果存在）
                     const silverProdYoYValue = silver.lastYearProduction !== null && silver.lastYearProduction !== undefined && !isNaN(silver.lastYearProduction)
-                        ? silver.lastYearProduction 
+                        ? silver.lastYearProduction
                         : (silverYoY.production !== null && !isNaN(silverYoY.production) ? silverYoY.production : null);
                     const silverProdYoY = silverProdYoYValue !== null && silver.production !== null && !isNaN(silver.production) && !isNaN(silverProdYoYValue) ? calculateChange(silver.production, silverProdYoYValue) : null;
                     const silverProdQoQ = !isCumulative && silverQoQ.production !== null && silver.production !== null && !isNaN(silver.production) && !isNaN(silverQoQ.production) ? calculateChange(silver.production, silverQoQ.production) : null;
@@ -1345,8 +1345,8 @@
                         ? ((silverQoQ.revenue - silverQoQ.cost) / silverQoQ.revenue * 100)
                         : null;
                     const silverGrossMarginQoQ = silverGrossMarginQoQCalc !== null && !isNaN(silverGrossMarginQoQCalc) ? silverGrossMarginQoQCalc.toFixed(2) : null;
-                    const silverGrossMarginYoYChange = silverGrossMargin !== null && silverGrossMarginYoY !== null 
-                        ? calculateChange(parseFloat(silverGrossMargin), parseFloat(silverGrossMarginYoY)) 
+                    const silverGrossMarginYoYChange = silverGrossMargin !== null && silverGrossMarginYoY !== null
+                        ? calculateChange(parseFloat(silverGrossMargin), parseFloat(silverGrossMarginYoY))
                         : null;
                     const silverGrossMarginQoQChange = !isCumulative && silverGrossMargin !== null && silverGrossMarginQoQ !== null
                         ? calculateChange(parseFloat(silverGrossMargin), parseFloat(silverGrossMarginQoQ))
@@ -1377,7 +1377,7 @@
                     // 锡产量
                     // 优先使用lastYearProduction字段（如果存在）
                     const tinProdYoYValue = tin.lastYearProduction !== null && tin.lastYearProduction !== undefined && !isNaN(tin.lastYearProduction)
-                        ? tin.lastYearProduction 
+                        ? tin.lastYearProduction
                         : (tinYoY.production !== null && !isNaN(tinYoY.production) ? tinYoY.production : null);
                     const tinProdYoY = tinProdYoYValue !== null && tin.production !== null && !isNaN(tin.production) && !isNaN(tinProdYoYValue) ? calculateChange(tin.production, tinProdYoYValue) : null;
                     const tinProdQoQ = !isCumulative && tinQoQ.production !== null && tin.production !== null && !isNaN(tin.production) && !isNaN(tinQoQ.production) ? calculateChange(tin.production, tinQoQ.production) : null;
@@ -1437,8 +1437,8 @@
                         ? ((tinQoQ.revenue - tinQoQ.cost) / tinQoQ.revenue * 100)
                         : null;
                     const tinGrossMarginQoQ = tinGrossMarginQoQCalc !== null && !isNaN(tinGrossMarginQoQCalc) ? tinGrossMarginQoQCalc.toFixed(2) : null;
-                    const tinGrossMarginYoYChange = tinGrossMargin !== null && tinGrossMarginYoY !== null 
-                        ? calculateChange(parseFloat(tinGrossMargin), parseFloat(tinGrossMarginYoY)) 
+                    const tinGrossMarginYoYChange = tinGrossMargin !== null && tinGrossMarginYoY !== null
+                        ? calculateChange(parseFloat(tinGrossMargin), parseFloat(tinGrossMarginYoY))
                         : null;
                     const tinGrossMarginQoQChange = !isCumulative && tinGrossMargin !== null && tinGrossMarginQoQ !== null
                         ? calculateChange(parseFloat(tinGrossMargin), parseFloat(tinGrossMarginQoQ))
@@ -1465,10 +1465,10 @@
                 // 数据已经包含银、锡的营收、成本、产量、销量，无需额外计算
 
                 console.log('数据加载和计算完成，准备渲染表格');
-                
+
                 // 渲染累计数据表格（默认）
                 renderTable('cumulative');
-                
+
                 // 隐藏分产品销量表格（兴业银锡不需要）
                 const productSalesSection = document.getElementById('productSalesSection');
                 if (productSalesSection) {

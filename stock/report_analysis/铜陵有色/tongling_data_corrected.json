@@ -4,7 +4,7 @@
     "stockCode": "000630",
     "description": "此文件包含修正后的数据，用于页面展示。手动修正的数据会被标记。",
     "dataSource": "tongling_data.json",
-    "lastUpdated": "2025-12-23",
+    "lastUpdated": "2026-04-20",
     "products": [
       "copper",
       "goldByproduct",
@@ -18,6 +18,44 @@
   },
   "summary": [
     {
+      "period": "2025年全年",
+      "year": "2025",
+      "filename": "铜陵有色2025年年度报告.pdf",
+      "cost": 1373.3512490387,
+      "revenue": 1426.0125184254998,
+      "production": null,
+      "sales": null,
+      "inventory": null,
+      "grossMargin": 3.69,
+      "operatingProfit": 52.66,
+      "productSales": {
+        "cathodeCopper": 195.48,
+        "copperConcentrate": 19.77,
+        "copperMaterial": null
+      },
+      "otherProducts": {
+        "goldByproduct": {
+          "revenue": 252.70864821599997,
+          "cost": 192.73117131880002,
+          "grossMargin": 23.73,
+          "operatingProfit": 59.98,
+          "_corrected": false,
+          "_verified": false
+        },
+        "chemical": {
+          "revenue": 42.1830517076,
+          "cost": 22.9269951102,
+          "grossMargin": 45.65,
+          "operatingProfit": 19.26,
+          "_corrected": false,
+          "_verified": false
+        }
+      },
+      "_corrected": false,
+      "_verified": false,
+      "_notes": null
+    },
+    {
       "period": "2025年1-9月",
       "year": "2025",
       "filename": "铜陵有色2025年第三季度报告.pdf",
@@ -26,7 +64,7 @@
       "production": null,
       "sales": null,
       "inventory": null,
-      "grossMargin": null,
+      "grossMargin": 4.62,
       "operatingProfit": 56.26,
       "productSales": {
         "cathodeCopper": null,
@@ -104,7 +142,7 @@
       "production": null,
       "sales": null,
       "inventory": null,
-      "grossMargin": null,
+      "grossMargin": 5.27,
       "operatingProfit": 18.55,
       "productSales": {
         "cathodeCopper": null,
@@ -142,8 +180,8 @@
       "production": null,
       "sales": null,
       "inventory": null,
-      "grossMargin": 18,
-      "operatingProfit": 58.58,
+      "grossMargin": 4.38,
+      "operatingProfit": 53.87,
       "productSales": {
         "cathodeCopper": 176.8,
         "copperConcentrate": 15.52,
@@ -180,7 +218,7 @@
       "production": null,
       "sales": null,
       "inventory": null,
-      "grossMargin": null,
+      "grossMargin": 4.8,
       "operatingProfit": 51.03,
       "productSales": {
         "cathodeCopper": null,
@@ -220,9 +258,9 @@
       "inventory": null,
       "grossMargin": 7.79,
       "operatingProfit": 40.39,
-      "_corrected": true,
-      "_verified": true,
-      "_notes": "根据营收和成本计算：(605.21 - 558.04) / 605.21 * 100 = 7.79%",
+      "_corrected": false,
+      "_verified": false,
+      "_notes": null,
       "productSales": {
         "cathodeCopper": 175.63,
         "copperConcentrate": 17.51,
@@ -246,10 +284,7 @@
           "_corrected": false,
           "_verified": false
         }
-      },
-      "_corrected": false,
-      "_verified": false,
-      "_notes": null
+      }
     },
     {
       "period": "2024年1-3月",
@@ -260,8 +295,8 @@
       "production": null,
       "sales": null,
       "inventory": null,
-      "grossMargin": null,
-      "operatingProfit": 18.55,
+      "grossMargin": 5.25,
+      "operatingProfit": 18.01,
       "productSales": {
         "cathodeCopper": null,
         "copperConcentrate": null,
