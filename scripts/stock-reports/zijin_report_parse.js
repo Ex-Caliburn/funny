@@ -1883,20 +1883,21 @@ function extractGoldFinancials(text) {
   
   // 匹配格式：金产品销售收入 \tXX \t亿元，金产品销售成本 \tXX \t亿元
   // 注意：必须明确包含"金产品"关键词，避免匹配到公司总营业收入
+  const GOLD_REVENUE_UPPER_LIMIT = 100000000000; // 1000亿元
   const pattern1 = /金产品销售收入[\s\t]+([\d,，]+\.?\d*)[\s\t]+亿元[，,]*[\s\t]*金产品销售成本[\s\t]+([\d,，]+\.?\d*)[\s\t]+亿元/g;
   let match1 = pattern1.exec(text);
   if (match1) {
     const revenue = extractNumber(match1[1] + '亿元');
     const cost = extractNumber(match1[2] + '亿元');
-    // 验证数据合理性：金产品营收通常不会超过500亿元
-    if (revenue && revenue < 50000000000) {
+    // 验证数据合理性：过滤明显异常的超大值
+    if (revenue && revenue < GOLD_REVENUE_UPPER_LIMIT) {
       result.goldRevenue = revenue;
       result.goldCost = cost;
       if (result.goldRevenue && result.goldCost) {
         result.grossProfit = result.goldRevenue - result.goldCost;
       }
+      return result;
     }
-    return result;
   }
   
   // 从"分产品"表格中提取金产品的营业收入、营业成本和毛利率
@@ -2350,9 +2351,9 @@ function generateSummary(allData) {
     if (!goldRevenue) {
       goldRevenue = getMainValue(data.gold.revenue, '金产品销售收入');
     }
-    // 验证金营收数据的合理性（金产品营收通常在几十到几百亿之间）
-    // 如果超过500亿元，很可能是错误地匹配到了公司总营业收入
-    if (goldRevenue && goldRevenue > 50000000000) {
+    // 验证金营收数据的合理性：过滤明显异常的超大值
+    // 注：2025年年报金营收已超过500亿元，因此阈值放宽到1000亿元
+    if (goldRevenue && goldRevenue > 100000000000) {
       console.log(`  警告: 金营收疑似异常 (${(goldRevenue / 100000000).toFixed(2)}亿元)，已过滤`);
       goldRevenue = null;
     }

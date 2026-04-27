@@ -4,7 +4,7 @@
     "stockCode": "601899",
     "description": "此文件包含修正后的数据，用于页面展示。手动修正的数据会被标记。",
     "dataSource": "zijin_data.json",
-    "lastUpdated": "2025-12-21",
+    "lastUpdated": "2026-04-27",
     "products": [
       "copper",
       "gold"
@@ -16,6 +16,72 @@
     }
   },
   "summary": [
+    {
+      "period": "2026年1-3月",
+      "year": "2026",
+      "filename": "紫金矿业2026年第一季度报告.pdf",
+      "copper": {
+        "production": 26,
+        "sales": 22.2758,
+        "inventory": null,
+        "revenue": 186.26458544,
+        "cost": 60.07536424,
+        "unitPrice": 8.361746174772623,
+        "unitCost": 2.696889190960594,
+        "unitGrossProfit": 5.6648569838120295,
+        "grossMargin": 67.74729662212057,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "gold": {
+        "production": 23.497,
+        "sales": 22.154,
+        "inventory": null,
+        "revenue": 234.3148472,
+        "cost": 61.1301726,
+        "unitPrice": 1057.6638403899974,
+        "unitCost": 275.9328906743703,
+        "unitGrossProfit": 781.730949715627,
+        "grossMargin": 73.91109725632444,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      }
+    },
+    {
+      "period": "2025年全年",
+      "year": "2025",
+      "filename": "紫金矿业2025年年度报告.pdf",
+      "copper": {
+        "production": 120,
+        "sales": 88.4943,
+        "inventory": 1.1343,
+        "revenue": 578.3488,
+        "cost": 225.3192,
+        "unitPrice": 6.535435615627221,
+        "unitCost": 2.5461436499299954,
+        "unitGrossProfit": 3.9892919656972254,
+        "grossMargin": 61.040949682959486,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "gold": {
+        "production": 89.544,
+        "sales": 83.161,
+        "inventory": 1.47,
+        "revenue": 646.7514,
+        "cost": 228.8877,
+        "unitPrice": 777.7099842474237,
+        "unitCost": 275.2344247904667,
+        "unitGrossProfit": 502.475559456957,
+        "grossMargin": 64.60963207810605,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      }
+    },
     {
       "period": "2025年1-9月",
       "year": "2025",

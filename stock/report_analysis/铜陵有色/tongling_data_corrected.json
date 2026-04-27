@@ -4,7 +4,7 @@
     "stockCode": "000630",
     "description": "此文件包含修正后的数据，用于页面展示。手动修正的数据会被标记。",
     "dataSource": "tongling_data.json",
-    "lastUpdated": "2026-04-20",
+    "lastUpdated": "2026-04-24",
     "products": [
       "copper",
       "goldByproduct",
@@ -36,19 +36,21 @@
       "otherProducts": {
         "goldByproduct": {
           "revenue": 252.70864821599997,
-          "cost": 192.73117131880002,
-          "grossMargin": 23.73,
-          "operatingProfit": 59.98,
-          "_corrected": false,
-          "_verified": false
+          "cost": 195.9157192026,
+          "grossMargin": 22.47,
+          "operatingProfit": 56.79,
+          "_corrected": true,
+          "_verified": true,
+          "_notes": "根据年报分产品表修正：营收252.708648216亿元，成本195.9157192026亿元，毛利率22.47%"
         },
         "chemical": {
           "revenue": 42.1830517076,
-          "cost": 22.9269951102,
-          "grossMargin": 45.65,
-          "operatingProfit": 19.26,
-          "_corrected": false,
-          "_verified": false
+          "cost": 17.3863225455,
+          "grossMargin": 58.78,
+          "operatingProfit": 24.8,
+          "_corrected": true,
+          "_verified": true,
+          "_notes": "根据年报分产品表修正：营收42.1830517076亿元，成本17.3863225455亿元，毛利率58.78%"
         }
       },
       "_corrected": false,

@@ -1004,7 +1004,8 @@
             const quarterlyData = [];
             const sourceData = rawData[product] || [];
 
-            [2022, 2023, 2024, 2025].forEach(year => {
+            const years = [...new Set(sourceData.map(d => d.year).filter(y => Number.isFinite(y)))].sort((a, b) => a - b);
+            years.forEach(year => {
                 const yearData = sourceData.filter(d => d.year === year).sort((a, b) => a.month - b.month);
 
                 const q1 = yearData.find(d => d.period.includes('1-3月'));

@@ -418,8 +418,8 @@
         <div class="controls">
             <div class="btn-group">
                 <!-- 暂时隐藏单季度数据按钮 -->
-                <button class="btn active" onclick="switchView('quarterly', event)">单季度数据</button>
-                <button class="btn active" onclick="switchView('cumulative', event)">累计数据</button>
+                <!-- <button class="btn" onclick="switchView('quarterly', event)">单季度数据</button> -->
+                <!-- <button class="btn active" onclick="switchView('cumulative', event)">累计数据</button> -->
             </div>
         </div>
 
@@ -997,8 +997,9 @@
             function calculateQuarterlyData() {
                 const quarterlyData = [];
 
-                // 按年份分组处理（包含2023-2025年）
-                [2023, 2024, 2025].forEach(year => {
+                // 按年份分组处理（从数据中动态获取年份，避免遗漏新年份）
+                const years = [...new Set(rawData.map(d => d.year).filter(y => Number.isFinite(y)))].sort((a, b) => a - b);
+                years.forEach(year => {
                     const yearData = rawData.filter(d => d.year === year).sort((a, b) => a.month - b.month);
 
                     // Q1 = 1-3月数据
@@ -1466,8 +1467,8 @@
 
                 console.log('数据加载和计算完成，准备渲染表格');
 
-                // 渲染累计数据表格（默认）
-                renderTable('cumulative');
+                // 走统一的视图切换逻辑，确保按钮状态与默认视图一致
+                window.switchView(currentViewType);
 
                 // 隐藏分产品销量表格（兴业银锡不需要）
                 const productSalesSection = document.getElementById('productSalesSection');

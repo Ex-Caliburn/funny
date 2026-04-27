@@ -1130,6 +1130,9 @@ function generateSummary(allData) {
       filename: data.filename,
       cost: copperCost,
       revenue: copperRevenue,
+      operatingProfit: (copperRevenue !== null && copperRevenue !== undefined && copperCost !== null && copperCost !== undefined)
+        ? (copperRevenue - copperCost) / 100000000
+        : null,
       production: production,
       sales: sales,
       inventory: inventory,
@@ -1140,8 +1143,8 @@ function generateSummary(allData) {
         copperMaterial: copperMaterial
       },
       otherProducts: data.otherProducts || {
-        goldByproduct: { revenue: null, cost: null, grossMargin: null },
-        chemical: { revenue: null, cost: null, grossMargin: null }
+        goldByproduct: { revenue: null, cost: null, grossMargin: null, operatingProfit: null },
+        chemical: { revenue: null, cost: null, grossMargin: null, operatingProfit: null }
       }
     });
   }
@@ -1206,6 +1209,46 @@ async function updateCorrectedData() {
   // 读取原始数据
   const rawData = JSON.parse(fs.readFileSync(rawPath, 'utf8'));
 
+  // 判断某个对象是否被手动修正（被修正的数据不能被自动流程覆盖）
+  // 兼容 `_corrected` / `corrected`，以及布尔和字符串类型
+  const isCorrectedLocked = (value) => {
+    if (!value) return false;
+    const correctedFlag = value._corrected ?? value.corrected;
+    return correctedFlag === true || correctedFlag === 'true';
+  };
+
+  // 只要记录任意层级出现 corrected=true，就整条记录锁定，避免被自动覆盖
+  const isRecordLocked = (record) => {
+    if (!record) return false;
+    return (
+      isCorrectedLocked(record) ||
+      isCorrectedLocked(record.productSales) ||
+      isCorrectedLocked(record.otherProducts) ||
+      isCorrectedLocked(record.otherProducts && record.otherProducts.goldByproduct) ||
+      isCorrectedLocked(record.otherProducts && record.otherProducts.chemical)
+    );
+  };
+
+  // 合并自动数据并保留手工字段（如 _notes、operatingProfit 等）
+  const mergeAutoWithManualFields = (existingSection, nextSection) => {
+    if (!nextSection) return existingSection || null;
+    return {
+      ...(existingSection || {}),
+      ...nextSection,
+      // 人工验证为 true 时不自动重置
+      _verified: existingSection && existingSection._verified === true ? true : nextSection._verified
+    };
+  };
+
+  // 计算毛利（单位：亿元）
+  const calcOperatingProfit = (revenue, cost) => {
+    if (revenue !== null && revenue !== undefined && cost !== null && cost !== undefined &&
+        !isNaN(revenue) && !isNaN(cost)) {
+      return parseFloat((revenue - cost).toFixed(2));
+    }
+    return null;
+  };
+
   // 读取或创建修正数据
   let correctedData;
   if (fs.existsSync(correctedPath)) {
@@ -1264,7 +1307,7 @@ async function updateCorrectedData() {
     if (existingIndex.has(key)) {
       // 如果已存在，检查是否需要更新（只更新未修正的数据）
       const existingItem = existingIndex.get(key);
-      if (!existingItem._corrected) {
+      if (!isRecordLocked(existingItem)) {
         // 更新数据（但保留手动修正的标记）
         existingItem.cost = item.cost ? item.cost / 100000000 : null;
         existingItem.revenue = item.revenue ? item.revenue / 100000000 : null;
@@ -1278,11 +1321,12 @@ async function updateCorrectedData() {
         } else {
           existingItem.grossMargin = null;
         }
-        if (item.productSales) {
+        existingItem.operatingProfit = calcOperatingProfit(existingItem.revenue, existingItem.cost);
+        if (item.productSales && !isCorrectedLocked(existingItem.productSales)) {
           existingItem.productSales = item.productSales;
         }
         if (item.otherProducts) {
-          existingItem.otherProducts = {
+          const nextOtherProducts = {
             goldByproduct: item.otherProducts.goldByproduct ? {
               revenue: item.otherProducts.goldByproduct.revenue ? item.otherProducts.goldByproduct.revenue / 100000000 : null,
               cost: item.otherProducts.goldByproduct.cost ? item.otherProducts.goldByproduct.cost / 100000000 : null,
@@ -1295,6 +1339,11 @@ async function updateCorrectedData() {
                   return !isNaN(calculatedMargin) ? parseFloat(calculatedMargin.toFixed(2)) : null;
                 }
                 return null;
+              })(),
+              operatingProfit: (() => {
+                const rev = item.otherProducts.goldByproduct.revenue ? item.otherProducts.goldByproduct.revenue / 100000000 : null;
+                const cst = item.otherProducts.goldByproduct.cost ? item.otherProducts.goldByproduct.cost / 100000000 : null;
+                return calcOperatingProfit(rev, cst);
               })(),
               _corrected: false,
               _verified: false
@@ -1312,15 +1361,34 @@ async function updateCorrectedData() {
                 }
                 return null;
               })(),
+              operatingProfit: (() => {
+                const rev = item.otherProducts.chemical.revenue ? item.otherProducts.chemical.revenue / 100000000 : null;
+                const cst = item.otherProducts.chemical.cost ? item.otherProducts.chemical.cost / 100000000 : null;
+                return calcOperatingProfit(rev, cst);
+              })(),
               _corrected: false,
               _verified: false
             } : null
+          };
+
+          const existingOtherProducts = existingItem.otherProducts || {};
+          const keepGold = isCorrectedLocked(existingOtherProducts.goldByproduct);
+          const keepChemical = isCorrectedLocked(existingOtherProducts.chemical);
+
+          existingItem.otherProducts = {
+            goldByproduct: keepGold
+              ? existingOtherProducts.goldByproduct
+              : mergeAutoWithManualFields(existingOtherProducts.goldByproduct, nextOtherProducts.goldByproduct),
+            chemical: keepChemical
+              ? existingOtherProducts.chemical
+              : mergeAutoWithManualFields(existingOtherProducts.chemical, nextOtherProducts.chemical)
           };
         }
         updatedCount++;
         console.log(`🔄 更新数据: ${period}`);
       } else {
         skippedCount++;
+        console.log(`⏭️ 跳过锁定数据: ${period}`);
       }
       return;
     }
@@ -1345,6 +1413,11 @@ async function updateCorrectedData() {
         }
         return null;
       })(),
+      operatingProfit: (() => {
+        const rev = item.revenue ? item.revenue / 100000000 : null;
+        const cst = item.cost ? item.cost / 100000000 : null;
+        return calcOperatingProfit(rev, cst);
+      })(),
       productSales: item.productSales || null,
       otherProducts: item.otherProducts ? {
         goldByproduct: item.otherProducts.goldByproduct ? {
@@ -1359,6 +1432,11 @@ async function updateCorrectedData() {
               return !isNaN(calculatedMargin) ? parseFloat(calculatedMargin.toFixed(2)) : null;
             }
             return null;
+          })(),
+          operatingProfit: (() => {
+            const rev = item.otherProducts.goldByproduct.revenue ? item.otherProducts.goldByproduct.revenue / 100000000 : null;
+            const cst = item.otherProducts.goldByproduct.cost ? item.otherProducts.goldByproduct.cost / 100000000 : null;
+            return calcOperatingProfit(rev, cst);
           })(),
           _corrected: false,
           _verified: false
@@ -1375,6 +1453,11 @@ async function updateCorrectedData() {
               return !isNaN(calculatedMargin) ? parseFloat(calculatedMargin.toFixed(2)) : null;
             }
             return null;
+          })(),
+          operatingProfit: (() => {
+            const rev = item.otherProducts.chemical.revenue ? item.otherProducts.chemical.revenue / 100000000 : null;
+            const cst = item.otherProducts.chemical.cost ? item.otherProducts.chemical.cost / 100000000 : null;
+            return calcOperatingProfit(rev, cst);
           })(),
           _corrected: false,
           _verified: false

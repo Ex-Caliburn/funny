@@ -778,9 +778,7 @@ async function processAllPDFs() {
   
   // 处理并生成标准化的数据
   const processedData = processData(allData);
-  const correctedPath = path.join(reportDir, 'xyyx_data_corrected.json');
-  fs.writeFileSync(correctedPath, JSON.stringify(processedData, null, 2), 'utf8');
-  console.log(`标准化数据已保存到: ${correctedPath}`);
+  await updateCorrectedData(processedData.rawData, reportDir);
   
   return processedData;
 }
@@ -1067,6 +1065,82 @@ function processData(allData) {
   }
   
   return { rawData };
+}
+
+/**
+ * 增量更新修正数据（不覆盖手动修正的数据）
+ */
+async function updateCorrectedData(nextRawData, reportDir) {
+  const correctedPath = path.join(reportDir, 'xyyx_data_corrected.json');
+
+  const isLocked = (value) => {
+    if (!value) return false;
+    const correctedFlag = value._corrected ?? value.corrected;
+    return correctedFlag === true || correctedFlag === 'true';
+  };
+
+  const isRecordLocked = (record) => {
+    if (!record) return false;
+    return isLocked(record) || isLocked(record.silver) || isLocked(record.tin);
+  };
+
+  const mergeSection = (existingSection, nextSection) => {
+    if (!nextSection) return existingSection || null;
+    if (isLocked(existingSection)) return existingSection;
+    return { ...(existingSection || {}), ...nextSection };
+  };
+
+  let correctedFile = { rawData: [] };
+  if (fs.existsSync(correctedPath)) {
+    const existingFile = JSON.parse(fs.readFileSync(correctedPath, 'utf8'));
+    if (Array.isArray(existingFile?.rawData)) {
+      correctedFile = existingFile;
+    }
+  }
+
+  const existingIndex = new Map();
+  correctedFile.rawData.forEach((item) => {
+    const key = `${item.year}-${item.month}-${item.type || 'cumulative'}`;
+    existingIndex.set(key, item);
+  });
+
+  let addedCount = 0;
+  let updatedCount = 0;
+  let skippedCount = 0;
+
+  nextRawData.forEach((item) => {
+    const key = `${item.year}-${item.month}-${item.type || 'cumulative'}`;
+    const existingItem = existingIndex.get(key);
+
+    if (!existingItem) {
+      correctedFile.rawData.push({ ...item });
+      addedCount++;
+      return;
+    }
+
+    if (isRecordLocked(existingItem)) {
+      skippedCount++;
+      return;
+    }
+
+    existingItem.period = item.period;
+    existingItem.year = item.year;
+    existingItem.month = item.month;
+    existingItem.type = item.type;
+    existingItem.silver = mergeSection(existingItem.silver, item.silver);
+    existingItem.tin = mergeSection(existingItem.tin, item.tin);
+    updatedCount++;
+  });
+
+  // 统一排序（最新报告期在后）
+  correctedFile.rawData.sort((a, b) => {
+    if (a.year !== b.year) return a.year - b.year;
+    return a.month - b.month;
+  });
+
+  fs.writeFileSync(correctedPath, JSON.stringify(correctedFile, null, 2), 'utf8');
+  console.log(`标准化数据已增量更新到: ${correctedPath}`);
+  console.log(`新增 ${addedCount} 条，更新 ${updatedCount} 条，跳过 ${skippedCount} 条锁定数据`);
 }
 
 // 如果直接运行此脚本

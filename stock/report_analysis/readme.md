@@ -654,6 +654,7 @@ node scripts/stock-reports/[股票代码]_report_parse.js
    - 产品：石油、天然气
    - 数据：成本、营收、产量、销量（双产品）
    - HTML：`cnooc_oil_gas_analysis.html`
+   - node scripts/stock-reports/cnooc_report_parse.js
 
 ## ⚠️ 注意事项
 

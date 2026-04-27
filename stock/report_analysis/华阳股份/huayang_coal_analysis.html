@@ -886,8 +886,9 @@
             function calculateQuarterlyData() {
                 const quarterlyData = [];
 
-                // 按年份分组处理（包含2021-2025年）
-                [2021, 2022, 2023, 2024, 2025].forEach(year => {
+                // 按年份分组处理（从数据中动态获取年份，避免遗漏新年份）
+                const years = [...new Set(rawData.map(d => d.year).filter(y => Number.isFinite(y)))].sort((a, b) => a - b);
+                years.forEach(year => {
                     const yearData = rawData.filter(d => d.year === year).sort((a, b) => a.month - b.month);
 
                     // Q1 = 1-3月数据
