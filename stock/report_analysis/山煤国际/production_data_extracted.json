@@ -227,5 +227,21 @@
       "price": 457.96,
       "unitCost": 230.72
     }
+  },
+  {
+    "year": "2026",
+    "quarter": "Q1",
+    "filename": "山煤国际_2026Q1_生产经营数据.pdf",
+    "data": {
+      "production": 912.17,
+      "sales": 668.61,
+      "salesType": "ownCoal",
+      "revenue": 37.227333,
+      "revenueType": "ownCoal",
+      "cost": 18.380844,
+      "costType": "ownCoal",
+      "price": 556.79,
+      "unitCost": 274.91
+    }
   }
 ]
