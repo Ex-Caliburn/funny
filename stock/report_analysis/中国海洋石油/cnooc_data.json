@@ -1,6 +1,68 @@
 {
   "allData": [
     {
+      "year": "2026",
+      "filename": "中国海洋石油2026年第一季度报告.pdf",
+      "oil": {
+        "cost": [],
+        "revenue": [
+          {
+            "keyword": "石油销售收入",
+            "line": "从extractOilGasFinancials提取",
+            "context": "从extractOilGasFinancials提取",
+            "value": 83057000000,
+            "allValues": [
+              83057000000
+            ]
+          }
+        ],
+        "production": [
+          {
+            "keyword": "石油产量",
+            "line": "从extractOilGasProductionSales提取",
+            "context": "从extractOilGasProductionSales提取",
+            "value": 158.5,
+            "allValues": [
+              158.5
+            ]
+          }
+        ],
+        "sales": [],
+        "price": 75.92,
+        "unitCost": 28.41
+      },
+      "gas": {
+        "cost": [],
+        "revenue": [
+          {
+            "keyword": "天然气销售收入",
+            "line": "从extractOilGasFinancials提取",
+            "context": "从extractOilGasFinancials提取",
+            "value": 13943000000,
+            "allValues": [
+              13943000000
+            ]
+          }
+        ],
+        "production": [
+          {
+            "keyword": "天然气产量",
+            "line": "从extractOilGasProductionSales提取",
+            "context": "从extractOilGasProductionSales提取",
+            "value": 272.5,
+            "allValues": [
+              272.5
+            ]
+          }
+        ],
+        "sales": [],
+        "price": 7.69,
+        "unitCost": 4.74
+      },
+      "operatingRevenue": 116079000000,
+      "netProfit": 116079000000
+    },
+    {
       "year": "2025",
       "filename": "中国海洋石油2025年半年度报告.pdf",
       "oil": {
@@ -96,9 +158,74 @@
             ]
           }
         ],
-        "price": 7.9
+        "price": 7.9,
+        "unitCost": 4.82
       },
+      "operatingRevenue": null,
+      "netProfit": null,
       "totalSales": 373.8
+    },
+    {
+      "year": "2025",
+      "filename": "中国海洋石油2025年年度报告.pdf",
+      "oil": {
+        "cost": [],
+        "revenue": [
+          {
+            "keyword": "石油销售收入",
+            "line": "从extractOilGasFinancials提取",
+            "context": "从extractOilGasFinancials提取",
+            "value": 279786000000,
+            "allValues": [
+              279786000000
+            ]
+          }
+        ],
+        "production": [],
+        "sales": [
+          {
+            "keyword": "石油销量",
+            "line": "从extractOilGasProductionSales提取",
+            "context": "从extractOilGasProductionSales提取",
+            "value": 536.9,
+            "allValues": [
+              536.9
+            ]
+          }
+        ],
+        "price": 66.47,
+        "unitCost": 28.9
+      },
+      "gas": {
+        "cost": [],
+        "revenue": [
+          {
+            "keyword": "天然气销售收入",
+            "line": "从extractOilGasFinancials提取",
+            "context": "从extractOilGasFinancials提取",
+            "value": 55866000000,
+            "allValues": [
+              55866000000
+            ]
+          }
+        ],
+        "production": [],
+        "sales": [
+          {
+            "keyword": "天然气销量",
+            "line": "从extractOilGasProductionSales提取",
+            "context": "从extractOilGasProductionSales提取",
+            "value": 401.8,
+            "allValues": [
+              401.8
+            ]
+          }
+        ],
+        "price": 7.95,
+        "unitCost": 4.82
+      },
+      "operatingRevenue": null,
+      "netProfit": null
     },
     {
       "year": "2025",
@@ -156,10 +283,12 @@
           }
         ],
         "sales": [],
-        "price": 7.78
+        "price": 7.78,
+        "unitCost": 4.51
       },
-      "totalProduction": 188.8,
-      "netProfit": 36563000000
+      "operatingRevenue": 111468000000,
+      "netProfit": 111468000000,
+      "totalProduction": 188.8
     },
     {
       "year": "2025",
@@ -217,10 +346,12 @@
           }
         ],
         "sales": [],
-        "price": 7.86
+        "price": 7.86,
+        "unitCost": 4.56
       },
-      "totalProduction": 578.3,
-      "netProfit": 32438000000
+      "operatingRevenue": 312503000000,
+      "netProfit": 32438000000,
+      "totalProduction": 578.3
     },
     {
       "year": "2024",
@@ -318,8 +449,11 @@
             ]
           }
         ],
-        "price": 7.79
+        "price": 7.79,
+        "unitCost": 4.63
       },
+      "operatingRevenue": null,
+      "netProfit": null,
       "totalSales": 356.1
     },
     {
@@ -398,8 +532,11 @@
             ]
           }
         ],
-        "price": 7.72
-      }
+        "price": 7.72,
+        "unitCost": 4.74
+      },
+      "operatingRevenue": null,
+      "netProfit": null
     },
     {
       "year": "2024",
@@ -457,10 +594,12 @@
           }
         ],
         "sales": [],
-        "price": 7.69
+        "price": 7.69,
+        "unitCost": 4.6
       },
-      "totalProduction": 180.1,
-      "netProfit": 39719000000
+      "operatingRevenue": 111468000000,
+      "netProfit": 111468000000,
+      "totalProduction": 180.1
     },
     {
       "year": "2024",
@@ -518,10 +657,12 @@
           }
         ],
         "sales": [],
-        "price": 7.78
+        "price": 7.78,
+        "unitCost": 4.69
       },
-      "totalProduction": 542.1,
-      "netProfit": 97645000000
+      "operatingRevenue": 326024000000,
+      "netProfit": 97645000000,
+      "totalProduction": 542.1
     },
     {
       "year": "2023",
@@ -599,8 +740,11 @@
             ]
           }
         ],
-        "price": 8.12
+        "price": 8.12,
+        "unitCost": 5
       },
+      "operatingRevenue": null,
+      "netProfit": null,
       "totalProduction": 331.8,
       "totalSales": 320.6
     },
@@ -680,8 +824,11 @@
             ]
           }
         ],
-        "price": 7.98
+        "price": 7.98,
+        "unitCost": 4.81
       },
+      "operatingRevenue": null,
+      "netProfit": null,
       "totalSales": 653.2
     },
     {
@@ -740,10 +887,12 @@
           }
         ],
         "sales": [],
-        "price": 8.33
+        "price": 8.33,
+        "unitCost": 4.7
       },
-      "totalProduction": 163.9,
-      "netProfit": 97711000000
+      "operatingRevenue": 97711000000,
+      "netProfit": 97711000000,
+      "totalProduction": 163.9
     },
     {
       "year": "2023",
@@ -801,10 +950,12 @@
           }
         ],
         "sales": [],
-        "price": 7.92
+        "price": 7.92,
+        "unitCost": 4.73
       },
-      "totalProduction": 499.7,
-      "netProfit": 33884000000
+      "operatingRevenue": 306817000000,
+      "netProfit": 95706000000,
+      "totalProduction": 499.7
     },
     {
       "year": "2022",
@@ -881,8 +1032,11 @@
           }
         ],
         "sales": [],
-        "price": 6.7114
+        "price": 6.7114,
+        "unitCost": 4.81
       },
+      "operatingRevenue": null,
+      "netProfit": null,
       "totalProduction": 304.8
     },
     {
@@ -961,8 +1115,11 @@
             ]
           }
         ],
-        "price": 8.58
+        "price": 8.58,
+        "unitCost": 5.07
       },
+      "operatingRevenue": null,
+      "netProfit": null,
       "totalSales": 603.6
     },
     {
@@ -1021,10 +1178,12 @@
           }
         ],
         "sales": [],
-        "price": 5.58
+        "price": 5.58,
+        "unitCost": 5.1
       },
-      "totalProduction": 151,
-      "netProfit": 90898000000
+      "operatingRevenue": 90898000000,
+      "netProfit": 39416000000,
+      "totalProduction": 151
     },
     {
       "year": "2022",
@@ -1082,13 +1241,39 @@
           }
         ],
         "sales": [],
-        "price": 8.14
+        "price": 8.14,
+        "unitCost": 5.05
       },
-      "totalProduction": 461.5,
-      "netProfit": 36881000000
+      "operatingRevenue": 311145000000,
+      "netProfit": 107285000000,
+      "totalProduction": 461.5
     }
   ],
   "summary": [
+    {
+      "year": "2026",
+      "filename": "中国海洋石油2026年第一季度报告.pdf",
+      "oil": {
+        "revenue": 83057000000,
+        "cost": null,
+        "production": 158.5,
+        "sales": null,
+        "price": 75.92,
+        "unitCost": 28.41
+      },
+      "gas": {
+        "revenue": 13943000000,
+        "cost": null,
+        "production": 272.5,
+        "sales": null,
+        "price": 7.69,
+        "unitCost": 4.74
+      },
+      "netProfit": 116079000000,
+      "operatingRevenue": 116079000000,
+      "totalProduction": null,
+      "totalSales": null
+    },
     {
       "year": "2025",
       "filename": "中国海洋石油2025年半年度报告.pdf",
@@ -1106,11 +1291,36 @@
         "production": 516.2,
         "sales": 266.5,
         "price": 7.9,
-        "unitCost": null
+        "unitCost": 4.82
       },
       "netProfit": null,
+      "operatingRevenue": null,
       "totalProduction": null,
       "totalSales": 373.8
+    },
+    {
+      "year": "2025",
+      "filename": "中国海洋石油2025年年度报告.pdf",
+      "oil": {
+        "revenue": 279786000000,
+        "cost": null,
+        "production": null,
+        "sales": 536.9,
+        "price": 66.47,
+        "unitCost": 28.9
+      },
+      "gas": {
+        "revenue": 55866000000,
+        "cost": null,
+        "production": null,
+        "sales": 401.8,
+        "price": 7.95,
+        "unitCost": 4.82
+      },
+      "netProfit": null,
+      "operatingRevenue": null,
+      "totalProduction": null,
+      "totalSales": null
     },
     {
       "year": "2025",
@@ -1129,9 +1339,10 @@
         "production": 253,
         "sales": null,
         "price": 7.78,
-        "unitCost": null
+        "unitCost": 4.51
       },
-      "netProfit": 36563000000,
+      "netProfit": 111468000000,
+      "operatingRevenue": 111468000000,
       "totalProduction": 188.8,
       "totalSales": null
     },
@@ -1152,9 +1363,10 @@
         "production": 777.5,
         "sales": null,
         "price": 7.86,
-        "unitCost": null
+        "unitCost": 4.56
       },
       "netProfit": 32438000000,
+      "operatingRevenue": 312503000000,
       "totalProduction": 578.3,
       "totalSales": null
     },
@@ -1175,9 +1387,10 @@
         "production": 461,
         "sales": 247.6,
         "price": 7.79,
-        "unitCost": null
+        "unitCost": 4.63
       },
       "netProfit": null,
+      "operatingRevenue": null,
       "totalProduction": null,
       "totalSales": 356.1
     },
@@ -1198,9 +1411,10 @@
         "production": 873.4224,
         "sales": 400.9,
         "price": 7.72,
-        "unitCost": null
+        "unitCost": 4.74
       },
       "netProfit": null,
+      "operatingRevenue": null,
       "totalProduction": null,
       "totalSales": null
     },
@@ -1221,9 +1435,10 @@
         "production": 229.5,
         "sales": null,
         "price": 7.69,
-        "unitCost": null
+        "unitCost": 4.6
       },
-      "netProfit": 39719000000,
+      "netProfit": 111468000000,
+      "operatingRevenue": 111468000000,
       "totalProduction": 180.1,
       "totalSales": null
     },
@@ -1244,9 +1459,10 @@
         "production": 696.5,
         "sales": null,
         "price": 7.78,
-        "unitCost": null
+        "unitCost": 4.69
       },
       "netProfit": 97645000000,
+      "operatingRevenue": 326024000000,
       "totalProduction": 542.1,
       "totalSales": null
     },
@@ -1267,9 +1483,10 @@
         "production": 415.5,
         "sales": 231.2,
         "price": 8.12,
-        "unitCost": null
+        "unitCost": 5
       },
       "netProfit": null,
+      "operatingRevenue": null,
       "totalProduction": 331.8,
       "totalSales": 320.6
     },
@@ -1290,9 +1507,10 @@
         "production": 808.9129999999999,
         "sales": 390.9,
         "price": 7.98,
-        "unitCost": null
+        "unitCost": 4.81
       },
       "netProfit": null,
+      "operatingRevenue": null,
       "totalProduction": null,
       "totalSales": 653.2
     },
@@ -1313,9 +1531,10 @@
         "production": 207.5,
         "sales": null,
         "price": 8.33,
-        "unitCost": null
+        "unitCost": 4.7
       },
       "netProfit": 97711000000,
+      "operatingRevenue": 97711000000,
       "totalProduction": 163.9,
       "totalSales": null
     },
@@ -1336,9 +1555,10 @@
         "production": 639.3,
         "sales": null,
         "price": 7.92,
-        "unitCost": null
+        "unitCost": 4.73
       },
-      "netProfit": 33884000000,
+      "netProfit": 95706000000,
+      "operatingRevenue": 306817000000,
       "totalProduction": 499.7,
       "totalSales": null
     },
@@ -1359,9 +1579,10 @@
         "production": 374.7,
         "sales": null,
         "price": 6.7114,
-        "unitCost": null
+        "unitCost": 4.81
       },
       "netProfit": null,
+      "operatingRevenue": null,
       "totalProduction": 304.8,
       "totalSales": null
     },
@@ -1382,9 +1603,10 @@
         "production": 723.5395,
         "sales": 345.4,
         "price": 8.58,
-        "unitCost": null
+        "unitCost": 5.07
       },
       "netProfit": null,
+      "operatingRevenue": null,
       "totalProduction": null,
       "totalSales": 603.6
     },
@@ -1405,9 +1627,10 @@
         "production": 184,
         "sales": null,
         "price": 5.58,
-        "unitCost": null
+        "unitCost": 5.1
       },
-      "netProfit": 90898000000,
+      "netProfit": 39416000000,
+      "operatingRevenue": 90898000000,
       "totalProduction": 151,
       "totalSales": null
     },
@@ -1428,11 +1651,274 @@
         "production": 575.7,
         "sales": null,
         "price": 8.14,
-        "unitCost": null
+        "unitCost": 5.05
       },
-      "netProfit": 36881000000,
+      "netProfit": 107285000000,
+      "operatingRevenue": 311145000000,
       "totalProduction": 461.5,
       "totalSales": null
+    }
+  ],
+  "presentationData": [
+    {
+      "year": "2026",
+      "period": "2026年1-3月",
+      "reportType": "一季度",
+      "filename": "中海油_2026年一季度业绩发布.pdf",
+      "mappedFilename": "中国海洋石油2026年第一季度报告.pdf",
+      "unitCost": 28.41,
+      "prevUnitCost": 27.03,
+      "breakdown": {
+        "operatingExpenses": 6.69
+      },
+      "prevBreakdown": {
+        "operatingExpenses": 6.66
+      }
+    },
+    {
+      "year": "2025",
+      "period": "2025年1-3月",
+      "reportType": "一季度",
+      "filename": "中海油_2025年一季度业绩发布.pdf",
+      "mappedFilename": "中国海洋石油2025年第一季度报告.pdf",
+      "unitCost": 27.03,
+      "prevUnitCost": 27.59,
+      "breakdown": {
+        "operatingExpenses": 6.69,
+        "depreciation": 13.91,
+        "abandonmentCosts": 0.74,
+        "sga": 1.93,
+        "otherTaxes": 3.76
+      },
+      "prevBreakdown": {
+        "operatingExpenses": 6.91,
+        "depreciation": 13.77,
+        "abandonmentCosts": 0.87,
+        "sga": 1.99,
+        "otherTaxes": 4.05
+      }
+    },
+    {
+      "year": "2025",
+      "period": "2025年1-9月",
+      "reportType": "三季度",
+      "filename": "中海油_2025年三季度业绩发布.pdf",
+      "mappedFilename": "中国海洋石油2025年第三季度报告.pdf",
+      "unitCost": 27.35,
+      "prevUnitCost": 28.14,
+      "breakdown": {
+        "operatingExpenses": 7.12,
+        "depreciation": 13.87,
+        "abandonmentCosts": 0.74,
+        "sga": 2,
+        "otherTaxes": 3.62
+      },
+      "prevBreakdown": {
+        "operatingExpenses": 7.21,
+        "depreciation": 13.96,
+        "abandonmentCosts": 0.83,
+        "sga": 2.06,
+        "otherTaxes": 4.08
+      }
+    },
+    {
+      "year": "2025",
+      "period": "2025年上半年",
+      "reportType": "中期",
+      "filename": "中海油_2025年中期业绩发布.pdf",
+      "mappedFilename": "中国海洋石油2025年半年度报告.pdf",
+      "unitCost": 26.94,
+      "prevUnitCost": 27.75,
+      "breakdown": {
+        "operatingExpenses": 6.76,
+        "depreciation": 13.89,
+        "abandonmentCosts": 0.73,
+        "sga": 1.91,
+        "otherTaxes": 3.65
+      },
+      "prevBreakdown": {
+        "operatingExpenses": 6.81,
+        "depreciation": 13.94,
+        "abandonmentCosts": 0.86,
+        "sga": 2.04,
+        "otherTaxes": 4.1
+      }
+    },
+    {
+      "year": "2025",
+      "period": "2025年全年",
+      "reportType": "年度",
+      "filename": "中海油_2025年年度业绩发布.pdf",
+      "mappedFilename": "中国海洋石油2025年年度报告.pdf",
+      "unitCost": 27.9,
+      "prevUnitCost": 28.52,
+      "breakdown": {
+        "operatingExpenses": 7.61
+      },
+      "prevBreakdown": {
+        "operatingExpenses": 7.46
+      }
+    },
+    {
+      "year": "2024",
+      "period": "2024年1-3月",
+      "reportType": "一季度",
+      "filename": "中海油_2024年一季度业绩发布.pdf",
+      "mappedFilename": "中国海洋石油2024年第一季度报告.pdf",
+      "unitCost": 27.59,
+      "prevUnitCost": 28.22,
+      "breakdown": {
+        "operatingExpenses": 6.91,
+        "depreciation": 13.77,
+        "abandonmentCosts": 0.87,
+        "sga": 1.99,
+        "otherTaxes": 4.05
+      },
+      "prevBreakdown": {
+        "operatingExpenses": 6.99,
+        "depreciation": 14.22,
+        "abandonmentCosts": 1.06,
+        "sga": 2.29,
+        "otherTaxes": 3.66
+      }
+    },
+    {
+      "year": "2024",
+      "period": "2024年1-9月",
+      "reportType": "三季度",
+      "filename": "中海油_2024年三季度业绩发布.pdf",
+      "mappedFilename": "中国海洋石油2024年第三季度报告.pdf",
+      "unitCost": 28.14,
+      "prevUnitCost": 28.37,
+      "breakdown": {
+        "operatingExpenses": 7.21,
+        "depreciation": 13.96,
+        "abandonmentCosts": 0.83,
+        "sga": 2.06,
+        "otherTaxes": 4.08
+      },
+      "prevBreakdown": {
+        "operatingExpenses": 7.32,
+        "depreciation": 13.85,
+        "abandonmentCosts": 0.92,
+        "sga": 2.23,
+        "otherTaxes": 4.05
+      }
+    },
+    {
+      "year": "2024",
+      "period": "2024年上半年",
+      "reportType": "中期",
+      "filename": "中海油_2024年中期业绩发布.pdf",
+      "mappedFilename": "中国海洋石油2024年半年度报告.pdf",
+      "unitCost": 27.75,
+      "prevUnitCost": 28.17,
+      "breakdown": {
+        "operatingExpenses": 6.81,
+        "depreciation": 13.94,
+        "abandonmentCosts": 0.86,
+        "sga": 2.04,
+        "otherTaxes": 4.1
+      },
+      "prevBreakdown": {
+        "operatingExpenses": 7.16,
+        "depreciation": 14.14,
+        "abandonmentCosts": 0.96,
+        "sga": 2.19,
+        "otherTaxes": 3.72
+      }
+    },
+    {
+      "year": "2024",
+      "period": "2024年全年",
+      "reportType": "年度",
+      "filename": "中海油_2024年年度业绩发布.pdf",
+      "mappedFilename": "中国海洋石油2024年年度报告.pdf",
+      "unitCost": 28.52,
+      "prevUnitCost": 28.83,
+      "breakdown": {
+        "operatingExpenses": 7.61,
+        "depreciation": 14.34,
+        "abandonmentCosts": 0.41,
+        "sga": 2.16,
+        "otherTaxes": 4
+      },
+      "prevBreakdown": {
+        "operatingExpenses": 7.54,
+        "depreciation": 14.06,
+        "abandonmentCosts": 0.83,
+        "sga": 2.29,
+        "otherTaxes": 4.11
+      }
+    },
+    {
+      "year": "2023",
+      "period": "2023年1-9月",
+      "reportType": "三季度",
+      "filename": "中海油_2023年三季度业绩发布.pdf",
+      "mappedFilename": "中国海洋石油2023年第三季度报告.pdf",
+      "unitCost": 28.37,
+      "prevUnitCost": 30.29,
+      "breakdown": {
+        "operatingExpenses": 7.32,
+        "depreciation": 13.85,
+        "abandonmentCosts": 0.92,
+        "sga": 2.23,
+        "otherTaxes": 4.05
+      },
+      "prevBreakdown": {
+        "operatingExpenses": 7.87,
+        "depreciation": 14.24,
+        "abandonmentCosts": 0.9,
+        "sga": 2.51,
+        "otherTaxes": 4.77
+      }
+    },
+    {
+      "year": "2023",
+      "period": "2023年上半年",
+      "reportType": "中期",
+      "filename": "中海油_2023年中期业绩发布.pdf",
+      "mappedFilename": "中国海洋石油2023年半年度报告.pdf",
+      "unitCost": 28.17,
+      "prevUnitCost": 30.32,
+      "breakdown": {
+        "operatingExpenses": 7.16,
+        "depreciation": 14.14,
+        "abandonmentCosts": 0.96,
+        "sga": 2.19,
+        "otherTaxes": 3.72
+      },
+      "prevBreakdown": {
+        "operatingExpenses": 7.77,
+        "depreciation": 14.52,
+        "abandonmentCosts": 0.95,
+        "sga": 2.29,
+        "otherTaxes": 4.79
+      }
+    },
+    {
+      "year": "2023",
+      "period": "2023年全年",
+      "reportType": "年度",
+      "filename": "中海油_2023年年度业绩发布.pdf",
+      "mappedFilename": "中国海洋石油2023年年度报告.pdf",
+      "unitCost": 28.83,
+      "prevUnitCost": 30.39,
+      "breakdown": {
+        "operatingExpenses": 7.54,
+        "depreciation": 14.06,
+        "abandonmentCosts": 0.83,
+        "sga": 2.29,
+        "otherTaxes": 4.11
+      },
+      "prevBreakdown": {
+        "operatingExpenses": 7.74,
+        "depreciation": 14.67,
+        "abandonmentCosts": 0.85,
+        "sga": 2.53,
+        "otherTaxes": 4.6
+      }
     }
   ]
 }

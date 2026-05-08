@@ -45,6 +45,44 @@ const patterns = {
   oilEquivalent: /([\d,，]+\.?\d*)\s*(?:百万桶油当量|万桶油当量|桶油当量)/g
 };
 
+/** 桶油当量与气价单位换算：1 桶油当量 ≈ 6 千立方英尺 → 气 unitCost(美元/千立方英尺) = 油 unitCost(美元/桶) / 6 */
+const OIL_BOE_PER_GAS_THOUSAND_CUFT = 6;
+
+/**
+ * 桶油主要成本（美元/桶或美元/桶油当量）→ 天然气单位成本（美元/千立方英尺）
+ * @param {number} oilUnitCostUsdPerBoe
+ * @returns {number|null}
+ */
+function oilBoeUnitCostToGasUnitCostUsdPerMcf(oilUnitCostUsdPerBoe) {
+  if (oilUnitCostUsdPerBoe == null || Number.isNaN(oilUnitCostUsdPerBoe)) return null;
+  return Math.round((oilUnitCostUsdPerBoe / OIL_BOE_PER_GAS_THOUSAND_CUFT) * 100) / 100;
+}
+
+/**
+ * 年均人民币兑美元汇率（USD→CNY）
+ * @param {string|number} year
+ * @returns {number}
+ */
+function getExchangeRate(year) {
+  const rates = { 2022: 6.73, 2023: 7.08, 2024: 7.18, 2025: 7.28, 2026: 7.20 };
+  return rates[Number(year)] ?? 7.10;
+}
+
+/**
+ * 由产量和单位成本计算总成本（亿元）
+ * - 油：production(MMBOE) × unitCost(USD/BOE) → 1e6/1e8 = /100
+ * - 气：production(Bcf)  × unitCost(USD/Mcf) → 1e6Mcf/Bcf × 1/1e8 = /100
+ * 两者系数相同，公式统一：production × unitCost × exchangeRate / 100
+ * @param {number} production
+ * @param {number} unitCost
+ * @param {string|number} year
+ * @returns {number|null}
+ */
+function calcCostByUnitCost(production, unitCost, year) {
+  if (production == null || unitCost == null) return null;
+  return Math.round(production * unitCost * getExchangeRate(year)) / 100;
+}
+
 /**
  * 从文本中提取数值（转换为元）
  * 支持：亿元、百万元、万元、元
@@ -1636,10 +1674,30 @@ function extractOilGasPrices(text) {
   const result = {
     oilPrice: null,     // 美元/桶
     gasPrice: null,     // 美元/千立方英尺
-    oilUnitCost: null   // 桶油主要成本（美元/桶）
+    oilUnitCost: null,  // 桶油主要成本（美元/桶或美元/桶油当量）
+    gasUnitCost: null   // 由 oilUnitCost 按 1 boe≈6 千立方英尺换算，美元/千立方英尺
   };
   
   const lines = text.split('\n');
+
+  // 优先：全文匹配「桶油主要成本为27.9美元／桶油当量」（换行折叠，避免「为」与数字被拆行）
+  const flatCost = text.replace(/\r\n|\r|\n/g, ' ');
+  const narrativeBoe = flatCost.match(/桶油主要成本为\s*([\d.]+)\s*美元\s*[\/／]\s*桶油当量/);
+  if (narrativeBoe) {
+    const c0 = parseFloat(narrativeBoe[1]);
+    if (!isNaN(c0) && c0 >= 15 && c0 <= 50) {
+      result.oilUnitCost = c0;
+    }
+  }
+  if (!result.oilUnitCost) {
+    const narrativeBoe2 = flatCost.match(/桶油主要成本为\s*([\d.]+)\s*美元/);
+    if (narrativeBoe2) {
+      const c1 = parseFloat(narrativeBoe2[1]);
+      if (!isNaN(c1) && c1 >= 15 && c1 <= 50) {
+        result.oilUnitCost = c1;
+      }
+    }
+  }
   
   // 方法0：年报格式的价格数据（连续的两行，第1个数字是当年数据）
   // 2024年报格式：
@@ -2316,6 +2374,11 @@ function extractOilGasPrices(text) {
       result.oilUnitCost = candidates[0].cost;
     }
   }
+
+  // 气 unitCost 与油同源：桶油成本 → 美元/千立方英尺
+  if (result.oilUnitCost != null && !Number.isNaN(result.oilUnitCost)) {
+    result.gasUnitCost = oilBoeUnitCostToGasUnitCostUsdPerMcf(result.oilUnitCost);
+  }
   
   return result;
 }
@@ -2499,6 +2562,9 @@ async function parsePDF(filePath) {
     if (prices.oilUnitCost) {
       extractedData.oil.unitCost = prices.oilUnitCost;
     }
+    if (prices.gasUnitCost != null) {
+      extractedData.gas.unitCost = prices.gasUnitCost;
+    }
     
     // 提取归母净利润
     const netProfit = extractNetProfit(text);
@@ -2519,6 +2585,262 @@ async function parsePDF(filePath) {
   }
 }
 
+// ============================================================
+// 业绩发布PDF专用解析逻辑
+// ============================================================
+
+/**
+ * 从业绩发布PDF文本的成本明细区块中提取数字对
+ * 支持：单行两数字 或 相邻行各一个数字（PDF表格列被拆行）
+ * @param {string[]} lines - 已分行的文本数组
+ * @param {number} startIdx - 搜索起始行
+ * @param {number} maxLines - 最多扫描行数
+ * @returns {Array<[number, number]>} 数字对数组
+ */
+function extractNumberPairsFromSection(lines, startIdx, maxLines = 40) {
+  const pairs = [];
+  let pendingSingle = null;
+
+  for (let i = startIdx; i < Math.min(lines.length, startIdx + maxLines); i++) {
+    const line = lines[i].trim();
+
+    // 跳过含中文、字母或百分号的行（防止抓到文字说明）
+    if (/[\u4e00-\u9fff]/.test(line) || /[a-zA-Z§]/.test(line) || line.includes('%')) {
+      continue;
+    }
+    // 跳过空行或括号行
+    if (!line || line.replace(/[（）()\s]/g, '') === '') continue;
+
+    // 提取行内所有正小数（范围 0.1–50，防止误取大整数）
+    const nums = [...line.matchAll(/(\d+\.\d+)/g)]
+      .map(m => parseFloat(m[1]))
+      .filter(n => n > 0.1 && n < 50);
+
+    if (nums.length === 2) {
+      if (pendingSingle !== null) pendingSingle = null; // 抛弃孤单数
+      pairs.push([nums[0], nums[1]]);
+    } else if (nums.length === 1) {
+      if (pendingSingle !== null) {
+        pairs.push([pendingSingle, nums[0]]);
+        pendingSingle = null;
+      } else {
+        pendingSingle = nums[0];
+      }
+    }
+    // 超过2个数字（历史序列等），跳过
+  }
+
+  return pairs;
+}
+
+/**
+ * 从业绩发布PDF文本中提取桶油主要成本及各分项明细
+ * @param {string} text - PDF原始文本
+ * @returns {{ unitCost, prevUnitCost, breakdown, prevBreakdown }}
+ *   breakdown / prevBreakdown: { operatingExpenses, depreciation, abandonmentCosts, sga, otherTaxes }
+ */
+function extractPresentationCostData(text) {
+  const result = {
+    unitCost: null,
+    prevUnitCost: null,
+    breakdown: null,
+    prevBreakdown: null,
+  };
+
+  const flatText = text.replace(/\r\n|\r|\n/g, ' ');
+  const lines = text.split('\n');
+
+  // ── 策略1：直接匹配 "XX.XX美元/桶油当量"（Q1/Q3/H1内联格式）
+  const directMatches = [...flatText.matchAll(/([\d]+\.[\d]+)\s*美元\s*[\/／]\s*桶油当量/g)];
+  for (const m of directMatches) {
+    const val = parseFloat(m[1]);
+    if (val >= 20 && val <= 40) {
+      result.unitCost = val;
+      break;
+    }
+  }
+
+  // ── 策略2：年报格式 —— "桶油主要成本 美元/桶油当量"作为标签，数字在后300字内
+  if (!result.unitCost) {
+    const idx = flatText.search(/桶油主要成本\s+美元[\/／]桶油当量/);
+    if (idx >= 0) {
+      const context = flatText.substring(idx, idx + 400);
+      const nums = [...context.matchAll(/(\d+\.\d+)/g)].map(m => parseFloat(m[1]));
+      for (const n of nums) {
+        if (n >= 20 && n <= 40) {
+          result.unitCost = n;
+          break;
+        }
+      }
+    }
+  }
+
+  // ── 提取成本明细表格（查找"桶油主要成本"或"桶油成本"独立标题行）
+  // 文档中可能有多个此类标题（概览区 + 专题图表区），遍历所有，取第一个包含有效数字对的区块
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i].trim();
+    if (line !== '桶油主要成本' && line !== '桶油成本') continue;
+
+    // 找到标题行，提取接下来40行内的数字对
+    const pairs = extractNumberPairsFromSection(lines, i + 1, 40);
+
+    // 找合计行：两个值都在 20–40 范围
+    const totalIdx = pairs.findIndex(([v1, v2]) => v1 >= 20 && v1 <= 40 && v2 >= 20 && v2 <= 40);
+    if (totalIdx < 0) continue; // 本段无合计行，继续搜索下一个标题
+
+    const [p, c] = pairs[totalIdx];
+
+    // 用策略1/2得到的 unitCost 辅助判断哪列是当期
+    let curIsSecond = true;
+    if (result.unitCost !== null) {
+      curIsSecond = Math.abs(c - result.unitCost) <= Math.abs(p - result.unitCost);
+    }
+
+    result.prevUnitCost = curIsSecond ? p : c;
+    if (!result.unitCost) result.unitCost = curIsSecond ? c : p;
+
+    // 分项明细（排除合计行本身）
+    const components = pairs.filter((_, idx) => idx !== totalIdx);
+    const prevIdx = curIsSecond ? 0 : 1;
+    const curIdx  = curIsSecond ? 1 : 0;
+
+    // 检测分项标签顺序：Q1格式为"折旧 作业"，其他格式为"作业 折旧"
+    // 通过在本区块的文本行中查找含"折旧"和"作业"的标签行判断
+    let depFirst = false; // 折旧是否在作业费用之前出现
+    for (let j = i + 1; j < Math.min(lines.length, i + 45); j++) {
+      const lj = lines[j];
+      if (lj.includes('折旧') && lj.includes('作业')) {
+        depFirst = lj.indexOf('折旧') < lj.indexOf('作业');
+        break;
+      }
+    }
+
+    if (components.length >= 5) {
+      // 根据标签顺序分配分项（0:折旧/作业, 1:作业/折旧, 2:弃置, 3:SGA, 4:税）
+      const opIdx  = depFirst ? 1 : 0;
+      const depIdx = depFirst ? 0 : 1;
+      result.prevBreakdown = {
+        operatingExpenses: components[opIdx ][prevIdx],
+        depreciation:      components[depIdx][prevIdx],
+        abandonmentCosts:  components[2][prevIdx],
+        sga:               components[3][prevIdx],
+        otherTaxes:        components[4][prevIdx],
+      };
+      result.breakdown = {
+        operatingExpenses: components[opIdx ][curIdx],
+        depreciation:      components[depIdx][curIdx],
+        abandonmentCosts:  components[2][curIdx],
+        sga:               components[3][curIdx],
+        otherTaxes:        components[4][curIdx],
+      };
+    } else if (components.length > 0) {
+      // 仅有作业费用（Q1简表或年度双柱图）
+      result.prevBreakdown = { operatingExpenses: components[0][prevIdx] };
+      result.breakdown     = { operatingExpenses: components[0][curIdx] };
+    }
+    break; // 找到有效区块，停止搜索
+  }
+
+  return result;
+}
+
+/**
+ * 根据业绩发布PDF文件名解析期间元数据
+ * @param {string} filename - 如 "中海油_2024年中期业绩发布.pdf"
+ * @returns {{ year, reportType, period, mappedFilename }}
+ */
+function getPresentationMeta(filename) {
+  const yearMatch = filename.match(/(20\d{2})/);
+  const year = yearMatch ? yearMatch[1] : null;
+
+  let reportType = '', period = '', mappedFilename = '';
+
+  if (filename.includes('年度')) {
+    reportType    = '年度';
+    period        = `${year}年全年`;
+    mappedFilename = `中国海洋石油${year}年年度报告.pdf`;
+  } else if (filename.includes('中期')) {
+    reportType    = '中期';
+    period        = `${year}年上半年`;
+    mappedFilename = `中国海洋石油${year}年半年度报告.pdf`;
+  } else if (filename.includes('三季度')) {
+    reportType    = '三季度';
+    period        = `${year}年1-9月`;
+    mappedFilename = `中国海洋石油${year}年第三季度报告.pdf`;
+  } else if (filename.includes('一季度')) {
+    reportType    = '一季度';
+    period        = `${year}年1-3月`;
+    mappedFilename = `中国海洋石油${year}年第一季度报告.pdf`;
+  }
+
+  return { year, reportType, period, mappedFilename };
+}
+
+/**
+ * 解析单个业绩发布PDF文件，提取桶油主要成本数据
+ * @param {string} filePath
+ */
+async function parsePresentationPDF(filePath) {
+  const filename = path.basename(filePath);
+  try {
+    console.log(`正在解析业绩发布: ${filename}`);
+    const dataBuffer = fs.readFileSync(filePath);
+    const parser = new PDFParse({ data: dataBuffer });
+    const textData = await parser.getText();
+    const text = textData.text;
+
+    const meta = getPresentationMeta(filename);
+    const costData = extractPresentationCostData(text);
+
+    const result = {
+      year:           meta.year,
+      period:         meta.period,
+      reportType:     meta.reportType,
+      filename,
+      mappedFilename: meta.mappedFilename,
+      unitCost:       costData.unitCost,
+      prevUnitCost:   costData.prevUnitCost,
+      breakdown:      costData.breakdown,
+      prevBreakdown:  costData.prevBreakdown,
+    };
+
+    const breakdown = costData.breakdown;
+    const status = costData.unitCost
+      ? `桶油主要成本=${costData.unitCost}美元/BOE${breakdown ? '（含分项）' : ''}`
+      : '未找到桶油主要成本';
+    console.log(`  ${meta.period}: ${status}`);
+
+    return result;
+  } catch (error) {
+    console.error(`解析 ${filename} 时出错:`, error.message);
+    return null;
+  }
+}
+
+/**
+ * 处理所有业绩发布PDF文件
+ */
+async function processAllPresentationPDFs() {
+  const reportDir = path.join(__dirname, '../../stock/report_analysis/中国海洋石油');
+  const files = fs.readdirSync(reportDir)
+    .filter(f => f.toLowerCase().endsWith('.pdf'))
+    .filter(f => f.includes('业绩发布'))
+    .sort();
+
+  console.log(`找到 ${files.length} 个业绩发布PDF文件`);
+
+  const results = [];
+  for (const file of files) {
+    const filePath = path.join(reportDir, file);
+    const data = await parsePresentationPDF(filePath);
+    if (data) results.push(data);
+  }
+
+  // 按年份降序排序
+  results.sort((a, b) => parseInt(b.year) - parseInt(a.year) || 0);
+  return results;
+}
+
 /**
  * 处理所有PDF文件
  */
@@ -2526,10 +2848,11 @@ async function processAllPDFs() {
   const reportDir = path.join(__dirname, '../../stock/report_analysis/中国海洋石油');
   const files = fs.readdirSync(reportDir)
     .filter(f => f.toLowerCase().endsWith('.pdf'))
-    .filter(f => !f.includes('推介')) // 排除推介文件，只处理正式报告
+    .filter(f => !f.includes('推介'))    // 排除推介文件，只处理正式报告
+    .filter(f => !f.includes('业绩发布')) // 排除业绩发布文件，由专用函数处理
     .sort();
   
-  console.log(`找到 ${files.length} 个PDF文件（已排除推介文件）`);
+  console.log(`找到 ${files.length} 个PDF文件（已排除推介文件和业绩发布文件）`);
   
   const allData = [];
   
@@ -2631,7 +2954,11 @@ function generateSummary(allData) {
  */
 async function main() {
   console.log('开始解析中国海洋石油PDF文件...\n');
-  
+
+  // 先处理业绩发布PDF（提取桶油主要成本）
+  console.log('=== 处理业绩发布PDF ===');
+  const presentationData = await processAllPresentationPDFs();
+
   const allData = await processAllPDFs();
   
   if (allData.length === 0) {
@@ -2664,13 +2991,13 @@ async function main() {
   
   // 保存为JSON文件
   const outputPath = path.join(__dirname, '../../stock/report_analysis/中国海洋石油/cnooc_data.json');
-  fs.writeFileSync(outputPath, JSON.stringify({ allData, summary }, null, 2), 'utf8');
+  fs.writeFileSync(outputPath, JSON.stringify({ allData, summary, presentationData }, null, 2), 'utf8');
   console.log(`\n数据已保存到: ${outputPath}`);
   
   // 自动更新修正数据文件
   await updateCorrectedData();
   
-  return { allData, summary };
+  return { allData, summary, presentationData };
 }
 
 /**
@@ -2685,6 +3012,18 @@ async function updateCorrectedData() {
   
   // 读取原始数据
   const rawData = JSON.parse(fs.readFileSync(rawPath, 'utf8'));
+
+  // 构建业绩发布 unitCost 查找表：key = "year-mappedFilename" → unitCost
+  // 用于在更新修正数据时优先采用业绩发布的桶油主要成本
+  const presentationUnitCostMap = new Map();
+  if (Array.isArray(rawData.presentationData)) {
+    rawData.presentationData.forEach(p => {
+      if (p.year && p.mappedFilename && p.unitCost != null) {
+        presentationUnitCostMap.set(`${p.year}-${p.mappedFilename}`, p.unitCost);
+      }
+    });
+    console.log(`从业绩发布数据加载 ${presentationUnitCostMap.size} 条桶油主要成本记录`);
+  }
   
   // 读取或创建修正数据
   let correctedData;
@@ -2703,7 +3042,8 @@ async function updateCorrectedData() {
         products: ['oil', 'gas'],
         dataFlow: 'PDF报告 → 自动提取(cnooc_data.json) → 手动修正(本文件) → 页面展示',
         correctionRules: {
-          manual: '手动填入或修改的数据，标记 _corrected: true',
+          manual:
+            '油气块：oil._corrected / gas._corrected 为 true 时不同步 PDF、不重算该块 unitGrossProfit/grossMargin；顶层 _corrected 仅锁定 netProfit、operatingRevenue、totalProduction、totalSales。filename「手动添加」的整行不从 PDF 同步；多条手动行请使用不重复 filename（避免 year+filename 键冲突）',
           verified: '经过人工验证确认正确的数据，标记 _verified: true'
         }
       },
@@ -2711,10 +3051,16 @@ async function updateCorrectedData() {
     };
   }
   
-  // 创建现有数据的索引
+  // 创建现有数据的索引（year+filename 必须唯一，否则只有最后一项可被按 key 命中）
   const existingIndex = new Map();
   correctedData.summary.forEach(item => {
     const key = `${item.year}-${item.filename}`;
+    if (existingIndex.has(key)) {
+      console.warn(
+        `⚠️ 修正数据存在重复键「${key}」，合并时只会命中其中一条；` +
+          '多条手动行请使用不同 filename（例如「手动添加-2021年上半年」）。'
+      );
+    }
     existingIndex.set(key, item);
   });
   
@@ -2736,106 +3082,136 @@ async function updateCorrectedData() {
       const existingItem = existingIndex.get(key);
       const rawItem = rawData.allData.find(d => d.filename === item.filename);
       
+      // 只允许覆盖未手动修正的数据（_corrected !== true）
+      // 注意：顶层 existingItem._corrected 只保护 netProfit / operatingRevenue /
+      // totalProduction / totalSales；油气产量、营收、成本等需分别设 oil._corrected、gas._corrected
+      // filename 为「手动添加」的纯图表行：整行不从 PDF 同步（oil 上常无 _corrected，否则会被误更新）
+      const manualPlaceholder = existingItem.filename === '手动添加';
+      const canUpdateOil = existingItem.oil._corrected !== true && !manualPlaceholder;
+      const canUpdateGas = existingItem.gas._corrected !== true && !manualPlaceholder;
+      const canUpdateSummary = existingItem._corrected !== true && !manualPlaceholder;
+
       // 更新营收字段（从rawData.summary中获取，已经是元单位）
-      // 如果原始数据中有且修正数据中没有，或者原始数据更新了（且不是手动修正的）
+      // 如果原始数据中有且修正数据中为空，或者未手动修正则允许同步
       // 如果原始数据是null，也更新为null（确保数据一致性）
-      if (item.oil.revenue !== null && item.oil.revenue !== undefined && (!existingItem.oil.revenue || existingItem.oil._corrected === false)) {
+      if (canUpdateOil && item.oil.revenue !== null && item.oil.revenue !== undefined) {
         existingItem.oil.revenue = item.oil.revenue / 100000000; // 元转亿元
-      } else if (item.oil.revenue === null && existingItem.oil._corrected !== true) {
+      } else if (item.oil.revenue === null && canUpdateOil) {
         existingItem.oil.revenue = null; // 保持null值
       }
-      if (item.gas.revenue !== null && item.gas.revenue !== undefined && (!existingItem.gas.revenue || existingItem.gas._corrected === false)) {
+      if (canUpdateGas && item.gas.revenue !== null && item.gas.revenue !== undefined) {
         existingItem.gas.revenue = item.gas.revenue / 100000000; // 元转亿元
-      } else if (item.gas.revenue === null && existingItem.gas._corrected !== true) {
+      } else if (item.gas.revenue === null && canUpdateGas) {
         existingItem.gas.revenue = null; // 保持null值
       }
       
-      // 更新成本字段（从rawData.summary中获取，已经是元单位）
-      // 如果原始数据中有且修正数据中没有，或者原始数据更新了（且不是手动修正的）
-      if (item.oil.cost !== null && item.oil.cost !== undefined && (!existingItem.oil.cost || existingItem.oil._corrected === false)) {
-        existingItem.oil.cost = item.oil.cost / 100000000; // 元转亿元
-      } else if (item.oil.cost === null && existingItem.oil._corrected !== true) {
-        existingItem.oil.cost = null; // 保持null值
-      }
-      if (item.gas.cost !== null && item.gas.cost !== undefined && (!existingItem.gas.cost || existingItem.gas._corrected === false)) {
-        existingItem.gas.cost = item.gas.cost / 100000000; // 元转亿元
-      } else if (item.gas.cost === null && existingItem.gas._corrected !== true) {
-        existingItem.gas.cost = null; // 保持null值
+      // 更新成本字段：优先用 产量 × unitCost 公式计算（与 unitCost 同等权威，忽略 _corrected 保护）
+      // 若产量或 unitCost 缺失，则回退到财报提取值；均缺失则置 null
+      if (!manualPlaceholder) {
+        const oilCalcCost = calcCostByUnitCost(existingItem.oil.production, existingItem.oil.unitCost, item.year);
+        if (oilCalcCost != null) {
+          existingItem.oil.cost = oilCalcCost;
+        } else if (canUpdateOil) {
+          existingItem.oil.cost = item.oil.cost != null ? item.oil.cost / 100000000 : null;
+        }
+        const gasCalcCost = calcCostByUnitCost(existingItem.gas.production, existingItem.gas.unitCost, item.year);
+        if (gasCalcCost != null) {
+          existingItem.gas.cost = gasCalcCost;
+        } else if (canUpdateGas) {
+          existingItem.gas.cost = item.gas.cost != null ? item.gas.cost / 100000000 : null;
+        }
       }
       
       // 更新销量字段（从rawData.summary中获取）
-      if (item.oil.sales && (!existingItem.oil.sales || existingItem.oil._corrected === false)) {
+      if (canUpdateOil && item.oil.sales !== null && item.oil.sales !== undefined) {
         existingItem.oil.sales = item.oil.sales; // 保持百万桶单位
       }
-      if (item.gas.sales && (!existingItem.gas.sales || existingItem.gas._corrected === false)) {
+      if (canUpdateGas && item.gas.sales !== null && item.gas.sales !== undefined) {
         existingItem.gas.sales = item.gas.sales; // 保持十亿立方英尺单位
       }
       
       // 更新产量字段（从rawData.summary中获取）
-      if (item.oil.production && (!existingItem.oil.production || existingItem.oil._corrected === false)) {
+      if (canUpdateOil && item.oil.production !== null && item.oil.production !== undefined) {
         existingItem.oil.production = item.oil.production; // 保持百万桶单位
       }
-      if (item.gas.production && (!existingItem.gas.production || existingItem.gas._corrected === false)) {
+      if (canUpdateGas && item.gas.production !== null && item.gas.production !== undefined) {
         existingItem.gas.production = item.gas.production; // 保持十亿立方英尺单位
       }
       
       // 更新价格字段（如果原始数据中有且修正数据中没有，或者原始数据更新了）
-      if (rawItem?.oil?.price && (!existingItem.oil.price || existingItem.oil._corrected === false)) {
+      if (canUpdateOil && rawItem?.oil?.price !== null && rawItem?.oil?.price !== undefined) {
         existingItem.oil.price = rawItem.oil.price;
       }
-      if (rawItem?.gas?.price && (!existingItem.gas.price || existingItem.gas._corrected === false)) {
+      if (canUpdateGas && rawItem?.gas?.price !== null && rawItem?.gas?.price !== undefined) {
         existingItem.gas.price = rawItem.gas.price;
       }
       
-      // 更新单位成本字段（如果原始数据中有且修正数据中没有，或者原始数据更新了）
-      if (rawItem?.oil?.unitCost && (!existingItem.oil.unitCost || existingItem.oil._corrected === false)) {
-        existingItem.oil.unitCost = rawItem.oil.unitCost;
-      }
-      if (rawItem?.gas?.unitCost && (!existingItem.gas.unitCost || existingItem.gas._corrected === false)) {
-        existingItem.gas.unitCost = rawItem.gas.unitCost;
+      // 更新单位成本字段
+      // 优先级：业绩发布数据 > 年报原始数据
+      // 注意：业绩发布 unitCost 即使对手动修正（_corrected=true）的记录也会覆盖，
+      //       因为业绩发布是更权威的数据来源；其他字段仍受 _corrected 保护。
+      const presUnitCost = presentationUnitCostMap.get(`${item.year}-${item.filename}`);
+      if (!manualPlaceholder) {
+        if (presUnitCost != null) {
+          // 业绩发布数据优先，覆盖油气 unitCost（忽略 _corrected 保护）
+          existingItem.oil.unitCost = presUnitCost;
+          existingItem.gas.unitCost = oilBoeUnitCostToGasUnitCostUsdPerMcf(presUnitCost);
+        } else {
+          if (canUpdateOil && rawItem?.oil?.unitCost != null) {
+            existingItem.oil.unitCost = rawItem.oil.unitCost;
+          }
+          if (canUpdateGas && rawItem?.gas?.unitCost != null) {
+            existingItem.gas.unitCost = rawItem.gas.unitCost;
+          }
+        }
       }
       
       // 更新归母净利润字段
-      if (item.netProfit !== null && item.netProfit !== undefined && (!existingItem.netProfit || existingItem._corrected === false)) {
+      if (canUpdateSummary && item.netProfit !== null && item.netProfit !== undefined) {
         existingItem.netProfit = item.netProfit / 100000000; // 元转亿元
-      } else if (item.netProfit === null && existingItem._corrected !== true) {
+      } else if (item.netProfit === null && canUpdateSummary) {
         existingItem.netProfit = null; // 保持null值
       }
       
       // 更新营业收入字段
-      if (item.operatingRevenue !== null && item.operatingRevenue !== undefined && (!existingItem.operatingRevenue || existingItem._corrected === false)) {
+      if (canUpdateSummary && item.operatingRevenue !== null && item.operatingRevenue !== undefined) {
         existingItem.operatingRevenue = item.operatingRevenue / 100000000; // 元转亿元
-      } else if (item.operatingRevenue === null && existingItem._corrected !== true) {
+      } else if (item.operatingRevenue === null && canUpdateSummary) {
         existingItem.operatingRevenue = null; // 保持null值
       }
       
       // 更新总产量字段
-      if (item.totalProduction !== null && item.totalProduction !== undefined && (!existingItem.totalProduction || existingItem._corrected === false)) {
+      if (canUpdateSummary && item.totalProduction !== null && item.totalProduction !== undefined) {
         existingItem.totalProduction = item.totalProduction; // 百万桶油当量，单位不变
-      } else if (item.totalProduction === null && existingItem._corrected !== true) {
+      } else if (item.totalProduction === null && canUpdateSummary) {
         existingItem.totalProduction = null; // 保持null值
       }
       
       // 更新总销量字段
-      if (item.totalSales !== null && item.totalSales !== undefined && (!existingItem.totalSales || existingItem._corrected === false)) {
+      if (canUpdateSummary && item.totalSales !== null && item.totalSales !== undefined) {
         existingItem.totalSales = item.totalSales; // 百万桶油当量，单位不变
-      } else if (item.totalSales === null && existingItem._corrected !== true) {
+      } else if (item.totalSales === null && canUpdateSummary) {
         existingItem.totalSales = null; // 保持null值
       }
       
-      // 重新计算单位毛利和毛利率
-      if (existingItem.oil.price && existingItem.oil.unitCost) {
-        existingItem.oil.unitGrossProfit = existingItem.oil.price - existingItem.oil.unitCost;
+      // 重新计算单位毛利和毛利率（手动锁定油气块时不覆盖，避免冲掉手工值或备注中的口径）
+      if (existingItem.oil._corrected !== true) {
+        if (existingItem.oil.price && existingItem.oil.unitCost) {
+          existingItem.oil.unitGrossProfit = existingItem.oil.price - existingItem.oil.unitCost;
+        }
+        if (existingItem.oil.revenue && existingItem.oil.cost) {
+          existingItem.oil.grossMargin =
+            ((existingItem.oil.revenue - existingItem.oil.cost) / existingItem.oil.revenue) * 100;
+        }
       }
-      if (existingItem.oil.revenue && existingItem.oil.cost) {
-        existingItem.oil.grossMargin = ((existingItem.oil.revenue - existingItem.oil.cost) / existingItem.oil.revenue) * 100;
-      }
-      
-      if (existingItem.gas.price && existingItem.gas.unitCost) {
-        existingItem.gas.unitGrossProfit = existingItem.gas.price - existingItem.gas.unitCost;
-      }
-      if (existingItem.gas.revenue && existingItem.gas.cost) {
-        existingItem.gas.grossMargin = ((existingItem.gas.revenue - existingItem.gas.cost) / existingItem.gas.revenue) * 100;
+      if (existingItem.gas._corrected !== true) {
+        if (existingItem.gas.price && existingItem.gas.unitCost) {
+          existingItem.gas.unitGrossProfit = existingItem.gas.price - existingItem.gas.unitCost;
+        }
+        if (existingItem.gas.revenue && existingItem.gas.cost) {
+          existingItem.gas.grossMargin =
+            ((existingItem.gas.revenue - existingItem.gas.cost) / existingItem.gas.revenue) * 100;
+        }
       }
       
       skippedCount++;
@@ -2857,17 +3233,32 @@ async function updateCorrectedData() {
     if (!period) return;
     
     // 创建新数据项
+    // 业绩发布 unitCost 优先
+    const newPresUnitCost = presentationUnitCostMap.get(`${item.year}-${item.filename}`);
+    const oilUnitCost = newPresUnitCost ?? item.oil.unitCost ?? null;
+    const gasUnitCost = newPresUnitCost != null
+      ? oilBoeUnitCostToGasUnitCostUsdPerMcf(newPresUnitCost)
+      : (item.gas.unitCost ?? null);
+
+    const oilProd = item.oil.production || null;
+    const gasProd = item.gas.production || null;
+    // 优先用 产量 × unitCost 公式；若产量缺失则回退到财报提取值
+    const oilCost = calcCostByUnitCost(oilProd, oilUnitCost, item.year)
+      ?? (item.oil.cost ? item.oil.cost / 100000000 : null);
+    const gasCost = calcCostByUnitCost(gasProd, gasUnitCost, item.year)
+      ?? (item.gas.cost ? item.gas.cost / 100000000 : null);
+
     const newItem = {
       period: period,
       year: item.year,
       filename: item.filename,
       oil: {
-        production: item.oil.production || null,
+        production: oilProd,
         sales: item.oil.sales || null,
         revenue: item.oil.revenue ? item.oil.revenue / 100000000 : null, // 转换为亿元
-        cost: item.oil.cost ? item.oil.cost / 100000000 : null, // 转换为亿元
+        cost: oilCost, // 亿元（产量×unitCost×汇率/100）
         price: item.oil.price || null, // 美元/桶
-        unitCost: item.oil.unitCost || null, // 美元/桶
+        unitCost: oilUnitCost, // 美元/桶（优先业绩发布）
         unitGrossProfit: null,
         grossMargin: null,
         _corrected: false,
@@ -2875,12 +3266,12 @@ async function updateCorrectedData() {
         _notes: null
       },
       gas: {
-        production: item.gas.production || null,
+        production: gasProd,
         sales: item.gas.sales || null,
         revenue: item.gas.revenue ? item.gas.revenue / 100000000 : null, // 转换为亿元
-        cost: item.gas.cost ? item.gas.cost / 100000000 : null, // 转换为亿元
+        cost: gasCost, // 亿元（产量×unitCost×汇率/100）
         price: item.gas.price || null, // 美元/千立方英尺
-        unitCost: item.gas.unitCost || null, // 美元/千立方英尺
+        unitCost: gasUnitCost, // 美元/千立方英尺（由桶油主要成本换算）
         unitGrossProfit: null,
         grossMargin: null,
         _corrected: false,
@@ -2908,17 +3299,10 @@ async function updateCorrectedData() {
     
     correctedData.summary.push(newItem);
     newCount++;
-    console.log(`✅ 添加新数据: ${period} (${item.filename})`);
+    console.log(`✅ 添加新数据: ${period} (${item.filename})（已追加至 summary 末尾）`);
   });
   
-  // 按时间排序（最新的在前）
-  correctedData.summary.sort((a, b) => {
-    if (a.year !== b.year) return b.year.localeCompare(a.year);
-    const monthOrder = { '1-3月': 3, '上半年': 6, '1-9月': 9, '全年': 12 };
-    const aMonth = monthOrder[a.period.replace(/\d{4}年/, '')] || 0;
-    const bMonth = monthOrder[b.period.replace(/\d{4}年/, '')] || 0;
-    return bMonth - aMonth;
-  });
+  // 不排序 summary：保留用户在 cnooc_data_corrected.json 中的顺序；新增项仅 push 在末尾
   
   // 更新元数据
   correctedData._metadata.lastUpdated = new Date().toISOString().split('T')[0];
@@ -2941,5 +3325,5 @@ if (require.main === module) {
   main().catch(console.error);
 }
 
-module.exports = { parsePDF, processAllPDFs, generateSummary };
+module.exports = { parsePDF, processAllPDFs, generateSummary, parsePresentationPDF, processAllPresentationPDFs };
 

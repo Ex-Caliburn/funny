@@ -1232,11 +1232,9 @@
             
             // 过滤列：
             // 1. 去掉成本列
-            // 2. 天然气去掉完全成本和毛利率
-            // 3. 单季度视图（非累积）去掉销量、实现价格、完全成本、毛利率
+            // 2. 单季度视图（非累积）去掉销量、实现价格、完全成本、毛利率
             const columns = allColumns.filter(col => {
                 if (col.key === 'cost') return false; // 去掉成本列
-                if (product === 'gas' && (col.key === 'unitCost' || col.key === 'grossMargin')) return false; // 天然气去掉完全成本和毛利率
                 if (!isCumulative && (col.key === 'sales' || col.key === 'price' || col.key === 'unitCost' || col.key === 'grossMargin')) {
                     return false; // 单季度视图去掉销量、实现价格、完全成本、毛利率
                 }
@@ -1406,9 +1404,9 @@
             
             // 计算总列数（用于分隔行的colspan）
             // 根据实际显示的列数计算
-            // 累积视图：石油：营收、产量、销量、实现价格、完全成本、毛利率 = 6列；天然气：营收、产量、销量、实现价格 = 4列
-            // 单季度视图：石油：营收、产量 = 2列；天然气：营收、产量 = 2列
-            const columnCount = isCumulative ? (product === 'oil' ? 6 : 4) : 2;
+            // 累积视图：石油和天然气都有：营收、产量、销量、实现价格、完全成本、毛利率 = 6列
+            // 单季度视图：营收、产量 = 2列
+            const columnCount = isCumulative ? 6 : 2;
             const totalCols = isCumulative ? (1 + columnCount * 2) : (1 + columnCount * 3);
 
             allData.forEach((item, index) => {
@@ -1463,15 +1461,15 @@
                     row.innerHTML += `<td>${formatChange(priceYoYChange)}</td>`;
                 }
 
-                // 完全成本（仅石油且仅累积视图显示）
-                if (product === 'oil' && isCumulative) {
+                // 完全成本（仅累积视图显示）
+                if (isCumulative) {
                     const unitCostYoYChange = baseYoY && baseYoY.unitCost !== null && item.unitCost !== null ? calculateChange(item.unitCost, baseYoY.unitCost) : null;
                     row.innerHTML += `<td class="value">${formatValue(item.unitCost)}</td>`;
                     row.innerHTML += `<td>${formatChange(unitCostYoYChange)}</td>`;
                 }
 
-                // 毛利率（仅石油且仅累积视图显示）
-                if (product === 'oil' && isCumulative) {
+                // 毛利率（仅累积视图显示）
+                if (isCumulative) {
                     const grossMarginYoYChange = baseYoY && baseYoY.grossMargin !== null && item.grossMargin !== null ? calculateChange(parseFloat(item.grossMargin), parseFloat(baseYoY.grossMargin)) : null;
                     const grossMarginValue = item.grossMargin !== null && item.grossMargin !== undefined && !isNaN(item.grossMargin) ? parseFloat(item.grossMargin) : null;
                     row.innerHTML += `<td class="value">${grossMarginValue !== null ? grossMarginValue.toFixed(2) + '%' : '<span class="no-data">-</span>'}</td>`;
