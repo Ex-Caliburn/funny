@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>集装箱运价指数</title>
+  <title>航运运价指数</title>
   <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -127,11 +127,12 @@
 <body>
 
 <div class="top-bar">
-  <h2>🚢 集装箱运价指数</h2>
+  <h2>🚢 航运运价指数</h2>
   <div class="index-tabs">
     <button class="index-tab active" data-index="ccfi">CCFI</button>
     <button class="index-tab" data-index="scfi">SCFI</button>
     <button class="index-tab" data-index="seafi">SEAFI</button>
+    <button class="index-tab" data-index="cbcfi">CBCFI</button>
   </div>
   <span class="subtitle">数据来源：上海航运交易所</span>
 </div>
@@ -175,6 +176,11 @@ const INDICES_DATA = {
     name: 'SEAFI 东南亚集装箱运价指数',
     primaryRoute: '综合指数',
     data: [{"date":"2026-04-30","综合指数":2951.52},{"date":"2026-05-08","综合指数":2983.91}]
+  },
+  cbcfi: {
+    name: 'CBCFI 中国沿海煤炭运价指数',
+    primaryRoute: '综合指数',
+    data: [{"date":"2026-05-07","综合指数":1278.01},{"date":"2026-05-08","综合指数":1278.70}]
   }
 }
 // ─────────────────────────────────────────────────────────────────────────────

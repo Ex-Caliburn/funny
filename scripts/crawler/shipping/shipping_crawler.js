@@ -6,6 +6,7 @@
  * 支持指数：
  *   - CCFI 中国出口集装箱运价指数
  *   - SEAFI 东南亚集装箱运价指数
+ *   - CBCFI 中国沿海煤炭运价指数（日频）
  *
  * 功能：
  *   - 爬取各航线运价及综合指数
@@ -16,6 +17,7 @@
  *   node scripts/crawler/shipping/shipping_crawler.js           # 爬取全部指数
  *   node scripts/crawler/shipping/shipping_crawler.js ccfi      # 只爬 CCFI
  *   node scripts/crawler/shipping/shipping_crawler.js seafi     # 只爬 SEAFI
+ *   node scripts/crawler/shipping/shipping_crawler.js cbcfi     # 只爬 CBCFI
  */
 
 const fs = require('fs')
@@ -289,7 +291,7 @@ class ShippingCrawler {
    */
   async run(indexKeys = []) {
     console.log('========================================')
-    console.log('  上海航运交易所集装箱运价指数爬虫')
+    console.log('  上海航运交易所运价指数爬虫')
     console.log('========================================')
 
     const allKeys = Object.keys(this.sseConfig.targets)
