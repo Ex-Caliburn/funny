@@ -126,10 +126,105 @@ module.exports = {
         compositeKey: '综合指数',
         dataFile: 'seafi.json',
       },
+      // 中国沿海煤炭运价指数
+      cbcfi: {
+        name: '中国沿海煤炭运价指数',
+        indexType: 'cbcfi',
+        url: 'https://www.sse.net.cn/index/singleIndex?indexType=cbcfi',
+        compositeKey: '综合指数',
+        dataFile: 'cbcfi.json',
+      },
     },
 
     // 数据存储目录（相对于 stock/）
     dataDir: 'shipping',
+  },
+
+  // CCTD 秦皇岛动力煤价格配置
+  cctdCoal: {
+    // 综合交易价页面（GBK 编码）
+    pageUrl:
+      'https://www.cctd.com.cn/index.php?m=content&c=index&a=lists&catid=454&data=CCTD%C7%D8%BB%CA%B5%BA%B6%AF%C1%A6%C3%BA%BC%DB%B8%F1&name=CCTD%C7%D8%BB%CA%B5%BA%B6%AF%C1%A6%C3%BA%BC%DB%B8%F1',
+    delayBetweenRequests: 2000,
+    maxRetries: 3,
+    timeout: 30000,
+
+    targets: {
+      // 综合交易 5500 大卡价格
+      composite5500: {
+        name: 'CCTD 秦皇岛动力煤综合交易 5500 大卡',
+        dataFile: 'qhd_coal_5500k.json',
+        // 页面中用于定位当前价格的关键词
+        priceLabel: '综合交易5500',
+      },
+    },
+
+    // 数据存储目录（相对于 stock/）
+    dataDir: 'coal',
+  },
+
+  /**
+   * 中国太原煤炭交易中心（ctctc）— 山西产地价格周度数据
+   * 专题页：https://cj.ctctc.cn/newjgzs/rest/jgzsfl/v3/getPriceInfo（HTML，非 JSON）
+   * 全量历史接口：zhIndexDataAll（页面内 echarts 同源使用）
+   */
+  ctctcShanxiCoal: {
+    baseUrl: 'https://cj.ctctc.cn',
+    indexPageUrl: 'https://cj.ctctc.cn/newjgzs/rest/jgzsfl/v3/getPriceInfo',
+    historyUrl: 'https://cj.ctctc.cn/newjgzs/rest/jgzsfl/v3/zhIndexDataAll',
+    delayBetweenRequests: 1500,
+    maxRetries: 3,
+    timeout: 30000,
+
+    targets: {
+      thermal5500: {
+        name: '山西动力煤 5500',
+        indexCode: 'sxdl5500',
+        dataFile: 'shanxi_coal_5500k.json',
+      },
+      thermal5000: {
+        name: '山西动力煤 5000',
+        indexCode: 'sxdl5000',
+        dataFile: 'shanxi_coal_5000k.json',
+      },
+      thermal4500: {
+        name: '山西动力煤 4500',
+        indexCode: 'sxdl4500',
+        dataFile: 'shanxi_coal_4500k.json',
+      },
+      lowSulfurCoking: {
+        name: '山西低硫焦精煤',
+        indexCode: 'sxdljm',
+        dataFile: 'shanxi_coking_coal.json',
+      },
+      lowSulfurLeanMeager: {
+        name: '山西低硫贫瘦精煤',
+        indexCode: 'sxdlpsm',
+        dataFile: 'shanxi_dlps_coking.json',
+      },
+      lowSulfurOneThirdCoking: {
+        name: '山西低硫1/3焦精煤',
+        indexCode: 'sxdl1/3jm',
+        dataFile: 'shanxi_one_third_coking.json',
+      },
+      pci: {
+        name: '山西喷吹煤',
+        indexCode: 'sxpcm',
+        dataFile: 'shanxi_pci_coal.json',
+      },
+      sinter: {
+        name: '山西烧结煤',
+        indexCode: 'sxsjm',
+        dataFile: 'shanxi_sinter_coal.json',
+      },
+      anthraciteLump: {
+        name: '山西无烟块煤',
+        indexCode: 'sxwykm',
+        dataFile: 'shanxi_wykm_coal.json',
+      },
+    },
+
+    dataDir: 'coal',
   },
 
   // 文件处理配置

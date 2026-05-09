@@ -1,0 +1,503 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>煤炭价格 - 趋势看板</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      background: #0b0f19;
+      color: #dbe0ea;
+      padding: 16px 20px;
+    }
+    .top-bar { display: flex; align-items: center; gap: 12px; margin-bottom: 6px; flex-wrap: wrap; }
+    h2 { font-size: 18px; font-weight: 600; color: #e8edff; }
+    .subtitle { font-size: 11px; color: #475569; margin-left: auto; }
+    .tab-bar {
+      display: inline-flex; background: #1e293b;
+      border-radius: 10px; padding: 4px; gap: 2px;
+      margin-bottom: 14px;
+    }
+    .tab-btn {
+      padding: 6px 22px; border: none; border-radius: 7px;
+      background: transparent; color: #94a3b8;
+      font-size: 13px; font-weight: 600; cursor: pointer;
+      transition: all 0.18s; white-space: nowrap;
+    }
+    .tab-btn.active { background: #3b82f6; color: #fff; box-shadow: 0 2px 8px rgba(59,130,246,0.4); }
+    .tab-btn:hover:not(.active) { background: #334155; color: #e2e8f0; }
+    /* 一级：产地 */
+    .region-bar { margin-bottom: 8px; }
+    .region-bar .tab-btn { padding: 8px 28px; font-size: 14px; }
+    /* 二级：品种（略紧凑，与一级区分） */
+    .sub-tab-bar {
+      display: none;
+      flex-wrap: wrap;
+      background: #0f172a;
+      border: 1px solid #1e293b;
+      border-radius: 10px;
+      padding: 4px;
+      gap: 4px;
+      margin-bottom: 14px;
+    }
+    .sub-tab-bar.visible { display: inline-flex; }
+    .sub-tab-bar .tab-btn {
+      padding: 5px 14px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .sub-tab-bar .tab-btn.active {
+      background: #334155;
+      color: #f1f5f9;
+      box-shadow: none;
+    }
+    .panel { display: none; }
+    .panel.active { display: block; }
+    /* 统计栏 */
+    .stat-bar { display: flex; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
+    .stat-card {
+      background: #0f172a; border: 1px solid #1f2937;
+      border-radius: 10px; padding: 10px 18px; min-width: 130px;
+    }
+    .stat-label { font-size: 11px; color: #64748b; margin-bottom: 3px; }
+    .stat-sub { font-size: 10px; color: #334155; }
+    .stat-val { font-size: 22px; font-weight: 700; color: #e2e8f0; line-height: 1.2; }
+    .stat-val.up { color: #ef4444; }
+    .stat-val.dn { color: #22c55e; }
+    /* 图表 */
+    .chart-wrap { height: 68vh; }
+    /* 加载态 */
+    .loading { display: flex; align-items: center; justify-content: center; height: 68vh; color: #334155; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <h2>煤炭价格 — 趋势看板</h2>
+    <span class="subtitle">周度数据；左轴绝对价格（元/吨）；右轴最新年份月度环比/同比（%）</span>
+  </div>
+
+  <div class="tab-bar region-bar" id="region-bar" role="tablist" aria-label="产地">
+    <button type="button" class="tab-btn active" data-region="shanxi" id="region-shanxi">山西</button>
+    <button type="button" class="tab-btn" data-region="qhd" id="region-qhd">秦皇岛</button>
+  </div>
+
+  <div class="sub-tab-bar visible" id="sub-bar-shanxi" role="tablist" aria-label="山西品种">
+    <button type="button" class="tab-btn sub-tab-btn active" data-key="coal5500">动力煤 5500K</button>
+    <button type="button" class="tab-btn sub-tab-btn" data-key="coal5000">动力煤 5000K</button>
+    <button type="button" class="tab-btn sub-tab-btn" data-key="coal4500">动力煤 4500K</button>
+    <button type="button" class="tab-btn sub-tab-btn" data-key="coking">低硫焦煤</button>
+    <button type="button" class="tab-btn sub-tab-btn" data-key="dlpsm">低硫贫瘦精煤</button>
+    <button type="button" class="tab-btn sub-tab-btn" data-key="jm13">低硫1/3焦精煤</button>
+    <button type="button" class="tab-btn sub-tab-btn" data-key="pci">喷吹煤</button>
+    <button type="button" class="tab-btn sub-tab-btn" data-key="sinter">烧结煤（无烟煤末煤）</button>
+    <button type="button" class="tab-btn sub-tab-btn" data-key="wykm">无烟块煤</button>
+  </div>
+
+  <div class="sub-tab-bar" id="sub-bar-qhd" role="tablist" aria-label="秦皇岛品种">
+    <button type="button" class="tab-btn sub-tab-btn" data-key="qhd5500">综合 5500K</button>
+    <button type="button" class="tab-btn sub-tab-btn" data-key="qhd5000">综合 5000K</button>
+    <button type="button" class="tab-btn sub-tab-btn" data-key="qhd4500">综合 4500K</button>
+  </div>
+
+  <div id="panel-coal5500" class="panel active">
+    <div class="stat-bar" id="stats-coal5500"></div>
+    <div id="chart-coal5500" class="chart-wrap"></div>
+  </div>
+  <div id="panel-coal5000" class="panel">
+    <div class="stat-bar" id="stats-coal5000"></div>
+    <div id="chart-coal5000" class="chart-wrap"></div>
+  </div>
+  <div id="panel-coal4500" class="panel">
+    <div class="stat-bar" id="stats-coal4500"></div>
+    <div id="chart-coal4500" class="chart-wrap"></div>
+  </div>
+  <div id="panel-coking" class="panel">
+    <div class="stat-bar" id="stats-coking"></div>
+    <div id="chart-coking" class="chart-wrap"></div>
+  </div>
+  <div id="panel-dlpsm" class="panel">
+    <div class="stat-bar" id="stats-dlpsm"></div>
+    <div id="chart-dlpsm" class="chart-wrap"></div>
+  </div>
+  <div id="panel-jm13" class="panel">
+    <div class="stat-bar" id="stats-jm13"></div>
+    <div id="chart-jm13" class="chart-wrap"></div>
+  </div>
+  <div id="panel-pci" class="panel">
+    <div class="stat-bar" id="stats-pci"></div>
+    <div id="chart-pci" class="chart-wrap"></div>
+  </div>
+  <div id="panel-sinter" class="panel">
+    <div class="stat-bar" id="stats-sinter"></div>
+    <div id="chart-sinter" class="chart-wrap"></div>
+  </div>
+  <div id="panel-wykm" class="panel">
+    <div class="stat-bar" id="stats-wykm"></div>
+    <div id="chart-wykm" class="chart-wrap"></div>
+  </div>
+  <div id="panel-qhd5500" class="panel">
+    <div class="stat-bar" id="stats-qhd5500"></div>
+    <div id="chart-qhd5500" class="chart-wrap"></div>
+  </div>
+  <div id="panel-qhd5000" class="panel">
+    <div class="stat-bar" id="stats-qhd5000"></div>
+    <div id="chart-qhd5000" class="chart-wrap"></div>
+  </div>
+  <div id="panel-qhd4500" class="panel">
+    <div class="stat-bar" id="stats-qhd4500"></div>
+    <div id="chart-qhd4500" class="chart-wrap"></div>
+  </div>
+
+  <script src="../vendor/echarts.min.js"></script>
+  <script>
+  // region 仅用于文档/扩展；图表与数据 key、file 不变
+  var COAL_TYPES = [
+    { region: 'shanxi', key: 'coal5500', label: '动力煤 5500K',   file: '../coal/shanxi_coal_5500k.json' },
+    { region: 'shanxi', key: 'coal5000', label: '动力煤 5000K',   file: '../coal/shanxi_coal_5000k.json' },
+    { region: 'shanxi', key: 'coal4500', label: '动力煤 4500K',   file: '../coal/shanxi_coal_4500k.json' },
+    { region: 'shanxi', key: 'coking',   label: '低硫焦煤',       file: '../coal/shanxi_coking_coal.json' },
+    { region: 'shanxi', key: 'dlpsm',   label: '低硫贫瘦精煤',   file: '../coal/shanxi_dlps_coking.json' },
+    { region: 'shanxi', key: 'jm13',    label: '低硫1/3焦精煤',  file: '../coal/shanxi_one_third_coking.json' },
+    { region: 'shanxi', key: 'pci',      label: '喷吹煤',         file: '../coal/shanxi_pci_coal.json' },
+    { region: 'shanxi', key: 'sinter',   label: '烧结煤（无烟煤末煤）', file: '../coal/shanxi_sinter_coal.json' },
+    { region: 'shanxi', key: 'wykm',     label: '无烟块煤',       file: '../coal/shanxi_wykm_coal.json' },
+    { region: 'qhd',    key: 'qhd5500',  label: '秦皇岛 · 综合 5500K', file: '../coal/qhd_coal_5500k.json' },
+    { region: 'qhd',    key: 'qhd5000',  label: '秦皇岛 · 综合 5000K', file: '../coal/qhd_coal_5000k.json' },
+    { region: 'qhd',    key: 'qhd4500',  label: '秦皇岛 · 综合 4500K', file: '../coal/qhd_coal_4500k.json' }
+  ];
+
+  var REGION_DEFAULT_KEY = { shanxi: 'coal5500', qhd: 'qhd5500' };
+
+  // 年份颜色：2023 灰、2024 蓝、2025 绿、2026 橙
+  var YEAR_COLORS = {
+    '2023': '#64748b',
+    '2024': '#3b82f6',
+    '2025': '#10b981',
+    '2026': '#f97316'
+  };
+  var MOM_COLOR = '#f59e0b';
+  var YOY_COLOR = '#a78bfa';
+
+  var charts = {};
+  var loaded = {};  // 记录已加载并初始化的 tab
+
+  // ── 日期转 x 轴数值：月份 + 当月天数/31 ─────────────────────────
+  // 让不同年份相同月份的数据在 x 轴上大致对齐
+  function dateToX(dateStr) {
+    var p = dateStr.split('-');
+    return parseFloat((+p[1] + (+p[2] - 1) / 31).toFixed(4));
+  }
+
+  // ── 按年分组 ─────────────────────────────────────────────────────
+  function groupByYear(rawArr) {
+    var map = {};
+    rawArr.forEach(function(item) {
+      var y = item.date.slice(0, 4);
+      if (!map[y]) map[y] = [];
+      map[y].push(item);
+    });
+    return map;
+  }
+
+  // ── 月度聚合：取每月最后一条记录 ──────────────────────────────────
+  function aggregateMonthly(yearMap) {
+    var res = {};
+    Object.keys(yearMap).forEach(function(year) {
+      res[year] = {};
+      yearMap[year].forEach(function(item) {
+        var m = +item.date.slice(5, 7);
+        // 数据按日期升序，后覆盖即为月末值
+        res[year][m] = { price: item.price, x: dateToX(item.date) };
+      });
+    });
+    return res;
+  }
+
+  // ── 计算环比 / 同比 ───────────────────────────────────────────────
+  function calcRates(monthlyMap) {
+    var years = Object.keys(monthlyMap).sort();
+    var latestYear = years[years.length - 1];
+    var prevYear   = years.length >= 2 ? years[years.length - 2] : null;
+    var momPts = [], yoyPts = [];
+
+    for (var m = 1; m <= 12; m++) {
+      var cur = monthlyMap[latestYear][m];
+      if (!cur) continue;
+      var x = cur.x;
+
+      // 环比（与上月末比）
+      var prev = monthlyMap[latestYear][m - 1];
+      if (prev) momPts.push([x, +((cur.price - prev.price) / prev.price * 100).toFixed(2)]);
+
+      // 同比（与去年同月末比）
+      if (prevYear && monthlyMap[prevYear][m]) {
+        var base = monthlyMap[prevYear][m].price;
+        yoyPts.push([x, +((cur.price - base) / base * 100).toFixed(2)]);
+      }
+    }
+    return { momPts: momPts, yoyPts: yoyPts, latestYear: latestYear, prevYear: prevYear };
+  }
+
+  // ── 渲染顶部统计卡片 ──────────────────────────────────────────────
+  function renderStats(key, yearMap) {
+    var monthly = aggregateMonthly(yearMap);
+    var rates   = calcRates(monthly);
+    var ly = rates.latestYear;
+    var py = rates.prevYear;
+
+    // 最新月
+    var months = Object.keys(monthly[ly]).map(Number).sort(function(a, b) { return a - b; });
+    var lm = months[months.length - 1];
+    var latestPrice = monthly[ly][lm].price;
+
+    // 环比
+    var momVal = null, momStr = '-';
+    if (monthly[ly][lm - 1]) {
+      momVal = +((latestPrice - monthly[ly][lm - 1].price) / monthly[ly][lm - 1].price * 100).toFixed(2);
+      momStr = (momVal > 0 ? '+' : '') + momVal + '%';
+    }
+
+    // 同比
+    var yoyVal = null, yoyStr = '-';
+    if (py && monthly[py] && monthly[py][lm]) {
+      var base = monthly[py][lm].price;
+      yoyVal = +((latestPrice - base) / base * 100).toFixed(2);
+      yoyStr = (yoyVal > 0 ? '+' : '') + yoyVal + '%';
+    }
+
+    function card(label, sub, valStr, numVal) {
+      var cls = numVal !== null ? (numVal > 0 ? ' up' : numVal < 0 ? ' dn' : '') : '';
+      return '<div class="stat-card"><div class="stat-label">' + label + '</div>'
+        + '<div class="stat-sub">' + sub + '</div>'
+        + '<div class="stat-val' + cls + '">' + valStr + '</div></div>';
+    }
+
+    document.getElementById('stats-' + key).innerHTML =
+      card('最新报价', ly + '年 ' + lm + '月末', latestPrice + ' 元/吨', null) +
+      card('环比', '较上月', momStr, momVal) +
+      card('同比', '较去年同期', yoyStr, yoyVal);
+  }
+
+  // ── 构建 ECharts option ──────────────────────────────────────────
+  function buildOption(yearMap) {
+    var monthly = aggregateMonthly(yearMap);
+    var rates   = calcRates(monthly);
+    var years   = Object.keys(yearMap).sort();
+    var ly      = rates.latestYear;
+    var series  = [];
+
+    // 每年一条周度价格线
+    years.forEach(function(year, idx) {
+      var color = YEAR_COLORS[year] || '#94a3b8';
+      var isLatest = year === ly;
+      var data = yearMap[year].map(function(item) {
+        return {
+          value: [dateToX(item.date), item.price],
+          date: item.date
+        };
+      });
+      series.push({
+        name: year + '年',
+        type: 'line',
+        yAxisIndex: 0,
+        data: data,
+        smooth: false,
+        symbol: 'circle',
+        symbolSize: isLatest ? 5 : 3,
+        lineStyle: { color: color, width: isLatest ? 2.5 : 1.5 },
+        itemStyle: { color: color },
+        z: isLatest ? 10 : idx + 1
+      });
+    });
+
+    // 最新年份环比（右轴，月度）
+    series.push({
+      name: ly + '年环比%',
+      type: 'line',
+      yAxisIndex: 1,
+      data: rates.momPts,
+      smooth: true,
+      symbol: 'triangle',
+      symbolSize: 6,
+      lineStyle: { color: MOM_COLOR, width: 2, type: 'dashed' },
+      itemStyle: { color: MOM_COLOR }
+    });
+
+    // 最新年份同比（右轴，月度）
+    series.push({
+      name: ly + '年同比%',
+      type: 'line',
+      yAxisIndex: 1,
+      data: rates.yoyPts,
+      smooth: true,
+      symbol: 'diamond',
+      symbolSize: 6,
+      lineStyle: { color: YOY_COLOR, width: 2 },
+      itemStyle: { color: YOY_COLOR }
+    });
+
+    return {
+      backgroundColor: '#0b0f19',
+      animation: true,
+      tooltip: {
+        trigger: 'item',
+        backgroundColor: 'rgba(15,23,42,0.95)',
+        borderColor: '#1f2937',
+        textStyle: { color: '#e2e8f0', fontSize: 13 },
+        formatter: function(p) {
+          var isRate = p.seriesName.indexOf('%') > -1;
+          if (p.value == null) return '';
+          var v = Array.isArray(p.value) ? p.value[1] : p.value;
+          if (v == null) return '';
+          var dateStr = p.data && p.data.date ? p.data.date : '';
+          return '<b>' + p.seriesName + '</b>'
+            + (dateStr ? '<br/>' + dateStr : '')
+            + '<br/><span style="color:' + p.color + '">●</span> '
+            + v + (isRate ? '%' : ' 元/吨');
+        }
+      },
+      legend: {
+        top: 4,
+        textStyle: { color: '#cbd5e1', fontSize: 12 },
+        itemGap: 16
+      },
+      grid: { left: 72, right: 72, top: 50, bottom: 38 },
+      xAxis: {
+        type: 'value',
+        min: 0.9,
+        max: 13.1,
+        interval: 1,
+        axisLabel: {
+          color: '#9aa4b2',
+          fontSize: 12,
+          formatter: function(val) {
+            // 只在整月位置显示月份标签
+            var m = Math.round(val);
+            return (Math.abs(val - m) < 0.05 && m >= 1 && m <= 12) ? m + '月' : '';
+          }
+        },
+        splitLine: { show: true, lineStyle: { color: '#1a2236', type: 'solid' } },
+        axisTick: { show: false },
+        axisLine: { lineStyle: { color: '#334155' } }
+      },
+      yAxis: [
+        {
+          type: 'value',
+          name: '元/吨',
+          position: 'left',
+          nameTextStyle: { color: '#64748b', fontSize: 11 },
+          axisLabel: { color: '#9aa4b2', fontSize: 11 },
+          splitLine: { lineStyle: { color: '#1a2236' } }
+        },
+        {
+          type: 'value',
+          name: '%',
+          position: 'right',
+          nameTextStyle: { color: '#64748b', fontSize: 11 },
+          axisLabel: { color: '#9aa4b2', fontSize: 11, formatter: '{value}%' },
+          splitLine: { show: false }
+        }
+      ],
+      dataZoom: [
+        { type: 'slider', bottom: 4, height: 18, start: 0, end: 100,
+          textStyle: { color: '#9aa4b2', fontSize: 10 },
+          handleStyle: { color: '#334155' },
+          fillerColor: 'rgba(59,130,246,0.1)',
+          borderColor: '#1f2937' },
+        { type: 'inside' }
+      ],
+      series: series
+    };
+  }
+
+  // ── 初始化单个 tab 的图表 ─────────────────────────────────────────
+  function initTab(key, file) {
+    var el = document.getElementById('chart-' + key);
+    el.innerHTML = '<div class="loading">数据加载中…</div>';
+
+    fetch(file + '?t=' + Date.now())
+      .then(function(r) { return r.json(); })
+      .then(function(raw) {
+        var yearMap = groupByYear(raw);
+        renderStats(key, yearMap);
+        el.innerHTML = '';
+        var chart = echarts.init(el, null, { renderer: 'canvas' });
+        chart.setOption(buildOption(yearMap));
+        charts[key] = chart;
+        window.addEventListener('resize', function() { chart.resize(); });
+      })
+      .catch(function(err) {
+        el.innerHTML = '<div class="loading" style="color:#ef4444;">加载失败：' + err.message + '</div>';
+      });
+  }
+
+  function getCoalCfg(key) {
+    return COAL_TYPES.find(function(c) { return c.key === key; });
+  }
+
+  /** 切换数据面板并懒加载图表 */
+  function activateSeriesKey(key) {
+    document.querySelectorAll('.panel').forEach(function(p) { p.classList.remove('active'); });
+    var panel = document.getElementById('panel-' + key);
+    if (panel) panel.classList.add('active');
+
+    if (!loaded[key]) {
+      var cfg = getCoalCfg(key);
+      if (!cfg) return;
+      loaded[key] = true;
+      initTab(key, cfg.file);
+    } else if (charts[key]) {
+      charts[key].resize();
+    }
+  }
+
+  /** 一级：山西 / 秦皇岛 */
+  document.querySelectorAll('#region-bar [data-region]').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var region = btn.dataset.region;
+      document.querySelectorAll('#region-bar [data-region]').forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+
+      var subShanxi = document.getElementById('sub-bar-shanxi');
+      var subQhd = document.getElementById('sub-bar-qhd');
+      if (region === 'shanxi') {
+        subShanxi.classList.add('visible');
+        subQhd.classList.remove('visible');
+        subQhd.querySelectorAll('.sub-tab-btn').forEach(function(b) { b.classList.remove('active'); });
+        var firstKey = REGION_DEFAULT_KEY.shanxi;
+        var subBtn = subShanxi.querySelector('.sub-tab-btn[data-key="' + firstKey + '"]');
+        subShanxi.querySelectorAll('.sub-tab-btn').forEach(function(b) { b.classList.remove('active'); });
+        if (subBtn) subBtn.classList.add('active');
+        activateSeriesKey(firstKey);
+      } else {
+        subQhd.classList.add('visible');
+        subShanxi.classList.remove('visible');
+        subShanxi.querySelectorAll('.sub-tab-btn').forEach(function(b) { b.classList.remove('active'); });
+        var firstKeyQ = REGION_DEFAULT_KEY.qhd;
+        var subBtnQ = subQhd.querySelector('.sub-tab-btn[data-key="' + firstKeyQ + '"]');
+        subQhd.querySelectorAll('.sub-tab-btn').forEach(function(b) { b.classList.remove('active'); });
+        if (subBtnQ) subBtnQ.classList.add('active');
+        activateSeriesKey(firstKeyQ);
+      }
+    });
+  });
+
+  /** 二级：具体品种 */
+  document.querySelectorAll('.sub-tab-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var key = btn.dataset.key;
+      var bar = btn.closest('.sub-tab-bar');
+      if (!bar) return;
+      bar.querySelectorAll('.sub-tab-btn').forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      activateSeriesKey(key);
+    });
+  });
+
+  // ── 初始：山西 + 山西动力煤 5500K ─────────────────────────────────
+  activateSeriesKey('coal5500');
+  </script>
+</body>
+</html>
