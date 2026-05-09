@@ -1,0 +1,146 @@
+{
+  "generatedAt": "2026-05-09T11:37:14.058Z",
+  "years": {
+    "2024": [
+      {
+        "month": 1,
+        "valueUsd": 1482.29,
+        "holdingsOz": 7219
+      },
+      {
+        "month": 2,
+        "valueUsd": 1486.44,
+        "holdingsOz": 7258
+      },
+      {
+        "month": 3,
+        "valueUsd": 1610.69,
+        "holdingsOz": 7274
+      },
+      {
+        "month": 4,
+        "valueUsd": 1679.57,
+        "holdingsOz": 7280
+      },
+      {
+        "month": 5,
+        "valueUsd": 1709.6,
+        "holdingsOz": 7280
+      },
+      {
+        "month": 6,
+        "valueUsd": 1696.97,
+        "holdingsOz": 7280
+      },
+      {
+        "month": 7,
+        "valueUsd": 1766.42,
+        "holdingsOz": 7280
+      },
+      {
+        "month": 8,
+        "valueUsd": 1829.8,
+        "holdingsOz": 7280
+      },
+      {
+        "month": 9,
+        "valueUsd": 1914.69,
+        "holdingsOz": 7280
+      },
+      {
+        "month": 10,
+        "valueUsd": 1990.55,
+        "holdingsOz": 7280
+      },
+      {
+        "month": 11,
+        "valueUsd": 1934.31,
+        "holdingsOz": 7296
+      },
+      {
+        "month": 12,
+        "valueUsd": 1913.37,
+        "holdingsOz": 7329
+      }
+    ],
+    "2025": [
+      {
+        "month": 1,
+        "valueUsd": 2065.34,
+        "holdingsOz": 7345
+      },
+      {
+        "month": 2,
+        "valueUsd": 2086.43,
+        "holdingsOz": 7361
+      },
+      {
+        "month": 3,
+        "valueUsd": 2295.94,
+        "holdingsOz": 7370
+      },
+      {
+        "month": 4,
+        "valueUsd": 2435.85,
+        "holdingsOz": 7377
+      },
+      {
+        "month": 5,
+        "valueUsd": 2419.88,
+        "holdingsOz": 7383
+      },
+      {
+        "month": 6,
+        "valueUsd": 2429.31,
+        "holdingsOz": 7390
+      },
+      {
+        "month": 7,
+        "valueUsd": 2439.85,
+        "holdingsOz": 7396
+      },
+      {
+        "month": 8,
+        "valueUsd": 2538.43,
+        "holdingsOz": 7402
+      },
+      {
+        "month": 9,
+        "valueUsd": 2832.91,
+        "holdingsOz": 7406
+      },
+      {
+        "month": 10,
+        "valueUsd": 2972.09,
+        "holdingsOz": 7409
+      },
+      {
+        "month": 11,
+        "valueUsd": 3106.47,
+        "holdingsOz": 7412
+      },
+      {
+        "month": 12,
+        "valueUsd": 3194.5,
+        "holdingsOz": 7415
+      }
+    ],
+    "2026": [
+      {
+        "month": 1,
+        "valueUsd": 3695.82,
+        "holdingsOz": 7419
+      },
+      {
+        "month": 2,
+        "valueUsd": 3875.88,
+        "holdingsOz": 7422
+      },
+      {
+        "month": 3,
+        "valueUsd": 3427.63,
+        "holdingsOz": 7438
+      }
+    ]
+  }
+}

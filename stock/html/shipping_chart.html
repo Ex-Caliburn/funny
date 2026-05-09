@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>集装箱运价指数</title>
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      background: #0b0f19;
+      color: #dbe0ea;
+      padding: 16px 20px;
+    }
+
+    /* ── 顶部 ──────────────────────────────────────────────── */
+    .top-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    h2 { font-size: 18px; font-weight: 600; color: #e8edff; }
+
+    .subtitle { font-size: 11px; color: #475569; margin-left: auto; }
+
+    /* ── 指数 Tab ──────────────────────────────────────────── */
+    .index-tabs {
+      display: inline-flex;
+      background: #1e293b;
+      border-radius: 10px;
+      padding: 4px;
+      gap: 2px;
+    }
+
+    .index-tab {
+      padding: 6px 20px;
+      border: none;
+      border-radius: 7px;
+      background: transparent;
+      color: #94a3b8;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.18s;
+      white-space: nowrap;
+    }
+
+    .index-tab.active {
+      background: #0ea5e9;
+      color: #fff;
+      box-shadow: 0 2px 8px rgba(14, 165, 233, 0.4);
+    }
+
+    .index-tab:hover:not(.active) { background: #334155; color: #e2e8f0; }
+
+    /* ── 线型说明 ─────────────────────────────────────────── */
+    .line-legend {
+      display: flex;
+      gap: 18px;
+      font-size: 11px;
+      color: #64748b;
+      margin-bottom: 10px;
+    }
+
+    /* ── 主图（综合指数）─────────────────────────────────── */
+    #mainChart {
+      width: 100%;
+      height: 320px;
+    }
+
+    /* ── 航线网格 ─────────────────────────────────────────── */
+    .section-title {
+      font-size: 13px;
+      color: #64748b;
+      margin: 20px 0 10px;
+      padding-left: 2px;
+      border-left: 3px solid #0ea5e9;
+      padding-left: 8px;
+    }
+
+    .route-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .route-card {
+      background: #0f172a;
+      border: 1px solid #1f2937;
+      border-radius: 12px;
+      padding: 12px 12px 10px;
+      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+
+    .route-card:hover {
+      border-color: #0ea5e9;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(14, 165, 233, 0.12);
+    }
+
+    .card-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: #e2e8f0;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    .card-chart {
+      height: 180px;
+    }
+
+    @media (max-width: 900px) {
+      .route-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 600px) {
+      .route-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="top-bar">
+  <h2>🚢 集装箱运价指数</h2>
+  <div class="index-tabs">
+    <button class="index-tab active" data-index="ccfi">CCFI</button>
+    <button class="index-tab" data-index="scfi">SCFI</button>
+    <button class="index-tab" data-index="seafi">SEAFI</button>
+  </div>
+  <span class="subtitle">数据来源：上海航运交易所</span>
+</div>
+
+<!-- 线型说明 -->
+<div class="line-legend">
+  <span>
+    <svg width="28" height="8" style="vertical-align:middle;margin-right:4px"><line x1="0" y1="4" x2="28" y2="4" stroke="#0ea5e9" stroke-width="2.5"/></svg>绝对值（左轴）
+  </span>
+  <span>
+    <svg width="28" height="8" style="vertical-align:middle;margin-right:4px"><line x1="0" y1="4" x2="28" y2="4" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="5,3"/></svg>环比（右轴 %）
+  </span>
+  <span>
+    <svg width="28" height="8" style="vertical-align:middle;margin-right:4px"><line x1="0" y1="4" x2="28" y2="4" stroke="#ec4899" stroke-width="1.5" stroke-dasharray="2,2"/></svg>同比（右轴 %）
+  </span>
+</div>
+
+<!-- 综合指数主图 -->
+<div id="mainChart"></div>
+
+<!-- 各航线网格（仅 CCFI 显示）-->
+<div id="routeSection" style="display:none">
+  <div class="section-title" id="routeSectionTitle">各航线</div>
+  <div class="route-grid" id="routeGrid"></div>
+</div>
+
+<script>
+// ─── 内嵌数据 ─────────────────────────────────────────────────────────────────
+const INDICES_DATA = {
+  ccfi: {
+    name: 'CCFI 中国出口集装箱运价指数',
+    primaryRoute: '中国出口集装箱运价综合指数',
+    data: [{"date":"2025-11-14","week":"2025年第46周","中国出口集装箱运价综合指数":1094.03},{"date":"2025-11-21","week":"2025年第47周","中国出口集装箱运价综合指数":1122.69},{"date":"2025-11-28","week":"2025年第48周","中国出口集装箱运价综合指数":1121.80},{"date":"2025-12-05","week":"2025年第49周","中国出口集装箱运价综合指数":1114.89},{"date":"2025-12-12","week":"2025年第50周","中国出口集装箱运价综合指数":1111.80},{"date":"2025-12-19","week":"2025年第51周","中国出口集装箱运价综合指数":1122.73},{"date":"2025-12-26","week":"2025年第52周","中国出口集装箱运价综合指数":1124.66},{"date":"2026-01-09","week":"2026年第1周","中国出口集装箱运价综合指数":1194.89},{"date":"2026-01-16","week":"2026年第2周","中国出口集装箱运价综合指数":1209.85},{"date":"2026-01-23","week":"2026年第3周","中国出口集装箱运价综合指数":1208.75},{"date":"2026-01-30","week":"2026年第4周","中国出口集装箱运价综合指数":1175.59},{"date":"2026-02-06","week":"2026年第5周","中国出口集装箱运价综合指数":1122.15},{"date":"2026-02-13","week":"2026年第6周","中国出口集装箱运价综合指数":1088.14},{"date":"2026-02-27","week":"2026年第8周","中国出口集装箱运价综合指数":1044.57},{"date":"2026-03-06","week":"2026年第9周","中国出口集装箱运价综合指数":1054.26},{"date":"2026-03-13","week":"2026年第10周","中国出口集装箱运价综合指数":1072.16},{"date":"2026-03-20","week":"2026年第11周","中国出口集装箱运价综合指数":1120.61},{"date":"2026-03-27","week":"2026年第12周","中国出口集装箱运价综合指数":1139.64},{"date":"2026-04-03","week":"2026年第13周","中国出口集装箱运价综合指数":1184.70},{"date":"2026-04-10","week":"2026年第14周","中国出口集装箱运价综合指数":1209.85},{"date":"2026-04-17","week":"2026年第15周","中国出口集装箱运价综合指数":1211.08},{"date":"2026-04-24","week":"2026年第16周","中国出口集装箱运价综合指数":1233.76},{"date":"2026-04-30","week":"2026年第17周","中国出口集装箱运价综合指数":1269.64,"日本航线":932.25,"欧洲航线":1571.11,"美西航线":920.56,"美东航线":1061.27,"韩国航线":634.55,"东南亚航线":996.73,"地中海航线":1944.94,"澳新航线":1039.37,"南非航线":1171.67,"南美航线":755.01,"东西非航线":937.13,"波红航线":2242.17},{"date":"2026-05-08","中国出口集装箱运价综合指数":1278.79}]
+  },
+  scfi: {
+    name: 'SCFI 上海出口集装箱运价指数',
+    primaryRoute: '综合指数',
+    data: [{"date":"2026-04-30","综合指数":1911.4},{"date":"2026-05-08","综合指数":1954.21}]
+  },
+  seafi: {
+    name: 'SEAFI 东南亚集装箱运价指数',
+    primaryRoute: '综合指数',
+    data: [{"date":"2026-04-30","综合指数":2951.52},{"date":"2026-05-08","综合指数":2983.91}]
+  }
+}
+// ─────────────────────────────────────────────────────────────────────────────
+
+let activeIndex = 'ccfi'
+let mainChart   = null
+const miniCharts = []   // 缓存小图实例，切换时 dispose
+
+// ── 工具函数 ─────────────────────────────────────────────────────────────────
+
+function cleanName(n) {
+  const i = n.search(/\s+[A-Z]/)
+  return i > 0 ? n.slice(0, i).trim() : n
+}
+
+function getDates(key) {
+  return INDICES_DATA[key].data.map(r => r.date).sort()
+}
+
+function getValue(key, route, date) {
+  const rec = INDICES_DATA[key].data.find(r => r.date === date)
+  if (!rec) return null
+  const v = rec[route]
+  return v != null ? v : null
+}
+
+function calcMoM(key, route, di) {
+  const dates = getDates(key)
+  if (di === 0) return null
+  const cur  = getValue(key, route, dates[di])
+  const prev = getValue(key, route, dates[di - 1])
+  if (cur == null || prev == null || prev === 0) return null
+  return +((cur - prev) / prev * 100).toFixed(2)
+}
+
+function calcYoY(key, route, di) {
+  const dates  = getDates(key)
+  const curMs  = new Date(dates[di]).getTime()
+  const target = curMs - 365 * 86400000
+  const win    = 45 * 86400000
+  let bestDate = null, bestDiff = Infinity
+  dates.forEach((d, i) => {
+    if (i >= di) return
+    const diff = Math.abs(new Date(d).getTime() - target)
+    if (diff < win && diff < bestDiff) { bestDiff = diff; bestDate = d }
+  })
+  if (!bestDate) return null
+  const cur  = getValue(key, route, dates[di])
+  const prev = getValue(key, route, bestDate)
+  if (cur == null || prev == null || prev === 0) return null
+  return +((cur - prev) / prev * 100).toFixed(2)
+}
+
+function fmtPct(v) {
+  if (v == null) return '—'
+  return (v > 0 ? '+' : '') + v + '%'
+}
+
+function pctColor(v) {
+  if (v == null) return '#475569'
+  return v > 0 ? '#34d399' : v < 0 ? '#f87171' : '#dbe0ea'
+}
+
+// ── 构建单条路线的 3 系列 ECharts option ──────────────────────────────────────
+function buildRouteOption(key, route, opts = {}) {
+  const { compact = false } = opts
+  const dates = getDates(key)
+  const absData = dates.map(d => getValue(key, route, d))
+  const momData = dates.map((_, di) => calcMoM(key, route, di))
+  const yoyData = dates.map((_, di) => calcYoY(key, route, di))
+  const name    = cleanName(route)
+
+  return {
+    backgroundColor: compact ? '#0f172a' : 'transparent',
+    animation: compact ? false : true,
+    tooltip: {
+      trigger: 'axis',
+      backgroundColor: '#1e293b',
+      borderColor: '#334155',
+      textStyle: { color: '#dbe0ea', fontSize: compact ? 11 : 12 },
+      axisPointer: { type: 'cross', crossStyle: { color: '#334155' } },
+      formatter(params) {
+        const byType = { abs: null, mom: null, yoy: null }
+        params.forEach(p => {
+          if (p.value == null) return
+          if (p.seriesName.endsWith('§mom'))      byType.mom = p.value
+          else if (p.seriesName.endsWith('§yoy')) byType.yoy = p.value
+          else                                     byType.abs = p.value
+        })
+        const di    = dates.indexOf(params[0]?.axisValue)
+        // 显示周信息（如果有）
+        const rec   = INDICES_DATA[key].data.find(r => r.date === params[0]?.axisValue)
+        const label = rec?.week ? `${rec.date}（${rec.week}）` : (params[0]?.axisValue ?? '')
+        let html = `<div style="font-weight:600;margin-bottom:4px;color:#e2e8f0">${label}</div>`
+        const absStr = byType.abs != null ? byType.abs.toLocaleString() : '—'
+        html += `<div><span style="color:#0ea5e9">▌ </span>绝对值：<b>${absStr}</b></div>`
+        html += `<div><span style="color:#f59e0b">▌ </span>环比：<span style="color:${pctColor(byType.mom)}">${fmtPct(byType.mom)}</span></div>`
+        html += `<div><span style="color:#ec4899">▌ </span>同比：<span style="color:${pctColor(byType.yoy)}">${fmtPct(byType.yoy)}</span></div>`
+        return html
+      }
+    },
+    legend: { show: false },
+    grid: compact
+      ? { left: 46, right: 44, top: 8, bottom: 28 }
+      : { left: 68, right: 60, top: 16, bottom: 40 },
+    xAxis: {
+      type: 'category',
+      data: dates,
+      axisLabel: {
+        color: '#64748b',
+        fontSize: compact ? 9 : 11,
+        rotate: (!compact && dates.length > 12) ? 30 : 0,
+        interval: compact ? 'auto' : 0,
+        formatter: v => v.slice(5),   // 只显示月日
+      },
+      axisLine: { lineStyle: { color: '#1e293b' } },
+      splitLine: { show: false },
+    },
+    yAxis: [
+      {
+        type: 'value',
+        name: compact ? '' : '指数',
+        nameTextStyle: { color: '#475569', fontSize: 10 },
+        axisLabel: {
+          color: '#64748b',
+          fontSize: compact ? 9 : 10,
+          formatter: v => v >= 1000 ? (v / 1000).toFixed(1) + 'k' : v,
+        },
+        splitLine: { lineStyle: { color: '#1e293b', type: 'dashed' } },
+      },
+      {
+        type: 'value',
+        name: compact ? '' : '%',
+        nameTextStyle: { color: '#475569', fontSize: 10 },
+        position: 'right',
+        axisLabel: {
+          color: '#64748b',
+          fontSize: compact ? 9 : 10,
+          formatter: v => v + '%',
+        },
+        splitLine: { show: false },
+        axisLine: { show: true, lineStyle: { color: '#1f2937' } },
+      },
+    ],
+    series: [
+      {
+        name,
+        type: 'line',
+        yAxisIndex: 0,
+        data: absData,
+        smooth: 0.3,
+        symbol: 'circle',
+        symbolSize: compact ? 4 : 6,
+        lineStyle: { color: '#0ea5e9', width: compact ? 2 : 2.5, type: 'solid' },
+        itemStyle: { color: '#0ea5e9' },
+        connectNulls: false,
+      },
+      {
+        name: name + '§mom',
+        type: 'line',
+        yAxisIndex: 1,
+        data: momData,
+        smooth: 0.3,
+        symbol: 'triangle',
+        symbolSize: compact ? 3 : 5,
+        lineStyle: { color: '#f59e0b', width: compact ? 1.5 : 2, type: 'dashed' },
+        itemStyle: { color: '#f59e0b' },
+        connectNulls: false,
+      },
+      {
+        name: name + '§yoy',
+        type: 'line',
+        yAxisIndex: 1,
+        data: yoyData,
+        smooth: 0.3,
+        symbol: 'diamond',
+        symbolSize: compact ? 3 : 5,
+        lineStyle: { color: '#ec4899', width: compact ? 1.5 : 2, type: 'solid' },
+        itemStyle: { color: '#ec4899' },
+        connectNulls: false,
+      },
+    ],
+  }
+}
+
+// ── 主图（综合指数）─────────────────────────────────────────────────────────
+function renderMain() {
+  if (!mainChart) {
+    mainChart = echarts.init(document.getElementById('mainChart'), 'dark')
+    window.addEventListener('resize', () => mainChart.resize())
+  }
+  const { primaryRoute } = INDICES_DATA[activeIndex]
+  // SCFI 的主路线字段名含英文，要找到对应字段
+  const firstRec = INDICES_DATA[activeIndex].data.find(r => Object.keys(r).length > 2)
+  const routeField = firstRec
+    ? Object.keys(firstRec).find(k => k !== 'date' && k !== 'week' && (k === primaryRoute || k.startsWith(primaryRoute)))
+      || Object.keys(firstRec).find(k => k !== 'date' && k !== 'week')
+    : primaryRoute
+
+  mainChart.setOption(buildRouteOption(activeIndex, routeField, { compact: false }), true)
+}
+
+// ── 航线小卡片网格（仅 CCFI）────────────────────────────────────────────────
+function renderRouteGrid() {
+  // 销毁旧小图
+  miniCharts.forEach(c => c.dispose())
+  miniCharts.length = 0
+
+  const grid    = document.getElementById('routeGrid')
+  const section = document.getElementById('routeSection')
+
+  // 非 CCFI 不展示
+  if (activeIndex !== 'ccfi') {
+    section.style.display = 'none'
+    return
+  }
+
+  // 收集除综合指数以外的所有航线
+  const { primaryRoute, data } = INDICES_DATA.ccfi
+  const routeSet = new Set()
+  data.forEach(r => Object.keys(r).forEach(k => {
+    if (k !== 'date' && k !== 'week' && k !== primaryRoute) routeSet.add(k)
+  }))
+  const routes = [...routeSet]
+
+  if (routes.length === 0) { section.style.display = 'none'; return }
+
+  section.style.display = ''
+  grid.innerHTML = ''
+
+  routes.forEach(route => {
+    const card = document.createElement('div')
+    card.className = 'route-card'
+
+    const title = document.createElement('div')
+    title.className = 'card-title'
+    title.textContent = cleanName(route)
+
+    const chartDiv = document.createElement('div')
+    chartDiv.className = 'card-chart'
+
+    card.appendChild(title)
+    card.appendChild(chartDiv)
+    grid.appendChild(card)
+
+    // 用 requestAnimationFrame 分批渲染，避免阻塞
+    requestAnimationFrame(() => {
+      const c = echarts.init(chartDiv, 'dark')
+      c.setOption(buildRouteOption('ccfi', route, { compact: true }))
+      miniCharts.push(c)
+    })
+  })
+
+  // 监听 resize 同步小图
+  // （已有一个全局 resize → mainChart.resize，小图单独处理）
+  window.addEventListener('resize', () => miniCharts.forEach(c => c.resize()))
+}
+
+// ── 全量刷新 ─────────────────────────────────────────────────────────────────
+function refresh() {
+  renderMain()
+  renderRouteGrid()
+}
+
+// ── 指数 Tab 事件 ─────────────────────────────────────────────────────────────
+document.querySelectorAll('.index-tab').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.index-tab').forEach(b => b.classList.remove('active'))
+    btn.classList.add('active')
+    activeIndex = btn.dataset.index
+    refresh()
+  })
+})
+
+// ── 初始化 ────────────────────────────────────────────────────────────────────
+refresh()
+</script>
+</body>
+</html>

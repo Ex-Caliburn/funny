@@ -1,0 +1,519 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>中国黄金储备 - 月度趋势</title>
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      background: #0b0f19;
+      color: #dbe0ea;
+      padding: 20px;
+      min-height: 100vh;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 6px;
+    }
+
+    h2 {
+      font-size: 20px;
+      font-weight: 600;
+      color: #e8edff;
+    }
+
+    .subtitle {
+      font-size: 12px;
+      color: #64748b;
+      margin-bottom: 16px;
+    }
+
+    /* 指标切换 */
+    .tab-bar {
+      display: inline-flex;
+      background: #1e293b;
+      border-radius: 10px;
+      padding: 4px;
+      gap: 2px;
+      margin-bottom: 16px;
+    }
+
+    .tab-btn {
+      padding: 7px 18px;
+      border: none;
+      border-radius: 7px;
+      background: transparent;
+      color: #94a3b8;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .tab-btn.active {
+      background: #f59e0b;
+      color: #0b0f19;
+      box-shadow: 0 2px 8px rgba(245, 158, 11, 0.35);
+    }
+
+    .tab-btn:hover:not(.active) {
+      background: #334155;
+      color: #e2e8f0;
+    }
+
+    /* 年份勾选 */
+    .year-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+      align-items: center;
+    }
+
+    .year-label {
+      font-size: 12px;
+      color: #64748b;
+      margin-right: 4px;
+    }
+
+    .year-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      border: 1.5px solid;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+      user-select: none;
+      font-weight: 500;
+    }
+
+    .year-chip.active {
+      opacity: 1;
+    }
+
+    .year-chip:not(.active) {
+      opacity: 0.35;
+      filter: grayscale(0.5);
+    }
+
+    /* 图表区域 */
+    .chart-area {
+      width: 100%;
+      height: calc(100vh - 220px);
+      min-height: 400px;
+    }
+
+    /* 数据表格 */
+    .table-wrap {
+      overflow-x: auto;
+      margin-top: 20px;
+      border-radius: 8px;
+      border: 1px solid #1e293b;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    th {
+      background: #1e293b;
+      color: #94a3b8;
+      padding: 8px 12px;
+      text-align: center;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    td {
+      padding: 7px 12px;
+      text-align: center;
+      border-bottom: 1px solid #1a2035;
+      color: #dbe0ea;
+    }
+
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: #131929; }
+
+    .val-up { color: #34d399; }
+    .val-down { color: #f87171; }
+    .val-na { color: #475569; }
+
+    /* 统计卡片 */
+    .stats-row {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .stat-card {
+      background: #131929;
+      border: 1px solid #1e293b;
+      border-radius: 10px;
+      padding: 12px 18px;
+      min-width: 160px;
+      flex: 1;
+    }
+
+    .stat-label { font-size: 11px; color: #64748b; margin-bottom: 4px; }
+    .stat-value { font-size: 22px; font-weight: 700; color: #f59e0b; }
+    .stat-unit  { font-size: 11px; color: #94a3b8; margin-left: 2px; }
+    .stat-sub   { font-size: 11px; color: #64748b; margin-top: 2px; }
+
+    /* 模式切换（图表/表格） */
+    .view-tabs {
+      display: inline-flex;
+      background: #131929;
+      border-radius: 8px;
+      padding: 3px;
+      gap: 2px;
+    }
+
+    .view-btn {
+      padding: 5px 14px;
+      border: none;
+      border-radius: 6px;
+      background: transparent;
+      color: #64748b;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .view-btn.active {
+      background: #1e293b;
+      color: #e2e8f0;
+    }
+
+    /* 表格同比环比子列 */
+    th.sub-col { font-size: 11px; color: #64748b; background: #161e2e; padding: 5px 8px; }
+    td.sub-col { font-size: 12px; padding: 6px 8px; }
+    .change-up   { color: #34d399; }
+    .change-down { color: #f87171; }
+    .change-na   { color: #334155; }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <h2>🪙 中国黄金储备 — 月度趋势</h2>
+  <div class="view-tabs">
+    <button class="view-btn active" id="btnChart">曲线图</button>
+    <button class="view-btn" id="btnTable">数据表</button>
+  </div>
+</div>
+<div class="subtitle">数据来源：国家外汇管理局官方储备资产表</div>
+
+<!-- 统计卡片 -->
+<div class="stats-row" id="statsRow"></div>
+
+<!-- 指标切换 -->
+<div style="display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:16px">
+  <div class="tab-bar" style="margin-bottom:0">
+    <button class="tab-btn" data-metric="valueUsd">黄金价值（亿美元）</button>
+    <button class="tab-btn active" data-metric="holdingsOz">持有量（万盎司）</button>
+  </div>
+</div>
+
+<!-- 年份勾选 -->
+<div class="year-filters">
+  <span class="year-label">年份：</span>
+  <div id="yearChips"></div>
+</div>
+
+<!-- 图表 -->
+<div id="chartWrap">
+  <div id="chart" class="chart-area"></div>
+</div>
+
+<!-- 数据表格 -->
+<div id="tableWrap" style="display:none">
+  <div class="table-wrap">
+    <table id="dataTable"></table>
+  </div>
+</div>
+
+<script>
+// ─── 内嵌数据（由 gold_parse.js 生成） ──────────────────────────────────────
+const RAW_DATA = {"generatedAt":"2026-05-09T11:37:14.058Z","years":{"2024":[{"month":1,"valueUsd":1482.29,"holdingsOz":7219},{"month":2,"valueUsd":1486.44,"holdingsOz":7258},{"month":3,"valueUsd":1610.69,"holdingsOz":7274},{"month":4,"valueUsd":1679.57,"holdingsOz":7280},{"month":5,"valueUsd":1709.6,"holdingsOz":7280},{"month":6,"valueUsd":1696.97,"holdingsOz":7280},{"month":7,"valueUsd":1766.42,"holdingsOz":7280},{"month":8,"valueUsd":1829.8,"holdingsOz":7280},{"month":9,"valueUsd":1914.69,"holdingsOz":7280},{"month":10,"valueUsd":1990.55,"holdingsOz":7280},{"month":11,"valueUsd":1934.31,"holdingsOz":7296},{"month":12,"valueUsd":1913.37,"holdingsOz":7329}],"2025":[{"month":1,"valueUsd":2065.34,"holdingsOz":7345},{"month":2,"valueUsd":2086.43,"holdingsOz":7361},{"month":3,"valueUsd":2295.94,"holdingsOz":7370},{"month":4,"valueUsd":2435.85,"holdingsOz":7377},{"month":5,"valueUsd":2419.88,"holdingsOz":7383},{"month":6,"valueUsd":2429.31,"holdingsOz":7390},{"month":7,"valueUsd":2439.85,"holdingsOz":7396},{"month":8,"valueUsd":2538.43,"holdingsOz":7402},{"month":9,"valueUsd":2832.91,"holdingsOz":7406},{"month":10,"valueUsd":2972.09,"holdingsOz":7409},{"month":11,"valueUsd":3106.47,"holdingsOz":7412},{"month":12,"valueUsd":3194.5,"holdingsOz":7415}],"2026":[{"month":1,"valueUsd":3695.82,"holdingsOz":7419},{"month":2,"valueUsd":3875.88,"holdingsOz":7422},{"month":3,"valueUsd":3427.63,"holdingsOz":7438}]}};
+// ────────────────────────────────────────────────────────────────────────────
+
+const MONTHS = ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
+
+const YEAR_COLORS = [
+  '#f59e0b', '#60a5fa', '#34d399', '#f87171',
+  '#a78bfa', '#fb923c', '#38bdf8', '#4ade80',
+];
+
+const years = Object.keys(RAW_DATA.years).sort();
+let activeMetric = 'holdingsOz';
+let activeYears  = new Set(years);
+
+// ─── 计算辅助 ────────────────────────────────────────────────────────────────
+
+/** 获取某年某月的指标值（null 表示无数据）*/
+function getValue(year, month) {
+  const rec = RAW_DATA.years[String(year)]?.find(d => d.month === month);
+  return rec ? (rec[activeMetric] ?? null) : null;
+}
+
+/**
+ * 环比（MoM）：与上个自然月对比，跨年时查上年 12 月
+ * @returns {number|null} 百分比，保留 2 位小数
+ */
+function calcMoM(year, month) {
+  const cur = getValue(year, month);
+  if (cur == null) return null;
+  const prevMonth = month === 1 ? 12 : month - 1;
+  const prevYear  = month === 1 ? parseInt(year) - 1 : parseInt(year);
+  const prev = getValue(prevYear, prevMonth);
+  if (prev == null || prev === 0) return null;
+  return parseFloat(((cur - prev) / prev * 100).toFixed(2));
+}
+
+/**
+ * 同比（YoY）：与上一年同月对比
+ * @returns {number|null} 百分比，保留 2 位小数
+ */
+function calcYoY(year, month) {
+  const cur  = getValue(year, month);
+  const prev = getValue(parseInt(year) - 1, month);
+  if (cur == null || prev == null || prev === 0) return null;
+  return parseFloat(((cur - prev) / prev * 100).toFixed(2));
+}
+
+/** 格式化变化率，带正负号和颜色 class */
+function fmtChange(val) {
+  if (val == null) return { text: '—', cls: 'change-na' };
+  const sign = val > 0 ? '+' : '';
+  const cls  = val > 0 ? 'change-up' : val < 0 ? 'change-down' : '';
+  return { text: `${sign}${val}%`, cls };
+}
+
+// ─── 统计卡片 ────────────────────────────────────────────────────────────────
+function renderStats() {
+  const latestYear = years[years.length - 1];
+  const latestData = RAW_DATA.years[latestYear];
+  const latest     = latestData[latestData.length - 1];
+
+  const holdLatest = latest.holdingsOz;
+  const valLatest  = latest.valueUsd;
+
+  document.getElementById('statsRow').innerHTML = `
+    <div class="stat-card">
+      <div class="stat-label">最新持有量（${latestYear}年${latest.month}月）</div>
+      <div><span class="stat-value">${holdLatest.toLocaleString()}</span><span class="stat-unit">万盎司</span></div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">最新价值（${latestYear}年${latest.month}月）</div>
+      <div><span class="stat-value">${valLatest.toLocaleString()}</span><span class="stat-unit">亿美元</span></div>
+    </div>
+  `;
+}
+
+// ─── 年份勾选 ────────────────────────────────────────────────────────────────
+function renderYearChips() {
+  document.getElementById('yearChips').innerHTML = years.map((y, i) => {
+    const color = YEAR_COLORS[i % YEAR_COLORS.length];
+    return `<span class="year-chip active" data-year="${y}"
+      style="border-color:${color};color:${color};background:${color}18"
+      onclick="toggleYear('${y}',this)">${y}年</span>`;
+  }).join('');
+}
+
+function toggleYear(year, el) {
+  if (activeYears.has(year) && activeYears.size === 1) return;
+  activeYears[activeYears.has(year) ? 'delete' : 'add'](year);
+  el.classList.toggle('active');
+  renderChart();
+  if (document.getElementById('tableWrap').style.display !== 'none') renderTable();
+}
+
+// ─── 图表 ────────────────────────────────────────────────────────────────────
+let chart = null;
+
+function buildSeries() {
+  return years.filter(y => activeYears.has(y)).map(y => {
+    const yearIdx = years.indexOf(y);
+    const color   = YEAR_COLORS[yearIdx % YEAR_COLORS.length];
+
+    const data = MONTHS.map((_, mi) => {
+      const month = mi + 1;
+      return getValue(y, month);
+    });
+
+    return {
+      name: `${y}年`,
+      type: 'line',
+      data,
+      smooth: 0.3,
+      symbol: 'circle',
+      symbolSize: 6,
+      lineStyle: { color, width: 2.5 },
+      itemStyle: { color },
+      emphasis: { focus: 'series' },
+      connectNulls: false,
+    };
+  });
+}
+
+function renderChart() {
+  if (!chart) {
+    chart = echarts.init(document.getElementById('chart'), 'dark');
+    window.addEventListener('resize', () => chart.resize());
+  }
+
+  const isValue    = activeMetric === 'valueUsd';
+  const yUnit = isValue ? '亿美元' : '万盎司';
+
+  const option = {
+    backgroundColor: 'transparent',
+    tooltip: {
+      trigger: 'axis',
+      backgroundColor: '#1e293b',
+      borderColor: '#334155',
+      textStyle: { color: '#dbe0ea', fontSize: 13 },
+      formatter(params) {
+        const monthLabel = params[0].axisValue;
+        const mi = MONTHS.indexOf(monthLabel);
+        const month = mi + 1;
+        let html = `<div style="font-weight:600;margin-bottom:6px">${monthLabel}</div>`;
+        params.forEach(p => {
+          if (p.value == null) return;
+          const dot = `<span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${p.color};margin-right:6px"></span>`;
+          const year = p.seriesName.replace('年', '');
+
+          const unit = isValue ? '亿美元' : '万盎司';
+          const valStr = `${p.value.toLocaleString()} ${unit}`;
+          // 追加环比/同比小字（绝对值曲线图里展示变化率）
+          const mom = calcMoM(year, month);
+          const yoy = calcYoY(year, month);
+          const momStr = mom != null ? `<span style="color:${mom >= 0 ? '#34d399' : '#f87171'}">${mom >= 0 ? '+' : ''}${mom}%</span>` : '—';
+          const yoyStr = yoy != null ? `<span style="color:${yoy >= 0 ? '#34d399' : '#f87171'}">${yoy >= 0 ? '+' : ''}${yoy}%</span>` : '—';
+          html += `<div style="margin:3px 0">${dot}${p.seriesName}: <b>${valStr}</b></div>`;
+          html += `<div style="margin:1px 0 4px 16px;font-size:11px;color:#94a3b8">环比 ${momStr} &nbsp; 同比 ${yoyStr}</div>`;
+        });
+        return html;
+      }
+    },
+    legend: {
+      top: 4, right: 20,
+      textStyle: { color: '#94a3b8', fontSize: 12 },
+      itemWidth: 20, itemHeight: 3,
+    },
+    grid: { left: 68, right: 24, top: 48, bottom: 56 },
+    xAxis: {
+      type: 'category',
+      data: MONTHS,
+      axisLabel: { color: '#64748b', fontSize: 12 },
+      axisLine: { lineStyle: { color: '#1e293b' } },
+      splitLine: { show: false },
+    },
+    yAxis: {
+      type: 'value',
+      name: yUnit,
+      nameTextStyle: { color: '#64748b', fontSize: 11 },
+      axisLabel: {
+        color: '#64748b', fontSize: 11,
+        formatter: v => v.toLocaleString()
+      },
+      splitLine: { lineStyle: { color: '#1e293b', type: 'dashed' } },
+    },
+    series: buildSeries(),
+  };
+
+  chart.setOption(option, true);
+}
+
+// ─── 数据表格 ────────────────────────────────────────────────────────────────
+function renderTable() {
+  const isValue = activeMetric === 'valueUsd';
+  const unit    = isValue ? '亿$' : '万盎司';
+  const activeYearsSorted = years.filter(y => activeYears.has(y));
+
+  // 表头：每年 3 列（值 | 环比 | 同比）
+  let html = '<thead>';
+  // 第一行：年份合并列
+  html += '<tr><th rowspan="2" style="vertical-align:middle">月份</th>';
+  activeYearsSorted.forEach(y => {
+    const color = YEAR_COLORS[years.indexOf(y) % YEAR_COLORS.length];
+    html += `<th colspan="3" style="color:${color};border-bottom:2px solid ${color}40">${y}年</th>`;
+  });
+  html += '</tr>';
+  // 第二行：子列名
+  html += '<tr>';
+  activeYearsSorted.forEach(() => {
+    html += `<th class="sub-col">数值(${unit})</th><th class="sub-col">环比</th><th class="sub-col">同比</th>`;
+  });
+  html += '</tr></thead><tbody>';
+
+  MONTHS.forEach((label, mi) => {
+    const month = mi + 1;
+    html += `<tr><td style="color:#94a3b8;font-size:12px">${label}</td>`;
+    activeYearsSorted.forEach(y => {
+      const val = getValue(y, month);
+      if (val == null) {
+        html += `<td class="val-na sub-col">—</td><td class="sub-col change-na">—</td><td class="sub-col change-na">—</td>`;
+      } else {
+        const mom = fmtChange(calcMoM(y, month));
+        const yoy = fmtChange(calcYoY(y, month));
+        html += `<td class="sub-col">${val.toLocaleString()}</td>`;
+        html += `<td class="sub-col ${mom.cls}">${mom.text}</td>`;
+        html += `<td class="sub-col ${yoy.cls}">${yoy.text}</td>`;
+      }
+    });
+    html += '</tr>';
+  });
+
+  html += '</tbody>';
+  document.getElementById('dataTable').innerHTML = html;
+}
+
+// ─── 指标 Tab ────────────────────────────────────────────────────────────────
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeMetric = btn.dataset.metric;
+    renderChart();
+    renderTable();
+  });
+});
+
+// ─── 视图切换（曲线图/表格） ─────────────────────────────────────────────────
+document.getElementById('btnChart').addEventListener('click', () => {
+  document.getElementById('btnChart').classList.add('active');
+  document.getElementById('btnTable').classList.remove('active');
+  document.getElementById('chartWrap').style.display = '';
+  document.getElementById('tableWrap').style.display = 'none';
+  chart && chart.resize();
+});
+
+document.getElementById('btnTable').addEventListener('click', () => {
+  document.getElementById('btnTable').classList.add('active');
+  document.getElementById('btnChart').classList.remove('active');
+  document.getElementById('chartWrap').style.display = 'none';
+  document.getElementById('tableWrap').style.display = '';
+  renderTable();
+});
+
+// ─── 初始化 ──────────────────────────────────────────────────────────────────
+renderStats();
+renderYearChips();
+renderChart();
+</script>
+</body>
+</html>

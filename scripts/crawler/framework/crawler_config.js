@@ -16,7 +16,7 @@ module.exports = {
       defaultStartPage: 1,
       defaultEndPage: 3,
       maxAllowedPages: 100,
-      pageRangePattern: /^(\d+)-(\d+)$/  // 验证格式 "1-5"
+      pageRangePattern: /^(\d+)-(\d+)$/, // 验证格式 "1-5"
     },
 
     // 目标数据配置
@@ -26,58 +26,110 @@ module.exports = {
         keywords: ['流通领域重要生产资料市场价格变动情况', '生产资料价格'],
         downloadDir: 'goods_price',
         extractor: 'goods_price_extractor.js',
-        parseScript: 'goods_price_parse.js'
+        parseScript: 'goods_price_parse.js',
       },
       energy: {
         name: '能源生产情况',
         keywords: ['能源生产情况', '发电量', '原煤', '原油', '天然气'],
         downloadDir: 'energy',
         extractor: 'energy_data_extractor.js',
-        parseScript: 'energy_parser.js'
+        parseScript: 'energy_parser.js',
       },
       house: {
         name: '全国房地产市场基本情况',
         keywords: ['全国房地产市场基本情况', '房地产开发投资', '商品房销售'],
         downloadDir: 'house',
         extractor: 'house_data_extractor.js',
-        parseScript: 'house_parse.js'
+        parseScript: 'house_parse.js',
       },
       retail: {
         name: '社会消费品零售总额',
         keywords: ['社会消费品零售总额', '消费品零售'],
         downloadDir: 'retail',
         extractor: 'retail_data_extractor.js',
-        parseScript: 'retail_parse.js'
+        parseScript: 'retail_parse.js',
       },
       invest: {
         name: '全国固定资产投资',
         keywords: ['全国固定资产投资', '固定资产投资'],
         downloadDir: 'invest',
         extractor: 'invest_data_extractor.js',
-        parseScript: 'invest_parse.js'
+        parseScript: 'invest_parse.js',
       },
       profits: {
         name: '规模以上工业增加值',
         keywords: ['规模以上工业增加值增长', '工业增加值增长'],
         downloadDir: 'profits',
         extractor: 'industrial_value_added_extractor.js',
-        parseScript: 'industrial_value_added_parse.js'
+        parseScript: 'industrial_value_added_parse.js',
       },
       industryProfits: {
         name: '全国规模以上工业企业利润',
         keywords: ['全国规模以上工业企业利润', '分行业利润'],
         downloadDir: 'industry_profits',
         extractor: 'industry_profits_extractor.js',
-        parseScript: 'industry_profits_parse.js'
+        parseScript: 'industry_profits_parse.js',
       },
       capacityUtilization: {
         name: '全国规模以上工业产能利用率',
         keywords: ['全国规模以上工业产能利用率', '产能利用率', '工业产能利用率'],
         downloadDir: 'capacity_utilization',
         extractor: 'capacity_utilization_extractor.js',
-        parseScript: 'capacity_utilization_parser.js'
-      }
-    }
+        parseScript: 'capacity_utilization_parser.js',
+      },
+    },
+  },
+
+  // 国家外汇管理局网站配置（黄金储备数据）
+  safeGov: {
+    // 外汇储备列表页
+    reserveIndexUrl: 'https://www.safe.gov.cn/safe/whcb/index.html',
+    delayBetweenRequests: 1500,
+    maxRetries: 3,
+    timeout: 30000,
+
+    targets: {
+      // 官方储备资产（含黄金）
+      officialReserveAssets: {
+        name: '官方储备资产',
+        // 匹配"官方储备资产（YYYY年）"的链接文字
+        linkPattern: /官方储备资产（(\d{4})年）/,
+        downloadDir: 'gold',
+        // 以年份命名，如 2026.xlsx
+        filenameByYear: true,
+      },
+    },
+  },
+
+  // 上海航运交易所运价指数配置
+  sseShipping: {
+    baseUrl: 'https://www.sse.net.cn',
+    delayBetweenRequests: 2000,
+    maxRetries: 3,
+    timeout: 30000,
+
+    targets: {
+      // 中国出口集装箱运价指数
+      ccfi: {
+        name: '中国出口集装箱运价指数',
+        indexType: 'ccfi',
+        url: 'https://www.sse.net.cn/index/singleIndex?indexType=ccfi',
+        // 综合指数行的航线名称
+        compositeKey: '中国出口集装箱运价综合指数',
+        dataFile: 'ccfi.json',
+      },
+      // 东南亚集装箱运价指数
+      seafi: {
+        name: '东南亚集装箱运价指数',
+        indexType: 'seafi',
+        url: 'https://www.sse.net.cn/index/singleIndex?indexType=seafi',
+        compositeKey: '综合指数',
+        dataFile: 'seafi.json',
+      },
+    },
+
+    // 数据存储目录（相对于 stock/）
+    dataDir: 'shipping',
   },
 
   // 文件处理配置
@@ -86,7 +138,7 @@ module.exports = {
     maxFileSize: 50 * 1024 * 1024, // 50MB
     backupOriginal: true,
     cleanTempFiles: true,
-    skipExistingFiles: true // 如果文件已存在，跳过下载（默认开启）
+    skipExistingFiles: true, // 如果文件已存在，跳过下载（默认开启）
   },
 
   // 日志配置
@@ -94,13 +146,13 @@ module.exports = {
     level: 'info', // debug, info, warn, error
     console: true,
     file: false,
-    filePath: './logs/crawler.log'
+    filePath: './logs/crawler.log',
   },
 
   // 通知配置
   notifications: {
     enabled: false,
     webhook: null, // 可以配置webhook URL用于通知
-    email: null
-  }
-};
+    email: null,
+  },
+}

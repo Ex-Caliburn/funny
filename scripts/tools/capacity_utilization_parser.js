@@ -51,8 +51,25 @@ function parseCapacityUtilizationData() {
     
     // 保存清洗后的数据
     const outputPath = path.join(__dirname, '../../stock/cleaned_data/capacity_utilization_cleaned.json');
+
+    // 读取已有文件，仅在数据真正变化时才更新 lastUpdated
+    let lastUpdated = new Date().toISOString();
+    if (fs.existsSync(outputPath)) {
+        try {
+            const existing = JSON.parse(fs.readFileSync(outputPath, 'utf-8'));
+            const newDataStr = JSON.stringify({ metrics, rawData: allData });
+            const oldDataStr = JSON.stringify({ metrics: existing.metrics, rawData: existing.rawData });
+            if (newDataStr === oldDataStr) {
+                // 数据没有变化，保留原来的 lastUpdated
+                lastUpdated = existing.lastUpdated;
+            }
+        } catch (e) {
+            // 解析失败则视为数据已变化，使用当前时间
+        }
+    }
+
     const output = {
-        lastUpdated: new Date().toISOString(),
+        lastUpdated,
         dataCount: allData.length,
         metrics: metrics,
         rawData: allData
