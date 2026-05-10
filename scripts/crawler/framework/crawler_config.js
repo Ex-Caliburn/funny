@@ -262,6 +262,34 @@ module.exports = {
   },
 
   /**
+   * 海关总署 — 出口主要商品量值表（静态年份目录版）
+   * 页面规律：切换 URL 中的年份即可，无需分页
+   * 脚本：scripts/crawler/customs_export/customs_export_crawler.js
+   */
+  customsExport: {
+    /**
+     * 年份列表页模板，{path} 替换为年份路径段
+     * 2026 年用年份本身，其余年份为海关网站内部 ID（见爬虫中 YEAR_PATH_MAP）
+     */
+    listUrlTemplate:
+      'http://www.customs.gov.cn/customs/302249/zfxxgk/fdzdgknr/302274/302277/{path}/index.html',
+    delayBetweenRequests: 1500,
+    maxRetries: 3,
+    timeout: 30000,
+    /** 相对于 stock/ 的下载目录 */
+    downloadDirRel: 'customs_export',
+    /** 默认年份范围（闭区间） */
+    yearRange: {
+      startYear: 2020,
+      endYear: new Date().getFullYear(),
+    },
+    /** 链接文字需同时包含下列关键词 */
+    titleKeywords: ['出口', '商品', '量值'],
+    /** 含任意排除词则跳过（过滤美元值版本及贸易方式量值表） */
+    excludeKeywords: ['美元值', '美元', '贸易方式', '部分出口商品', '部分进口商品'],
+  },
+
+  /**
    * 海关总署 — 出口重点商品量值表（人民币值）等 .xls 附件
    * 列表分页采用 eportal 动态 API（共约 250 页，每页 10 条，按发布时间倒序）
    * 脚本：scripts/crawler/china_export/china_export_crawler.js
