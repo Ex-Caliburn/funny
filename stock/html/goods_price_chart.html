@@ -84,12 +84,12 @@
     <span style="opacity:.6; font-size:12px; margin-left:12px; color:#64748b;">单指标支持切换；总表为各品类当期值小图；趋势图为多指标合并曲线</span>
   </div>
   <div id="singleWrap">
-    <div style="margin:12px 0; display:flex; gap:12px; align-items:center;"><label for="metric"
-        style="opacity:.8">指标</label><select id="metric"
-        style="background:#0f172a;color:#e5e7eb;border:1px solid #334155;padding:6px 8px;border-radius:6px;"></select><button
-        id="copyMetricBtn"
-        style="background:#0f172a;color:#e5e7eb;border:1px solid #334155;padding:6px 8px;border-radius:6px;cursor:pointer;">复制选中指标</button><span
-        id="copyMetricOk" style="font-size:12px;opacity:.7;display:none;">已复制</span></div>
+    <div style="margin:12px 0; display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
+      <label for="metric" style="opacity:.8">指标</label>
+      <select id="metric" style="background:#0f172a;color:#e5e7eb;border:1px solid #334155;padding:6px 8px;border-radius:6px;"></select>
+      <button id="copyMetricBtn" style="background:#0f172a;color:#e5e7eb;border:1px solid #334155;padding:6px 8px;border-radius:6px;cursor:pointer;">复制选中指标</button>
+      <span id="copyMetricOk" style="font-size:12px;opacity:.7;display:none;">已复制</span>
+    </div>
     <div id="app"></div>
   </div>
   <div id="dashboardWrap" style="display:none">
@@ -107,6 +107,8 @@
           style="background:#0f172a;color:#e5e7eb;border:1px solid #334155;padding:4px 8px;border-radius:4px;cursor:pointer;font-size:12px;">显示</button>
         <span style="opacity:.7; font-size:12px; margin-left:12px;">增速参考线：</span>
         <button id="toggleGrowthLines" style="background:#0f172a;color:#e5e7eb;border:1px solid #334155;padding:4px 8px;border-radius:4px;cursor:pointer;font-size:12px;">关闭</button>
+        <span style="opacity:.7; font-size:12px; margin-left:12px;">收藏：</span>
+        <button id="toggleFavOnly" style="background:#0f172a;color:#e5e7eb;border:1px solid #334155;padding:4px 8px;border-radius:4px;cursor:pointer;font-size:12px;">❤️ 仅收藏</button>
       </div>
     </div>
     <div id="grid"
@@ -123,7 +125,23 @@
   <script src="../vendor/echarts.min.js"></script>
   <script>
 
-    // 标题复制功能
+    /* ══════════════════════════════════════════════════════
+       收藏管理（模块级，保证在 fetch 前就可用）
+    ════════════════════════════════════════════════════════ */
+    var FAV_KEY = 'goods_price_favorites';
+    var favorites = new Set(JSON.parse(localStorage.getItem(FAV_KEY) || '[]'));
+    var showOnlyFavorites = false;
+
+    function saveFavorites() {
+      localStorage.setItem(FAV_KEY, JSON.stringify([...favorites]));
+    }
+    function isFavorite(name) { return favorites.has(name); }
+    function toggleFavoriteItem(name) {
+      if (favorites.has(name)) { favorites.delete(name); } else { favorites.add(name); }
+      saveFavorites();
+    }
+
+    /* 旧的 document.addEventListener 事件委托已替换为 onclick，保留 copyMetricBtn 那个 */
     document.addEventListener('DOMContentLoaded', function() {
       const copyTitleBtn = document.getElementById('copyTitleBtn');
       const copyTitleOk = document.getElementById('copyTitleOk');
@@ -193,7 +211,26 @@
       var metricNames = Object.keys(json.metrics || {});
       metricNames.sort();
       var prefer = metricNames[0] || '';
-      var select = document.getElementById("metric");
+
+      /* ── 收藏管理 ── */
+      // (favorites/saveFavorites 已在模块顶层定义，此处只定义 UI 辅助函数)
+      function setFavStyle(cardEl, heartBtn, isFav) {
+        heartBtn.textContent = isFav ? '❤️' : '🤍';
+        heartBtn.title = isFav ? '取消收藏' : '收藏';
+        cardEl.dataset.favorited = isFav ? '1' : '';
+        if (!cardEl.matches(':hover')) {
+          cardEl.style.borderColor = isFav ? '#f43f5e' : '#1f2937';
+          cardEl.style.boxShadow = isFav ? '0 2px 8px rgba(244,63,94,.25)' : '0 2px 8px rgba(0,0,0,0.3)';
+        }
+      }
+
+      function updateFavOnlyBtn() {
+        var btn = document.getElementById('toggleFavOnly');
+        if (!btn) return;
+        btn.style.background = showOnlyFavorites ? '#f43f5e' : '#0f172a';
+        btn.style.color = showOnlyFavorites ? '#ffffff' : '#e5e7eb';
+        btn.style.borderColor = showOnlyFavorites ? '#f43f5e' : '#334155';
+      }      var select = document.getElementById("metric");
       metricNames.forEach(function (n) { var opt = document.createElement("option"); opt.value = n; opt.textContent = displayName(n); if (n === prefer) opt.selected = true; select.appendChild(opt); });
       var el = document.getElementById("app");
       var chart = echarts.init(el, null, { renderer: "canvas" });
@@ -447,8 +484,18 @@
 
         grid.innerHTML = '';
 
-        var names = Object.keys(json.metrics || {}).filter(function (n) { return !keyword || displayName(n).indexOf(keyword) > -1; });
-        metricCount.textContent = names.length + ' 个指标';
+        var names = Object.keys(json.metrics || {}).filter(function (n) {
+          if (showOnlyFavorites && !favorites.has(n)) return false;
+          return !keyword || displayName(n).indexOf(keyword) > -1;
+        });
+        /* 收藏优先，其次按名称排序 */
+        names.sort(function (a, b) {
+          var af = favorites.has(a) ? 0 : 1;
+          var bf = favorites.has(b) ? 0 : 1;
+          if (af !== bf) return af - bf;
+          return a.localeCompare(b);
+        });
+        metricCount.textContent = names.length + ' 个指标' + (showOnlyFavorites ? '（仅收藏）' : '');
 
         // 批量渲染：使用 requestAnimationFrame 分批创建 DOM
         var BATCH_SIZE = 20; // 每批处理 20 个
@@ -483,13 +530,15 @@
               momData: momData,
               unit: unit
             });
+            var isFav = favorites.has(name);
             card.style.background = '#0f172a';
-            card.style.border = '1px solid #1f2937';
+            card.style.border = '1px solid ' + (isFav ? '#f43f5e' : '#1f2937');
             card.style.borderRadius = '12px';
             card.style.padding = '12px';
             card.style.transition = 'all 0.3s ease';
-            card.style.boxShadow = '0 2px 8px rgba(0,0,0,0.3)';
+            card.style.boxShadow = isFav ? '0 2px 8px rgba(244,63,94,.25)' : '0 2px 8px rgba(0,0,0,0.3)';
             card.style.position = 'relative';
+            card.dataset.favorited = isFav ? '1' : '';
 
             var titleWrapper = document.createElement('div');
             titleWrapper.style.display = 'flex';
@@ -589,6 +638,33 @@
             titleWrapper.appendChild(copyBtn);
             titleWrapper.appendChild(zoomBtn);
 
+            /* ❤️ 收藏按钮 */
+            var heartBtn = document.createElement('button');
+            heartBtn.textContent = isFav ? '❤️' : '🤍';
+            heartBtn.title = isFav ? '取消收藏' : '收藏';
+            heartBtn.style.background = 'none';
+            heartBtn.style.border = 'none';
+            heartBtn.style.fontSize = '15px';
+            heartBtn.style.cursor = 'pointer';
+            heartBtn.style.padding = '4px';
+            heartBtn.style.borderRadius = '4px';
+            heartBtn.style.lineHeight = '1';
+            heartBtn.style.transition = 'transform 0.15s';
+            heartBtn.onmouseenter = function () { heartBtn.style.transform = 'scale(1.3)'; };
+            heartBtn.onmouseleave = function () { heartBtn.style.transform = 'scale(1)'; };
+            heartBtn.onclick = function (e) {
+              e.stopPropagation();
+              var btn = this;  // this 始终是被点击的按钮本身
+              var targetCard = btn.closest('.chart-card');
+              var mName = targetCard.dataset.metricName;
+              toggleFavoriteItem(mName);
+              setFavStyle(targetCard, btn, isFavorite(mName));
+              btn.style.transform = 'scale(1.5)';
+              setTimeout(function () { btn.style.transform = 'scale(1)'; }, 160);
+              if (showOnlyFavorites) renderGrid();
+            };
+            titleWrapper.appendChild(heartBtn);
+
             var div = document.createElement('div');
             div.className = 'chart-container';
             div.style.height = '200px';
@@ -605,14 +681,16 @@
             grid.appendChild(card);
 
             card.onmouseenter = function () {
-              card.style.borderColor = '#3b82f6';
+              var fav = card.dataset.favorited === '1';
+              card.style.borderColor = fav ? '#fb7185' : '#3b82f6';
               card.style.transform = 'translateY(-4px)';
-              card.style.boxShadow = '0 8px 24px rgba(59, 130, 246, 0.15)';
+              card.style.boxShadow = fav ? '0 8px 24px rgba(244,63,94,.3)' : '0 8px 24px rgba(59, 130, 246, 0.15)';
             };
             card.onmouseleave = function () {
-              card.style.borderColor = '#1f2937';
+              var fav = card.dataset.favorited === '1';
+              card.style.borderColor = fav ? '#f43f5e' : '#1f2937';
               card.style.transform = 'translateY(0)';
-              card.style.boxShadow = '0 2px 8px rgba(0,0,0,0.3)';
+              card.style.boxShadow = fav ? '0 2px 8px rgba(244,63,94,.25)' : '0 2px 8px rgba(0,0,0,0.3)';
             };
           }
 
@@ -969,6 +1047,14 @@
         });
         updateGrowthLinesButtonStyle();
       }
+
+      /* ── 仅收藏开关 ── */
+      document.getElementById('toggleFavOnly').addEventListener('click', function () {
+        showOnlyFavorites = !showOnlyFavorites;
+        updateFavOnlyBtn();
+        renderGrid();
+      });
+      updateFavOnlyBtn();
       document.getElementById('zoomModal').addEventListener('click', function () { closeZoomModal(); });
       document.getElementById('closeZoom').addEventListener('click', function () { closeZoomModal(); });
     });

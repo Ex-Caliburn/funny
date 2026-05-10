@@ -1,0 +1,683 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>中国出口重点商品量值 - 趋势看板</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      margin: 0; padding: 16px;
+      background: #0b0f19; color: #dbe0ea;
+    }
+    .page-header { display: flex; align-items: center; gap: 12px; margin-bottom: 4px; }
+    .page-header h2 { margin: 0; font-size: 20px; color: #e2e8f0; }
+    .subtitle { font-size: 12px; color: #64748b; margin-bottom: 14px; }
+
+    /* （tab bar 和单品类视图已移除） */
+
+    /* toolbar */
+    .toolbar { display: flex; align-items: center; gap: 8px; margin: 12px 0; flex-wrap: wrap; }
+    .toolbar input {
+      background: #0f172a; color: #e5e7eb; border: 1px solid #334155;
+      padding: 6px 10px; border-radius: 6px; min-width: 220px; font-size: 13px;
+    }
+    .toggle-btn {
+      background: #0f172a; color: #e5e7eb; border: 1px solid #334155;
+      padding: 5px 12px; border-radius: 5px; cursor: pointer; font-size: 12px; transition: all .2s;
+    }
+    .toggle-btn.on { background: #3b82f6; color: #fff; border-color: #3b82f6; }
+    .label-sm { font-size: 12px; color: #64748b; }
+    #metricCount { font-size: 12px; color: #64748b; }
+
+    /* （单品类视图已移除） */
+
+    /* dashboard: commodity groups */
+    #dashContent { padding: 4px 0 24px; }
+
+    .commodity-group {
+      margin-bottom: 20px;
+    }
+    .group-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 6px 4px; margin-bottom: 8px;
+      border-bottom: 1px solid #1e293b;
+    }
+    .group-title {
+      font-size: 14px; font-weight: 600; color: #e2e8f0;
+    }
+    .group-unit {
+      font-size: 11px; color: #64748b; margin-left: 6px;
+    }
+    .charts-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    @media (max-width: 900px) { .charts-row { grid-template-columns: 1fr; } }
+
+    .chart-card {
+      background: #0f172a; border: 1px solid #1f2937; border-radius: 10px; padding: 10px;
+      transition: border-color .2s, transform .2s, box-shadow .2s;
+      box-shadow: 0 2px 8px rgba(0,0,0,.3);
+    }
+    .chart-card:hover {
+      border-color: #3b82f6; transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(59,130,246,.15);
+    }
+    .card-header {
+      display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;
+    }
+    .card-title { font-size: 12px; font-weight: 600; flex: 1; }
+    .card-title-qty  { color: #34d399; }
+    .card-title-amt  { color: #60a5fa; }
+    .card-title-up   { color: #f59e0b; }
+    .card-unit { font-size: 10px; color: #64748b; margin-left: 4px; }
+    .card-btns { display: flex; gap: 4px; }
+    .icon-btn {
+      background: none; border: none; color: #64748b; cursor: pointer; font-size: 14px;
+      padding: 2px 4px; border-radius: 4px; transition: all .2s;
+    }
+    .icon-btn:hover { background: #1f2937; color: #e2e8f0; }
+    .chart-container { height: 180px; display: flex; align-items: center; justify-content: center; color: #334155; font-size: 12px; }
+
+    /* zoom modal */
+    #zoomModal {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,.85); z-index: 1000; cursor: pointer;
+    }
+    #zoomInner {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+      width: 90%; max-width: 1200px; height: 82%; background: #0b0f19;
+      border-radius: 14px; padding: 20px; cursor: default;
+      display: flex; flex-direction: column;
+    }
+    #zoomHeader { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+    #zoomTitle { color: #e2e8f0; margin: 0; font-size: 17px; }
+    #closeZoom {
+      background: none; border: none; color: #9aa4b2; font-size: 26px; cursor: pointer; line-height: 1;
+    }
+    #zoomChart { flex: 1; min-height: 0; }
+  </style>
+</head>
+<body>
+
+<div class="page-header">
+  <h2>中国出口重点商品量值（人民币）- 趋势看板</h2>
+</div>
+<div class="subtitle">数据来源：海关总署统计快讯 | 金额单位：亿元人民币 | 同比为当月值与去年同月对比</div>
+
+<!-- ── DASHBOARD ─────────────────────────────────────────── -->
+  <div class="toolbar">
+    <input id="filterInput" placeholder="过滤品类名称…" />
+    <span id="metricCount"></span>
+    <span class="label-sm" style="margin-left:8px;">显示：</span>
+    <button class="toggle-btn on" id="btnYoy">同比%</button>
+    <button class="toggle-btn on" id="btnMom">环比%</button>
+    <span class="label-sm" style="margin-left:8px;">历史年：</span>
+    <button class="toggle-btn on" id="btnHist">显示</button>
+    <span class="label-sm" style="margin-left:8px;">增速参考线：</span>
+    <button class="toggle-btn" id="btnGrowth">关闭</button>
+    <span class="label-sm" style="margin-left:8px;">收藏：</span>
+    <button class="toggle-btn" id="btnFavOnly">❤️ 仅收藏</button>
+  </div>
+  <div id="dashContent"></div>
+</div>
+
+<!-- zoom modal -->
+<div id="zoomModal">
+  <div id="zoomInner" onclick="event.stopPropagation()">
+    <div id="zoomHeader">
+      <h3 id="zoomTitle"></h3>
+      <button id="closeZoom">×</button>
+    </div>
+    <div id="zoomChart"></div>
+  </div>
+</div>
+
+<script src="../vendor/echarts.min.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  /* ── 收藏管理 ── */
+  var CE_FAV_KEY = 'china_export_favorites';
+  var ceFavorites = new Set(JSON.parse(localStorage.getItem(CE_FAV_KEY) || '[]'));
+  var ceShowOnlyFav = false;
+
+  function ceSaveFav() {
+    localStorage.setItem(CE_FAV_KEY, JSON.stringify([...ceFavorites]));
+  }
+  function ceToggleFav(name) {
+    if (ceFavorites.has(name)) { ceFavorites.delete(name); } else { ceFavorites.add(name); }
+    ceSaveFav();
+  }
+  function ceUpdateFavOnlyBtn() {
+    var btn = document.getElementById('btnFavOnly');
+    if (!btn) return;
+    btn.classList.toggle('on', ceShowOnlyFav);
+  }
+
+  /* 点击心形按钮（事件委托） */
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest ? e.target.closest('.group-fav-btn') : null;
+    if (!btn) return;
+    var name = btn.dataset.name;
+    ceToggleFav(name);
+    var now = ceFavorites.has(name);
+    btn.textContent = now ? '❤️' : '🤍';
+    btn.title = now ? '取消收藏' : '收藏';
+    var groupEl = btn.closest('.commodity-group');
+    if (groupEl) {
+      groupEl.style.borderLeft = now ? '3px solid #f43f5e' : '3px solid transparent';
+    }
+    if (ceShowOnlyFav) renderGrid();
+  });
+
+  /* ── 调色板 ── */
+  var PALETTE = ['#ef4444','#3b82f6','#10b981','#f59e0b','#8b5cf6','#06b6d4','#f97316','#84cc16'];
+  var COLOR_YOY = '#4ade80';
+  var COLOR_MOM = '#f59e0b';
+
+  /* 每个字段对应的颜色主题（用于 y 轴名称和图例高亮） */
+  var FIELD_META = {
+    quantity:  { label: '数量',  titleClass: 'card-title-qty' },
+    amount:    { label: '金额',  titleClass: 'card-title-amt' },
+    unitPrice: { label: '单价',  titleClass: 'card-title-up'  }
+  };
+
+  /* ── 状态 ── */
+  var showYoy    = true;
+  var showMom    = true;
+  var showHist   = true;
+  var showGrowth = false; // 增速参考线（默认关闭）
+
+  var allData     = null;
+  var commodities = {};
+  var commodityNames = [];
+  var xLabelByMonth = {}; // { '02': '1-2月', '03': '3月', … } 从数据中提取
+
+  var chartInstances = new Map(); // key: chart-card DOM → echarts instance
+  var observer = null;
+  var zoomChart = null;
+
+  /* ══════════════════════════════════════════════════════
+     数据转换
+  ════════════════════════════════════════════════════════ */
+  function buildCommodities(json) {
+    var result = {};
+    var monthKeys = Object.keys(json).sort();
+
+    monthKeys.forEach(function (mk) {
+      var entry = json[mk];
+      var year  = mk.slice(0, 4);
+      var month = mk.slice(5, 7);
+
+      /* 收集 X 轴标签：后面年份会覆盖前面，取最新值 */
+      if (entry.monthLabel) xLabelByMonth[month] = entry.monthLabel;
+
+      (entry.items || []).forEach(function (item) {
+        var name = item.name;
+        if (!result[name]) result[name] = { unit: item.unit, years: {} };
+        if (!result[name].years[year]) result[name].years[year] = [];
+        result[name].years[year].push({
+          month:        month,
+          yearMonth:    mk,
+          amount:       item.currentMonth        ? item.currentMonth.amount        : null,
+          quantity:     item.currentMonth        ? item.currentMonth.quantity      : null,
+          ytdAmount:    item.ytdCurrentYear      ? item.ytdCurrentYear.amount      : null,
+          ytdQty:       item.ytdCurrentYear      ? item.ytdCurrentYear.quantity    : null,
+          lyYtdAmount:  item.ytdSamePeriodLastYear ? item.ytdSamePeriodLastYear.amount   : null,
+          lyYtdQty:     item.ytdSamePeriodLastYear ? item.ytdSamePeriodLastYear.quantity : null,
+        });
+      });
+    });
+
+    /* 排序 + 计算环比 + 计算单价 */
+    Object.keys(result).forEach(function (name) {
+      Object.keys(result[name].years).forEach(function (y) {
+        var arr = result[name].years[y];
+        arr.sort(function (a, b) { return a.month.localeCompare(b.month); });
+        arr.forEach(function (d, i) {
+          var prev = i > 0 ? arr[i - 1] : null;
+
+          /* 环比：金额 / 数量 */
+          d.momAmt = (prev && prev.amount != null && d.amount != null && prev.amount !== 0)
+            ? +((d.amount - prev.amount) / Math.abs(prev.amount) * 100).toFixed(2) : null;
+          d.momQty = (prev && prev.quantity != null && d.quantity != null && prev.quantity !== 0)
+            ? +((d.quantity - prev.quantity) / Math.abs(prev.quantity) * 100).toFixed(2) : null;
+
+          /* 当月单价 = 金额 / 数量 */
+          d.unitPrice = (d.amount != null && d.quantity != null && d.quantity !== 0)
+            ? d.amount / d.quantity : null;
+
+          /* 单价环比 */
+          var prevUp = prev ? prev.unitPrice : null;
+          d.momUP = (prevUp != null && d.unitPrice != null && prevUp !== 0)
+            ? +((d.unitPrice - prevUp) / Math.abs(prevUp) * 100).toFixed(2) : null;
+        });
+      });
+    });
+
+    /* 第二轮：跨年计算当月同比 */
+    Object.keys(result).forEach(function (name) {
+      var years = Object.keys(result[name].years).sort();
+      years.forEach(function (y, yi) {
+        if (yi === 0) return;
+        var arr     = result[name].years[y];
+        var prevArr = result[name].years[years[yi - 1]];
+        var prevMap = {};
+        prevArr.forEach(function (d) { prevMap[d.month] = d; });
+
+        arr.forEach(function (d) {
+          var prev = prevMap[d.month];
+          d.yoyAmt = (prev && prev.amount != null && d.amount != null && prev.amount !== 0)
+            ? +((d.amount - prev.amount) / Math.abs(prev.amount) * 100).toFixed(2) : null;
+          d.yoyQty = (prev && prev.quantity != null && d.quantity != null && prev.quantity !== 0)
+            ? +((d.quantity - prev.quantity) / Math.abs(prev.quantity) * 100).toFixed(2) : null;
+          var prevUp = prev ? prev.unitPrice : null;
+          d.yoyUP = (prevUp != null && d.unitPrice != null && prevUp !== 0)
+            ? +((d.unitPrice - prevUp) / Math.abs(prevUp) * 100).toFixed(2) : null;
+        });
+      });
+    });
+
+    return result;
+  }
+
+  /* ══════════════════════════════════════════════════════
+     X 轴：固定 1-12 月
+  ════════════════════════════════════════════════════════ */
+  var X_MONTHS = ['01','02','03','04','05','06','07','08','09','10','11','12'];
+  /* X_LABELS 作为兜底；实际标签优先从 xLabelByMonth（由数据的 monthLabel 填充）取 */
+  var X_LABELS_DEFAULT = ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
+
+  function getXLabel(monthStr) {
+    return xLabelByMonth[monthStr] || X_LABELS_DEFAULT[parseInt(monthStr, 10) - 1] || monthStr;
+  }
+
+  function makeNullArr() { return X_MONTHS.map(function () { return null; }); }
+  function monthIdx(mm) { return parseInt(mm, 10) - 1; }
+
+  /* ── 根据品类 unit 推导单价单位 ── */
+  function unitPriceUnit(comUnit) {
+    if (!comUnit || comUnit === '-') return '亿元/单位';
+    return '亿元/' + comUnit;
+  }
+
+  /* ── 构建单图 option ── */
+  function buildOption(name, field) {
+    var com = commodities[name];
+    if (!com) return {};
+    var years = Object.keys(com.years).sort();
+    var latestYear = years[years.length - 1];
+
+    var valKey, yoyKey, momKey, unit;
+    if (field === 'amount') {
+      valKey = 'amount';   yoyKey = 'yoyAmt'; momKey = 'momAmt'; unit = '亿元';
+    } else if (field === 'quantity') {
+      valKey = 'quantity'; yoyKey = 'yoyQty'; momKey = 'momQty'; unit = com.unit || '';
+    } else { /* unitPrice */
+      valKey = 'unitPrice'; yoyKey = 'yoyUP'; momKey = 'momUP'; unit = unitPriceUnit(com.unit);
+    }
+
+    var series = [];
+    years.forEach(function (y, idx) {
+      if (!showHist && y !== latestYear) return;
+      var arr = com.years[y];
+      var isLatest = (y === latestYear);
+      var color = PALETTE[idx % PALETTE.length];
+
+      /* 绝对值曲线（始终显示） */
+      var vals = makeNullArr();
+      arr.forEach(function (d) { vals[monthIdx(d.month)] = d[valKey]; });
+      series.push({
+        name: y + '年', type: 'line', yAxisIndex: 0, data: vals,
+        smooth: true, symbol: 'circle', symbolSize: isLatest ? 5 : 4,
+        lineStyle: { color: color, width: isLatest ? 2.5 : 1.8 },
+        itemStyle: { color: color }
+      });
+
+      if (isLatest) {
+        /* 同比（当月跨年对比） */
+        if (showYoy) {
+          var yoys = makeNullArr();
+          arr.forEach(function (d) { yoys[monthIdx(d.month)] = d[yoyKey]; });
+          series.push({
+            name: '同比%', type: 'line', yAxisIndex: 1, data: yoys,
+            smooth: true, symbol: 'diamond', symbolSize: 4,
+            lineStyle: { color: COLOR_YOY, width: 2, type: 'solid' },
+            itemStyle: { color: COLOR_YOY }
+          });
+        }
+        /* 环比 */
+        if (showMom) {
+          var moms = makeNullArr();
+          arr.forEach(function (d) { moms[monthIdx(d.month)] = d[momKey]; });
+          series.push({
+            name: '环比%', type: 'line', yAxisIndex: 1, data: moms,
+            smooth: true, symbol: 'triangle', symbolSize: 4,
+            lineStyle: { color: COLOR_MOM, width: 2, type: 'dashed' },
+            itemStyle: { color: COLOR_MOM }
+          });
+        }
+      }
+    });
+
+    /* 去掉全空的 x 轴刻度 */
+    var keep = [];
+    X_MONTHS.forEach(function (_, i) {
+      var hasVal = series.some(function (s) { return s.data && s.data[i] != null; });
+      if (hasVal) keep.push(i);
+    });
+    var xData = keep.map(function (i) { return getXLabel(X_MONTHS[i]); });
+    series.forEach(function (s) { s.data = keep.map(function (i) { return s.data[i]; }); });
+
+    var option = {
+      backgroundColor: '#0f172a', animation: false,
+      grid: { left: 46, right: 46, top: 28, bottom: 22 },
+      xAxis: { type: 'category', data: xData, axisLabel: { color: '#9aa4b2', fontSize: 10 } },
+      yAxis: [
+        { type: 'value', position: 'left', name: unit ? '(' + unit + ')' : '',
+          nameTextStyle: { color: '#64748b', fontSize: 10 },
+          axisLabel: { color: '#9aa4b2', fontSize: 10 }, splitLine: { lineStyle: { color: '#1f2937' } } },
+        { type: 'value', position: 'right',
+          axisLabel: { color: '#9aa4b2', fontSize: 10, formatter: '{value}%' }, splitLine: { show: false } }
+      ],
+      legend: { show: true, top: 0, right: 0, textStyle: { color: '#94a3b8', fontSize: 10 }, itemWidth: 12, itemHeight: 8 },
+      tooltip: {
+        trigger: 'axis',
+        backgroundColor: 'rgba(15,23,42,.95)', borderColor: '#1f2937', textStyle: { color: '#e2e8f0', fontSize: 12 },
+        formatter: function (ps) {
+          var s = ps[0].axisValue + '<br/>';
+          ps.forEach(function (p) {
+            if (p.value == null) return;
+            var isRate = p.seriesName.indexOf('%') > -1;
+            s += p.marker + p.seriesName + ': ' + (typeof p.value === 'number' ? p.value.toFixed(4).replace(/\.?0+$/, '') : p.value)
+              + (isRate ? '%' : (unit ? ' ' + unit : '')) + '<br/>';
+          });
+          return s;
+        }
+      },
+      series: series
+    };
+
+    /* 增速参考线：附加到最后一条右轴系列 */
+    if (showGrowth) {
+      var rightSeries = series.filter(function (s) { return s.yAxisIndex === 1; });
+      var target = rightSeries[rightSeries.length - 1];
+      if (target) {
+        target.markLine = {
+          silent: true, symbol: 'none',
+          data: [
+            { yAxis: 10, lineStyle: { color: '#3b82f6', type: 'dashed', width: 1, opacity: .7 }, label: { show: true, position: 'end', formatter: '10%', color: '#3b82f6', fontSize: 10 } },
+            { yAxis: 20, lineStyle: { color: '#f59e0b', type: 'dashed', width: 1, opacity: .7 }, label: { show: true, position: 'end', formatter: '20%', color: '#f59e0b', fontSize: 10 } }
+          ]
+        };
+      }
+    }
+
+    return option;
+  }
+
+  /* ── 放大图 option ── */
+  function buildZoomOption(name, field) {
+    var opt = buildOption(name, field);
+    opt.animation = true;
+    opt.backgroundColor = '#0b0f19';
+    opt.grid = { left: 64, right: 64, top: 50, bottom: 50 };
+    opt.xAxis.axisLabel.fontSize = 13;
+    opt.yAxis[0].axisLabel.fontSize = 13;
+    opt.yAxis[1].axisLabel.fontSize = 13;
+    opt.legend.textStyle.fontSize = 13;
+    opt.legend.itemWidth = 20; opt.legend.itemHeight = 12;
+    (opt.series || []).forEach(function (s) {
+      s.symbolSize = (s.symbolSize || 4) + 2;
+      if (s.lineStyle) s.lineStyle.width = (s.lineStyle.width || 2) + 0.5;
+    });
+    opt.dataZoom = [
+      { type: 'slider', show: true, xAxisIndex: [0], bottom: 10, height: 18 },
+      { type: 'inside', xAxisIndex: [0] }
+    ];
+    return opt;
+  }
+
+  /* ══════════════════════════════════════════════════════
+     Dashboard 渲染：每品类三图
+  ════════════════════════════════════════════════════════ */
+  var FIELDS = ['quantity', 'amount', 'unitPrice'];
+
+  function renderGrid() {
+    var keyword = (document.getElementById('filterInput').value || '').trim();
+
+    /* 只展示最新年份有数据的品类 */
+    var latestYear = commodityNames.reduce(function (max, n) {
+      var years = Object.keys(commodities[n].years);
+      var y = years.length ? years.sort()[years.length - 1] : '0';
+      return y > max ? y : max;
+    }, '0');
+
+    var names = commodityNames.filter(function (n) {
+      if (keyword && n.indexOf(keyword) < 0) return false;
+      /* 排除汇总大类（名称末尾带 * 号） */
+      if (n.charAt(n.length - 1) === '*') return false;
+      /* 仅收藏模式 */
+      if (ceShowOnlyFav && !ceFavorites.has(n)) return false;
+      var yearData = commodities[n].years[latestYear];
+      if (!yearData || !yearData.length) return false;
+      /* 最新年份至少有一个月的 amount 或 quantity 非空 */
+      return yearData.some(function (d) { return d.amount != null || d.quantity != null; });
+    });
+    /* 收藏优先 */
+    names.sort(function (a, b) {
+      var af = ceFavorites.has(a) ? 0 : 1;
+      var bf = ceFavorites.has(b) ? 0 : 1;
+      if (af !== bf) return af - bf;
+      return a.localeCompare(b);
+    });
+
+    document.getElementById('metricCount').textContent = names.length + ' 个品类';
+
+    /* 销毁旧图表 */
+    chartInstances.forEach(function (c) { if (c) c.dispose(); });
+    chartInstances.clear();
+    if (observer) { observer.disconnect(); observer = null; }
+
+    var container = document.getElementById('dashContent');
+    container.innerHTML = '';
+
+    var BATCH = 6; var idx = 0;
+    function renderBatch() {
+      var end = Math.min(idx + BATCH, names.length);
+      for (var i = idx; i < end; i++) {
+        var name = names[i];
+        var com = commodities[name];
+
+        var group = document.createElement('div');
+        group.className = 'commodity-group';
+        var isFav = ceFavorites.has(name);
+        group.style.borderLeft = isFav ? '3px solid #f43f5e' : '3px solid transparent';
+        group.style.paddingLeft = '6px';
+
+        /* 组标题 */
+        var header = document.createElement('div');
+        header.className = 'group-header';
+        var titleEl = document.createElement('span');
+        titleEl.className = 'group-title';
+        titleEl.textContent = name;
+        var unitEl = document.createElement('span');
+        unitEl.className = 'group-unit';
+        unitEl.textContent = com && com.unit && com.unit !== '-' ? '（数量单位：' + com.unit + '）' : '';
+        titleEl.appendChild(unitEl);
+
+        /* ❤️ 收藏按钮 */
+        var favBtn = document.createElement('button');
+        favBtn.className = 'group-fav-btn';
+        favBtn.dataset.name = name;
+        favBtn.textContent = isFav ? '❤️' : '🤍';
+        favBtn.title = isFav ? '取消收藏' : '收藏';
+        favBtn.style.cssText = 'background:none;border:none;font-size:16px;cursor:pointer;padding:2px 6px;line-height:1;transition:transform .15s;';
+        favBtn.onmouseenter = function () { favBtn.style.transform = 'scale(1.3)'; };
+        favBtn.onmouseleave = function () { favBtn.style.transform = 'scale(1)'; };
+
+        header.appendChild(titleEl);
+        header.appendChild(favBtn);
+        group.appendChild(header);
+
+        /* 三图行 */
+        var row = document.createElement('div');
+        row.className = 'charts-row';
+
+        FIELDS.forEach(function (field) {
+          var meta = FIELD_META[field];
+          var card = document.createElement('div');
+          card.className = 'chart-card';
+          card.dataset.name = name;
+          card.dataset.field = field;
+
+          /* 小图头部：标签 + 放大按钮 */
+          var cardHeader = document.createElement('div');
+          cardHeader.className = 'card-header';
+          var cardTitle = document.createElement('div');
+          cardTitle.className = 'card-title ' + meta.titleClass;
+          var labelText = meta.label;
+          if (field === 'quantity' && com && com.unit && com.unit !== '-') labelText += '（' + com.unit + '）';
+          if (field === 'amount') labelText += '（亿元）';
+          if (field === 'unitPrice') labelText += '（亿元/' + (com && com.unit && com.unit !== '-' ? com.unit : '单位') + '）';
+          cardTitle.textContent = labelText;
+
+          var btns = document.createElement('div');
+          btns.className = 'card-btns';
+          var zoomBtn = document.createElement('button');
+          zoomBtn.className = 'icon-btn'; zoomBtn.title = '放大'; zoomBtn.textContent = '⤢';
+          zoomBtn.onclick = (function (n, f) {
+            return function (e) {
+              e.stopPropagation();
+              openZoom(n, f);
+            };
+          })(name, field);
+          btns.appendChild(zoomBtn);
+          cardHeader.appendChild(cardTitle); cardHeader.appendChild(btns);
+
+          var chartDiv = document.createElement('div');
+          chartDiv.className = 'chart-container';
+          chartDiv.textContent = '加载中…';
+
+          card.appendChild(cardHeader); card.appendChild(chartDiv);
+          row.appendChild(card);
+        });
+
+        group.appendChild(row);
+        container.appendChild(group);
+      }
+      idx = end;
+      if (idx < names.length) requestAnimationFrame(renderBatch);
+      else setTimeout(setupObserver, 0);
+    }
+
+    if (names.length) requestAnimationFrame(renderBatch);
+  }
+
+  function setupObserver() {
+    observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        var card = entry.target;
+        if (!entry.isIntersecting) return;
+        if (chartInstances.has(card)) return;
+        var name  = card.dataset.name;
+        var field = card.dataset.field;
+        var chartDiv = card.querySelector('.chart-container');
+        chartDiv.textContent = '';
+        var ec = echarts.init(chartDiv, null, { renderer: 'canvas' });
+        ec.setOption(buildOption(name, field));
+        chartInstances.set(card, ec);
+      });
+    }, { root: null, rootMargin: '120px', threshold: 0.01 });
+
+    document.querySelectorAll('#dashContent .chart-card').forEach(function (c) { observer.observe(c); });
+    window.addEventListener('resize', function () {
+      chartInstances.forEach(function (ec) { if (ec) ec.resize(); });
+    });
+  }
+
+  /* ── 全部重绘（切换显示选项） ── */
+  function redrawAll() {
+    chartInstances.forEach(function (ec, card) {
+      if (!ec) return;
+      var name  = card.dataset.name;
+      var field = card.dataset.field;
+      ec.setOption(buildOption(name, field), true);
+    });
+  }
+
+  /* ══════════════════════════════════════════════════════
+     Zoom modal
+  ════════════════════════════════════════════════════════ */
+  function openZoom(name, field) {
+    var meta = FIELD_META[field] || FIELD_META.amount;
+    document.getElementById('zoomTitle').textContent = name + ' — ' + meta.label + ' 详细视图';
+    var modal = document.getElementById('zoomModal');
+    modal.style.display = 'block';
+    if (zoomChart) { zoomChart.dispose(); zoomChart = null; }
+    setTimeout(function () {
+      var div = document.getElementById('zoomChart');
+      zoomChart = echarts.init(div);
+      zoomChart.setOption(buildZoomOption(name, field));
+      window.addEventListener('resize', function () { if (zoomChart) zoomChart.resize(); });
+    }, 60);
+  }
+
+  function closeZoom() {
+    document.getElementById('zoomModal').style.display = 'none';
+    if (zoomChart) { zoomChart.dispose(); zoomChart = null; }
+  }
+
+  /* ══════════════════════════════════════════════════════
+     初始化
+  ════════════════════════════════════════════════════════ */
+  fetch('../china_export/china_export_rmb.json?t=' + Date.now())
+    .then(function (r) { return r.json(); })
+    .then(function (json) {
+      allData = json;
+      commodities = buildCommodities(json);
+      commodityNames = Object.keys(commodities).sort();
+
+      renderGrid();
+
+      /* ── 事件绑定 ── */
+      document.getElementById('filterInput').addEventListener('input', renderGrid);
+
+      /* 显示切换按钮 */
+      function mkToggle(id, getSet, setter) {
+        var btn = document.getElementById(id);
+        function refresh() { btn.classList.toggle('on', getSet()); }
+        btn.addEventListener('click', function () { setter(!getSet()); refresh(); redrawAll(); });
+        refresh();
+      }
+      mkToggle('btnYoy',    function () { return showYoy; },    function (v) { showYoy    = v; });
+      mkToggle('btnMom',    function () { return showMom; },    function (v) { showMom    = v; });
+      mkToggle('btnHist',   function () { return showHist; },   function (v) { showHist   = v; });
+      mkToggle('btnGrowth', function () { return showGrowth; }, function (v) { showGrowth = v; });
+
+      /* 仅收藏开关 */
+      document.getElementById('btnFavOnly').addEventListener('click', function () {
+        ceShowOnlyFav = !ceShowOnlyFav;
+        ceUpdateFavOnlyBtn();
+        renderGrid();
+      });
+      ceUpdateFavOnlyBtn();
+
+      /* zoom */
+      document.getElementById('zoomModal').addEventListener('click', closeZoom);
+      document.getElementById('closeZoom').addEventListener('click', function (e) { e.stopPropagation(); closeZoom(); });
+    })
+    .catch(function (e) {
+      document.body.insertAdjacentHTML('afterbegin',
+        '<div style="color:#ef4444;background:#1f0e0e;padding:12px;border-radius:8px;margin-bottom:12px;">'
+        + '⚠ 加载数据失败：' + e.message + '<br>请确保 china_export_rmb.json 存在且格式正确</div>');
+    });
+})();
+</script>
+</body>
+</html>

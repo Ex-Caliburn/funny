@@ -1,0 +1,1151 @@
+{
+  "title": "中国铝业氧化铝现货报价",
+  "unit": "元/吨",
+  "source": "https://www.chalco.com.cn/cpyfw/cpbj/",
+  "regions": {
+    "shandong": "山东地区",
+    "henan": "河南地区",
+    "shanxi": "山西地区",
+    "guizhou": "贵州地区",
+    "guangxi": "广西地区"
+  },
+  "updatedAt": "2026-05-09",
+  "data": [
+    {
+      "date": "2026-05-08",
+      "shandong": 2720,
+      "henan": 2745,
+      "shanxi": 2755,
+      "guizhou": 2840,
+      "guangxi": 2720
+    },
+    {
+      "date": "2026-05-07",
+      "shandong": 2715,
+      "henan": 2740,
+      "shanxi": 2750,
+      "guizhou": 2840,
+      "guangxi": 2720
+    },
+    {
+      "date": "2026-05-06",
+      "shandong": 2715,
+      "henan": 2740,
+      "shanxi": 2750,
+      "guizhou": 2840,
+      "guangxi": 2720
+    },
+    {
+      "date": "2026-04-30",
+      "shandong": 2715,
+      "henan": 2740,
+      "shanxi": 2750,
+      "guizhou": 2840,
+      "guangxi": 2720
+    },
+    {
+      "date": "2026-04-29",
+      "shandong": 2715,
+      "henan": 2740,
+      "shanxi": 2750,
+      "guizhou": 2840,
+      "guangxi": 2715
+    },
+    {
+      "date": "2026-04-28",
+      "shandong": 2710,
+      "henan": 2740,
+      "shanxi": 2745,
+      "guizhou": 2840,
+      "guangxi": 2715
+    },
+    {
+      "date": "2026-04-27",
+      "shandong": 2700,
+      "henan": 2735,
+      "shanxi": 2735,
+      "guizhou": 2840,
+      "guangxi": 2715
+    },
+    {
+      "date": "2026-04-24",
+      "shandong": 2700,
+      "henan": 2735,
+      "shanxi": 2735,
+      "guizhou": 2840,
+      "guangxi": 2715
+    },
+    {
+      "date": "2026-04-23",
+      "shandong": 2700,
+      "henan": 2735,
+      "shanxi": 2735,
+      "guizhou": 2840,
+      "guangxi": 2715
+    },
+    {
+      "date": "2026-04-22",
+      "shandong": 2700,
+      "henan": 2735,
+      "shanxi": 2735,
+      "guizhou": 2840,
+      "guangxi": 2715
+    },
+    {
+      "date": "2026-04-21",
+      "shandong": 2700,
+      "henan": 2735,
+      "shanxi": 2735,
+      "guizhou": 2840,
+      "guangxi": 2755
+    },
+    {
+      "date": "2026-04-20",
+      "shandong": 2700,
+      "henan": 2735,
+      "shanxi": 2735,
+      "guizhou": 2840,
+      "guangxi": 2715
+    },
+    {
+      "date": "2026-04-17",
+      "shandong": 2705,
+      "henan": 2740,
+      "shanxi": 2740,
+      "guizhou": 2840,
+      "guangxi": 2715
+    },
+    {
+      "date": "2026-04-16",
+      "shandong": 2720,
+      "henan": 2750,
+      "shanxi": 2755,
+      "guizhou": 2850,
+      "guangxi": 2730
+    },
+    {
+      "date": "2026-04-15",
+      "shandong": 2725,
+      "henan": 2760,
+      "shanxi": 2765,
+      "guizhou": 2855,
+      "guangxi": 2735
+    },
+    {
+      "date": "2026-04-14",
+      "shandong": 2735,
+      "henan": 2775,
+      "shanxi": 2775,
+      "guizhou": 2860,
+      "guangxi": 2750
+    },
+    {
+      "date": "2026-04-13",
+      "shandong": 2745,
+      "henan": 2785,
+      "shanxi": 2785,
+      "guizhou": 2865,
+      "guangxi": 2775
+    },
+    {
+      "date": "2026-04-10",
+      "shandong": 2755,
+      "henan": 2795,
+      "shanxi": 2795,
+      "guizhou": 2870,
+      "guangxi": 2795
+    },
+    {
+      "date": "2026-04-09",
+      "shandong": 2765,
+      "henan": 2810,
+      "shanxi": 2805,
+      "guizhou": 2880,
+      "guangxi": 2810
+    },
+    {
+      "date": "2026-04-08",
+      "shandong": 2780,
+      "henan": 2825,
+      "shanxi": 2820,
+      "guizhou": 2880,
+      "guangxi": 2810
+    },
+    {
+      "date": "2026-04-07",
+      "shandong": 2800,
+      "henan": 2835,
+      "shanxi": 2840,
+      "guizhou": 2880,
+      "guangxi": 2810
+    },
+    {
+      "date": "2026-04-03",
+      "shandong": 2800,
+      "henan": 2835,
+      "shanxi": 2840,
+      "guizhou": 2880,
+      "guangxi": 2810
+    },
+    {
+      "date": "2026-04-02",
+      "shandong": 2800,
+      "henan": 2835,
+      "shanxi": 2840,
+      "guizhou": 2880,
+      "guangxi": 2810
+    },
+    {
+      "date": "2026-04-01",
+      "shandong": 2800,
+      "henan": 2835,
+      "shanxi": 2840,
+      "guizhou": 2880,
+      "guangxi": 2810
+    },
+    {
+      "date": "2026-03-31",
+      "shandong": 2800,
+      "henan": 2835,
+      "shanxi": 2840,
+      "guizhou": 2880,
+      "guangxi": 2810
+    },
+    {
+      "date": "2026-03-30",
+      "shandong": 2800,
+      "henan": 2835,
+      "shanxi": 2840,
+      "guizhou": 2875,
+      "guangxi": 2810
+    },
+    {
+      "date": "2026-03-27",
+      "shandong": 2800,
+      "henan": 2835,
+      "shanxi": 2840,
+      "guizhou": 2855,
+      "guangxi": 2795
+    },
+    {
+      "date": "2026-03-26",
+      "shandong": 2800,
+      "henan": 2835,
+      "shanxi": 2840,
+      "guizhou": 2855,
+      "guangxi": 2790
+    },
+    {
+      "date": "2026-03-25",
+      "shandong": 2795,
+      "henan": 2830,
+      "shanxi": 2835,
+      "guizhou": 2850,
+      "guangxi": 2790
+    },
+    {
+      "date": "2026-03-24",
+      "shandong": 2785,
+      "henan": 2825,
+      "shanxi": 2830,
+      "guizhou": 2830,
+      "guangxi": 2790
+    },
+    {
+      "date": "2026-03-23",
+      "shandong": 2770,
+      "henan": 2815,
+      "shanxi": 2815,
+      "guizhou": 2830,
+      "guangxi": 2790
+    },
+    {
+      "date": "2026-03-20",
+      "shandong": 2765,
+      "henan": 2815,
+      "shanxi": 2810,
+      "guizhou": 2830,
+      "guangxi": 2790
+    },
+    {
+      "date": "2026-03-19",
+      "shandong": 2755,
+      "henan": 2805,
+      "shanxi": 2800,
+      "guizhou": 2830,
+      "guangxi": 2790
+    },
+    {
+      "date": "2026-03-18",
+      "shandong": 2735,
+      "henan": 2785,
+      "shanxi": 2780,
+      "guizhou": 2820,
+      "guangxi": 2780
+    },
+    {
+      "date": "2026-03-17",
+      "shandong": 2715,
+      "henan": 2765,
+      "shanxi": 2755,
+      "guizhou": 2810,
+      "guangxi": 2770
+    },
+    {
+      "date": "2026-03-16",
+      "shandong": 2695,
+      "henan": 2750,
+      "shanxi": 2740,
+      "guizhou": 2800,
+      "guangxi": 2760
+    },
+    {
+      "date": "2026-03-13",
+      "shandong": 2690,
+      "henan": 2750,
+      "shanxi": 2735,
+      "guizhou": 2800,
+      "guangxi": 2755
+    },
+    {
+      "date": "2026-03-12",
+      "shandong": 2685,
+      "henan": 2745,
+      "shanxi": 2730,
+      "guizhou": 2800,
+      "guangxi": 2750
+    },
+    {
+      "date": "2026-03-11",
+      "shandong": 2675,
+      "henan": 2735,
+      "shanxi": 2720,
+      "guizhou": 2800,
+      "guangxi": 2750
+    },
+    {
+      "date": "2026-03-10",
+      "shandong": 2675,
+      "henan": 2730,
+      "shanxi": 2720,
+      "guizhou": 2800,
+      "guangxi": 2750
+    },
+    {
+      "date": "2026-03-09",
+      "shandong": 2670,
+      "henan": 2725,
+      "shanxi": 2715,
+      "guizhou": 2800,
+      "guangxi": 2745
+    },
+    {
+      "date": "2026-03-06",
+      "shandong": 2660,
+      "henan": 2715,
+      "shanxi": 2705,
+      "guizhou": 2800,
+      "guangxi": 2740
+    },
+    {
+      "date": "2026-03-05",
+      "shandong": 2660,
+      "henan": 2715,
+      "shanxi": 2705,
+      "guizhou": 2800,
+      "guangxi": 2740
+    },
+    {
+      "date": "2026-03-04",
+      "shandong": 2655,
+      "henan": 2710,
+      "shanxi": 2700,
+      "guizhou": 2795,
+      "guangxi": 2740
+    },
+    {
+      "date": "2026-03-03",
+      "shandong": 2655,
+      "henan": 2710,
+      "shanxi": 2695,
+      "guizhou": 2790,
+      "guangxi": 2735
+    },
+    {
+      "date": "2026-03-02",
+      "shandong": 2650,
+      "henan": 2705,
+      "shanxi": 2690,
+      "guizhou": 2790,
+      "guangxi": 2730
+    },
+    {
+      "date": "2026-02-27",
+      "shandong": 2640,
+      "henan": 2695,
+      "shanxi": 2690,
+      "guizhou": 2790,
+      "guangxi": 2730
+    },
+    {
+      "date": "2026-02-26",
+      "shandong": 2630,
+      "henan": 2685,
+      "shanxi": 2680,
+      "guizhou": 2790,
+      "guangxi": 2730
+    },
+    {
+      "date": "2026-02-25",
+      "shandong": 2620,
+      "henan": 2685,
+      "shanxi": 2670,
+      "guizhou": 2790,
+      "guangxi": 2730
+    },
+    {
+      "date": "2026-02-24",
+      "shandong": 2610,
+      "henan": 2685,
+      "shanxi": 2670,
+      "guizhou": 2790,
+      "guangxi": 2730
+    },
+    {
+      "date": "2026-02-13",
+      "shandong": 2610,
+      "henan": 2685,
+      "shanxi": 2670,
+      "guizhou": 2790,
+      "guangxi": 2730
+    },
+    {
+      "date": "2026-02-12",
+      "shandong": 2610,
+      "henan": 2685,
+      "shanxi": 2670,
+      "guizhou": 2790,
+      "guangxi": 2730
+    },
+    {
+      "date": "2026-02-11",
+      "shandong": 2610,
+      "henan": 2685,
+      "shanxi": 2670,
+      "guizhou": 2790,
+      "guangxi": 2730
+    },
+    {
+      "date": "2026-02-10",
+      "shandong": 2610,
+      "henan": 2685,
+      "shanxi": 2670,
+      "guizhou": 2790,
+      "guangxi": 2730
+    },
+    {
+      "date": "2026-02-09",
+      "shandong": 2610,
+      "henan": 2685,
+      "shanxi": 2670,
+      "guizhou": 2790,
+      "guangxi": 2730
+    },
+    {
+      "date": "2026-02-06",
+      "shandong": 2610,
+      "henan": 2685,
+      "shanxi": 2670,
+      "guizhou": 2790,
+      "guangxi": 2730
+    },
+    {
+      "date": "2026-02-05",
+      "shandong": 2610,
+      "henan": 2685,
+      "shanxi": 2670,
+      "guizhou": 2790,
+      "guangxi": 2730
+    },
+    {
+      "date": "2026-02-04",
+      "shandong": 2610,
+      "henan": 2685,
+      "shanxi": 2670,
+      "guizhou": 2790,
+      "guangxi": 2730
+    },
+    {
+      "date": "2026-02-03",
+      "shandong": 2610,
+      "henan": 2685,
+      "shanxi": 2670,
+      "guizhou": 2790,
+      "guangxi": 2730
+    },
+    {
+      "date": "2026-02-02",
+      "shandong": 2610,
+      "henan": 2685,
+      "shanxi": 2670,
+      "guizhou": 2790,
+      "guangxi": 2730
+    },
+    {
+      "date": "2026-01-30",
+      "shandong": 2610,
+      "henan": 2685,
+      "shanxi": 2670,
+      "guizhou": 2790,
+      "guangxi": 2730
+    },
+    {
+      "date": "2026-01-29",
+      "shandong": 2610,
+      "henan": 2685,
+      "shanxi": 2670,
+      "guizhou": 2790,
+      "guangxi": 2740
+    },
+    {
+      "date": "2026-01-28",
+      "shandong": 2610,
+      "henan": 2685,
+      "shanxi": 2670,
+      "guizhou": 2790,
+      "guangxi": 2740
+    },
+    {
+      "date": "2026-01-27",
+      "shandong": 2610,
+      "henan": 2690,
+      "shanxi": 2670,
+      "guizhou": 2790,
+      "guangxi": 2740
+    },
+    {
+      "date": "2026-01-26",
+      "shandong": 2610,
+      "henan": 2700,
+      "shanxi": 2675,
+      "guizhou": 2790,
+      "guangxi": 2740
+    },
+    {
+      "date": "2026-01-23",
+      "shandong": 2610,
+      "henan": 2700,
+      "shanxi": 2675,
+      "guizhou": 2800,
+      "guangxi": 2750
+    },
+    {
+      "date": "2026-01-22",
+      "shandong": 2610,
+      "henan": 2700,
+      "shanxi": 2675,
+      "guizhou": 2800,
+      "guangxi": 2750
+    },
+    {
+      "date": "2026-01-21",
+      "shandong": 2615,
+      "henan": 2700,
+      "shanxi": 2675,
+      "guizhou": 2800,
+      "guangxi": 2750
+    },
+    {
+      "date": "2026-01-20",
+      "shandong": 2615,
+      "henan": 2700,
+      "shanxi": 2675,
+      "guizhou": 2800,
+      "guangxi": 2750
+    },
+    {
+      "date": "2026-01-19",
+      "shandong": 2620,
+      "henan": 2705,
+      "shanxi": 2680,
+      "guizhou": 2800,
+      "guangxi": 2750
+    },
+    {
+      "date": "2026-01-16",
+      "shandong": 2620,
+      "henan": 2705,
+      "shanxi": 2680,
+      "guizhou": 2810,
+      "guangxi": 2765
+    },
+    {
+      "date": "2026-01-15",
+      "shandong": 2620,
+      "henan": 2710,
+      "shanxi": 2685,
+      "guizhou": 2815,
+      "guangxi": 2775
+    },
+    {
+      "date": "2026-01-14",
+      "shandong": 2630,
+      "henan": 2720,
+      "shanxi": 2695,
+      "guizhou": 2825,
+      "guangxi": 2785
+    },
+    {
+      "date": "2026-01-13",
+      "shandong": 2640,
+      "henan": 2725,
+      "shanxi": 2700,
+      "guizhou": 2835,
+      "guangxi": 2795
+    },
+    {
+      "date": "2026-01-12",
+      "shandong": 2645,
+      "henan": 2730,
+      "shanxi": 2705,
+      "guizhou": 2835,
+      "guangxi": 2795
+    },
+    {
+      "date": "2026-01-09",
+      "shandong": 2645,
+      "henan": 2735,
+      "shanxi": 2715,
+      "guizhou": 2835,
+      "guangxi": 2795
+    },
+    {
+      "date": "2026-01-08",
+      "shandong": 2645,
+      "henan": 2735,
+      "shanxi": 2715,
+      "guizhou": 2835,
+      "guangxi": 2795
+    },
+    {
+      "date": "2026-01-07",
+      "shandong": 2645,
+      "henan": 2735,
+      "shanxi": 2715,
+      "guizhou": 2840,
+      "guangxi": 2795
+    },
+    {
+      "date": "2026-01-06",
+      "shandong": 2650,
+      "henan": 2740,
+      "shanxi": 2715,
+      "guizhou": 2840,
+      "guangxi": 2795
+    },
+    {
+      "date": "2026-01-05",
+      "shandong": 2650,
+      "henan": 2740,
+      "shanxi": 2715,
+      "guizhou": 2840,
+      "guangxi": 2795
+    },
+    {
+      "date": "2025-12-31",
+      "shandong": 2650,
+      "henan": 2740,
+      "shanxi": 2715,
+      "guizhou": 2840,
+      "guangxi": 2795
+    },
+    {
+      "date": "2025-12-30",
+      "shandong": 2650,
+      "henan": 2740,
+      "shanxi": 2715,
+      "guizhou": 2840,
+      "guangxi": 2795
+    },
+    {
+      "date": "2025-12-29",
+      "shandong": 2650,
+      "henan": 2740,
+      "shanxi": 2715,
+      "guizhou": 2840,
+      "guangxi": 2800
+    },
+    {
+      "date": "2025-12-26",
+      "shandong": 2675,
+      "henan": 2760,
+      "shanxi": 2745,
+      "guizhou": 2850,
+      "guangxi": 2810
+    },
+    {
+      "date": "2025-12-25",
+      "shandong": 2680,
+      "henan": 2760,
+      "shanxi": 2750,
+      "guizhou": 2855,
+      "guangxi": 2815
+    },
+    {
+      "date": "2025-12-24",
+      "shandong": 2690,
+      "henan": 2775,
+      "shanxi": 2765,
+      "guizhou": 2865,
+      "guangxi": 2835
+    },
+    {
+      "date": "2025-12-23",
+      "shandong": 2700,
+      "henan": 2790,
+      "shanxi": 2780,
+      "guizhou": 2870,
+      "guangxi": 2845
+    },
+    {
+      "date": "2025-12-22",
+      "shandong": 2705,
+      "henan": 2800,
+      "shanxi": 2790,
+      "guizhou": 2880,
+      "guangxi": 2855
+    },
+    {
+      "date": "2025-12-19",
+      "shandong": 2710,
+      "henan": 2805,
+      "shanxi": 2795,
+      "guizhou": 2890,
+      "guangxi": 2865
+    },
+    {
+      "date": "2025-12-18",
+      "shandong": 2715,
+      "henan": 2810,
+      "shanxi": 2805,
+      "guizhou": 2895,
+      "guangxi": 2870
+    },
+    {
+      "date": "2025-12-17",
+      "shandong": 2720,
+      "henan": 2815,
+      "shanxi": 2810,
+      "guizhou": 2900,
+      "guangxi": 2875
+    },
+    {
+      "date": "2025-12-16",
+      "shandong": 2725,
+      "henan": 2820,
+      "shanxi": 2820,
+      "guizhou": 2900,
+      "guangxi": 2880
+    },
+    {
+      "date": "2025-12-15",
+      "shandong": 2730,
+      "henan": 2825,
+      "shanxi": 2825,
+      "guizhou": 2905,
+      "guangxi": 2885
+    },
+    {
+      "date": "2025-12-12",
+      "shandong": 2750,
+      "henan": 2845,
+      "shanxi": 2840,
+      "guizhou": 2915,
+      "guangxi": 2895
+    },
+    {
+      "date": "2025-12-11",
+      "shandong": 2760,
+      "henan": 2855,
+      "shanxi": 2850,
+      "guizhou": 2920,
+      "guangxi": 2900
+    },
+    {
+      "date": "2025-12-10",
+      "shandong": 2775,
+      "henan": 2860,
+      "shanxi": 2855,
+      "guizhou": 2925,
+      "guangxi": 2900
+    },
+    {
+      "date": "2025-12-09",
+      "shandong": 2780,
+      "henan": 2865,
+      "shanxi": 2855,
+      "guizhou": 2935,
+      "guangxi": 2910
+    },
+    {
+      "date": "2025-12-08",
+      "shandong": 2795,
+      "henan": 2875,
+      "shanxi": 2865,
+      "guizhou": 2945,
+      "guangxi": 2925
+    },
+    {
+      "date": "2025-12-05",
+      "shandong": 2810,
+      "henan": 2895,
+      "shanxi": 2880,
+      "guizhou": 2965,
+      "guangxi": 2945
+    },
+    {
+      "date": "2025-12-04",
+      "shandong": 2820,
+      "henan": 2900,
+      "shanxi": 2885,
+      "guizhou": 2965,
+      "guangxi": 2945
+    },
+    {
+      "date": "2025-12-03",
+      "shandong": 2820,
+      "henan": 2900,
+      "shanxi": 2885,
+      "guizhou": 2965,
+      "guangxi": 2945
+    },
+    {
+      "date": "2025-12-02",
+      "shandong": 2820,
+      "henan": 2900,
+      "shanxi": 2885,
+      "guizhou": 2965,
+      "guangxi": 2945
+    },
+    {
+      "date": "2025-12-01",
+      "shandong": 2820,
+      "henan": 2900,
+      "shanxi": 2885,
+      "guizhou": 2965,
+      "guangxi": 2945
+    },
+    {
+      "date": "2025-11-28",
+      "shandong": 2820,
+      "henan": 2900,
+      "shanxi": 2885,
+      "guizhou": 2965,
+      "guangxi": 2945
+    },
+    {
+      "date": "2025-11-27",
+      "shandong": 2820,
+      "henan": 2900,
+      "shanxi": 2885,
+      "guizhou": 2965,
+      "guangxi": 2945
+    },
+    {
+      "date": "2025-11-26",
+      "shandong": 2820,
+      "henan": 2900,
+      "shanxi": 2885,
+      "guizhou": 2965,
+      "guangxi": 2945
+    },
+    {
+      "date": "2025-11-25",
+      "shandong": 2820,
+      "henan": 2900,
+      "shanxi": 2885,
+      "guizhou": 2965,
+      "guangxi": 2945
+    },
+    {
+      "date": "2025-11-24",
+      "shandong": 2825,
+      "henan": 2900,
+      "shanxi": 2885,
+      "guizhou": 2970,
+      "guangxi": 2950
+    },
+    {
+      "date": "2025-11-21",
+      "shandong": 2825,
+      "henan": 2900,
+      "shanxi": 2885,
+      "guizhou": 2985,
+      "guangxi": 2955
+    },
+    {
+      "date": "2025-11-20",
+      "shandong": 2830,
+      "henan": 2905,
+      "shanxi": 2890,
+      "guizhou": 2990,
+      "guangxi": 2960
+    },
+    {
+      "date": "2025-11-19",
+      "shandong": 2830,
+      "henan": 2905,
+      "shanxi": 2890,
+      "guizhou": 2990,
+      "guangxi": 2960
+    },
+    {
+      "date": "2025-11-18",
+      "shandong": 2830,
+      "henan": 2905,
+      "shanxi": 2890,
+      "guizhou": 2995,
+      "guangxi": 2965
+    },
+    {
+      "date": "2025-11-17",
+      "shandong": 2830,
+      "henan": 2905,
+      "shanxi": 2890,
+      "guizhou": 2995,
+      "guangxi": 2965
+    },
+    {
+      "date": "2025-11-14",
+      "shandong": 2830,
+      "henan": 2905,
+      "shanxi": 2890,
+      "guizhou": 2995,
+      "guangxi": 2965
+    },
+    {
+      "date": "2025-11-13",
+      "shandong": 2830,
+      "henan": 2905,
+      "shanxi": 2890,
+      "guizhou": 2995,
+      "guangxi": 2965
+    },
+    {
+      "date": "2025-11-12",
+      "shandong": 2830,
+      "henan": 2905,
+      "shanxi": 2890,
+      "guizhou": 2995,
+      "guangxi": 2970
+    },
+    {
+      "date": "2025-11-11",
+      "shandong": 2830,
+      "henan": 2905,
+      "shanxi": 2890,
+      "guizhou": 3000,
+      "guangxi": 2975
+    },
+    {
+      "date": "2025-11-10",
+      "shandong": 2830,
+      "henan": 2905,
+      "shanxi": 2895,
+      "guizhou": 3005,
+      "guangxi": 2980
+    },
+    {
+      "date": "2025-11-07",
+      "shandong": 2835,
+      "henan": 2910,
+      "shanxi": 2900,
+      "guizhou": 3015,
+      "guangxi": 2985
+    },
+    {
+      "date": "2025-11-06",
+      "shandong": 2840,
+      "henan": 2910,
+      "shanxi": 2900,
+      "guizhou": 3020,
+      "guangxi": 2990
+    },
+    {
+      "date": "2025-11-05",
+      "shandong": 2845,
+      "henan": 2915,
+      "shanxi": 2905,
+      "guizhou": 3045,
+      "guangxi": 3015
+    },
+    {
+      "date": "2025-11-04",
+      "shandong": 2845,
+      "henan": 2915,
+      "shanxi": 2905,
+      "guizhou": 3055,
+      "guangxi": 3030
+    },
+    {
+      "date": "2025-11-03",
+      "shandong": 2845,
+      "henan": 2915,
+      "shanxi": 2905,
+      "guizhou": 3070,
+      "guangxi": 3050
+    },
+    {
+      "date": "2025-10-31",
+      "shandong": 2845,
+      "henan": 2915,
+      "shanxi": 2905,
+      "guizhou": 3070,
+      "guangxi": 3050
+    },
+    {
+      "date": "2025-10-30",
+      "shandong": 2845,
+      "henan": 2920,
+      "shanxi": 2905,
+      "guizhou": 3060,
+      "guangxi": 3040
+    },
+    {
+      "date": "2025-10-29",
+      "shandong": 2845,
+      "henan": 2920,
+      "shanxi": 2905,
+      "guizhou": 3070,
+      "guangxi": 3050
+    },
+    {
+      "date": "2025-10-28",
+      "shandong": 2845,
+      "henan": 2920,
+      "shanxi": 2905,
+      "guizhou": 3080,
+      "guangxi": 3055
+    },
+    {
+      "date": "2025-10-27",
+      "shandong": 2845,
+      "henan": 2920,
+      "shanxi": 2905,
+      "guizhou": 3100,
+      "guangxi": 3060
+    },
+    {
+      "date": "2025-10-24",
+      "shandong": 2850,
+      "henan": 2920,
+      "shanxi": 2910,
+      "guizhou": 3115,
+      "guangxi": 3095
+    },
+    {
+      "date": "2025-10-23",
+      "shandong": 2850,
+      "henan": 2920,
+      "shanxi": 2910,
+      "guizhou": 3140,
+      "guangxi": 3105
+    },
+    {
+      "date": "2025-10-22",
+      "shandong": 2850,
+      "henan": 2925,
+      "shanxi": 2915,
+      "guizhou": 3145,
+      "guangxi": 3115
+    },
+    {
+      "date": "2025-10-21",
+      "shandong": 2855,
+      "henan": 2930,
+      "shanxi": 2920,
+      "guizhou": 3150,
+      "guangxi": 3125
+    },
+    {
+      "date": "2025-10-20",
+      "shandong": 2860,
+      "henan": 2935,
+      "shanxi": 2925,
+      "guizhou": 3155,
+      "guangxi": 3135
+    },
+    {
+      "date": "2025-10-17",
+      "shandong": 2865,
+      "henan": 2940,
+      "shanxi": 2930,
+      "guizhou": 3165,
+      "guangxi": 3145
+    },
+    {
+      "date": "2025-10-16",
+      "shandong": 2890,
+      "henan": 2955,
+      "shanxi": 2945,
+      "guizhou": 3175,
+      "guangxi": 3160
+    },
+    {
+      "date": "2025-10-15",
+      "shandong": 2900,
+      "henan": 2965,
+      "shanxi": 2950,
+      "guizhou": 3180,
+      "guangxi": 3165
+    },
+    {
+      "date": "2025-10-14",
+      "shandong": 2910,
+      "henan": 2970,
+      "shanxi": 2955,
+      "guizhou": 3185,
+      "guangxi": 3175
+    },
+    {
+      "date": "2025-10-13",
+      "shandong": 2915,
+      "henan": 2980,
+      "shanxi": 2965,
+      "guizhou": 3185,
+      "guangxi": 3175
+    },
+    {
+      "date": "2025-10-10",
+      "shandong": 2925,
+      "henan": 2990,
+      "shanxi": 2975,
+      "guizhou": 3185,
+      "guangxi": 3175
+    },
+    {
+      "date": "2025-10-09",
+      "shandong": 2935,
+      "henan": 3000,
+      "shanxi": 2990,
+      "guizhou": 3190,
+      "guangxi": 3180
+    },
+    {
+      "date": "2025-09-30",
+      "shandong": 2940,
+      "henan": 3010,
+      "shanxi": 2990,
+      "guizhou": 3200,
+      "guangxi": 3190
+    },
+    {
+      "date": "2025-09-29",
+      "shandong": 2950,
+      "henan": 3010,
+      "shanxi": 3000,
+      "guizhou": 3200,
+      "guangxi": 3200
+    }
+  ]
+}

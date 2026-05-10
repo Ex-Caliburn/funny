@@ -227,6 +227,84 @@ module.exports = {
     dataDir: 'coal',
   },
 
+  // 中国铝业（Chalco）产品报价 — 铝锭 & 氧化铝
+  chalcoAluminum: {
+    // 列表页基础 URL，分页规律：index.html / index_1.html / index_2.html ...
+    listBaseUrl: 'https://www.chalco.com.cn/cpyfw/cpbj/2020bj',
+    delayBetweenRequests: 2500,
+    maxRetries: 3,
+    timeout: 30000,
+
+    // 数据存储目录（相对于 stock/）
+    dataDir: 'aluminum',
+
+    targets: {
+      aluminumIngot: {
+        name: '铝锭现货价（华东/华南/西南/中原）',
+        dataFile: 'aluminum_ingot.json',
+        // 价格区间过滤（元/吨）
+        priceMin: 10000,
+        priceMax: 60000,
+        // 区域顺序
+        regions: ['east', 'south', 'southwest', 'central'],
+        regionNames: ['华东市场', '华南市场', '西南市场', '中原市场'],
+      },
+      alumina: {
+        name: '氧化铝现货价（山东/河南/山西/贵州/广西）',
+        dataFile: 'alumina.json',
+        // 价格区间过滤（元/吨）
+        priceMin: 500,
+        priceMax: 8000,
+        regions: ['shandong', 'henan', 'shanxi', 'guizhou', 'guangxi'],
+        regionNames: ['山东地区', '河南地区', '山西地区', '贵州地区', '广西地区'],
+      },
+    },
+  },
+
+  /**
+   * 海关总署 — 出口重点商品量值表（人民币值）等 .xls 附件
+   * 列表分页采用 eportal 动态 API（共约 250 页，每页 10 条，按发布时间倒序）
+   * 脚本：scripts/crawler/china_export/china_export_crawler.js
+   */
+  chinaExport: {
+    listUrlTemplate:
+      'http://www.customs.gov.cn/eportal/ui?pageId=302275&moduleId=9f806879368d4feabb9644105dcdeba3&staticRequest=yes&currentPage={page}',
+    delayBetweenRequests: 1500,
+    maxRetries: 3,
+    timeout: 30000,
+    /** 相对于 stock/ 的下载目录 */
+    downloadDirRel: 'china_export',
+    pagination: {
+      startPage: 1,
+      endPage: 3,
+    },
+    /** minYear/maxYear 为 null 表示不限制；筛选依赖标题中的「YYYY年MM月」 */
+    yearRange: {
+      minYear: null,
+      maxYear: null,
+    },
+    /** 列表链接文字需同时包含下列关键词（「出口主要商品量值表」「出口重点商品量值表」均可匹配） */
+    titleKeywords: ['出口', '商品', '量值'],
+    /** 链接文字包含下列任意词则跳过（排除美元值版本） */
+    excludeKeywords: ['美元值', '美元'],
+  },
+
+  // 澳门博彩监察协调局（DICJ）每月幸运博彩毛收入
+  macauGaming: {
+    // 基础 URL，{year} 替换为实际年份
+    baseUrl: 'https://www.dicj.gov.mo/web/cn/information/DadosEstat_mensal/{year}/index.html',
+    delayBetweenRequests: 2000,
+    maxRetries: 3,
+    timeout: 30000,
+
+    // 数据存储目录（相对于 stock/）
+    dataDir: 'macau_gaming',
+    dataFile: 'monthly_gross_revenue.json',
+
+    // 月份中文映射
+    monthNames: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+  },
+
   // 文件处理配置
   fileProcessing: {
     allowedExtensions: ['.xls', '.xlsx', '.csv'],

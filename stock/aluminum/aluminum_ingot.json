@@ -1,0 +1,2275 @@
+{
+  "title": "中国铝业铝锭现货报价",
+  "unit": "元/吨",
+  "source": "https://www.chalco.com.cn/cpyfw/cpbj/",
+  "regions": {
+    "east": "华东市场",
+    "south": "华南市场",
+    "southwest": "西南市场",
+    "central": "中原市场"
+  },
+  "updatedAt": "2026-05-09",
+  "data": [
+    {
+      "date": "2026-05-08",
+      "east": 24220,
+      "south": 24070,
+      "southwest": 24150,
+      "central": 24160
+    },
+    {
+      "date": "2026-05-07",
+      "east": 24050,
+      "south": 23870,
+      "southwest": 23970,
+      "central": 23990
+    },
+    {
+      "date": "2026-05-06",
+      "east": 24530,
+      "south": 24330,
+      "southwest": 24440,
+      "central": 24460
+    },
+    {
+      "date": "2026-04-30",
+      "east": 24390,
+      "south": 24170,
+      "southwest": 24290,
+      "central": 24310
+    },
+    {
+      "date": "2026-04-29",
+      "east": 24480,
+      "south": 24260,
+      "southwest": 24390,
+      "central": 24410
+    },
+    {
+      "date": "2026-04-28",
+      "east": 24470,
+      "south": 24250,
+      "southwest": 24380,
+      "central": 24400
+    },
+    {
+      "date": "2026-04-27",
+      "east": 24810,
+      "south": 24590,
+      "southwest": 24710,
+      "central": 24730
+    },
+    {
+      "date": "2026-04-24",
+      "east": 24750,
+      "south": 24530,
+      "southwest": 24650,
+      "central": 24670
+    },
+    {
+      "date": "2026-04-23",
+      "east": 24780,
+      "south": 24570,
+      "southwest": 24680,
+      "central": 24680
+    },
+    {
+      "date": "2026-04-22",
+      "east": 24770,
+      "south": 24570,
+      "southwest": 24670,
+      "central": 24660
+    },
+    {
+      "date": "2026-04-21",
+      "east": 24670,
+      "south": 24480,
+      "southwest": 24570,
+      "central": 24550
+    },
+    {
+      "date": "2026-04-20",
+      "east": 24910,
+      "south": 24740,
+      "southwest": 24810,
+      "central": 24780
+    },
+    {
+      "date": "2026-04-17",
+      "east": 25160,
+      "south": 25010,
+      "southwest": 25070,
+      "central": 25020
+    },
+    {
+      "date": "2026-04-16",
+      "east": 25100,
+      "south": 24970,
+      "southwest": 25020,
+      "central": 24980
+    },
+    {
+      "date": "2026-04-15",
+      "east": 24750,
+      "south": 24640,
+      "southwest": 24690,
+      "central": 24660
+    },
+    {
+      "date": "2026-04-14",
+      "east": 24750,
+      "south": 24630,
+      "southwest": 24690,
+      "central": 24670
+    },
+    {
+      "date": "2026-04-13",
+      "east": 24450,
+      "south": 24340,
+      "southwest": 24400,
+      "central": 24400
+    },
+    {
+      "date": "2026-04-10",
+      "east": 24540,
+      "south": 24460,
+      "southwest": 24500,
+      "central": 24490
+    },
+    {
+      "date": "2026-04-09",
+      "east": 24400,
+      "south": 24290,
+      "southwest": 24350,
+      "central": 24340
+    },
+    {
+      "date": "2026-04-08",
+      "east": 24570,
+      "south": 24470,
+      "southwest": 24510,
+      "central": 24490
+    },
+    {
+      "date": "2026-04-07",
+      "east": 24490,
+      "south": 24400,
+      "southwest": 24430,
+      "central": 24410
+    },
+    {
+      "date": "2026-04-03",
+      "east": 24510,
+      "south": 24440,
+      "southwest": 24460,
+      "central": 24430
+    },
+    {
+      "date": "2026-04-02",
+      "east": 24630,
+      "south": 24550,
+      "southwest": 24570,
+      "central": 24520
+    },
+    {
+      "date": "2026-04-01",
+      "east": 24600,
+      "south": 24510,
+      "southwest": 24540,
+      "central": 24490
+    },
+    {
+      "date": "2026-03-31",
+      "east": 24610,
+      "south": 24520,
+      "southwest": 24550,
+      "central": 24510
+    },
+    {
+      "date": "2026-03-30",
+      "east": 24530,
+      "south": 24430,
+      "southwest": 24470,
+      "central": 24450
+    },
+    {
+      "date": "2026-03-27",
+      "east": 23810,
+      "south": 23720,
+      "southwest": 23760,
+      "central": 23750
+    },
+    {
+      "date": "2026-03-26",
+      "east": 23510,
+      "south": 23440,
+      "southwest": 23470,
+      "central": 23460
+    },
+    {
+      "date": "2026-03-25",
+      "east": 23760,
+      "south": 23710,
+      "southwest": 23730,
+      "central": 23720
+    },
+    {
+      "date": "2026-03-24",
+      "east": 23470,
+      "south": 23440,
+      "southwest": 23450,
+      "central": 23440
+    },
+    {
+      "date": "2026-03-23",
+      "east": 23440,
+      "south": 23410,
+      "southwest": 23420,
+      "central": 23410
+    },
+    {
+      "date": "2026-03-20",
+      "east": 24070,
+      "south": 24060,
+      "southwest": 24050,
+      "central": 24020
+    },
+    {
+      "date": "2026-03-19",
+      "east": 24490,
+      "south": 24490,
+      "southwest": 24470,
+      "central": 24410
+    },
+    {
+      "date": "2026-03-18",
+      "east": 24510,
+      "south": 24520,
+      "southwest": 24480,
+      "central": 24410
+    },
+    {
+      "date": "2026-03-17",
+      "east": 24900,
+      "south": 24910,
+      "southwest": 24860,
+      "central": 24770
+    },
+    {
+      "date": "2026-03-16",
+      "east": 24790,
+      "south": 24760,
+      "southwest": 24730,
+      "central": 24640
+    },
+    {
+      "date": "2026-03-13",
+      "east": 25120,
+      "south": 25060,
+      "southwest": 25050,
+      "central": 24960
+    },
+    {
+      "date": "2026-03-12",
+      "east": 25260,
+      "south": 25190,
+      "southwest": 25190,
+      "central": 25110
+    },
+    {
+      "date": "2026-03-11",
+      "east": 25030,
+      "south": 24950,
+      "southwest": 24960,
+      "central": 24890
+    },
+    {
+      "date": "2026-03-10",
+      "east": 24470,
+      "south": 24420,
+      "southwest": 24410,
+      "central": 24340
+    },
+    {
+      "date": "2026-03-09",
+      "east": 25200,
+      "south": 25140,
+      "southwest": 25130,
+      "central": 25050
+    },
+    {
+      "date": "2026-03-06",
+      "east": 24450,
+      "south": 24380,
+      "southwest": 24390,
+      "central": 24320
+    },
+    {
+      "date": "2026-03-05",
+      "east": 25120,
+      "south": 25080,
+      "southwest": 25060,
+      "central": 24970
+    },
+    {
+      "date": "2026-03-04",
+      "east": 24390,
+      "south": 24360,
+      "southwest": 24340,
+      "central": 24250
+    },
+    {
+      "date": "2026-03-03",
+      "east": 23950,
+      "south": 23930,
+      "southwest": 23900,
+      "central": 23820
+    },
+    {
+      "date": "2026-03-02",
+      "east": 23620,
+      "south": 23620,
+      "southwest": 23580,
+      "central": 23500
+    },
+    {
+      "date": "2026-02-27",
+      "east": 23410,
+      "south": 23420,
+      "southwest": 23380,
+      "central": 23290
+    },
+    {
+      "date": "2026-02-26",
+      "east": 23520,
+      "south": 23550,
+      "southwest": 23500,
+      "central": 23410
+    },
+    {
+      "date": "2026-02-25",
+      "east": 23380,
+      "south": 23450,
+      "southwest": 23380,
+      "central": 23300
+    },
+    {
+      "date": "2026-02-24",
+      "east": 23390,
+      "south": 23470,
+      "southwest": 23390,
+      "central": 23310
+    },
+    {
+      "date": "2026-02-13",
+      "east": 23160,
+      "south": 23210,
+      "southwest": 23150,
+      "central": 23080
+    },
+    {
+      "date": "2026-02-12",
+      "east": 23350,
+      "south": 23430,
+      "southwest": 23350,
+      "central": 23260
+    },
+    {
+      "date": "2026-02-11",
+      "east": 23260,
+      "south": 23410,
+      "southwest": 23280,
+      "central": 23160
+    },
+    {
+      "date": "2026-02-10",
+      "east": 23290,
+      "south": 23380,
+      "southwest": 23280,
+      "central": 23170
+    },
+    {
+      "date": "2026-02-09",
+      "east": 23400,
+      "south": 23430,
+      "southwest": 23370,
+      "central": 23280
+    },
+    {
+      "date": "2026-02-06",
+      "east": 23140,
+      "south": 23140,
+      "southwest": 23110,
+      "central": 23030
+    },
+    {
+      "date": "2026-02-05",
+      "east": 23340,
+      "south": 23340,
+      "southwest": 23310,
+      "central": 23240
+    },
+    {
+      "date": "2026-02-04",
+      "east": 23760,
+      "south": 23770,
+      "southwest": 23730,
+      "central": 23640
+    },
+    {
+      "date": "2026-02-03",
+      "east": 23290,
+      "south": 23310,
+      "southwest": 23260,
+      "central": 23160
+    },
+    {
+      "date": "2026-02-02",
+      "east": 23700,
+      "south": 23710,
+      "southwest": 23650,
+      "central": 23530
+    },
+    {
+      "date": "2026-01-30",
+      "east": 24660,
+      "south": 24620,
+      "southwest": 24590,
+      "central": 24480
+    },
+    {
+      "date": "2026-01-29",
+      "east": 24860,
+      "south": 24810,
+      "southwest": 24790,
+      "central": 24690
+    },
+    {
+      "date": "2026-01-28",
+      "east": 24260,
+      "south": 24230,
+      "southwest": 24210,
+      "central": 24120
+    },
+    {
+      "date": "2026-01-27",
+      "east": 23870,
+      "south": 23870,
+      "southwest": 23840,
+      "central": 23760
+    },
+    {
+      "date": "2026-01-26",
+      "east": 24030,
+      "south": 24070,
+      "southwest": 24020,
+      "central": 23940
+    },
+    {
+      "date": "2026-01-23",
+      "east": 24110,
+      "south": 24150,
+      "southwest": 24100,
+      "central": 24030
+    },
+    {
+      "date": "2026-01-22",
+      "east": 23740,
+      "south": 23770,
+      "southwest": 23720,
+      "central": 23650
+    },
+    {
+      "date": "2026-01-21",
+      "east": 23710,
+      "south": 23740,
+      "southwest": 23690,
+      "central": 23610
+    },
+    {
+      "date": "2026-01-20",
+      "east": 23680,
+      "south": 23720,
+      "southwest": 23660,
+      "central": 23560
+    },
+    {
+      "date": "2026-01-19",
+      "east": 23870,
+      "south": 23900,
+      "southwest": 23840,
+      "central": 23740
+    },
+    {
+      "date": "2026-01-16",
+      "east": 24030,
+      "south": 24060,
+      "southwest": 23990,
+      "central": 23880
+    },
+    {
+      "date": "2026-01-15",
+      "east": 24190,
+      "south": 24220,
+      "southwest": 24150,
+      "central": 24030
+    },
+    {
+      "date": "2026-01-14",
+      "east": 24670,
+      "south": 24690,
+      "southwest": 24630,
+      "central": 24510
+    },
+    {
+      "date": "2026-01-13",
+      "east": 24300,
+      "south": 24310,
+      "southwest": 24250,
+      "central": 24140
+    },
+    {
+      "date": "2026-01-12",
+      "east": 24340,
+      "south": 24390,
+      "southwest": 24310,
+      "central": 24180
+    },
+    {
+      "date": "2026-01-09",
+      "east": 24030,
+      "south": 24100,
+      "southwest": 24000,
+      "central": 23860
+    },
+    {
+      "date": "2026-01-08",
+      "east": 24000,
+      "south": 24030,
+      "southwest": 23950,
+      "central": 23810
+    },
+    {
+      "date": "2026-01-07",
+      "east": 24140,
+      "south": 24130,
+      "southwest": 24070,
+      "central": 23930
+    },
+    {
+      "date": "2026-01-06",
+      "east": 23910,
+      "south": 23860,
+      "southwest": 23820,
+      "central": 23680
+    },
+    {
+      "date": "2026-01-05",
+      "east": 23310,
+      "south": 23250,
+      "southwest": 23220,
+      "central": 23080
+    },
+    {
+      "date": "2025-12-31",
+      "east": 22460,
+      "south": 22380,
+      "southwest": 22360,
+      "central": 22240
+    },
+    {
+      "date": "2025-12-30",
+      "east": 22180,
+      "south": 22090,
+      "southwest": 22080,
+      "central": 21970
+    },
+    {
+      "date": "2025-12-29",
+      "east": 22490,
+      "south": 22410,
+      "southwest": 22400,
+      "central": 22300
+    },
+    {
+      "date": "2025-12-26",
+      "east": 22020,
+      "south": 21940,
+      "southwest": 21940,
+      "central": 21850
+    },
+    {
+      "date": "2025-12-25",
+      "east": 21980,
+      "south": 21880,
+      "southwest": 21900,
+      "central": 21820
+    },
+    {
+      "date": "2025-12-24",
+      "east": 22030,
+      "south": 21940,
+      "southwest": 21950,
+      "central": 21870
+    },
+    {
+      "date": "2025-12-23",
+      "east": 21870,
+      "south": 21790,
+      "southwest": 21790,
+      "central": 21710
+    },
+    {
+      "date": "2025-12-22",
+      "east": 21930,
+      "south": 21860,
+      "southwest": 21860,
+      "central": 21770
+    },
+    {
+      "date": "2025-12-19",
+      "east": 21820,
+      "south": 21750,
+      "southwest": 21760,
+      "central": 21690
+    },
+    {
+      "date": "2025-12-18",
+      "east": 21730,
+      "south": 21650,
+      "southwest": 21670,
+      "central": 21620
+    },
+    {
+      "date": "2025-12-17",
+      "east": 21750,
+      "south": 21640,
+      "southwest": 21690,
+      "central": 21670
+    },
+    {
+      "date": "2025-12-16",
+      "east": 21630,
+      "south": 21520,
+      "southwest": 21570,
+      "central": 21560
+    },
+    {
+      "date": "2025-12-15",
+      "east": 21710,
+      "south": 21590,
+      "southwest": 21650,
+      "central": 21650
+    },
+    {
+      "date": "2025-12-12",
+      "east": 22050,
+      "south": 21940,
+      "southwest": 21990,
+      "central": 21980
+    },
+    {
+      "date": "2025-12-11",
+      "east": 21890,
+      "south": 21780,
+      "southwest": 21830,
+      "central": 21820
+    },
+    {
+      "date": "2025-12-10",
+      "east": 21770,
+      "south": 21670,
+      "southwest": 21700,
+      "central": 21660
+    },
+    {
+      "date": "2025-12-09",
+      "east": 21880,
+      "south": 21770,
+      "southwest": 21800,
+      "central": 21740
+    },
+    {
+      "date": "2025-12-08",
+      "east": 21920,
+      "south": 21810,
+      "southwest": 21840,
+      "central": 21770
+    },
+    {
+      "date": "2025-12-05",
+      "east": 22090,
+      "south": 21970,
+      "southwest": 22000,
+      "central": 21940
+    },
+    {
+      "date": "2025-12-04",
+      "east": 22020,
+      "south": 21900,
+      "southwest": 21940,
+      "central": 21890
+    },
+    {
+      "date": "2025-12-03",
+      "east": 21800,
+      "south": 21690,
+      "southwest": 21730,
+      "central": 21680
+    },
+    {
+      "date": "2025-12-02",
+      "east": 21710,
+      "south": 21610,
+      "southwest": 21630,
+      "central": 21580
+    },
+    {
+      "date": "2025-12-01",
+      "east": 21730,
+      "south": 21640,
+      "southwest": 21660,
+      "central": 21600
+    },
+    {
+      "date": "2025-11-28",
+      "east": 21450,
+      "south": 21360,
+      "southwest": 21380,
+      "central": 21330
+    },
+    {
+      "date": "2025-11-27",
+      "east": 21460,
+      "south": 21380,
+      "southwest": 21400,
+      "central": 21340
+    },
+    {
+      "date": "2025-11-26",
+      "east": 21400,
+      "south": 21300,
+      "southwest": 21330,
+      "central": 21290
+    },
+    {
+      "date": "2025-11-25",
+      "east": 21440,
+      "south": 21340,
+      "southwest": 21370,
+      "central": 21330
+    },
+    {
+      "date": "2025-11-24",
+      "east": 21360,
+      "south": 21240,
+      "southwest": 21290,
+      "central": 21260
+    },
+    {
+      "date": "2025-11-21",
+      "east": 21380,
+      "south": 21260,
+      "southwest": 21310,
+      "central": 21290
+    },
+    {
+      "date": "2025-11-20",
+      "east": 21570,
+      "south": 21450,
+      "southwest": 21500,
+      "central": 21480
+    },
+    {
+      "date": "2025-11-19",
+      "east": 21550,
+      "south": 21420,
+      "southwest": 21480,
+      "central": 21450
+    },
+    {
+      "date": "2025-11-18",
+      "east": 21460,
+      "south": 21320,
+      "southwest": 21380,
+      "central": 21340
+    },
+    {
+      "date": "2025-11-17",
+      "east": 21630,
+      "south": 21480,
+      "southwest": 21540,
+      "central": 21490
+    },
+    {
+      "date": "2025-11-14",
+      "east": 21910,
+      "south": 21760,
+      "southwest": 21810,
+      "central": 21760
+    },
+    {
+      "date": "2025-11-13",
+      "east": 21920,
+      "south": 21760,
+      "southwest": 21820,
+      "central": 21780
+    },
+    {
+      "date": "2025-11-12",
+      "east": 21670,
+      "south": 21530,
+      "southwest": 21590,
+      "central": 21550
+    },
+    {
+      "date": "2025-11-11",
+      "east": 21620,
+      "south": 21490,
+      "southwest": 21540,
+      "central": 21510
+    },
+    {
+      "date": "2025-11-10",
+      "east": 21490,
+      "south": 21370,
+      "southwest": 21420,
+      "central": 21380
+    },
+    {
+      "date": "2025-11-07",
+      "east": 21540,
+      "south": 21420,
+      "southwest": 21460,
+      "central": 21420
+    },
+    {
+      "date": "2025-11-06",
+      "east": 21360,
+      "south": 21240,
+      "southwest": 21280,
+      "central": 21240
+    },
+    {
+      "date": "2025-11-05",
+      "east": 21300,
+      "south": 21170,
+      "southwest": 21210,
+      "central": 21160
+    },
+    {
+      "date": "2025-11-04",
+      "east": 21440,
+      "south": 21300,
+      "southwest": 21350,
+      "central": 21290
+    },
+    {
+      "date": "2025-11-03",
+      "east": 21440,
+      "south": 21290,
+      "southwest": 21350,
+      "central": 21300
+    },
+    {
+      "date": "2025-10-31",
+      "east": 21280,
+      "south": 21140,
+      "southwest": 21190,
+      "central": 21150
+    },
+    {
+      "date": "2025-10-30",
+      "east": 21200,
+      "south": 21070,
+      "southwest": 21110,
+      "central": 21060
+    },
+    {
+      "date": "2025-10-29",
+      "east": 21170,
+      "south": 21070,
+      "southwest": 21090,
+      "central": 21040
+    },
+    {
+      "date": "2025-10-28",
+      "east": 21160,
+      "south": 21070,
+      "southwest": 21080,
+      "central": 21030
+    },
+    {
+      "date": "2025-10-27",
+      "east": 21160,
+      "south": 21070,
+      "southwest": 21080,
+      "central": 21030
+    },
+    {
+      "date": "2025-10-24",
+      "east": 21110,
+      "south": 21120,
+      "southwest": 21040,
+      "central": 20990
+    },
+    {
+      "date": "2025-10-23",
+      "east": 21040,
+      "south": 20950,
+      "southwest": 20970,
+      "central": 20910
+    },
+    {
+      "date": "2025-10-22",
+      "east": 20980,
+      "south": 20890,
+      "southwest": 20910,
+      "central": 20860
+    },
+    {
+      "date": "2025-10-21",
+      "east": 20970,
+      "south": 20870,
+      "southwest": 20900,
+      "central": 20850
+    },
+    {
+      "date": "2025-10-20",
+      "east": 20930,
+      "south": 20820,
+      "southwest": 20860,
+      "central": 20810
+    },
+    {
+      "date": "2025-10-17",
+      "east": 20950,
+      "south": 20840,
+      "southwest": 20880,
+      "central": 20840
+    },
+    {
+      "date": "2025-10-16",
+      "east": 20950,
+      "south": 20840,
+      "southwest": 20890,
+      "central": 20870
+    },
+    {
+      "date": "2025-10-15",
+      "east": 20920,
+      "south": 20820,
+      "southwest": 20870,
+      "central": 20850
+    },
+    {
+      "date": "2025-10-14",
+      "east": 20900,
+      "south": 20820,
+      "southwest": 20860,
+      "central": 20840
+    },
+    {
+      "date": "2025-10-13",
+      "east": 20800,
+      "south": 20730,
+      "southwest": 20770,
+      "central": 20760
+    },
+    {
+      "date": "2025-10-10",
+      "east": 20980,
+      "south": 20910,
+      "southwest": 20950,
+      "central": 20950
+    },
+    {
+      "date": "2025-10-09",
+      "east": 20960,
+      "south": 20890,
+      "southwest": 20940,
+      "central": 20960
+    },
+    {
+      "date": "2025-09-30",
+      "east": 20720,
+      "south": 20610,
+      "southwest": 20690,
+      "central": 20750
+    },
+    {
+      "date": "2025-09-29",
+      "east": 20690,
+      "south": 20610,
+      "southwest": 20680,
+      "central": 20750
+    },
+    {
+      "date": "2025-09-26",
+      "east": 20770,
+      "south": 20690,
+      "southwest": 20750,
+      "central": 20820
+    },
+    {
+      "date": "2025-09-25",
+      "east": 20770,
+      "south": 20710,
+      "southwest": 20750,
+      "central": 20800
+    },
+    {
+      "date": "2025-09-24",
+      "east": 20680,
+      "south": 20620,
+      "southwest": 20640,
+      "central": 20690
+    },
+    {
+      "date": "2025-09-23",
+      "east": 20680,
+      "south": 20630,
+      "southwest": 20640,
+      "central": 20660
+    },
+    {
+      "date": "2025-09-22",
+      "east": 20750,
+      "south": 20700,
+      "southwest": 20720,
+      "central": 20710
+    },
+    {
+      "date": "2025-09-19",
+      "east": 20810,
+      "south": 20760,
+      "southwest": 20770,
+      "central": 20750
+    },
+    {
+      "date": "2025-09-18",
+      "east": 20780,
+      "south": 20730,
+      "southwest": 20740,
+      "central": 20700
+    },
+    {
+      "date": "2025-09-17",
+      "east": 20890,
+      "south": 20840,
+      "southwest": 20880,
+      "central": 20780
+    },
+    {
+      "date": "2025-09-16",
+      "east": 20950,
+      "south": 20900,
+      "southwest": 20880,
+      "central": 20820
+    },
+    {
+      "date": "2025-09-15",
+      "east": 20950,
+      "south": 20900,
+      "southwest": 20880,
+      "central": 20820
+    },
+    {
+      "date": "2025-09-12",
+      "east": 21020,
+      "south": 20960,
+      "southwest": 20970,
+      "central": 20890
+    },
+    {
+      "date": "2025-09-11",
+      "east": 20860,
+      "south": 20810,
+      "southwest": 20800,
+      "central": 20740
+    },
+    {
+      "date": "2025-09-10",
+      "east": 20750,
+      "south": 20710,
+      "southwest": 20690,
+      "central": 20630
+    },
+    {
+      "date": "2025-09-09",
+      "east": 20770,
+      "south": 20730,
+      "southwest": 20740,
+      "central": 20650
+    },
+    {
+      "date": "2025-09-08",
+      "east": 20680,
+      "south": 20620,
+      "southwest": 20630,
+      "central": 20570
+    },
+    {
+      "date": "2025-09-05",
+      "east": 20660,
+      "south": 20590,
+      "southwest": 20600,
+      "central": 20540
+    },
+    {
+      "date": "2025-09-04",
+      "east": 20610,
+      "south": 20560,
+      "southwest": 20550,
+      "central": 20470
+    },
+    {
+      "date": "2025-09-03",
+      "east": 20730,
+      "south": 20670,
+      "southwest": 20660,
+      "central": 20570
+    },
+    {
+      "date": "2025-09-02",
+      "east": 20710,
+      "south": 20650,
+      "southwest": 20640,
+      "central": 20570
+    },
+    {
+      "date": "2025-09-01",
+      "east": 20620,
+      "south": 20570,
+      "southwest": 20550,
+      "central": 20490
+    },
+    {
+      "date": "2025-08-29",
+      "east": 20730,
+      "south": 20670,
+      "southwest": 20650,
+      "central": 20590
+    },
+    {
+      "date": "2025-08-28",
+      "east": 20730,
+      "south": 20670,
+      "southwest": 20650,
+      "central": 20570
+    },
+    {
+      "date": "2025-08-27",
+      "east": 20840,
+      "south": 20790,
+      "southwest": 20770,
+      "central": 20660
+    },
+    {
+      "date": "2025-08-26",
+      "east": 20780,
+      "south": 20730,
+      "southwest": 20690,
+      "central": 20620
+    },
+    {
+      "date": "2025-08-25",
+      "east": 20780,
+      "south": 20720,
+      "southwest": 20690,
+      "central": 20630
+    },
+    {
+      "date": "2025-08-22",
+      "east": 20710,
+      "south": 20650,
+      "southwest": 20620,
+      "central": 20580
+    },
+    {
+      "date": "2025-08-21",
+      "east": 20680,
+      "south": 20630,
+      "southwest": 20600,
+      "central": 20580
+    },
+    {
+      "date": "2025-08-20",
+      "east": 20520,
+      "south": 20480,
+      "southwest": 20470,
+      "central": 20440
+    },
+    {
+      "date": "2025-08-19",
+      "east": 20590,
+      "south": 20550,
+      "southwest": 20510,
+      "central": 20490
+    },
+    {
+      "date": "2025-08-18",
+      "east": 20550,
+      "south": 20500,
+      "southwest": 20480,
+      "central": 20440
+    },
+    {
+      "date": "2025-08-15",
+      "east": 20710,
+      "south": 20660,
+      "southwest": 20630,
+      "central": 20590
+    },
+    {
+      "date": "2025-08-14",
+      "east": 20710,
+      "south": 20650,
+      "southwest": 20630,
+      "central": 20600
+    },
+    {
+      "date": "2025-08-13",
+      "east": 20760,
+      "south": 20710,
+      "southwest": 20690,
+      "central": 20650
+    },
+    {
+      "date": "2025-08-12",
+      "east": 20640,
+      "south": 20610,
+      "southwest": 20580,
+      "central": 20540
+    },
+    {
+      "date": "2025-08-11",
+      "east": 20630,
+      "south": 20620,
+      "southwest": 20580,
+      "central": 20520
+    },
+    {
+      "date": "2025-08-08",
+      "east": 20650,
+      "south": 20640,
+      "southwest": 20600,
+      "central": 20540
+    },
+    {
+      "date": "2025-08-07",
+      "east": 20690,
+      "south": 20690,
+      "southwest": 20630,
+      "central": 20580
+    },
+    {
+      "date": "2025-08-06",
+      "east": 20630,
+      "south": 20630,
+      "southwest": 20590,
+      "central": 20540
+    },
+    {
+      "date": "2025-08-05",
+      "east": 20520,
+      "south": 20530,
+      "southwest": 20480,
+      "central": 20420
+    },
+    {
+      "date": "2025-08-04",
+      "east": 20480,
+      "south": 20490,
+      "southwest": 20430,
+      "central": 20370
+    },
+    {
+      "date": "2025-08-01",
+      "east": 20520,
+      "south": 20520,
+      "southwest": 20480,
+      "central": 20390
+    },
+    {
+      "date": "2025-07-31",
+      "east": 20580,
+      "south": 20570,
+      "southwest": 20510,
+      "central": 20430
+    },
+    {
+      "date": "2025-07-30",
+      "east": 20670,
+      "south": 20660,
+      "southwest": 20610,
+      "central": 20500
+    },
+    {
+      "date": "2025-07-29",
+      "east": 20620,
+      "south": 20600,
+      "southwest": 20570,
+      "central": 20440
+    },
+    {
+      "date": "2025-07-28",
+      "east": 20660,
+      "south": 20650,
+      "southwest": 20610,
+      "central": 20470
+    },
+    {
+      "date": "2025-07-25",
+      "east": 20780,
+      "south": 20770,
+      "southwest": 20720,
+      "central": 20590
+    },
+    {
+      "date": "2025-07-24",
+      "east": 20720,
+      "south": 20710,
+      "southwest": 20690,
+      "central": 20520
+    },
+    {
+      "date": "2025-07-23",
+      "east": 20850,
+      "south": 20830,
+      "southwest": 20800,
+      "central": 20630
+    },
+    {
+      "date": "2025-07-22",
+      "east": 20940,
+      "south": 20910,
+      "southwest": 20840,
+      "central": 20750
+    },
+    {
+      "date": "2025-07-21",
+      "east": 20890,
+      "south": 20860,
+      "southwest": 20820,
+      "central": 20720
+    },
+    {
+      "date": "2025-07-18",
+      "east": 20700,
+      "south": 20670,
+      "southwest": 20630,
+      "central": 20560
+    },
+    {
+      "date": "2025-07-17",
+      "east": 20570,
+      "south": 20550,
+      "southwest": 20520,
+      "central": 20440
+    },
+    {
+      "date": "2025-07-16",
+      "east": 20520,
+      "south": 20510,
+      "southwest": 20480,
+      "central": 20380
+    },
+    {
+      "date": "2025-07-15",
+      "east": 20510,
+      "south": 20500,
+      "southwest": 20480,
+      "central": 20370
+    },
+    {
+      "date": "2025-07-14",
+      "east": 20470,
+      "south": 20460,
+      "southwest": 20440,
+      "central": 20330
+    },
+    {
+      "date": "2025-07-11",
+      "east": 20790,
+      "south": 20780,
+      "southwest": 20740,
+      "central": 20660
+    },
+    {
+      "date": "2025-07-10",
+      "east": 20820,
+      "south": 20800,
+      "southwest": 20760,
+      "central": 20710
+    },
+    {
+      "date": "2025-07-09",
+      "east": 20660,
+      "south": 20640,
+      "southwest": 20630,
+      "central": 20550
+    },
+    {
+      "date": "2025-07-08",
+      "east": 20600,
+      "south": 20580,
+      "southwest": 20540,
+      "central": 20480
+    },
+    {
+      "date": "2025-07-07",
+      "east": 20640,
+      "south": 20590,
+      "southwest": 20580,
+      "central": 20510
+    },
+    {
+      "date": "2025-07-04",
+      "east": 20770,
+      "south": 20700,
+      "southwest": 20690,
+      "central": 20620
+    },
+    {
+      "date": "2025-07-03",
+      "east": 20860,
+      "south": 20790,
+      "southwest": 20780,
+      "central": 20680
+    },
+    {
+      "date": "2025-07-02",
+      "east": 20810,
+      "south": 20730,
+      "southwest": 20740,
+      "central": 20610
+    },
+    {
+      "date": "2025-07-01",
+      "east": 20780,
+      "south": 20690,
+      "southwest": 20680,
+      "central": 20560
+    },
+    {
+      "date": "2025-06-30",
+      "east": 20780,
+      "south": 20690,
+      "southwest": 20680,
+      "central": 20580
+    },
+    {
+      "date": "2025-06-27",
+      "east": 20890,
+      "south": 20780,
+      "southwest": 20790,
+      "central": 20710
+    },
+    {
+      "date": "2025-06-26",
+      "east": 20610,
+      "south": 20490,
+      "southwest": 20500,
+      "central": 20450
+    },
+    {
+      "date": "2025-06-25",
+      "east": 20530,
+      "south": 20420,
+      "southwest": 20400,
+      "central": 20360
+    },
+    {
+      "date": "2025-06-24",
+      "east": 20540,
+      "south": 20420,
+      "southwest": 20400,
+      "central": 20360
+    },
+    {
+      "date": "2025-06-23",
+      "east": 20650,
+      "south": 20530,
+      "southwest": 20540,
+      "central": 20470
+    },
+    {
+      "date": "2025-06-20",
+      "east": 20720,
+      "south": 20590,
+      "southwest": 20590,
+      "central": 20560
+    },
+    {
+      "date": "2025-06-19",
+      "east": 20770,
+      "south": 20640,
+      "southwest": 20630,
+      "central": 20610
+    },
+    {
+      "date": "2025-06-18",
+      "east": 20900,
+      "south": 20760,
+      "southwest": 20770,
+      "central": 20750
+    },
+    {
+      "date": "2025-06-17",
+      "east": 20620,
+      "south": 20440,
+      "southwest": 20480,
+      "central": 20490
+    },
+    {
+      "date": "2025-06-16",
+      "east": 20630,
+      "south": 20420,
+      "southwest": 20500,
+      "central": 20520
+    },
+    {
+      "date": "2025-06-13",
+      "east": 20730,
+      "south": 20510,
+      "southwest": 20580,
+      "central": 20640
+    },
+    {
+      "date": "2025-06-12",
+      "east": 20650,
+      "south": 20480,
+      "southwest": 20520,
+      "central": 20590
+    },
+    {
+      "date": "2025-06-11",
+      "east": 20400,
+      "south": 20230,
+      "southwest": 20300,
+      "central": 20350
+    },
+    {
+      "date": "2025-06-10",
+      "east": 20160,
+      "south": 20020,
+      "southwest": 20070,
+      "central": 20100
+    },
+    {
+      "date": "2025-06-09",
+      "east": 20210,
+      "south": 20080,
+      "southwest": 20110,
+      "central": 20150
+    },
+    {
+      "date": "2025-06-06",
+      "east": 20230,
+      "south": 20090,
+      "southwest": 20130,
+      "central": 20170
+    },
+    {
+      "date": "2025-06-05",
+      "east": 20250,
+      "south": 20110,
+      "southwest": 20150,
+      "central": 20190
+    },
+    {
+      "date": "2025-06-04",
+      "east": 20280,
+      "south": 20130,
+      "southwest": 20170,
+      "central": 20230
+    },
+    {
+      "date": "2025-06-03",
+      "east": 20120,
+      "south": 19970,
+      "southwest": 20020,
+      "central": 20070
+    },
+    {
+      "date": "2025-05-30",
+      "east": 20290,
+      "south": 20140,
+      "southwest": 20180,
+      "central": 20230
+    },
+    {
+      "date": "2025-05-29",
+      "east": 20380,
+      "south": 20230,
+      "southwest": 20280,
+      "central": 20310
+    },
+    {
+      "date": "2025-05-28",
+      "east": 20350,
+      "south": 20210,
+      "southwest": 20250,
+      "central": 20280
+    },
+    {
+      "date": "2025-05-27",
+      "east": 20200,
+      "south": 20080,
+      "southwest": 20140,
+      "central": 20120
+    },
+    {
+      "date": "2025-05-26",
+      "east": 20350,
+      "south": 20230,
+      "southwest": 20250,
+      "central": 20270
+    },
+    {
+      "date": "2025-05-23",
+      "east": 20370,
+      "south": 20260,
+      "southwest": 20280,
+      "central": 20300
+    },
+    {
+      "date": "2025-05-22",
+      "east": 20360,
+      "south": 20250,
+      "southwest": 20260,
+      "central": 20290
+    },
+    {
+      "date": "2025-05-21",
+      "east": 20310,
+      "south": 20200,
+      "southwest": 20210,
+      "central": 20240
+    },
+    {
+      "date": "2025-05-20",
+      "east": 20210,
+      "south": 20100,
+      "southwest": 20110,
+      "central": 20140
+    },
+    {
+      "date": "2025-05-19",
+      "east": 20230,
+      "south": 20110,
+      "southwest": 20120,
+      "central": 20150
+    },
+    {
+      "date": "2025-05-16",
+      "east": 20270,
+      "south": 20140,
+      "southwest": 20160,
+      "central": 20200
+    },
+    {
+      "date": "2025-05-15",
+      "east": 20350,
+      "south": 20240,
+      "southwest": 20260,
+      "central": 20290
+    },
+    {
+      "date": "2025-05-14",
+      "east": 20210,
+      "south": 20130,
+      "southwest": 20140,
+      "central": 20180
+    },
+    {
+      "date": "2025-05-13",
+      "east": 20020,
+      "south": 19930,
+      "southwest": 19940,
+      "central": 20000
+    },
+    {
+      "date": "2025-05-12",
+      "east": 19810,
+      "south": 19760,
+      "southwest": 19740,
+      "central": 19810
+    },
+    {
+      "date": "2025-05-09",
+      "east": 19610,
+      "south": 19560,
+      "southwest": 19570,
+      "central": 19610
+    },
+    {
+      "date": "2025-05-08",
+      "east": 19620,
+      "south": 19580,
+      "southwest": 19580,
+      "central": 19610
+    },
+    {
+      "date": "2025-05-07",
+      "east": 19610,
+      "south": 19560,
+      "southwest": 19550,
+      "central": 19560
+    },
+    {
+      "date": "2025-05-06",
+      "east": 19850,
+      "south": 19780,
+      "southwest": 19810,
+      "central": 19800
+    },
+    {
+      "date": "2025-04-30",
+      "east": 20060,
+      "south": 19980,
+      "southwest": 20000,
+      "central": 20010
+    },
+    {
+      "date": "2025-04-29",
+      "east": 20020,
+      "south": 19940,
+      "southwest": 19940,
+      "central": 19960
+    },
+    {
+      "date": "2025-04-28",
+      "east": 19950,
+      "south": 19890,
+      "southwest": 19880,
+      "central": 19870
+    },
+    {
+      "date": "2025-04-25",
+      "east": 20070,
+      "south": 20020,
+      "southwest": 20000,
+      "central": 19980
+    },
+    {
+      "date": "2025-04-24",
+      "east": 19980,
+      "south": 19930,
+      "southwest": 19920,
+      "central": 19890
+    },
+    {
+      "date": "2025-04-23",
+      "east": 19910,
+      "south": 19870,
+      "southwest": 19850,
+      "central": 19830
+    },
+    {
+      "date": "2025-04-22",
+      "east": 19880,
+      "south": 19830,
+      "southwest": 19830,
+      "central": 19810
+    },
+    {
+      "date": "2025-04-21",
+      "east": 19910,
+      "south": 19870,
+      "southwest": 19870,
+      "central": 19850
+    },
+    {
+      "date": "2025-04-18",
+      "east": 19830,
+      "south": 19810,
+      "southwest": 19800,
+      "central": 19780
+    },
+    {
+      "date": "2025-04-17",
+      "east": 19800,
+      "south": 19800,
+      "southwest": 19760,
+      "central": 19750
+    },
+    {
+      "date": "2025-04-16",
+      "east": 19680,
+      "south": 19660,
+      "southwest": 19650,
+      "central": 19640
+    },
+    {
+      "date": "2025-04-15",
+      "east": 19680,
+      "south": 19660,
+      "southwest": 19640,
+      "central": 19630
+    },
+    {
+      "date": "2025-04-14",
+      "east": 19760,
+      "south": 19740,
+      "southwest": 19720,
+      "central": 19710
+    },
+    {
+      "date": "2025-04-11",
+      "east": 19580,
+      "south": 19560,
+      "southwest": 19530,
+      "central": 19520
+    },
+    {
+      "date": "2025-04-10",
+      "east": 19880,
+      "south": 19810,
+      "southwest": 19810,
+      "central": 19810
+    },
+    {
+      "date": "2025-04-09",
+      "east": 19530,
+      "south": 19450,
+      "southwest": 19460,
+      "central": 19470
+    },
+    {
+      "date": "2025-04-08",
+      "east": 19900,
+      "south": 19830,
+      "southwest": 19860,
+      "central": 19850
+    },
+    {
+      "date": "2025-04-07",
+      "east": 19930,
+      "south": 19930,
+      "southwest": 19920,
+      "central": 19890
+    },
+    {
+      "date": "2025-04-03",
+      "east": 20560,
+      "south": 20500,
+      "southwest": 20510,
+      "central": 20490
+    },
+    {
+      "date": "2025-04-02",
+      "east": 20560,
+      "south": 20520,
+      "southwest": 20510,
+      "central": 20490
+    },
+    {
+      "date": "2025-04-01",
+      "east": 20560,
+      "south": 20540,
+      "southwest": 20510,
+      "central": 20490
+    },
+    {
+      "date": "2025-03-31",
+      "east": 20560,
+      "south": 20530,
+      "southwest": 20510,
+      "central": 20490
+    },
+    {
+      "date": "2025-03-28",
+      "east": 20620,
+      "south": 20580,
+      "southwest": 20540,
+      "central": 20540
+    },
+    {
+      "date": "2025-03-27",
+      "east": 20810,
+      "south": 20780,
+      "southwest": 20750,
+      "central": 20710
+    },
+    {
+      "date": "2025-03-26",
+      "east": 20670,
+      "south": 20660,
+      "southwest": 20600,
+      "central": 20560
+    },
+    {
+      "date": "2025-03-25",
+      "east": 20660,
+      "south": 20660,
+      "southwest": 20600,
+      "central": 20570
+    },
+    {
+      "date": "2025-03-24",
+      "east": 20660,
+      "south": 20660,
+      "southwest": 20600,
+      "central": 20560
+    },
+    {
+      "date": "2025-03-21",
+      "east": 20790,
+      "south": 20780,
+      "southwest": 20710,
+      "central": 20670
+    },
+    {
+      "date": "2025-03-20",
+      "east": 20810,
+      "south": 20800,
+      "southwest": 20740,
+      "central": 20700
+    },
+    {
+      "date": "2025-03-19",
+      "east": 20590,
+      "south": 20590,
+      "southwest": 20520,
+      "central": 20480
+    },
+    {
+      "date": "2025-03-18",
+      "east": 20790,
+      "south": 20800,
+      "southwest": 20730,
+      "central": 20660
+    },
+    {
+      "date": "2025-03-17",
+      "east": 20820,
+      "south": 20800,
+      "southwest": 20750,
+      "central": 20690
+    },
+    {
+      "date": "2025-03-14",
+      "east": 20910,
+      "south": 20890,
+      "southwest": 20840,
+      "central": 20780
+    },
+    {
+      "date": "2025-03-13",
+      "east": 20910,
+      "south": 20890,
+      "southwest": 20840,
+      "central": 20790
+    },
+    {
+      "date": "2025-03-12",
+      "east": 20900,
+      "south": 20900,
+      "southwest": 20850,
+      "central": 20780
+    },
+    {
+      "date": "2025-03-11",
+      "east": 20710,
+      "south": 20700,
+      "southwest": 20650,
+      "central": 20600
+    },
+    {
+      "date": "2025-03-10",
+      "east": 20770,
+      "south": 20750,
+      "southwest": 20720,
+      "central": 20640
+    },
+    {
+      "date": "2025-03-07",
+      "east": 20840,
+      "south": 20830,
+      "southwest": 20770,
+      "central": 20720
+    },
+    {
+      "date": "2025-03-06",
+      "east": 20800,
+      "south": 20790,
+      "southwest": 20750,
+      "central": 20680
+    },
+    {
+      "date": "2025-03-05",
+      "east": 20550,
+      "south": 20550,
+      "southwest": 20520,
+      "central": 20450
+    },
+    {
+      "date": "2025-03-04",
+      "east": 20600,
+      "south": 20590,
+      "southwest": 20550,
+      "central": 20490
+    },
+    {
+      "date": "2025-03-03",
+      "east": 20630,
+      "south": 20600,
+      "southwest": 20530,
+      "central": 20570
+    },
+    {
+      "date": "2025-02-28",
+      "east": 20600,
+      "south": 20580,
+      "southwest": 20530,
+      "central": 20500
+    },
+    {
+      "date": "2025-02-27",
+      "east": 20550,
+      "south": 20540,
+      "southwest": 20470,
+      "central": 20440
+    },
+    {
+      "date": "2025-02-26",
+      "east": 20530,
+      "south": 20520,
+      "southwest": 20450,
+      "central": 20410
+    },
+    {
+      "date": "2025-02-25",
+      "east": 20390,
+      "south": 20380,
+      "southwest": 20320,
+      "central": 20260
+    },
+    {
+      "date": "2025-02-24",
+      "east": 20590,
+      "south": 20580,
+      "southwest": 20520,
+      "central": 20440
+    },
+    {
+      "date": "2025-02-21",
+      "east": 20820,
+      "south": 20810,
+      "southwest": 20720,
+      "central": 20680
+    },
+    {
+      "date": "2025-02-20",
+      "east": 20690,
+      "south": 20680,
+      "southwest": 20620,
+      "central": 20560
+    },
+    {
+      "date": "2025-02-19",
+      "east": 20600,
+      "south": 20590,
+      "southwest": 20560,
+      "central": 20470
+    },
+    {
+      "date": "2025-02-18",
+      "east": 20510,
+      "south": 20510,
+      "southwest": 20470,
+      "central": 20380
+    },
+    {
+      "date": "2025-02-17",
+      "east": 20540,
+      "south": 20550,
+      "southwest": 20510,
+      "central": 20410
+    },
+    {
+      "date": "2025-02-14",
+      "east": 20600,
+      "south": 20610,
+      "southwest": 20580,
+      "central": 20480
+    },
+    {
+      "date": "2025-02-13",
+      "east": 20510,
+      "south": 20530,
+      "southwest": 20490,
+      "central": 20370
+    },
+    {
+      "date": "2025-02-12",
+      "east": 20540,
+      "south": 20550,
+      "southwest": 20530,
+      "central": 20390
+    },
+    {
+      "date": "2025-02-11",
+      "east": 20590,
+      "south": 20610,
+      "southwest": 20580,
+      "central": 20440
+    },
+    {
+      "date": "2025-02-10",
+      "east": 20410,
+      "south": 20420,
+      "southwest": 20350,
+      "central": 20280
+    },
+    {
+      "date": "2025-02-07",
+      "east": 20470,
+      "south": 20500,
+      "southwest": 20480,
+      "central": 20340
+    },
+    {
+      "date": "2025-02-06",
+      "east": 20230,
+      "south": 20260,
+      "southwest": 20230,
+      "central": 20100
+    },
+    {
+      "date": "2025-02-05",
+      "east": 20140,
+      "south": 20170,
+      "southwest": 20140,
+      "central": 20010
+    },
+    {
+      "date": "2025-01-27",
+      "east": 20120,
+      "south": 20120,
+      "southwest": 20120,
+      "central": 20020
+    },
+    {
+      "date": "2025-01-24",
+      "east": 20190,
+      "south": 20200,
+      "southwest": 20190,
+      "central": 20100
+    },
+    {
+      "date": "2025-01-23",
+      "east": 20200,
+      "south": 20200,
+      "southwest": 20190,
+      "central": 20090
+    },
+    {
+      "date": "2025-01-22",
+      "east": 20240,
+      "south": 20250,
+      "southwest": 20240,
+      "central": 20110
+    },
+    {
+      "date": "2025-01-21",
+      "east": 20320,
+      "south": 20340,
+      "southwest": 20320,
+      "central": 20180
+    },
+    {
+      "date": "2025-01-20",
+      "east": 20260,
+      "south": 20280,
+      "southwest": 20270,
+      "central": 20120
+    },
+    {
+      "date": "2025-01-17",
+      "east": 20340,
+      "south": 20350,
+      "southwest": 20320,
+      "central": 20220
+    },
+    {
+      "date": "2025-01-16",
+      "east": 20200,
+      "south": 20210,
+      "southwest": 20200,
+      "central": 20090
+    },
+    {
+      "date": "2025-01-15",
+      "east": 20020,
+      "south": 20030,
+      "southwest": 20010,
+      "central": 19940
+    },
+    {
+      "date": "2025-01-14",
+      "east": 20160,
+      "south": 20170,
+      "southwest": 20160,
+      "central": 20090
+    },
+    {
+      "date": "2025-01-13",
+      "east": 20150,
+      "south": 20180,
+      "southwest": 20170,
+      "central": 20100
+    },
+    {
+      "date": "2025-01-10",
+      "east": 19980,
+      "south": 20040,
+      "southwest": 19980,
+      "central": 19940
+    },
+    {
+      "date": "2025-01-09",
+      "east": 19670,
+      "south": 19710,
+      "southwest": 19690,
+      "central": 19630
+    },
+    {
+      "date": "2025-01-08",
+      "east": 19640,
+      "south": 19720,
+      "southwest": 19660,
+      "central": 19580
+    },
+    {
+      "date": "2025-01-07",
+      "east": 19640,
+      "south": 19750,
+      "southwest": 19680,
+      "central": 19560
+    },
+    {
+      "date": "2025-01-06",
+      "east": 19630,
+      "south": 19760,
+      "southwest": 19670,
+      "central": 19550
+    },
+    {
+      "date": "2025-01-03",
+      "east": 19850,
+      "south": 20000,
+      "southwest": 19900,
+      "central": 19760
+    },
+    {
+      "date": "2025-01-02",
+      "east": 19870,
+      "south": 20050,
+      "southwest": 19920,
+      "central": 19770
+    }
+  ]
+}
