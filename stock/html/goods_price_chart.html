@@ -817,7 +817,7 @@
       var showMomCurve = true;
       var showYoyCurve = true;
       var showHistoricalYears = true;
-      var showGrowthLines = false;  // 默认关闭增速参考线
+      var showGrowthLines = JSON.parse(localStorage.getItem('goods_price_growth_lines') || 'false');
       function updateButtonStyles() {
         var momBtn = document.getElementById('toggleMom');
         var yoyBtn = document.getElementById('toggleYoy');
@@ -1042,6 +1042,7 @@
       if (toggleGrowthLinesBtn) {
         toggleGrowthLinesBtn.addEventListener('click', function () {
           showGrowthLines = !showGrowthLines;
+          localStorage.setItem('goods_price_growth_lines', JSON.stringify(showGrowthLines));
           updateGrowthLinesButtonStyle();
           renderGrid();
         });

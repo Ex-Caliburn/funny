@@ -101,6 +101,8 @@
         <button id="toggleHistorical" style="background:#0f172a;color:#e5e7eb;border:1px solid #334155;padding:4px 8px;border-radius:4px;cursor:pointer;font-size:12px;">显示</button>
         <span style="opacity:.7; font-size:12px; margin-left:12px;">增速参考线：</span>
         <button id="toggleGrowthLines" style="background:#0f172a;color:#e5e7eb;border:1px solid #334155;padding:4px 8px;border-radius:4px;cursor:pointer;font-size:12px;">关闭</button>
+        <span style="opacity:.7; font-size:12px; margin-left:12px;">收藏：</span>
+        <button id="toggleFavOnly" style="background:#0f172a;color:#e5e7eb;border:1px solid #334155;padding:4px 8px;border-radius:4px;cursor:pointer;font-size:12px;">❤️ 仅收藏</button>
       </div>
     </div>
     <div id="grid"
@@ -171,6 +173,13 @@
         } catch (err) { }
       }
     });
+    // ── 收藏管理 ──
+    var FAV_KEY = 'invest_favorites';
+    var favorites = new Set(JSON.parse(localStorage.getItem(FAV_KEY) || '[]'));
+    var showOnlyFavorites = false;
+    function saveFavorites() { localStorage.setItem(FAV_KEY, JSON.stringify([...favorites])); }
+    function isFavorite(name) { return favorites.has(name); }
+    function toggleFavoriteItem(name) { if (favorites.has(name)) { favorites.delete(name); } else { favorites.add(name); } saveFavorites(); }
     const payload = { "data": [] };
     fetch("../cleaned_data/invest_cleaned.json?t=" + Date.now()).then(r => r.json()).then(json => {
 
@@ -205,10 +214,17 @@
         const metricCount = document.getElementById('metricCount');
         const keyword = (filter.value || '').trim();
         grid.innerHTML = '';
-        const names = Object.keys(json.metrics || {}).filter(n => !keyword || n.includes(keyword));
-        metricCount.textContent = names.length + ' 个指标';
+        const names = Object.keys(json.metrics || {}).filter(function(n) {
+          if (showOnlyFavorites && !favorites.has(n)) return false;
+          return !keyword || n.includes(keyword);
+        });
+        names.sort(function(a, b) {
+          var af = favorites.has(a) ? 0 : 1; var bf = favorites.has(b) ? 0 : 1;
+          if (af !== bf) return af - bf; return a.localeCompare(b);
+        });
+        metricCount.textContent = names.length + ' 个指标' + (showOnlyFavorites ? '（仅收藏）' : '');
         names.forEach(function (name) {
-          const card = document.createElement('div'); card.style.background = '#0f172a'; card.style.border = '1px solid #1f2937'; card.style.borderRadius = '12px'; card.style.padding = '12px'; card.style.transition = 'all 0.3s ease'; card.style.boxShadow = '0 2px 8px rgba(0,0,0,0.3)'; card.style.position = 'relative';
+          const card = document.createElement('div'); card.style.background = '#0f172a'; card.style.border = '1px solid ' + (favorites.has(name) ? '#f43f5e' : '#1f2937'); card.style.borderRadius = '12px'; card.style.padding = '12px'; card.style.transition = 'all 0.3s ease'; card.style.boxShadow = favorites.has(name) ? '0 2px 8px rgba(244,63,94,.25)' : '0 2px 8px rgba(0,0,0,0.3)'; card.style.position = 'relative'; card.dataset.favorited = favorites.has(name) ? '1' : '';
           const titleWrapper = document.createElement('div'); titleWrapper.style.display = 'flex'; titleWrapper.style.justifyContent = 'space-between'; titleWrapper.style.alignItems = 'center'; titleWrapper.style.margin = '0 0 8px 0';
           const title = document.createElement('div'); title.textContent = name; title.style.fontSize = '14px'; title.style.opacity = '0.95'; title.style.fontWeight = 'bold'; title.style.color = '#e2e8f0'; title.style.flex = '1'; title.style.textAlign = 'center';
           const copyBtn = document.createElement('button'); copyBtn.innerHTML = '📋'; copyBtn.style.background = 'none'; copyBtn.style.border = 'none'; copyBtn.style.color = '#9aa4b2'; copyBtn.style.fontSize = '14px'; copyBtn.style.cursor = 'pointer'; copyBtn.style.padding = '4px'; copyBtn.style.borderRadius = '4px'; copyBtn.style.transition = 'all 0.2s'; copyBtn.title = '复制名称';
@@ -218,7 +234,11 @@
           const zoomBtn = document.createElement('button'); zoomBtn.innerHTML = '🔍'; zoomBtn.style.background = 'none'; zoomBtn.style.border = 'none'; zoomBtn.style.color = '#9aa4b2'; zoomBtn.style.fontSize = '16px'; zoomBtn.style.cursor = 'pointer'; zoomBtn.style.padding = '4px'; zoomBtn.style.borderRadius = '4px'; zoomBtn.style.transition = 'all 0.2s'; zoomBtn.title = '放大查看';
           zoomBtn.onmouseenter = function () { zoomBtn.style.background = '#1f2937'; zoomBtn.style.color = '#3b82f6'; };
           zoomBtn.onmouseleave = function () { zoomBtn.style.background = 'none'; zoomBtn.style.color = '#9aa4b2'; };
-          titleWrapper.appendChild(title); titleWrapper.appendChild(copyBtn); titleWrapper.appendChild(zoomBtn);
+          const heartBtn = document.createElement('button'); heartBtn.textContent = favorites.has(name) ? '❤️' : '🤍'; heartBtn.title = favorites.has(name) ? '取消收藏' : '收藏'; heartBtn.style.background = 'none'; heartBtn.style.border = 'none'; heartBtn.style.fontSize = '15px'; heartBtn.style.cursor = 'pointer'; heartBtn.style.padding = '4px'; heartBtn.style.borderRadius = '4px'; heartBtn.style.lineHeight = '1'; heartBtn.style.transition = 'transform 0.15s';
+          heartBtn.onmouseenter = function () { heartBtn.style.transform = 'scale(1.3)'; };
+          heartBtn.onmouseleave = function () { heartBtn.style.transform = 'scale(1)'; };
+          heartBtn.onclick = function (e) { e.stopPropagation(); toggleFavoriteItem(name); setFavStyle(card, this, isFavorite(name)); this.style.transform = 'scale(1.5)'; var self = this; setTimeout(function () { self.style.transform = 'scale(1)'; }, 160); if (showOnlyFavorites) renderGrid(); };
+          titleWrapper.appendChild(title); titleWrapper.appendChild(copyBtn); titleWrapper.appendChild(zoomBtn); titleWrapper.appendChild(heartBtn);
           const div = document.createElement('div'); div.style.height = '200px';
           card.appendChild(titleWrapper); card.appendChild(div); grid.appendChild(card);
           const rows = (json.metrics && json.metrics[name]) || [];
@@ -288,8 +308,8 @@
             e.stopPropagation();
             showZoomChart(name, rows, yoyData);
           };
-          card.onmouseenter = function () { card.style.borderColor = '#3b82f6'; card.style.transform = 'translateY(-4px)'; card.style.boxShadow = '0 8px 24px rgba(59, 130, 246, 0.15)'; };
-          card.onmouseleave = function () { card.style.borderColor = '#1f2937'; card.style.transform = 'translateY(0)'; card.style.boxShadow = '0 2px 8px rgba(0,0,0,0.3)'; };
+          card.onmouseenter = function () { var fav = card.dataset.favorited === '1'; card.style.borderColor = fav ? '#fb7185' : '#3b82f6'; card.style.transform = 'translateY(-4px)'; card.style.boxShadow = fav ? '0 8px 24px rgba(244,63,94,.3)' : '0 8px 24px rgba(59, 130, 246, 0.15)'; };
+          card.onmouseleave = function () { var fav = card.dataset.favorited === '1'; card.style.borderColor = fav ? '#f43f5e' : '#1f2937'; card.style.transform = 'translateY(0)'; card.style.boxShadow = fav ? '0 2px 8px rgba(244,63,94,.25)' : '0 2px 8px rgba(0,0,0,0.3)'; };
         });
       }
       function renderTable() {
@@ -456,7 +476,25 @@
       // 全局状态控制曲线显示
       var showYoyCurve = true;  // 默认显示同比
       var showHistoricalYears = true;  // 默认显示历史年份
-      var showGrowthLines = false;  // 默认关闭增速参考线
+      var showGrowthLines = JSON.parse(localStorage.getItem('invest_growth_lines') || 'false');
+
+      // 收藏辅助函数
+      function setFavStyle(cardEl, heartBtn, isFav) {
+        heartBtn.textContent = isFav ? '❤️' : '🤍';
+        heartBtn.title = isFav ? '取消收藏' : '收藏';
+        cardEl.dataset.favorited = isFav ? '1' : '';
+        if (!cardEl.matches(':hover')) {
+          cardEl.style.borderColor = isFav ? '#f43f5e' : '#1f2937';
+          cardEl.style.boxShadow = isFav ? '0 2px 8px rgba(244,63,94,.25)' : '0 2px 8px rgba(0,0,0,0.3)';
+        }
+      }
+      function updateFavOnlyBtn() {
+        var btn = document.getElementById('toggleFavOnly');
+        if (!btn) return;
+        btn.style.background = showOnlyFavorites ? '#f43f5e' : '#0f172a';
+        btn.style.color = showOnlyFavorites ? '#ffffff' : '#e5e7eb';
+        btn.style.borderColor = showOnlyFavorites ? '#f43f5e' : '#334155';
+      }
 
       // 更新按钮样式
       function updateButtonStyles() {
@@ -610,11 +648,20 @@
       if (toggleGrowthLinesBtn) {
         toggleGrowthLinesBtn.addEventListener('click', function () {
           showGrowthLines = !showGrowthLines;
+          localStorage.setItem('invest_growth_lines', JSON.stringify(showGrowthLines));
           updateGrowthLinesButtonStyle();
           renderGrid();
         });
         updateGrowthLinesButtonStyle();
       }
+
+      /* ── 仅收藏开关 ── */
+      document.getElementById('toggleFavOnly').addEventListener('click', function () {
+        showOnlyFavorites = !showOnlyFavorites;
+        updateFavOnlyBtn();
+        renderGrid();
+      });
+      updateFavOnlyBtn();
 
       // 模态框关闭事件
       document.getElementById('zoomModal').addEventListener('click', function () {
