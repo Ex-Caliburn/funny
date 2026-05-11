@@ -129,12 +129,12 @@
   <script src="../vendor/echarts.min.js"></script>
 <script>
     // ==================== 颜色配置 ====================
-    // 年份曲线颜色（5种完全不同色系，避开绿色）
+    // 总表/放大图：历史年份用此板；最新年（如 2026）当月值固定翠绿，与其他看板一致
     const YEAR_COLORS = ['#ef4444', '#f59e0b', '#3b82f6', '#8b5cf6', '#ec4899'];
-    // 说明：红色、橙色、蓝色、紫色、粉色 - 完全避开绿色系
+    const LATEST_YEAR_VALUE_COLOR = '#10b981';
 
     // 增长率曲线颜色
-    const YOY_COLOR = '#10b981';  // 同比：绿色（独占绿色系）
+    const YOY_COLOR = '#e879f9';  // 同比：与年份翠绿区分
     const MOM_COLOR = '#fbbf24';  // 环比：亮黄色
 
     // 单指标视图颜色
@@ -527,8 +527,9 @@
             if (idx >= 0) { momDataArray[idx] = it.mom; }
           });
 
-          // 添加绝对值曲线
-          option.series.push({ type: 'line', name: y + '年', yAxisIndex: 0, data: data, smooth: true, symbol: 'circle', symbolSize: 4, lineStyle: { color: YEAR_COLORS[idx % YEAR_COLORS.length], width: 2 }, itemStyle: { color: YEAR_COLORS[idx % YEAR_COLORS.length] } });
+          // 添加绝对值曲线（最新年用 LATEST_YEAR_VALUE_COLOR）
+          var valueLineColor = isLatestYear ? LATEST_YEAR_VALUE_COLOR : YEAR_COLORS[idx % YEAR_COLORS.length];
+          option.series.push({ type: 'line', name: y + '年', yAxisIndex: 0, data: data, smooth: true, symbol: 'circle', symbolSize: 4, lineStyle: { color: valueLineColor, width: 2 }, itemStyle: { color: valueLineColor } });
 
           // 只为最新年份添加同比和环比曲线
           if (isLatestYear) {
@@ -1190,7 +1191,9 @@
           ]
         };
 
-        Object.keys(yearData).sort().forEach(function (y, idx) {
+        const zoomYearList = Object.keys(yearData).sort();
+        const zoomLatestYear = zoomYearList[zoomYearList.length - 1];
+        zoomYearList.forEach(function (y, idx) {
           const data = new Array(11).fill(null);
           const yoyDataArray = new Array(11).fill(null);
           (yearData[y] || []).forEach(function (it) {
@@ -1227,7 +1230,8 @@
 
             if (idx >= 0) { yoyDataArray[idx] = it.yoy; }
           });
-          option.series.push({ type: 'line', name: y + '年', yAxisIndex: 0, data: data, smooth: true, symbol: 'circle', symbolSize: 8, lineStyle: { color: YEAR_COLORS[idx % YEAR_COLORS.length], width: 3.5 }, itemStyle: { color: YEAR_COLORS[idx % YEAR_COLORS.length] } });
+          var zoomAbsColor = (y === zoomLatestYear) ? LATEST_YEAR_VALUE_COLOR : YEAR_COLORS[idx % YEAR_COLORS.length];
+          option.series.push({ type: 'line', name: y + '年', yAxisIndex: 0, data: data, smooth: true, symbol: 'circle', symbolSize: 8, lineStyle: { color: zoomAbsColor, width: 3.5 }, itemStyle: { color: zoomAbsColor } });
           option.series.push({ type: 'line', name: y + '年同比', yAxisIndex: 1, data: yoyDataArray, smooth: true, symbol: 'diamond', symbolSize: 6, lineStyle: { color: YOY_COLOR, width: 2.5, type: 'solid' }, itemStyle: { color: YOY_COLOR } });
         });
 

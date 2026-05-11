@@ -164,6 +164,71 @@ function detectColFormat(rows, header1Row, nameCol) {
   }
 }
 
+// ─── 重复商品去重 ─────────────────────────────────────────────────────────────
+
+/**
+ * 判断计量单位是否为重量单位（吨、万吨、千克等）
+ * @param {string|null} unit
+ * @returns {boolean}
+ */
+function isWeightUnit(unit) {
+  if (!unit) return false
+  return /^(吨|万吨|千克|公斤|克|斤|千吨)$/.test(unit.trim())
+}
+
+/**
+ * 对 items 按商品名称去重，处理官方数据中同一商品提供两种计量单位的情况：
+ *   - 优先保留「实物计量」口径（万个/万条/亿个/亿块/万件等），丢弃重量口径（吨/万吨）
+ *   - 若两行同为重量或同为实物，则保留先出现的那行
+ *   - 被丢弃口径的数据记录在保留行的 droppedUnits 字段，供审计追溯
+ * @param {Array} items
+ * @returns {Array}
+ */
+function deduplicateItems(items) {
+  const seen = new Map() // name -> result 数组中的下标
+  const result = []
+
+  for (const item of items) {
+    const { name } = item
+    if (!seen.has(name)) {
+      seen.set(name, result.length)
+      result.push(Object.assign({}, item))
+    } else {
+      const existingIdx = seen.get(name)
+      const existing = result[existingIdx]
+      const existingIsWeight = isWeightUnit(existing.unit)
+      const newIsWeight = isWeightUnit(item.unit)
+
+      // 新行是实物单位而现有行是重量单位 → 用新行替换
+      const replaceExisting = existingIsWeight && !newIsWeight
+
+      if (replaceExisting) {
+        const droppedEntry = {
+          unit: existing.unit,
+          currentMonth: existing.currentMonth,
+          ytdCurrentYear: existing.ytdCurrentYear,
+          yoyYtdPercent: existing.yoyYtdPercent,
+        }
+        const newItem = Object.assign({}, item, {
+          droppedUnits: [droppedEntry, ...(existing.droppedUnits || [])],
+        })
+        result[existingIdx] = newItem
+      } else {
+        // 保留现有行，将新行记录到 droppedUnits
+        if (!existing.droppedUnits) existing.droppedUnits = []
+        existing.droppedUnits.push({
+          unit: item.unit,
+          currentMonth: item.currentMonth,
+          ytdCurrentYear: item.ytdCurrentYear,
+          yoyYtdPercent: item.yoyYtdPercent,
+        })
+      }
+    }
+  }
+
+  return result
+}
+
 // ─── 工作表解析 ───────────────────────────────────────────────────────────────
 
 /**
@@ -241,6 +306,12 @@ function parseSheet(rows, sourceFile) {
     })
   }
 
+  const dedupedItems = deduplicateItems(items)
+  const droppedCount = items.length - dedupedItems.length
+  if (droppedCount > 0) {
+    console.log(`  去重：合并 ${droppedCount} 条重量口径重复行`)
+  }
+
   const result = {
     sourceFile: path.basename(sourceFile),
     sourceType: 'xls',
@@ -254,7 +325,7 @@ function parseSheet(rows, sourceFile) {
       ytdSamePeriodLastYear: null,
       yoyYtdPercent: `当月比去年同期 ±%（数量/金额）`,
     },
-    items,
+    items: dedupedItems,
   }
   if (footnote) result.footnote = footnote
   return result
@@ -350,4 +421,4 @@ if (require.main === module) {
   main()
 }
 
-module.exports = { parseXls, parseDir, parseSheet, parseCell, parsePeriod }
+module.exports = { parseXls, parseDir, parseSheet, parseCell, parsePeriod, deduplicateItems, isWeightUnit }

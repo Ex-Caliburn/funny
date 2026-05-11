@@ -571,7 +571,8 @@
               }
             });
 
-            // 添加绝对值曲线
+            // 添加绝对值曲线（最新年用大家统一的翠绿 #10b981，如 2026）
+            var yearValueColor = isLatestYear ? '#10b981' : colors[idx % colors.length];
             option.series.push({
               type: 'line',
               name: y + '年',
@@ -581,8 +582,8 @@
               connectNulls: true,
               symbol: 'circle',
               symbolSize: 4,
-              lineStyle: { color: colors[idx % colors.length], width: 2 },
-              itemStyle: { color: colors[idx % colors.length] }
+              lineStyle: { color: yearValueColor, width: 2 },
+              itemStyle: { color: yearValueColor }
             });
 
             // 只为最新年份添加同比和环比曲线
@@ -598,8 +599,8 @@
                   connectNulls: true,
                   symbol: 'diamond',
                   symbolSize: 3,
-                  lineStyle: { color: '#10b981', width: 2, type: 'solid' },
-                  itemStyle: { color: '#10b981' }
+                  lineStyle: { color: '#e879f9', width: 2, type: 'solid' },
+                  itemStyle: { color: '#e879f9' }
                 });
               }
 
@@ -983,8 +984,10 @@
           ]
         };
 
-        const colors = ['#ef4444', '#3b82f6', '#f59e0b', '#8b5cf6', '#06b6d4']; // 橙色替代绿色
-        Object.keys(yearData).sort().forEach(function (y, idx) {
+        const colors = ['#ef4444', '#3b82f6', '#f59e0b', '#8b5cf6', '#06b6d4']; // 历史年；最新年单独绿色
+        const zoomYearKeys = Object.keys(yearData).sort();
+        const zoomLatestYear = zoomYearKeys[zoomYearKeys.length - 1];
+        zoomYearKeys.forEach(function (y, idx) {
           const data = new Array(11).fill(null);
           const yoyDataArray = new Array(11).fill(null);
           const momDataArray = new Array(11).fill(null);
@@ -1019,7 +1022,8 @@
           });
 
           // 5. 添加曲线
-          // 绝对值曲线
+          // 绝对值曲线（最新年翠绿，与总表一致）
+          var zoomValueColor = (y === zoomLatestYear) ? '#10b981' : colors[idx % colors.length];
           option.series.push({
             type: 'line',
             name: y + '年',
@@ -1028,11 +1032,11 @@
             smooth: true,
             symbol: 'circle',
             symbolSize: 8,
-            lineStyle: { color: colors[idx % colors.length], width: 3.5 },
-            itemStyle: { color: colors[idx % colors.length] }
+            lineStyle: { color: zoomValueColor, width: 3.5 },
+            itemStyle: { color: zoomValueColor }
           });
 
-          // 同比曲线（绿色）
+          // 同比曲线（品红，与年份线区分）
           if (yoyDataArray.some(v => v != null)) {
             option.series.push({
               type: 'line',
@@ -1042,8 +1046,8 @@
               smooth: true,
               symbol: 'diamond',
               symbolSize: 6,
-              lineStyle: { color: '#10b981', width: 2.5, type: 'solid' },
-              itemStyle: { color: '#10b981' }
+              lineStyle: { color: '#e879f9', width: 2.5, type: 'solid' },
+              itemStyle: { color: '#e879f9' }
             });
           }
 

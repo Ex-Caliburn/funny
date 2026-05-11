@@ -252,7 +252,8 @@
           });
           const c = echarts.init(div);
           const option = { backgroundColor: '#0f172a', grid: { left: 50, right: 50, top: 35, bottom: 35 }, xAxis: { type: 'category', data: ['1-2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'], axisLabel: { color: '#9aa4b2', fontSize: 11 } }, yAxis: [{ type: 'value', position: 'left', axisLabel: { color: '#9aa4b2', fontSize: 11, formatter: '{value}%' }, splitLine: { lineStyle: { color: '#1f2937' } } }], series: [], legend: { show: true, top: 0, textStyle: { color: '#cbd5e1', fontSize: 11 } }, tooltip: { trigger: 'axis', backgroundColor: 'rgba(15, 23, 42, 0.95)', borderColor: '#1f2937', textStyle: { color: '#e2e8f0' }, formatter: function (ps) { let s = ps[0].name + '<br/>'; ps.forEach(function (p) { s += p.seriesName + ': ' + (p.value != null ? p.value + '%' : '-') + '<br/>'; }); return s; } } };
-          const colors = ['#ef4444', '#3b82f6', '#10b981', '#8b5cf6', '#06b6d4'];
+          /* 同比折线色板不用翠绿，避免与习惯上的「最新年」色混淆 */
+          const colors = ['#ef4444', '#3b82f6', '#e879f9', '#8b5cf6', '#06b6d4'];
           const years = Object.keys(yoyData).sort();
 
           years.forEach(function (y, idx) {
@@ -564,7 +565,7 @@
           ]
         };
 
-        const colors = ['#ef4444', '#3b82f6', '#10b981', '#8b5cf6', '#06b6d4'];
+        const colors = ['#ef4444', '#3b82f6', '#e879f9', '#8b5cf6', '#06b6d4'];
         Object.keys(yoyData).sort().forEach(function (y, idx) {
           const yoyDataArray = new Array(11).fill(null);
           (yoyData[y] || []).forEach(function (it) {

@@ -77,14 +77,9 @@
 // ── 配置 ──────────────────────────────────────────────────────────────
 var DATA_FILE = '../macau_gaming/monthly_gross_revenue.json';
 
-// 年份颜色
-var YEAR_COLORS = {
-  '2023': '#64748b',
-  '2024': '#3b82f6',
-  '2025': '#10b981',
-  '2026': '#f97316'
-};
-var YOY_COLOR = '#a78bfa';
+// 与 goods_price_chart 总表一致：年份按序轮换色；同比/环比与单指标视图一致
+var YEAR_LINE_COLORS = ['#ef4444', '#3b82f6', '#10b981', '#8b5cf6', '#06b6d4'];
+var YOY_COLOR = '#e879f9'; // 与 goods_price 总表「年同比」一致
 var MOM_COLOR = '#f59e0b';
 
 var MONTH_LABELS = ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
@@ -202,8 +197,8 @@ function buildOption(months, field) {
   var series = [];
 
   // 每年一组柱状图
-  years.forEach(function(year) {
-    var color = YEAR_COLORS[year] || '#94a3b8';
+  years.forEach(function(year, idx) {
+    var color = YEAR_LINE_COLORS[idx % YEAR_LINE_COLORS.length];
     var isLatest = year === latestYear;
     series.push({
       name: year + '年',
@@ -252,10 +247,10 @@ function buildOption(months, field) {
     yAxisIndex: 1,
     data: pd.yoy[latestYear],
     smooth: true,
-    symbol: 'circle',
+    symbol: 'diamond',
     symbolSize: 6,
     connectNulls: false,
-    lineStyle: { color: YOY_COLOR, width: 2 },
+    lineStyle: { color: YOY_COLOR, width: 2, type: 'solid' },
     itemStyle: { color: YOY_COLOR }
   });
 
@@ -307,7 +302,7 @@ function buildOption(months, field) {
           color: '#9aa4b2', fontSize: 11,
           formatter: function(v) { return v >= 10000 ? (v / 10000).toFixed(1) + 'w' : v; }
         },
-        splitLine: { lineStyle: { color: '#1a2236' } }
+        splitLine: { lineStyle: { color: '#1f2937' } }
       },
       {
         type: 'value',

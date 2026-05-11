@@ -72,6 +72,11 @@
       height: 180px; display: flex; align-items: center; justify-content: center;
       color: #334155; font-size: 12px;
     }
+    /* 无数量/单价数据时的占位格，保持三列网格尺寸 */
+    .chart-card-placeholder {
+      visibility: hidden; pointer-events: none;
+      min-height: 210px;
+    }
 
     /* zoom modal */
     #zoomModal {
@@ -107,6 +112,8 @@
   <button class="toggle-btn on"  id="btnMom">环比%</button>
   <span class="label-sm" style="margin-left:8px;">增速参考线：</span>
   <button class="toggle-btn"     id="btnGrowth">关闭</button>
+  <span class="label-sm" style="margin-left:8px;">仅金额品类：</span>
+  <button class="toggle-btn on"  id="btnAmtOnly">显示</button>
   <span class="label-sm" style="margin-left:8px;">收藏：</span>
   <button class="toggle-btn"     id="btnFavOnly">❤️ 仅收藏</button>
 </div>
@@ -155,8 +162,19 @@
 
   /* ── 调色板 ── */
   var PALETTE   = ['#ef4444','#3b82f6','#10b981','#f59e0b','#8b5cf6','#06b6d4','#f97316','#84cc16'];
-  var COLOR_YOY = '#4ade80';
+  /* 同比线与年份翠绿（如 #10b981）区分，不用绿色系 */
+  var COLOR_YOY = '#e879f9';
   var COLOR_MOM = '#f59e0b';
+
+  /* ── 品类名称修正表 ──
+     key   → 原始数据中出现的错误/异体写法
+     value → 统一使用的规范名称
+     ----------------------------------------------------------------
+     2024 年前部分月报将顿号写作"、"，后改为"及"，导致同一品类出现两个名称。
+  */
+  var NAME_ALIASES = {
+    '稻谷、大米及大米粉': '稻谷及大米及大米粉'
+  };
 
   var FIELD_META = {
     quantity:  { label: '数量',  titleClass: 'card-title-qty' },
@@ -165,9 +183,10 @@
   };
 
   /* ── 状态 ── */
-  var showYoy    = true;
-  var showMom    = true;
-  var showGrowth = JSON.parse(localStorage.getItem(GROWTH_LINES_KEY) || 'false');
+  var showYoy      = true;
+  var showMom      = true;
+  var showGrowth   = JSON.parse(localStorage.getItem(GROWTH_LINES_KEY) || 'false');
+  var showAmtOnly  = true;   /* true=展示仅有金额数据的品类；false=隐藏 */
 
   var commodities    = {};
   var commodityNames = [];
@@ -196,7 +215,8 @@
       if (entry.monthLabel) xLabelByMonth[month] = entry.monthLabel;
 
       (entry.items || []).forEach(function (item) {
-        var name = item.name;
+        /* 应用名称修正表，将异体写法统一为规范名 */
+        var name = NAME_ALIASES[item.name] || item.name;
         if (!result[name]) result[name] = { unit: item.unit, years: {} };
         if (!result[name].years[year]) result[name].years[year] = [];
         result[name].years[year].push({
@@ -204,6 +224,8 @@
           yearMonth: mk,
           amount:   item.currentMonth ? item.currentMonth.amount   : null,
           quantity: item.currentMonth ? item.currentMonth.quantity : null,
+          /* 累计数量，用于后续推算当月精确值 */
+          ytdQty:   item.ytdCurrentYear ? item.ytdCurrentYear.quantity : null,
           /* 官方公布的当月同比 */
           yoyAmt: item.yoyYtdPercent ? item.yoyYtdPercent.amount   : null,
           yoyQty: item.yoyYtdPercent ? item.yoyYtdPercent.quantity : null,
@@ -224,6 +246,21 @@
           d.momQty = (prev && prev.quantity != null && d.quantity != null && prev.quantity !== 0)
             ? +((d.quantity - prev.quantity) / Math.abs(prev.quantity) * 100).toFixed(2) : null;
 
+          /* 数量=0 但金额>0：精度截断（万吨整数舍入），尝试用累计差值修正 */
+          if (d.quantity === 0 && d.amount != null && d.amount > 0) {
+            var impliedQty = (d.ytdQty != null && prev && prev.ytdQty != null)
+              ? d.ytdQty - prev.ytdQty : 0;
+            if (impliedQty > 0) {
+              /* 累计差值非零：用更精确的推算值替代 */
+              d.quantity = impliedQty;
+              d.qtyRoundedToZero = false;
+            } else {
+              /* 累计差值仍为 0：无法恢复精度，标记为精度截断 */
+              d.qtyRoundedToZero = true;
+            }
+          } else {
+            d.qtyRoundedToZero = false;
+          }
           d.unitPrice = (d.amount != null && d.quantity != null && d.quantity !== 0)
             ? d.amount / d.quantity : null;
 
@@ -262,8 +299,24 @@
   function makeNullArr() { return X_MONTHS.map(function () { return null; }); }
   function monthIdx(mm) { return parseInt(mm, 10) - 1; }
 
-  function unitPriceUnit(comUnit) {
-    return comUnit ? '万元/' + comUnit : '万元/单位';
+  /**
+   * 返回单价的展示信息：
+   *   displayUnit  — Y 轴/标题显示的单位字符串（null 表示无法计算）
+   *   factor       — 将 万元/comUnit 换算为 元/displayUnit 的系数
+   *                  万元/万X → 元/X，系数=1；万元/X → 元/X，系数=10000
+   */
+  function unitPriceInfo(comUnit) {
+    if (!comUnit) return { displayUnit: null, factor: 1 };
+    // 万元/万X = 元/X，系数=1（例：万元/万个 → 元/个）
+    if (/^万/.test(comUnit)) {
+      return { displayUnit: '元/' + comUnit.replace(/^万/, ''), factor: 1 };
+    }
+    // 万元/亿X → 元/X，系数=0.0001（1万元/1亿X = 10000元/1e8X）
+    if (/^亿/.test(comUnit)) {
+      return { displayUnit: '元/' + comUnit.replace(/^亿/, ''), factor: 0.0001 };
+    }
+    // 万元/X → 元/X，系数=10000（例：万元/吨 → 元/吨）
+    return { displayUnit: '元/' + comUnit, factor: 10000 };
   }
 
   /* ── 构建单图 option ── */
@@ -273,13 +326,16 @@
     var years = Object.keys(com.years).sort();
     var latestYear = years[years.length - 1];
 
-    var valKey, yoyKey, momKey, unit;
+    var valKey, yoyKey, momKey, unit, valueScale;
     if (field === 'amount') {
-      valKey = 'amount';    yoyKey = 'yoyAmt'; momKey = 'momAmt'; unit = '万元';
+      valKey = 'amount';    yoyKey = 'yoyAmt'; momKey = 'momAmt'; unit = '万元';   valueScale = 1;
     } else if (field === 'quantity') {
-      valKey = 'quantity';  yoyKey = 'yoyQty'; momKey = 'momQty'; unit = com.unit || '';
+      valKey = 'quantity';  yoyKey = 'yoyQty'; momKey = 'momQty'; unit = com.unit || ''; valueScale = 1;
     } else {
-      valKey = 'unitPrice'; yoyKey = 'yoyUP';  momKey = 'momUP';  unit = unitPriceUnit(com.unit);
+      var upInfo = unitPriceInfo(com.unit);
+      valKey = 'unitPrice'; yoyKey = 'yoyUP';  momKey = 'momUP';
+      unit = upInfo.displayUnit || '元';
+      valueScale = upInfo.factor;
     }
 
     var series = [];
@@ -289,7 +345,21 @@
       var color = PALETTE[idx % PALETTE.length];
 
       var vals = makeNullArr();
-      arr.forEach(function (d) { vals[monthIdx(d.month)] = d[valKey]; });
+      arr.forEach(function (d) {
+        var v = d[valKey];
+        if (v != null && valueScale !== 1) v = +(v * valueScale).toFixed(2);
+        /* 数量字段：精度截断的月份（量=0但金额>0）用橙色三角标记 */
+        if (field === 'quantity' && d.qtyRoundedToZero) {
+          vals[monthIdx(d.month)] = {
+            value: 0,
+            symbol: 'triangle', symbolSize: 7,
+            itemStyle: { color: '#f59e0b', borderColor: '#f59e0b' },
+            tooltip: { valueFormatter: function() { return '< 0.5 ' + (com.unit || ''); } }
+          };
+        } else {
+          vals[monthIdx(d.month)] = v;
+        }
+      });
       series.push({
         name: y + '年', type: 'line', yAxisIndex: 0, data: vals,
         smooth: true, symbol: 'circle', symbolSize: isLatest ? 5 : 4,
@@ -342,7 +412,13 @@
           axisLabel: {
             color: '#9aa4b2', fontSize: 10,
             formatter: function (v) {
-              /* 万元数值较大，用缩写 */
+              if (field === 'unitPrice') {
+                /* 单价已换算为元，用万/亿缩写 */
+                if (Math.abs(v) >= 100000000) return (v / 100000000).toFixed(1) + '亿';
+                if (Math.abs(v) >= 10000)     return (v / 10000).toFixed(1) + '万';
+                return v;
+              }
+              /* 金额（万元）& 数量 */
               if (Math.abs(v) >= 100000) return (v / 10000).toFixed(0) + '亿';
               if (Math.abs(v) >= 10000)  return (v / 10000).toFixed(1) + '亿';
               return v;
@@ -365,6 +441,11 @@
           ps.forEach(function (p) {
             if (p.value == null) return;
             var isRate = p.seriesName.indexOf('%') > -1;
+            /* 数量精度截断的点：value 是对象 */
+            if (typeof p.value === 'object' && p.value !== null) {
+              s += p.marker + p.seriesName + ': <span style="color:#f59e0b">精度截断（< 0.5 ' + (com && com.unit ? com.unit : '') + '）</span><br/>';
+              return;
+            }
             var val = typeof p.value === 'number' ? p.value.toFixed(4).replace(/\.?0+$/, '') : p.value;
             s += p.marker + p.seriesName + ': ' + val + (isRate ? '%' : (unit ? ' ' + unit : '')) + '<br/>';
           });
@@ -433,7 +514,15 @@
       if (showOnlyFav && !favorites.has(n)) return false;
       var yearData = commodities[n].years[latestYear];
       if (!yearData || !yearData.length) return false;
-      return yearData.some(function (d) { return d.amount != null || d.quantity != null; });
+      if (!yearData.some(function (d) { return d.amount != null || d.quantity != null; })) return false;
+      /* 如果关闭"仅金额"开关，过滤掉没有任何数量数据的品类 */
+      if (!showAmtOnly) {
+        var hasQtyAny = Object.keys(commodities[n].years).some(function (y) {
+          return commodities[n].years[y].some(function (d) { return d.quantity != null; });
+        });
+        if (!hasQtyAny) return false;
+      }
+      return true;
     });
 
     names.sort(function (a, b) {
@@ -491,7 +580,27 @@
         var row = document.createElement('div');
         row.className = 'charts-row';
 
+        /* 检查是否有数量数据（任意年份有至少一个非 null quantity） */
+        var hasQty = Object.keys(com.years).some(function (y) {
+          return com.years[y].some(function (d) { return d.quantity != null; });
+        });
+
         FIELDS.forEach(function (field) {
+          /* 没有数量数据：数量和单价格子均用占位 div，保持三列布局 */
+          if (field === 'quantity' && !hasQty) {
+            var ph = document.createElement('div');
+            ph.className = 'chart-card-placeholder';  /* 不带 chart-card，避免被 observer 捕获 */
+            row.appendChild(ph);
+            return;
+          }
+          /* 没有数量单位时，单价无法换算，同样占位 */
+          if (field === 'unitPrice' && (!hasQty || !com.unit)) {
+            var ph = document.createElement('div');
+            ph.className = 'chart-card-placeholder';
+            row.appendChild(ph);
+            return;
+          }
+
           var meta = FIELD_META[field];
           var card = document.createElement('div');
           card.className = 'chart-card';
@@ -505,7 +614,9 @@
           var labelText = meta.label;
           if (field === 'quantity' && com && com.unit) labelText += '（' + com.unit + '）';
           if (field === 'amount')    labelText += '（万元）';
-          if (field === 'unitPrice') labelText += '（万元/' + (com && com.unit ? com.unit : '单位') + '）';
+          if (field === 'unitPrice' && com && com.unit) {
+            labelText += '（' + unitPriceInfo(com.unit).displayUnit + '）';
+          }
           cardTitle.textContent = labelText;
 
           var btns = document.createElement('div');
@@ -546,6 +657,7 @@
         var name     = card.dataset.name;
         var field    = card.dataset.field;
         var chartDiv = card.querySelector('.chart-container');
+        if (!chartDiv) return;  /* 安全守卫：跳过意外进入的非图表元素 */
         chartDiv.textContent = '';
         var ec = echarts.init(chartDiv, null, { renderer: 'canvas' });
         ec.setOption(buildOption(name, field));
@@ -618,6 +730,13 @@
         });
         refreshGrowthBtn();
       })();
+
+      document.getElementById('btnAmtOnly').addEventListener('click', function () {
+        showAmtOnly = !showAmtOnly;
+        this.classList.toggle('on', showAmtOnly);
+        this.textContent = showAmtOnly ? '显示' : '隐藏';
+        renderGrid();
+      });
 
       document.getElementById('btnFavOnly').addEventListener('click', function () {
         showOnlyFav = !showOnlyFav;
