@@ -164,6 +164,19 @@ function detectColFormat(rows, header1Row, nameCol) {
   }
 }
 
+// ─── 层级辅助 ─────────────────────────────────────────────────────────────────
+
+/**
+ * 统计字符串开头的空格数
+ * @param {string} str
+ * @returns {number}
+ */
+function countLeadingSpaces(str) {
+  let i = 0
+  while (i < str.length && str[i] === ' ') i++
+  return i
+}
+
 // ─── 重复商品去重 ─────────────────────────────────────────────────────────────
 
 /**
@@ -269,18 +282,30 @@ function parseSheet(rows, sourceFile) {
 
   const items = []
   let footnote = null
+  // 层级栈：每个元素为 { indent: number, name: string }
+  const hierarchyStack = []
 
   for (let i = dataStart; i < rows.length; i++) {
     const row = rows[i]
     if (!row) continue
     const nameRaw = row[nameCol]
     if (nameRaw === null || nameRaw === undefined) continue
-    const name = String(nameRaw).replace(/\r\n/g, '\n').trim()
+    const nameStr = String(nameRaw).replace(/\r\n/g, '\n')
+    const name = nameStr.trim()
     if (!name) continue
     if (/^注[:：]/.test(name)) {
       footnote = name
       break
     }
+
+    // 根据前导空格数维护层级栈，确定父级
+    const indent = countLeadingSpaces(nameStr)
+    while (hierarchyStack.length > 0 && hierarchyStack[hierarchyStack.length - 1].indent >= indent) {
+      hierarchyStack.pop()
+    }
+    const parentName = hierarchyStack.length > 0 ? hierarchyStack[hierarchyStack.length - 1].name : null
+    const level = hierarchyStack.length // 0 = 顶级
+    hierarchyStack.push({ indent, name })
 
     const c = nameCol
     const unitRaw = row[c + 1] != null ? String(row[c + 1]).trim() : ''
@@ -292,6 +317,8 @@ function parseSheet(rows, sourceFile) {
 
     items.push({
       name,
+      level,
+      parentName,
       unit,
       currentMonth: {
         quantity: parseCell(row[c + off.curQty]),
@@ -421,4 +448,4 @@ if (require.main === module) {
   main()
 }
 
-module.exports = { parseXls, parseDir, parseSheet, parseCell, parsePeriod, deduplicateItems, isWeightUnit }
+module.exports = { parseXls, parseDir, parseSheet, parseCell, parsePeriod, deduplicateItems, isWeightUnit, countLeadingSpaces }

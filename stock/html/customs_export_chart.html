@@ -37,6 +37,7 @@
       border-bottom: 1px solid #1e293b;
     }
     .group-title { font-size: 14px; font-weight: 600; color: #e2e8f0; }
+    .group-title-parent { color: #64748b; font-weight: 400; }
     .group-unit  { font-size: 11px; color: #64748b; margin-left: 6px; }
     .charts-row {
       display: grid;
@@ -217,7 +218,7 @@
       (entry.items || []).forEach(function (item) {
         /* 应用名称修正表，将异体写法统一为规范名 */
         var name = NAME_ALIASES[item.name] || item.name;
-        if (!result[name]) result[name] = { unit: item.unit, years: {} };
+        if (!result[name]) result[name] = { unit: item.unit, level: item.level || 0, parentName: item.parentName || null, years: {} };
         if (!result[name].years[year]) result[name].years[year] = [];
         result[name].years[year].push({
           month:    month,
@@ -509,7 +510,7 @@
     }, '0');
 
     var names = commodityNames.filter(function (n) {
-      if (keyword && n.indexOf(keyword) < 0) return false;
+      if (keyword && n.indexOf(keyword) < 0 && !(commodities[n].parentName || '').includes(keyword)) return false;
       if (n.charAt(n.length - 1) === '*') return false;
       if (showOnlyFav && !favorites.has(n)) return false;
       var yearData = commodities[n].years[latestYear];
@@ -558,7 +559,13 @@
         header.className = 'group-header';
         var titleEl = document.createElement('span');
         titleEl.className = 'group-title';
-        titleEl.textContent = name;
+        if (com && com.parentName) {
+          var parentSpan = document.createElement('span');
+          parentSpan.className = 'group-title-parent';
+          parentSpan.textContent = com.parentName + ' › ';
+          titleEl.appendChild(parentSpan);
+        }
+        titleEl.appendChild(document.createTextNode(name));
         var unitEl = document.createElement('span');
         unitEl.className = 'group-unit';
         unitEl.textContent = com && com.unit ? '（数量单位：' + com.unit + '）' : '';

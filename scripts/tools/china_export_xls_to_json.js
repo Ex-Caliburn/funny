@@ -184,24 +184,38 @@ function sheetToExport(rows, sheetName, sourceFile) {
 
   const items = [];
   let footnote = null;
+  // 层级栈：{ indent: number, name: string }
+  const hierarchyStack = [];
 
   for (let i = dataStart; i < rows.length; i++) {
     const row = rows[i];
     if (!row) continue;
     const nameRaw = row[nameCol];
     if (nameRaw === null || nameRaw === undefined) continue;
-    const name = String(nameRaw).replace(/\r\n/g, '\n').trim();
+    const nameStr = String(nameRaw).replace(/\r\n/g, '\n');
+    const name = nameStr.trim();
     if (!name) continue;
     if (/^注[:：]/.test(name)) {
       footnote = name;
       break;
     }
 
+    // 根据前导空格数维护层级栈，确定父级
+    const indent = nameStr.match(/^ */)[0].length;
+    while (hierarchyStack.length > 0 && hierarchyStack[hierarchyStack.length - 1].indent >= indent) {
+      hierarchyStack.pop();
+    }
+    const parentName = hierarchyStack.length > 0 ? hierarchyStack[hierarchyStack.length - 1].name : null;
+    const level = hierarchyStack.length; // 0 = 顶级
+    hierarchyStack.push({ indent, name });
+
     // 数量/金额列紧跟在 nameCol 之后：+1 计量单位，+2 当月数量，+3 当月金额，+4 累计数量，+5 累计金额，+6 上年数量，+7 上年金额，+8 同比数量，+9 同比金额
     const c = nameCol;
     const unit = row[c + 1] != null ? String(row[c + 1]).trim() : '';
     items.push({
       name,
+      level,
+      parentName,
       unit: unit || null,
       currentMonth: {
         quantity: parseCell(row[c + 2]),

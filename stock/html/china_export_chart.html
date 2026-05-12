@@ -47,6 +47,7 @@
     .group-title {
       font-size: 14px; font-weight: 600; color: #e2e8f0;
     }
+    .group-title-parent { color: #64748b; font-weight: 400; }
     .group-unit {
       font-size: 11px; color: #64748b; margin-left: 6px;
     }
@@ -221,7 +222,7 @@
 
       (entry.items || []).forEach(function (item) {
         var name = item.name;
-        if (!result[name]) result[name] = { unit: item.unit, years: {} };
+        if (!result[name]) result[name] = { unit: item.unit, level: item.level || 0, parentName: item.parentName || null, years: {} };
         if (!result[name].years[year]) result[name].years[year] = [];
         result[name].years[year].push({
           month:        month,
@@ -302,10 +303,23 @@
   function makeNullArr() { return X_MONTHS.map(function () { return null; }); }
   function monthIdx(mm) { return parseInt(mm, 10) - 1; }
 
-  /* ── 根据品类 unit 推导单价单位 ── */
-  function unitPriceUnit(comUnit) {
-    if (!comUnit || comUnit === '-') return '亿元/单位';
-    return '亿元/' + comUnit;
+  /**
+   * 返回单价的展示信息（金额单位为亿元）：
+   *   displayUnit  — Y 轴/标题显示的单位字符串（null 表示无法计算）
+   *   factor       — 将原始 亿元/comUnit 换算为 displayUnit 的系数
+   *     亿元/万X → 元/X，系数=10000（1亿=1e8元，1万X=1e4X，故 1e8/1e4=10000）
+   *     亿元/亿X → 元/X，系数=1（1e8/1e8=1）
+   *     亿元/X   → 万元/X，系数=10000（1亿=1e4万）
+   */
+  function unitPriceInfo(comUnit) {
+    if (!comUnit || comUnit === '-') return { displayUnit: null, factor: 1 };
+    if (/^万/.test(comUnit)) {
+      return { displayUnit: '元/' + comUnit.replace(/^万/, ''), factor: 10000 };
+    }
+    if (/^亿/.test(comUnit)) {
+      return { displayUnit: '元/' + comUnit.replace(/^亿/, ''), factor: 1 };
+    }
+    return { displayUnit: '万元/' + comUnit, factor: 10000 };
   }
 
   /* ── 构建单图 option ── */
@@ -315,13 +329,15 @@
     var years = Object.keys(com.years).sort();
     var latestYear = years[years.length - 1];
 
-    var valKey, yoyKey, momKey, unit;
+    var valKey, yoyKey, momKey, unit, valueScale;
     if (field === 'amount') {
-      valKey = 'amount';   yoyKey = 'yoyAmt'; momKey = 'momAmt'; unit = '亿元';
+      valKey = 'amount';    yoyKey = 'yoyAmt'; momKey = 'momAmt'; unit = '亿元';     valueScale = 1;
     } else if (field === 'quantity') {
-      valKey = 'quantity'; yoyKey = 'yoyQty'; momKey = 'momQty'; unit = com.unit || '';
+      valKey = 'quantity';  yoyKey = 'yoyQty'; momKey = 'momQty'; unit = com.unit || ''; valueScale = 1;
     } else { /* unitPrice */
-      valKey = 'unitPrice'; yoyKey = 'yoyUP'; momKey = 'momUP'; unit = unitPriceUnit(com.unit);
+      var upInfo = unitPriceInfo(com.unit);
+      valKey = 'unitPrice'; yoyKey = 'yoyUP';  momKey = 'momUP';
+      unit = upInfo.displayUnit || '亿元/单位'; valueScale = upInfo.factor;
     }
 
     var series = [];
@@ -333,7 +349,11 @@
 
       /* 绝对值曲线（始终显示） */
       var vals = makeNullArr();
-      arr.forEach(function (d) { vals[monthIdx(d.month)] = d[valKey]; });
+      arr.forEach(function (d) {
+        var v = d[valKey];
+        if (v != null && valueScale !== 1) v = +(v * valueScale).toFixed(4);
+        vals[monthIdx(d.month)] = v;
+      });
       series.push({
         name: y + '年', type: 'line', yAxisIndex: 0, data: vals,
         smooth: true, symbol: 'circle', symbolSize: isLatest ? 5 : 4,
@@ -461,7 +481,7 @@
     }, '0');
 
     var names = commodityNames.filter(function (n) {
-      if (keyword && n.indexOf(keyword) < 0) return false;
+      if (keyword && n.indexOf(keyword) < 0 && !(commodities[n].parentName || '').includes(keyword)) return false;
       /* 排除汇总大类（名称末尾带 * 号） */
       if (n.charAt(n.length - 1) === '*') return false;
       /* 仅收藏模式 */
@@ -507,7 +527,13 @@
         header.className = 'group-header';
         var titleEl = document.createElement('span');
         titleEl.className = 'group-title';
-        titleEl.textContent = name;
+        if (com && com.parentName) {
+          var parentSpan = document.createElement('span');
+          parentSpan.className = 'group-title-parent';
+          parentSpan.textContent = com.parentName + ' › ';
+          titleEl.appendChild(parentSpan);
+        }
+        titleEl.appendChild(document.createTextNode(name));
         var unitEl = document.createElement('span');
         unitEl.className = 'group-unit';
         unitEl.textContent = com && com.unit && com.unit !== '-' ? '（数量单位：' + com.unit + '）' : '';
@@ -546,7 +572,10 @@
           var labelText = meta.label;
           if (field === 'quantity' && com && com.unit && com.unit !== '-') labelText += '（' + com.unit + '）';
           if (field === 'amount') labelText += '（亿元）';
-          if (field === 'unitPrice') labelText += '（亿元/' + (com && com.unit && com.unit !== '-' ? com.unit : '单位') + '）';
+          if (field === 'unitPrice') {
+            var upLabel = unitPriceInfo(com && com.unit).displayUnit;
+            labelText += upLabel ? '（' + upLabel + '）' : '';
+          }
           cardTitle.textContent = labelText;
 
           var btns = document.createElement('div');
