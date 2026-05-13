@@ -183,6 +183,15 @@
   var COLOR_YOY = '#e879f9';
   var COLOR_MOM = '#f59e0b';
 
+  /* ── 千分位格式化 ── */
+  function fmtNum(v) {
+    if (v == null || typeof v !== 'number') return String(v);
+    var s = v.toFixed(4).replace(/\.?0+$/, '');
+    var parts = s.split('.');
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    return parts.join('.');
+  }
+
   /* 每个字段对应的颜色主题（用于 y 轴名称和图例高亮） */
   var FIELD_META = {
     quantity:  { label: '数量',  titleClass: 'card-title-qty' },
@@ -403,7 +412,11 @@
       yAxis: [
         { type: 'value', position: 'left', name: unit ? '(' + unit + ')' : '',
           nameTextStyle: { color: '#64748b', fontSize: 10 },
-          axisLabel: { color: '#9aa4b2', fontSize: 10 }, splitLine: { lineStyle: { color: '#1f2937' } } },
+          axisLabel: {
+            color: '#9aa4b2', fontSize: 10,
+            formatter: function (v) { return fmtNum(v); }
+          },
+          splitLine: { lineStyle: { color: '#1f2937' } } },
         { type: 'value', position: 'right',
           axisLabel: { color: '#9aa4b2', fontSize: 10, formatter: '{value}%' }, splitLine: { show: false } }
       ],
@@ -416,7 +429,7 @@
           ps.forEach(function (p) {
             if (p.value == null) return;
             var isRate = p.seriesName.indexOf('%') > -1;
-            s += p.marker + p.seriesName + ': ' + (typeof p.value === 'number' ? p.value.toFixed(4).replace(/\.?0+$/, '') : p.value)
+            s += p.marker + p.seriesName + ': ' + (typeof p.value === 'number' ? fmtNum(p.value) : p.value)
               + (isRate ? '%' : (unit ? ' ' + unit : '')) + '<br/>';
           });
           return s;

@@ -1,0 +1,47 @@
+{
+  "title": "上海有色金属网-有色金属现货均价",
+  "unit": "元/吨",
+  "source": "https://www.smm.com.cn/price",
+  "metals": {
+    "copper": "SMM 1#电解铜",
+    "yangshan_premium_warrant": "洋山铜溢价(仓单)",
+    "yangshan_premium_bl": "洋山铜溢价(提单)",
+    "copper_concentrate_index": "进口铜精矿指数(月)",
+    "copper_rod_fee": "SMM鹰潭8mm铜杆加工费(月度)",
+    "aluminum": "SMM A00铝",
+    "lead": "SMM 1#铅锭",
+    "zinc": "SMM 0#锌锭",
+    "nickel": "SMM 1#电解镍",
+    "tin": "SMM 1#锡",
+    "nickel_sulfate": "SMM电池级硫酸镍指数",
+    "cobalt": "电解钴",
+    "cobalt_sulfate": "硫酸钴",
+    "lithium_carbonate": "电池级碳酸锂",
+    "antimony": "2#低铋锑锭",
+    "manganese_sulfate": "SMM电池级硫酸锰指数",
+    "indium": "精铟"
+  },
+  "updatedAt": "2026-05-13",
+  "data": [
+    {
+      "date": "2026-05-13",
+      "copper": 108500,
+      "yangshan_premium_warrant": 72,
+      "yangshan_premium_bl": 71,
+      "copper_concentrate_index": -80.35,
+      "copper_rod_fee": 440,
+      "aluminum": 24560,
+      "lead": 16375,
+      "zinc": 24710,
+      "nickel": 147300,
+      "nickel_sulfate": 33568,
+      "tin": 432250,
+      "cobalt": 425500,
+      "cobalt_sulfate": 94500,
+      "lithium_carbonate": 200500,
+      "antimony": 156500,
+      "manganese_sulfate": 7657,
+      "indium": 4700
+    }
+  ]
+}

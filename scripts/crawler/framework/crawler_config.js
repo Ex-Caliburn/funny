@@ -317,6 +317,52 @@ module.exports = {
     excludeKeywords: ['美元值', '美元'],
   },
 
+  /**
+   * 上海有色金属网（SMM）— 有色金属现货均价
+   * 页面：https://www.smm.com.cn/price
+   * 脚本：scripts/crawler/smm/smm_crawler.js
+   * 数据写入：stock/smm/smm_metal_prices.json
+   *
+   * 每次爬取当日价格快照，按日期去重增量追加
+   */
+  smmMetalPrices: {
+    pageUrl: 'https://www.smm.com.cn/price',
+    delayBetweenRequests: 2000,
+    maxRetries: 3,
+    timeout: 30000,
+
+    // 数据存储目录（相对于 stock/）
+    dataDir: 'smm',
+    dataFile: 'smm_metal_prices.json',
+
+    /**
+     * 需要追踪的品种配置
+     * key       → JSON 字段名
+     * name      → 页面中 "名称" 列的文字（支持部分匹配）
+     * category  → 所属大类（铜/铝/铅/锌/镍/锡/其他）
+     * unit      → 单位（元/吨 或 元/千克）
+     */
+    targets: {
+      copper: { name: 'SMM 1#电解铜', category: '铜', unit: '元/吨' },
+      yangshan_premium_warrant: { name: '洋山铜溢价(仓单)', category: '铜', unit: '美元/吨' },
+      yangshan_premium_bl: { name: '洋山铜溢价(提单)', category: '铜', unit: '美元/吨' },
+      copper_concentrate_index: { name: '进口铜精矿指数(月)', category: '铜', unit: '美元/干吨' },
+      copper_rod_fee: { name: 'SMM鹰潭8mm铜杆加工费(月度)', category: '铜', unit: '元/吨' },
+      aluminum: { name: 'SMM A00铝', category: '铝', unit: '元/吨' },
+      lead: { name: 'SMM 1#铅锭', category: '铅', unit: '元/吨' },
+      zinc: { name: 'SMM 0#锌锭', category: '锌', unit: '元/吨' },
+      nickel: { name: 'SMM 1#电解镍', category: '镍', unit: '元/吨' },
+      tin: { name: 'SMM 1#锡', category: '锡', unit: '元/吨' },
+      nickel_sulfate: { name: 'SMM电池级硫酸镍指数', category: '镍', unit: '元/吨' },
+      cobalt: { name: '电解钴', category: '其他', unit: '元/吨' },
+      cobalt_sulfate: { name: '硫酸钴', category: '其他', unit: '元/吨' },
+      lithium_carbonate: { name: '电池级碳酸锂', category: '其他', unit: '元/吨' },
+      antimony: { name: '2#低铋锑锭', category: '其他', unit: '元/吨' },
+      manganese_sulfate: { name: 'SMM电池级硫酸锰指数', category: '其他', unit: '元/吨' },
+      indium: { name: '精铟', category: '其他', unit: '元/千克' },
+    },
+  },
+
   // 澳门博彩监察协调局（DICJ）每月幸运博彩毛收入
   macauGaming: {
     // 基础 URL，{year} 替换为实际年份

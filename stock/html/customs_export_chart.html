@@ -167,6 +167,15 @@
   var COLOR_YOY = '#e879f9';
   var COLOR_MOM = '#f59e0b';
 
+  /* ── 千分位格式化 ── */
+  function fmtNum(v) {
+    if (v == null || typeof v !== 'number') return String(v);
+    var s = v.toFixed(4).replace(/\.?0+$/, '');
+    var parts = s.split('.');
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    return parts.join('.');
+  }
+
   /* ── 品类名称修正表 ──
      key   → 原始数据中出现的错误/异体写法
      value → 统一使用的规范名称
@@ -417,12 +426,12 @@
                 /* 单价已换算为元，用万/亿缩写 */
                 if (Math.abs(v) >= 100000000) return (v / 100000000).toFixed(1) + '亿';
                 if (Math.abs(v) >= 10000)     return (v / 10000).toFixed(1) + '万';
-                return v;
+                return fmtNum(v);
               }
               /* 金额（万元）& 数量 */
               if (Math.abs(v) >= 100000) return (v / 10000).toFixed(0) + '亿';
               if (Math.abs(v) >= 10000)  return (v / 10000).toFixed(1) + '亿';
-              return v;
+              return fmtNum(v);
             }
           },
           splitLine: { lineStyle: { color: '#1f2937' } }
@@ -447,7 +456,7 @@
               s += p.marker + p.seriesName + ': <span style="color:#f59e0b">精度截断（< 0.5 ' + (com && com.unit ? com.unit : '') + '）</span><br/>';
               return;
             }
-            var val = typeof p.value === 'number' ? p.value.toFixed(4).replace(/\.?0+$/, '') : p.value;
+            var val = typeof p.value === 'number' ? fmtNum(p.value) : p.value;
             s += p.marker + p.seriesName + ': ' + val + (isRate ? '%' : (unit ? ' ' + unit : '')) + '<br/>';
           });
           return s;
