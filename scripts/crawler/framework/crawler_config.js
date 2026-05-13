@@ -344,10 +344,22 @@ module.exports = {
      */
     targets: {
       copper: { name: 'SMM 1#电解铜', category: '铜', unit: '元/吨' },
-      yangshan_premium_warrant: { name: '洋山铜溢价(仓单)', category: '铜', unit: '美元/吨' },
+      yangshan_premium_warrant: {
+        name: '洋山铜溢价(仓单)',
+        category: '铜',
+        unit: '美元/吨',
+      },
       yangshan_premium_bl: { name: '洋山铜溢价(提单)', category: '铜', unit: '美元/吨' },
-      copper_concentrate_index: { name: '进口铜精矿指数(月)', category: '铜', unit: '美元/干吨' },
-      copper_rod_fee: { name: 'SMM鹰潭8mm铜杆加工费(月度)', category: '铜', unit: '元/吨' },
+      copper_concentrate_index: {
+        name: '进口铜精矿指数(月)',
+        category: '铜',
+        unit: '美元/干吨',
+      },
+      copper_rod_fee: {
+        name: 'SMM鹰潭8mm铜杆加工费(月度)',
+        category: '铜',
+        unit: '元/吨',
+      },
       aluminum: { name: 'SMM A00铝', category: '铝', unit: '元/吨' },
       lead: { name: 'SMM 1#铅锭', category: '铅', unit: '元/吨' },
       zinc: { name: 'SMM 0#锌锭', category: '锌', unit: '元/吨' },
@@ -366,7 +378,8 @@ module.exports = {
   // 澳门博彩监察协调局（DICJ）每月幸运博彩毛收入
   macauGaming: {
     // 基础 URL，{year} 替换为实际年份
-    baseUrl: 'https://www.dicj.gov.mo/web/cn/information/DadosEstat_mensal/{year}/index.html',
+    baseUrl:
+      'https://www.dicj.gov.mo/web/cn/information/DadosEstat_mensal/{year}/index.html',
     delayBetweenRequests: 2000,
     maxRetries: 3,
     timeout: 30000,
@@ -376,7 +389,87 @@ module.exports = {
     dataFile: 'monthly_gross_revenue.json',
 
     // 月份中文映射
-    monthNames: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+    monthNames: [
+      '一月',
+      '二月',
+      '三月',
+      '四月',
+      '五月',
+      '六月',
+      '七月',
+      '八月',
+      '九月',
+      '十月',
+      '十一月',
+      '十二月',
+    ],
+  },
+
+  /**
+   * 磷化工产品价格（周度，元/吨）
+   * 接口：https://cms.p2o5.com/p2o5/pd/zh/list.jhtml
+   * 脚本：scripts/crawler/phosphorus_chemical/phosphorus_chemical_crawler.js
+   * 数据写入：stock/phosphorus_chemical/weekly_prices.json
+   *
+   * 接口一次返回所有历史记录，按 recordDate 分组后增量写入
+   */
+  phosphorusChemicalPrices: {
+    apiUrl: 'https://cms.p2o5.com/p2o5/pd/zh/list.jhtml',
+    referer: 'https://p2o5.com/zh/',
+    maxRetries: 3,
+    timeout: 30000,
+    delayBetweenRequests: 2000,
+
+    // 数据存储目录（相对于 stock/）
+    dataDir: 'phosphorus_chemical',
+    dataFile: 'weekly_prices.json',
+
+    /**
+     * 需要追踪的品种配置
+     * key         → JSON 字段名
+     * displayName → 输出 JSON 中的品种名称
+     * match       → 接口返回 products 字段的前缀匹配字符串
+     * unit        → 单位
+     */
+    targets: {
+      phosphate_ore: { displayName: '磷矿石（30%P2O5）', match: '磷矿石', unit: '元/吨' },
+      yellow_phosphorus: { displayName: '黄磷（优等品）', match: '黄磷', unit: '元/吨' },
+      phosphoric_acid_40: {
+        displayName: '磷酸（40%P2O5/定制级）',
+        match: '磷酸（40%P2O5',
+        unit: '元/吨',
+      },
+      phosphoric_acid_52: {
+        displayName: '磷酸（52%P2O5/优等品）',
+        match: '磷酸（52%P2O5',
+        unit: '元/吨',
+      },
+      phosphoric_acid_85i: {
+        displayName: '磷酸（85%H3PO4/工业级/热法）',
+        match: '磷酸（85%H3PO4/工业级',
+        unit: '元/吨',
+      },
+      phosphoric_acid_85f: {
+        displayName: '磷酸（85%H3PO4/食品级/湿法）',
+        match: '磷酸(85%H3PO4/食品',
+        unit: '元/吨',
+      },
+      map_11_44: {
+        displayName: '磷酸一铵（11-44）',
+        match: '磷酸一铵（11-44）',
+        unit: '元/吨',
+      },
+      map_11_61: {
+        displayName: '工业磷酸一铵（11-61）',
+        match: '工业磷酸一铵（11-61）',
+        unit: '元/吨',
+      },
+      mcp_feed: {
+        displayName: '磷酸二氢钙（饲料级）',
+        match: '磷酸二氢钙（饲料级）',
+        unit: '元/吨',
+      },
+    },
   },
 
   // 文件处理配置

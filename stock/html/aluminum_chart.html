@@ -336,19 +336,28 @@
       backgroundColor: '#0b0f19',
       animation: true,
       tooltip: {
-        trigger: 'item',
+        trigger: 'axis',
+        axisPointer: {
+          type: 'line', snap: true,
+          lineStyle: { color: '#475569', type: 'dashed', width: 1 }
+        },
         backgroundColor: 'rgba(15,23,42,0.95)',
         borderColor: '#1f2937',
         textStyle: { color: '#e2e8f0', fontSize: 13 },
-        formatter: function(p) {
-          var isRate = p.seriesName.indexOf('%') > -1;
-          var v = Array.isArray(p.value) ? p.value[1] : p.value;
-          if (v == null) return '';
-          var dateStr = p.data && p.data.date ? p.data.date : '';
-          return '<b>' + p.seriesName + '</b>'
-            + (dateStr ? '<br/>' + dateStr : '')
-            + '<br/><span style="color:' + p.color + '">●</span> '
-            + v + (isRate ? '%' : ' 元/吨');
+        formatter: function(params) {
+          if (!params || !params.length) return '';
+          var header = '', lines = '';
+          params.forEach(function(p) {
+            var isRate = p.seriesName.indexOf('%') > -1;
+            var v = Array.isArray(p.value) ? p.value[1] : p.value;
+            if (v == null) return;
+            var dateStr = p.data && p.data.date ? p.data.date : '';
+            if (!header && dateStr) header = '<b>' + dateStr + '</b><br/>';
+            lines += '<span style="color:' + p.color + '">●</span> '
+              + p.seriesName + ': <b>' + v + '</b>'
+              + (isRate ? '%' : ' 元/吨') + '<br/>';
+          });
+          return header + lines;
         }
       },
       legend: {
