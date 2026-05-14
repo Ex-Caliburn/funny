@@ -238,6 +238,12 @@ module.exports = {
     // 数据存储目录（相对于 stock/）
     dataDir: 'aluminum',
 
+    /** 按年份翻页全量爬取时使用的年份（node ... --full 或未传年份但传了 --full 时用；也可命令行直接传 2026 覆盖） */
+    crawlYears: [2025, 2026],
+
+    /** 默认增量：首页列表中取日期最新的若干天（按日期去重；与 --full / 传年份互斥） */
+    defaultRecentDays: 3,
+
     targets: {
       aluminumIngot: {
         name: '铝锭现货价（华东/华南/西南/中原）',

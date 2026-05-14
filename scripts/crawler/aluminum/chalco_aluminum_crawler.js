@@ -15,9 +15,9 @@
  *   第3页：index_2.html  ...依此类推
  *
  * 用法：
- *   node scripts/crawler/aluminum/chalco_aluminum_crawler.js           # 爬取2025-2026年
- *   node scripts/crawler/aluminum/chalco_aluminum_crawler.js 2026      # 爬取指定年份
- *   node scripts/crawler/aluminum/chalco_aluminum_crawler.js 2025 2026 # 多年份
+ *   node .../chalco_aluminum_crawler.js              # 默认：首页列表中最近 N 天（见 config.defaultRecentDays）
+ *   node .../chalco_aluminum_crawler.js --full       # 按 crawler_config.chalcoAluminum.crawlYears 翻页全量
+ *   node .../chalco_aluminum_crawler.js 2026         # 指定年份翻页全量（可多个年份）
  */
 
 'use strict'
@@ -91,6 +91,25 @@ function resolveUrl(href, baseUrl) {
     return `${u.protocol}//${u.host}${href}`
   }
   return new URL(href, baseUrl).href
+}
+
+/**
+ * 按日期降序，取前若干「不同日期」的条目（用于默认增量）
+ * @param {Array<{date: string, url: string}>} items
+ * @param {number} dayCount
+ * @returns {Array<{date: string, url: string}>}
+ */
+function pickRecentDistinctDays(items, dayCount) {
+  const sorted = [...items].sort((a, b) => b.date.localeCompare(a.date))
+  const picked = []
+  const seenDates = new Set()
+  for (const it of sorted) {
+    if (seenDates.has(it.date)) continue
+    seenDates.add(it.date)
+    picked.push(it)
+    if (picked.length >= dayCount) break
+  }
+  return picked
 }
 
 /**
@@ -266,7 +285,11 @@ async function crawlDetailPage(item) {
 
     if (parsed.aluminumIngot) {
       const cfg = config.targets.aluminumIngot
-      const vals = cfg.regions.map((k) => `${cfg.regionNames[cfg.regions.indexOf(k)]}:${parsed.aluminumIngot[k]}`).join(' ')
+      const vals = cfg.regions
+        .map(
+          (k) => `${cfg.regionNames[cfg.regions.indexOf(k)]}:${parsed.aluminumIngot[k]}`
+        )
+        .join(' ')
       console.log(`    铝锭: ${vals}`)
     } else {
       console.log('    铝锭: 未解析到')
@@ -274,7 +297,9 @@ async function crawlDetailPage(item) {
 
     if (parsed.alumina) {
       const cfg = config.targets.alumina
-      const vals = cfg.regions.map((k) => `${cfg.regionNames[cfg.regions.indexOf(k)]}:${parsed.alumina[k]}`).join(' ')
+      const vals = cfg.regions
+        .map((k) => `${cfg.regionNames[cfg.regions.indexOf(k)]}:${parsed.alumina[k]}`)
+        .join(' ')
       console.log(`    氧化铝: ${vals}`)
     } else {
       console.log('    氧化铝: 未解析到')
@@ -290,81 +315,143 @@ async function crawlDetailPage(item) {
 async function main() {
   console.log('========================================')
   console.log('  中国铝业（Chalco）产品报价爬虫')
-  console.log('  铝锭 & 氧化铝 2025-2026 历史数据')
   console.log('========================================')
 
-  const args = process.argv.slice(2).map(Number).filter((n) => n > 2000 && n < 2100)
-  const targetYears = args.length > 0 ? new Set(args) : new Set([2025, 2026])
-  const minYear = Math.min(...targetYears)
+  const argv = process.argv.slice(2)
+  const yearArgs = argv
+    .filter((a) => a !== '--full')
+    .map(Number)
+    .filter((n) => n > 2000 && n < 2100)
+  const wantFull = argv.includes('--full') || yearArgs.length > 0
+  const firstPageOnly = !wantFull
 
-  console.log(`目标年份: ${[...targetYears].sort().join(', ')}`)
+  /** @type {Set<number>|null} */
+  let targetYears = null
+  /** @type {number|null} */
+  let minYear = null
+
+  if (!firstPageOnly) {
+    if (yearArgs.length > 0) {
+      targetYears = new Set(yearArgs)
+    } else {
+      const raw =
+        Array.isArray(config.crawlYears) && config.crawlYears.length > 0
+          ? config.crawlYears
+          : [2025, 2026]
+      targetYears = new Set(
+        raw.map(Number).filter((n) => n > 2000 && n < 2100)
+      )
+      if (targetYears.size === 0) targetYears = new Set([2025, 2026])
+    }
+    minYear = Math.min(...targetYears)
+  }
+
+  if (firstPageOnly) {
+    const n = Math.max(1, Number(config.defaultRecentDays) || 3)
+    console.log(`  模式: 默认仅最近 ${n} 天（首页列表按日期去重后取最新）`)
+  } else {
+    console.log(`  模式: 按年份翻页全量 — ${[...targetYears].sort().join(', ')}`)
+  }
+  console.log('========================================')
 
   const baseUrl = config.listBaseUrl
   const ingotRecords = []
   const aluminaRecords = []
 
-  let pageNum = 0
-  let shouldStop = false
-
-  while (!shouldStop) {
-    // 构建分页 URL：第1页 index.html，后续 index_{n}.html
-    const listUrl =
-      pageNum === 0 ? `${baseUrl}/index.html` : `${baseUrl}/index_${pageNum}.html`
-
-    console.log(`\n[列表页 ${pageNum + 1}] ${listUrl}`)
+  if (firstPageOnly) {
+    const listUrl = `${baseUrl}/index.html`
+    console.log(`\n[列表页 1] ${listUrl}`)
 
     let listHtml
     try {
       listHtml = await fetchHtml(listUrl)
     } catch (err) {
-      console.warn(`列表页获取失败，停止翻页: ${err.message}`)
-      break
+      console.warn(`列表页获取失败: ${err.message}`)
     }
 
-    const items = parseListPage(listHtml, listUrl)
-
+    const items = listHtml ? parseListPage(listHtml, listUrl) : []
     if (items.length === 0) {
-      console.log('  当前页未找到报价链接，停止翻页')
-      break
-    }
+      console.log('  当前页未找到报价链接')
+    } else {
+      const recentCount = Math.max(1, Number(config.defaultRecentDays) || 3)
+      const toFetch = pickRecentDistinctDays(items, recentCount)
+      console.log(
+        `  首页共 ${items.length} 条，取最近 ${recentCount} 个自然日共 ${toFetch.length} 条`
+      )
+      for (const item of toFetch) {
+        console.log(`\n  爬取 ${item.date}: ${item.url}`)
+        await sleep(config.delayBetweenRequests || 2500)
 
-    console.log(`  找到 ${items.length} 条报价链接`)
+        const result = await crawlDetailPage(item)
 
-    // 检查该页最早日期，决定是否继续翻页
-    const datesOnPage = items.map((i) => i.date).sort()
-    const earliestOnPage = datesOnPage[0]
-    const earliestYear = parseInt(earliestOnPage.split('-')[0], 10)
-
-    for (const item of items) {
-      const year = parseInt(item.date.split('-')[0], 10)
-
-      if (!targetYears.has(year)) {
-        // 该日期不在目标年份，跳过（但不停止，因为页内可能混有目标年份数据）
-        if (year < minYear) {
-          console.log(`  日期 ${item.date} 已超出范围，本页后续跳过`)
-          shouldStop = true
+        if (result.aluminumIngot) {
+          ingotRecords.push({ date: result.date, ...result.aluminumIngot })
         }
-        continue
-      }
-
-      console.log(`\n  爬取 ${item.date}: ${item.url}`)
-      await sleep(config.delayBetweenRequests || 2500)
-
-      const result = await crawlDetailPage(item)
-
-      if (result.aluminumIngot) {
-        ingotRecords.push({ date: result.date, ...result.aluminumIngot })
-      }
-      if (result.alumina) {
-        aluminaRecords.push({ date: result.date, ...result.alumina })
+        if (result.alumina) {
+          aluminaRecords.push({ date: result.date, ...result.alumina })
+        }
       }
     }
+  } else {
+    let pageNum = 0
+    let shouldStop = false
 
-    if (earliestYear < minYear) shouldStop = true
+    while (!shouldStop) {
+      const listUrl =
+        pageNum === 0 ? `${baseUrl}/index.html` : `${baseUrl}/index_${pageNum}.html`
 
-    if (!shouldStop) {
-      pageNum++
-      await sleep(config.delayBetweenRequests || 2500)
+      console.log(`\n[列表页 ${pageNum + 1}] ${listUrl}`)
+
+      let listHtml
+      try {
+        listHtml = await fetchHtml(listUrl)
+      } catch (err) {
+        console.warn(`列表页获取失败，停止翻页: ${err.message}`)
+        break
+      }
+
+      const items = parseListPage(listHtml, listUrl)
+
+      if (items.length === 0) {
+        console.log('  当前页未找到报价链接，停止翻页')
+        break
+      }
+
+      console.log(`  找到 ${items.length} 条报价链接`)
+
+      const datesOnPage = items.map((i) => i.date).sort()
+      const earliestYear = parseInt(datesOnPage[0].split('-')[0], 10)
+
+      for (const item of items) {
+        const year = parseInt(item.date.split('-')[0], 10)
+
+        if (!targetYears.has(year)) {
+          if (year < minYear) {
+            console.log(`  日期 ${item.date} 已超出范围，本页后续跳过`)
+            shouldStop = true
+          }
+          continue
+        }
+
+        console.log(`\n  爬取 ${item.date}: ${item.url}`)
+        await sleep(config.delayBetweenRequests || 2500)
+
+        const result = await crawlDetailPage(item)
+
+        if (result.aluminumIngot) {
+          ingotRecords.push({ date: result.date, ...result.aluminumIngot })
+        }
+        if (result.alumina) {
+          aluminaRecords.push({ date: result.date, ...result.alumina })
+        }
+      }
+
+      if (earliestYear < minYear) shouldStop = true
+
+      if (!shouldStop) {
+        pageNum++
+        await sleep(config.delayBetweenRequests || 2500)
+      }
     }
   }
 
@@ -378,11 +465,16 @@ async function main() {
       unit: '元/吨',
       source: 'https://www.chalco.com.cn/cpyfw/cpbj/',
       regions: Object.fromEntries(
-        config.targets.aluminumIngot.regions.map((k, i) => [k, config.targets.aluminumIngot.regionNames[i]])
+        config.targets.aluminumIngot.regions.map((k, i) => [
+          k,
+          config.targets.aluminumIngot.regionNames[i],
+        ])
       ),
     }
     mergeAndWrite(ingotFile, ingotRecords, ingotMeta)
-    console.log(`\n铝锭数据已写入: ${path.relative(process.cwd(), ingotFile)} (${ingotRecords.length} 条)`)
+    console.log(
+      `\n铝锭数据已写入: ${path.relative(process.cwd(), ingotFile)} (${ingotRecords.length} 条)`
+    )
   } else {
     console.log('\n警告：未获取到铝锭数据')
   }
@@ -394,17 +486,24 @@ async function main() {
       unit: '元/吨',
       source: 'https://www.chalco.com.cn/cpyfw/cpbj/',
       regions: Object.fromEntries(
-        config.targets.alumina.regions.map((k, i) => [k, config.targets.alumina.regionNames[i]])
+        config.targets.alumina.regions.map((k, i) => [
+          k,
+          config.targets.alumina.regionNames[i],
+        ])
       ),
     }
     mergeAndWrite(aluminaFile, aluminaRecords, aluminaMeta)
-    console.log(`氧化铝数据已写入: ${path.relative(process.cwd(), aluminaFile)} (${aluminaRecords.length} 条)`)
+    console.log(
+      `氧化铝数据已写入: ${path.relative(process.cwd(), aluminaFile)} (${aluminaRecords.length} 条)`
+    )
   } else {
     console.log('警告：未获取到氧化铝数据')
   }
 
   console.log('\n========================================')
-  console.log(`完成。铝锭 ${ingotRecords.length} 条，氧化铝 ${aluminaRecords.length} 条。`)
+  console.log(
+    `完成。铝锭 ${ingotRecords.length} 条，氧化铝 ${aluminaRecords.length} 条。`
+  )
   console.log('========================================')
 }
 
