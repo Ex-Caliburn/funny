@@ -303,14 +303,20 @@ module.exports = {
   chinaExport: {
     listUrlTemplate:
       'http://www.customs.gov.cn/eportal/ui?pageId=302275&moduleId=9f806879368d4feabb9644105dcdeba3&staticRequest=yes&currentPage={page}',
-    delayBetweenRequests: 1500,
+    /** axios 下载成功/校验间隔（毫秒） */
+    delayBetweenRequests: 800,
+    /** page.goto 后额外等待 DOM 渲染（毫秒），过短可能拿不到链接 */
+    afterPageLoadMs: 550,
+    /** load 通常比 networkidle 快很多；站点异常时可改回 networkidle */
+    pageGotoWaitUntil: 'load',
     maxRetries: 3,
     timeout: 30000,
     /** 相对于 stock/ 的下载目录 */
     downloadDirRel: 'china_export',
     pagination: {
       startPage: 1,
-      endPage: 3,
+      /** 列表按发布时间倒序，前两页通常为最近数据 */
+      endPage: 2,
     },
     /** minYear/maxYear 为 null 表示不限制；筛选依赖标题中的「YYYY年MM月」 */
     yearRange: {

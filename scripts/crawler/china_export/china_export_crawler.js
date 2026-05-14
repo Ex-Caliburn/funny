@@ -6,9 +6,10 @@
  * 列表页（分页）：配置项 chinaExport.listUrlTemplate，{page} → 1、2、3…
  * 保存目录：stock/china_export/
  *
- * 用法：
+ * 用法（不传页码时分页见 crawler_config.chinaExport.pagination，默认最新 2 页）：
  *   node scripts/crawler/china_export/china_export_crawler.js
  *   node scripts/crawler/china_export/china_export_crawler.js --pages 1-5
+ *   node scripts/crawler/china_export/china_export_crawler.js --pages 1-30
  *   node scripts/crawler/china_export/china_export_crawler.js 1-8 --min-year 2025 --max-year 2026
  *   node scripts/crawler/china_export/china_export_crawler.js --no-skip
  */

@@ -39,12 +39,16 @@ class ChinaExportExtractor extends BaseDataExtractor {
 
     this.downloadDir = dir;
     this.listUrlTemplate = merged.listUrlTemplate;
-    this.pagination = merged.pagination || { startPage: 1, endPage: 3 };
+    this.pagination = merged.pagination || { startPage: 1, endPage: 2 };
     this.yearRange = merged.yearRange || {};
     /** 链接标题同时包含这些词才算目标 */
     this.titleKeywords = merged.titleKeywords || ['出口', '商品', '量值'];
     this.excludeKeywords = merged.excludeKeywords || [];
-    this.delayBetweenRequests = merged.delayBetweenRequests ?? 1500;
+    this.delayBetweenRequests = merged.delayBetweenRequests ?? 800;
+    /** goto 后主文档事件后的固定等待（非 networkidle） */
+    this.afterPageLoadMs = merged.afterPageLoadMs ?? 550;
+    /** @type {'commit'|'domcontentloaded'|'load'|'networkidle'} */
+    this.pageGotoWaitUntil = merged.pageGotoWaitUntil ?? 'load';
     this.maxRetries = merged.maxRetries ?? 3;
     this.timeout = merged.timeout ?? 30000;
 
@@ -149,8 +153,13 @@ class ChinaExportExtractor extends BaseDataExtractor {
     const browser = await this.getBrowser();
     const page = await browser.newPage();
     try {
-      await page.goto(url, { waitUntil: 'networkidle', timeout: this.timeout }).catch(() => {});
-      await page.waitForTimeout(1500);
+      await page
+        .goto(url, {
+          waitUntil: this.pageGotoWaitUntil,
+          timeout: this.timeout,
+        })
+        .catch(() => {});
+      await page.waitForTimeout(this.afterPageLoadMs);
       const html = await page.content();
       return html;
     } finally {
@@ -273,7 +282,7 @@ class ChinaExportExtractor extends BaseDataExtractor {
       } catch (e) {
         lastErr = e;
         console.warn(`下载失败 (${i + 1}/${this.maxRetries}): ${e.message}`);
-        if (i < this.maxRetries - 1) await this.sleep(2000 * (i + 1));
+        if (i < this.maxRetries - 1) await this.sleep(1200 * (i + 1));
       }
     }
     throw lastErr;
@@ -325,9 +334,12 @@ class ChinaExportExtractor extends BaseDataExtractor {
     const page = await browser.newPage();
     try {
       await page
-        .goto(item.detailUrl, { waitUntil: 'networkidle', timeout: this.timeout })
+        .goto(item.detailUrl, {
+          waitUntil: this.pageGotoWaitUntil,
+          timeout: this.timeout,
+        })
         .catch(() => {});
-      await page.waitForTimeout(1500);
+      await page.waitForTimeout(this.afterPageLoadMs);
       const fileUrl = await this.findXlsUrlFromPage(page, item.detailUrl);
       if (!fileUrl) {
         // 降级：尝试从 HTML 表格提取数据
