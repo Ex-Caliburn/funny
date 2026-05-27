@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>中国黄金储备 - 月度趋势</title>
   <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
-  <style>
+  <script src="chart_tooltip_helpers.js"></script>
+<style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
@@ -204,6 +205,17 @@
     .change-up   { color: #34d399; }
     .change-down { color: #f87171; }
     .change-na   { color: #334155; }
+
+    .loading-msg {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 200px;
+      color: #64748b;
+      font-size: 13px;
+    }
+
+    .loading-msg.error { color: #f87171; }
   </style>
 </head>
 <body>
@@ -215,10 +227,10 @@
     <button class="view-btn" id="btnTable">数据表</button>
   </div>
 </div>
-<div class="subtitle">数据来源：国家外汇管理局官方储备资产表</div>
+<div class="subtitle" id="dataSubtitle">数据来源：国家外汇管理局官方储备资产表</div>
 
 <!-- 统计卡片 -->
-<div class="stats-row" id="statsRow"></div>
+<div class="stats-row" id="statsRow"><div class="loading-msg">数据加载中…</div></div>
 
 <!-- 指标切换 -->
 <div style="display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:16px">
@@ -236,7 +248,7 @@
 
 <!-- 图表 -->
 <div id="chartWrap">
-  <div id="chart" class="chart-area"></div>
+  <div id="chart" class="chart-area"><div class="loading-msg">数据加载中…</div></div>
 </div>
 
 <!-- 数据表格 -->
@@ -247,9 +259,8 @@
 </div>
 
 <script>
-// ─── 内嵌数据（由 gold_parse.js 生成） ──────────────────────────────────────
-const RAW_DATA = {"generatedAt":"2026-05-09T11:37:14.058Z","years":{"2024":[{"month":1,"valueUsd":1482.29,"holdingsOz":7219},{"month":2,"valueUsd":1486.44,"holdingsOz":7258},{"month":3,"valueUsd":1610.69,"holdingsOz":7274},{"month":4,"valueUsd":1679.57,"holdingsOz":7280},{"month":5,"valueUsd":1709.6,"holdingsOz":7280},{"month":6,"valueUsd":1696.97,"holdingsOz":7280},{"month":7,"valueUsd":1766.42,"holdingsOz":7280},{"month":8,"valueUsd":1829.8,"holdingsOz":7280},{"month":9,"valueUsd":1914.69,"holdingsOz":7280},{"month":10,"valueUsd":1990.55,"holdingsOz":7280},{"month":11,"valueUsd":1934.31,"holdingsOz":7296},{"month":12,"valueUsd":1913.37,"holdingsOz":7329}],"2025":[{"month":1,"valueUsd":2065.34,"holdingsOz":7345},{"month":2,"valueUsd":2086.43,"holdingsOz":7361},{"month":3,"valueUsd":2295.94,"holdingsOz":7370},{"month":4,"valueUsd":2435.85,"holdingsOz":7377},{"month":5,"valueUsd":2419.88,"holdingsOz":7383},{"month":6,"valueUsd":2429.31,"holdingsOz":7390},{"month":7,"valueUsd":2439.85,"holdingsOz":7396},{"month":8,"valueUsd":2538.43,"holdingsOz":7402},{"month":9,"valueUsd":2832.91,"holdingsOz":7406},{"month":10,"valueUsd":2972.09,"holdingsOz":7409},{"month":11,"valueUsd":3106.47,"holdingsOz":7412},{"month":12,"valueUsd":3194.5,"holdingsOz":7415}],"2026":[{"month":1,"valueUsd":3695.82,"holdingsOz":7419},{"month":2,"valueUsd":3875.88,"holdingsOz":7422},{"month":3,"valueUsd":3427.63,"holdingsOz":7438}]}};
-// ────────────────────────────────────────────────────────────────────────────
+// ─── 数据来自 stock/gold/gold_data.json（由 gold_parse.js 更新）────────────────
+const DATA_FILE = '../gold/gold_data.json';
 
 const MONTHS = ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
 
@@ -258,9 +269,11 @@ const YEAR_COLORS = [
   '#a78bfa', '#fb923c', '#38bdf8', '#c084fc',
 ];
 
-const years = Object.keys(RAW_DATA.years).sort();
+/** @type {{ generatedAt: string, years: Record<string, object[]> } | null} */
+let RAW_DATA = null;
+let years = [];
 let activeMetric = 'holdingsOz';
-let activeYears  = new Set(years);
+let activeYears  = new Set();
 
 // ─── 计算辅助 ────────────────────────────────────────────────────────────────
 
@@ -285,6 +298,24 @@ function calcMoM(year, month) {
 }
 
 /**
+ * 环比增量：与上个自然月的绝对差值，跨年时查上年 12 月
+ * @returns {number|null}
+ */
+function calcMoMDelta(year, month) {
+  const cur = getValue(year, month);
+  if (cur == null) return null;
+  const prevMonth = month === 1 ? 12 : month - 1;
+  const prevYear  = month === 1 ? parseInt(year) - 1 : parseInt(year);
+  const prev = getValue(prevYear, prevMonth);
+  if (prev == null) return null;
+  return parseFloat((cur - prev).toFixed(isValueMetric() ? 2 : 0));
+}
+
+function isValueMetric() {
+  return activeMetric === 'valueUsd';
+}
+
+/**
  * 同比（YoY）：与上一年同月对比
  * @returns {number|null} 百分比，保留 2 位小数
  */
@@ -301,6 +332,15 @@ function fmtChange(val) {
   const sign = val > 0 ? '+' : '';
   const cls  = val > 0 ? 'change-up' : val < 0 ? 'change-down' : '';
   return { text: `${sign}${val}%`, cls };
+}
+
+/** 格式化绝对增量，带正负号和颜色 class */
+function fmtDelta(val) {
+  if (val == null) return { text: '—', cls: 'change-na' };
+  const sign = val > 0 ? '+' : '';
+  const cls  = val > 0 ? 'change-up' : val < 0 ? 'change-down' : '';
+  const text = Number.isInteger(val) ? `${sign}${val.toLocaleString()}` : `${sign}${val.toFixed(2)}`;
+  return { text, cls };
 }
 
 // ─── 统计卡片 ────────────────────────────────────────────────────────────────
@@ -364,15 +404,18 @@ function buildSeries() {
       symbolSize: 6,
       lineStyle: { color, width: 2.5 },
       itemStyle: { color },
-      emphasis: { focus: 'series' },
+      emphasis: { focus: 'series', lineStyle: { width: 3 }, itemStyle: { borderColor: '#fff', borderWidth: 1 } },
+      blur: { lineStyle: { opacity: 0.12 }, itemStyle: { opacity: 0.12 } },
       connectNulls: false,
     };
   });
 }
 
 function renderChart() {
+  const el = document.getElementById('chart');
   if (!chart) {
-    chart = echarts.init(document.getElementById('chart'), 'dark');
+    el.innerHTML = '';
+    chart = echarts.init(el, 'dark');
     window.addEventListener('resize', () => chart.resize());
   }
 
@@ -381,8 +424,9 @@ function renderChart() {
 
   const option = {
     backgroundColor: 'transparent',
-    tooltip: {
+    tooltip: buildConfinedTooltip({
       trigger: 'axis',
+      axisPointer: { type: 'line', lineStyle: { color: '#64748b', type: 'dashed' } },
       backgroundColor: '#1e293b',
       borderColor: '#334155',
       textStyle: { color: '#dbe0ea', fontSize: 13 },
@@ -408,7 +452,7 @@ function renderChart() {
         });
         return html;
       }
-    },
+    }),
     legend: {
       top: 4, right: 20,
       textStyle: { color: '#94a3b8', fontSize: 12 },
@@ -453,10 +497,11 @@ function renderTable() {
     html += `<th colspan="3" style="color:${color};border-bottom:2px solid ${color}40">${y}年</th>`;
   });
   html += '</tr>';
-  // 第二行：子列名
+  // 第二行：子列名（持有量显示环比增量，价值显示环比%）
+  const momLabel = isValue ? '环比' : '环比增量';
   html += '<tr>';
   activeYearsSorted.forEach(() => {
-    html += `<th class="sub-col">数值(${unit})</th><th class="sub-col">环比</th><th class="sub-col">同比</th>`;
+    html += `<th class="sub-col">数值(${unit})</th><th class="sub-col">${momLabel}</th><th class="sub-col">同比</th>`;
   });
   html += '</tr></thead><tbody>';
 
@@ -468,7 +513,9 @@ function renderTable() {
       if (val == null) {
         html += `<td class="val-na sub-col">—</td><td class="sub-col change-na">—</td><td class="sub-col change-na">—</td>`;
       } else {
-        const mom = fmtChange(calcMoM(y, month));
+        const mom = isValue
+          ? fmtChange(calcMoM(y, month))
+          : fmtDelta(calcMoMDelta(y, month));
         const yoy = fmtChange(calcYoY(y, month));
         html += `<td class="sub-col">${val.toLocaleString()}</td>`;
         html += `<td class="sub-col ${mom.cls}">${mom.text}</td>`;
@@ -511,9 +558,37 @@ document.getElementById('btnTable').addEventListener('click', () => {
 });
 
 // ─── 初始化 ──────────────────────────────────────────────────────────────────
-renderStats();
-renderYearChips();
-renderChart();
+function showLoadError(msg) {
+  const html = `<div class="loading-msg error">${msg}</div>`;
+  document.getElementById('statsRow').innerHTML = html;
+  document.getElementById('chart').innerHTML = html;
+}
+
+function initApp() {
+  years = Object.keys(RAW_DATA.years).sort();
+  activeYears = new Set(years);
+
+  if (RAW_DATA.generatedAt) {
+    const d = RAW_DATA.generatedAt.slice(0, 10);
+    document.getElementById('dataSubtitle').textContent =
+      `数据来源：国家外汇管理局官方储备资产表 · 更新于 ${d}`;
+  }
+
+  renderStats();
+  renderYearChips();
+  renderChart();
+}
+
+fetch(DATA_FILE + '?t=' + Date.now())
+  .then(r => {
+    if (!r.ok) throw new Error(`${DATA_FILE} HTTP ${r.status}`);
+    return r.json();
+  })
+  .then(data => {
+    RAW_DATA = data;
+    initApp();
+  })
+  .catch(err => showLoadError('加载失败：' + err.message));
 </script>
 </body>
 </html>

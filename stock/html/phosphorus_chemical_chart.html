@@ -112,7 +112,8 @@
   </div>
 
   <script src="../vendor/echarts.min.js"></script>
-  <script>
+  <script src="chart_tooltip_helpers.js"></script>
+<script>
   // ── 品种配置 ─────────────────────────────────────────────────
   var SERIES = [
     { key: 'phosphate_ore',       name: '磷矿石（30%P2O5）',            color: '#3b82f6' },
@@ -254,7 +255,7 @@
         name: year + '年',
         type: 'line',
         yAxisIndex: 0,
-        data: data,
+        emphasis: { focus: 'series', lineStyle: { width: 3 }, itemStyle: { borderColor: '#fff', borderWidth: 1 } }, blur: { lineStyle: { opacity: 0.12 }, itemStyle: { opacity: 0.12 } }, data: data,
         smooth: false,
         symbol: 'circle',
         symbolSize: isLatest ? 7 : 4,
@@ -268,7 +269,7 @@
       name: ly + '年环比%',
       type: 'line',
       yAxisIndex: 1,
-      data: rates.momPts,
+      emphasis: { focus: 'series', lineStyle: { width: 3 }, itemStyle: { borderColor: '#fff', borderWidth: 1 } }, blur: { lineStyle: { opacity: 0.12 }, itemStyle: { opacity: 0.12 } }, data: rates.momPts,
       smooth: true,
       symbol: 'triangle',
       symbolSize: 6,
@@ -279,7 +280,7 @@
       name: ly + '年同比%',
       type: 'line',
       yAxisIndex: 1,
-      data: rates.yoyPts,
+      emphasis: { focus: 'series', lineStyle: { width: 3 }, itemStyle: { borderColor: '#fff', borderWidth: 1 } }, blur: { lineStyle: { opacity: 0.12 }, itemStyle: { opacity: 0.12 } }, data: rates.yoyPts,
       smooth: true,
       symbol: 'diamond',
       symbolSize: 6,
@@ -290,7 +291,7 @@
     return {
       backgroundColor: '#0b0f19',
       animation: true,
-      tooltip: {
+      tooltip: buildConfinedTooltip({
         trigger: 'axis',
         axisPointer: {
           type: 'line',
@@ -310,13 +311,13 @@
             if (v == null) return;
             var dateStr = p.data && p.data.date ? p.data.date : '';
             if (!header && dateStr) header = '<b>' + dateStr + '</b><br/>';
-            lines += '<span style="color:' + p.color + '">●</span> '
+            lines += (p.marker || '<span style="color:' + p.color + '">●</span> ')
               + p.seriesName + ': <b>' + v + '</b>'
               + (isRate ? '%' : ' 元/吨') + '<br/>';
           });
           return header + lines;
         }
-      },
+      }),
       legend: {
         top: 4,
         textStyle: { color: '#cbd5e1', fontSize: 12 },
@@ -400,12 +401,12 @@
     return {
       backgroundColor: '#0b0f19',
       animation: false,
-      tooltip: {
+      tooltip: buildConfinedTooltip({
         trigger: 'axis',
+        axisPointer: { type: 'line', snap: true, lineStyle: { color: '#475569', type: 'dashed', width: 1 } },
         backgroundColor: 'rgba(15,23,42,0.95)',
         borderColor: '#1f2937',
         textStyle: { color: '#e2e8f0', fontSize: 12 },
-        axisPointer: { type: 'line', snap: true, lineStyle: { color: '#475569', type: 'dashed', width: 1 } },
         formatter: function(params) {
           if (!params || !params.length) return '';
           var date = params[0].value[0];
@@ -419,7 +420,7 @@
           });
           return html;
         }
-      },
+      }),
       legend: {
         top: 4,
         textStyle: { color: '#cbd5e1', fontSize: 11 },

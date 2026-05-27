@@ -132,6 +132,7 @@
 </div>
 
 <script src="../vendor/echarts.min.js"></script>
+  <script src="chart_tooltip_helpers.js"></script>
 <script>
 (function () {
   'use strict';
@@ -371,7 +372,7 @@
         }
       });
       series.push({
-        name: y + '年', type: 'line', yAxisIndex: 0, data: vals,
+        name: y + '年', type: 'line', yAxisIndex: 0, emphasis: { focus: 'series', lineStyle: { width: 3 }, itemStyle: { borderColor: '#fff', borderWidth: 1 } }, blur: { lineStyle: { opacity: 0.12 }, itemStyle: { opacity: 0.12 } }, data: vals,
         smooth: true, symbol: 'circle', symbolSize: isLatest ? 5 : 4,
         lineStyle: { color: color, width: isLatest ? 2.5 : 1.8 },
         itemStyle: { color: color }
@@ -382,7 +383,7 @@
           var yoys = makeNullArr();
           arr.forEach(function (d) { yoys[monthIdx(d.month)] = d[yoyKey]; });
           series.push({
-            name: '同比%', type: 'line', yAxisIndex: 1, data: yoys,
+            name: '同比%', type: 'line', yAxisIndex: 1, emphasis: { focus: 'series', lineStyle: { width: 3 }, itemStyle: { borderColor: '#fff', borderWidth: 1 } }, blur: { lineStyle: { opacity: 0.12 }, itemStyle: { opacity: 0.12 } }, data: yoys,
             smooth: true, symbol: 'diamond', symbolSize: 4,
             lineStyle: { color: COLOR_YOY, width: 2, type: 'solid' },
             itemStyle: { color: COLOR_YOY }
@@ -392,7 +393,7 @@
           var moms = makeNullArr();
           arr.forEach(function (d) { moms[monthIdx(d.month)] = d[momKey]; });
           series.push({
-            name: '环比%', type: 'line', yAxisIndex: 1, data: moms,
+            name: '环比%', type: 'line', yAxisIndex: 1, emphasis: { focus: 'series', lineStyle: { width: 3 }, itemStyle: { borderColor: '#fff', borderWidth: 1 } }, blur: { lineStyle: { opacity: 0.12 }, itemStyle: { opacity: 0.12 } }, data: moms,
             smooth: true, symbol: 'triangle', symbolSize: 4,
             lineStyle: { color: COLOR_MOM, width: 2, type: 'dashed' },
             itemStyle: { color: COLOR_MOM }
@@ -443,8 +444,9 @@
         }
       ],
       legend: { show: true, top: 0, right: 0, textStyle: { color: '#94a3b8', fontSize: 10 }, itemWidth: 12, itemHeight: 8 },
-      tooltip: {
+      tooltip: buildConfinedTooltip({
         trigger: 'axis',
+        axisPointer: { type: 'line', lineStyle: { color: '#64748b', type: 'dashed' } },
         backgroundColor: 'rgba(15,23,42,.95)', borderColor: '#1f2937', textStyle: { color: '#e2e8f0', fontSize: 12 },
         formatter: function (ps) {
           var s = ps[0].axisValue + '<br/>';
@@ -461,7 +463,7 @@
           });
           return s;
         }
-      },
+      }),
       series: series
     };
 

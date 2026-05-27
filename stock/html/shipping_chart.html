@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>航运运价指数</title>
   <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
-  <style>
+  <script src="chart_tooltip_helpers.js"></script>
+<style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
@@ -57,6 +58,28 @@
     }
 
     .index-tab:hover:not(.active) { background: #334155; color: #e2e8f0; }
+
+    /* ── 指数 / 航线说明 ───────────────────────────────────── */
+    .index-info {
+      margin-bottom: 10px;
+      padding: 10px 14px;
+      background: #0f172a;
+      border: 1px solid #1f2937;
+      border-radius: 10px;
+    }
+
+    .index-info-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #e2e8f0;
+      margin-bottom: 4px;
+    }
+
+    .index-info-desc {
+      font-size: 12px;
+      line-height: 1.55;
+      color: #94a3b8;
+    }
 
     /* ── 线型说明 ─────────────────────────────────────────── */
     .line-legend {
@@ -115,6 +138,17 @@
       height: 180px;
     }
 
+    .loading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 320px;
+      color: #64748b;
+      font-size: 13px;
+    }
+
+    .loading.error { color: #f87171; }
+
     @media (max-width: 900px) {
       .route-grid { grid-template-columns: repeat(2, 1fr); }
     }
@@ -137,6 +171,12 @@
   <span class="subtitle">数据来源：上海航运交易所</span>
 </div>
 
+<!-- 当前指数说明 -->
+<div class="index-info" id="indexInfo">
+  <div class="index-info-title" id="indexInfoTitle">—</div>
+  <div class="index-info-desc" id="indexInfoDesc">数据加载中…</div>
+</div>
+
 <!-- 线型说明 -->
 <div class="line-legend">
   <span>
@@ -151,7 +191,7 @@
 </div>
 
 <!-- 综合指数主图 -->
-<div id="mainChart"></div>
+<div id="mainChart"><div class="loading">数据加载中…</div></div>
 
 <!-- 各航线网格（仅 CCFI 显示）-->
 <div id="routeSection" style="display:none">
@@ -160,34 +200,103 @@
 </div>
 
 <script>
-// ─── 内嵌数据 ─────────────────────────────────────────────────────────────────
-const INDICES_DATA = {
+// ─── 指数配置（数据来自 stock/shipping/*.json，由 shipping_crawler.js 更新）──
+const INDEX_CONFIG = {
   ccfi: {
     name: 'CCFI 中国出口集装箱运价指数',
+    file: '../shipping/ccfi.json',
     primaryRoute: '中国出口集装箱运价综合指数',
-    data: [{"date":"2025-11-14","week":"2025年第46周","中国出口集装箱运价综合指数":1094.03},{"date":"2025-11-21","week":"2025年第47周","中国出口集装箱运价综合指数":1122.69},{"date":"2025-11-28","week":"2025年第48周","中国出口集装箱运价综合指数":1121.80},{"date":"2025-12-05","week":"2025年第49周","中国出口集装箱运价综合指数":1114.89},{"date":"2025-12-12","week":"2025年第50周","中国出口集装箱运价综合指数":1111.80},{"date":"2025-12-19","week":"2025年第51周","中国出口集装箱运价综合指数":1122.73},{"date":"2025-12-26","week":"2025年第52周","中国出口集装箱运价综合指数":1124.66},{"date":"2026-01-09","week":"2026年第1周","中国出口集装箱运价综合指数":1194.89},{"date":"2026-01-16","week":"2026年第2周","中国出口集装箱运价综合指数":1209.85},{"date":"2026-01-23","week":"2026年第3周","中国出口集装箱运价综合指数":1208.75},{"date":"2026-01-30","week":"2026年第4周","中国出口集装箱运价综合指数":1175.59},{"date":"2026-02-06","week":"2026年第5周","中国出口集装箱运价综合指数":1122.15},{"date":"2026-02-13","week":"2026年第6周","中国出口集装箱运价综合指数":1088.14},{"date":"2026-02-27","week":"2026年第8周","中国出口集装箱运价综合指数":1044.57},{"date":"2026-03-06","week":"2026年第9周","中国出口集装箱运价综合指数":1054.26},{"date":"2026-03-13","week":"2026年第10周","中国出口集装箱运价综合指数":1072.16},{"date":"2026-03-20","week":"2026年第11周","中国出口集装箱运价综合指数":1120.61},{"date":"2026-03-27","week":"2026年第12周","中国出口集装箱运价综合指数":1139.64},{"date":"2026-04-03","week":"2026年第13周","中国出口集装箱运价综合指数":1184.70},{"date":"2026-04-10","week":"2026年第14周","中国出口集装箱运价综合指数":1209.85},{"date":"2026-04-17","week":"2026年第15周","中国出口集装箱运价综合指数":1211.08},{"date":"2026-04-24","week":"2026年第16周","中国出口集装箱运价综合指数":1233.76},{"date":"2026-04-30","week":"2026年第17周","中国出口集装箱运价综合指数":1269.64,"日本航线":932.25,"欧洲航线":1571.11,"美西航线":920.56,"美东航线":1061.27,"韩国航线":634.55,"东南亚航线":996.73,"地中海航线":1944.94,"澳新航线":1039.37,"南非航线":1171.67,"南美航线":755.01,"东西非航线":937.13,"波红航线":2242.17},{"date":"2026-05-08","中国出口集装箱运价综合指数":1278.79}]
+    desc: '反映中国出口集装箱运输市场运价综合变动情况，涵盖主要远洋航线，每周五发布。',
   },
   scfi: {
     name: 'SCFI 上海出口集装箱运价指数',
+    file: '../shipping/scfi.json',
     primaryRoute: '综合指数',
-    data: [{"date":"2026-04-30","综合指数":1911.4},{"date":"2026-05-08","综合指数":1954.21}]
+    desc: '反映上海出口集装箱运输市场即期运价水平，是观察出口集运现货市场的核心指标，每周五发布。',
   },
   seafi: {
     name: 'SEAFI 东南亚集装箱运价指数',
+    file: '../shipping/seafi.json',
     primaryRoute: '综合指数',
-    data: [{"date":"2026-04-30","综合指数":2951.52},{"date":"2026-05-08","综合指数":2983.91}]
+    desc: '反映中国至东南亚主要港口的集装箱运价变动，适用于近洋航线运价跟踪，每周五发布。',
   },
   cbcfi: {
     name: 'CBCFI 中国沿海煤炭运价指数',
+    file: '../shipping/cbcfi.json',
     primaryRoute: '综合指数',
-    data: [{"date":"2026-05-07","综合指数":1278.01},{"date":"2026-05-08","综合指数":1278.70}]
-  }
+    desc: '反映中国沿海煤炭运输市场运价水平，覆盖主要沿海煤炭运输航线，每个工作日发布。',
+  },
 }
+
+/** CCFI 各航线中文解释 */
+const ROUTE_DESC = {
+  '中国出口集装箱运价综合指数': 'CCFI 综合指数，加权汇总各主要出口航线运价，反映中国出口集运市场总体水平。',
+  '日本航线': '中国主要港口至日本基本港（东京、横滨、大阪、神户、名古屋等）的集装箱运价。',
+  '欧洲航线': '中国主要港口至欧洲基本港（鹿特丹、汉堡、安特卫普、勒阿弗尔等）的集装箱运价。',
+  '美西航线': '中国主要港口至美国西海岸基本港（洛杉矶、长滩、奥克兰等）的集装箱运价。',
+  '美东航线': '中国主要港口至美国东海岸基本港（纽约、萨凡纳、查尔斯顿等）的集装箱运价。',
+  '韩国航线': '中国主要港口至韩国主要港口（釜山、仁川等）的集装箱运价。',
+  '东南亚航线': '中国主要港口至东南亚主要港口（新加坡、巴生港、胡志明、马尼拉等）的集装箱运价。',
+  '地中海航线': '中国主要港口至地中海地区主要港口（比雷埃夫斯、瓦伦西亚、巴塞罗那等）的集装箱运价。',
+  '澳新航线': '中国主要港口至澳大利亚、新西兰主要港口（悉尼、墨尔本、奥克兰等）的集装箱运价。',
+  '南非航线': '中国主要港口至南非主要港口（德班、开普敦等）的集装箱运价。',
+  '南美航线': '中国主要港口至南美东海岸主要港口（桑托斯、布宜诺斯艾利斯等）的集装箱运价。',
+  '东西非航线': '中国主要港口至东非、西非主要港口（拉各斯、蒙巴萨、德班等）的集装箱运价。',
+  '波红航线': '中国主要港口至波斯湾、红海地区主要港口（杰贝阿里、吉达、达曼等）的集装箱运价。',
+}
+
+/** @type {Record<string, { name: string, primaryRoute: string, data: object[] }>} */
+const INDICES_DATA = {}
+const loaded = {}
 // ─────────────────────────────────────────────────────────────────────────────
 
 let activeIndex = 'ccfi'
 let mainChart   = null
 const miniCharts = []   // 缓存小图实例，切换时 dispose
+
+// ── 数据加载 ─────────────────────────────────────────────────────────────────
+
+function showLoading(msg, isError) {
+  const el = document.getElementById('mainChart')
+  if (mainChart) { mainChart.dispose(); mainChart = null }
+  el.innerHTML = `<div class="loading${isError ? ' error' : ''}">${msg}</div>`
+}
+
+function loadIndex(key) {
+  if (loaded[key]) return Promise.resolve()
+  const cfg = INDEX_CONFIG[key]
+  return fetch(cfg.file + '?t=' + Date.now())
+    .then(r => {
+      if (!r.ok) throw new Error(`${cfg.file} HTTP ${r.status}`)
+      return r.json()
+    })
+    .then(data => {
+      INDICES_DATA[key] = { name: cfg.name, primaryRoute: cfg.primaryRoute, data }
+      loaded[key] = true
+    })
+}
+
+function resolvePrimaryRoute(key) {
+  const { primaryRoute, data } = INDICES_DATA[key]
+  const firstRec = data.find(r => Object.keys(r).length > 2)
+  if (!firstRec) return primaryRoute
+  return Object.keys(firstRec).find(k =>
+    k !== 'date' && k !== 'week' && (k === primaryRoute || k.startsWith(primaryRoute))
+  ) || Object.keys(firstRec).find(k => k !== 'date' && k !== 'week') || primaryRoute
+}
+
+function getRouteDesc(routeKey) {
+  if (ROUTE_DESC[routeKey]) return ROUTE_DESC[routeKey]
+  const short = cleanName(routeKey)
+  const hit = Object.entries(ROUTE_DESC).find(([k]) => cleanName(k) === short || k.startsWith(short))
+  return hit ? hit[1] : short
+}
+
+function updateIndexInfo() {
+  const cfg = INDEX_CONFIG[activeIndex]
+  document.getElementById('indexInfoTitle').textContent = cfg.name
+  document.getElementById('indexInfoDesc').textContent = cfg.desc
+}
 
 // ── 工具函数 ─────────────────────────────────────────────────────────────────
 
@@ -256,12 +365,12 @@ function buildRouteOption(key, route, opts = {}) {
   return {
     backgroundColor: compact ? '#0f172a' : 'transparent',
     animation: compact ? false : true,
-    tooltip: {
+    tooltip: buildConfinedTooltip({
       trigger: 'axis',
+      axisPointer: { type: 'cross', crossStyle: { color: '#334155' } },
       backgroundColor: '#1e293b',
       borderColor: '#334155',
       textStyle: { color: '#dbe0ea', fontSize: compact ? 11 : 12 },
-      axisPointer: { type: 'cross', crossStyle: { color: '#334155' } },
       formatter(params) {
         const byType = { abs: null, mom: null, yoy: null }
         params.forEach(p => {
@@ -281,7 +390,7 @@ function buildRouteOption(key, route, opts = {}) {
         html += `<div><span style="color:#ec4899">▌ </span>同比：<span style="color:${pctColor(byType.yoy)}">${fmtPct(byType.yoy)}</span></div>`
         return html
       }
-    },
+    }),
     legend: { show: false },
     grid: compact
       ? { left: 46, right: 44, top: 8, bottom: 28 }
@@ -368,18 +477,15 @@ function buildRouteOption(key, route, opts = {}) {
 
 // ── 主图（综合指数）─────────────────────────────────────────────────────────
 function renderMain() {
-  if (!mainChart) {
-    mainChart = echarts.init(document.getElementById('mainChart'), 'dark')
-    window.addEventListener('resize', () => mainChart.resize())
-  }
-  const { primaryRoute } = INDICES_DATA[activeIndex]
-  // SCFI 的主路线字段名含英文，要找到对应字段
-  const firstRec = INDICES_DATA[activeIndex].data.find(r => Object.keys(r).length > 2)
-  const routeField = firstRec
-    ? Object.keys(firstRec).find(k => k !== 'date' && k !== 'week' && (k === primaryRoute || k.startsWith(primaryRoute)))
-      || Object.keys(firstRec).find(k => k !== 'date' && k !== 'week')
-    : primaryRoute
+  const el = document.getElementById('mainChart')
+  if (!INDICES_DATA[activeIndex]?.data?.length) return
 
+  if (!mainChart) {
+    el.innerHTML = ''
+    mainChart = echarts.init(el, 'dark')
+    window.addEventListener('resize', () => mainChart?.resize())
+  }
+  const routeField = resolvePrimaryRoute(activeIndex)
   mainChart.setOption(buildRouteOption(activeIndex, routeField, { compact: false }), true)
 }
 
@@ -418,6 +524,7 @@ function renderRouteGrid() {
     const title = document.createElement('div')
     title.className = 'card-title'
     title.textContent = cleanName(route)
+    title.title = getRouteDesc(route)
 
     const chartDiv = document.createElement('div')
     chartDiv.className = 'card-chart'
@@ -441,6 +548,8 @@ function renderRouteGrid() {
 
 // ── 全量刷新 ─────────────────────────────────────────────────────────────────
 function refresh() {
+  if (!loaded[activeIndex]) return
+  updateIndexInfo()
   renderMain()
   renderRouteGrid()
 }
@@ -451,12 +560,21 @@ document.querySelectorAll('.index-tab').forEach(btn => {
     document.querySelectorAll('.index-tab').forEach(b => b.classList.remove('active'))
     btn.classList.add('active')
     activeIndex = btn.dataset.index
-    refresh()
+    if (loaded[activeIndex]) {
+      refresh()
+    } else {
+      showLoading('数据加载中…')
+      loadIndex(activeIndex)
+        .then(refresh)
+        .catch(err => showLoading('加载失败：' + err.message, true))
+    }
   })
 })
 
 // ── 初始化 ────────────────────────────────────────────────────────────────────
-refresh()
+loadIndex(activeIndex)
+  .then(refresh)
+  .catch(err => showLoading('加载失败：' + err.message, true))
 </script>
 </body>
 </html>

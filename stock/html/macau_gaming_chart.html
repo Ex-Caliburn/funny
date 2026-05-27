@@ -73,6 +73,7 @@
 </div>
 
 <script src="../vendor/echarts.min.js"></script>
+  <script src="chart_tooltip_helpers.js"></script>
 <script>
 // ── 配置 ──────────────────────────────────────────────────────────────
 var DATA_FILE = '../macau_gaming/monthly_gross_revenue.json';
@@ -245,7 +246,7 @@ function buildOption(months, field) {
     name: latestYear + '年同比%',
     type: 'line',
     yAxisIndex: 1,
-    data: pd.yoy[latestYear],
+    emphasis: { focus: 'series', lineStyle: { width: 3 }, itemStyle: { borderColor: '#fff', borderWidth: 1 } }, blur: { lineStyle: { opacity: 0.12 }, itemStyle: { opacity: 0.12 } }, data: pd.yoy[latestYear],
     smooth: true,
     symbol: 'diamond',
     symbolSize: 6,
@@ -257,7 +258,7 @@ function buildOption(months, field) {
   return {
     backgroundColor: '#0b0f19',
     animation: true,
-    tooltip: {
+    tooltip: buildConfinedTooltip({
       trigger: 'axis',
       axisPointer: { type: 'shadow' },
       backgroundColor: 'rgba(15,23,42,0.95)',
@@ -269,14 +270,14 @@ function buildOption(months, field) {
         params.forEach(function(p) {
           if (p.value == null) return;
           var isRate = p.seriesName.indexOf('%') > -1;
-          html += '<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:' + p.color + ';margin-right:5px;"></span>'
+          html += (p.marker || '<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:' + p.color + ';margin-right:5px;"></span>')
             + p.seriesName + ': <b>'
             + (isRate ? (p.value > 0 ? '+' : '') + p.value + '%' : p.value.toLocaleString() + ' 百万')
             + '</b><br/>';
         });
         return html;
       }
-    },
+    }),
     legend: {
       top: 4,
       right: 12,

@@ -5,6 +5,7 @@
  *
  * 支持指数：
  *   - CCFI 中国出口集装箱运价指数
+ *   - SCFI 上海出口集装箱运价指数
  *   - SEAFI 东南亚集装箱运价指数
  *   - CBCFI 中国沿海煤炭运价指数（日频）
  *
@@ -16,6 +17,7 @@
  * 使用方法：
  *   node scripts/crawler/shipping/shipping_crawler.js           # 爬取全部指数
  *   node scripts/crawler/shipping/shipping_crawler.js ccfi      # 只爬 CCFI
+ *   node scripts/crawler/shipping/shipping_crawler.js scfi      # 只爬 SCFI
  *   node scripts/crawler/shipping/shipping_crawler.js seafi     # 只爬 SEAFI
  *   node scripts/crawler/shipping/shipping_crawler.js cbcfi     # 只爬 CBCFI
  */
@@ -78,6 +80,17 @@ class ShippingCrawler {
         await this.sleep(2000 * (i + 1))
       }
     }
+  }
+
+  /**
+   * 清理航线名称：去掉括号内英文、空格后的英文后缀
+   * @param {string} rawName
+   * @returns {string}
+   */
+  cleanRouteName(rawName) {
+    let name = rawName.replace(/\s*\([^)]*\)\s*/g, '').trim()
+    const i = name.search(/\s+[A-Z]/)
+    return i > 0 ? name.slice(0, i).trim() : name
   }
 
   /**
@@ -162,9 +175,8 @@ class ShippingCrawler {
       const row = rows[i]
       if (row.length < 2) continue
 
-      // 航线名称（第一列），去除括号内的英文
-      const rawName = row[0]
-      const routeName = rawName.replace(/\s*\([^)]*\)\s*/g, '').trim()
+      // 航线名称（第一列），去除英文后缀
+      const routeName = this.cleanRouteName(row[0])
       if (!routeName) continue
 
       const prevVal = prevDateCol >= 0 ? parseFloat(row[prevDateCol]) : NaN

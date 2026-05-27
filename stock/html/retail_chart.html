@@ -117,6 +117,7 @@
     <div id="overall" style="height:70vh;"></div>
   </div>
   <script src="../vendor/echarts.min.js"></script>
+  <script src="chart_tooltip_helpers.js"></script>
 <script>
 
     // 标题复制功能
@@ -197,7 +198,7 @@
         const yoy = rows.map(d => d.yoy);
   const option = {
     backgroundColor: "#0b0f19",
-    tooltip: { trigger: "axis", valueFormatter: v => v == null ? "-" : v },
+    tooltip: buildConfinedTooltip({ trigger: "axis", valueFormatter: v => v == null ? "-" : v }),
           legend: { data: [name + "-当月值", name + "-环比%", name + "-同比%"], textStyle: { color: "#cbd5e1" } },
     grid: { left: 60, right: 60, top: 40, bottom: 40 },
     xAxis: { type: "category", data: x, axisLabel: { color: "#9aa4b2" } },
@@ -264,7 +265,7 @@
             }
           });
           const c = echarts.init(div);
-          const option = { backgroundColor: '#0f172a', grid: { left: 50, right: 50, top: 35, bottom: 35 }, xAxis: { type: 'category', data: ['1-2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'], axisLabel: { color: '#9aa4b2', fontSize: 11 } }, yAxis: [{ type: 'value', position: 'left', axisLabel: { color: '#9aa4b2', fontSize: 11 }, splitLine: { lineStyle: { color: '#1f2937' } } }, { type: 'value', position: 'right', axisLabel: { color: '#9aa4b2', fontSize: 11, formatter: '{value}%' }, splitLine: { show: false } }], series: [], legend: { show: true, top: 0, textStyle: { color: '#cbd5e1', fontSize: 11 } }, tooltip: { trigger: 'axis', backgroundColor: 'rgba(15, 23, 42, 0.95)', borderColor: '#1f2937', textStyle: { color: '#e2e8f0' }, formatter: function (ps) { let s = ps[0].name + '<br/>'; ps.forEach(function (p) { if (p.seriesName.includes('同比') || p.seriesName.includes('环比')) { s += p.seriesName + ': ' + (p.value != null ? p.value + '%' : '-') + '<br/>'; } else { s += p.seriesName + ': ' + (p.value != null ? p.value + '亿元' : '-') + '<br/>'; } }); return s; } } };
+          const option = { backgroundColor: '#0f172a', grid: { left: 50, right: 50, top: 35, bottom: 35 }, xAxis: { type: 'category', data: ['1-2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'], axisLabel: { color: '#9aa4b2', fontSize: 11 } }, yAxis: [{ type: 'value', position: 'left', axisLabel: { color: '#9aa4b2', fontSize: 11 }, splitLine: { lineStyle: { color: '#1f2937' } } }, { type: 'value', position: 'right', axisLabel: { color: '#9aa4b2', fontSize: 11, formatter: '{value}%' }, splitLine: { show: false } }], series: [], legend: { show: true, top: 0, textStyle: { color: '#cbd5e1', fontSize: 11 } }, tooltip: buildConfinedTooltip({ trigger: 'axis', axisPointer: { type: 'line', lineStyle: { color: '#64748b', type: 'dashed' } }, backgroundColor: 'rgba(15, 23, 42, 0.95)', borderColor: '#1f2937', textStyle: { color: '#e2e8f0' }, formatter: function (ps) { let s = ps[0].name + '<br/>'; ps.forEach(function (p) { if (p.seriesName.includes('同比') || p.seriesName.includes('环比')) { s += (p.marker || '') + p.seriesName + ': ' + (p.value != null ? p.value + '%' : '-') + '<br/>'; } else { s += (p.marker || '') + p.seriesName + ': ' + (p.value != null ? p.value + '亿元' : '-') + '<br/>'; } }); return s; } }), };
           const colors = ['#ef4444', '#3b82f6', '#10b981', '#8b5cf6', '#06b6d4'];
           const years = Object.keys(yearData).sort();
           const latestYear = years[years.length - 1]; // 获取最新年份
@@ -287,15 +288,15 @@
             (momData[y] || []).forEach(function (it) { const m = it.month ? parseInt(it.month.slice(5, 7), 10) : 0; if (m === 1 || m === 2) { momDataArray[0] = it.mom; } else if (m >= 3 && m <= 12) { momDataArray[m - 2] = it.mom; } });
 
             // 添加绝对值曲线
-            option.series.push({ type: 'line', name: y + '年', yAxisIndex: 0, data: data, smooth: true, symbol: 'circle', symbolSize: 4, lineStyle: { color: colors[idx % colors.length], width: 2 }, itemStyle: { color: colors[idx % colors.length] } });
+            option.series.push({ type: 'line', name: y + '年', yAxisIndex: 0, emphasis: { focus: 'series', lineStyle: { width: 3 }, itemStyle: { borderColor: '#fff', borderWidth: 1 } }, blur: { lineStyle: { opacity: 0.12 }, itemStyle: { opacity: 0.12 } }, data: data, smooth: true, symbol: 'circle', symbolSize: 4, lineStyle: { color: colors[idx % colors.length], width: 2 }, itemStyle: { color: colors[idx % colors.length] } });
 
             // 只为最新年份添加同比和环比曲线
             if (isLatestYear) {
               if (showYoyCurve) {
-                option.series.push({ type: 'line', name: y + '年同比', yAxisIndex: 1, data: yoyDataArray, smooth: true, symbol: 'diamond', symbolSize: 3, lineStyle: { color: '#e879f9', width: 2, type: 'solid' }, itemStyle: { color: '#e879f9' } });
+                option.series.push({ type: 'line', name: y + '年同比', yAxisIndex: 1, emphasis: { focus: 'series', lineStyle: { width: 3 }, itemStyle: { borderColor: '#fff', borderWidth: 1 } }, blur: { lineStyle: { opacity: 0.12 }, itemStyle: { opacity: 0.12 } }, data: yoyDataArray, smooth: true, symbol: 'diamond', symbolSize: 3, lineStyle: { color: '#e879f9', width: 2, type: 'solid' }, itemStyle: { color: '#e879f9' } });
               }
               if (showMomCurve) {
-                option.series.push({ type: 'line', name: y + '年环比', yAxisIndex: 1, data: momDataArray, smooth: true, symbol: 'triangle', symbolSize: 3, lineStyle: { color: '#f59e0b', width: 2, type: 'dashed' }, itemStyle: { color: '#f59e0b' } });
+                option.series.push({ type: 'line', name: y + '年环比', yAxisIndex: 1, emphasis: { focus: 'series', lineStyle: { width: 3 }, itemStyle: { borderColor: '#fff', borderWidth: 1 } }, blur: { lineStyle: { opacity: 0.12 }, itemStyle: { opacity: 0.12 } }, data: momDataArray, smooth: true, symbol: 'triangle', symbolSize: 3, lineStyle: { color: '#f59e0b', width: 2, type: 'dashed' }, itemStyle: { color: '#f59e0b' } });
               }
             }
           });
@@ -359,6 +360,8 @@
             smooth: true,
             symbol: 'circle',
             symbolSize: 4,
+            emphasis: { focus: 'series', lineStyle: { width: 3 }, itemStyle: { borderColor: '#fff', borderWidth: 1 } },
+            blur: { lineStyle: { opacity: 0.12 }, itemStyle: { opacity: 0.12 } },
             lineStyle: { width: 2 },
             data: keys.map(function (k) { return (map[k] == null ? null : map[k]); })
           };
@@ -367,19 +370,20 @@
         const chart2 = echarts.init(container);
         const option = {
           backgroundColor: '#0b0f19',
-          tooltip: {
+          tooltip: buildConfinedTooltip({
             trigger: 'axis',
+            axisPointer: { type: 'line', lineStyle: { color: '#64748b', type: 'dashed' } },
             backgroundColor: 'rgba(15, 23, 42, 0.95)',
             borderColor: '#1f2937',
             textStyle: { color: '#e2e8f0', fontSize: 12 },
             formatter: function (params) {
               let s = params[0].name + '<br/>';
               params.forEach(function (p) {
-                s += p.seriesName + ': ' + (p.value != null ? p.value + '亿元' : '-') + '<br/>';
+                s += (p.marker || '') + p.seriesName + ': ' + (p.value != null ? p.value + '亿元' : '-') + '<br/>';
               });
               return s;
             }
-          },
+          }),
           legend: {
             type: 'scroll',
             top: 0,
@@ -563,8 +567,9 @@
           ],
           series: [],
           legend: { show: true, top: 10, textStyle: { color: '#cbd5e1', fontSize: 14 } },
-          tooltip: {
+          tooltip: buildConfinedTooltip({
             trigger: 'axis',
+            axisPointer: { type: 'line', lineStyle: { color: '#64748b', type: 'dashed' } },
             backgroundColor: 'rgba(15, 23, 42, 0.95)',
             borderColor: '#1f2937',
             textStyle: { color: '#e2e8f0', fontSize: 14 },
@@ -572,14 +577,14 @@
               let s = ps[0].name + '<br/>';
               ps.forEach(function (p) {
                 if (p.seriesName.includes('同比')) {
-                  s += p.seriesName + ': ' + (p.value != null ? p.value + '%' : '-') + '<br/>';
+                  s += (p.marker || '') + p.seriesName + ': ' + (p.value != null ? p.value + '%' : '-') + '<br/>';
                 } else {
-                  s += p.seriesName + ': ' + (p.value != null ? p.value + '亿元' : '-') + '<br/>';
+                  s += (p.marker || '') + p.seriesName + ': ' + (p.value != null ? p.value + '亿元' : '-') + '<br/>';
                 }
               });
               return s;
             }
-          },
+          }),
           dataZoom: [
             { type: 'slider', show: true, xAxisIndex: [0], start: 0, end: 100 },
             { type: 'inside', xAxisIndex: [0] }
@@ -592,8 +597,8 @@
           const yoyDataArray = new Array(11).fill(null);
           (yearData[y] || []).forEach(function (it) { const m = it.month ? parseInt(it.month.slice(5, 7), 10) : 0; if (m === 1 || m === 2) { data[0] = it.value; } else if (m >= 3 && m <= 12) { data[m - 2] = it.value; } });
           (yoyData[y] || []).forEach(function (it) { const m = it.month ? parseInt(it.month.slice(5, 7), 10) : 0; if (m === 1 || m === 2) { yoyDataArray[0] = it.yoy; } else if (m >= 3 && m <= 12) { yoyDataArray[m - 2] = it.yoy; } });
-          option.series.push({ type: 'line', name: y + '年', yAxisIndex: 0, data: data, smooth: true, symbol: 'circle', symbolSize: 8, lineStyle: { color: colors[idx % colors.length], width: 3.5 }, itemStyle: { color: colors[idx % colors.length] } });
-          option.series.push({ type: 'line', name: y + '年同比', yAxisIndex: 1, data: yoyDataArray, smooth: true, symbol: 'diamond', symbolSize: 6, lineStyle: { color: '#e879f9', width: 2.5, type: 'solid' }, itemStyle: { color: '#e879f9' } });
+          option.series.push({ type: 'line', name: y + '年', yAxisIndex: 0, emphasis: { focus: 'series', lineStyle: { width: 3 }, itemStyle: { borderColor: '#fff', borderWidth: 1 } }, blur: { lineStyle: { opacity: 0.12 }, itemStyle: { opacity: 0.12 } }, data: data, smooth: true, symbol: 'circle', symbolSize: 8, lineStyle: { color: colors[idx % colors.length], width: 3.5 }, itemStyle: { color: colors[idx % colors.length] } });
+          option.series.push({ type: 'line', name: y + '年同比', yAxisIndex: 1, emphasis: { focus: 'series', lineStyle: { width: 3 }, itemStyle: { borderColor: '#fff', borderWidth: 1 } }, blur: { lineStyle: { opacity: 0.12 }, itemStyle: { opacity: 0.12 } }, data: yoyDataArray, smooth: true, symbol: 'diamond', symbolSize: 6, lineStyle: { color: '#e879f9', width: 2.5, type: 'solid' }, itemStyle: { color: '#e879f9' } });
         });
 
           currentZoomChart.setOption(option);

@@ -116,6 +116,7 @@
     <div id="overall" style="height:70vh;"></div>
   </div>
   <script src="../vendor/echarts.min.js"></script>
+  <script src="chart_tooltip_helpers.js"></script>
 <script>
 
     // 标题复制功能
@@ -239,10 +240,7 @@
 
         const option = {
           backgroundColor: "#0b0f19",
-          tooltip: {
-            trigger: "axis",
-            valueFormatter: v => v == null ? "-" : (typeof v === 'number' ? v.toFixed(2) : v)
-          },
+          tooltip: buildConfinedTooltip({ trigger: "axis", valueFormatter: v => v == null ? "-" : (typeof v === 'number' ? v.toFixed(2) : v) }),
           legend: {
             data: [industry + "-产能利用率", industry + "-同比变化"],
             textStyle: { color: "#cbd5e1" }
@@ -332,8 +330,9 @@
           ],
           series: [],
           legend: { show: true, top: 0, textStyle: { color: '#cbd5e1', fontSize: 11 } },
-          tooltip: {
+          tooltip: buildConfinedTooltip({
             trigger: 'axis',
+            axisPointer: { type: 'line', lineStyle: { color: '#64748b', type: 'dashed' } },
             backgroundColor: 'rgba(15, 23, 42, 0.95)',
             borderColor: '#1f2937',
             textStyle: { color: '#e2e8f0' },
@@ -341,14 +340,14 @@
               let s = ps[0].name + '<br/>';
               ps.forEach(function (p) {
                 if (p.seriesName.includes('同比')) {
-                  s += p.seriesName + ': ' + (p.value != null ? p.value.toFixed(2) + 'pp' : '-') + '<br/>';
+                  s += (p.marker || '') + p.seriesName + ': ' + (p.value != null ? p.value.toFixed(2) + 'pp' : '-') + '<br/>';
                 } else {
-                  s += p.seriesName + ': ' + (p.value != null ? p.value.toFixed(2) + '%' : '-') + '<br/>';
+                  s += (p.marker || '') + p.seriesName + ': ' + (p.value != null ? p.value.toFixed(2) + '%' : '-') + '<br/>';
                 }
               });
               return s;
             }
-          }
+          }),
         };
 
         // 使用更有区分度的颜色：红、橙、绿、紫、粉、青绿、深橙
@@ -393,7 +392,7 @@
             type: 'line',
             name: y + '年',
             yAxisIndex: 0,
-            data: data,
+            emphasis: { focus: 'series', lineStyle: { width: 3 }, itemStyle: { borderColor: '#fff', borderWidth: 1 } }, blur: { lineStyle: { opacity: 0.12 }, itemStyle: { opacity: 0.12 } }, data: data,
             smooth: true,
             symbol: 'circle',
             symbolSize: 4,
@@ -406,7 +405,7 @@
               type: 'line',
               name: y + '年同比',
               yAxisIndex: 1,
-              data: yoyDataArray,
+              emphasis: { focus: 'series', lineStyle: { width: 3 }, itemStyle: { borderColor: '#fff', borderWidth: 1 } }, blur: { lineStyle: { opacity: 0.12 }, itemStyle: { opacity: 0.12 } }, data: yoyDataArray,
               smooth: true,
               symbol: 'diamond',
               symbolSize: 3,
@@ -805,6 +804,8 @@
             smooth: true,
             symbol: 'circle',
             symbolSize: 4,
+            emphasis: { focus: 'series', lineStyle: { width: 3 }, itemStyle: { borderColor: '#fff', borderWidth: 1 } },
+            blur: { lineStyle: { opacity: 0.12 }, itemStyle: { opacity: 0.12 } },
             lineStyle: { width: 2 },
             data: keys.map(function (k) { return (map[k] == null ? null : map[k]); })
           };
@@ -813,19 +814,20 @@
         const chart2 = echarts.init(container);
         const option = {
           backgroundColor: '#0b0f19',
-          tooltip: {
+          tooltip: buildConfinedTooltip({
             trigger: 'axis',
+            axisPointer: { type: 'line', lineStyle: { color: '#64748b', type: 'dashed' } },
             backgroundColor: 'rgba(15, 23, 42, 0.95)',
             borderColor: '#1f2937',
             textStyle: { color: '#e2e8f0', fontSize: 12 },
             formatter: function (params) {
               let s = params[0].name + '<br/>';
               params.forEach(function (p) {
-                s += p.seriesName + ': ' + (p.value != null ? p.value.toFixed(2) + '%' : '-') + '<br/>';
+                s += (p.marker || '') + p.seriesName + ': ' + (p.value != null ? p.value.toFixed(2) + '%' : '-') + '<br/>';
               });
               return s;
             }
-          },
+          }),
           legend: {
             type: 'scroll',
             top: 0,
@@ -1014,8 +1016,9 @@
             ],
             series: [],
             legend: { show: true, top: 10, textStyle: { color: '#cbd5e1', fontSize: 14 } },
-            tooltip: {
+            tooltip: buildConfinedTooltip({
               trigger: 'axis',
+              axisPointer: { type: 'line', lineStyle: { color: '#64748b', type: 'dashed' } },
               backgroundColor: 'rgba(15, 23, 42, 0.95)',
               borderColor: '#1f2937',
               textStyle: { color: '#e2e8f0', fontSize: 14 },
@@ -1023,14 +1026,14 @@
                 let s = ps[0].name + '<br/>';
                 ps.forEach(function (p) {
                   if (p.seriesName.includes('同比')) {
-                    s += p.seriesName + ': ' + (p.value != null ? p.value.toFixed(2) + 'pp' : '-') + '<br/>';
+                    s += (p.marker || '') + p.seriesName + ': ' + (p.value != null ? p.value.toFixed(2) + 'pp' : '-') + '<br/>';
                   } else {
-                    s += p.seriesName + ': ' + (p.value != null ? p.value.toFixed(2) + '%' : '-') + '<br/>';
+                    s += (p.marker || '') + p.seriesName + ': ' + (p.value != null ? p.value.toFixed(2) + '%' : '-') + '<br/>';
                   }
                 });
                 return s;
               }
-            },
+            }),
             dataZoom: [
               { type: 'slider', show: true, xAxisIndex: [0], start: 0, end: 100 },
               { type: 'inside', xAxisIndex: [0] }
@@ -1069,7 +1072,7 @@
               type: 'line',
               name: y + '年',
               yAxisIndex: 0,
-              data: data,
+              emphasis: { focus: 'series', lineStyle: { width: 3 }, itemStyle: { borderColor: '#fff', borderWidth: 1 } }, blur: { lineStyle: { opacity: 0.12 }, itemStyle: { opacity: 0.12 } }, data: data,
               smooth: true,
               symbol: 'circle',
               symbolSize: 8,
@@ -1081,7 +1084,7 @@
               type: 'line',
               name: y + '年同比',
               yAxisIndex: 1,
-              data: yoyDataArray,
+              emphasis: { focus: 'series', lineStyle: { width: 3 }, itemStyle: { borderColor: '#fff', borderWidth: 1 } }, blur: { lineStyle: { opacity: 0.12 }, itemStyle: { opacity: 0.12 } }, data: yoyDataArray,
               smooth: true,
               symbol: 'diamond',
               symbolSize: 6,

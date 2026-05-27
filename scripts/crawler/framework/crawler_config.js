@@ -118,6 +118,14 @@ module.exports = {
         compositeKey: '中国出口集装箱运价综合指数',
         dataFile: 'ccfi.json',
       },
+      // 上海出口集装箱运价指数
+      scfi: {
+        name: '上海出口集装箱运价指数',
+        indexType: 'scfi',
+        url: 'https://www.sse.net.cn/index/singleIndex?indexType=scfi',
+        compositeKey: '综合指数',
+        dataFile: 'scfi.json',
+      },
       // 东南亚集装箱运价指数
       seafi: {
         name: '东南亚集装箱运价指数',

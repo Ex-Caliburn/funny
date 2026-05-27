@@ -154,7 +154,8 @@
   <div id="panel-indium"                   class="panel"><div class="stat-bar" id="stats-indium"></div><div id="chart-indium" class="chart-wrap"></div></div>
 
   <script src="../vendor/echarts.min.js"></script>
-  <script>
+  <script src="chart_tooltip_helpers.js"></script>
+<script>
   // 品种大类 → 二级 Tab 配置
   var CATEGORIES = [
     {
@@ -347,7 +348,7 @@
         name: year + '年',
         type: 'line',
         yAxisIndex: 0,
-        data: data,
+        emphasis: { focus: 'series', lineStyle: { width: 3 }, itemStyle: { borderColor: '#fff', borderWidth: 1 } }, blur: { lineStyle: { opacity: 0.12 }, itemStyle: { opacity: 0.12 } }, data: data,
         smooth: false,
         symbol: 'circle',
         symbolSize: isLatest ? 5 : 3,
@@ -361,7 +362,7 @@
       name: ly + '年环比%',
       type: 'line',
       yAxisIndex: 1,
-      data: rates.momPts,
+      emphasis: { focus: 'series', lineStyle: { width: 3 }, itemStyle: { borderColor: '#fff', borderWidth: 1 } }, blur: { lineStyle: { opacity: 0.12 }, itemStyle: { opacity: 0.12 } }, data: rates.momPts,
       smooth: true,
       symbol: 'triangle',
       symbolSize: 6,
@@ -373,7 +374,7 @@
       name: ly + '年同比%',
       type: 'line',
       yAxisIndex: 1,
-      data: rates.yoyPts,
+      emphasis: { focus: 'series', lineStyle: { width: 3 }, itemStyle: { borderColor: '#fff', borderWidth: 1 } }, blur: { lineStyle: { opacity: 0.12 }, itemStyle: { opacity: 0.12 } }, data: rates.yoyPts,
       smooth: true,
       symbol: 'diamond',
       symbolSize: 6,
@@ -384,7 +385,7 @@
     return {
       backgroundColor: '#0b0f19',
       animation: true,
-      tooltip: {
+      tooltip: buildConfinedTooltip({
         trigger: 'axis',
         axisPointer: {
           type: 'line', snap: true,
@@ -403,13 +404,13 @@
             if (v == null) return;
             var dateStr = p.data && p.data.date ? p.data.date : '';
             if (!header && dateStr) header = '<b>' + dateStr + '</b><br/>';
-            lines += '<span style="color:' + p.color + '">●</span> '
+            lines += (p.marker || '<span style="color:' + p.color + '">●</span> ')
               + p.seriesName + ': <b>' + v + '</b>'
               + (isRate ? '%' : ' ' + unit) + '<br/>';
           });
           return header + lines;
         }
-      },
+      }),
       legend: {
         top: 4,
         textStyle: { color: '#cbd5e1', fontSize: 12 },

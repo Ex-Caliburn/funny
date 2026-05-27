@@ -16,7 +16,6 @@ const xlsx = require('xlsx');
 
 const GOLD_DIR = path.join(__dirname, '../../../stock/gold');
 const OUTPUT_FILE = path.join(GOLD_DIR, 'gold_data.json');
-const HTML_FILE = path.join(__dirname, '../../../stock/html/gold_chart.html');
 
 /**
  * 清理数字字符串，去掉"万盎司"、空格等，返回 number 或 null
@@ -136,19 +135,8 @@ function main() {
 
   fs.writeFileSync(OUTPUT_FILE, JSON.stringify(result, null, 2), 'utf-8');
   console.log(`\n输出 JSON: ${OUTPUT_FILE}`);
-
-  // 仅在数据变化时才更新 HTML
-  if (dataChanged && fs.existsSync(HTML_FILE)) {
-    let html = fs.readFileSync(HTML_FILE, 'utf-8');
-    // 替换占位符（或上次嵌入的数据）
-    html = html.replace(
-      /const RAW_DATA = (?:%%GOLD_DATA%%|[\s\S]*?);(\s*\/\/ ─)/,
-      `const RAW_DATA = ${JSON.stringify(result)};$1`
-    );
-    fs.writeFileSync(HTML_FILE, html, 'utf-8');
-    console.log(`已将数据内嵌到 HTML: ${HTML_FILE}`);
-  } else if (!dataChanged) {
-    console.log(`数据无变化，跳过 HTML 更新: ${HTML_FILE}`);
+  if (!dataChanged) {
+    console.log('数据无变化，保留原 generatedAt');
   }
 
   // 打印预览
