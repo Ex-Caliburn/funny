@@ -118,16 +118,30 @@
   <div id="tableWrap" style="display:none;">
     <div style="margin-bottom:12px; display:flex; gap:12px; align-items:center;">
       <input id="tableFilter" placeholder="过滤关键字（指标）" style="min-width:260px" />
-      <span style="opacity:.7">当期值（元或相关单位）多指标合并曲线，支持图例选择和过滤</span>
+      <span style="opacity:.7">当期值（元或相关单位）多指标合并曲线，横轴为 2024 年起完整时间线，支持图例选择和过滤</span>
     </div>
     <div id="overall" style="height:70vh;"></div>
   </div>
   <script src="../vendor/echarts.min.js"></script>
-  <script>
+  <script src="chart_tooltip_helpers.js"></script>
+<script>
 
-    /* ══════════════════════════════════════════════════════
-       收藏管理（模块级，保证在 fetch 前就可用）
-    ════════════════════════════════════════════════════════ */
+    function sortYearMonths(list) {
+      var tenDayOrder = { '上旬': 0, '中旬': 1, '下旬': 2 };
+      return list.slice().sort(function (a, b) {
+        var ma = a.match(/(\d{4})-(\d{2})-(上旬|中旬|下旬)/);
+        var mb = b.match(/(\d{4})-(\d{2})-(上旬|中旬|下旬)/);
+        if (!ma || !mb) return a.localeCompare(b);
+        if (ma[1] !== mb[1]) return ma[1].localeCompare(mb[1]);
+        if (ma[2] !== mb[2]) return ma[2].localeCompare(mb[2]);
+        return (tenDayOrder[ma[3]] || 0) - (tenDayOrder[mb[3]] || 0);
+      });
+    }
+
+    function formatYearMonthLabel(val) {
+      return val ? val.replace(/旬$/g, '') : val;
+    }
+
     var FAV_KEY = 'goods_price_favorites';
     var favorites = new Set(JSON.parse(localStorage.getItem(FAV_KEY) || '[]'));
     var showOnlyFavorites = false;
@@ -140,7 +154,6 @@
       if (favorites.has(name)) { favorites.delete(name); } else { favorites.add(name); }
       saveFavorites();
     }
-
     /* 旧的 document.addEventListener 事件委托已替换为 onclick，保留 copyMetricBtn 那个 */
     document.addEventListener('DOMContentLoaded', function() {
       const copyTitleBtn = document.getElementById('copyTitleBtn');
@@ -247,7 +260,7 @@
         try { document.querySelector('h2').textContent = '重要生产资料价格 - 趋势看板' } catch (e) {}
         var option = {
           backgroundColor: "#0b0f19",
-          tooltip: { trigger: "axis", valueFormatter: function (v, s) { return v == null ? "-" : (s && /当期值/.test(s.seriesName) ? (v + (u ? u : '')) : v + '%'); } },
+          tooltip: buildConfinedTooltip({ trigger: "axis", valueFormatter: function (v, s) { return v == null ? "-" : (s && /当期值/.test(s.seriesName) ? (v + (u ? u : '')) : v + '%'); } }),
           legend: { data: [dn + "-当期值", dn + "-环比%", dn + "-同比%"], textStyle: { color: "#cbd5e1" } },
           grid: { left: 60, right: 60, top: 40, bottom: 40 },
           xAxis: { type: "category", data: x, axisLabel: { color: "#9aa4b2", formatter: function (val) { return val ? val.replace(/旬$/g, '') : val; } } },
@@ -286,8 +299,9 @@
           ],
           series: [],
           legend: { show: true, top: 0, textStyle: { color: '#cbd5e1', fontSize: 11 } },
-          tooltip: {
+          tooltip: buildConfinedTooltip({
             trigger: 'axis',
+            axisPointer: { type: 'line', lineStyle: { color: '#64748b', type: 'dashed' } },
             backgroundColor: 'rgba(15, 23, 42, 0.95)',
             borderColor: '#1f2937',
             textStyle: { color: '#e2e8f0' },
@@ -295,14 +309,14 @@
               var s = ps[0].name + '<br/>';
               ps.forEach(function (p) {
                 if (p.seriesName.indexOf('同比') > -1 || p.seriesName.indexOf('环比') > -1) {
-                  s += p.seriesName + ': ' + (p.value != null ? p.value + '%' : '-') + '<br/>';
+                  s += (p.marker || '') + p.seriesName + ': ' + (p.value != null ? p.value + '%' : '-') + '<br/>';
                 } else {
-                  s += p.seriesName + ': ' + (p.value != null ? (p.value + (unit ? unit : '')) : '-') + '<br/>';
+                  s += (p.marker || '') + p.seriesName + ': ' + (p.value != null ? (p.value + (unit ? unit : '')) : '-') + '<br/>';
                 }
               });
               return s;
             }
-          }
+          }),
         };
 
         var colors = ['#ef4444', '#3b82f6', '#10b981', '#8b5cf6', '#06b6d4'];
@@ -341,10 +355,10 @@
             if (idxKey === -1) return;
             momDataArray[idxKey] = it.mom != null ? it.mom : null;
           });
-          option.series.push({ type: 'line', name: y + '年', yAxisIndex: 0, data: data, smooth: true, symbol: 'circle', symbolSize: 4, lineStyle: { color: colors[idx % colors.length], width: 2 }, itemStyle: { color: colors[idx % colors.length] } });
+          option.series.push({ type: 'line', name: y + '年', yAxisIndex: 0, emphasis: { focus: 'series', lineStyle: { width: 3 }, itemStyle: { borderColor: '#fff', borderWidth: 1 } }, blur: { lineStyle: { opacity: 0.12 }, itemStyle: { opacity: 0.12 } }, data: data, smooth: true, symbol: 'circle', symbolSize: 4, lineStyle: { color: colors[idx % colors.length], width: 2 }, itemStyle: { color: colors[idx % colors.length] } });
           if (isLatestYear) {
-            if (showYoyCurve) { option.series.push({ type: 'line', name: y + '年同比', yAxisIndex: 1, data: yoyDataArray, smooth: true, symbol: 'diamond', symbolSize: 3, lineStyle: { color: '#e879f9', width: 2, type: 'solid' }, itemStyle: { color: '#e879f9' } }); }
-            if (showMomCurve) { option.series.push({ type: 'line', name: y + '年环比', yAxisIndex: 1, data: momDataArray, smooth: true, symbol: 'triangle', symbolSize: 3, lineStyle: { color: '#f59e0b', width: 2, type: 'dashed' }, itemStyle: { color: '#f59e0b' } }); }
+            if (showYoyCurve) { option.series.push({ type: 'line', name: y + '年同比', yAxisIndex: 1, emphasis: { focus: 'series', lineStyle: { width: 3 }, itemStyle: { borderColor: '#fff', borderWidth: 1 } }, blur: { lineStyle: { opacity: 0.12 }, itemStyle: { opacity: 0.12 } }, data: yoyDataArray, smooth: true, symbol: 'diamond', symbolSize: 3, lineStyle: { color: '#e879f9', width: 2, type: 'solid' }, itemStyle: { color: '#e879f9' } }); }
+            if (showMomCurve) { option.series.push({ type: 'line', name: y + '年环比', yAxisIndex: 1, emphasis: { focus: 'series', lineStyle: { width: 3 }, itemStyle: { borderColor: '#fff', borderWidth: 1 } }, blur: { lineStyle: { opacity: 0.12 }, itemStyle: { opacity: 0.12 } }, data: momDataArray, smooth: true, symbol: 'triangle', symbolSize: 3, lineStyle: { color: '#f59e0b', width: 2, type: 'dashed' }, itemStyle: { color: '#f59e0b' } }); }
           }
         });
 
@@ -720,72 +734,87 @@
         var allNames = Object.keys(json.metrics || {});
         var names = allNames.filter(function (n) { return !keyword || displayName(n).indexOf(keyword) > -1; });
 
-        // 生成一年内的时间点（1-12月，每月上旬/中旬/下旬）
-        var yearKeys = [];
-        for (var month = 1; month <= 12; month++) {
-          var monthStr = month.toString().padStart(2, '0');
-          yearKeys.push(monthStr + '-上旬', monthStr + '-中旬', monthStr + '-下旬');
-        }
-
-        // 按年份分组数据
-        var yearData = {};
+        // 收集所有时间点，横轴从 2024 至最新数据
+        var ymSet = {};
         names.forEach(function (n) {
-          var arr = json.metrics[n] || [];
-          arr.forEach(function (d) {
-            var match = d.yearMonth.match(/(\d{4})-(\d{2})-(上旬|中旬|下旬)/);
-            if (match) {
-              var year = match[1];
-              var month = match[2];
-              var tenDay = match[3];
-              var key = month + '-' + tenDay;
-
-              if (!yearData[year]) {
-                yearData[year] = {};
-              }
-              if (!yearData[year][n]) {
-                yearData[year][n] = {};
-              }
-              yearData[year][n][key] = d.value;
-            }
+          (json.metrics[n] || []).forEach(function (d) {
+            if (d.yearMonth) ymSet[d.yearMonth] = true;
           });
         });
+        var xAxisKeys = sortYearMonths(Object.keys(ymSet));
 
-        // 生成系列数据
+        // 每个指标一条跨年份曲线
         var series = [];
         var colors = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#06b6d4', '#84cc16', '#f97316'];
-        var yearKeys_sorted = Object.keys(yearData).sort();
-
-        yearKeys_sorted.forEach(function (year, yearIdx) {
-          names.forEach(function (n) {
-            var data = yearKeys.map(function (k) {
-              return yearData[year][n] && yearData[year][n][k] != null ? yearData[year][n][k] : null;
-            });
-            series.push({
-              name: displayName(n) + ' (' + year + '年)',
-              type: 'line',
-              yAxisIndex: 0,
-              smooth: true,
-              symbol: 'circle',
-              symbolSize: 4,
-              lineStyle: {
-                color: colors[yearIdx % colors.length],
-                width: 2
-              },
-              itemStyle: {
-                color: colors[yearIdx % colors.length]
-              },
-              data: data
-            });
+        names.forEach(function (n, idx) {
+          var valueMap = {};
+          (json.metrics[n] || []).forEach(function (d) {
+            if (d.yearMonth) valueMap[d.yearMonth] = d.value;
+          });
+          var data = xAxisKeys.map(function (ym) {
+            return valueMap[ym] != null ? valueMap[ym] : null;
+          });
+          series.push({
+            name: displayName(n),
+            type: 'line',
+            yAxisIndex: 0,
+            smooth: true,
+            symbol: 'circle',
+            symbolSize: 4,
+            lineStyle: {
+              color: colors[idx % colors.length],
+              width: 2
+            },
+            itemStyle: {
+              color: colors[idx % colors.length]
+            },
+            emphasis: {
+              focus: 'series',
+              lineStyle: { width: 3 },
+              itemStyle: { borderColor: '#fff', borderWidth: 1 }
+            },
+            blur: {
+              lineStyle: { opacity: 0.12 },
+              itemStyle: { opacity: 0.12 }
+            },
+            data: data
           });
         });
-        // 保留完整的 36 个刻度（01-上旬…12-下旬），缺失数据以 null 呈现断点
+
         var chart2 = echarts.init(container);
         var option = {
-          backgroundColor: '#0b0f19', tooltip: { trigger: 'axis', backgroundColor: 'rgba(15, 23, 42, 0.95)', borderColor: '#1f2937', textStyle: { color: '#e2e8f0', fontSize: 12 }, formatter: function (params) { var s = params[0].name + '<br/>'; params.forEach(function (p) { s += p.seriesName + ': ' + (p.value != null ? p.value : '-') + '<br/>'; }); return s; } }, legend: { type: 'scroll', top: 0, left: 'center', textStyle: { color: '#cbd5e1', fontSize: 11 }, pageButtonItemGap: 5, pageIconColor: '#cbd5e1', pageIconInactiveColor: '#64748b', pageTextStyle: { color: '#cbd5e1' }, selector: [{ type: 'all', title: '全选' }, { type: 'inverse', title: '反选' }], selectorLabel: { color: '#cbd5e1', fontSize: 11 }, selectorItemGap: 7, selectorButtonGap: 10 }, grid: { left: 70, right: 20, top: 60, bottom: 40 },           xAxis: {
+          backgroundColor: '#0b0f19',
+          tooltip: buildConfinedTooltip({
+            trigger: 'axis',
+            axisPointer: { type: 'line', lineStyle: { color: '#64748b', type: 'dashed' } },
+            backgroundColor: 'rgba(15, 23, 42, 0.95)',
+            borderColor: '#1f2937',
+            textStyle: { color: '#e2e8f0', fontSize: 12 },
+            formatter: function (params) {
+              var s = formatYearMonthLabel(params[0].name) + '<br/>';
+              params.forEach(function (p) {
+                if (p.value == null) return;
+                s += (p.marker || '') + p.seriesName + ': ' + p.value + '<br/>';
+              });
+              return s;
+            }
+          }),
+          legend: { type: 'scroll', top: 0, left: 'center', textStyle: { color: '#cbd5e1', fontSize: 11 }, pageButtonItemGap: 5, pageIconColor: '#cbd5e1', pageIconInactiveColor: '#64748b', pageTextStyle: { color: '#cbd5e1' }, selector: [{ type: 'all', title: '全选' }, { type: 'inverse', title: '反选' }], selectorLabel: { color: '#cbd5e1', fontSize: 11 }, selectorItemGap: 7, selectorButtonGap: 10 },
+          grid: { left: 70, right: 20, top: 60, bottom: 40 },
+          xAxis: {
             type: 'category',
-            data: yearKeys,
-            axisLabel: { color: '#9aa4b2', fontSize: 11, interval: 0, formatter: function (val) { return val ? val.replace(/旬$/g, '') : val; } }
-          }, yAxis: [{ type: 'value', name: '当期值', axisLabel: { color: '#9aa4b2', fontSize: 11 }, splitLine: { lineStyle: { color: '#1f2937' } }, nameTextStyle: { color: '#9aa4b2', fontSize: 11 } }], series: series, dataZoom: [{ type: 'slider', show: true, xAxisIndex: [0], start: 0, end: 100, bottom: 10, height: 20, handleIcon: 'M10.7,11.9v-1.3H9.3v1.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4v1.3h1.3v-1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23.1h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z', handleSize: '80%', handleStyle: { color: '#cbd5e1' }, textStyle: { color: '#9aa4b2', fontSize: 10 } }, { type: 'inside', xAxisIndex: [0] }]
+            data: xAxisKeys,
+            axisLabel: {
+              color: '#9aa4b2',
+              fontSize: 11,
+              interval: 'auto',
+              rotate: 45,
+              formatter: formatYearMonthLabel
+            }
+          },
+          yAxis: [{ type: 'value', name: '当期值', axisLabel: { color: '#9aa4b2', fontSize: 11 }, splitLine: { lineStyle: { color: '#1f2937' } }, nameTextStyle: { color: '#9aa4b2', fontSize: 11 } }],
+          series: series,
+          dataZoom: [{ type: 'slider', show: true, xAxisIndex: [0], start: 0, end: 100, bottom: 10, height: 20, handleIcon: 'M10.7,11.9v-1.3H9.3v1.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4v1.3h1.3v-1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23.1h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z', handleSize: '80%', handleStyle: { color: '#cbd5e1' }, textStyle: { color: '#9aa4b2', fontSize: 10 } }, { type: 'inside', xAxisIndex: [0] }]
         };
         chart2.setOption(option, true);
         filterInput.oninput = renderTable;
@@ -870,7 +899,7 @@
             ],
             series: [],
             legend: { show: true, top: 10, textStyle: { color: '#cbd5e1', fontSize: 14 } },
-            tooltip: {
+            tooltip: buildConfinedTooltip({
               trigger: 'axis',
               backgroundColor: 'rgba(15, 23, 42, 0.95)',
               borderColor: '#1f2937',
@@ -879,14 +908,14 @@
                 var s = ps[0].name + '<br/>';
                 ps.forEach(function (p) {
                   if (p.seriesName.indexOf('同比') > -1 || p.seriesName.indexOf('环比') > -1) {
-                    s += p.seriesName + ': ' + (p.value != null ? p.value + '%' : '-') + '<br/>';
+                    s += (p.marker || '') + p.seriesName + ': ' + (p.value != null ? p.value + '%' : '-') + '<br/>';
                   } else {
-                    s += p.seriesName + ': ' + (p.value != null ? (p.value + (unit ? unit : '')) : '-') + '<br/>';
+                    s += (p.marker || '') + p.seriesName + ': ' + (p.value != null ? (p.value + (unit ? unit : '')) : '-') + '<br/>';
                   }
                 });
                 return s;
               }
-            },
+            }),
             dataZoom: [
               { type: 'slider', show: true, xAxisIndex: [0], start: 0, end: 100 },
               { type: 'inside', xAxisIndex: [0] }
@@ -939,7 +968,7 @@
               type: 'line',
               name: y + '年',
               yAxisIndex: 0,
-              data: data,
+              emphasis: { focus: 'series', lineStyle: { width: 3 }, itemStyle: { borderColor: '#fff', borderWidth: 1 } }, blur: { lineStyle: { opacity: 0.12 }, itemStyle: { opacity: 0.12 } }, data: data,
               smooth: true,
               symbol: 'circle',
               symbolSize: 8,
@@ -954,7 +983,7 @@
                   type: 'line',
                   name: y + '年同比',
                   yAxisIndex: 1,
-                  data: yoyDataArray,
+                  emphasis: { focus: 'series', lineStyle: { width: 3 }, itemStyle: { borderColor: '#fff', borderWidth: 1 } }, blur: { lineStyle: { opacity: 0.12 }, itemStyle: { opacity: 0.12 } }, data: yoyDataArray,
                   smooth: true,
                   symbol: 'diamond',
                   symbolSize: 6,
@@ -967,7 +996,7 @@
                   type: 'line',
                   name: y + '年环比',
                   yAxisIndex: 1,
-                  data: momDataArray,
+                  emphasis: { focus: 'series', lineStyle: { width: 3 }, itemStyle: { borderColor: '#fff', borderWidth: 1 } }, blur: { lineStyle: { opacity: 0.12 }, itemStyle: { opacity: 0.12 } }, data: momDataArray,
                   smooth: true,
                   symbol: 'triangle',
                   symbolSize: 6,
