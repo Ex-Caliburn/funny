@@ -341,11 +341,12 @@
           }
         }
 
-        // 计算当月同比
-        return calculateMonthlyYoY(monthlyData);
+        // 计算当月同比、环比
+        return calculateMonthlyYoYAndMoM(monthlyData);
       }
 
-      function calculateMonthlyYoY(monthlyData) {
+      /** 基于当月值重算同比、环比（JSON 中 mom 是按累积值算的，与当月值曲线不一致） */
+      function calculateMonthlyYoYAndMoM(monthlyData) {
         const result = [];
 
         for (let i = 0; i < monthlyData.length; i++) {
@@ -362,9 +363,31 @@
             monthlyYoY = parseFloat(((current.value - prevYearData.value) / Math.abs(prevYearData.value) * 100).toFixed(2));
           }
 
+          // 环比：上一期当月值（1-2月对比上年12月当月值）
+          let monthlyMoM = null;
+          if (current.yearMonth.endsWith('-01-02')) {
+            const prevDec = monthlyData.find(d => d.yearMonth === prevYear + '-12');
+            if (prevDec && current.value !== null && prevDec.value !== null && prevDec.value !== 0) {
+              monthlyMoM = parseFloat(((current.value - prevDec.value) / Math.abs(prevDec.value) * 100).toFixed(2));
+            }
+          } else {
+            const currentMonth = parseInt(current.yearMonth.slice(5, 7), 10);
+            let prevMonthKey = null;
+            if (currentMonth === 3) {
+              prevMonthKey = currentYear + '-01-02';
+            } else if (currentMonth > 3) {
+              prevMonthKey = currentYear + '-' + String(currentMonth - 1).padStart(2, '0');
+            }
+            const prevPeriod = prevMonthKey ? monthlyData.find(d => d.yearMonth === prevMonthKey) : null;
+            if (prevPeriod && current.value !== null && prevPeriod.value !== null && prevPeriod.value !== 0) {
+              monthlyMoM = parseFloat(((current.value - prevPeriod.value) / Math.abs(prevPeriod.value) * 100).toFixed(2));
+            }
+          }
+
           result.push({
             ...current,
-            yoy: monthlyYoY !== null ? monthlyYoY : current.yoy // 如果计算不出当月同比，使用原始累积同比
+            yoy: monthlyYoY !== null ? monthlyYoY : current.yoy,
+            mom: monthlyMoM !== null ? monthlyMoM : current.mom
           });
         }
 

@@ -199,6 +199,50 @@ function parseExcelFile(filePath) {
   return { entries: entries, issues: issues };
 }
 
+/**
+ * 从累积值序列推算各期当月值（与 industry_profits_chart.html 逻辑一致）
+ * @param {Array<{yearMonth: string, value: number|null}>} sortedData
+ * @returns {Object<string, number|null>}
+ */
+function buildMonthlyValueMap(sortedData) {
+  var map = {};
+
+  sortedData.forEach(function(current) {
+    var ym = current.yearMonth;
+    var val = current.value;
+    var currentYear = ym.slice(0, 4);
+
+    if (val === null || val === undefined) {
+      map[ym] = null;
+      return;
+    }
+
+    if (ym.endsWith('-01-02')) {
+      map[ym] = val;
+    } else if (ym.endsWith('-12')) {
+      var nov = sortedData.find(function(d) { return d.yearMonth === currentYear + '-11'; });
+      map[ym] = (nov && nov.value != null) ? NP.round(val - nov.value, 2) : val;
+    } else {
+      var currentMonth = parseInt(ym.slice(5, 7), 10);
+      var prevMonthKey = null;
+      if (currentMonth === 3) {
+        prevMonthKey = currentYear + '-01-02';
+      } else if (currentMonth > 3) {
+        prevMonthKey = currentYear + '-' + String(currentMonth - 1).padStart(2, '0');
+      }
+      var prev = prevMonthKey
+        ? sortedData.find(function(d) { return d.yearMonth === prevMonthKey; })
+        : null;
+      map[ym] = (prev && prev.value != null) ? NP.round(val - prev.value, 2) : val;
+    }
+  });
+
+  return map;
+}
+
+/**
+ * 基于当月值计算环比（value 字段仍为 Excel 原始累积值）
+ */
 function computeMissingValues(metricsMap) {
   Object.keys(metricsMap).forEach(function(metric) {
     var data = metricsMap[metric];
@@ -206,17 +250,42 @@ function computeMissingValues(metricsMap) {
       return a.yearMonth.localeCompare(b.yearMonth);
     });
 
-    // Compute month-over-month (MoM) growth
-    for (var i = 1; i < data.length; i++) {
-      var current = data[i];
-      var previous = data[i - 1];
+    var monthlyMap = buildMonthlyValueMap(data);
 
-      if (current.value !== null && previous.value !== null &&
-          previous.value !== 0 && current.mom === null) {
-        var momGrowth = ((current.value - previous.value) / previous.value) * 100;
-        current.mom = NP.round(momGrowth, 2);
+    data.forEach(function(current) {
+      var ym = current.yearMonth;
+      var currentYear = parseInt(ym.slice(0, 4), 10);
+      var prevYear = currentYear - 1;
+      var monthlyVal = monthlyMap[ym];
+      var monthlyMoM = null;
+
+      if (monthlyVal != null) {
+        if (ym.endsWith('-01-02')) {
+          var prevDecVal = monthlyMap[prevYear + '-12'];
+          if (prevDecVal != null && prevDecVal !== 0) {
+            monthlyMoM = NP.round(((monthlyVal - prevDecVal) / Math.abs(prevDecVal)) * 100, 2);
+          }
+        } else {
+          var currentMonth = parseInt(ym.slice(5, 7), 10);
+          var prevMonthKey = null;
+          if (currentMonth === 3) {
+            prevMonthKey = currentYear + '-01-02';
+          } else if (currentMonth > 3) {
+            prevMonthKey = currentYear + '-' + String(currentMonth - 1).padStart(2, '0');
+          }
+          if (prevMonthKey) {
+            var prevVal = monthlyMap[prevMonthKey];
+            if (prevVal != null && prevVal !== 0) {
+              monthlyMoM = NP.round(((monthlyVal - prevVal) / Math.abs(prevVal)) * 100, 2);
+            }
+          }
+        }
       }
-    }
+
+      if (monthlyMoM !== null) {
+        current.mom = monthlyMoM;
+      }
+    });
   });
 }
 
@@ -279,4 +348,4 @@ if (require.main === module) {
   main();
 }
 
-module.exports = { main, parseExcelFile };
+module.exports = { main, parseExcelFile, buildMonthlyValueMap, computeMissingValues };
