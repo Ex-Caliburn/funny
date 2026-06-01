@@ -40,7 +40,17 @@
     "ocr:server": "DISABLE_MODEL_SOURCE_CHECK=True node scripts/tools/paddleocr_server.js",
     "stats": "node scripts/update_stats.js",
     "fix-links": "node scripts/fix_links.js",
-    "format": "npx prettier --write ."
+    "format": "npx prettier --write .",
+    "hk-ipo": "node scripts/hk_ipo/run_hk_ipo_pipeline.js",
+    "hk-ipo:html": "node scripts/hk_ipo/analyze_hk_ipo.js --html",
+    "hk-ipo:fetch": "node scripts/hk_ipo/fetch_hk_ipo_list.js --download",
+    "hk-ipo:offering": "node scripts/hk_ipo/fetch_offering_from_phip.js",
+    "hk-ipo:ah": "node scripts/hk_ipo/fetch_ah_discount.js",
+    "hk-ipo:analyze": "node scripts/hk_ipo/analyze_hk_ipo.js",
+    "cn-ipo": "node scripts/cn_ipo/run_cn_ipo_pipeline.js",
+    "cn-ipo:html": "node scripts/cn_ipo/analyze_cn_ipo.js --html",
+    "cn-ipo:fetch": "node scripts/cn_ipo/fetch_cn_ipo_list.js",
+    "cn-ipo:analyze": "node scripts/cn_ipo/analyze_cn_ipo.js"
   },
   "repository": {
     "type": "git",

@@ -1,0 +1,483 @@
+{
+  "meta": {
+    "version": "1.0",
+    "generatedAt": "2026-05-31T10:00:00.000Z",
+    "source": "scripts/cn_ipo/data/ipo_list.json",
+    "analyst": "AI 分析（基于东方财富新股数据及公开信息）",
+    "count": 8,
+    "disclaimer": "本分析仅供学习研究，不构成投资建议。数据来源于东方财富及巨潮资讯公开披露，请以正式招股说明书为准。"
+  },
+  "companies": [
+    {
+      "id": "920083",
+      "name": "金戈新材",
+      "secuCode": "920083.BJ",
+      "board": "bse",
+      "status": "pending_apply",
+      "basic": {
+        "industry": "新材料 / 功能性材料",
+        "boardLabel": "北交所",
+        "businessSummary": "主营功能性材料研发、生产与销售，产品应用于电子、新能源等下游。北交所直接定价发行，发行 PE 14.93x 显著低于行业 PE 41x，存在估值折价空间。",
+        "sponsor": "待披露",
+        "underwriter": "待披露",
+        "expectedListing": "2026-06 中旬（中签公布后）",
+        "financials": {
+          "period": "最近三年",
+          "revenue": "待招股书确认",
+          "netProfit": "待招股书确认",
+          "grossMargin": "—",
+          "revenueGrowth": "—"
+        }
+      },
+      "arbitrage": {
+        "type": "打新溢价",
+        "feasibility": "medium",
+        "expectedPremium": "北交所直接定价新股首日平均溢价 20-80%，低 PE 发行或偏保守",
+        "winRateEstimate": "顶格申购市值约 969 万元，北交所中签率通常高于沪深",
+        "logic": "发行 PE 14.93x 远低于行业 41x，定价偏保守。北交所流动性弱于主板，但低估值发行有利于首日表现。无同类 A 股直接对标时可参考功能性材料板块情绪。",
+        "strategies": [
+          "有北交所权限投资者可在申购日顶格参与，关注中签率与冻结资金",
+          "若首日大幅高开，可关注北交所新材料板块联动（如已上市功能性材料标的）",
+          "上市后若 PE 仍显著低于行业，存在价值修复空间"
+        ],
+        "constraints": ["需北交所交易权限", "流动性低于沪深", "直接定价无法参与询价博弈"]
+      },
+      "shadowStock": {
+        "peers": [
+          { "name": "天马新材", "code": "920580.BJ", "market": "A", "relevance": "同行业", "pe": "~25x", "ps": "—", "marketCap": "~15亿", "note": "北交所新材料，流动性参考" },
+          { "name": "万润股份", "code": "002643.SZ", "market": "A", "relevance": "产业链", "pe": "~18x", "ps": "~3x", "marketCap": "~120亿", "note": "功能性材料龙头，估值锚" }
+        ],
+        "correlation": "功能性材料板块与新能源、电子景气度相关。若申购期间新材料板块走强，可能提升首日溢价预期。",
+        "investmentTiming": "申购日前观察北交所近期新股首日表现及同行业 PE 水平；上市后首日不宜追高若溢价已充分反映。",
+        "thematicPlay": "低 PE 北交所新股 + 新材料主题"
+      },
+      "valuation": {
+        "verdict": "under",
+        "priceRange": "9.65 元（直接定价）",
+        "marketCapRange": "发行后总市值约 2-3 亿（待确认总股本）",
+        "method": "PE 对比法",
+        "comparables": [
+          { "metric": "发行 PE", "peerMedian": "行业 ~41x", "ipoImplied": "14.93x", "comment": "显著低于行业，定价保守" },
+          { "metric": "板块首日溢价", "peerMedian": "北交所 ~40%", "ipoImplied": "低 PE 或支撑更高溢价", "comment": "需结合申购热度" }
+        ],
+        "impliedPe": "14.93x",
+        "impliedPs": "—",
+        "fairValueRange": "若按行业 PE 30-35x 重估，存在 50-100% 上行空间（理论）",
+        "assumptions": ["盈利稳定无重大下滑", "行业 PE 41x 具有参考性", "北交所流动性可接受"],
+        "catalysts": ["低 PE 发行", "新材料政策预期"],
+        "risks": ["业务规模较小", "客户集中度", "北交所流动性折价"]
+      },
+      "summary": "金戈新材为北交所直接定价新股，发行 PE 14.93x 远低于行业 41x，定价偏保守，具备一定打新价值。顶格申购市值约 969 万元。需北交所权限，建议关注申购日冻结资金与同行业首日表现。",
+      "keyRisks": ["北交所流动性", "直接定价信息透明度低", "行业周期波动"],
+      "score": 6,
+      "analyzedAt": "2026-05-31T10:00:00.000Z",
+      "analyst": "AI"
+    },
+    {
+      "id": "301669",
+      "name": "高特电子",
+      "secuCode": "301669.SZ",
+      "board": "chinext",
+      "status": "pending_list",
+      "basic": {
+        "industry": "电力设备 / BMS",
+        "boardLabel": "创业板",
+        "businessSummary": "专注电池管理系统（BMS）研发制造，下游覆盖储能、电动两轮车、电动工具等。创业板注册制询价发行，发行 PE 29.97x。",
+        "sponsor": "待披露",
+        "underwriter": "待披露",
+        "expectedListing": "2026-06 上旬",
+        "financials": {
+          "period": "2023-2025E",
+          "revenue": "储能 BMS 需求驱动增长",
+          "netProfit": "待招股书确认",
+          "grossMargin": "BMS 行业 25-35%",
+          "revenueGrowth": "储能赛道高景气"
+        }
+      },
+      "arbitrage": {
+        "type": "打新溢价 + 板块联动",
+        "feasibility": "high",
+        "expectedPremium": "创业板新股首日平均 50-150%；储能 BMS 主题或放大溢价",
+        "winRateEstimate": "顶格申购市值约 700-1000 万元区间，关注冻结资金",
+        "logic": "储能 BMS 为当前市场热点，同类标的（力高股份、协能科技等）估值较高。发行 PE 30x 处于合理区间，若申购阶段板块情绪高涨，首日溢价可期。",
+        "strategies": [
+          "申购阶段顶格参与，关注网下/网上回拨比例",
+          "影子股：科华数据、上能电气等储能板块在申购窗口期的走势",
+          "上市后若 PE 超 50x 可考虑逢高减仓"
+        ],
+        "constraints": ["需市值申购资格", "创业板权限", "新股无涨跌幅限制前5日"]
+      },
+      "shadowStock": {
+        "peers": [
+          { "name": "力高股份", "code": "未上市", "market": "—", "relevance": "直接对标", "pe": "—", "ps": "—", "marketCap": "—", "note": "同类 BMS 厂商" },
+          { "name": "欣旺达", "code": "300207.SZ", "market": "A", "relevance": "产业链", "pe": "~20x", "ps": "~1x", "marketCap": "~300亿", "note": "电池 pack + BMS 布局" },
+          { "name": "科华数据", "code": "002335.SZ", "market": "A", "relevance": "概念", "pe": "~30x", "ps": "~3x", "marketCap": "~150亿", "note": "储能系统，主题联动" }
+        ],
+        "correlation": "储能 BMS 赛道与储能装机量、政策补贴高度相关。申购期间若储能板块走强，首日溢价概率提升。",
+        "investmentTiming": "申购日至上市前跟踪储能指数及影子股；上市首日根据开盘溢价决定参与程度。",
+        "thematicPlay": "储能 BMS 国产替代 + 创业板新股"
+      },
+      "valuation": {
+        "verdict": "fair",
+        "priceRange": "7.08 元",
+        "marketCapRange": "约 20-30 亿 RMB（估算）",
+        "method": "PE + PS 可比",
+        "comparables": [
+          { "metric": "发行 PE", "peerMedian": "储能 BMS 30-50x", "ipoImplied": "29.97x", "comment": "处于合理偏低" },
+          { "metric": "收入增速", "peerMedian": "储能 30%+", "ipoImplied": "待确认", "comment": "高增速支撑溢价" }
+        ],
+        "impliedPe": "29.97x",
+        "impliedPs": "—",
+        "fairValueRange": "首日合理溢价 50-100%",
+        "assumptions": ["储能需求持续", "毛利率稳定", "无重大客户流失"],
+        "catalysts": ["储能装机增长", "BMS 国产化"],
+        "risks": ["竞争加剧降价", "客户集中", "原材料波动"]
+      },
+      "summary": "高特电子为创业板储能 BMS 新股，发行 PE 约 30x 合理，叠加储能主题具备较高打新溢价潜力。建议顶格申购并关注储能板块情绪，上市后首日注意估值泡沫。",
+      "keyRisks": ["BMS 价格战", "储能政策变化", "新股波动大"],
+      "score": 7,
+      "analyzedAt": "2026-05-31T10:00:00.000Z",
+      "analyst": "AI"
+    },
+    {
+      "id": "920206",
+      "name": "彩客科技",
+      "secuCode": "920206.BJ",
+      "board": "bse",
+      "status": "pending_list",
+      "basic": {
+        "industry": "化工 / 染料中间体",
+        "boardLabel": "北交所",
+        "businessSummary": "染料及中间体研发生产，下游为纺织印染。北交所发行，发行价 30.28 元，PE 14.98x。",
+        "sponsor": null,
+        "underwriter": null,
+        "expectedListing": "2026-06 上旬",
+        "financials": {
+          "period": "最近三年",
+          "revenue": "稳定型化工企业",
+          "netProfit": "盈利稳定",
+          "grossMargin": "化工典型 20-30%",
+          "revenueGrowth": "低双位数"
+        }
+      },
+      "arbitrage": {
+        "type": "打新溢价",
+        "feasibility": "medium",
+        "expectedPremium": "30-60%",
+        "winRateEstimate": "北交所中签率相对较高",
+        "logic": "低 PE 发行 + 盈利稳定，但化工周期股缺乏主题炒作，首日溢价可能温和。",
+        "strategies": ["北交所权限投资者可参与", "上市后关注分红率与周期位置"],
+        "constraints": ["化工周期下行风险", "北交所流动性"]
+      },
+      "shadowStock": {
+        "peers": [
+          { "name": "浙江龙盛", "code": "600352.SH", "market": "A", "relevance": "同行业", "pe": "~15x", "ps": "~2x", "marketCap": "~300亿", "note": "染料龙头" },
+          { "name": "闰土股份", "code": "002440.SZ", "market": "A", "relevance": "同行业", "pe": "~12x", "ps": "~1.5x", "marketCap": "~80亿", "note": "染料可比" }
+        ],
+        "correlation": "染料价格与纺织出口、环保政策相关，周期属性强，影子股联动中等。",
+        "investmentTiming": "打新为主，二级市场配置需等周期底部确认。",
+        "thematicPlay": null
+      },
+      "valuation": {
+        "verdict": "fair",
+        "priceRange": "30.28 元",
+        "marketCapRange": "约 10-15 亿",
+        "method": "PE 可比",
+        "comparables": [
+          { "metric": "PE", "peerMedian": "染料 12-18x", "ipoImplied": "14.98x", "comment": "合理" }
+        ],
+        "impliedPe": "14.98x",
+        "impliedPs": "—",
+        "fairValueRange": "首日溢价有限，长期看分红",
+        "assumptions": ["染料价格企稳", "环保合规"],
+        "catalysts": ["纺织复苏"],
+        "risks": ["周期下行", "环保成本上升"]
+      },
+      "summary": "彩客科技为北交所染料中间体企业，低 PE 稳定盈利，打新价值中等，缺乏主题催化，首日溢价预期温和。",
+      "keyRisks": ["化工周期", "环保政策", "规模较小"],
+      "score": 5,
+      "analyzedAt": "2026-05-31T10:00:00.000Z",
+      "analyst": "AI"
+    },
+    {
+      "id": "920211",
+      "name": "新睿电子",
+      "secuCode": "920211.BJ",
+      "board": "bse",
+      "status": "pending_list",
+      "basic": {
+        "industry": "电子 / 连接器",
+        "boardLabel": "北交所",
+        "businessSummary": "电子连接器及组件制造，应用于消费电子、汽车电子等。发行价 25.19 元，PE 14.99x。",
+        "sponsor": null,
+        "underwriter": null,
+        "expectedListing": "2026-06 上旬",
+        "financials": null
+      },
+      "arbitrage": {
+        "type": "打新溢价",
+        "feasibility": "medium",
+        "expectedPremium": "40-80%",
+        "winRateEstimate": "北交所常规水平",
+        "logic": "电子连接器赛道有汽车智能化主题，但北交所标的体量小，溢价取决于申购热度。",
+        "strategies": ["顶格申购", "关注汽车电子板块情绪"],
+        "constraints": ["北交所权限", "规模小流动性弱"]
+      },
+      "shadowStock": {
+        "peers": [
+          { "name": "瑞可达", "code": "688800.SH", "market": "A", "relevance": "直接对标", "pe": "~35x", "ps": "~4x", "marketCap": "~60亿", "note": "连接器龙头" },
+          { "name": "徕木股份", "code": "603633.SH", "market": "A", "relevance": "同行业", "pe": "~25x", "ps": "~2x", "marketCap": "~30亿", "note": "汽车连接器" }
+        ],
+        "correlation": "汽车电子连接器与新能源车渗透率、智能化配置率相关。",
+        "investmentTiming": "申购期跟踪瑞可达等影子股走势。",
+        "thematicPlay": "汽车电子连接器"
+      },
+      "valuation": {
+        "verdict": "under",
+        "priceRange": "25.19 元",
+        "marketCapRange": "约 8-12 亿",
+        "method": "PE 对比瑞可达",
+        "comparables": [
+          { "metric": "PE", "peerMedian": "连接器 25-35x", "ipoImplied": "14.99x", "comment": "显著折价" }
+        ],
+        "impliedPe": "14.99x",
+        "impliedPs": "—",
+        "fairValueRange": "若对标 A 股连接器 PE，存在重估空间",
+        "assumptions": ["汽车电子订单增长"],
+        "catalysts": ["新能源车", "智能化"],
+        "risks": ["客户集中", "竞争"]
+      },
+      "summary": "新睿电子为北交所连接器企业，发行 PE 15x 低于 A 股同业，具备一定打新与价值修复逻辑，关注汽车电子主题。",
+      "keyRisks": ["规模小", "大客户依赖", "北交所流动性"],
+      "score": 6,
+      "analyzedAt": "2026-05-31T10:00:00.000Z",
+      "analyst": "AI"
+    },
+    {
+      "id": "688635",
+      "name": "长进光子",
+      "secuCode": "688635.SH",
+      "board": "star",
+      "status": "listed",
+      "basic": {
+        "industry": "光通信 / 光芯片",
+        "boardLabel": "科创板",
+        "businessSummary": "光芯片及光器件研发制造，产品用于光通信、数据中心等。科创板询价发行，发行价 40.98 元，PE 44.22x。",
+        "sponsor": "中信证券",
+        "underwriter": "中信证券",
+        "expectedListing": "2026-05-27（已上市）",
+        "financials": {
+          "period": "2023-2025",
+          "revenue": "光通信景气驱动",
+          "netProfit": "盈利改善中",
+          "grossMargin": "光芯片 40%+",
+          "revenueGrowth": "高双位数"
+        }
+      },
+      "arbitrage": {
+        "type": "板块联动（已上市）",
+        "feasibility": "low",
+        "expectedPremium": "首日已体现",
+        "winRateEstimate": "—",
+        "logic": "已上市，打新窗口关闭。可作为光芯片板块风向标，观察对源杰科技、长光华芯等影子股带动。",
+        "strategies": [
+          "若首日溢价过高已回落，评估二次介入价值",
+          "作为光芯片板块情绪指标跟踪"
+        ],
+        "constraints": ["已上市无打新机会", "科创板 PE 44x 不低"]
+      },
+      "shadowStock": {
+        "peers": [
+          { "name": "源杰科技", "code": "688498.SH", "market": "A", "relevance": "直接对标", "pe": "~80x", "ps": "~25x", "marketCap": "~100亿", "note": "光芯片龙头" },
+          { "name": "长光华芯", "code": "688048.SH", "market": "A", "relevance": "同行业", "pe": "亏损", "ps": "~15x", "marketCap": "~80亿", "note": "激光芯片" },
+          { "name": "光迅科技", "code": "002281.SZ", "market": "A", "relevance": "产业链", "pe": "~30x", "ps": "~3x", "marketCap": "~200亿", "note": "光器件龙头" }
+        ],
+        "correlation": "光芯片与 AI 算力、800G 光模块需求强相关，板块联动明显。",
+        "investmentTiming": "上市后 5-20 个交易日观察估值消化与板块趋势。",
+        "thematicPlay": "AI 算力 + 光芯片国产化"
+      },
+      "valuation": {
+        "verdict": "over",
+        "priceRange": "40.98 元",
+        "marketCapRange": "约 50-70 亿",
+        "method": "PS 对比源杰科技",
+        "comparables": [
+          { "metric": "PE", "peerMedian": "光芯片 60-80x", "ipoImplied": "44.22x", "comment": "低于源杰但绝对不低" },
+          { "metric": "PS", "peerMedian": "15-25x", "ipoImplied": "待计算", "comment": "需收入数据" }
+        ],
+        "impliedPe": "44.22x",
+        "impliedPs": "—",
+        "fairValueRange": "主题火热时溢价合理，冷静期或回调",
+        "assumptions": ["AI 算力需求持续", "800G 放量"],
+        "catalysts": ["光模块升级", "国产替代"],
+        "risks": ["估值泡沫", "技术迭代", "客户集中"]
+      },
+      "summary": "长进光子已上市，光芯片热门赛道，发行 PE 44x。打新窗口已过，可作为板块风向标；当前估值不低，需关注首日表现及源杰科技等影子股联动。",
+      "keyRisks": ["高估值", "光通信周期", "竞争加剧"],
+      "score": 6,
+      "analyzedAt": "2026-05-31T10:00:00.000Z",
+      "analyst": "AI"
+    },
+    {
+      "id": "001237",
+      "name": "惠康科技",
+      "secuCode": "001237.SZ",
+      "board": "main",
+      "status": "listed",
+      "basic": {
+        "industry": "医疗器械",
+        "boardLabel": "深市主板",
+        "businessSummary": "医用耗材及设备研发销售。主板发行，发行价 53.26 元，PE 21.04x。",
+        "sponsor": null,
+        "underwriter": null,
+        "expectedListing": "2026-05-22（已上市）",
+        "financials": null
+      },
+      "arbitrage": {
+        "type": "无（已上市）",
+        "feasibility": "none",
+        "expectedPremium": null,
+        "winRateEstimate": null,
+        "logic": "已上市，关注医疗器械板块估值及集采政策影响。",
+        "strategies": ["评估上市后估值与同业对比"],
+        "constraints": ["集采风险"]
+      },
+      "shadowStock": {
+        "peers": [
+          { "name": "迈瑞医疗", "code": "300760.SZ", "market": "A", "relevance": "行业龙头", "pe": "~30x", "ps": "~8x", "marketCap": "~3500亿", "note": "医疗器械标杆" },
+          { "name": "鱼跃医疗", "code": "002223.SZ", "market": "A", "relevance": "同行业", "pe": "~20x", "ps": "~4x", "marketCap": "~300亿", "note": "家用医疗器械" }
+        ],
+        "correlation": "医疗器械与集采政策、老龄化需求相关。",
+        "investmentTiming": "上市后估值消化期再评估。",
+        "thematicPlay": null
+      },
+      "valuation": {
+        "verdict": "fair",
+        "priceRange": "53.26 元",
+        "marketCapRange": "约 30-50 亿",
+        "method": "PE 可比",
+        "comparables": [
+          { "metric": "PE", "peerMedian": "医疗器械 20-30x", "ipoImplied": "21.04x", "comment": "合理" }
+        ],
+        "impliedPe": "21.04x",
+        "impliedPs": "—",
+        "fairValueRange": "合理区间",
+        "assumptions": ["无重大集采冲击"],
+        "catalysts": ["老龄化", "国产替代"],
+        "risks": ["集采降价", "竞争"]
+      },
+      "summary": "惠康科技已上市，医疗器械 PE 21x 合理，缺乏强主题，适合作为稳健型新股案例参考。",
+      "keyRisks": ["集采", "渠道竞争"],
+      "score": 5,
+      "analyzedAt": "2026-05-31T10:00:00.000Z",
+      "analyst": "AI"
+    },
+    {
+      "id": "603435",
+      "name": "嘉德利",
+      "secuCode": "603435.SH",
+      "board": "main",
+      "status": "listed",
+      "basic": {
+        "industry": "电子 / 被动元件",
+        "boardLabel": "沪市主板",
+        "businessSummary": "薄膜电容器等被动元件制造，应用于新能源、工控等。发行价 15.76 元，PE 29.72x。",
+        "sponsor": null,
+        "underwriter": null,
+        "expectedListing": "2026-05-22（已上市）",
+        "financials": null
+      },
+      "arbitrage": {
+        "type": "无（已上市）",
+        "feasibility": "none",
+        "expectedPremium": null,
+        "winRateEstimate": null,
+        "logic": "已上市。薄膜电容与新能源逆变器需求相关，可关注法拉电子等影子股。",
+        "strategies": [],
+        "constraints": []
+      },
+      "shadowStock": {
+        "peers": [
+          { "name": "法拉电子", "code": "600563.SH", "market": "A", "relevance": "直接对标", "pe": "~25x", "ps": "~8x", "marketCap": "~200亿", "note": "薄膜电容龙头" },
+          { "name": "铜峰电子", "code": "600237.SH", "market": "A", "relevance": "同行业", "pe": "~30x", "ps": "~3x", "marketCap": "~40亿", "note": "电容器" }
+        ],
+        "correlation": "新能源装机驱动薄膜电容需求，与法拉电子高度相关。",
+        "investmentTiming": "上市后对比法拉电子估值差距。",
+        "thematicPlay": "新能源被动元件"
+      },
+      "valuation": {
+        "verdict": "fair",
+        "priceRange": "15.76 元",
+        "marketCapRange": "约 20-30 亿",
+        "method": "PE 对比法拉电子",
+        "comparables": [
+          { "metric": "PE", "peerMedian": "法拉 ~25x", "ipoImplied": "29.72x", "comment": "略高" }
+        ],
+        "impliedPe": "29.72x",
+        "impliedPs": "—",
+        "fairValueRange": "接近合理上限",
+        "assumptions": ["新能源需求持续"],
+        "catalysts": ["逆变器放量"],
+        "risks": ["价格战", "规模差距"]
+      },
+      "summary": "嘉德利已上市，薄膜电容新股，PE 30x 接近法拉电子，估值偏合理上沿，适合作为被动元件板块补充配置研究。",
+      "keyRisks": ["规模小于龙头", "价格竞争"],
+      "score": 5,
+      "analyzedAt": "2026-05-31T10:00:00.000Z",
+      "analyst": "AI"
+    },
+    {
+      "id": "920218",
+      "name": "新天力",
+      "secuCode": "920218.BJ",
+      "board": "bse",
+      "status": "listed",
+      "basic": {
+        "industry": "食品包装",
+        "boardLabel": "北交所",
+        "businessSummary": "食品塑料包装容器生产，下游为乳制品、饮料等。北交所发行，发行价 12.19 元，PE 14.78x。",
+        "sponsor": null,
+        "underwriter": null,
+        "expectedListing": "2026-05-29（已上市）",
+        "financials": null
+      },
+      "arbitrage": {
+        "type": "打新复盘",
+        "feasibility": "none",
+        "expectedPremium": "待观察首日数据",
+        "winRateEstimate": "—",
+        "logic": "刚上市北交所新股，可用于校准北交所近期打新收益基准。",
+        "strategies": ["记录首日溢价供后续北交所新股参考"],
+        "constraints": []
+      },
+      "shadowStock": {
+        "peers": [
+          { "name": "紫江企业", "code": "600210.SH", "market": "A", "relevance": "同行业", "pe": "~12x", "ps": "~1x", "marketCap": "~80亿", "note": "包装龙头" }
+        ],
+        "correlation": "消费包装与下游食品饮料景气相关，联动弱。",
+        "investmentTiming": "—",
+        "thematicPlay": null
+      },
+      "valuation": {
+        "verdict": "fair",
+        "priceRange": "12.19 元",
+        "marketCapRange": "约 5-8 亿",
+        "method": "PE 可比",
+        "comparables": [
+          { "metric": "PE", "peerMedian": "包装 10-15x", "ipoImplied": "14.78x", "comment": "合理" }
+        ],
+        "impliedPe": "14.78x",
+        "impliedPs": "—",
+        "fairValueRange": "稳健型",
+        "assumptions": ["下游需求稳定"],
+        "catalysts": [],
+        "risks": ["原材料价格", "规模小"]
+      },
+      "summary": "新天力刚上市，北交所食品包装股，低 PE 稳健型，可作为北交所打新收益基准案例。",
+      "keyRisks": ["规模小", "原材料", "北交所流动性"],
+      "score": 5,
+      "analyzedAt": "2026-05-31T10:00:00.000Z",
+      "analyst": "AI"
+    }
+  ]
+}

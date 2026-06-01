@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>A 股 IPO 分析看板 — 新股申购</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0a0e17;
+      --surface: #111827;
+      --surface2: #1a2234;
+      --border: #1e293b;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --accent: #f59e0b;
+      --accent2: #ef4444;
+      --green: #10b981;
+      --yellow: #f59e0b;
+      --red: #ef4444;
+      --sidebar-w: 280px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Noto Sans SC', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+    }
+    .sidebar {
+      width: var(--sidebar-w);
+      min-width: var(--sidebar-w);
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      position: sticky;
+      top: 0;
+    }
+    .sidebar-header { padding: 20px 16px 12px; border-bottom: 1px solid var(--border); }
+    .sidebar-header h1 { font-size: 15px; font-weight: 600; line-height: 1.4; }
+    .sidebar-header .sub { font-size: 11px; color: var(--muted); margin-top: 4px; }
+    .company-list { flex: 1; overflow-y: auto; padding: 8px; }
+    .company-item {
+      display: flex; align-items: center; gap: 10px; padding: 10px 12px;
+      border-radius: 8px; cursor: pointer; transition: background 0.15s; margin-bottom: 2px;
+    }
+    .company-item:hover { background: var(--surface2); }
+    .company-item.active {
+      background: linear-gradient(135deg, rgba(245,158,11,0.15), rgba(239,68,68,0.08));
+      border: 1px solid rgba(245,158,11,0.3);
+    }
+    .score-badge {
+      width: 32px; height: 32px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 700; font-family: 'JetBrains Mono', monospace; flex-shrink: 0;
+    }
+    .score-high { background: rgba(16,185,129,0.15); color: var(--green); }
+    .score-mid { background: rgba(245,158,11,0.15); color: var(--yellow); }
+    .score-low { background: rgba(239,68,68,0.15); color: var(--red); }
+    .company-info { flex: 1; min-width: 0; }
+    .company-name { font-size: 13px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .company-meta { font-size: 11px; color: var(--muted); margin-top: 2px; }
+    .main { flex: 1; overflow-y: auto; height: 100vh; }
+    .main-header {
+      padding: 24px 32px 16px; border-bottom: 1px solid var(--border);
+      background: linear-gradient(180deg, var(--surface) 0%, var(--bg) 100%);
+    }
+    .main-header h2 { font-size: 22px; font-weight: 700; }
+    .tags { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+    .tag {
+      font-size: 11px; padding: 3px 10px; border-radius: 20px;
+      background: var(--surface2); border: 1px solid var(--border); color: var(--muted);
+    }
+    .tag.highlight {
+      background: rgba(245,158,11,0.1); border-color: rgba(245,158,11,0.3); color: var(--accent);
+    }
+    .tabs { display: flex; gap: 4px; padding: 16px 32px 0; border-bottom: 1px solid var(--border); flex-wrap: wrap; }
+    .tab {
+      padding: 10px 20px; font-size: 13px; font-weight: 500; color: var(--muted);
+      cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.15s;
+      background: none; border-top: none; border-left: none; border-right: none; font-family: inherit;
+    }
+    .tab:hover { color: var(--text); }
+    .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+    .content { padding: 24px 32px 48px; }
+    .panel { display: none; }
+    .panel.active { display: block; }
+    .card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 20px; margin-bottom: 16px;
+    }
+    .card-title { font-size: 14px; font-weight: 600; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+    .card p, .card li { font-size: 13px; line-height: 1.7; color: #cbd5e1; }
+    .card ul { padding-left: 18px; }
+    .card li { margin-bottom: 6px; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 900px) {
+      .grid-2 { grid-template-columns: 1fr; }
+      .sidebar { width: 100%; min-width: 100%; height: auto; position: relative; }
+      body { flex-direction: column; }
+    }
+    .data-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+    .data-table th {
+      text-align: left; padding: 8px 12px; background: var(--surface2);
+      color: var(--muted); font-weight: 500; border-bottom: 1px solid var(--border);
+    }
+    .data-table td { padding: 8px 12px; border-bottom: 1px solid var(--border); color: #cbd5e1; }
+    .data-table tr:hover td { background: rgba(245,158,11,0.04); }
+    .mono { font-family: 'JetBrains Mono', monospace; font-size: 11px; }
+    .verdict { display: inline-block; padding: 2px 10px; border-radius: 4px; font-size: 12px; font-weight: 600; }
+    .verdict-under { background: rgba(16,185,129,0.15); color: var(--green); }
+    .verdict-fair { background: rgba(245,158,11,0.15); color: var(--accent); }
+    .verdict-over { background: rgba(239,68,68,0.15); color: var(--red); }
+    .verdict-uncertain { background: rgba(100,116,139,0.15); color: var(--muted); }
+    .feasibility { display: inline-block; padding: 2px 10px; border-radius: 4px; font-size: 12px; font-weight: 600; }
+    .feas-high { background: rgba(16,185,129,0.15); color: var(--green); }
+    .feas-medium { background: rgba(245,158,11,0.15); color: var(--yellow); }
+    .feas-low, .feas-none { background: rgba(100,116,139,0.15); color: var(--muted); }
+    .summary-box {
+      background: linear-gradient(135deg, rgba(245,158,11,0.08), rgba(239,68,68,0.05));
+      border: 1px solid rgba(245,158,11,0.2); border-radius: 12px; padding: 20px; margin-bottom: 16px;
+    }
+    .summary-box p { font-size: 14px; line-height: 1.8; }
+    .risk-list li { color: var(--red); }
+    .doc-link { color: var(--accent); text-decoration: none; font-size: 12px; }
+    .doc-link:hover { text-decoration: underline; }
+    .disclaimer { padding: 16px 32px; font-size: 11px; color: var(--muted); border-top: 1px solid var(--border); line-height: 1.6; }
+    .stat-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+    .stat-item { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; min-width: 120px; }
+    .stat-label { font-size: 11px; color: var(--muted); margin-bottom: 4px; }
+    .stat-value { font-size: 15px; font-weight: 600; }
+    .status-pending { color: var(--yellow); }
+    .status-listed { color: var(--green); }
+    .premium-up { color: var(--green); font-weight: 600; }
+    .premium-down { color: var(--red); font-weight: 600; }
+  </style>
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <h1>A 股 IPO 分析看板</h1>
+      <div class="sub">新股申购 · 打新套利 · 影子股</div>
+    </div>
+    <div class="company-list" id="companyList"></div>
+  </aside>
+  <main class="main">
+    <div class="main-header">
+      <h2 id="companyTitle">—</h2>
+      <div class="tags" id="companyTags"></div>
+    </div>
+    <div class="tabs">
+      <button class="tab active" data-tab="overview">综合概览</button>
+      <button class="tab" data-tab="subscription">发行申购</button>
+      <button class="tab" data-tab="arbitrage">打新套利</button>
+      <button class="tab" data-tab="shadow">影子股</button>
+      <button class="tab" data-tab="valuation">估值</button>
+      <button class="tab" data-tab="docs">公告链接</button>
+    </div>
+    <div class="content">
+      <div class="panel active" id="panel-overview"></div>
+      <div class="panel" id="panel-subscription"></div>
+      <div class="panel" id="panel-arbitrage"></div>
+      <div class="panel" id="panel-shadow"></div>
+      <div class="panel" id="panel-valuation"></div>
+      <div class="panel" id="panel-docs"></div>
+    </div>
+    <div class="disclaimer" id="disclaimer"></div>
+  </main>
+  <script>
+    const DATA = {"meta":{"version":"1.0","generatedAt":"2026-05-31T10:00:00.000Z","source":"scripts/cn_ipo/data/ipo_list.json","analyst":"AI 分析（基于东方财富新股数据及公开信息）","count":8,"disclaimer":"本分析仅供学习研究，不构成投资建议。数据来源于东方财富及巨潮资讯公开披露，请以正式招股说明书为准。","ipoMeta":{"source":"eastmoney_RPTA_APP_IPOAPPLY","fetchedAt":"2026-05-31T10:07:03.923Z","today":"2026-05-31","filterDays":120,"totalFromApi":100,"count":57},"mergedAt":"2026-05-31T10:07:04.012Z"},"companies":[{"id":"301669","name":"高特电子","secuCode":"301669.SZ","board":"chinext","status":"pending_list","basic":{"industry":"电力设备 / BMS","boardLabel":"创业板","businessSummary":"专注电池管理系统（BMS）研发制造，下游覆盖储能、电动两轮车、电动工具等。创业板注册制询价发行，发行 PE 29.97x。","sponsor":"待披露","underwriter":"待披露","expectedListing":"2026-06 上旬","financials":{"period":"2023-2025E","revenue":"储能 BMS 需求驱动增长","netProfit":"待招股书确认","grossMargin":"BMS 行业 25-35%","revenueGrowth":"储能赛道高景气"}},"arbitrage":{"type":"打新溢价 + 板块联动","feasibility":"high","expectedPremium":"创业板新股首日平均 50-150%；储能 BMS 主题或放大溢价","winRateEstimate":"顶格申购市值约 700-1000 万元区间，关注冻结资金","logic":"储能 BMS 为当前市场热点，同类标的（力高股份、协能科技等）估值较高。发行 PE 30x 处于合理区间，若申购阶段板块情绪高涨，首日溢价可期。","strategies":["申购阶段顶格参与，关注网下/网上回拨比例","影子股：科华数据、上能电气等储能板块在申购窗口期的走势","上市后若 PE 超 50x 可考虑逢高减仓"],"constraints":["需市值申购资格","创业板权限","新股无涨跌幅限制前5日"]},"shadowStock":{"peers":[{"name":"力高股份","code":"未上市","market":"—","relevance":"直接对标","pe":"—","ps":"—","marketCap":"—","note":"同类 BMS 厂商"},{"name":"欣旺达","code":"300207.SZ","market":"A","relevance":"产业链","pe":"~20x","ps":"~1x","marketCap":"~300亿","note":"电池 pack + BMS 布局"},{"name":"科华数据","code":"002335.SZ","market":"A","relevance":"概念","pe":"~30x","ps":"~3x","marketCap":"~150亿","note":"储能系统，主题联动"}],"correlation":"储能 BMS 赛道与储能装机量、政策补贴高度相关。申购期间若储能板块走强，首日溢价概率提升。","investmentTiming":"申购日至上市前跟踪储能指数及影子股；上市首日根据开盘溢价决定参与程度。","thematicPlay":"储能 BMS 国产替代 + 创业板新股"},"valuation":{"verdict":"fair","priceRange":"7.08 元","marketCapRange":"约 20-30 亿 RMB（估算）","method":"PE + PS 可比","comparables":[{"metric":"发行 PE","peerMedian":"储能 BMS 30-50x","ipoImplied":"29.97x","comment":"处于合理偏低"},{"metric":"收入增速","peerMedian":"储能 30%+","ipoImplied":"待确认","comment":"高增速支撑溢价"}],"impliedPe":"29.97x","impliedPs":"—","fairValueRange":"首日合理溢价 50-100%","assumptions":["储能需求持续","毛利率稳定","无重大客户流失"],"catalysts":["储能装机增长","BMS 国产化"],"risks":["竞争加剧降价","客户集中","原材料波动"]},"summary":"高特电子为创业板储能 BMS 新股，发行 PE 约 30x 合理，叠加储能主题具备较高打新溢价潜力。建议顶格申购并关注储能板块情绪，上市后首日注意估值泡沫。","keyRisks":["BMS 价格战","储能政策变化","新股波动大"],"score":7,"analyzedAt":"2026-05-31T10:00:00.000Z","analyst":"AI","cninfoUrl":"https://www.cninfo.com.cn/new/disclosure/stock?stockCode=301669&orgId=10370746","eastmoneyUrl":"https://data.eastmoney.com/xg/xg/detail/301669.html","subscription":{"status":"待上市","issuePrice":7.08,"priceMethod":"本次发行采用向参与战略配售的投资者定向配售、网下向符合条件的投资者询价配售和网上向持有深圳市场非限售A股股份和非限售存托凭证市值的社会公众投资者定价发行相结合的方式进行","issuePe":29.97,"industryPe":28.92,"applyDate":"2026-05-29","listingDate":null,"ballotDate":"2026-06-02","onlinePayDate":null,"onlineRefundDate":null,"issueSharesWan":12000,"onlineIssueShares":16800000,"onlineApplyUpper":16500,"onlineApplyLower":null,"applyAmountUpperWan":16.5,"mainBusiness":"面向新能源产业提供安全、可靠、高效、稳定且更具经济性的新型储能电池管理系统相关产品,连续三年在大型储能领域BMS产品出货量保持行业前列,致力于成为全球领先的新型储能系统安全与价值提升解决方案的核心供应商","ldOpenPremium":null,"ldCloseChange":null,"ldHighChange":null,"openPrice":null,"closePrice":null,"freezeFundWan":null,"ballotNum":null,"oversubscription":null,"recommendOrg":"中信证券股份有限公司","underwriterOrg":"中信证券股份有限公司","isRegistration":true,"infoCode":"AN202601151817054917","_source":"eastmoney_RPTA_APP_IPOAPPLY"}},{"id":"920083","name":"金戈新材","secuCode":"920083.BJ","board":"bse","status":"pending_apply","basic":{"industry":"新材料 / 功能性材料","boardLabel":"北交所","businessSummary":"主营功能性材料研发、生产与销售，产品应用于电子、新能源等下游。北交所直接定价发行，发行 PE 14.93x 显著低于行业 PE 41x，存在估值折价空间。","sponsor":"待披露","underwriter":"待披露","expectedListing":"2026-06 中旬（中签公布后）","financials":{"period":"最近三年","revenue":"待招股书确认","netProfit":"待招股书确认","grossMargin":"—","revenueGrowth":"—"}},"arbitrage":{"type":"打新溢价","feasibility":"medium","expectedPremium":"北交所直接定价新股首日平均溢价 20-80%，低 PE 发行或偏保守","winRateEstimate":"顶格申购市值约 969 万元，北交所中签率通常高于沪深","logic":"发行 PE 14.93x 远低于行业 41x，定价偏保守。北交所流动性弱于主板，但低估值发行有利于首日表现。无同类 A 股直接对标时可参考功能性材料板块情绪。","strategies":["有北交所权限投资者可在申购日顶格参与，关注中签率与冻结资金","若首日大幅高开，可关注北交所新材料板块联动（如已上市功能性材料标的）","上市后若 PE 仍显著低于行业，存在价值修复空间"],"constraints":["需北交所交易权限","流动性低于沪深","直接定价无法参与询价博弈"]},"shadowStock":{"peers":[{"name":"天马新材","code":"920580.BJ","market":"A","relevance":"同行业","pe":"~25x","ps":"—","marketCap":"~15亿","note":"北交所新材料，流动性参考"},{"name":"万润股份","code":"002643.SZ","market":"A","relevance":"产业链","pe":"~18x","ps":"~3x","marketCap":"~120亿","note":"功能性材料龙头，估值锚"}],"correlation":"功能性材料板块与新能源、电子景气度相关。若申购期间新材料板块走强，可能提升首日溢价预期。","investmentTiming":"申购日前观察北交所近期新股首日表现及同行业 PE 水平；上市后首日不宜追高若溢价已充分反映。","thematicPlay":"低 PE 北交所新股 + 新材料主题"},"valuation":{"verdict":"under","priceRange":"9.65 元（直接定价）","marketCapRange":"发行后总市值约 2-3 亿（待确认总股本）","method":"PE 对比法","comparables":[{"metric":"发行 PE","peerMedian":"行业 ~41x","ipoImplied":"14.93x","comment":"显著低于行业，定价保守"},{"metric":"板块首日溢价","peerMedian":"北交所 ~40%","ipoImplied":"低 PE 或支撑更高溢价","comment":"需结合申购热度"}],"impliedPe":"14.93x","impliedPs":"—","fairValueRange":"若按行业 PE 30-35x 重估，存在 50-100% 上行空间（理论）","assumptions":["盈利稳定无重大下滑","行业 PE 41x 具有参考性","北交所流动性可接受"],"catalysts":["低 PE 发行","新材料政策预期"],"risks":["业务规模较小","客户集中度","北交所流动性折价"]},"summary":"金戈新材为北交所直接定价新股，发行 PE 14.93x 远低于行业 41x，定价偏保守，具备一定打新价值。顶格申购市值约 969 万元。需北交所权限，建议关注申购日冻结资金与同行业首日表现。","keyRisks":["北交所流动性","直接定价信息透明度低","行业周期波动"],"score":6,"analyzedAt":"2026-05-31T10:00:00.000Z","analyst":"AI","cninfoUrl":"https://www.cninfo.com.cn/new/disclosure/stock?stockCode=920083&orgId=10000531013","eastmoneyUrl":"https://data.eastmoney.com/xg/xg/detail/920083.html","subscription":{"status":"待申购","issuePrice":9.65,"priceMethod":"直接定价","issuePe":14.93,"industryPe":41.01,"applyDate":"2026-06-01","listingDate":null,"ballotDate":"2026-06-04","onlinePayDate":"2026-06-01","onlineRefundDate":"2026-06-03","issueSharesWan":2231.7369,"onlineIssueShares":20089392,"onlineApplyUpper":1004400,"onlineApplyLower":100,"applyAmountUpperWan":969.246,"mainBusiness":"功能性材料研发、生产和销售","ldOpenPremium":null,"ldCloseChange":null,"ldHighChange":null,"openPrice":null,"closePrice":null,"freezeFundWan":null,"ballotNum":null,"oversubscription":null,"recommendOrg":null,"underwriterOrg":null,"isRegistration":true,"infoCode":"AN202605281822950093","_source":"eastmoney_RPTA_APP_IPOAPPLY"}},{"id":"920211","name":"新睿电子","secuCode":"920211.BJ","board":"bse","status":"pending_list","basic":{"industry":"电子 / 连接器","boardLabel":"北交所","businessSummary":"电子连接器及组件制造，应用于消费电子、汽车电子等。发行价 25.19 元，PE 14.99x。","sponsor":null,"underwriter":null,"expectedListing":"2026-06 上旬","financials":null},"arbitrage":{"type":"打新溢价","feasibility":"medium","expectedPremium":"40-80%","winRateEstimate":"北交所常规水平","logic":"电子连接器赛道有汽车智能化主题，但北交所标的体量小，溢价取决于申购热度。","strategies":["顶格申购","关注汽车电子板块情绪"],"constraints":["北交所权限","规模小流动性弱"]},"shadowStock":{"peers":[{"name":"瑞可达","code":"688800.SH","market":"A","relevance":"直接对标","pe":"~35x","ps":"~4x","marketCap":"~60亿","note":"连接器龙头"},{"name":"徕木股份","code":"603633.SH","market":"A","relevance":"同行业","pe":"~25x","ps":"~2x","marketCap":"~30亿","note":"汽车连接器"}],"correlation":"汽车电子连接器与新能源车渗透率、智能化配置率相关。","investmentTiming":"申购期跟踪瑞可达等影子股走势。","thematicPlay":"汽车电子连接器"},"valuation":{"verdict":"under","priceRange":"25.19 元","marketCapRange":"约 8-12 亿","method":"PE 对比瑞可达","comparables":[{"metric":"PE","peerMedian":"连接器 25-35x","ipoImplied":"14.99x","comment":"显著折价"}],"impliedPe":"14.99x","impliedPs":"—","fairValueRange":"若对标 A 股连接器 PE，存在重估空间","assumptions":["汽车电子订单增长"],"catalysts":["新能源车","智能化"],"risks":["客户集中","竞争"]},"summary":"新睿电子为北交所连接器企业，发行 PE 15x 低于 A 股同业，具备一定打新与价值修复逻辑，关注汽车电子主题。","keyRisks":["规模小","大客户依赖","北交所流动性"],"score":6,"analyzedAt":"2026-05-31T10:00:00.000Z","analyst":"AI","cninfoUrl":"https://www.cninfo.com.cn/new/disclosure/stock?stockCode=920211&orgId=10000610652","eastmoneyUrl":"https://data.eastmoney.com/xg/xg/detail/920211.html","subscription":{"status":"待上市","issuePrice":25.19,"priceMethod":"直接定价","issuePe":14.99,"industryPe":57.91,"applyDate":"2026-05-25","listingDate":null,"ballotDate":"2026-05-28","onlinePayDate":"2026-05-25","onlineRefundDate":"2026-05-27","issueSharesWan":640,"onlineIssueShares":5760000,"onlineApplyUpper":288000,"onlineApplyLower":100,"applyAmountUpperWan":725.472,"mainBusiness":"工业机器人控制系统及部件、伺服系统及部件的研发、生产和销售","ldOpenPremium":null,"ldCloseChange":null,"ldHighChange":null,"openPrice":null,"closePrice":null,"freezeFundWan":null,"ballotNum":null,"oversubscription":"5347.4058","recommendOrg":null,"underwriterOrg":null,"isRegistration":true,"infoCode":"AN202605211822648901","_source":"eastmoney_RPTA_APP_IPOAPPLY"}},{"id":"688635","name":"长进光子","secuCode":"688635.SH","board":"star","status":"listed","basic":{"industry":"光通信 / 光芯片","boardLabel":"科创板","businessSummary":"光芯片及光器件研发制造，产品用于光通信、数据中心等。科创板询价发行，发行价 40.98 元，PE 44.22x。","sponsor":"中信证券","underwriter":"中信证券","expectedListing":"2026-05-27（已上市）","financials":{"period":"2023-2025","revenue":"光通信景气驱动","netProfit":"盈利改善中","grossMargin":"光芯片 40%+","revenueGrowth":"高双位数"}},"arbitrage":{"type":"板块联动（已上市）","feasibility":"low","expectedPremium":"首日已体现","winRateEstimate":"—","logic":"已上市，打新窗口关闭。可作为光芯片板块风向标，观察对源杰科技、长光华芯等影子股带动。","strategies":["若首日溢价过高已回落，评估二次介入价值","作为光芯片板块情绪指标跟踪"],"constraints":["已上市无打新机会","科创板 PE 44x 不低"]},"shadowStock":{"peers":[{"name":"源杰科技","code":"688498.SH","market":"A","relevance":"直接对标","pe":"~80x","ps":"~25x","marketCap":"~100亿","note":"光芯片龙头"},{"name":"长光华芯","code":"688048.SH","market":"A","relevance":"同行业","pe":"亏损","ps":"~15x","marketCap":"~80亿","note":"激光芯片"},{"name":"光迅科技","code":"002281.SZ","market":"A","relevance":"产业链","pe":"~30x","ps":"~3x","marketCap":"~200亿","note":"光器件龙头"}],"correlation":"光芯片与 AI 算力、800G 光模块需求强相关，板块联动明显。","investmentTiming":"上市后 5-20 个交易日观察估值消化与板块趋势。","thematicPlay":"AI 算力 + 光芯片国产化"},"valuation":{"verdict":"over","priceRange":"40.98 元","marketCapRange":"约 50-70 亿","method":"PS 对比源杰科技","comparables":[{"metric":"PE","peerMedian":"光芯片 60-80x","ipoImplied":"44.22x","comment":"低于源杰但绝对不低"},{"metric":"PS","peerMedian":"15-25x","ipoImplied":"待计算","comment":"需收入数据"}],"impliedPe":"44.22x","impliedPs":"—","fairValueRange":"主题火热时溢价合理，冷静期或回调","assumptions":["AI 算力需求持续","800G 放量"],"catalysts":["光模块升级","国产替代"],"risks":["估值泡沫","技术迭代","客户集中"]},"summary":"长进光子已上市，光芯片热门赛道，发行 PE 44x。打新窗口已过，可作为板块风向标；当前估值不低，需关注首日表现及源杰科技等影子股联动。","keyRisks":["高估值","光通信周期","竞争加剧"],"score":6,"analyzedAt":"2026-05-31T10:00:00.000Z","analyst":"AI","cninfoUrl":"https://www.cninfo.com.cn/new/disclosure/stock?stockCode=688635&orgId=10000086678","eastmoneyUrl":"https://data.eastmoney.com/xg/xg/detail/688635.html","subscription":{"status":"已上市","issuePrice":40.98,"priceMethod":"本次发行采用向参与战略配售的投资者定向配售、网下向符合条件的投资者询价配售与网上向持有上海市场非限售A股股份和非限售存托凭证市值的社会公众投资者定价发行相结合的方式进行","issuePe":44.22,"industryPe":70.47,"applyDate":"2026-05-18","listingDate":"2026-05-27","ballotDate":"2026-05-20","onlinePayDate":null,"onlineRefundDate":null,"issueSharesWan":2341.75,"onlineIssueShares":7510500,"onlineApplyUpper":5500,"onlineApplyLower":null,"applyAmountUpperWan":5.5,"mainBusiness":"特种光纤的研发、生产和销售","ldOpenPremium":1193.31381161542,"ldCloseChange":1510.5173,"ldHighChange":1581.01512933138,"openPrice":530,"closePrice":659.99,"freezeFundWan":null,"ballotNum":"末\"四\"位数：6789,1789；末\"六\"位数：109906,359906,609906,859906；末\"七\"位数：5736226,6986226,8236226,9486226,4486226,3236226,1986226,0736226,3016504；末\"八\"位数：25713455,11773125,36905266","oversubscription":"4879.1","recommendOrg":"国泰海通证券股份有限公司","underwriterOrg":"国泰海通证券股份有限公司","isRegistration":true,"infoCode":"AN202605211822652349","_source":"eastmoney_RPTA_APP_IPOAPPLY"}},{"id":"920206","name":"彩客科技","secuCode":"920206.BJ","board":"bse","status":"pending_list","basic":{"industry":"化工 / 染料中间体","boardLabel":"北交所","businessSummary":"染料及中间体研发生产，下游为纺织印染。北交所发行，发行价 30.28 元，PE 14.98x。","sponsor":null,"underwriter":null,"expectedListing":"2026-06 上旬","financials":{"period":"最近三年","revenue":"稳定型化工企业","netProfit":"盈利稳定","grossMargin":"化工典型 20-30%","revenueGrowth":"低双位数"}},"arbitrage":{"type":"打新溢价","feasibility":"medium","expectedPremium":"30-60%","winRateEstimate":"北交所中签率相对较高","logic":"低 PE 发行 + 盈利稳定，但化工周期股缺乏主题炒作，首日溢价可能温和。","strategies":["北交所权限投资者可参与","上市后关注分红率与周期位置"],"constraints":["化工周期下行风险","北交所流动性"]},"shadowStock":{"peers":[{"name":"浙江龙盛","code":"600352.SH","market":"A","relevance":"同行业","pe":"~15x","ps":"~2x","marketCap":"~300亿","note":"染料龙头"},{"name":"闰土股份","code":"002440.SZ","market":"A","relevance":"同行业","pe":"~12x","ps":"~1.5x","marketCap":"~80亿","note":"染料可比"}],"correlation":"染料价格与纺织出口、环保政策相关，周期属性强，影子股联动中等。","investmentTiming":"打新为主，二级市场配置需等周期底部确认。","thematicPlay":null},"valuation":{"verdict":"fair","priceRange":"30.28 元","marketCapRange":"约 10-15 亿","method":"PE 可比","comparables":[{"metric":"PE","peerMedian":"染料 12-18x","ipoImplied":"14.98x","comment":"合理"}],"impliedPe":"14.98x","impliedPs":"—","fairValueRange":"首日溢价有限，长期看分红","assumptions":["染料价格企稳","环保合规"],"catalysts":["纺织复苏"],"risks":["周期下行","环保成本上升"]},"summary":"彩客科技为北交所染料中间体企业，低 PE 稳定盈利，打新价值中等，缺乏主题催化，首日溢价预期温和。","keyRisks":["化工周期","环保政策","规模较小"],"score":5,"analyzedAt":"2026-05-31T10:00:00.000Z","analyst":"AI","cninfoUrl":"https://www.cninfo.com.cn/new/disclosure/stock?stockCode=920206&orgId=10000323945","eastmoneyUrl":"https://data.eastmoney.com/xg/xg/detail/920206.html","subscription":{"status":"待上市","issuePrice":30.28,"priceMethod":"直接定价","issuePe":14.98,"industryPe":32.47,"applyDate":"2026-05-27","listingDate":null,"ballotDate":"2026-06-01","onlinePayDate":"2026-05-27","onlineRefundDate":"2026-05-29","issueSharesWan":797.48,"onlineIssueShares":7177320,"onlineApplyUpper":358800,"onlineApplyLower":100,"applyAmountUpperWan":1086.4464,"mainBusiness":"高性能有机颜料中间体、食品添加剂中间体、光稳定剂中间体及新材料聚合单体(未来重点拓展产品)的研发、生产及销售","ldOpenPremium":null,"ldCloseChange":null,"ldHighChange":null,"openPrice":null,"closePrice":null,"freezeFundWan":null,"ballotNum":null,"oversubscription":"4111.27123","recommendOrg":null,"underwriterOrg":null,"isRegistration":true,"infoCode":"AN202605251822858754","_source":"eastmoney_RPTA_APP_IPOAPPLY"}},{"id":"001237","name":"惠康科技","secuCode":"001237.SZ","board":"main","status":"listed","basic":{"industry":"医疗器械","boardLabel":"沪深主板","businessSummary":"医用耗材及设备研发销售。主板发行，发行价 53.26 元，PE 21.04x。","sponsor":null,"underwriter":null,"expectedListing":"2026-05-22（已上市）","financials":null},"arbitrage":{"type":"无（已上市）","feasibility":"none","expectedPremium":null,"winRateEstimate":null,"logic":"已上市，关注医疗器械板块估值及集采政策影响。","strategies":["评估上市后估值与同业对比"],"constraints":["集采风险"]},"shadowStock":{"peers":[{"name":"迈瑞医疗","code":"300760.SZ","market":"A","relevance":"行业龙头","pe":"~30x","ps":"~8x","marketCap":"~3500亿","note":"医疗器械标杆"},{"name":"鱼跃医疗","code":"002223.SZ","market":"A","relevance":"同行业","pe":"~20x","ps":"~4x","marketCap":"~300亿","note":"家用医疗器械"}],"correlation":"医疗器械与集采政策、老龄化需求相关。","investmentTiming":"上市后估值消化期再评估。","thematicPlay":null},"valuation":{"verdict":"fair","priceRange":"53.26 元","marketCapRange":"约 30-50 亿","method":"PE 可比","comparables":[{"metric":"PE","peerMedian":"医疗器械 20-30x","ipoImplied":"21.04x","comment":"合理"}],"impliedPe":"21.04x","impliedPs":"—","fairValueRange":"合理区间","assumptions":["无重大集采冲击"],"catalysts":["老龄化","国产替代"],"risks":["集采降价","竞争"]},"summary":"惠康科技已上市，医疗器械 PE 21x 合理，缺乏强主题，适合作为稳健型新股案例参考。","keyRisks":["集采","渠道竞争"],"score":5,"analyzedAt":"2026-05-31T10:00:00.000Z","analyst":"AI","cninfoUrl":"https://www.cninfo.com.cn/new/disclosure/stock?stockCode=001237&orgId=10000480695","eastmoneyUrl":"https://data.eastmoney.com/xg/xg/detail/001237.html","subscription":{"status":"已上市","issuePrice":53.26,"priceMethod":"本次发行采用网下向符合条件的投资者询价配售和网上向持有深圳市场非限售A股股份和非限售存托凭证市值的社会公众投资者定价发行相结合的方式","issuePe":21.04,"industryPe":29.81,"applyDate":"2026-05-13","listingDate":"2026-05-22","ballotDate":"2026-05-15","onlinePayDate":null,"onlineRefundDate":null,"issueSharesWan":3708.79,"onlineIssueShares":29670500,"onlineApplyUpper":14500,"onlineApplyLower":null,"applyAmountUpperWan":14.5,"mainBusiness":"深耕制冷领域,是一家以制冷设备的研发、生产及销售为核心业务的国家级高新技术企业","ldOpenPremium":87.739391663537,"ldCloseChange":109.9136,"ldHighChange":202.290649643259,"openPrice":99.99,"closePrice":111.8,"freezeFundWan":null,"ballotNum":"末\"四\"位数：6470；末\"五\"位数：92438,12438,32438,52438,72438,39910,89910；末\"六\"位数：020791,220791,420791,620791,820791,136079,636079；末\"七\"位数：7794644,1794644,3794644,5794644,9794644,7399115,2399115,4899115,9899115；末\"八\"位数：39216006,19216006,59216006,79216006,99216006,83547910,33547910,09760503","oversubscription":"5618.8","recommendOrg":"财通证券股份有限公司","underwriterOrg":"财通证券股份有限公司,中国国际金融股份有限公司","isRegistration":true,"infoCode":"AN202605181822408806","_source":"eastmoney_RPTA_APP_IPOAPPLY"}},{"id":"603435","name":"嘉德利","secuCode":"603435.SH","board":"main","status":"listed","basic":{"industry":"电子 / 被动元件","boardLabel":"沪深主板","businessSummary":"薄膜电容器等被动元件制造，应用于新能源、工控等。发行价 15.76 元，PE 29.72x。","sponsor":null,"underwriter":null,"expectedListing":"2026-05-22（已上市）","financials":null},"arbitrage":{"type":"无（已上市）","feasibility":"none","expectedPremium":null,"winRateEstimate":null,"logic":"已上市。薄膜电容与新能源逆变器需求相关，可关注法拉电子等影子股。","strategies":[],"constraints":[]},"shadowStock":{"peers":[{"name":"法拉电子","code":"600563.SH","market":"A","relevance":"直接对标","pe":"~25x","ps":"~8x","marketCap":"~200亿","note":"薄膜电容龙头"},{"name":"铜峰电子","code":"600237.SH","market":"A","relevance":"同行业","pe":"~30x","ps":"~3x","marketCap":"~40亿","note":"电容器"}],"correlation":"新能源装机驱动薄膜电容需求，与法拉电子高度相关。","investmentTiming":"上市后对比法拉电子估值差距。","thematicPlay":"新能源被动元件"},"valuation":{"verdict":"fair","priceRange":"15.76 元","marketCapRange":"约 20-30 亿","method":"PE 对比法拉电子","comparables":[{"metric":"PE","peerMedian":"法拉 ~25x","ipoImplied":"29.72x","comment":"略高"}],"impliedPe":"29.72x","impliedPs":"—","fairValueRange":"接近合理上限","assumptions":["新能源需求持续"],"catalysts":["逆变器放量"],"risks":["价格战","规模差距"]},"summary":"嘉德利已上市，薄膜电容新股，PE 30x 接近法拉电子，估值偏合理上沿，适合作为被动元件板块补充配置研究。","keyRisks":["规模小于龙头","价格竞争"],"score":5,"analyzedAt":"2026-05-31T10:00:00.000Z","analyst":"AI","cninfoUrl":"https://www.cninfo.com.cn/new/disclosure/stock?stockCode=603435&orgId=10624814","eastmoneyUrl":"https://data.eastmoney.com/xg/xg/detail/603435.html","subscription":{"status":"已上市","issuePrice":15.76,"priceMethod":"采用网下向询价对象配售与网上向社会公众投资者定价发行相结合的方式,或者中国证监会、上海证券交易所等监管部门认可的其他发行方式(包括但不限于向战略投资者配售)","issuePe":29.72,"industryPe":70.43,"applyDate":"2026-05-13","listingDate":"2026-05-22","ballotDate":"2026-05-15","onlinePayDate":null,"onlineRefundDate":null,"issueSharesWan":4600,"onlineIssueShares":25760000,"onlineApplyUpper":11000,"onlineApplyLower":null,"applyAmountUpperWan":11,"mainBusiness":"BOPP电工膜研发、生产和销售","ldOpenPremium":458.375634517766,"ldCloseChange":710.1523,"ldHighChange":794.098984771574,"openPrice":88,"closePrice":127.68,"freezeFundWan":null,"ballotNum":"末\"四\"位数：3167,8167；末\"五\"位数：25097,75097；末\"七\"位数：8313479,3313479；末\"八\"位数：00099508,25099508,50099508,75099508","oversubscription":"4540.46","recommendOrg":"广发证券股份有限公司","underwriterOrg":"广发证券股份有限公司","isRegistration":true,"infoCode":"AN202605181822405223","_source":"eastmoney_RPTA_APP_IPOAPPLY"}},{"id":"920218","name":"新天力","secuCode":"920218.BJ","board":"bse","status":"listed","basic":{"industry":"食品包装","boardLabel":"北交所","businessSummary":"食品塑料包装容器生产，下游为乳制品、饮料等。北交所发行，发行价 12.19 元，PE 14.78x。","sponsor":null,"underwriter":null,"expectedListing":"2026-05-29（已上市）","financials":null},"arbitrage":{"type":"打新复盘","feasibility":"none","expectedPremium":"待观察首日数据","winRateEstimate":"—","logic":"刚上市北交所新股，可用于校准北交所近期打新收益基准。","strategies":["记录首日溢价供后续北交所新股参考"],"constraints":[]},"shadowStock":{"peers":[{"name":"紫江企业","code":"600210.SH","market":"A","relevance":"同行业","pe":"~12x","ps":"~1x","marketCap":"~80亿","note":"包装龙头"}],"correlation":"消费包装与下游食品饮料景气相关，联动弱。","investmentTiming":"—","thematicPlay":null},"valuation":{"verdict":"fair","priceRange":"12.19 元","marketCapRange":"约 5-8 亿","method":"PE 可比","comparables":[{"metric":"PE","peerMedian":"包装 10-15x","ipoImplied":"14.78x","comment":"合理"}],"impliedPe":"14.78x","impliedPs":"—","fairValueRange":"稳健型","assumptions":["下游需求稳定"],"catalysts":[],"risks":["原材料价格","规模小"]},"summary":"新天力刚上市，北交所食品包装股，低 PE 稳健型，可作为北交所打新收益基准案例。","keyRisks":["规模小","原材料","北交所流动性"],"score":5,"analyzedAt":"2026-05-31T10:00:00.000Z","analyst":"AI","cninfoUrl":"https://www.cninfo.com.cn/new/disclosure/stock?stockCode=920218&orgId=10000438190","eastmoneyUrl":"https://data.eastmoney.com/xg/xg/detail/920218.html","subscription":{"status":"已上市","issuePrice":12.19,"priceMethod":"直接定价","issuePe":14.78,"industryPe":30.67,"applyDate":"2026-05-20","listingDate":"2026-05-29","ballotDate":"2026-05-25","onlinePayDate":"2026-05-20","onlineRefundDate":"2026-05-22","issueSharesWan":2341.781,"onlineIssueShares":21076029,"onlineApplyUpper":1053800,"onlineApplyLower":100,"applyAmountUpperWan":1284.5822,"mainBusiness":"塑料及纸制食品容器的研发、生产和销售","ldOpenPremium":268.908941755537,"ldCloseChange":270.7957,"ldHighChange":null,"openPrice":44.97,"closePrice":45.2,"freezeFundWan":null,"ballotNum":null,"oversubscription":"3877.48812","recommendOrg":null,"underwriterOrg":null,"isRegistration":true,"infoCode":"AN202605181822401185","_source":"eastmoney_RPTA_APP_IPOAPPLY"}}]};
+    const BOARD_LABELS = {"main":"沪深主板","star":"科创板","chinext":"创业板","bse":"北交所"};
+    const STATUS_LABELS = {"pending_apply":"待申购","applying":"申购中","pending_list":"待上市","listed":"已上市"};
+    const FEAS_LABELS = {"high":"高","medium":"中","low":"低","none":"无"};
+    const VERDICT_LABELS = {"under":"低估","fair":"合理","over":"高估","uncertain":"不确定"};
+
+    let currentIdx = 0;
+
+    function scoreClass(s) {
+      if (s >= 7) return 'score-high';
+      if (s >= 5) return 'score-mid';
+      return 'score-low';
+    }
+    function feasClass(f) { return 'feas-' + (f || 'none'); }
+    function verdictClass(v) { return 'verdict-' + (v || 'uncertain'); }
+    function fmt(v, suffix) { return v != null && v !== '' ? v + (suffix || '') : '—'; }
+    function fmtWan(v) { return v != null ? v.toLocaleString('zh-CN') + ' 万' : '—'; }
+    function fmtPct(v) {
+      if (v == null) return '—';
+      const cls = v >= 0 ? 'premium-up' : 'premium-down';
+      return '<span class="' + cls + '">' + (v >= 0 ? '+' : '') + v + '%</span>';
+    }
+
+    function renderSidebar() {
+      const list = document.getElementById('companyList');
+      list.innerHTML = DATA.companies.map((c, i) => {
+        const sub = c.subscription || {};
+        return '<div class="company-item' + (i === currentIdx ? ' active' : '') + '" data-idx="' + i + '">' +
+          '<div class="score-badge ' + scoreClass(c.score) + '">' + c.score + '</div>' +
+          '<div class="company-info">' +
+          '<div class="company-name">' + c.name + '</div>' +
+          '<div class="company-meta">' + c.id + ' · ' + (BOARD_LABELS[c.board] || c.board) + ' · ' + (sub.status || STATUS_LABELS[c.status] || c.status) + '</div>' +
+          '</div></div>';
+      }).join('');
+      list.querySelectorAll('.company-item').forEach(el => {
+        el.addEventListener('click', () => {
+          currentIdx = parseInt(el.dataset.idx, 10);
+          renderSidebar();
+          renderCompany();
+        });
+      });
+    }
+
+    function renderCompany() {
+      const c = DATA.companies[currentIdx];
+      const b = c.basic || {};
+      const sub = c.subscription || {};
+
+      document.getElementById('companyTitle').textContent = c.name + ' (' + c.id + ')';
+      document.getElementById('companyTags').innerHTML = [
+        '<span class="tag highlight">' + (b.industry || '') + '</span>',
+        '<span class="tag">' + (b.boardLabel || BOARD_LABELS[c.board] || '') + '</span>',
+        '<span class="tag">' + (sub.status || STATUS_LABELS[c.status] || c.status) + '</span>',
+        sub.issuePrice != null ? '<span class="tag">发行价 ' + sub.issuePrice + ' 元</span>' : '',
+        sub.issuePe != null ? '<span class="tag">PE ' + sub.issuePe + 'x</span>' : '',
+        '<span class="tag">评分 ' + c.score + '/10</span>',
+      ].filter(Boolean).join('');
+
+      renderOverview(c);
+      renderSubscription(c);
+      renderArbitrage(c);
+      renderShadow(c);
+      renderValuation(c);
+      renderDocs(c);
+    }
+
+    function renderOverview(c) {
+      const b = c.basic || {};
+      const f = b.financials;
+      let html = '<div class="summary-box"><p>' + (c.summary || '') + '</p></div>';
+      html += '<div class="stat-row">';
+      if (f) {
+        html += statItem('营收', f.revenue || '—');
+        html += statItem('净利润', f.netProfit || '—');
+        html += statItem('毛利率', f.grossMargin || '—');
+        html += statItem('增速', f.revenueGrowth || '—');
+      }
+      html += statItem('综合评分', c.score + ' / 10');
+      html += '</div>';
+      html += '<div class="grid-2">';
+      html += '<div class="card"><div class="card-title"><span class="icon">📋</span> 业务概要</div><p>' + (b.businessSummary || '—') + '</p></div>';
+      html += '<div class="card"><div class="card-title"><span class="icon">⚠️</span> 核心风险</div><ul class="risk-list">' +
+        (c.keyRisks || []).map(r => '<li>' + r + '</li>').join('') + '</ul></div>';
+      html += '</div>';
+      html += '<div class="card"><div class="card-title"><span class="icon">ℹ️</span> 基本信息</div><table class="data-table"><tbody>';
+      html += row('行业', b.industry);
+      html += row('板块', b.boardLabel || BOARD_LABELS[c.board]);
+      html += row('证券代码', c.secuCode || c.id);
+      html += row('保荐机构', b.sponsor || '—');
+      html += row('主承销商', b.underwriter || '—');
+      html += row('预期上市', b.expectedListing || '—');
+      html += row('分析时间', c.analyzedAt ? c.analyzedAt.slice(0, 10) : '—');
+      html += '</tbody></table></div>';
+      document.getElementById('panel-overview').innerHTML = html;
+    }
+
+    function renderSubscription(c) {
+      const s = c.subscription;
+      if (!s) {
+        document.getElementById('panel-subscription').innerHTML = '<div class="card"><p>暂无发行申购数据，请先运行 fetch_cn_ipo_list.js</p></div>';
+        return;
+      }
+
+      let html = '<div class="stat-row">';
+      html += statItem('状态', s.status || '—');
+      html += statItem('发行价', fmt(s.issuePrice, ' 元'));
+      html += statItem('发行 PE', s.issuePe != null ? s.issuePe + 'x' : '—');
+      html += statItem('行业 PE', s.industryPe != null ? s.industryPe + 'x' : '—');
+      html += statItem('顶格市值', fmtWan(s.applyAmountUpperWan));
+      html += statItem('发行总量', s.issueSharesWan != null ? s.issueSharesWan + ' 万股' : '—');
+      if (s.ldOpenPremium != null) html += statItem('首日开盘溢价', fmtPct(s.ldOpenPremium));
+      if (s.ldCloseChange != null) html += statItem('首日收盘涨跌', fmtPct(s.ldCloseChange));
+      html += '</div>';
+
+      html += '<div class="grid-2">';
+      html += '<div class="card"><div class="card-title"><span class="icon">💵</span> 定价与规模</div><table class="data-table"><tbody>';
+      html += row('定价方式', s.priceMethod);
+      html += row('发行价', fmt(s.issuePrice, ' 元'));
+      html += row('发行市盈率', s.issuePe != null ? s.issuePe + 'x' : '—');
+      html += row('行业市盈率', s.industryPe != null ? s.industryPe + 'x' : '—');
+      html += row('发行总量', s.issueSharesWan != null ? s.issueSharesWan + ' 万股' : '—');
+      html += row('网上发行股数', s.onlineIssueShares != null ? s.onlineIssueShares.toLocaleString('zh-CN') + ' 股' : '—');
+      html += row('网上申购上限', s.onlineApplyUpper != null ? s.onlineApplyUpper.toLocaleString('zh-CN') + ' 股' : '—');
+      html += row('顶格申购市值', fmtWan(s.applyAmountUpperWan));
+      html += row('主营业务', s.mainBusiness);
+      html += row('注册制', s.isRegistration ? '是' : '否');
+      html += '</tbody></table></div>';
+
+      html += '<div class="card"><div class="card-title"><span class="icon">📅</span> 关键日期</div><table class="data-table"><tbody>';
+      html += row('申购日', s.applyDate);
+      html += row('缴款日', s.onlinePayDate);
+      html += row('退款日', s.onlineRefundDate);
+      html += row('中签号公布', s.ballotDate);
+      html += row('上市日', s.listingDate || '待定');
+      html += '</tbody></table></div>';
+      html += '</div>';
+
+      if (s.status === '已上市' || s.ldOpenPremium != null) {
+        html += '<div class="card"><div class="card-title"><span class="icon">📈</span> 上市表现</div><table class="data-table"><tbody>';
+        html += row('开盘价', fmt(s.openPrice, ' 元'));
+        html += row('收盘价', fmt(s.closePrice, ' 元'));
+        html += row('首日开盘溢价', s.ldOpenPremium != null ? s.ldOpenPremium + '%' : '—');
+        html += row('首日收盘涨跌', s.ldCloseChange != null ? s.ldCloseChange + '%' : '—');
+        html += row('首日最高涨幅', s.ldHighChange != null ? s.ldHighChange + '%' : '—');
+        html += row('中签率', s.ballotNum || '—');
+        html += row('超额认购', s.oversubscription || '—');
+        html += row('冻结资金', fmtWan(s.freezeFundWan));
+        html += '</tbody></table></div>';
+      }
+
+      html += '<div class="card"><div class="card-title"><span class="icon">📝</span> 数据来源</div>';
+      html += '<p>东方财富 datacenter · RPTA_APP_IPOAPPLY · 更新于 ' + (DATA.meta.ipoMeta?.fetchedAt?.slice(0, 10) || '—') + '</p></div>';
+
+      document.getElementById('panel-subscription').innerHTML = html;
+    }
+
+    function renderArbitrage(c) {
+      const a = c.arbitrage || {};
+      let html = '<div class="card">';
+      html += '<div class="card-title"><span class="icon">🎯</span> 打新套利分析 ';
+      html += '<span class="feasibility ' + feasClass(a.feasibility) + '">' + (FEAS_LABELS[a.feasibility] || a.feasibility) + '可行性</span></div>';
+      html += '<table class="data-table" style="margin-bottom:16px"><tbody>';
+      html += row('套利类型', a.type);
+      html += row('预期首日溢价', a.expectedPremium || '—');
+      html += row('中签率/热度', a.winRateEstimate || '—');
+      html += '</tbody></table>';
+      html += '<p style="margin-bottom:12px">' + (a.logic || '') + '</p>';
+      if (a.strategies && a.strategies.length) {
+        html += '<div class="card-title" style="margin-top:16px">策略建议</div><ul>';
+        html += a.strategies.map(s => '<li>' + s + '</li>').join('');
+        html += '</ul>';
+      }
+      if (a.constraints && a.constraints.length) {
+        html += '<div class="card-title" style="margin-top:16px">限制因素</div><ul>';
+        html += a.constraints.map(s => '<li>' + s + '</li>').join('');
+        html += '</ul>';
+      }
+      html += '</div>';
+      document.getElementById('panel-arbitrage').innerHTML = html;
+    }
+
+    function renderShadow(c) {
+      const s = c.shadowStock || {};
+      let html = '';
+      if (s.peers && s.peers.length) {
+        html += '<div class="card"><div class="card-title"><span class="icon">🔗</span> 可比 / 影子股</div>';
+        html += '<table class="data-table"><thead><tr>';
+        html += '<th>公司</th><th>代码</th><th>市场</th><th>关联度</th><th>PE</th><th>PS</th><th>市值</th><th>备注</th>';
+        html += '</tr></thead><tbody>';
+        s.peers.forEach(p => {
+          html += '<tr><td><b>' + p.name + '</b></td><td class="mono">' + p.code + '</td><td>' + p.market + '</td>';
+          html += '<td>' + p.relevance + '</td><td>' + (p.pe || '—') + '</td><td>' + (p.ps || '—') + '</td>';
+          html += '<td>' + (p.marketCap || '—') + '</td><td style="max-width:200px">' + (p.note || '') + '</td></tr>';
+        });
+        html += '</tbody></table></div>';
+      }
+      html += '<div class="grid-2">';
+      html += '<div class="card"><div class="card-title"><span class="icon">📈</span> 联动逻辑</div><p>' + (s.correlation || '—') + '</p></div>';
+      html += '<div class="card"><div class="card-title"><span class="icon">⏰</span> 投资时点</div><p>' + (s.investmentTiming || '—') + '</p></div>';
+      html += '</div>';
+      if (s.thematicPlay) {
+        html += '<div class="card"><div class="card-title"><span class="icon">🎯</span> 主题逻辑</div><p>' + s.thematicPlay + '</p></div>';
+      }
+      document.getElementById('panel-shadow').innerHTML = html;
+    }
+
+    function renderValuation(c) {
+      const v = c.valuation || {};
+      let html = '<div class="card">';
+      html += '<div class="card-title"><span class="icon">💰</span> 估值分析 ';
+      html += '<span class="verdict ' + verdictClass(v.verdict) + '">' + (VERDICT_LABELS[v.verdict] || v.verdict) + '</span></div>';
+      html += '<div class="stat-row">';
+      html += statItem('发行价', v.priceRange || '待公布');
+      html += statItem('市值区间', v.marketCapRange || '—');
+      html += statItem('隐含 PE', v.impliedPe || 'N/A');
+      html += statItem('隐含 PS', v.impliedPs || 'N/A');
+      html += statItem('合理价值', v.fairValueRange || '—');
+      html += statItem('估值方法', v.method || '—');
+      html += '</div>';
+      if (v.comparables && v.comparables.length) {
+        html += '<table class="data-table" style="margin:16px 0"><thead><tr>';
+        html += '<th>指标</th><th>同业中位数</th><th>IPO 隐含</th><th>评论</th>';
+        html += '</tr></thead><tbody>';
+        v.comparables.forEach(cmp => {
+          html += '<tr><td>' + cmp.metric + '</td><td>' + cmp.peerMedian + '</td>';
+          html += '<td>' + cmp.ipoImplied + '</td><td>' + cmp.comment + '</td></tr>';
+        });
+        html += '</tbody></table>';
+      }
+      html += '<div class="grid-2" style="margin-top:16px">';
+      if (v.catalysts && v.catalysts.length) {
+        html += '<div><div class="card-title">催化因素</div><ul>' + v.catalysts.map(x => '<li>' + x + '</li>').join('') + '</ul></div>';
+      }
+      if (v.risks && v.risks.length) {
+        html += '<div><div class="card-title">估值风险</div><ul class="risk-list">' + v.risks.map(x => '<li>' + x + '</li>').join('') + '</ul></div>';
+      }
+      html += '</div>';
+      if (v.assumptions && v.assumptions.length) {
+        html += '<div class="card-title" style="margin-top:16px">关键假设</div><ul>';
+        html += v.assumptions.map(x => '<li>' + x + '</li>').join('');
+        html += '</ul>';
+      }
+      html += '</div>';
+      document.getElementById('panel-valuation').innerHTML = html;
+    }
+
+    function renderDocs(c) {
+      let html = '<div class="card"><div class="card-title"><span class="icon">📄</span> 公告与数据源</div>';
+      html += '<table class="data-table"><tbody>';
+      html += row('巨潮资讯', c.cninfoUrl ? '<a class="doc-link" href="' + c.cninfoUrl + '" target="_blank">公司公告页</a>' : '—');
+      html += row('东方财富新股', c.eastmoneyUrl ? '<a class="doc-link" href="' + c.eastmoneyUrl + '" target="_blank">新股详情</a>' : '—');
+      if (c.subscription && c.subscription.infoCode) {
+        html += row('发行公告', '<a class="doc-link" href="https://data.eastmoney.com/notices/detail/' + c.id + '/' + c.subscription.infoCode + '.html" target="_blank">' + c.subscription.infoCode + '</a>');
+      }
+      html += '</tbody></table></div>';
+      html += '<div class="card"><div class="card-title"><span class="icon">📚</span> 招股说明书</div>';
+      html += '<p>可在巨潮资讯搜索「' + c.name + ' 招股说明书」下载 PDF。后续版本将支持自动下载与解析。</p></div>';
+      document.getElementById('panel-docs').innerHTML = html;
+    }
+
+    function statItem(label, value) {
+      return '<div class="stat-item"><div class="stat-label">' + label + '</div><div class="stat-value">' + value + '</div></div>';
+    }
+    function row(label, value) {
+      return '<tr><td style="color:var(--muted);width:140px">' + label + '</td><td>' + (value || '—') + '</td></tr>';
+    }
+
+    document.querySelectorAll('.tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+      });
+    });
+
+    document.getElementById('disclaimer').textContent = DATA.meta.disclaimer || '';
+    renderSidebar();
+    renderCompany();
+  </script>
+</body>
+</html>

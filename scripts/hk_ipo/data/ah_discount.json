@@ -1,0 +1,15 @@
+{
+  "meta": {
+    "generatedAt": "2026-05-31T09:37:02.831Z",
+    "count": 1,
+    "note": "仅下载 PHIP 全文 PDF；H 股发售价优先 PDF 解析，PHIP 无定价回退招股公告；A 股用实时行情"
+  },
+  "companies": [
+    {
+      "companyId": 108430,
+      "name": "大金重工",
+      "isAh": true,
+      "error": "无法获取行情（东方财富）"
+    }
+  ]
+}
