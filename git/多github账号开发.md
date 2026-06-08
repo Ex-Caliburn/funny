@@ -3,6 +3,7 @@
 ## 前言
 
 场景，公司有个账号，个人有一个账号，推送仓库需要来回切换，很麻烦
+现在github的https 方式被禁用了，需要走PAT TOKEN
 
 ### 步骤
 
@@ -35,7 +36,10 @@ Host test2.github.com
 
 ### 测试配置是否正确
 
+```shell
 ssh -T git@test1.github.com
+```
+
 Hi xxx! You've successfully authenticated, but GitHub does not provide shell access.
 就说明连接成功了
 
@@ -47,15 +51,20 @@ Hi xxx! You've successfully authenticated, but GitHub does not provide shell acc
 
  test1.github.com 对应上面配置的host
 
+```shell
 [remote "origin"]
  url = git@test1.github.com:test1/blog.git
 
 git clone git@test1.github.com:test1/Blog.git
 
 git remote -v
-删除原来仓库
+
+# 删除原来仓库
+
 git remote rm origin
 git remote add origin git@test1.github.com:yourName/Blog.git
+
+```
 
 ### 遇到的错误
 
@@ -68,8 +77,10 @@ sudo chmod 600 config
 If you used a non-default file path for your GitLab SSH key pair,
 configure your SSH client to point to your GitLab private SSH key.
 
+```shell
 eval $(ssh-agent -s)
 ssh-add ~/.ssh/id_rsa
+```
 
 ## 总结
 
