@@ -1,4 +1,4 @@
-# Claude
+# Claude Code
 
 ## 前言
 
@@ -62,6 +62,9 @@ for i in $(seq 1 60); do
   fi
   sleep 0.5
 done
+
+echo "ERROR: daemon failed to start within 30s" >&2
+exit 1
 ```
 
 脚本做了什么：
