@@ -294,9 +294,9 @@ module.exports = {
     timeout: 30000,
     /** 相对于 stock/ 的下载目录 */
     downloadDirRel: 'customs_export',
-    /** 默认年份范围（闭区间） */
+    /** 默认年份范围（闭区间）；CLI 未传参时仅当前年 */
     yearRange: {
-      startYear: 2020,
+      startYear: new Date().getFullYear(),
       endYear: new Date().getFullYear(),
     },
     /** 链接文字需同时包含下列关键词 */
@@ -328,7 +328,7 @@ module.exports = {
       /** 列表按发布时间倒序，前两页通常为最近数据 */
       endPage: 2,
     },
-    /** minYear/maxYear 为 null 表示不限制；筛选依赖标题中的「YYYY年MM月」 */
+    /** minYear/maxYear 为 null 表示 CLI 未传参时由爬虫默认为当前年；筛选依赖标题中的「YYYY年MM月」 */
     yearRange: {
       minYear: null,
       maxYear: null,

@@ -7,17 +7,21 @@
  * 列表页：http://www.customs.gov.cn/customs/302249/zfxxgk/fdzdgknr/302274/302277/{year}/index.html
  * 保存目录：stock/customs_export/
  *
- * 用法：
+ * 用法（默认仅抓取当前年）：
  *   node scripts/crawler/customs_export/customs_export_crawler.js
  *   node scripts/crawler/customs_export/customs_export_crawler.js --years 2024-2026
  *   node scripts/crawler/customs_export/customs_export_crawler.js --years 2025
+ *   node scripts/crawler/customs_export/customs_export_crawler.js --min-year 2024
+ *   node scripts/crawler/customs_export/customs_export_crawler.js --min-year 2024 --max-year 2026
  *   node scripts/crawler/customs_export/customs_export_crawler.js --no-skip
+ *   node scripts/crawler/customs_export/customs_export_crawler.js --no-parse   # 仅下载，不更新 customs_export_rmb.json
  */
 
 'use strict'
 
 const fs = require('fs')
 const path = require('path')
+const { spawn } = require('child_process')
 const axios = require('axios')
 const cheerio = require('cheerio')
 
@@ -50,6 +54,7 @@ const BASE_URL =
   'http://www.customs.gov.cn/customs/302249/zfxxgk/fdzdgknr/302274/302277/{path}/index.html'
 
 const DOWNLOAD_DIR = path.join(__dirname, '../../../stock/customs_export')
+const PARSE_SCRIPT = path.join(__dirname, '../../tools/customs_export_xls_to_json.js')
 
 /** 匹配目标链接的关键词（同时包含以下词才算命中） */
 const TITLE_KEYWORDS = ['出口', '商品', '量值']
@@ -72,6 +77,25 @@ const COMMON_HEADERS = {
 // ─── 工具函数 ─────────────────────────────────────────────────────────────────
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
+
+/**
+ * 运行 parse，生成 customs_export_rmb.json
+ * @returns {Promise<void>}
+ */
+function runParseScript() {
+  return new Promise((resolve, reject) => {
+    console.log('\n开始同步汇总 JSON: customs_export_rmb.json')
+    const child = spawn('node', [PARSE_SCRIPT], {
+      cwd: path.join(__dirname, '../../..'),
+      stdio: 'inherit',
+    })
+    child.on('close', (code) => {
+      if (code === 0) resolve()
+      else reject(new Error(`parse 退出码 ${code}`))
+    })
+    child.on('error', reject)
+  })
+}
 
 /**
  * 判断链接文字是否为目标数据
@@ -429,19 +453,38 @@ async function crawlYear(year, skipExisting) {
 /**
  * 解析命令行参数
  * @param {string[]} argv
- * @returns {{ startYear: number, endYear: number, skipExisting: boolean }}
+ * @returns {{ startYear: number, endYear: number, skipExisting: boolean, noParse: boolean }}
  */
 function parseArgs(argv) {
   const currentYear = new Date().getFullYear()
-  let startYear = 2020
+  let startYear = currentYear
   let endYear = currentYear
   let skipExisting = true
+  let noParse = false
+  let yearsExplicit = false
+  let minYearTouched = false
+  let maxYearTouched = false
 
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i]
     if (a === '--no-skip') {
       skipExisting = false
+    } else if (a === '--no-parse') {
+      noParse = true
+    } else if (a === '--min-year' && argv[i + 1]) {
+      startYear = Number(argv[++i])
+      minYearTouched = true
+    } else if (/^--min-year=/.test(a)) {
+      startYear = Number(a.split('=')[1])
+      minYearTouched = true
+    } else if (a === '--max-year' && argv[i + 1]) {
+      endYear = Number(argv[++i])
+      maxYearTouched = true
+    } else if (/^--max-year=/.test(a)) {
+      endYear = Number(a.split('=')[1])
+      maxYearTouched = true
     } else if ((a === '--years' || a === '-y') && argv[i + 1]) {
+      yearsExplicit = true
       const raw = argv[++i]
       const m = raw.match(/^(\d{4})-(\d{4})$/)
       if (m) {
@@ -452,6 +495,7 @@ function parseArgs(argv) {
         endYear = Number(raw)
       }
     } else if (/^--years=/.test(a)) {
+      yearsExplicit = true
       const raw = a.split('=')[1]
       const m = raw.match(/^(\d{4})-(\d{4})$/)
       if (m) {
@@ -462,20 +506,36 @@ function parseArgs(argv) {
         endYear = Number(raw)
       }
     } else if (/^\d{4}-\d{4}$/.test(a)) {
+      yearsExplicit = true
       const [s, e] = a.split('-').map(Number)
       startYear = s
       endYear = e
     } else if (/^\d{4}$/.test(a)) {
+      yearsExplicit = true
       startYear = Number(a)
       endYear = Number(a)
     }
   }
 
-  return { startYear, endYear, skipExisting }
+  if (!yearsExplicit) {
+    if (minYearTouched && !maxYearTouched) {
+      endYear = currentYear
+    } else if (maxYearTouched && !minYearTouched) {
+      startYear = endYear
+    }
+  }
+
+  if (startYear > endYear) {
+    const t = startYear
+    startYear = endYear
+    endYear = t
+  }
+
+  return { startYear, endYear, skipExisting, noParse }
 }
 
 async function main() {
-  const { startYear, endYear, skipExisting } = parseArgs(process.argv.slice(2))
+  const { startYear, endYear, skipExisting, noParse } = parseArgs(process.argv.slice(2))
 
   if (!fs.existsSync(DOWNLOAD_DIR)) {
     fs.mkdirSync(DOWNLOAD_DIR, { recursive: true })
@@ -499,6 +559,10 @@ async function main() {
 
   console.log(`\n完成，共保存 ${allFiles.length} 个文件`)
   allFiles.forEach((f) => console.log(' ', path.basename(f)))
+
+  if (!noParse) {
+    await runParseScript()
+  }
 }
 
 main().catch((e) => {

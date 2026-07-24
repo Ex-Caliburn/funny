@@ -6,21 +6,46 @@
  * 列表页（分页）：配置项 chinaExport.listUrlTemplate，{page} → 1、2、3…
  * 保存目录：stock/china_export/
  *
- * 用法（不传页码时分页见 crawler_config.chinaExport.pagination，默认最新 2 页）：
+ * 用法（不传页码时分页见 crawler_config.chinaExport.pagination，默认 1–2 页；默认仅抓取当前年数据）：
  *   node scripts/crawler/china_export/china_export_crawler.js
  *   node scripts/crawler/china_export/china_export_crawler.js --pages 1-5
  *   node scripts/crawler/china_export/china_export_crawler.js --pages 1-30
- *   node scripts/crawler/china_export/china_export_crawler.js 1-8 --min-year 2025 --max-year 2026
- *   node scripts/crawler/china_export/china_export_crawler.js --no-skip
+ *   node scripts/crawler/china_export/china_export_crawler.js 1-8
+ *   node scripts/crawler/china_export/china_export_crawler.js 1-8 --min-year 2024 --max-year 2026
+ *   node scripts/crawler/china_export/china_export_crawler.js --no-skip --no-parse
  */
 
 'use strict'
 
+const path = require('path')
+const { spawn } = require('child_process')
+
 const ChinaExportExtractor = require('../extractors/china_export_extractor.js')
+
+const PARSE_SCRIPT = path.join(__dirname, '../../tools/china_export_parse.js')
+
+/**
+ * 运行汇总 parse，生成 china_export_rmb.json
+ * @returns {Promise<void>}
+ */
+function runParseScript() {
+  return new Promise((resolve, reject) => {
+    console.log('\n开始同步汇总 JSON: china_export_rmb.json')
+    const child = spawn('node', [PARSE_SCRIPT], {
+      cwd: path.join(__dirname, '../../..'),
+      stdio: 'inherit',
+    })
+    child.on('close', (code) => {
+      if (code === 0) resolve()
+      else reject(new Error(`parse 退出码 ${code}`))
+    })
+    child.on('error', reject)
+  })
+}
 
 /**
  * @param {string[]} argv
- * @returns {{ startPage: number, endPage: number, minYear: number|null, maxYear: number|null, noSkip: boolean }}
+ * @returns {{ startPage: number, endPage: number, minYear: number|null, maxYear: number|null, noSkip: boolean, noParse: boolean }}
  */
 function parseArgs(argv) {
   let startPage
@@ -28,6 +53,7 @@ function parseArgs(argv) {
   let minYear = null
   let maxYear = null
   let noSkip = false
+  let noParse = false
 
   const rest = []
   for (let i = 0; i < argv.length; i++) {
@@ -50,6 +76,8 @@ function parseArgs(argv) {
       maxYear = parseInt(a.split('=')[1], 10)
     } else if (a === '--no-skip') {
       noSkip = true
+    } else if (a === '--no-parse') {
+      noParse = true
     } else if (!a.startsWith('-')) {
       rest.push(a)
     }
@@ -67,6 +95,7 @@ function parseArgs(argv) {
     minYear: Number.isNaN(minYear) ? null : minYear,
     maxYear: Number.isNaN(maxYear) ? null : maxYear,
     noSkip,
+    noParse,
   }
 }
 
@@ -105,6 +134,12 @@ async function main() {
   if (parsed.maxYear !== null && parsed.maxYear !== undefined)
     override.maxYear = parsed.maxYear
 
+  const currentYear = new Date().getFullYear()
+  if (override.minYear === undefined && override.maxYear === undefined) {
+    override.minYear = currentYear
+    override.maxYear = currentYear
+  }
+
   console.log('海关总署出口商品量值表下载')
   const effStart = override.startPage ?? extractor.pagination.startPage
   const effEnd = override.endPage ?? extractor.pagination.endPage
@@ -120,6 +155,10 @@ async function main() {
   console.log('\n完成，保存文件数:', result.totalSaved)
   if (result.files.length) {
     result.files.forEach((f) => console.log(' ', f))
+  }
+
+  if (!parsed.noParse) {
+    await runParseScript()
   }
 }
 
