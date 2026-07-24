@@ -8,8 +8,190 @@
     "southwest": "西南市场",
     "central": "中原市场"
   },
-  "updatedAt": "2026-05-27",
+  "updatedAt": "2026-07-23",
   "data": [
+    {
+      "date": "2026-07-23",
+      "east": 23260,
+      "south": 23330,
+      "southwest": 23250,
+      "central": 23140
+    },
+    {
+      "date": "2026-07-22",
+      "east": 23170,
+      "south": 23250,
+      "southwest": 23160,
+      "central": 23050
+    },
+    {
+      "date": "2026-07-21",
+      "east": 23080,
+      "south": 23100,
+      "southwest": 23050,
+      "central": 22960
+    },
+    {
+      "date": "2026-07-16",
+      "east": 23170,
+      "south": 23160,
+      "southwest": 23120,
+      "central": 23030
+    },
+    {
+      "date": "2026-07-15",
+      "east": 23180,
+      "south": 23160,
+      "southwest": 23130,
+      "central": 23030
+    },
+    {
+      "date": "2026-07-14",
+      "east": 23270,
+      "south": 23260,
+      "southwest": 23220,
+      "central": 23120
+    },
+    {
+      "date": "2026-07-10",
+      "east": 23120,
+      "south": 23140,
+      "southwest": 23080,
+      "central": 22970
+    },
+    {
+      "date": "2026-07-09",
+      "east": 22950,
+      "south": 22980,
+      "southwest": 22920,
+      "central": 22810
+    },
+    {
+      "date": "2026-07-08",
+      "east": 23040,
+      "south": 23070,
+      "southwest": 23010,
+      "central": 22910
+    },
+    {
+      "date": "2026-07-03",
+      "east": 22760,
+      "south": 22750,
+      "southwest": 22740,
+      "central": 22690
+    },
+    {
+      "date": "2026-07-02",
+      "east": 22540,
+      "south": 22530,
+      "southwest": 22520,
+      "central": 22480
+    },
+    {
+      "date": "2026-07-01",
+      "east": 22260,
+      "south": 22250,
+      "southwest": 22240,
+      "central": 22210
+    },
+    {
+      "date": "2026-06-30",
+      "east": 22500,
+      "south": 22490,
+      "southwest": 22490,
+      "central": 22460
+    },
+    {
+      "date": "2026-06-24",
+      "east": 23470,
+      "south": 23450,
+      "southwest": 23460,
+      "central": 23440
+    },
+    {
+      "date": "2026-06-23",
+      "east": 23800,
+      "south": 23770,
+      "southwest": 23780,
+      "central": 23750
+    },
+    {
+      "date": "2026-06-22",
+      "east": 23870,
+      "south": 23820,
+      "southwest": 23840,
+      "central": 23820
+    },
+    {
+      "date": "2026-06-12",
+      "east": 24140,
+      "south": 24140,
+      "southwest": 24120,
+      "central": 24080
+    },
+    {
+      "date": "2026-06-11",
+      "east": 23970,
+      "south": 23990,
+      "southwest": 23970,
+      "central": 23930
+    },
+    {
+      "date": "2026-06-10",
+      "east": 23780,
+      "south": 23750,
+      "southwest": 23760,
+      "central": 23740
+    },
+    {
+      "date": "2026-06-08",
+      "east": 24000,
+      "south": 23890,
+      "southwest": 23940,
+      "central": 23930
+    },
+    {
+      "date": "2026-06-05",
+      "east": 24200,
+      "south": 24110,
+      "southwest": 24140,
+      "central": 24100
+    },
+    {
+      "date": "2026-06-04",
+      "east": 24210,
+      "south": 24130,
+      "southwest": 24150,
+      "central": 24090
+    },
+    {
+      "date": "2026-06-03",
+      "east": 24460,
+      "south": 24320,
+      "southwest": 24370,
+      "central": 24330
+    },
+    {
+      "date": "2026-06-01",
+      "east": 24190,
+      "south": 24040,
+      "southwest": 24110,
+      "central": 24100
+    },
+    {
+      "date": "2026-05-29",
+      "east": 24200,
+      "south": 24060,
+      "southwest": 24130,
+      "central": 24130
+    },
+    {
+      "date": "2026-05-28",
+      "east": 24130,
+      "south": 24010,
+      "southwest": 24070,
+      "central": 24070
+    },
     {
       "date": "2026-05-27",
       "east": 24390,

@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-05-19T11:21:47.520Z",
+  "updatedAt": "2026-07-16T13:18:11.038Z",
   "data": [
     {
       "metric": "社会消费品零售总额",
@@ -5850,6 +5850,474 @@
       "cumulative": null,
       "mom": null,
       "yoy": -13.8
+    },
+    {
+      "metric": "社会消费品零售总额",
+      "yearMonth": "2026-06",
+      "label": "2026-06",
+      "value": 41090,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -0.6
+    },
+    {
+      "metric": "除汽车以外的消费品零售额",
+      "yearMonth": "2026-06",
+      "label": "2026-06",
+      "value": 37781,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 1.1
+    },
+    {
+      "metric": "限额以上单位消费品零售额",
+      "yearMonth": "2026-06",
+      "label": "2026-06",
+      "value": 15609,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -4.9
+    },
+    {
+      "metric": "网上商品零售额",
+      "yearMonth": "2026-06",
+      "label": "2026-06",
+      "value": 52718,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 5
+    },
+    {
+      "metric": "城镇",
+      "yearMonth": "2026-06",
+      "label": "2026-06",
+      "value": 35741,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -0.9
+    },
+    {
+      "metric": "乡村",
+      "yearMonth": "2026-06",
+      "label": "2026-06",
+      "value": 5349,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 1.5
+    },
+    {
+      "metric": "餐饮收入",
+      "yearMonth": "2026-06",
+      "label": "2026-06",
+      "value": 4605,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 0.6
+    },
+    {
+      "metric": "限额以上单位餐饮收入",
+      "yearMonth": "2026-06",
+      "label": "2026-06",
+      "value": 1396,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -1.7
+    },
+    {
+      "metric": "商品零售额",
+      "yearMonth": "2026-06",
+      "label": "2026-06",
+      "value": 36485,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -0.7
+    },
+    {
+      "metric": "限额以上单位商品零售额",
+      "yearMonth": "2026-06",
+      "label": "2026-06",
+      "value": 14213,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -5.2
+    },
+    {
+      "metric": "粮油、食品类",
+      "yearMonth": "2026-06",
+      "label": "2026-06",
+      "value": 1853,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 1.9
+    },
+    {
+      "metric": "饮料类",
+      "yearMonth": "2026-06",
+      "label": "2026-06",
+      "value": 269,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 6.1
+    },
+    {
+      "metric": "烟酒类",
+      "yearMonth": "2026-06",
+      "label": "2026-06",
+      "value": 484,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 4.8
+    },
+    {
+      "metric": "服装、鞋帽、针纺织品类",
+      "yearMonth": "2026-06",
+      "label": "2026-06",
+      "value": 1251,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 3.8
+    },
+    {
+      "metric": "化妆品类",
+      "yearMonth": "2026-06",
+      "label": "2026-06",
+      "value": 449,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 2.5
+    },
+    {
+      "metric": "金银珠宝类",
+      "yearMonth": "2026-06",
+      "label": "2026-06",
+      "value": 267,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -8.9
+    },
+    {
+      "metric": "日用品类",
+      "yearMonth": "2026-06",
+      "label": "2026-06",
+      "value": 726,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 1.6
+    },
+    {
+      "metric": "体育、娱乐用品类",
+      "yearMonth": "2026-06",
+      "label": "2026-06",
+      "value": 1578,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -8
+    },
+    {
+      "metric": "家用电器和音像器材类",
+      "yearMonth": "2026-06",
+      "label": "2026-06",
+      "value": 975,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -15.6
+    },
+    {
+      "metric": "中西药品类",
+      "yearMonth": "2026-06",
+      "label": "2026-06",
+      "value": 596,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 4
+    },
+    {
+      "metric": "文化办公用品类",
+      "yearMonth": "2026-06",
+      "label": "2026-06",
+      "value": 390,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -1.5
+    },
+    {
+      "metric": "家具类",
+      "yearMonth": "2026-06",
+      "label": "2026-06",
+      "value": 150,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -8.7
+    },
+    {
+      "metric": "通讯器材类",
+      "yearMonth": "2026-06",
+      "label": "2026-06",
+      "value": 889,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 0.7
+    },
+    {
+      "metric": "石油及制品类",
+      "yearMonth": "2026-06",
+      "label": "2026-06",
+      "value": 1793,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -3.2
+    },
+    {
+      "metric": "汽车类",
+      "yearMonth": "2026-06",
+      "label": "2026-06",
+      "value": 3309,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -16.1
+    },
+    {
+      "metric": "建筑及装潢材料类",
+      "yearMonth": "2026-06",
+      "label": "2026-06",
+      "value": 100,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -13.6
+    },
+    {
+      "metric": "社会消费品零售总额",
+      "yearMonth": "2026-07",
+      "label": "2026-07",
+      "value": 42691,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 1
+    },
+    {
+      "metric": "除汽车以外的消费品零售额",
+      "yearMonth": "2026-07",
+      "label": "2026-07",
+      "value": 38900,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 3
+    },
+    {
+      "metric": "限额以上单位消费品零售额",
+      "yearMonth": "2026-07",
+      "label": "2026-07",
+      "value": 17387,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -2
+    },
+    {
+      "metric": "网上商品零售额",
+      "yearMonth": "2026-07",
+      "label": "2026-07",
+      "value": 64296,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 4.8
+    },
+    {
+      "metric": "城镇",
+      "yearMonth": "2026-07",
+      "label": "2026-07",
+      "value": 36844,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 0.8
+    },
+    {
+      "metric": "乡村",
+      "yearMonth": "2026-07",
+      "label": "2026-07",
+      "value": 5847,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 2.1
+    },
+    {
+      "metric": "餐饮收入",
+      "yearMonth": "2026-07",
+      "label": "2026-07",
+      "value": 4767,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 1.2
+    },
+    {
+      "metric": "限额以上单位餐饮收入",
+      "yearMonth": "2026-07",
+      "label": "2026-07",
+      "value": 1408,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 0.1
+    },
+    {
+      "metric": "商品零售额",
+      "yearMonth": "2026-07",
+      "label": "2026-07",
+      "value": 37924,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 0.9
+    },
+    {
+      "metric": "限额以上单位商品零售额",
+      "yearMonth": "2026-07",
+      "label": "2026-07",
+      "value": 15979,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -2.2
+    },
+    {
+      "metric": "粮油、食品类",
+      "yearMonth": "2026-07",
+      "label": "2026-07",
+      "value": 2057,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 7.9
+    },
+    {
+      "metric": "饮料类",
+      "yearMonth": "2026-07",
+      "label": "2026-07",
+      "value": 292,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 5.8
+    },
+    {
+      "metric": "烟酒类",
+      "yearMonth": "2026-07",
+      "label": "2026-07",
+      "value": 537,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 12.1
+    },
+    {
+      "metric": "服装、鞋帽、针纺织品类",
+      "yearMonth": "2026-07",
+      "label": "2026-07",
+      "value": 1285,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 3.9
+    },
+    {
+      "metric": "化妆品类",
+      "yearMonth": "2026-07",
+      "label": "2026-07",
+      "value": 456,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 12.6
+    },
+    {
+      "metric": "金银珠宝类",
+      "yearMonth": "2026-07",
+      "label": "2026-07",
+      "value": 264,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -3.4
+    },
+    {
+      "metric": "日用品类",
+      "yearMonth": "2026-07",
+      "label": "2026-07",
+      "value": 786,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 3.9
+    },
+    {
+      "metric": "体育、娱乐用品类",
+      "yearMonth": "2026-07",
+      "label": "2026-07",
+      "value": 173,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -2.2
+    },
+    {
+      "metric": "家用电器和音像器材类",
+      "yearMonth": "2026-07",
+      "label": "2026-07",
+      "value": 1249,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -8.7
+    },
+    {
+      "metric": "中西药品类",
+      "yearMonth": "2026-07",
+      "label": "2026-07",
+      "value": 633,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 4.4
+    },
+    {
+      "metric": "文化办公用品类",
+      "yearMonth": "2026-07",
+      "label": "2026-07",
+      "value": 588,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 12.7
+    },
+    {
+      "metric": "家具类",
+      "yearMonth": "2026-07",
+      "label": "2026-07",
+      "value": 176,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -6.6
+    },
+    {
+      "metric": "通讯器材类",
+      "yearMonth": "2026-07",
+      "label": "2026-07",
+      "value": 1148,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 16.5
+    },
+    {
+      "metric": "石油及制品类",
+      "yearMonth": "2026-07",
+      "label": "2026-07",
+      "value": 1791,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -5.1
+    },
+    {
+      "metric": "汽车类",
+      "yearMonth": "2026-07",
+      "label": "2026-07",
+      "value": 3791,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -16.1
+    },
+    {
+      "metric": "建筑及装潢材料类",
+      "yearMonth": "2026-07",
+      "label": "2026-07",
+      "value": 114,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -10.5
     }
   ],
   "metrics": {
@@ -6078,6 +6546,24 @@
         "cumulative": null,
         "mom": -10.5,
         "yoy": 0.2
+      },
+      {
+        "yearMonth": "2026-06",
+        "label": "2026-06",
+        "value": 41090,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 10.32,
+        "yoy": -0.6
+      },
+      {
+        "yearMonth": "2026-07",
+        "label": "2026-07",
+        "value": 42691,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 3.9,
+        "yoy": 1
       }
     ],
     "除汽车以外的消费品零售额": [
@@ -6305,6 +6791,24 @@
         "cumulative": null,
         "mom": -9.66,
         "yoy": 1.8
+      },
+      {
+        "yearMonth": "2026-06",
+        "label": "2026-06",
+        "value": 37781,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 10.41,
+        "yoy": 1.1
+      },
+      {
+        "yearMonth": "2026-07",
+        "label": "2026-07",
+        "value": 38900,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 2.96,
+        "yoy": 3
       }
     ],
     "限额以上单位消费品零售额": [
@@ -6532,6 +7036,24 @@
         "cumulative": null,
         "mom": -17.1,
         "yoy": -4.4
+      },
+      {
+        "yearMonth": "2026-06",
+        "label": "2026-06",
+        "value": 15609,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 10.33,
+        "yoy": -4.9
+      },
+      {
+        "yearMonth": "2026-07",
+        "label": "2026-07",
+        "value": 17387,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 11.39,
+        "yoy": -2
       }
     ],
     "实物商品网上零售额": [
@@ -6959,6 +7481,24 @@
         "cumulative": null,
         "mom": -10.46,
         "yoy": -0.1
+      },
+      {
+        "yearMonth": "2026-06",
+        "label": "2026-06",
+        "value": 35741,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 10.49,
+        "yoy": -0.9
+      },
+      {
+        "yearMonth": "2026-07",
+        "label": "2026-07",
+        "value": 36844,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 3.09,
+        "yoy": 0.8
       }
     ],
     "乡村": [
@@ -7185,6 +7725,24 @@
         "valueMonthly": null,
         "cumulative": null,
         "mom": -10.76,
+        "yoy": 2.1
+      },
+      {
+        "yearMonth": "2026-06",
+        "label": "2026-06",
+        "value": 5349,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 9.16,
+        "yoy": 1.5
+      },
+      {
+        "yearMonth": "2026-07",
+        "label": "2026-07",
+        "value": 5847,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 9.31,
         "yoy": 2.1
       }
     ],
@@ -7413,6 +7971,24 @@
         "cumulative": null,
         "mom": -2.27,
         "yoy": 2.2
+      },
+      {
+        "yearMonth": "2026-06",
+        "label": "2026-06",
+        "value": 4605,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 8.1,
+        "yoy": 0.6
+      },
+      {
+        "yearMonth": "2026-07",
+        "label": "2026-07",
+        "value": 4767,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 3.52,
+        "yoy": 1.2
       }
     ],
     "限额以上单位餐饮收入": [
@@ -7640,6 +8216,24 @@
         "cumulative": null,
         "mom": -8.46,
         "yoy": 0.9
+      },
+      {
+        "yearMonth": "2026-06",
+        "label": "2026-06",
+        "value": 1396,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 8.47,
+        "yoy": -1.7
+      },
+      {
+        "yearMonth": "2026-07",
+        "label": "2026-07",
+        "value": 1408,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 0.86,
+        "yoy": 0.1
       }
     ],
     "商品零售额": [
@@ -7867,6 +8461,24 @@
         "cumulative": null,
         "mom": -11.46,
         "yoy": -0.1
+      },
+      {
+        "yearMonth": "2026-06",
+        "label": "2026-06",
+        "value": 36485,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 10.6,
+        "yoy": -0.7
+      },
+      {
+        "yearMonth": "2026-07",
+        "label": "2026-07",
+        "value": 37924,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 3.94,
+        "yoy": 0.9
       }
     ],
     "限额以上单位商品零售额": [
@@ -8094,6 +8706,24 @@
         "cumulative": null,
         "mom": -17.88,
         "yoy": -4.9
+      },
+      {
+        "yearMonth": "2026-06",
+        "label": "2026-06",
+        "value": 14213,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 10.52,
+        "yoy": -5.2
+      },
+      {
+        "yearMonth": "2026-07",
+        "label": "2026-07",
+        "value": 15979,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 12.43,
+        "yoy": -2.2
       }
     ],
     "粮油、食品类": [
@@ -8321,6 +8951,24 @@
         "cumulative": null,
         "mom": -12.24,
         "yoy": 4.1
+      },
+      {
+        "yearMonth": "2026-06",
+        "label": "2026-06",
+        "value": 1853,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 2.6,
+        "yoy": 1.9
+      },
+      {
+        "yearMonth": "2026-07",
+        "label": "2026-07",
+        "value": 2057,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 11.01,
+        "yoy": 7.9
       }
     ],
     "饮料类": [
@@ -8548,6 +9196,24 @@
         "cumulative": null,
         "mom": -6.06,
         "yoy": 3.6
+      },
+      {
+        "yearMonth": "2026-06",
+        "label": "2026-06",
+        "value": 269,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 8.47,
+        "yoy": 6.1
+      },
+      {
+        "yearMonth": "2026-07",
+        "label": "2026-07",
+        "value": 292,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 8.55,
+        "yoy": 5.8
       }
     ],
     "烟酒类": [
@@ -8775,6 +9441,24 @@
         "cumulative": null,
         "mom": -12.62,
         "yoy": 11.7
+      },
+      {
+        "yearMonth": "2026-06",
+        "label": "2026-06",
+        "value": 484,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 2.76,
+        "yoy": 4.8
+      },
+      {
+        "yearMonth": "2026-07",
+        "label": "2026-07",
+        "value": 537,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 10.95,
+        "yoy": 12.1
       }
     ],
     "服装、鞋帽、针纺织品类": [
@@ -9002,6 +9686,24 @@
         "cumulative": null,
         "mom": -14.51,
         "yoy": 3.6
+      },
+      {
+        "yearMonth": "2026-06",
+        "label": "2026-06",
+        "value": 1251,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 12.91,
+        "yoy": 3.8
+      },
+      {
+        "yearMonth": "2026-07",
+        "label": "2026-07",
+        "value": 1285,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 2.72,
+        "yoy": 3.9
       }
     ],
     "化妆品类": [
@@ -9229,6 +9931,24 @@
         "cumulative": null,
         "mom": -29.59,
         "yoy": 4.7
+      },
+      {
+        "yearMonth": "2026-06",
+        "label": "2026-06",
+        "value": 449,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 37.73,
+        "yoy": 2.5
+      },
+      {
+        "yearMonth": "2026-07",
+        "label": "2026-07",
+        "value": 456,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 1.56,
+        "yoy": 12.6
       }
     ],
     "金银珠宝类": [
@@ -9456,6 +10176,24 @@
         "cumulative": null,
         "mom": -35.96,
         "yoy": -21.3
+      },
+      {
+        "yearMonth": "2026-06",
+        "label": "2026-06",
+        "value": 267,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 17.11,
+        "yoy": -8.9
+      },
+      {
+        "yearMonth": "2026-07",
+        "label": "2026-07",
+        "value": 264,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": -1.12,
+        "yoy": -3.4
       }
     ],
     "日用品类": [
@@ -9683,6 +10421,24 @@
         "cumulative": null,
         "mom": -13.6,
         "yoy": 3.5
+      },
+      {
+        "yearMonth": "2026-06",
+        "label": "2026-06",
+        "value": 726,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 12.04,
+        "yoy": 1.6
+      },
+      {
+        "yearMonth": "2026-07",
+        "label": "2026-07",
+        "value": 786,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 8.26,
+        "yoy": 3.9
       }
     ],
     "体育、娱乐用品类": [
@@ -9910,6 +10666,24 @@
         "cumulative": null,
         "mom": 795.17,
         "yoy": -8
+      },
+      {
+        "yearMonth": "2026-06",
+        "label": "2026-06",
+        "value": 1578,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 21.57,
+        "yoy": -8
+      },
+      {
+        "yearMonth": "2026-07",
+        "label": "2026-07",
+        "value": 173,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": -89.04,
+        "yoy": -2.2
       }
     ],
     "家用电器和音像器材类": [
@@ -10137,6 +10911,24 @@
         "cumulative": null,
         "mom": -17.27,
         "yoy": -15.1
+      },
+      {
+        "yearMonth": "2026-06",
+        "label": "2026-06",
+        "value": 975,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 25.64,
+        "yoy": -15.6
+      },
+      {
+        "yearMonth": "2026-07",
+        "label": "2026-07",
+        "value": 1249,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 28.1,
+        "yoy": -8.7
       }
     ],
     "中西药品类": [
@@ -10364,6 +11156,24 @@
         "cumulative": null,
         "mom": -10.03,
         "yoy": 4.2
+      },
+      {
+        "yearMonth": "2026-06",
+        "label": "2026-06",
+        "value": 596,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": -0.83,
+        "yoy": 4
+      },
+      {
+        "yearMonth": "2026-07",
+        "label": "2026-07",
+        "value": 633,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 6.21,
+        "yoy": 4.4
       }
     ],
     "文化办公用品类": [
@@ -10591,6 +11401,24 @@
         "cumulative": null,
         "mom": -29.36,
         "yoy": -6.9
+      },
+      {
+        "yearMonth": "2026-06",
+        "label": "2026-06",
+        "value": 390,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 17.47,
+        "yoy": -1.5
+      },
+      {
+        "yearMonth": "2026-07",
+        "label": "2026-07",
+        "value": 588,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 50.77,
+        "yoy": 12.7
       }
     ],
     "家具类": [
@@ -10818,6 +11646,24 @@
         "cumulative": null,
         "mom": -10.07,
         "yoy": -10.4
+      },
+      {
+        "yearMonth": "2026-06",
+        "label": "2026-06",
+        "value": 150,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 11.94,
+        "yoy": -8.7
+      },
+      {
+        "yearMonth": "2026-07",
+        "label": "2026-07",
+        "value": 176,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 17.33,
+        "yoy": -6.6
       }
     ],
     "通讯器材类": [
@@ -11045,6 +11891,24 @@
         "cumulative": null,
         "mom": -29.83,
         "yoy": 6.2
+      },
+      {
+        "yearMonth": "2026-06",
+        "label": "2026-06",
+        "value": 889,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 33.08,
+        "yoy": 0.7
+      },
+      {
+        "yearMonth": "2026-07",
+        "label": "2026-07",
+        "value": 1148,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 29.13,
+        "yoy": 16.5
       }
     ],
     "石油及制品类": [
@@ -11272,6 +12136,24 @@
         "cumulative": null,
         "mom": -15.73,
         "yoy": -6.5
+      },
+      {
+        "yearMonth": "2026-06",
+        "label": "2026-06",
+        "value": 1793,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 3.94,
+        "yoy": -3.2
+      },
+      {
+        "yearMonth": "2026-07",
+        "label": "2026-07",
+        "value": 1791,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": -0.11,
+        "yoy": -5.1
       }
     ],
     "汽车类": [
@@ -11499,6 +12381,24 @@
         "cumulative": null,
         "mom": -19.03,
         "yoy": -15.3
+      },
+      {
+        "yearMonth": "2026-06",
+        "label": "2026-06",
+        "value": 3309,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 9.24,
+        "yoy": -16.1
+      },
+      {
+        "yearMonth": "2026-07",
+        "label": "2026-07",
+        "value": 3791,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 14.57,
+        "yoy": -16.1
       }
     ],
     "建筑及装潢材料类": [
@@ -11726,6 +12626,24 @@
         "cumulative": null,
         "mom": -9.82,
         "yoy": -13.8
+      },
+      {
+        "yearMonth": "2026-06",
+        "label": "2026-06",
+        "value": 100,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": -0.99,
+        "yoy": -13.6
+      },
+      {
+        "yearMonth": "2026-07",
+        "label": "2026-07",
+        "value": 114,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 14,
+        "yoy": -10.5
       }
     ],
     "网上商品零售额": [
@@ -11755,6 +12673,24 @@
         "cumulative": null,
         "mom": 30.27,
         "yoy": 5.7
+      },
+      {
+        "yearMonth": "2026-06",
+        "label": "2026-06",
+        "value": 52718,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 28,
+        "yoy": 5
+      },
+      {
+        "yearMonth": "2026-07",
+        "label": "2026-07",
+        "value": 64296,
+        "valueMonthly": null,
+        "cumulative": null,
+        "mom": 21.96,
+        "yoy": 4.8
       }
     ]
   },
@@ -20208,6 +21144,682 @@
         "mom": null,
         "yoy": -13.8
       }
+    },
+    {
+      "file": "2026-06-16_2026年1—5月份社会消费品零售总额增长1.4%.xls",
+      "metric": "社会消费品零售总额",
+      "extracted": {
+        "metric": "社会消费品零售总额",
+        "yearMonth": "2026-06",
+        "label": "2026-06",
+        "value": 41090,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -0.6
+      }
+    },
+    {
+      "file": "2026-06-16_2026年1—5月份社会消费品零售总额增长1.4%.xls",
+      "metric": "除汽车以外的消费品零售额",
+      "extracted": {
+        "metric": "除汽车以外的消费品零售额",
+        "yearMonth": "2026-06",
+        "label": "2026-06",
+        "value": 37781,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 1.1
+      }
+    },
+    {
+      "file": "2026-06-16_2026年1—5月份社会消费品零售总额增长1.4%.xls",
+      "metric": "限额以上单位消费品零售额",
+      "extracted": {
+        "metric": "限额以上单位消费品零售额",
+        "yearMonth": "2026-06",
+        "label": "2026-06",
+        "value": 15609,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -4.9
+      }
+    },
+    {
+      "file": "2026-06-16_2026年1—5月份社会消费品零售总额增长1.4%.xls",
+      "metric": "网上商品零售额",
+      "extracted": {
+        "metric": "网上商品零售额",
+        "yearMonth": "2026-06",
+        "label": "2026-06",
+        "value": 52718,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 5
+      }
+    },
+    {
+      "file": "2026-06-16_2026年1—5月份社会消费品零售总额增长1.4%.xls",
+      "metric": "城镇",
+      "extracted": {
+        "metric": "城镇",
+        "yearMonth": "2026-06",
+        "label": "2026-06",
+        "value": 35741,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -0.9
+      }
+    },
+    {
+      "file": "2026-06-16_2026年1—5月份社会消费品零售总额增长1.4%.xls",
+      "metric": "乡村",
+      "extracted": {
+        "metric": "乡村",
+        "yearMonth": "2026-06",
+        "label": "2026-06",
+        "value": 5349,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 1.5
+      }
+    },
+    {
+      "file": "2026-06-16_2026年1—5月份社会消费品零售总额增长1.4%.xls",
+      "metric": "餐饮收入",
+      "extracted": {
+        "metric": "餐饮收入",
+        "yearMonth": "2026-06",
+        "label": "2026-06",
+        "value": 4605,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 0.6
+      }
+    },
+    {
+      "file": "2026-06-16_2026年1—5月份社会消费品零售总额增长1.4%.xls",
+      "metric": "限额以上单位餐饮收入",
+      "extracted": {
+        "metric": "限额以上单位餐饮收入",
+        "yearMonth": "2026-06",
+        "label": "2026-06",
+        "value": 1396,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -1.7
+      }
+    },
+    {
+      "file": "2026-06-16_2026年1—5月份社会消费品零售总额增长1.4%.xls",
+      "metric": "商品零售额",
+      "extracted": {
+        "metric": "商品零售额",
+        "yearMonth": "2026-06",
+        "label": "2026-06",
+        "value": 36485,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -0.7
+      }
+    },
+    {
+      "file": "2026-06-16_2026年1—5月份社会消费品零售总额增长1.4%.xls",
+      "metric": "限额以上单位商品零售额",
+      "extracted": {
+        "metric": "限额以上单位商品零售额",
+        "yearMonth": "2026-06",
+        "label": "2026-06",
+        "value": 14213,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -5.2
+      }
+    },
+    {
+      "file": "2026-06-16_2026年1—5月份社会消费品零售总额增长1.4%.xls",
+      "metric": "粮油、食品类",
+      "extracted": {
+        "metric": "粮油、食品类",
+        "yearMonth": "2026-06",
+        "label": "2026-06",
+        "value": 1853,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 1.9
+      }
+    },
+    {
+      "file": "2026-06-16_2026年1—5月份社会消费品零售总额增长1.4%.xls",
+      "metric": "饮料类",
+      "extracted": {
+        "metric": "饮料类",
+        "yearMonth": "2026-06",
+        "label": "2026-06",
+        "value": 269,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 6.1
+      }
+    },
+    {
+      "file": "2026-06-16_2026年1—5月份社会消费品零售总额增长1.4%.xls",
+      "metric": "烟酒类",
+      "extracted": {
+        "metric": "烟酒类",
+        "yearMonth": "2026-06",
+        "label": "2026-06",
+        "value": 484,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 4.8
+      }
+    },
+    {
+      "file": "2026-06-16_2026年1—5月份社会消费品零售总额增长1.4%.xls",
+      "metric": "服装、鞋帽、针纺织品类",
+      "extracted": {
+        "metric": "服装、鞋帽、针纺织品类",
+        "yearMonth": "2026-06",
+        "label": "2026-06",
+        "value": 1251,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 3.8
+      }
+    },
+    {
+      "file": "2026-06-16_2026年1—5月份社会消费品零售总额增长1.4%.xls",
+      "metric": "化妆品类",
+      "extracted": {
+        "metric": "化妆品类",
+        "yearMonth": "2026-06",
+        "label": "2026-06",
+        "value": 449,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 2.5
+      }
+    },
+    {
+      "file": "2026-06-16_2026年1—5月份社会消费品零售总额增长1.4%.xls",
+      "metric": "金银珠宝类",
+      "extracted": {
+        "metric": "金银珠宝类",
+        "yearMonth": "2026-06",
+        "label": "2026-06",
+        "value": 267,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -8.9
+      }
+    },
+    {
+      "file": "2026-06-16_2026年1—5月份社会消费品零售总额增长1.4%.xls",
+      "metric": "日用品类",
+      "extracted": {
+        "metric": "日用品类",
+        "yearMonth": "2026-06",
+        "label": "2026-06",
+        "value": 726,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 1.6
+      }
+    },
+    {
+      "file": "2026-06-16_2026年1—5月份社会消费品零售总额增长1.4%.xls",
+      "metric": "体育、娱乐用品类",
+      "extracted": {
+        "metric": "体育、娱乐用品类",
+        "yearMonth": "2026-06",
+        "label": "2026-06",
+        "value": 1578,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -8
+      }
+    },
+    {
+      "file": "2026-06-16_2026年1—5月份社会消费品零售总额增长1.4%.xls",
+      "metric": "家用电器和音像器材类",
+      "extracted": {
+        "metric": "家用电器和音像器材类",
+        "yearMonth": "2026-06",
+        "label": "2026-06",
+        "value": 975,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -15.6
+      }
+    },
+    {
+      "file": "2026-06-16_2026年1—5月份社会消费品零售总额增长1.4%.xls",
+      "metric": "中西药品类",
+      "extracted": {
+        "metric": "中西药品类",
+        "yearMonth": "2026-06",
+        "label": "2026-06",
+        "value": 596,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 4
+      }
+    },
+    {
+      "file": "2026-06-16_2026年1—5月份社会消费品零售总额增长1.4%.xls",
+      "metric": "文化办公用品类",
+      "extracted": {
+        "metric": "文化办公用品类",
+        "yearMonth": "2026-06",
+        "label": "2026-06",
+        "value": 390,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -1.5
+      }
+    },
+    {
+      "file": "2026-06-16_2026年1—5月份社会消费品零售总额增长1.4%.xls",
+      "metric": "家具类",
+      "extracted": {
+        "metric": "家具类",
+        "yearMonth": "2026-06",
+        "label": "2026-06",
+        "value": 150,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -8.7
+      }
+    },
+    {
+      "file": "2026-06-16_2026年1—5月份社会消费品零售总额增长1.4%.xls",
+      "metric": "通讯器材类",
+      "extracted": {
+        "metric": "通讯器材类",
+        "yearMonth": "2026-06",
+        "label": "2026-06",
+        "value": 889,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 0.7
+      }
+    },
+    {
+      "file": "2026-06-16_2026年1—5月份社会消费品零售总额增长1.4%.xls",
+      "metric": "石油及制品类",
+      "extracted": {
+        "metric": "石油及制品类",
+        "yearMonth": "2026-06",
+        "label": "2026-06",
+        "value": 1793,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -3.2
+      }
+    },
+    {
+      "file": "2026-06-16_2026年1—5月份社会消费品零售总额增长1.4%.xls",
+      "metric": "汽车类",
+      "extracted": {
+        "metric": "汽车类",
+        "yearMonth": "2026-06",
+        "label": "2026-06",
+        "value": 3309,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -16.1
+      }
+    },
+    {
+      "file": "2026-06-16_2026年1—5月份社会消费品零售总额增长1.4%.xls",
+      "metric": "建筑及装潢材料类",
+      "extracted": {
+        "metric": "建筑及装潢材料类",
+        "yearMonth": "2026-06",
+        "label": "2026-06",
+        "value": 100,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -13.6
+      }
+    },
+    {
+      "file": "2026-07-15_2026年上半年社会消费品零售总额增长1.3%.xls",
+      "metric": "社会消费品零售总额",
+      "extracted": {
+        "metric": "社会消费品零售总额",
+        "yearMonth": "2026-07",
+        "label": "2026-07",
+        "value": 42691,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 1
+      }
+    },
+    {
+      "file": "2026-07-15_2026年上半年社会消费品零售总额增长1.3%.xls",
+      "metric": "除汽车以外的消费品零售额",
+      "extracted": {
+        "metric": "除汽车以外的消费品零售额",
+        "yearMonth": "2026-07",
+        "label": "2026-07",
+        "value": 38900,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 3
+      }
+    },
+    {
+      "file": "2026-07-15_2026年上半年社会消费品零售总额增长1.3%.xls",
+      "metric": "限额以上单位消费品零售额",
+      "extracted": {
+        "metric": "限额以上单位消费品零售额",
+        "yearMonth": "2026-07",
+        "label": "2026-07",
+        "value": 17387,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -2
+      }
+    },
+    {
+      "file": "2026-07-15_2026年上半年社会消费品零售总额增长1.3%.xls",
+      "metric": "网上商品零售额",
+      "extracted": {
+        "metric": "网上商品零售额",
+        "yearMonth": "2026-07",
+        "label": "2026-07",
+        "value": 64296,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 4.8
+      }
+    },
+    {
+      "file": "2026-07-15_2026年上半年社会消费品零售总额增长1.3%.xls",
+      "metric": "城镇",
+      "extracted": {
+        "metric": "城镇",
+        "yearMonth": "2026-07",
+        "label": "2026-07",
+        "value": 36844,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 0.8
+      }
+    },
+    {
+      "file": "2026-07-15_2026年上半年社会消费品零售总额增长1.3%.xls",
+      "metric": "乡村",
+      "extracted": {
+        "metric": "乡村",
+        "yearMonth": "2026-07",
+        "label": "2026-07",
+        "value": 5847,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 2.1
+      }
+    },
+    {
+      "file": "2026-07-15_2026年上半年社会消费品零售总额增长1.3%.xls",
+      "metric": "餐饮收入",
+      "extracted": {
+        "metric": "餐饮收入",
+        "yearMonth": "2026-07",
+        "label": "2026-07",
+        "value": 4767,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 1.2
+      }
+    },
+    {
+      "file": "2026-07-15_2026年上半年社会消费品零售总额增长1.3%.xls",
+      "metric": "限额以上单位餐饮收入",
+      "extracted": {
+        "metric": "限额以上单位餐饮收入",
+        "yearMonth": "2026-07",
+        "label": "2026-07",
+        "value": 1408,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 0.1
+      }
+    },
+    {
+      "file": "2026-07-15_2026年上半年社会消费品零售总额增长1.3%.xls",
+      "metric": "商品零售额",
+      "extracted": {
+        "metric": "商品零售额",
+        "yearMonth": "2026-07",
+        "label": "2026-07",
+        "value": 37924,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 0.9
+      }
+    },
+    {
+      "file": "2026-07-15_2026年上半年社会消费品零售总额增长1.3%.xls",
+      "metric": "限额以上单位商品零售额",
+      "extracted": {
+        "metric": "限额以上单位商品零售额",
+        "yearMonth": "2026-07",
+        "label": "2026-07",
+        "value": 15979,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -2.2
+      }
+    },
+    {
+      "file": "2026-07-15_2026年上半年社会消费品零售总额增长1.3%.xls",
+      "metric": "粮油、食品类",
+      "extracted": {
+        "metric": "粮油、食品类",
+        "yearMonth": "2026-07",
+        "label": "2026-07",
+        "value": 2057,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 7.9
+      }
+    },
+    {
+      "file": "2026-07-15_2026年上半年社会消费品零售总额增长1.3%.xls",
+      "metric": "饮料类",
+      "extracted": {
+        "metric": "饮料类",
+        "yearMonth": "2026-07",
+        "label": "2026-07",
+        "value": 292,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 5.8
+      }
+    },
+    {
+      "file": "2026-07-15_2026年上半年社会消费品零售总额增长1.3%.xls",
+      "metric": "烟酒类",
+      "extracted": {
+        "metric": "烟酒类",
+        "yearMonth": "2026-07",
+        "label": "2026-07",
+        "value": 537,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 12.1
+      }
+    },
+    {
+      "file": "2026-07-15_2026年上半年社会消费品零售总额增长1.3%.xls",
+      "metric": "服装、鞋帽、针纺织品类",
+      "extracted": {
+        "metric": "服装、鞋帽、针纺织品类",
+        "yearMonth": "2026-07",
+        "label": "2026-07",
+        "value": 1285,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 3.9
+      }
+    },
+    {
+      "file": "2026-07-15_2026年上半年社会消费品零售总额增长1.3%.xls",
+      "metric": "化妆品类",
+      "extracted": {
+        "metric": "化妆品类",
+        "yearMonth": "2026-07",
+        "label": "2026-07",
+        "value": 456,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 12.6
+      }
+    },
+    {
+      "file": "2026-07-15_2026年上半年社会消费品零售总额增长1.3%.xls",
+      "metric": "金银珠宝类",
+      "extracted": {
+        "metric": "金银珠宝类",
+        "yearMonth": "2026-07",
+        "label": "2026-07",
+        "value": 264,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -3.4
+      }
+    },
+    {
+      "file": "2026-07-15_2026年上半年社会消费品零售总额增长1.3%.xls",
+      "metric": "日用品类",
+      "extracted": {
+        "metric": "日用品类",
+        "yearMonth": "2026-07",
+        "label": "2026-07",
+        "value": 786,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 3.9
+      }
+    },
+    {
+      "file": "2026-07-15_2026年上半年社会消费品零售总额增长1.3%.xls",
+      "metric": "体育、娱乐用品类",
+      "extracted": {
+        "metric": "体育、娱乐用品类",
+        "yearMonth": "2026-07",
+        "label": "2026-07",
+        "value": 173,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -2.2
+      }
+    },
+    {
+      "file": "2026-07-15_2026年上半年社会消费品零售总额增长1.3%.xls",
+      "metric": "家用电器和音像器材类",
+      "extracted": {
+        "metric": "家用电器和音像器材类",
+        "yearMonth": "2026-07",
+        "label": "2026-07",
+        "value": 1249,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -8.7
+      }
+    },
+    {
+      "file": "2026-07-15_2026年上半年社会消费品零售总额增长1.3%.xls",
+      "metric": "中西药品类",
+      "extracted": {
+        "metric": "中西药品类",
+        "yearMonth": "2026-07",
+        "label": "2026-07",
+        "value": 633,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 4.4
+      }
+    },
+    {
+      "file": "2026-07-15_2026年上半年社会消费品零售总额增长1.3%.xls",
+      "metric": "文化办公用品类",
+      "extracted": {
+        "metric": "文化办公用品类",
+        "yearMonth": "2026-07",
+        "label": "2026-07",
+        "value": 588,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 12.7
+      }
+    },
+    {
+      "file": "2026-07-15_2026年上半年社会消费品零售总额增长1.3%.xls",
+      "metric": "家具类",
+      "extracted": {
+        "metric": "家具类",
+        "yearMonth": "2026-07",
+        "label": "2026-07",
+        "value": 176,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -6.6
+      }
+    },
+    {
+      "file": "2026-07-15_2026年上半年社会消费品零售总额增长1.3%.xls",
+      "metric": "通讯器材类",
+      "extracted": {
+        "metric": "通讯器材类",
+        "yearMonth": "2026-07",
+        "label": "2026-07",
+        "value": 1148,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 16.5
+      }
+    },
+    {
+      "file": "2026-07-15_2026年上半年社会消费品零售总额增长1.3%.xls",
+      "metric": "石油及制品类",
+      "extracted": {
+        "metric": "石油及制品类",
+        "yearMonth": "2026-07",
+        "label": "2026-07",
+        "value": 1791,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -5.1
+      }
+    },
+    {
+      "file": "2026-07-15_2026年上半年社会消费品零售总额增长1.3%.xls",
+      "metric": "汽车类",
+      "extracted": {
+        "metric": "汽车类",
+        "yearMonth": "2026-07",
+        "label": "2026-07",
+        "value": 3791,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -16.1
+      }
+    },
+    {
+      "file": "2026-07-15_2026年上半年社会消费品零售总额增长1.3%.xls",
+      "metric": "建筑及装潢材料类",
+      "extracted": {
+        "metric": "建筑及装潢材料类",
+        "yearMonth": "2026-07",
+        "label": "2026-07",
+        "value": 114,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -10.5
+      }
     }
   ],
   "debug": [],
@@ -23858,6 +25470,338 @@
           "3.6",
           "5212",
           "8.1",
+          ""
+        ]
+      ]
+    },
+    {
+      "file": "2026-06-16_2026年1—5月份社会消费品零售总额增长1.4%.xls",
+      "sheet": "表",
+      "sample": [
+        [
+          "2026年5月份社会消费品零售总额主要数据",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "指标",
+          "5月",
+          "",
+          "1—5月",
+          "",
+          ""
+        ],
+        [
+          "",
+          "绝对量",
+          "同比增长",
+          "绝对量",
+          "同比增长",
+          ""
+        ],
+        [
+          "",
+          "（亿元）",
+          "（%）",
+          "（亿元）",
+          "（%）",
+          ""
+        ],
+        [
+          "社会消费品零售总额",
+          "41090",
+          "-0.6",
+          "206031",
+          "1.4",
+          ""
+        ],
+        [
+          "其中：除汽车以外的消费品零售额",
+          "37781",
+          "1.1",
+          "190022",
+          "2.7",
+          ""
+        ],
+        [
+          "其中：限额以上单位消费品零售额",
+          "15609",
+          "-4.9",
+          "77941",
+          "-0.5",
+          ""
+        ],
+        [
+          "其中：网上商品零售额",
+          "-",
+          "-",
+          "52718",
+          "5",
+          ""
+        ],
+        [
+          "按经营地分",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "城镇",
+          "35741",
+          "-0.9",
+          "178662",
+          "1.2",
+          ""
+        ],
+        [
+          "乡村",
+          "5349",
+          "1.5",
+          "27369",
+          "2.6",
+          ""
+        ],
+        [
+          "按消费类型分",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "餐饮收入",
+          "4605",
+          "0.6",
+          "23488",
+          "3.1",
+          ""
+        ],
+        [
+          "其中：限额以上单位餐饮收入",
+          "1396",
+          "-1.7",
+          "6875",
+          "2.1",
+          ""
+        ],
+        [
+          "商品零售额",
+          "36485",
+          "-0.7",
+          "182543",
+          "1.2",
+          ""
+        ],
+        [
+          "其中：限额以上单位商品零售额",
+          "14213",
+          "-5.2",
+          "71066",
+          "-0.8",
+          ""
+        ],
+        [
+          "其中：粮油、食品类",
+          "1853",
+          "1.9",
+          "10049",
+          "7.4",
+          ""
+        ],
+        [
+          "饮料类",
+          "269",
+          "6.1",
+          "1315",
+          "6",
+          ""
+        ],
+        [
+          "烟酒类",
+          "484",
+          "4.8",
+          "3016",
+          "13.4",
+          ""
+        ],
+        [
+          "服装、鞋帽、针纺织品类",
+          "1251",
+          "3.8",
+          "6425",
+          "7.2",
+          ""
+        ]
+      ]
+    },
+    {
+      "file": "2026-07-15_2026年上半年社会消费品零售总额增长1.3%.xls",
+      "sheet": "表",
+      "sample": [
+        [
+          "2026年6月份社会消费品零售总额主要数据",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "指标",
+          "6月",
+          "",
+          "1—6月",
+          "",
+          ""
+        ],
+        [
+          "",
+          "绝对量",
+          "同比增长",
+          "绝对量",
+          "同比增长",
+          ""
+        ],
+        [
+          "",
+          "（亿元）",
+          "（%）",
+          "（亿元）",
+          "（%）",
+          ""
+        ],
+        [
+          "社会消费品零售总额",
+          "42691",
+          "1",
+          "248722",
+          "1.3",
+          ""
+        ],
+        [
+          "其中：除汽车以外的消费品零售额",
+          "38900",
+          "3",
+          "229034",
+          "2.8",
+          ""
+        ],
+        [
+          "其中：限额以上单位消费品零售额",
+          "17387",
+          "-2",
+          "95112",
+          "-0.8",
+          ""
+        ],
+        [
+          "其中：网上商品零售额",
+          "-",
+          "-",
+          "64296",
+          "4.8",
+          ""
+        ],
+        [
+          "按经营地分",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "城镇",
+          "36844",
+          "0.8",
+          "215506",
+          "1.2",
+          ""
+        ],
+        [
+          "乡村",
+          "5847",
+          "2.1",
+          "33216",
+          "2.5",
+          ""
+        ],
+        [
+          "按消费类型分",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "餐饮收入",
+          "4767",
+          "1.2",
+          "28255",
+          "2.8",
+          ""
+        ],
+        [
+          "其中：限额以上单位餐饮收入",
+          "1408",
+          "0.1",
+          "8328",
+          "1.8",
+          ""
+        ],
+        [
+          "商品零售额",
+          "37924",
+          "0.9",
+          "220467",
+          "1.1",
+          ""
+        ],
+        [
+          "其中：限额以上单位商品零售额",
+          "15979",
+          "-2.2",
+          "86784",
+          "-1",
+          ""
+        ],
+        [
+          "其中：粮油、食品类",
+          "2057",
+          "7.9",
+          "12091",
+          "7.4",
+          ""
+        ],
+        [
+          "饮料类",
+          "292",
+          "5.8",
+          "1601",
+          "6",
+          ""
+        ],
+        [
+          "烟酒类",
+          "537",
+          "12.1",
+          "3547",
+          "13.2",
+          ""
+        ],
+        [
+          "服装、鞋帽、针纺织品类",
+          "1285",
+          "3.9",
+          "7709",
+          "6.7",
           ""
         ]
       ]
