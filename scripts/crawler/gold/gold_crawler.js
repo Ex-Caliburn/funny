@@ -9,9 +9,10 @@
  *   - 下载该年份的 xlsx 文件到 stock/gold/ 目录，以年份命名
  *
  * 使用方法：
- *   node scripts/crawler/gold/gold_crawler.js           # 下载最新年份
- *   node scripts/crawler/gold/gold_crawler.js 2025      # 下载指定年份
- *   node scripts/crawler/gold/gold_crawler.js --all     # 下载所有年份
+ *   node scripts/crawler/gold/gold_crawler.js           # 下载最新年份并整理 JSON
+ *   node scripts/crawler/gold/gold_crawler.js 2025      # 下载指定年份并整理 JSON
+ *   node scripts/crawler/gold/gold_crawler.js --all     # 下载所有年份并整理 JSON
+ *   node scripts/crawler/gold/gold_crawler.js --parse-only  # 仅整理已有 xlsx
  */
 
 const fs = require('fs')
@@ -19,6 +20,7 @@ const path = require('path')
 const axios = require('axios')
 const cheerio = require('cheerio')
 const config = require('../framework/crawler_config')
+const { parseAll } = require('./gold_parse')
 
 class GoldCrawler {
   constructor() {
@@ -217,11 +219,19 @@ class GoldCrawler {
     const filename = `${year}${ext}`
     const filePath = path.join(this.downloadDir, filename)
 
-    // 已存在则跳过
-    if (config.fileProcessing.skipExistingFiles && fs.existsSync(filePath)) {
+    // 同一年份 xlsx 会更新但文件名不变，默认覆盖下载
+    const forceDownload = this.targetConfig.forceDownload === true
+    if (
+      !forceDownload &&
+      config.fileProcessing.skipExistingFiles &&
+      fs.existsSync(filePath)
+    ) {
       const stats = fs.statSync(filePath)
       console.log(`文件已存在，跳过: ${filename} (${(stats.size / 1024).toFixed(1)} KB)`)
       return filePath
+    }
+    if (forceDownload && fs.existsSync(filePath)) {
+      console.log(`文件已存在，将覆盖下载: ${filename}`)
     }
 
     console.log(`\n正在下载: ${fileUrl}`)
@@ -333,6 +343,28 @@ class GoldCrawler {
 
     return downloaded
   }
+
+  /**
+   * 将 xlsx 整理为 gold_data.json，供 gold_chart.html 使用
+   * @returns {object}
+   */
+  parseData() {
+    console.log('\n========================================')
+    console.log('  整理黄金数据 → gold_data.json')
+    console.log('========================================')
+    return parseAll()
+  }
+
+  /**
+   * 下载并整理
+   * @param {object} options
+   * @returns {{ downloaded: string[], parsed: object }}
+   */
+  async runWithParse(options = {}) {
+    const downloaded = await this.run(options)
+    const parsed = this.parseData()
+    return { downloaded, parsed }
+  }
 }
 
 // 命令行直接运行
@@ -340,6 +372,8 @@ if (require.main === module) {
   const args = process.argv.slice(2)
 
   const options = {}
+  const parseOnly = args.includes('--parse-only')
+
   if (args.includes('--all')) {
     options.all = true
   } else if (args[0] && /^\d{4}$/.test(args[0])) {
@@ -347,17 +381,24 @@ if (require.main === module) {
   }
 
   const crawler = new GoldCrawler()
-  crawler
-    .run(options)
-    .then((files) => {
-      if (files.length === 0) {
+  const task = parseOnly
+    ? Promise.resolve().then(() => ({ downloaded: [], parsed: crawler.parseData() }))
+    : crawler.runWithParse(options)
+
+  task
+    .then(({ downloaded, parsed }) => {
+      if (!parseOnly && downloaded.length === 0) {
         console.warn('没有文件被下载')
+        process.exit(1)
+      }
+      if (!parsed || Object.keys(parsed.years || {}).length === 0) {
+        console.warn('未生成有效 JSON 数据')
         process.exit(1)
       }
       process.exit(0)
     })
     .catch((error) => {
-      console.error('爬取失败:', error.message)
+      console.error('执行失败:', error.message)
       process.exit(1)
     })
 }

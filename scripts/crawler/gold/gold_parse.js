@@ -88,41 +88,57 @@ function parseFile(filePath) {
 }
 
 /**
- * 主流程
+ * 解析所有 xlsx 并写入 gold_data.json
+ * @param {object} [options]
+ * @param {string} [options.goldDir]
+ * @param {string} [options.outputFile]
+ * @param {boolean} [options.verbose=true]
+ * @returns {{ years: Record<string, object[]>, generatedAt: string, outputFile: string, dataChanged: boolean, fileCount: number }}
  */
-function main() {
-  const files = fs.readdirSync(GOLD_DIR)
+function parseAll(options = {}) {
+  const goldDir = options.goldDir || GOLD_DIR;
+  const outputFile = options.outputFile || OUTPUT_FILE;
+  const verbose = options.verbose !== false;
+
+  const files = fs.readdirSync(goldDir)
     .filter(f => /^\d{4}\.xlsx?$/.test(f))
     .sort();
 
   if (files.length === 0) {
-    console.error('未找到 xlsx 文件，请先运行 gold_crawler.js 下载数据');
-    process.exit(1);
+    throw new Error('未找到 xlsx 文件，请先运行 gold_crawler.js 下载数据');
   }
 
-  console.log(`找到 ${files.length} 个文件: ${files.join(', ')}`);
+  if (verbose) {
+    console.log(`找到 ${files.length} 个文件: ${files.join(', ')}`);
+  }
 
   const years = {};
 
   for (const file of files) {
-    const filePath = path.join(GOLD_DIR, file);
+    const filePath = path.join(goldDir, file);
     try {
-      const { year, months } = parseFile(filePath);
-      years[year] = months;
-      console.log(`解析 ${file}: ${months.length} 个月份，最新月份 ${months[months.length - 1]?.month} 月`);
+      const parsed = parseFile(filePath);
+      years[parsed.year] = parsed.months;
+      if (verbose) {
+        const latestMonth = parsed.months[parsed.months.length - 1]?.month;
+        console.log(`解析 ${file}: ${parsed.months.length} 个月份，最新月份 ${latestMonth} 月`);
+      }
     } catch (err) {
       console.error(`解析 ${file} 失败: ${err.message}`);
     }
   }
 
+  if (Object.keys(years).length === 0) {
+    throw new Error('所有 xlsx 解析失败，未生成有效数据');
+  }
+
   // 读取已有文件，仅在数据真正变化时才更新 generatedAt
   let generatedAt = new Date().toISOString();
   let dataChanged = true;
-  if (fs.existsSync(OUTPUT_FILE)) {
+  if (fs.existsSync(outputFile)) {
     try {
-      const existing = JSON.parse(fs.readFileSync(OUTPUT_FILE, 'utf-8'));
+      const existing = JSON.parse(fs.readFileSync(outputFile, 'utf-8'));
       if (JSON.stringify(existing.years) === JSON.stringify(years)) {
-        // 数据没有变化，保留原来的 generatedAt
         generatedAt = existing.generatedAt;
         dataChanged = false;
       }
@@ -132,21 +148,52 @@ function main() {
   }
 
   const result = { generatedAt, years };
+  fs.writeFileSync(outputFile, JSON.stringify(result, null, 2), 'utf-8');
 
-  fs.writeFileSync(OUTPUT_FILE, JSON.stringify(result, null, 2), 'utf-8');
-  console.log(`\n输出 JSON: ${OUTPUT_FILE}`);
-  if (!dataChanged) {
-    console.log('数据无变化，保留原 generatedAt');
+  if (verbose) {
+    console.log(`\n输出 JSON: ${outputFile}`);
+    if (!dataChanged) {
+      console.log('数据无变化，保留原 generatedAt');
+    }
+
+    for (const [year, months] of Object.entries(result.years)) {
+      console.log(`\n  ${year} 年 (${months.length} 个月):`);
+      months.slice(0, 3).forEach(m => {
+        console.log(`    ${m.month}月: 持有量=${m.holdingsOz}万盎司  价值=${m.valueUsd}亿美元`);
+      });
+      if (months.length > 3) console.log('    ...');
+    }
   }
 
-  // 打印预览
-  for (const [year, months] of Object.entries(result.years)) {
-    console.log(`\n  ${year} 年 (${months.length} 个月):`);
-    months.slice(0, 3).forEach(m => {
-      console.log(`    ${m.month}月: 持有量=${m.holdingsOz}万盎司  价值=${m.valueUsd}亿美元`);
-    });
-    if (months.length > 3) console.log(`    ...`);
+  return {
+    years,
+    generatedAt,
+    outputFile,
+    dataChanged,
+    fileCount: files.length,
+  };
+}
+
+/**
+ * 主流程
+ */
+function main() {
+  parseAll();
+}
+
+if (require.main === module) {
+  try {
+    main();
+  } catch (err) {
+    console.error(err.message);
+    process.exit(1);
   }
 }
 
-main();
+module.exports = {
+  parseAll,
+  parseFile,
+  parseNum,
+  GOLD_DIR,
+  OUTPUT_FILE,
+};

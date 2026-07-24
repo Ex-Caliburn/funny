@@ -97,6 +97,8 @@ module.exports = {
         downloadDir: 'gold',
         // 以年份命名，如 2026.xlsx
         filenameByYear: true,
+        // 同一年份会多次更新，文件名不变，需覆盖下载才能拿到最新数据
+        forceDownload: true,
       },
     },
   },
