@@ -21,8 +21,28 @@
     "manganese_sulfate": "SMM电池级硫酸锰指数",
     "indium": "精铟"
   },
-  "updatedAt": "2026-07-23",
+  "updatedAt": "2026-08-05",
   "data": [
+    {
+      "date": "2026-08-05",
+      "copper": 107275,
+      "yangshan_premium_warrant": 106,
+      "yangshan_premium_bl": 101,
+      "copper_concentrate_index": -148.28,
+      "copper_rod_fee": 450,
+      "aluminum": 23690,
+      "lead": 15525,
+      "zinc": 25180,
+      "nickel": 130650,
+      "nickel_sulfate": 31258,
+      "tin": 427750,
+      "cobalt": 344500,
+      "cobalt_sulfate": 79500,
+      "lithium_carbonate": 140250,
+      "antimony": 83500,
+      "manganese_sulfate": 7695,
+      "indium": 5450
+    },
     {
       "date": "2026-07-23",
       "copper": 106495,
