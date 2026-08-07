@@ -19,11 +19,7 @@ const {
   parseHOfferPriceFromPhip,
   getPhipText,
 } = require('./phip_pdf');
-
-const PATHS = {
-  analysis: path.join(__dirname, 'data/analysis.json'),
-  output: path.join(__dirname, 'data/ah_discount.json'),
-};
+const PATHS = require('./paths');
 
 const HEADERS = {
   'User-Agent':
@@ -280,9 +276,9 @@ async function main() {
     companies: results,
   };
 
-  fs.mkdirSync(path.dirname(PATHS.output), { recursive: true });
-  fs.writeFileSync(PATHS.output, JSON.stringify(output, null, 2), 'utf-8');
-  console.log(`\n💾 已保存: ${PATHS.output}`);
+  fs.mkdirSync(path.dirname(PATHS.ahDiscount), { recursive: true });
+  fs.writeFileSync(PATHS.ahDiscount, JSON.stringify(output, null, 2), 'utf-8');
+  console.log(`\n💾 已保存: ${PATHS.ahDiscount}`);
 }
 
 if (require.main === module) {

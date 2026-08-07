@@ -1,12 +1,13 @@
 /**
  * 招股详情：PHIP PDF 自动解析 + 手动补充合并
- * 运行 fetch_offering_from_phip.js 生成 data/offering_merged.json
+ * 运行 fetch_offering_from_phip.js 生成 stock/hk_ipo/offering_merged.json
  */
 
 const fs = require('fs');
 const path = require('path');
 const { OFFERING_OVERRIDES } = require('./offering_overrides');
 const { mergeOffering } = require('./offering_merge');
+const { offeringMerged: MERGED_PATH } = require('./paths');
 
 const TIER_LABELS = {
   sovereign: '主权/政府基金',
@@ -14,8 +15,6 @@ const TIER_LABELS = {
   well_known: '知名机构',
   general: '一般机构',
 };
-
-const MERGED_PATH = path.join(__dirname, 'data/offering_merged.json');
 
 /**
  * 加载合并后的 offering 配置

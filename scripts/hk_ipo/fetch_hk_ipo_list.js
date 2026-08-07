@@ -21,15 +21,16 @@
 
 const fs = require('fs');
 const path = require('path');
-const https = require('https');
-const http = require('http');
+const { execFileSync } = require('child_process');
+const PATHS = require('./paths');
+const { downloadPhipPdf, resolvePhipDoc } = require('./phip_pdf');
 
 const CONFIG = {
   BASE_URL: 'https://www1.hkexnews.hk',
   JSON_PATH: '/ncms/json/eds/',
   APP_BASE: 'https://www1.hkexnews.hk/app/',
-  DATA_DIR: path.join(__dirname, 'data'),
-  HISTORY_DIR: path.join(__dirname, 'data', 'history'),
+  DATA_DIR: PATHS.DATA_DIR,
+  HISTORY_DIR: PATHS.HISTORY_DIR,
   HEADERS: {
     'User-Agent':
       'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
@@ -130,8 +131,8 @@ function printHelp() {
                        ap      = 申请版本及整体协调人公告
                        ap-phip = 申请版本、整体协调人公告及聆讯后资料集
   --lang zh|en         语言，默认 zh
-  --output <dir>       输出目录，默认 scripts/hk_ipo/data
-  --download           仅下载 PHIP（聆讯后资料集）全文 PDF 到 data/documents/
+  --output <dir>       输出目录，默认 stock/hk_ipo
+  --download           下载 PHIP（聆讯后资料集）全文 PDF 到 stock/hk_ipo/prospectus/
   --download-all       下载所有 PDF（含申请版本、协调人公告等）
   --no-history         不保存历史快照
   -h, --help           显示帮助
@@ -139,33 +140,19 @@ function printHelp() {
 }
 
 /**
- * HTTP GET 请求
+ * HTTP GET（优先 curl，港交所直连 node https 易超时）
  */
 function httpGet(url) {
-  return new Promise((resolve, reject) => {
-    const client = url.startsWith('https') ? https : http;
-    const req = client.get(url, { headers: CONFIG.HEADERS }, (res) => {
-      if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
-        httpGet(res.headers.location).then(resolve).catch(reject);
-        return;
-      }
-      const chunks = [];
-      res.on('data', (chunk) => chunks.push(chunk));
-      res.on('end', () => {
-        const body = Buffer.concat(chunks);
-        if (res.statusCode !== 200) {
-          reject(new Error(`HTTP ${res.statusCode}: ${url}`));
-          return;
-        }
-        resolve(body);
-      });
-    });
-    req.on('error', reject);
-    req.setTimeout(30000, () => {
-      req.destroy();
-      reject(new Error(`请求超时: ${url}`));
-    });
-  });
+  const headerArgs = Object.entries(CONFIG.HEADERS).flatMap(([k, v]) => ['-H', `${k}: ${v}`]);
+  try {
+    return execFileSync(
+      'curl',
+      ['-sL', '--max-time', '60', ...headerArgs, url],
+      { encoding: 'buffer', maxBuffer: 20 * 1024 * 1024 }
+    );
+  } catch (err) {
+    throw new Error(`请求失败: ${url} (${err.message})`);
+  }
 }
 
 function sleep(ms) {
@@ -200,7 +187,7 @@ async function fetchJsonData(tab, filter, board, lang) {
   const url = `${CONFIG.BASE_URL}${CONFIG.JSON_PATH}${fileName}`;
   console.log(`📡 请求: ${url}`);
 
-  const body = await httpGet(url);
+  const body = httpGet(url);
   const data = JSON.parse(body.toString('utf-8'));
   return { fileName, url, data };
 }
@@ -355,58 +342,33 @@ function getApplicantKey(applicant) {
 }
 
 /**
- * 下载 PDF 文档（默认仅 PHIP 全文 PDF）
+ * 下载 PHIP 全文 PDF（统一走 phip_pdf，存 stock/hk_ipo/prospectus/{companyId}/）
  */
-async function downloadDocuments(output, outputDir, phipOnly = true) {
-  const docDir = path.join(outputDir, 'documents');
-  ensureDir(docDir);
-
+async function downloadDocuments(output, ipoListPath) {
   let downloadCount = 0;
   let skipCount = 0;
 
   for (const applicant of output.applicants) {
-    if (!applicant.documents) continue;
+    if (!applicant.id) continue;
 
-    const allDocs = [...applicant.documents.latest, ...applicant.documents.previous];
-    for (const doc of allDocs) {
-      if (!doc.fullDocUrl || !doc.fullDocUrl.endsWith('.pdf')) continue;
+    const phip = resolvePhipDoc(applicant.id, ipoListPath);
+    if (!phip) {
+      skipCount++;
+      continue;
+    }
 
-      const isPhip = (doc.docType || '').includes('聆訊後') || (doc.docType || '').includes('聆讯后');
-      if (phipOnly && !isPhip) {
-        skipCount++;
-        continue;
-      }
-
-      await downloadFile(doc.fullDocUrl, docDir, applicant.name, doc);
+    try {
+      const meta = await downloadPhipPdf(applicant.id, { ipoListPath });
+      const label = phip.docType || phip.fullDocLabel || 'PHIP';
+      console.log(`  ✅ ${applicant.name} - ${label}: ${meta.fileName}${meta.cached ? ' (缓存)' : ''}`);
       downloadCount++;
       await sleep(CONFIG.REQUEST_DELAY_MS);
+    } catch (err) {
+      console.error(`  ❌ ${applicant.name}: ${err.message}`);
     }
   }
 
-  const mode = phipOnly ? 'PHIP 全文' : '全部';
-  console.log(`📥 共下载 ${downloadCount} 个${mode} PDF 到 ${docDir}${phipOnly && skipCount ? `（跳过 ${skipCount} 个非 PHIP 文件）` : ''}`);
-}
-
-async function downloadFile(url, docDir, applicantName, doc) {
-  try {
-    const urlPath = new URL(url).pathname;
-    const fileName = path.basename(urlPath);
-    const safeName = applicantName.replace(/[/\\?%*:|"<>]/g, '_').slice(0, 30);
-    const subDir = path.join(docDir, safeName);
-    ensureDir(subDir);
-
-    const destPath = path.join(subDir, fileName);
-    if (fs.existsSync(destPath)) {
-      console.log(`  ⏭  已存在: ${fileName}`);
-      return;
-    }
-
-    const body = await httpGet(url);
-    fs.writeFileSync(destPath, body);
-    console.log(`  ✅ ${applicantName} - ${doc.docType || doc.fullDocLabel}: ${fileName}`);
-  } catch (err) {
-    console.error(`  ❌ 下载失败 ${url}: ${err.message}`);
-  }
+  console.log(`📥 共下载 ${downloadCount} 个 PHIP PDF 到 ${PATHS.prospectusDir}${skipCount ? `（跳过 ${skipCount} 家无 PHIP）` : ''}`);
 }
 
 /**
@@ -465,7 +427,7 @@ async function fetchTab(params, tab) {
   }
 
   if (download && tab === 'active') {
-    await downloadDocuments(output, outputDir, !downloadAll);
+    await downloadDocuments(output, outputPath);
   }
 
   return output;

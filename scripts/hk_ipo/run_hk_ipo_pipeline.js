@@ -60,7 +60,7 @@ function main() {
 
   console.log('\n✅ 流水线完成');
   console.log('   看板: stock/html/hk_ipo_analysis.html');
-  console.log('   数据: stock/cleaned_data/hk_ipo_analysis.json');
+  console.log('   数据: stock/hk_ipo/hk_ipo_analysis.json');
 }
 
 main();

@@ -32,7 +32,7 @@
     "crawl:china-export": "node scripts/crawler/china_export/china_export_crawler.js",
     "parse:china-export": "node scripts/tools/china_export_parse.js",
     "crawl:china-export:all": "node scripts/crawler/china_export/china_export_crawler.js",
-    "crawl:customs-export": "node scripts/crawler/customs_export/customs_export_crawler.js",
+    "crawl:customs-export": "node scripts/crawler/customs_export/customs_export_crawler.js --recent-months 1",
     "parse:customs-export": "node scripts/tools/customs_export_xls_to_json.js",
     "crawl:customs-export:all": "node scripts/crawler/customs_export/customs_export_crawler.js",
     "crawl:smm": "node scripts/crawler/smm/smm_crawler.js",

@@ -12,12 +12,13 @@
 const fs = require('fs');
 const path = require('path');
 const { execFileSync } = require('child_process');
+const PATHS = require('./paths');
 
 const CONFIG = {
   API:
     'https://datacenter-web.eastmoney.com/api/data/v1/get?reportName=RPTA_APP_IPOAPPLY&columns=ALL&pageNumber={page}&pageSize=50&sortColumns=APPLY_DATE&sortTypes=-1',
-  DATA_DIR: path.join(__dirname, 'data'),
-  HISTORY_DIR: path.join(__dirname, 'data', 'history'),
+  DATA_DIR: PATHS.DATA_DIR,
+  HISTORY_DIR: PATHS.HISTORY_DIR,
   HEADERS: {
     'User-Agent':
       'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',

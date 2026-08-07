@@ -17,15 +17,8 @@
 const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
+const PATHS = require('./paths');
 const { getOfferingProfiles, reloadOfferingProfiles, TIER_LABELS } = require('./offering_profiles');
-
-const PATHS = {
-  ipoList: path.join(__dirname, 'data/active_ap-phip_sehk.json'),
-  analysis: path.join(__dirname, 'data/analysis.json'),
-  ahDiscount: path.join(__dirname, 'data/ah_discount.json'),
-  outputJson: path.join(__dirname, '../../stock/cleaned_data/hk_ipo_analysis.json'),
-  outputHtml: path.join(__dirname, '../../stock/html/hk_ipo_analysis.html'),
-};
 
 /**
  * 合并 A/H 折价数据
@@ -72,13 +65,33 @@ function mergeAhSpread(companies, ahData) {
 }
 
 /**
+ * 读取已上市 ID 集合，用于标记 listingStatus
+ */
+function loadListedIds() {
+  try {
+    if (!fs.existsSync(PATHS.listed)) return new Set();
+    const data = JSON.parse(fs.readFileSync(PATHS.listed, 'utf-8'));
+    return new Set((data.applicants || []).map((a) => a.id));
+  } catch {
+    return new Set();
+  }
+}
+
+function resolveListingStatus(app, listedIds) {
+  if (app.stockCode || app.status === 'LT' || listedIds.has(app.id)) return 'listed';
+  return 'pending';
+}
+
+/**
  * 合并 IPO 列表与已有分析，保留分析内容、更新基础字段
  */
 function mergeAnalysis(ipoData, analysisData) {
   const analysisMap = new Map((analysisData?.companies || []).map((c) => [c.id, c]));
   const offeringProfiles = getOfferingProfiles();
+  const listedIds = loadListedIds();
 
   const companies = ipoData.applicants.map((app) => {
+    const listingStatus = resolveListingStatus(app, listedIds);
     const existing = analysisMap.get(app.id);
     if (existing) {
       const offering = offeringProfiles[app.id] || existing.offering || null;
@@ -92,6 +105,9 @@ function mergeAnalysis(ipoData, analysisData) {
         name: app.name,
         postingDate: app.postingDate,
         stockCode: app.stockCode || existing.stockCode,
+        status: app.status,
+        statusLabel: app.statusLabel,
+        listingStatus,
         documents: app.documents,
         warningStatementUrl: app.warningStatementUrl,
         hasPhip: app.hasPhip,
@@ -99,7 +115,12 @@ function mergeAnalysis(ipoData, analysisData) {
         offering,
       };
     }
-    return createPlaceholderAnalysis(app, offeringProfiles);
+    return {
+      ...createPlaceholderAnalysis(app, offeringProfiles),
+      status: app.status,
+      statusLabel: app.statusLabel,
+      listingStatus,
+    };
   });
 
   return {
@@ -462,13 +483,36 @@ function generateHtml(data) {
     .ah-highlight { color: var(--green); font-weight: 600; }
     .ah-premium { color: var(--yellow); font-weight: 600; }
     .source-link { color: var(--accent); font-size: 11px; word-break: break-all; }
+    .filter-bar {
+      display: flex; flex-wrap: wrap; gap: 6px;
+      padding: 10px 12px 8px; border-bottom: 1px solid var(--border);
+    }
+    .filter-btn {
+      font-size: 11px; padding: 4px 10px; border-radius: 20px;
+      border: 1px solid var(--border); background: var(--surface2);
+      color: var(--muted); cursor: pointer; font-family: inherit;
+      transition: all 0.15s;
+    }
+    .filter-btn:hover { color: var(--text); border-color: rgba(59,130,246,0.4); }
+    .filter-btn.active {
+      background: rgba(59,130,246,0.15); border-color: rgba(59,130,246,0.45);
+      color: var(--accent); font-weight: 600;
+    }
+    .empty-hint {
+      padding: 24px 16px; font-size: 12px; color: var(--muted); text-align: center; line-height: 1.6;
+    }
   </style>
 </head>
 <body>
   <aside class="sidebar">
     <div class="sidebar-header">
       <h1>港股 IPO 分析看板</h1>
-      <div class="sub">主板 · 处理中 · 聆讯后资料集</div>
+      <div class="sub" id="sidebarSub">主板 · 处理中 · 聆讯后资料集</div>
+    </div>
+    <div class="filter-bar" id="filterBar">
+      <button class="filter-btn active" data-filter="unlisted">未上市</button>
+      <button class="filter-btn" data-filter="listed">已上市</button>
+      <button class="filter-btn" data-filter="all">全部</button>
     </div>
     <div class="company-list" id="companyList"></div>
   </aside>
@@ -502,13 +546,33 @@ function generateHtml(data) {
 
   <script>
     const DATA = ${jsonStr};
-    let currentIdx = 0;
+    let currentFilter = 'unlisted';
+    let currentCompanyId = null;
 
     const VERDICT_LABELS = { under: '低估', fair: '合理', over: '高估', uncertain: '不确定' };
     const FEAS_LABELS = { high: '高', medium: '中', low: '低', none: '无' };
     const LISTING_LABELS = { main: '主板', '18A': '18A 生物科技', '18B': '18B SPAC', '18C': '18C 专精特新' };
 
     const TIER_LABELS = { sovereign: '主权/政府基金', top_tier: '顶级资管', well_known: '知名机构', general: '一般机构' };
+
+    function isListed(c) {
+      if (c.listingStatus === 'listed') return true;
+      if (c.stockCode) return true;
+      if (c.status === 'LT') return true;
+      const o = c.offering || {};
+      return !!(o.status && /已上市/.test(o.status));
+    }
+
+    function matchFilter(c, filter) {
+      if (filter === 'all') return true;
+      if (filter === 'listed') return isListed(c);
+      if (filter === 'unlisted') return !isListed(c);
+      return true;
+    }
+
+    function getVisibleCompanies() {
+      return DATA.companies.filter((c) => matchFilter(c, currentFilter));
+    }
 
     function scoreClass(s) {
       if (s >= 7) return 'score-high';
@@ -530,8 +594,20 @@ function generateHtml(data) {
 
     function renderSidebar() {
       const list = document.getElementById('companyList');
-      list.innerHTML = DATA.companies.map((c, i) =>
-        '<div class="company-item' + (i === currentIdx ? ' active' : '') + '" data-idx="' + i + '">' +
+      const visible = getVisibleCompanies();
+      const subEl = document.getElementById('sidebarSub');
+      if (subEl) {
+        subEl.textContent = '主板 · 聆讯后资料集 · 显示 ' + visible.length + ' / ' + DATA.companies.length;
+      }
+      if (!visible.length) {
+        list.innerHTML = '<div class="empty-hint">当前筛选下暂无 IPO<br>可切换「全部」或「已上市」查看历史</div>';
+        return;
+      }
+      if (!currentCompanyId || !visible.some((c) => c.id === currentCompanyId)) {
+        currentCompanyId = visible[0].id;
+      }
+      list.innerHTML = visible.map((c) =>
+        '<div class="company-item' + (c.id === currentCompanyId ? ' active' : '') + '" data-id="' + c.id + '">' +
           '<div class="score-badge ' + scoreClass(c.score) + '">' + c.score + '</div>' +
           '<div class="company-info">' +
             '<div class="company-name">' + shortName(c.name) + '</div>' +
@@ -542,7 +618,7 @@ function generateHtml(data) {
 
       list.querySelectorAll('.company-item').forEach(el => {
         el.addEventListener('click', () => {
-          currentIdx = Number(el.dataset.idx);
+          currentCompanyId = Number(el.dataset.id);
           renderSidebar();
           renderCompany();
         });
@@ -550,7 +626,15 @@ function generateHtml(data) {
     }
 
     function renderCompany() {
-      const c = DATA.companies[currentIdx];
+      const c = DATA.companies.find((x) => x.id === currentCompanyId);
+      if (!c) {
+        document.getElementById('companyTitle').textContent = '—';
+        document.getElementById('companyTags').innerHTML = '';
+        ['overview', 'offering', 'arbitrage', 'shadow', 'valuation', 'docs'].forEach((tab) => {
+          document.getElementById('panel-' + tab).innerHTML = '<div class="card"><p>请从左侧选择一家公司，或切换筛选条件。</p></div>';
+        });
+        return;
+      }
       const b = c.basic || {};
 
       document.getElementById('companyTitle').textContent = c.name;
@@ -956,6 +1040,15 @@ function generateHtml(data) {
         document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
         tab.classList.add('active');
         document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+      });
+    });
+
+    document.querySelectorAll('.filter-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        currentFilter = btn.dataset.filter;
+        document.querySelectorAll('.filter-btn').forEach((b) => b.classList.toggle('active', b === btn));
+        renderSidebar();
+        renderCompany();
       });
     });
 

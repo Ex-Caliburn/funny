@@ -13,12 +13,7 @@ const { getPhipText, resolvePhipDoc } = require('./phip_pdf');
 const { parseOfferingFromPhipText } = require('./phip_offering_parsers');
 const { OFFERING_OVERRIDES } = require('./offering_overrides');
 const { mergeOffering } = require('./offering_merge');
-
-const PATHS = {
-  ipoList: path.join(__dirname, 'data/active_ap-phip_sehk.json'),
-  phipParsed: path.join(__dirname, 'data/offering_from_phip.json'),
-  merged: path.join(__dirname, 'data/offering_merged.json'),
-};
+const PATHS = require('./paths');
 
 async function parseCompanyOffering(companyId, options = {}) {
   const phipDoc = resolvePhipDoc(companyId, options.ipoListPath);
@@ -112,16 +107,16 @@ async function main() {
     companies: results,
   };
 
-  fs.mkdirSync(path.dirname(PATHS.phipParsed), { recursive: true });
-  fs.writeFileSync(PATHS.phipParsed, JSON.stringify(phipOutput, null, 2), 'utf-8');
+  fs.mkdirSync(path.dirname(PATHS.offeringFromPhip), { recursive: true });
+  fs.writeFileSync(PATHS.offeringFromPhip, JSON.stringify(phipOutput, null, 2), 'utf-8');
   fs.writeFileSync(
-    PATHS.merged,
+    PATHS.offeringMerged,
     JSON.stringify({ meta: phipOutput.meta, profiles: mergedMap }, null, 2),
     'utf-8'
   );
 
-  console.log(`\n💾 PHIP 解析: ${PATHS.phipParsed}`);
-  console.log(`💾 合并结果: ${PATHS.merged}`);
+  console.log(`\n💾 PHIP 解析: ${PATHS.offeringFromPhip}`);
+  console.log(`💾 合并结果: ${PATHS.offeringMerged}`);
 }
 
 if (require.main === module) {

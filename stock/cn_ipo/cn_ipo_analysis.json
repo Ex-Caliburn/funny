@@ -2,21 +2,286 @@
   "meta": {
     "version": "1.0",
     "generatedAt": "2026-05-31T10:00:00.000Z",
-    "source": "scripts/cn_ipo/data/ipo_list.json",
+    "source": "stock/cn_ipo/ipo_list.json",
     "analyst": "AI 分析（基于东方财富新股数据及公开信息）",
     "count": 19,
     "disclaimer": "本分析仅供学习研究，不构成投资建议。数据来源于东方财富及巨潮资讯公开披露，请以正式招股说明书为准。",
     "ipoMeta": {
       "source": "eastmoney_RPTA_APP_IPOAPPLY",
-      "fetchedAt": "2026-08-07T05:31:10.964Z",
+      "fetchedAt": "2026-08-07T05:54:30.899Z",
       "today": "2026-08-07",
       "filterDays": 120,
       "totalFromApi": 100,
       "count": 68
     },
-    "mergedAt": "2026-08-07T05:31:11.059Z"
+    "mergedAt": "2026-08-07T06:19:44.972Z"
   },
   "companies": [
+    {
+      "id": "688836",
+      "name": "宇树科技",
+      "secuCode": "688836.SH",
+      "board": "star",
+      "status": "pending_apply",
+      "basic": {
+        "industry": "机器人 / 人形机器人 & 四足机器人",
+        "boardLabel": "科创板",
+        "businessSummary": "全球高性能通用机器人龙头，主营人形机器人（G1/H1 等）、四足机器狗及关节模组、具身智能模型。2025 年营收 16.99 亿（+335%），扣非净利润 5.91 亿，毛利率 60%+；人形机器人收入占比已超四足，2025 年人形出货 5500+ 台全球第一。",
+        "sponsor": "中信证券股份有限公司",
+        "underwriter": "中信证券股份有限公司",
+        "expectedListing": "2026-08 中旬（申购 8/10）",
+        "financials": {
+          "period": "2023-2025",
+          "revenue": "1.59 亿 → 16.99 亿 RMB（CAGR 226%）",
+          "netProfit": "2025 扣非 5.91 亿（2023 仍亏损）",
+          "grossMargin": "44% → 60%",
+          "revenueGrowth": "2025 年 +335%；2026Q1 增速回落至 +68%"
+        }
+      },
+      "arbitrage": {
+        "type": "打新溢价 + 板块联动",
+        "feasibility": "high",
+        "expectedPremium": "科创板热门主题新股，人形机器人第一股叙事或支撑首日 100-300% 溢价；发行 PE 219x 显著高于行业 38x，情绪驱动为主",
+        "winRateEstimate": "顶格申购市值仅 6 万元，预计超额认购倍数极高、中签率极低",
+        "logic": "A 股稀缺的人形机器人整机标的，叠加春晚/马斯克/《时代》封面等话题热度。申购窗口期机器人板块（减速器、电机、视觉）影子股往往提前反应；上市后高估值或反向压制纯概念标的。",
+        "strategies": [
+          "申购日顶格参与（市值门槛极低），关注冻结资金与战略配售比例",
+          "申购前 1-2 周跟踪核心供应链影子股（长盈精密、绿的谐波、鸣志电器等）是否已 price-in",
+          "若影子股已大幅拉升，警惕 IPO 落地后「见光死」；若板块休整则首日溢价空间更大",
+          "上市后不宜按 219x PE 线性外推，可参考 PS 3-5x 与优必选等对标"
+        ],
+        "constraints": [
+          "需科创板权限",
+          "发行 PE 219x 估值极高",
+          "2026Q1 扣非利润同比 -52%",
+          "新股前5日无涨跌幅限制"
+        ]
+      },
+      "shadowStock": {
+        "peers": [
+          {
+            "name": "优必选",
+            "code": "9880.HK",
+            "market": "HK",
+            "relevance": "直接对标",
+            "pe": "亏损",
+            "ps": "~15x",
+            "marketCap": "~400亿 HKD",
+            "note": "A/H 人形机器人整机龙头，估值与情绪锚"
+          },
+          {
+            "name": "长盈精密",
+            "code": "300115.SZ",
+            "market": "A",
+            "relevance": "股权关联",
+            "pe": "~30x",
+            "ps": "~2x",
+            "marketCap": "~200亿",
+            "note": "间接持股约 4.68%，供应精密结构件，股权+业务双受益"
+          },
+          {
+            "name": "中大力德",
+            "code": "002896.SZ",
+            "market": "A",
+            "relevance": "产业链",
+            "pe": "~60x",
+            "ps": "~8x",
+            "marketCap": "~80亿",
+            "note": "行星减速器占宇树采购 63%+，深创投间接持股"
+          },
+          {
+            "name": "绿的谐波",
+            "code": "688017.SH",
+            "market": "A",
+            "relevance": "产业链",
+            "pe": "~200x",
+            "ps": "~25x",
+            "marketCap": "~380亿",
+            "note": "谐波减速器占宇树 70%，上肢/灵巧手关节核心供应商"
+          },
+          {
+            "name": "鸣志电器",
+            "code": "603728.SH",
+            "market": "A",
+            "relevance": "产业链",
+            "pe": "~80x",
+            "ps": "~10x",
+            "marketCap": "~250亿",
+            "note": "灵巧手空心杯电机核心供应商，亦供货 Tesla Optimus"
+          },
+          {
+            "name": "奥比中光",
+            "code": "688322.SH",
+            "market": "A",
+            "relevance": "产业链",
+            "pe": "亏损",
+            "ps": "~20x",
+            "marketCap": "~410亿",
+            "note": "3D 视觉模组占宇树采购 72%，机器人「眼睛」"
+          },
+          {
+            "name": "长盛轴承",
+            "code": "300718.SZ",
+            "market": "A",
+            "relevance": "产业链",
+            "pe": "~35x",
+            "ps": "~6x",
+            "marketCap": "~60亿",
+            "note": "关节自润滑轴承主力供应商，单机约 160 个"
+          },
+          {
+            "name": "卧龙电驱",
+            "code": "600580.SH",
+            "market": "A",
+            "relevance": "产业链",
+            "pe": "~25x",
+            "ps": "~2x",
+            "marketCap": "~300亿",
+            "note": "关节电机/驱动占采购约 60%，产业基金间接持股"
+          },
+          {
+            "name": "双环传动",
+            "code": "002472.SZ",
+            "market": "A",
+            "relevance": "产业链",
+            "pe": "~25x",
+            "ps": "~3x",
+            "marketCap": "~340亿",
+            "note": "腰胯/下肢 RV 减速器定点，重载关节国产替代"
+          },
+          {
+            "name": "兆威机电",
+            "code": "003021.SZ",
+            "market": "A",
+            "relevance": "产业链",
+            "pe": "~50x",
+            "ps": "~8x",
+            "marketCap": "~120亿",
+            "note": "灵巧手微型传动模组，受益手指关节放量"
+          },
+          {
+            "name": "拓邦股份",
+            "code": "002139.SZ",
+            "market": "A",
+            "relevance": "股权关联",
+            "pe": "~20x",
+            "ps": "~2x",
+            "marketCap": "~100亿",
+            "note": "Pre-IPO 持股约 2.24%，伺服驱动协同"
+          },
+          {
+            "name": "三花智控",
+            "code": "002050.SZ",
+            "market": "A",
+            "relevance": "概念",
+            "pe": "~30x",
+            "ps": "~4x",
+            "marketCap": "~900亿",
+            "note": "人形机器人执行器/热管理，Tesla Optimus 供应链，板块情绪指标"
+          }
+        ],
+        "correlation": "宇树 IPO 对机器人板块有两条传导链：① 供应链（减速器/电机/视觉/轴承）随整机出货预期上修；② 主题情绪带动无直接供货但同赛道的整机与零部件标的。长盈精密、中大力德等「股权+订单」双重绑定标的弹性最大；优必选作为港股整机对标，反映全球对人形机器人估值偏好。需区分「真供应商」与纯概念炒作。",
+        "investmentTiming": "申购日（8/10）前 5-10 个交易日：若影子股已连涨且 PE 透支，不宜追高；若板块回调而宇树申购热度仍高，可小仓布局核心供应链。上市首日关注宇树开盘溢价对绿的谐波、鸣志电器等是否形成正向反馈或利好出尽。",
+        "thematicPlay": "A 股人形机器人第一股 + 具身智能 + 国产供应链；宇树 60% 毛利率验证「整机+自研模组」商业模式，带动减速器/电机/视觉国产化叙事"
+      },
+      "valuation": {
+        "verdict": "over",
+        "priceRange": "150.8 元",
+        "marketCapRange": "发行后总市值约 610 亿 RMB（40446 万股 × 150.8 元）",
+        "method": "PS 可比 + 主题溢价",
+        "comparables": [
+          {
+            "metric": "发行 PE",
+            "peerMedian": "机器人行业 ~38x",
+            "ipoImplied": "219.23x",
+            "comment": "远超行业，反映稀缺性与情绪溢价"
+          },
+          {
+            "metric": "PS（2025）",
+            "peerMedian": "优必选 ~15x",
+            "ipoImplied": "约 36x（610亿/17亿）",
+            "comment": "整机 PS 显著高于零部件龙头"
+          },
+          {
+            "metric": "毛利率",
+            "peerMedian": "零部件 25-40%",
+            "ipoImplied": "60.13%",
+            "comment": "整机高毛利验证产品竞争力"
+          },
+          {
+            "metric": "收入增速",
+            "peerMedian": "机器人 30-50%",
+            "ipoImplied": "2025 +335%，2026Q1 +68%",
+            "comment": "高基数后增速正常回落"
+          }
+        ],
+        "impliedPe": "219.23x",
+        "impliedPs": "~36x（2025 收入）",
+        "fairValueRange": "主题火热时首日溢价或达 100-200%；长期需 25-30x PS 或盈利持续高增支撑",
+        "assumptions": [
+          "人形机器人出货量维持全球领先",
+          "毛利率不因竞争大幅下滑",
+          "具身智能模型形成差异化"
+        ],
+        "catalysts": [
+          "A 股人形机器人稀缺标的",
+          "2026 各地机器人政策",
+          "G1 等新品放量",
+          "供应链国产化叙事"
+        ],
+        "risks": [
+          "219x PE 透支多年成长",
+          "特斯拉/Figure/智元竞争加剧",
+          "2026Q1 利润同比下滑",
+          "海外市场地缘政治",
+          "概念影子股利好出尽"
+        ]
+      },
+      "summary": "宇树科技是 A 股稀缺的人形机器人整机龙头，2025 年营收 17 亿、扣非净利 5.9 亿、毛利率 60%，人形出货全球第一。发行 PE 219x 显著偏高，打新以主题溢价为主，顶格市值仅 6 万。影子股分三层：股权绑定（长盈精密、拓邦股份）、核心供应链（绿的谐波、中大力德、鸣志电器、奥比中光、长盛轴承、卧龙电驱）、板块情绪（三花智控、优必选）。申购前跟踪影子股是否已 price-in，警惕 IPO 落地后分化。",
+      "keyRisks": [
+        "发行 PE 219x 估值泡沫",
+        "2026Q1 扣非净利 -52%",
+        "国际巨头竞争",
+        "影子股概念炒作回撤",
+        "申购中签率极低"
+      ],
+      "score": 7,
+      "analyzedAt": "2026-08-07T06:30:00.000Z",
+      "analyst": "AI",
+      "cninfoUrl": "https://www.cninfo.com.cn/new/disclosure/stock?stockCode=688836&orgId=10000621070",
+      "eastmoneyUrl": "https://data.eastmoney.com/xg/xg/detail/688836.html",
+      "subscription": {
+        "status": "待申购",
+        "issuePrice": 150.8,
+        "priceMethod": "本次发行采用向战略投资者定向配售、网下向符合条件的投资者询价配售、网上向持有上海市场非限售A股股份和非限售存托凭证市值的社会公众投资者定价发行相结合的方式进行",
+        "issuePe": 219.23,
+        "industryPe": 38.56,
+        "applyDate": "2026-08-10",
+        "listingDate": null,
+        "ballotDate": "2026-08-12",
+        "onlinePayDate": null,
+        "onlineRefundDate": null,
+        "issueSharesWan": 4044.64,
+        "onlineIssueShares": 6471000,
+        "onlineApplyUpper": 6000,
+        "onlineApplyLower": null,
+        "applyAmountUpperWan": 6,
+        "mainBusiness": "宇树科技是一家世界知名、国际领先的高性能通用机器人公司,专注于高性能通用人形机器人、四足机器人、机器人组件及具身智能模型的研发、生产和销售业务",
+        "ldOpenPremium": null,
+        "ldCloseChange": null,
+        "ldHighChange": null,
+        "openPrice": null,
+        "closePrice": null,
+        "freezeFundWan": null,
+        "ballotNum": null,
+        "oversubscription": null,
+        "recommendOrg": "中信证券股份有限公司",
+        "underwriterOrg": "中信证券股份有限公司",
+        "isRegistration": true,
+        "infoCode": "AN202606021823164465",
+        "_source": "eastmoney_RPTA_APP_IPOAPPLY"
+      }
+    },
     {
       "id": "301669",
       "name": "高特电子",
@@ -1312,83 +1577,6 @@
       },
       "cninfoUrl": "https://www.cninfo.com.cn/new/disclosure/stock?stockCode=301655&orgId=10000351732",
       "eastmoneyUrl": "https://data.eastmoney.com/xg/xg/detail/301655.html",
-      "summary": "待 AI 分析",
-      "keyRisks": [],
-      "score": 0,
-      "analyzedAt": null,
-      "analyst": "placeholder"
-    },
-    {
-      "id": "688836",
-      "name": "宇树科技",
-      "secuCode": "688836.SH",
-      "board": "star",
-      "status": "pending_apply",
-      "basic": {
-        "industry": "待分析",
-        "boardLabel": "科创板",
-        "businessSummary": "宇树科技是一家世界知名、国际领先的高性能通用机器人公司,专注于高性能通用人形机器人、四足机器人、机器人组件及具身智能模型的研发、生产和销售业务",
-        "sponsor": null,
-        "underwriter": null,
-        "expectedListing": "待定",
-        "financials": null
-      },
-      "arbitrage": {
-        "type": "待分析",
-        "feasibility": "none",
-        "expectedPremium": null,
-        "winRateEstimate": null,
-        "logic": "待补充",
-        "strategies": [],
-        "constraints": []
-      },
-      "shadowStock": {
-        "peers": [],
-        "correlation": "待补充",
-        "investmentTiming": "待补充",
-        "thematicPlay": null
-      },
-      "valuation": {
-        "verdict": "uncertain",
-        "method": "待分析",
-        "comparables": [],
-        "assumptions": [],
-        "catalysts": [],
-        "risks": []
-      },
-      "subscription": {
-        "status": "待申购",
-        "issuePrice": 150.8,
-        "priceMethod": "本次发行采用向战略投资者定向配售、网下向符合条件的投资者询价配售、网上向持有上海市场非限售A股股份和非限售存托凭证市值的社会公众投资者定价发行相结合的方式进行",
-        "issuePe": 219.23,
-        "industryPe": 38.56,
-        "applyDate": "2026-08-10",
-        "listingDate": null,
-        "ballotDate": "2026-08-12",
-        "onlinePayDate": null,
-        "onlineRefundDate": null,
-        "issueSharesWan": 4044.64,
-        "onlineIssueShares": 6471000,
-        "onlineApplyUpper": 6000,
-        "onlineApplyLower": null,
-        "applyAmountUpperWan": 6,
-        "mainBusiness": "宇树科技是一家世界知名、国际领先的高性能通用机器人公司,专注于高性能通用人形机器人、四足机器人、机器人组件及具身智能模型的研发、生产和销售业务",
-        "ldOpenPremium": null,
-        "ldCloseChange": null,
-        "ldHighChange": null,
-        "openPrice": null,
-        "closePrice": null,
-        "freezeFundWan": null,
-        "ballotNum": null,
-        "oversubscription": null,
-        "recommendOrg": "中信证券股份有限公司",
-        "underwriterOrg": "中信证券股份有限公司",
-        "isRegistration": true,
-        "infoCode": "AN202606021823164465",
-        "_source": "eastmoney_RPTA_APP_IPOAPPLY"
-      },
-      "cninfoUrl": "https://www.cninfo.com.cn/new/disclosure/stock?stockCode=688836&orgId=10000621070",
-      "eastmoneyUrl": "https://data.eastmoney.com/xg/xg/detail/688836.html",
       "summary": "待 AI 分析",
       "keyRisks": [],
       "score": 0,

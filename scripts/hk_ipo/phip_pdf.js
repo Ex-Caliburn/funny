@@ -9,16 +9,12 @@ const https = require('https');
 const http = require('http');
 const { execFileSync } = require('child_process');
 const { PDFParse } = require('pdf-parse');
-
-const PATHS = {
-  ipoList: path.join(__dirname, 'data/active_ap-phip_sehk.json'),
-  prospectusDir: path.join(__dirname, 'data/prospectus'),
-  textCacheDir: path.join(__dirname, 'data/phip_text'),
-};
+const PATHS = require('./paths');
 
 const HEADERS = {
   'User-Agent':
     'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+  Referer: 'https://www1.hkexnews.hk/app/appindex.html?lang=zh',
 };
 
 const PDF_CACHE_MS = 7 * 24 * 60 * 60 * 1000;
@@ -27,10 +23,16 @@ const PDF_CACHE_MS = 7 * 24 * 60 * 60 * 1000;
 const PHIP_DOC_KEYWORDS = ['聆訊後', '聆讯后', 'PHIP', 'Post-Hearing'];
 
 function httpGetCurl(url) {
-  return execFileSync('curl', ['-sL', '--max-time', '120', '-A', HEADERS['User-Agent'], url], {
-    encoding: 'buffer',
-    maxBuffer: 100 * 1024 * 1024,
-  });
+  const headerArgs = Object.entries(HEADERS).flatMap(([k, v]) => ['-H', `${k}: ${v}`]);
+  return execFileSync(
+    'curl',
+    ['-sL', '--max-time', '180', '-A', HEADERS['User-Agent'], ...headerArgs, url],
+    { encoding: 'buffer', maxBuffer: 100 * 1024 * 1024 }
+  );
+}
+
+function isPdfBuffer(buf) {
+  return buf.length >= 4 && buf.slice(0, 4).toString() === '%PDF';
 }
 
 function httpGet(url, retries = 3) {
@@ -112,14 +114,14 @@ function resolvePhipDoc(companyId, ipoListPath = PATHS.ipoList) {
     fullDocUrl: phipDoc.fullDocUrl,
     multiFileUrl: phipDoc.multiFileUrl || null,
     date: phipDoc.date,
-    source: '港交所 IPO 列表 / active_ap-phip_sehk.json',
+    source: '港交所 IPO 列表 / stock/hk_ipo/active_ap-phip_sehk.json',
   };
 }
 
 async function downloadPdf(url, destPath, force = false) {
   if (!force && fs.existsSync(destPath)) {
     const stat = fs.statSync(destPath);
-    if (Date.now() - stat.mtimeMs < PDF_CACHE_MS) {
+    if (Date.now() - stat.mtimeMs < PDF_CACHE_MS && stat.size > 1024 && isPdfBuffer(fs.readFileSync(destPath).slice(0, 4))) {
       return {
         path: destPath,
         size: stat.size,
@@ -129,7 +131,19 @@ async function downloadPdf(url, destPath, force = false) {
       };
     }
   }
-  const buf = await httpGet(url);
+
+  let buf;
+  try {
+    buf = httpGetCurl(url);
+  } catch {
+    buf = await httpGet(url);
+  }
+
+  if (!isPdfBuffer(buf)) {
+    const preview = buf.slice(0, 200).toString('utf-8').replace(/\s+/g, ' ').slice(0, 80);
+    throw new Error(`非 PDF 响应 (${buf.length} bytes): ${preview}`);
+  }
+
   fs.mkdirSync(path.dirname(destPath), { recursive: true });
   fs.writeFileSync(destPath, buf);
   return { path: destPath, size: buf.length, url, downloadedAt: new Date().toISOString(), cached: false };
@@ -167,7 +181,7 @@ async function extractTextFromPdf(filePath) {
  */
 async function getPhipText(companyId, options = {}) {
   const meta = await downloadPhipPdf(companyId, options);
-  const cacheFile = path.join(PATHS.textCacheDir, `${companyId}_${meta.fileName}.txt`);
+  const cacheFile = path.join(PATHS.phipTextDir, `${companyId}_${meta.fileName}.txt`);
 
   if (!options.force && fs.existsSync(cacheFile)) {
     const stat = fs.statSync(cacheFile);
@@ -182,7 +196,7 @@ async function getPhipText(companyId, options = {}) {
   }
 
   const { text, pages } = await extractTextFromPdf(meta.path);
-  fs.mkdirSync(PATHS.textCacheDir, { recursive: true });
+  fs.mkdirSync(PATHS.phipTextDir, { recursive: true });
   fs.writeFileSync(cacheFile, text, 'utf-8');
 
   return { ...meta, text, pages, textCached: false };

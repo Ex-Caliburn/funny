@@ -1,0 +1,197 @@
+{
+  "meta": {
+    "fetchedAt": "2026-08-07T06:00:24.505Z",
+    "source": "https://www1.hkexnews.hk/app/appindex.html?lang=zh",
+    "sourceJson": "https://www1.hkexnews.hk/ncms/json/eds/appactive_appphip_sehk_c.json",
+    "board": "sehk",
+    "boardLabel": "主板",
+    "tab": "active",
+    "filter": "ap-phip",
+    "filterLabel": "申请版本、整体协调人公告及聆讯后资料集",
+    "lang": "zh",
+    "genDate": "1786082410002",
+    "updateDate": "07/08/2026",
+    "count": 5
+  },
+  "applicants": [
+    {
+      "id": 108483,
+      "name": "坦博尔集团股份有限公司",
+      "status": "A",
+      "statusLabel": "处理中",
+      "postingDate": "21/06/2026",
+      "stockCode": null,
+      "hasPhip": true,
+      "warningStatementUrl": "https://www1.hkexnews.hk/app/sehk/2026/108483/documents/warn26062100123_c.pdf",
+      "documents": {
+        "latest": [
+          {
+            "date": "21/06/2026",
+            "docType": "聆訊後資料集（第一次呈交）",
+            "fullDocLabel": "全文檔案",
+            "multiFileLabel": "多檔案",
+            "fullDocUrl": "https://www1.hkexnews.hk/app/sehk/2026/108483/documents/sehk26062100125_c.pdf",
+            "multiFileUrl": "https://www1.hkexnews.hk/app/sehk/2026/108483/2026062100122_c.htm"
+          },
+          {
+            "date": "29/04/2026",
+            "docType": null,
+            "fullDocLabel": "整體協調人公告－委任",
+            "multiFileLabel": null,
+            "fullDocUrl": "https://www1.hkexnews.hk/app/sehk/2026/108483/documents/sehk26042905666_c.pdf",
+            "multiFileUrl": null
+          },
+          {
+            "date": "29/04/2026",
+            "docType": "申請版本（第一次呈交）",
+            "fullDocLabel": "全文檔案",
+            "multiFileLabel": "多檔案",
+            "fullDocUrl": "https://www1.hkexnews.hk/app/sehk/2026/108483/documents/sehk26042905560_c.pdf",
+            "multiFileUrl": "https://www1.hkexnews.hk/app/sehk/2026/108483/2026042905557_c.htm"
+          }
+        ],
+        "previous": []
+      }
+    },
+    {
+      "id": 108262,
+      "name": "上海哥瑞利軟件股份有限公司",
+      "status": "A",
+      "statusLabel": "处理中",
+      "postingDate": "23/06/2026",
+      "stockCode": null,
+      "hasPhip": true,
+      "warningStatementUrl": "https://www1.hkexnews.hk/app/sehk/2026/108262/documents/warn26062301711_c.pdf",
+      "documents": {
+        "latest": [
+          {
+            "date": "23/06/2026",
+            "docType": "聆訊後資料集（第一次呈交）",
+            "fullDocLabel": "全文檔案",
+            "multiFileLabel": "多檔案",
+            "fullDocUrl": "https://www1.hkexnews.hk/app/sehk/2026/108262/documents/sehk26062301713_c.pdf",
+            "multiFileUrl": "https://www1.hkexnews.hk/app/sehk/2026/108262/2026062301710_c.htm"
+          },
+          {
+            "date": "02/03/2026",
+            "docType": null,
+            "fullDocLabel": "整體協調人公告－委任",
+            "multiFileLabel": null,
+            "fullDocUrl": "https://www1.hkexnews.hk/app/sehk/2026/108262/documents/sehk26030203602_c.pdf",
+            "multiFileUrl": null
+          },
+          {
+            "date": "02/03/2026",
+            "docType": "申請版本（第一次呈交）",
+            "fullDocLabel": "全文檔案",
+            "multiFileLabel": "多檔案",
+            "fullDocUrl": "https://www1.hkexnews.hk/app/sehk/2026/108262/documents/sehk26030203530_c.pdf",
+            "multiFileUrl": "https://www1.hkexnews.hk/app/sehk/2026/108262/2026030203527_c.htm"
+          }
+        ],
+        "previous": []
+      }
+    },
+    {
+      "id": 108390,
+      "name": "永康控股有限公司",
+      "status": "A",
+      "statusLabel": "处理中",
+      "postingDate": "26/06/2026",
+      "stockCode": null,
+      "hasPhip": true,
+      "warningStatementUrl": "https://www1.hkexnews.hk/app/sehk/2026/108390/documents/warn26062603255_c.pdf",
+      "documents": {
+        "latest": [
+          {
+            "date": "26/06/2026",
+            "docType": "聆訊後資料集（第一次呈交）",
+            "fullDocLabel": "全文檔案",
+            "multiFileLabel": "多檔案",
+            "fullDocUrl": "https://www1.hkexnews.hk/app/sehk/2026/108390/documents/sehk26062603257_c.pdf",
+            "multiFileUrl": "https://www1.hkexnews.hk/app/sehk/2026/108390/2026062603254_c.htm"
+          },
+          {
+            "date": "01/04/2026",
+            "docType": null,
+            "fullDocLabel": "整體協調人公告－委任",
+            "multiFileLabel": null,
+            "fullDocUrl": "https://www1.hkexnews.hk/app/sehk/2026/108390/documents/sehk26040100605.pdf",
+            "multiFileUrl": null
+          },
+          {
+            "date": "01/04/2026",
+            "docType": "申請版本（第一次呈交）",
+            "fullDocLabel": "全文檔案",
+            "multiFileLabel": "多檔案",
+            "fullDocUrl": "https://www1.hkexnews.hk/app/sehk/2026/108390/documents/sehk26040100499_c.pdf",
+            "multiFileUrl": "https://www1.hkexnews.hk/app/sehk/2026/108390/2026040100428_c.htm"
+          }
+        ],
+        "previous": []
+      }
+    },
+    {
+      "id": 108691,
+      "name": "本末動力（北京）科技股份有限公司",
+      "status": "A",
+      "statusLabel": "处理中",
+      "postingDate": "29/06/2026",
+      "stockCode": null,
+      "hasPhip": true,
+      "warningStatementUrl": "https://www1.hkexnews.hk/app/sehk/2026/108691/documents/warn26062901533_c.pdf",
+      "documents": {
+        "latest": [
+          {
+            "date": "29/06/2026",
+            "docType": null,
+            "fullDocLabel": "整體協調人公告－委任",
+            "multiFileLabel": null,
+            "fullDocUrl": "https://www1.hkexnews.hk/app/sehk/2026/108691/documents/sehk26062901623_c.pdf",
+            "multiFileUrl": null
+          },
+          {
+            "date": "29/06/2026",
+            "docType": "聆訊後資料集（第一次呈交）",
+            "fullDocLabel": "全文檔案",
+            "multiFileLabel": "多檔案",
+            "fullDocUrl": "https://www1.hkexnews.hk/app/sehk/2026/108691/documents/sehk26062901535_c.pdf",
+            "multiFileUrl": "https://www1.hkexnews.hk/app/sehk/2026/108691/2026062901532_c.htm"
+          }
+        ],
+        "previous": []
+      }
+    },
+    {
+      "id": 108766,
+      "name": "希音国际控股有限公司 (前稱為匯萃有限公司)",
+      "status": "A",
+      "statusLabel": "处理中",
+      "postingDate": "26/07/2026",
+      "stockCode": null,
+      "hasPhip": true,
+      "warningStatementUrl": "https://www1.hkexnews.hk/app/sehk/2026/108766/documents/warn26072600123_c.pdf",
+      "documents": {
+        "latest": [
+          {
+            "date": "26/07/2026",
+            "docType": null,
+            "fullDocLabel": "整體協調人公告－委任",
+            "multiFileLabel": null,
+            "fullDocUrl": "https://www1.hkexnews.hk/app/sehk/2026/108766/documents/sehk26072600189_c.pdf",
+            "multiFileUrl": null
+          },
+          {
+            "date": "26/07/2026",
+            "docType": "聆訊後資料集（第一次呈交）",
+            "fullDocLabel": "全文檔案",
+            "multiFileLabel": "多檔案",
+            "fullDocUrl": "https://www1.hkexnews.hk/app/sehk/2026/108766/documents/sehk26072600125_c.pdf",
+            "multiFileUrl": "https://www1.hkexnews.hk/app/sehk/2026/108766/2026072600122_c.htm"
+          }
+        ],
+        "previous": []
+      }
+    }
+  ]
+}

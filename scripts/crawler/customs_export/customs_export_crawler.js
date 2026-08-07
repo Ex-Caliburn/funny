@@ -9,6 +9,7 @@
  *
  * 用法（默认仅抓取当前年）：
  *   node scripts/crawler/customs_export/customs_export_crawler.js
+ *   node scripts/crawler/customs_export/customs_export_crawler.js --recent-months 2   # 仅拉取最新 2 个月
  *   node scripts/crawler/customs_export/customs_export_crawler.js --years 2024-2026
  *   node scripts/crawler/customs_export/customs_export_crawler.js --years 2025
  *   node scripts/crawler/customs_export/customs_export_crawler.js --min-year 2024
@@ -415,12 +416,11 @@ async function processItem(item, skipExisting) {
 }
 
 /**
- * 爬取单个年份的列表页
+ * 获取单个年份列表页上的匹配条目（不下载）
  * @param {number} year
- * @param {boolean} skipExisting
- * @returns {Promise<string[]>} 本年已保存的文件路径列表
+ * @returns {Promise<Array<{ title: string, detailUrl: string | null, fileUrl?: string }>>}
  */
-async function crawlYear(year, skipExisting) {
+async function fetchYearItems(year) {
   const pathSeg = YEAR_PATH_MAP[year]
   if (!pathSeg) {
     console.warn(`\n── ${year} 年：未找到路径映射，跳过（请在 YEAR_PATH_MAP 中补充）`)
@@ -439,21 +439,82 @@ async function crawlYear(year, skipExisting) {
 
   const items = parseListPage(html, url)
   console.log(`  找到 ${items.length} 条匹配链接`)
+  return items
+}
 
+/**
+ * 从条目中筛选最新 N 个自然月（按标题解析年月，去重后取最新）
+ * @param {Array<{ title: string, detailUrl: string | null, fileUrl?: string }>} items
+ * @param {number} monthCount
+ */
+function filterRecentMonthItems(items, monthCount) {
+  const withPeriod = items
+    .map((item) => ({ item, period: parsePeriod(item.title) }))
+    .filter((x) => x.period)
+
+  const periodKeys = [...new Set(withPeriod.map((x) => x.period.dateStr))]
+  periodKeys.sort((a, b) => b.localeCompare(a))
+  const targetPeriods = new Set(periodKeys.slice(0, monthCount))
+
+  return withPeriod.filter((x) => targetPeriods.has(x.period.dateStr)).map((x) => x.item)
+}
+
+/**
+ * 下载条目列表
+ * @param {Array<{ title: string, detailUrl: string | null, fileUrl?: string }>} items
+ * @param {boolean} skipExisting
+ * @returns {Promise<string[]>}
+ */
+async function downloadItems(items, skipExisting) {
   const saved = []
   for (const item of items) {
     console.log(`  → ${item.title.slice(0, 60)}`)
     const file = await processItem(item, skipExisting)
     if (file) saved.push(file)
   }
-
   return saved
+}
+
+/**
+ * 爬取单个年份的列表页
+ * @param {number} year
+ * @param {boolean} skipExisting
+ * @returns {Promise<string[]>} 本年已保存的文件路径列表
+ */
+async function crawlYear(year, skipExisting) {
+  const items = await fetchYearItems(year)
+  return downloadItems(items, skipExisting)
+}
+
+/**
+ * 仅拉取最新 N 个月（扫描当前年及上一年列表页）
+ * @param {number} monthCount
+ * @param {boolean} skipExisting
+ * @returns {Promise<string[]>}
+ */
+async function crawlRecentMonths(monthCount, skipExisting) {
+  const currentYear = new Date().getFullYear()
+  const years = [currentYear, currentYear - 1]
+
+  const allItems = []
+  for (const year of years) {
+    const items = await fetchYearItems(year)
+    allItems.push(...items)
+  }
+
+  const filtered = filterRecentMonthItems(allItems, monthCount)
+  const periods = [...new Set(filtered.map((item) => parsePeriod(item.title)?.dateStr).filter(Boolean))]
+  periods.sort((a, b) => b.localeCompare(a))
+  console.log(`\n最近 ${monthCount} 个月: ${periods.join(', ') || '（无匹配）'}`)
+  console.log(`待下载 ${filtered.length} 条（共扫描 ${allItems.length} 条）`)
+
+  return downloadItems(filtered, skipExisting)
 }
 
 /**
  * 解析命令行参数
  * @param {string[]} argv
- * @returns {{ startYear: number, endYear: number, skipExisting: boolean, noParse: boolean }}
+ * @returns {{ startYear: number, endYear: number, skipExisting: boolean, noParse: boolean, recentMonths: number|null }}
  */
 function parseArgs(argv) {
   const currentYear = new Date().getFullYear()
@@ -461,6 +522,7 @@ function parseArgs(argv) {
   let endYear = currentYear
   let skipExisting = true
   let noParse = false
+  let recentMonths = null
   let yearsExplicit = false
   let minYearTouched = false
   let maxYearTouched = false
@@ -471,6 +533,10 @@ function parseArgs(argv) {
       skipExisting = false
     } else if (a === '--no-parse') {
       noParse = true
+    } else if (a === '--recent-months' && argv[i + 1]) {
+      recentMonths = Math.max(1, Number(argv[++i]) || 1)
+    } else if (/^--recent-months=/.test(a)) {
+      recentMonths = Math.max(1, Number(a.split('=')[1]) || 1)
     } else if (a === '--min-year' && argv[i + 1]) {
       startYear = Number(argv[++i])
       minYearTouched = true
@@ -531,27 +597,36 @@ function parseArgs(argv) {
     endYear = t
   }
 
-  return { startYear, endYear, skipExisting, noParse }
+  return { startYear, endYear, skipExisting, noParse, recentMonths }
 }
 
 async function main() {
-  const { startYear, endYear, skipExisting, noParse } = parseArgs(process.argv.slice(2))
+  const { startYear, endYear, skipExisting, noParse, recentMonths } = parseArgs(process.argv.slice(2))
 
   if (!fs.existsSync(DOWNLOAD_DIR)) {
     fs.mkdirSync(DOWNLOAD_DIR, { recursive: true })
   }
 
   console.log('海关总署 — 出口主要商品量值表下载')
-  console.log(`年份范围: ${startYear} - ${endYear}`)
+  if (recentMonths) {
+    console.log(`模式: 最近 ${recentMonths} 个月`)
+  } else {
+    console.log(`年份范围: ${startYear} - ${endYear}`)
+  }
   console.log(`保存目录: ${DOWNLOAD_DIR}`)
   console.log(`跳过已存在文件: ${skipExisting}`)
 
   const allFiles = []
 
   try {
-    for (let year = startYear; year <= endYear; year++) {
-      const files = await crawlYear(year, skipExisting)
+    if (recentMonths) {
+      const files = await crawlRecentMonths(recentMonths, skipExisting)
       allFiles.push(...files)
+    } else {
+      for (let year = startYear; year <= endYear; year++) {
+        const files = await crawlYear(year, skipExisting)
+        allFiles.push(...files)
+      }
     }
   } finally {
     await closeBrowser()

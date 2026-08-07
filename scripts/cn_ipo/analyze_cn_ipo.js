@@ -14,13 +14,7 @@
 const fs = require('fs');
 const path = require('path');
 const { ANALYSIS_SCHEMA } = require('./analysis_schema');
-
-const PATHS = {
-  ipoList: path.join(__dirname, 'data/ipo_list.json'),
-  analysis: path.join(__dirname, 'data/analysis.json'),
-  outputJson: path.join(__dirname, '../../stock/cleaned_data/cn_ipo_analysis.json'),
-  outputHtml: path.join(__dirname, '../../stock/html/cn_ipo_analysis.html'),
-};
+const PATHS = require('./paths');
 
 const BOARD_LABELS = ANALYSIS_SCHEMA.boards;
 const STATUS_LABELS = ANALYSIS_SCHEMA.statusLabels;
@@ -269,13 +263,38 @@ function generateHtml(data) {
     .status-listed { color: var(--green); }
     .premium-up { color: var(--green); font-weight: 600; }
     .premium-down { color: var(--red); font-weight: 600; }
+    .filter-bar {
+      display: flex; flex-wrap: wrap; gap: 6px;
+      padding: 10px 12px 8px; border-bottom: 1px solid var(--border);
+    }
+    .filter-btn {
+      font-size: 11px; padding: 4px 10px; border-radius: 20px;
+      border: 1px solid var(--border); background: var(--surface2);
+      color: var(--muted); cursor: pointer; font-family: inherit;
+      transition: all 0.15s;
+    }
+    .filter-btn:hover { color: var(--text); border-color: rgba(245,158,11,0.4); }
+    .filter-btn.active {
+      background: rgba(245,158,11,0.15); border-color: rgba(245,158,11,0.45);
+      color: var(--accent); font-weight: 600;
+    }
+    .empty-hint {
+      padding: 24px 16px; font-size: 12px; color: var(--muted); text-align: center; line-height: 1.6;
+    }
   </style>
 </head>
 <body>
   <aside class="sidebar">
     <div class="sidebar-header">
       <h1>A 股 IPO 分析看板</h1>
-      <div class="sub">新股申购 · 打新套利 · 影子股</div>
+      <div class="sub" id="sidebarSub">新股申购 · 打新套利 · 影子股</div>
+    </div>
+    <div class="filter-bar" id="filterBar">
+      <button class="filter-btn active" data-filter="unlisted">未上市</button>
+      <button class="filter-btn" data-filter="pending_apply">待申购</button>
+      <button class="filter-btn" data-filter="pending_list">待上市</button>
+      <button class="filter-btn" data-filter="listed">已上市</button>
+      <button class="filter-btn" data-filter="all">全部</button>
     </div>
     <div class="company-list" id="companyList"></div>
   </aside>
@@ -309,7 +328,28 @@ function generateHtml(data) {
     const FEAS_LABELS = ${JSON.stringify(FEAS_LABELS)};
     const VERDICT_LABELS = ${JSON.stringify(VERDICT_LABELS)};
 
-    let currentIdx = 0;
+    let currentFilter = 'unlisted';
+    let currentCompanyId = null;
+
+    function isListed(c) {
+      if (c.status === 'listed') return true;
+      const sub = c.subscription || {};
+      return sub.status === '已上市';
+    }
+
+    function matchFilter(c, filter) {
+      if (filter === 'all') return true;
+      if (filter === 'listed') return isListed(c);
+      if (filter === 'unlisted') return !isListed(c);
+      if (filter === 'pending_apply') return c.status === 'pending_apply';
+      if (filter === 'pending_list') return c.status === 'pending_list';
+      if (filter === 'applying') return c.status === 'applying';
+      return true;
+    }
+
+    function getVisibleCompanies() {
+      return DATA.companies.filter((c) => matchFilter(c, currentFilter));
+    }
 
     function scoreClass(s) {
       if (s >= 7) return 'score-high';
@@ -328,9 +368,21 @@ function generateHtml(data) {
 
     function renderSidebar() {
       const list = document.getElementById('companyList');
-      list.innerHTML = DATA.companies.map((c, i) => {
+      const visible = getVisibleCompanies();
+      const subEl = document.getElementById('sidebarSub');
+      if (subEl) {
+        subEl.textContent = '新股申购 · 打新套利 · 显示 ' + visible.length + ' / ' + DATA.companies.length;
+      }
+      if (!visible.length) {
+        list.innerHTML = '<div class="empty-hint">当前筛选下暂无 IPO<br>可切换「全部」或「已上市」查看历史</div>';
+        return;
+      }
+      if (!currentCompanyId || !visible.some((c) => c.id === currentCompanyId)) {
+        currentCompanyId = visible[0].id;
+      }
+      list.innerHTML = visible.map((c) => {
         const sub = c.subscription || {};
-        return '<div class="company-item' + (i === currentIdx ? ' active' : '') + '" data-idx="' + i + '">' +
+        return '<div class="company-item' + (c.id === currentCompanyId ? ' active' : '') + '" data-id="' + c.id + '">' +
           '<div class="score-badge ' + scoreClass(c.score) + '">' + c.score + '</div>' +
           '<div class="company-info">' +
           '<div class="company-name">' + c.name + '</div>' +
@@ -339,7 +391,7 @@ function generateHtml(data) {
       }).join('');
       list.querySelectorAll('.company-item').forEach(el => {
         el.addEventListener('click', () => {
-          currentIdx = parseInt(el.dataset.idx, 10);
+          currentCompanyId = el.dataset.id;
           renderSidebar();
           renderCompany();
         });
@@ -347,7 +399,15 @@ function generateHtml(data) {
     }
 
     function renderCompany() {
-      const c = DATA.companies[currentIdx];
+      const c = DATA.companies.find((x) => x.id === currentCompanyId);
+      if (!c) {
+        document.getElementById('companyTitle').textContent = '—';
+        document.getElementById('companyTags').innerHTML = '';
+        ['overview', 'subscription', 'arbitrage', 'shadow', 'valuation', 'docs'].forEach((tab) => {
+          document.getElementById('panel-' + tab).innerHTML = '<div class="card"><p>请从左侧选择一家公司，或切换筛选条件。</p></div>';
+        });
+        return;
+      }
       const b = c.basic || {};
       const sub = c.subscription || {};
 
@@ -576,6 +636,15 @@ function generateHtml(data) {
         document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
         tab.classList.add('active');
         document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+      });
+    });
+
+    document.querySelectorAll('.filter-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        currentFilter = btn.dataset.filter;
+        document.querySelectorAll('.filter-btn').forEach((b) => b.classList.toggle('active', b === btn));
+        renderSidebar();
+        renderCompany();
       });
     });
 

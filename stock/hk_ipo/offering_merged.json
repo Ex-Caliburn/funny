@@ -1,0 +1,709 @@
+{
+  "meta": {
+    "generatedAt": "2026-08-07T06:00:27.912Z",
+    "count": 5,
+    "note": "仅解析 PHIP 全文 PDF；[编纂] 字段由 offering_overrides.js 补充"
+  },
+  "profiles": {
+    "108262": {
+      "status": "通过聆讯待招股",
+      "subscriptionPeriod": null,
+      "pricingDate": "待披露",
+      "listingDate": "待披露",
+      "darkPoolDate": "待披露",
+      "finalOfferPrice": "待披露",
+      "lotSize": null,
+      "entryFee": "待披露",
+      "hammerMaxLots": "待披露",
+      "sharesOffered": "待披露",
+      "issuanceRatio": "待披露",
+      "totalFundraising": "待披露",
+      "netProceeds": "待披露",
+      "marketCapRange": "待披露",
+      "hShareMarketCap": "待披露",
+      "overallCoordinator": "待从 PHIP「董事及参与[编纂]的各方」确认",
+      "underwriters": [],
+      "oversubscription": null,
+      "useOfProceeds": "待从 PHIP「未来计划及[编纂]」章节确认",
+      "oldSharesOffered": null,
+      "notes": [
+        "数据来自 PHIP PDF 自动解析，[编纂] 字段待全球发售章程或手动补充"
+      ],
+      "financials": {
+        "period": "2025 年度（PHIP）",
+        "revenue": "50.61 亿 RMB",
+        "netProfit": "待从 PDF 细分科目确认",
+        "grossMargin": null,
+        "revenueGrowth": "15.50%",
+        "raw": {
+          "revenue": {
+            "y2023": 3954000,
+            "y2024": 4382000,
+            "y2025": 5061000
+          },
+          "grossProfit": null
+        }
+      },
+      "aShareCode": "688072.SZ",
+      "isAh": true,
+      "listingType": "18C",
+      "publicOfferRatio": "10%（PHIP）",
+      "internationalOfferRatio": "90%（PHIP）",
+      "greenShoe": {
+        "hasGreenShoe": null,
+        "ratio": null,
+        "shares": null,
+        "stabilizingManager": null
+      },
+      "clawback": {
+        "enabled": null,
+        "description": null,
+        "tiers": []
+      },
+      "cornerstone": {
+        "hasCornerstone": null,
+        "investors": [],
+        "totalAmount": "待全球发售章程披露",
+        "totalRatio": "待披露",
+        "authorityAssessment": "PHIP 未检索到基石条款或已 redacted",
+        "lockUpPeriod": "待披露（惯例 6 个月）"
+      },
+      "groupThreshold": "甲组 ≤500万 HKD；乙组 >500万 HKD",
+      "_meta": {
+        "parsedAt": "2026-08-07T06:00:27.852Z",
+        "phipPdfUrl": "https://www1.hkexnews.hk/app/sehk/2026/108262/documents/sehk26062301713_c.pdf",
+        "phipDocType": "聆訊後資料集（第一次呈交）",
+        "phipPages": null,
+        "textLength": 164948,
+        "dataSources": [
+          {
+            "field": "financials",
+            "source": "PHIP PDF 附录一（会计师报告）",
+            "snippet": "营收千元 2023-2025: 3954000 / 4382000 / 5061000"
+          },
+          {
+            "field": "aShareCode",
+            "source": "PHIP PDF",
+            "value": "688072.SZ"
+          },
+          {
+            "field": "listingType",
+            "source": "PHIP PDF",
+            "value": "18C"
+          },
+          {
+            "field": "offerPriceRange",
+            "source": "PHIP PDF",
+            "note": "PHIP 阶段发售价通常为 [编纂] 占位"
+          },
+          {
+            "field": "publicOfferRatio",
+            "source": "PHIP PDF",
+            "value": "10%/90%"
+          },
+          {
+            "field": "cornerstone",
+            "source": "PHIP PDF",
+            "note": "大量 [编纂] 占位，无法解析具体名单"
+          },
+          {
+            "field": "groupThreshold",
+            "source": "港交所惯例",
+            "value": "500万 HKD"
+          }
+        ],
+        "parserNote": "PHIP 阶段 [编纂] 占位导致基石/发售价/保荐人等需手动或全球发售章程补充",
+        "sources": {
+          "status": "phip_pdf",
+          "subscriptionPeriod": "phip_pdf",
+          "pricingDate": "phip_pdf",
+          "listingDate": "phip_pdf",
+          "darkPoolDate": "phip_pdf",
+          "finalOfferPrice": "phip_pdf",
+          "lotSize": "phip_pdf",
+          "entryFee": "phip_pdf",
+          "hammerMaxLots": "phip_pdf",
+          "sharesOffered": "phip_pdf",
+          "issuanceRatio": "phip_pdf",
+          "totalFundraising": "phip_pdf",
+          "netProceeds": "phip_pdf",
+          "marketCapRange": "phip_pdf",
+          "hShareMarketCap": "phip_pdf",
+          "overallCoordinator": "phip_pdf",
+          "underwriters": "phip_pdf",
+          "oversubscription": "phip_pdf",
+          "useOfProceeds": "phip_pdf",
+          "oldSharesOffered": "phip_pdf",
+          "notes": "phip_pdf",
+          "financials": "phip_pdf",
+          "aShareCode": "phip_pdf",
+          "isAh": "phip_pdf",
+          "listingType": "phip_pdf",
+          "publicOfferRatio": "phip_pdf",
+          "internationalOfferRatio": "phip_pdf",
+          "greenShoe": "phip_pdf",
+          "clawback": "phip_pdf",
+          "cornerstone": "phip_pdf",
+          "groupThreshold": "phip_pdf"
+        },
+        "mergedAt": "2026-08-07T06:00:27.852Z"
+      }
+    },
+    "108390": {
+      "status": "通过聆讯待招股",
+      "subscriptionPeriod": null,
+      "pricingDate": "待披露",
+      "listingDate": "待披露",
+      "darkPoolDate": "待披露",
+      "finalOfferPrice": "待披露",
+      "lotSize": null,
+      "entryFee": "待披露",
+      "hammerMaxLots": "待披露",
+      "sharesOffered": "待披露",
+      "issuanceRatio": "待披露",
+      "totalFundraising": "待披露",
+      "netProceeds": "待披露",
+      "marketCapRange": "待披露",
+      "hShareMarketCap": "待披露",
+      "overallCoordinator": "待从 PHIP「董事及参与[编纂]的各方」确认",
+      "underwriters": [],
+      "oversubscription": null,
+      "useOfProceeds": "待从 PHIP「未来计划及[编纂]」章节确认",
+      "oldSharesOffered": null,
+      "notes": [
+        "数据来自 PHIP PDF 自动解析，[编纂] 字段待全球发售章程或手动补充"
+      ],
+      "financials": {
+        "period": "2025 年度（PHIP）",
+        "revenue": "128.89 亿 RMB",
+        "netProfit": "待从 PDF 细分科目确认",
+        "grossMargin": "913.07%",
+        "revenueGrowth": "-1.07%",
+        "raw": {
+          "revenue": {
+            "y2023": 13009000,
+            "y2024": 13029000,
+            "y2025": 12889000
+          },
+          "grossProfit": {
+            "y2023": 83582000,
+            "y2024": 78294000,
+            "y2025": 117685000
+          }
+        }
+      },
+      "isAh": false,
+      "listingType": "main",
+      "publicOfferRatio": "10%（PHIP）",
+      "internationalOfferRatio": "90%（PHIP）",
+      "greenShoe": {
+        "hasGreenShoe": null,
+        "ratio": null,
+        "shares": null,
+        "stabilizingManager": null
+      },
+      "clawback": {
+        "enabled": null,
+        "description": null,
+        "tiers": []
+      },
+      "cornerstone": {
+        "hasCornerstone": null,
+        "investors": [],
+        "totalAmount": "待全球发售章程披露",
+        "totalRatio": "待披露",
+        "authorityAssessment": "PHIP 未检索到基石条款或已 redacted",
+        "lockUpPeriod": "待披露（惯例 6 个月）"
+      },
+      "groupThreshold": "甲组 ≤500万 HKD；乙组 >500万 HKD",
+      "_meta": {
+        "parsedAt": "2026-08-07T06:00:27.864Z",
+        "phipPdfUrl": "https://www1.hkexnews.hk/app/sehk/2026/108390/documents/sehk26062603257_c.pdf",
+        "phipDocType": "聆訊後資料集（第一次呈交）",
+        "phipPages": null,
+        "textLength": 137161,
+        "dataSources": [
+          {
+            "field": "financials",
+            "source": "PHIP PDF 附录一（会计师报告）",
+            "snippet": "营收千元 2023-2025: 13009000 / 13029000 / 12889000"
+          },
+          {
+            "field": "listingType",
+            "source": "PHIP PDF",
+            "value": "main (342C)"
+          },
+          {
+            "field": "offerPriceRange",
+            "source": "PHIP PDF",
+            "note": "PHIP 阶段发售价通常为 [编纂] 占位"
+          },
+          {
+            "field": "publicOfferRatio",
+            "source": "PHIP PDF",
+            "value": "10%/90%"
+          },
+          {
+            "field": "cornerstone",
+            "source": "PHIP PDF",
+            "note": "大量 [编纂] 占位，无法解析具体名单"
+          },
+          {
+            "field": "groupThreshold",
+            "source": "港交所惯例",
+            "value": "500万 HKD"
+          }
+        ],
+        "parserNote": "PHIP 阶段 [编纂] 占位导致基石/发售价/保荐人等需手动或全球发售章程补充",
+        "sources": {
+          "status": "phip_pdf",
+          "subscriptionPeriod": "phip_pdf",
+          "pricingDate": "phip_pdf",
+          "listingDate": "phip_pdf",
+          "darkPoolDate": "phip_pdf",
+          "finalOfferPrice": "phip_pdf",
+          "lotSize": "phip_pdf",
+          "entryFee": "phip_pdf",
+          "hammerMaxLots": "phip_pdf",
+          "sharesOffered": "phip_pdf",
+          "issuanceRatio": "phip_pdf",
+          "totalFundraising": "phip_pdf",
+          "netProceeds": "phip_pdf",
+          "marketCapRange": "phip_pdf",
+          "hShareMarketCap": "phip_pdf",
+          "overallCoordinator": "phip_pdf",
+          "underwriters": "phip_pdf",
+          "oversubscription": "phip_pdf",
+          "useOfProceeds": "phip_pdf",
+          "oldSharesOffered": "phip_pdf",
+          "notes": "phip_pdf",
+          "financials": "phip_pdf",
+          "isAh": "phip_pdf",
+          "listingType": "phip_pdf",
+          "publicOfferRatio": "phip_pdf",
+          "internationalOfferRatio": "phip_pdf",
+          "greenShoe": "phip_pdf",
+          "clawback": "phip_pdf",
+          "cornerstone": "phip_pdf",
+          "groupThreshold": "phip_pdf"
+        },
+        "mergedAt": "2026-08-07T06:00:27.864Z"
+      }
+    },
+    "108483": {
+      "status": "通过聆讯待招股",
+      "subscriptionPeriod": null,
+      "pricingDate": "待披露",
+      "listingDate": "待披露",
+      "darkPoolDate": "待披露",
+      "finalOfferPrice": "待披露",
+      "lotSize": null,
+      "entryFee": "待披露",
+      "hammerMaxLots": "待披露",
+      "sharesOffered": "待披露",
+      "issuanceRatio": "待披露",
+      "totalFundraising": "待披露",
+      "netProceeds": "待披露",
+      "marketCapRange": "待披露",
+      "hShareMarketCap": "待披露",
+      "overallCoordinator": "待从 PHIP「董事及参与[编纂]的各方」确认",
+      "underwriters": [],
+      "oversubscription": null,
+      "useOfProceeds": "待从 PHIP「未来计划及[编纂]」章节确认",
+      "oldSharesOffered": null,
+      "notes": [
+        "数据来自 PHIP PDF 自动解析，[编纂] 字段待全球发售章程或手动补充"
+      ],
+      "financials": {
+        "period": "2025 年度（PHIP）",
+        "revenue": "26.56 亿 RMB",
+        "netProfit": "待从 PDF 细分科目确认",
+        "grossMargin": null,
+        "revenueGrowth": "15.13%",
+        "raw": {
+          "revenue": {
+            "y2023": 1476608,
+            "y2024": 2307353,
+            "y2025": 2656460
+          },
+          "grossProfit": null
+        }
+      },
+      "aShareCode": "300333.SZ",
+      "isAh": true,
+      "listingType": "18A",
+      "publicOfferRatio": "10%（PHIP）",
+      "internationalOfferRatio": "90%（PHIP）",
+      "greenShoe": {
+        "hasGreenShoe": null,
+        "ratio": null,
+        "shares": null,
+        "stabilizingManager": null
+      },
+      "clawback": {
+        "enabled": null,
+        "description": null,
+        "tiers": []
+      },
+      "cornerstone": {
+        "hasCornerstone": null,
+        "investors": [],
+        "totalAmount": "待全球发售章程披露",
+        "totalRatio": "待披露",
+        "authorityAssessment": "PHIP 未检索到基石条款或已 redacted",
+        "lockUpPeriod": "待披露（惯例 6 个月）"
+      },
+      "groupThreshold": "甲组 ≤500万 HKD；乙组 >500万 HKD",
+      "_meta": {
+        "parsedAt": "2026-08-07T06:00:27.838Z",
+        "phipPdfUrl": "https://www1.hkexnews.hk/app/sehk/2026/108483/documents/sehk26062100125_c.pdf",
+        "phipDocType": "聆訊後資料集（第一次呈交）",
+        "phipPages": null,
+        "textLength": 162758,
+        "dataSources": [
+          {
+            "field": "financials",
+            "source": "PHIP PDF 附录一（会计师报告）",
+            "snippet": "营收千元 2023-2025: 1476608 / 2307353 / 2656460"
+          },
+          {
+            "field": "aShareCode",
+            "source": "PHIP PDF",
+            "value": "300333.SZ"
+          },
+          {
+            "field": "listingType",
+            "source": "PHIP PDF",
+            "value": "18A"
+          },
+          {
+            "field": "offerPriceRange",
+            "source": "PHIP PDF",
+            "note": "PHIP 阶段发售价通常为 [编纂] 占位"
+          },
+          {
+            "field": "publicOfferRatio",
+            "source": "PHIP PDF",
+            "value": "10%/90%"
+          },
+          {
+            "field": "cornerstone",
+            "source": "PHIP PDF",
+            "note": "大量 [编纂] 占位，无法解析具体名单"
+          },
+          {
+            "field": "groupThreshold",
+            "source": "港交所惯例",
+            "value": "500万 HKD"
+          }
+        ],
+        "parserNote": "PHIP 阶段 [编纂] 占位导致基石/发售价/保荐人等需手动或全球发售章程补充",
+        "sources": {
+          "status": "phip_pdf",
+          "subscriptionPeriod": "phip_pdf",
+          "pricingDate": "phip_pdf",
+          "listingDate": "phip_pdf",
+          "darkPoolDate": "phip_pdf",
+          "finalOfferPrice": "phip_pdf",
+          "lotSize": "phip_pdf",
+          "entryFee": "phip_pdf",
+          "hammerMaxLots": "phip_pdf",
+          "sharesOffered": "phip_pdf",
+          "issuanceRatio": "phip_pdf",
+          "totalFundraising": "phip_pdf",
+          "netProceeds": "phip_pdf",
+          "marketCapRange": "phip_pdf",
+          "hShareMarketCap": "phip_pdf",
+          "overallCoordinator": "phip_pdf",
+          "underwriters": "phip_pdf",
+          "oversubscription": "phip_pdf",
+          "useOfProceeds": "phip_pdf",
+          "oldSharesOffered": "phip_pdf",
+          "notes": "phip_pdf",
+          "financials": "phip_pdf",
+          "aShareCode": "phip_pdf",
+          "isAh": "phip_pdf",
+          "listingType": "phip_pdf",
+          "publicOfferRatio": "phip_pdf",
+          "internationalOfferRatio": "phip_pdf",
+          "greenShoe": "phip_pdf",
+          "clawback": "phip_pdf",
+          "cornerstone": "phip_pdf",
+          "groupThreshold": "phip_pdf"
+        },
+        "mergedAt": "2026-08-07T06:00:27.839Z"
+      }
+    },
+    "108691": {
+      "status": "通过聆讯待招股",
+      "subscriptionPeriod": null,
+      "pricingDate": "待披露",
+      "listingDate": "待披露",
+      "darkPoolDate": "待披露",
+      "finalOfferPrice": "待披露",
+      "lotSize": null,
+      "entryFee": "待披露",
+      "hammerMaxLots": "待披露",
+      "sharesOffered": "待披露",
+      "issuanceRatio": "待披露",
+      "totalFundraising": "待披露",
+      "netProceeds": "待披露",
+      "marketCapRange": "待披露",
+      "hShareMarketCap": "待披露",
+      "overallCoordinator": "待从 PHIP「董事及参与[编纂]的各方」确认",
+      "underwriters": [],
+      "oversubscription": null,
+      "useOfProceeds": "待从 PHIP「未来计划及[编纂]」章节确认",
+      "oldSharesOffered": null,
+      "notes": [
+        "数据来自 PHIP PDF 自动解析，[编纂] 字段待全球发售章程或手动补充"
+      ],
+      "aShareCode": "601688.SZ",
+      "isAh": true,
+      "listingType": "18C",
+      "publicOfferRatio": "10%（PHIP）",
+      "internationalOfferRatio": "90%（PHIP）",
+      "greenShoe": {
+        "hasGreenShoe": null,
+        "ratio": null,
+        "shares": null,
+        "stabilizingManager": null
+      },
+      "clawback": {
+        "enabled": null,
+        "description": null,
+        "tiers": []
+      },
+      "cornerstone": {
+        "hasCornerstone": null,
+        "investors": [],
+        "totalAmount": "待全球发售章程披露",
+        "totalRatio": "待披露",
+        "authorityAssessment": "PHIP 未检索到基石条款或已 redacted",
+        "lockUpPeriod": "待披露（惯例 6 个月）"
+      },
+      "groupThreshold": "甲组 ≤500万 HKD；乙组 >500万 HKD",
+      "_meta": {
+        "parsedAt": "2026-08-07T06:00:27.902Z",
+        "phipPdfUrl": "https://www1.hkexnews.hk/app/sehk/2026/108691/documents/sehk26062901535_c.pdf",
+        "phipDocType": "聆訊後資料集（第一次呈交）",
+        "phipPages": null,
+        "textLength": 594350,
+        "dataSources": [
+          {
+            "field": "aShareCode",
+            "source": "PHIP PDF",
+            "value": "601688.SZ"
+          },
+          {
+            "field": "listingType",
+            "source": "PHIP PDF",
+            "value": "18C"
+          },
+          {
+            "field": "offerPriceRange",
+            "source": "PHIP PDF",
+            "note": "PHIP 阶段发售价通常为 [编纂] 占位"
+          },
+          {
+            "field": "publicOfferRatio",
+            "source": "PHIP PDF",
+            "value": "10%/90%"
+          },
+          {
+            "field": "cornerstone",
+            "source": "PHIP PDF",
+            "note": "大量 [编纂] 占位，无法解析具体名单"
+          },
+          {
+            "field": "groupThreshold",
+            "source": "港交所惯例",
+            "value": "500万 HKD"
+          }
+        ],
+        "parserNote": "PHIP 阶段 [编纂] 占位导致基石/发售价/保荐人等需手动或全球发售章程补充",
+        "sources": {
+          "status": "phip_pdf",
+          "subscriptionPeriod": "phip_pdf",
+          "pricingDate": "phip_pdf",
+          "listingDate": "phip_pdf",
+          "darkPoolDate": "phip_pdf",
+          "finalOfferPrice": "phip_pdf",
+          "lotSize": "phip_pdf",
+          "entryFee": "phip_pdf",
+          "hammerMaxLots": "phip_pdf",
+          "sharesOffered": "phip_pdf",
+          "issuanceRatio": "phip_pdf",
+          "totalFundraising": "phip_pdf",
+          "netProceeds": "phip_pdf",
+          "marketCapRange": "phip_pdf",
+          "hShareMarketCap": "phip_pdf",
+          "overallCoordinator": "phip_pdf",
+          "underwriters": "phip_pdf",
+          "oversubscription": "phip_pdf",
+          "useOfProceeds": "phip_pdf",
+          "oldSharesOffered": "phip_pdf",
+          "notes": "phip_pdf",
+          "aShareCode": "phip_pdf",
+          "isAh": "phip_pdf",
+          "listingType": "phip_pdf",
+          "publicOfferRatio": "phip_pdf",
+          "internationalOfferRatio": "phip_pdf",
+          "greenShoe": "phip_pdf",
+          "clawback": "phip_pdf",
+          "cornerstone": "phip_pdf",
+          "groupThreshold": "phip_pdf"
+        },
+        "mergedAt": "2026-08-07T06:00:27.902Z"
+      }
+    },
+    "108766": {
+      "status": "通过聆讯待招股",
+      "subscriptionPeriod": null,
+      "pricingDate": "待披露",
+      "listingDate": "待披露",
+      "darkPoolDate": "待披露",
+      "finalOfferPrice": "待披露",
+      "lotSize": null,
+      "entryFee": "待披露",
+      "hammerMaxLots": "待披露",
+      "sharesOffered": "待披露",
+      "issuanceRatio": "待披露",
+      "totalFundraising": "待披露",
+      "netProceeds": "待披露",
+      "marketCapRange": "待披露",
+      "hShareMarketCap": "待披露",
+      "overallCoordinator": "待从 PHIP「董事及参与[编纂]的各方」确认",
+      "underwriters": [],
+      "oversubscription": null,
+      "useOfProceeds": "待从 PHIP「未来计划及[编纂]」章节确认",
+      "oldSharesOffered": null,
+      "notes": [
+        "数据来自 PHIP PDF 自动解析，[编纂] 字段待全球发售章程或手动补充"
+      ],
+      "financials": {
+        "period": "2025 年度（PHIP）",
+        "revenue": "75.45 亿 RMB",
+        "netProfit": "待从 PDF 细分科目确认",
+        "grossMargin": "260.30%",
+        "revenueGrowth": "126.65%",
+        "raw": {
+          "revenue": {
+            "y2023": 4216000,
+            "y2024": 3328800,
+            "y2025": 7544800
+          },
+          "grossProfit": {
+            "y2023": 6324000,
+            "y2024": 13315050,
+            "y2025": 19639050
+          }
+        }
+      },
+      "aShareCode": "600061.SZ",
+      "isAh": true,
+      "listingType": "main",
+      "publicOfferRatio": "10%（PHIP）",
+      "internationalOfferRatio": "90%（PHIP）",
+      "greenShoe": {
+        "hasGreenShoe": null,
+        "ratio": null,
+        "shares": null,
+        "stabilizingManager": null
+      },
+      "clawback": {
+        "enabled": null,
+        "description": null,
+        "tiers": []
+      },
+      "cornerstone": {
+        "hasCornerstone": null,
+        "investors": [],
+        "totalAmount": "待全球发售章程披露",
+        "totalRatio": "待披露",
+        "authorityAssessment": "PHIP 未检索到基石条款或已 redacted",
+        "lockUpPeriod": "待披露（惯例 6 个月）"
+      },
+      "groupThreshold": "甲组 ≤500万 HKD；乙组 >500万 HKD",
+      "_meta": {
+        "parsedAt": "2026-08-07T06:00:27.912Z",
+        "phipPdfUrl": "https://www1.hkexnews.hk/app/sehk/2026/108766/documents/sehk26072600125_c.pdf",
+        "phipDocType": "聆訊後資料集（第一次呈交）",
+        "phipPages": null,
+        "textLength": 153849,
+        "dataSources": [
+          {
+            "field": "financials",
+            "source": "PHIP PDF 附录一（会计师报告）",
+            "snippet": "营收千元 2023-2025: 4216000 / 3328800 / 7544800"
+          },
+          {
+            "field": "aShareCode",
+            "source": "PHIP PDF",
+            "value": "600061.SZ"
+          },
+          {
+            "field": "listingType",
+            "source": "PHIP PDF",
+            "value": "main (342C)"
+          },
+          {
+            "field": "offerPriceRange",
+            "source": "PHIP PDF",
+            "note": "PHIP 阶段发售价通常为 [编纂] 占位"
+          },
+          {
+            "field": "publicOfferRatio",
+            "source": "PHIP PDF",
+            "value": "10%/90%"
+          },
+          {
+            "field": "cornerstone",
+            "source": "PHIP PDF",
+            "note": "大量 [编纂] 占位，无法解析具体名单"
+          },
+          {
+            "field": "groupThreshold",
+            "source": "港交所惯例",
+            "value": "500万 HKD"
+          }
+        ],
+        "parserNote": "PHIP 阶段 [编纂] 占位导致基石/发售价/保荐人等需手动或全球发售章程补充",
+        "sources": {
+          "status": "phip_pdf",
+          "subscriptionPeriod": "phip_pdf",
+          "pricingDate": "phip_pdf",
+          "listingDate": "phip_pdf",
+          "darkPoolDate": "phip_pdf",
+          "finalOfferPrice": "phip_pdf",
+          "lotSize": "phip_pdf",
+          "entryFee": "phip_pdf",
+          "hammerMaxLots": "phip_pdf",
+          "sharesOffered": "phip_pdf",
+          "issuanceRatio": "phip_pdf",
+          "totalFundraising": "phip_pdf",
+          "netProceeds": "phip_pdf",
+          "marketCapRange": "phip_pdf",
+          "hShareMarketCap": "phip_pdf",
+          "overallCoordinator": "phip_pdf",
+          "underwriters": "phip_pdf",
+          "oversubscription": "phip_pdf",
+          "useOfProceeds": "phip_pdf",
+          "oldSharesOffered": "phip_pdf",
+          "notes": "phip_pdf",
+          "financials": "phip_pdf",
+          "aShareCode": "phip_pdf",
+          "isAh": "phip_pdf",
+          "listingType": "phip_pdf",
+          "publicOfferRatio": "phip_pdf",
+          "internationalOfferRatio": "phip_pdf",
+          "greenShoe": "phip_pdf",
+          "clawback": "phip_pdf",
+          "cornerstone": "phip_pdf",
+          "groupThreshold": "phip_pdf"
+        },
+        "mergedAt": "2026-08-07T06:00:27.912Z"
+      }
+    }
+  }
+}

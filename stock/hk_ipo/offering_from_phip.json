@@ -1,98 +1,22 @@
 {
   "meta": {
-    "version": "1.0",
-    "generatedAt": "2026-05-31T09:00:00.000Z",
-    "source": "scripts/hk_ipo/data/active_ap-phip_sehk.json",
-    "analyst": "AI 分析（基于 PHIP 聆讯后资料集及公开信息）",
+    "generatedAt": "2026-08-07T06:00:27.912Z",
     "count": 5,
-    "disclaimer": "本分析仅供学习研究，不构成投资建议。数据来源于港交所披露易及公开报道，请以正式招股书为准。",
-    "ipoMeta": {
-      "fetchedAt": "2026-08-07T05:31:58.645Z",
-      "source": "https://www1.hkexnews.hk/app/appindex.html?lang=zh",
-      "sourceJson": "https://www1.hkexnews.hk/ncms/json/eds/appactive_appphip_sehk_c.json",
-      "board": "sehk",
-      "boardLabel": "主板",
-      "tab": "active",
-      "filter": "ap-phip",
-      "filterLabel": "申请版本、整体协调人公告及聆讯后资料集",
-      "lang": "zh",
-      "genDate": "1786078810002",
-      "updateDate": "07/08/2026",
-      "count": 5
-    },
-    "mergedAt": "2026-08-07T05:32:27.215Z",
-    "ahDiscountMeta": {
-      "generatedAt": "2026-08-07T05:32:27.061Z",
-      "count": 1,
-      "note": "仅下载 PHIP 全文 PDF；H 股发售价优先 PDF 解析，PHIP 无定价回退招股公告；A 股用实时行情"
-    }
+    "note": "仅解析 PHIP 全文 PDF；[编纂] 字段由 offering_overrides.js 补充"
   },
   "companies": [
     {
-      "id": 108483,
+      "companyId": 108483,
       "name": "坦博尔集团股份有限公司",
-      "stockCode": null,
-      "postingDate": "21/06/2026",
-      "documents": {
-        "latest": [
-          {
-            "date": "21/06/2026",
-            "docType": "聆訊後資料集（第一次呈交）",
-            "fullDocLabel": "全文檔案",
-            "multiFileLabel": "多檔案",
-            "fullDocUrl": "https://www1.hkexnews.hk/app/sehk/2026/108483/documents/sehk26062100125_c.pdf",
-            "multiFileUrl": "https://www1.hkexnews.hk/app/sehk/2026/108483/2026062100122_c.htm"
-          },
-          {
-            "date": "29/04/2026",
-            "docType": null,
-            "fullDocLabel": "整體協調人公告－委任",
-            "multiFileLabel": null,
-            "fullDocUrl": "https://www1.hkexnews.hk/app/sehk/2026/108483/documents/sehk26042905666_c.pdf",
-            "multiFileUrl": null
-          },
-          {
-            "date": "29/04/2026",
-            "docType": "申請版本（第一次呈交）",
-            "fullDocLabel": "全文檔案",
-            "multiFileLabel": "多檔案",
-            "fullDocUrl": "https://www1.hkexnews.hk/app/sehk/2026/108483/documents/sehk26042905560_c.pdf",
-            "multiFileUrl": "https://www1.hkexnews.hk/app/sehk/2026/108483/2026042905557_c.htm"
-          }
-        ],
-        "previous": []
-      },
-      "warningStatementUrl": "https://www1.hkexnews.hk/app/sehk/2026/108483/documents/warn26062100123_c.pdf",
-      "hasPhip": true,
-      "basic": {
-        "industry": "待分析",
-        "listingType": "main",
-        "businessSummary": "待 AI 分析补充",
-        "aShareCode": null,
-        "sponsor": null,
-        "expectedListing": null,
-        "financials": null
-      },
-      "arbitrage": {
-        "type": "待分析",
-        "feasibility": "none",
-        "logic": "待补充",
-        "strategies": [],
-        "constraints": []
-      },
-      "shadowStock": {
-        "peers": [],
-        "correlation": "待补充",
-        "investmentTiming": "待补充",
-        "thematicPlay": null
-      },
-      "valuation": {
-        "verdict": "uncertain",
-        "method": "待分析",
-        "comparables": [],
-        "assumptions": [],
-        "catalysts": [],
-        "risks": []
+      "phipDoc": {
+        "companyId": 108483,
+        "name": "坦博尔集团股份有限公司",
+        "postingDate": "21/06/2026",
+        "docType": "聆訊後資料集（第一次呈交）",
+        "fullDocUrl": "https://www1.hkexnews.hk/app/sehk/2026/108483/documents/sehk26062100125_c.pdf",
+        "multiFileUrl": "https://www1.hkexnews.hk/app/sehk/2026/108483/2026062100122_c.htm",
+        "date": "21/06/2026",
+        "source": "港交所 IPO 列表 / stock/hk_ipo/active_ap-phip_sehk.json"
       },
       "offering": {
         "status": "通过聆讯待招股",
@@ -159,7 +83,7 @@
         },
         "groupThreshold": "甲组 ≤500万 HKD；乙组 >500万 HKD",
         "_meta": {
-          "parsedAt": "2026-08-07T05:32:12.320Z",
+          "parsedAt": "2026-08-07T06:00:27.838Z",
           "phipPdfUrl": "https://www1.hkexnews.hk/app/sehk/2026/108483/documents/sehk26062100125_c.pdf",
           "phipDocType": "聆訊後資料集（第一次呈交）",
           "phipPages": null,
@@ -235,80 +159,27 @@
             "cornerstone": "phip_pdf",
             "groupThreshold": "phip_pdf"
           },
-          "mergedAt": "2026-08-07T05:32:12.320Z"
+          "mergedAt": "2026-08-07T06:00:27.839Z"
         }
       },
-      "summary": "待 AI 分析",
-      "keyRisks": [],
-      "score": 0,
-      "analyzedAt": null,
-      "analyst": "placeholder"
+      "parseStats": {
+        "textLength": 162758,
+        "cached": true,
+        "fieldsFromPhip": 12
+      }
     },
     {
-      "id": 108262,
+      "companyId": 108262,
       "name": "上海哥瑞利軟件股份有限公司",
-      "stockCode": null,
-      "postingDate": "23/06/2026",
-      "documents": {
-        "latest": [
-          {
-            "date": "23/06/2026",
-            "docType": "聆訊後資料集（第一次呈交）",
-            "fullDocLabel": "全文檔案",
-            "multiFileLabel": "多檔案",
-            "fullDocUrl": "https://www1.hkexnews.hk/app/sehk/2026/108262/documents/sehk26062301713_c.pdf",
-            "multiFileUrl": "https://www1.hkexnews.hk/app/sehk/2026/108262/2026062301710_c.htm"
-          },
-          {
-            "date": "02/03/2026",
-            "docType": null,
-            "fullDocLabel": "整體協調人公告－委任",
-            "multiFileLabel": null,
-            "fullDocUrl": "https://www1.hkexnews.hk/app/sehk/2026/108262/documents/sehk26030203602_c.pdf",
-            "multiFileUrl": null
-          },
-          {
-            "date": "02/03/2026",
-            "docType": "申請版本（第一次呈交）",
-            "fullDocLabel": "全文檔案",
-            "multiFileLabel": "多檔案",
-            "fullDocUrl": "https://www1.hkexnews.hk/app/sehk/2026/108262/documents/sehk26030203530_c.pdf",
-            "multiFileUrl": "https://www1.hkexnews.hk/app/sehk/2026/108262/2026030203527_c.htm"
-          }
-        ],
-        "previous": []
-      },
-      "warningStatementUrl": "https://www1.hkexnews.hk/app/sehk/2026/108262/documents/warn26062301711_c.pdf",
-      "hasPhip": true,
-      "basic": {
-        "industry": "待分析",
-        "listingType": "main",
-        "businessSummary": "待 AI 分析补充",
-        "aShareCode": null,
-        "sponsor": null,
-        "expectedListing": null,
-        "financials": null
-      },
-      "arbitrage": {
-        "type": "待分析",
-        "feasibility": "none",
-        "logic": "待补充",
-        "strategies": [],
-        "constraints": []
-      },
-      "shadowStock": {
-        "peers": [],
-        "correlation": "待补充",
-        "investmentTiming": "待补充",
-        "thematicPlay": null
-      },
-      "valuation": {
-        "verdict": "uncertain",
-        "method": "待分析",
-        "comparables": [],
-        "assumptions": [],
-        "catalysts": [],
-        "risks": []
+      "phipDoc": {
+        "companyId": 108262,
+        "name": "上海哥瑞利軟件股份有限公司",
+        "postingDate": "23/06/2026",
+        "docType": "聆訊後資料集（第一次呈交）",
+        "fullDocUrl": "https://www1.hkexnews.hk/app/sehk/2026/108262/documents/sehk26062301713_c.pdf",
+        "multiFileUrl": "https://www1.hkexnews.hk/app/sehk/2026/108262/2026062301710_c.htm",
+        "date": "23/06/2026",
+        "source": "港交所 IPO 列表 / stock/hk_ipo/active_ap-phip_sehk.json"
       },
       "offering": {
         "status": "通过聆讯待招股",
@@ -375,7 +246,7 @@
         },
         "groupThreshold": "甲组 ≤500万 HKD；乙组 >500万 HKD",
         "_meta": {
-          "parsedAt": "2026-08-07T05:32:14.279Z",
+          "parsedAt": "2026-08-07T06:00:27.852Z",
           "phipPdfUrl": "https://www1.hkexnews.hk/app/sehk/2026/108262/documents/sehk26062301713_c.pdf",
           "phipDocType": "聆訊後資料集（第一次呈交）",
           "phipPages": null,
@@ -451,80 +322,27 @@
             "cornerstone": "phip_pdf",
             "groupThreshold": "phip_pdf"
           },
-          "mergedAt": "2026-08-07T05:32:14.279Z"
+          "mergedAt": "2026-08-07T06:00:27.852Z"
         }
       },
-      "summary": "待 AI 分析",
-      "keyRisks": [],
-      "score": 0,
-      "analyzedAt": null,
-      "analyst": "placeholder"
+      "parseStats": {
+        "textLength": 164948,
+        "cached": true,
+        "fieldsFromPhip": 12
+      }
     },
     {
-      "id": 108390,
+      "companyId": 108390,
       "name": "永康控股有限公司",
-      "stockCode": null,
-      "postingDate": "26/06/2026",
-      "documents": {
-        "latest": [
-          {
-            "date": "26/06/2026",
-            "docType": "聆訊後資料集（第一次呈交）",
-            "fullDocLabel": "全文檔案",
-            "multiFileLabel": "多檔案",
-            "fullDocUrl": "https://www1.hkexnews.hk/app/sehk/2026/108390/documents/sehk26062603257_c.pdf",
-            "multiFileUrl": "https://www1.hkexnews.hk/app/sehk/2026/108390/2026062603254_c.htm"
-          },
-          {
-            "date": "01/04/2026",
-            "docType": null,
-            "fullDocLabel": "整體協調人公告－委任",
-            "multiFileLabel": null,
-            "fullDocUrl": "https://www1.hkexnews.hk/app/sehk/2026/108390/documents/sehk26040100605.pdf",
-            "multiFileUrl": null
-          },
-          {
-            "date": "01/04/2026",
-            "docType": "申請版本（第一次呈交）",
-            "fullDocLabel": "全文檔案",
-            "multiFileLabel": "多檔案",
-            "fullDocUrl": "https://www1.hkexnews.hk/app/sehk/2026/108390/documents/sehk26040100499_c.pdf",
-            "multiFileUrl": "https://www1.hkexnews.hk/app/sehk/2026/108390/2026040100428_c.htm"
-          }
-        ],
-        "previous": []
-      },
-      "warningStatementUrl": "https://www1.hkexnews.hk/app/sehk/2026/108390/documents/warn26062603255_c.pdf",
-      "hasPhip": true,
-      "basic": {
-        "industry": "待分析",
-        "listingType": "main",
-        "businessSummary": "待 AI 分析补充",
-        "aShareCode": null,
-        "sponsor": null,
-        "expectedListing": null,
-        "financials": null
-      },
-      "arbitrage": {
-        "type": "待分析",
-        "feasibility": "none",
-        "logic": "待补充",
-        "strategies": [],
-        "constraints": []
-      },
-      "shadowStock": {
-        "peers": [],
-        "correlation": "待补充",
-        "investmentTiming": "待补充",
-        "thematicPlay": null
-      },
-      "valuation": {
-        "verdict": "uncertain",
-        "method": "待分析",
-        "comparables": [],
-        "assumptions": [],
-        "catalysts": [],
-        "risks": []
+      "phipDoc": {
+        "companyId": 108390,
+        "name": "永康控股有限公司",
+        "postingDate": "26/06/2026",
+        "docType": "聆訊後資料集（第一次呈交）",
+        "fullDocUrl": "https://www1.hkexnews.hk/app/sehk/2026/108390/documents/sehk26062603257_c.pdf",
+        "multiFileUrl": "https://www1.hkexnews.hk/app/sehk/2026/108390/2026062603254_c.htm",
+        "date": "26/06/2026",
+        "source": "港交所 IPO 列表 / stock/hk_ipo/active_ap-phip_sehk.json"
       },
       "offering": {
         "status": "通过聆讯待招股",
@@ -594,7 +412,7 @@
         },
         "groupThreshold": "甲组 ≤500万 HKD；乙组 >500万 HKD",
         "_meta": {
-          "parsedAt": "2026-08-07T05:32:16.805Z",
+          "parsedAt": "2026-08-07T06:00:27.864Z",
           "phipPdfUrl": "https://www1.hkexnews.hk/app/sehk/2026/108390/documents/sehk26062603257_c.pdf",
           "phipDocType": "聆訊後資料集（第一次呈交）",
           "phipPages": null,
@@ -664,72 +482,27 @@
             "cornerstone": "phip_pdf",
             "groupThreshold": "phip_pdf"
           },
-          "mergedAt": "2026-08-07T05:32:16.805Z"
+          "mergedAt": "2026-08-07T06:00:27.864Z"
         }
       },
-      "summary": "待 AI 分析",
-      "keyRisks": [],
-      "score": 0,
-      "analyzedAt": null,
-      "analyst": "placeholder"
+      "parseStats": {
+        "textLength": 137161,
+        "cached": true,
+        "fieldsFromPhip": 11
+      }
     },
     {
-      "id": 108691,
+      "companyId": 108691,
       "name": "本末動力（北京）科技股份有限公司",
-      "stockCode": null,
-      "postingDate": "29/06/2026",
-      "documents": {
-        "latest": [
-          {
-            "date": "29/06/2026",
-            "docType": null,
-            "fullDocLabel": "整體協調人公告－委任",
-            "multiFileLabel": null,
-            "fullDocUrl": "https://www1.hkexnews.hk/app/sehk/2026/108691/documents/sehk26062901623_c.pdf",
-            "multiFileUrl": null
-          },
-          {
-            "date": "29/06/2026",
-            "docType": "聆訊後資料集（第一次呈交）",
-            "fullDocLabel": "全文檔案",
-            "multiFileLabel": "多檔案",
-            "fullDocUrl": "https://www1.hkexnews.hk/app/sehk/2026/108691/documents/sehk26062901535_c.pdf",
-            "multiFileUrl": "https://www1.hkexnews.hk/app/sehk/2026/108691/2026062901532_c.htm"
-          }
-        ],
-        "previous": []
-      },
-      "warningStatementUrl": "https://www1.hkexnews.hk/app/sehk/2026/108691/documents/warn26062901533_c.pdf",
-      "hasPhip": true,
-      "basic": {
-        "industry": "待分析",
-        "listingType": "main",
-        "businessSummary": "待 AI 分析补充",
-        "aShareCode": null,
-        "sponsor": null,
-        "expectedListing": null,
-        "financials": null
-      },
-      "arbitrage": {
-        "type": "待分析",
-        "feasibility": "none",
-        "logic": "待补充",
-        "strategies": [],
-        "constraints": []
-      },
-      "shadowStock": {
-        "peers": [],
-        "correlation": "待补充",
-        "investmentTiming": "待补充",
-        "thematicPlay": null
-      },
-      "valuation": {
-        "verdict": "uncertain",
-        "method": "待分析",
-        "comparables": [],
-        "assumptions": [],
-        "catalysts": [],
-        "risks": []
+      "phipDoc": {
+        "companyId": 108691,
+        "name": "本末動力（北京）科技股份有限公司",
+        "postingDate": "29/06/2026",
+        "docType": "聆訊後資料集（第一次呈交）",
+        "fullDocUrl": "https://www1.hkexnews.hk/app/sehk/2026/108691/documents/sehk26062901535_c.pdf",
+        "multiFileUrl": "https://www1.hkexnews.hk/app/sehk/2026/108691/2026062901532_c.htm",
+        "date": "29/06/2026",
+        "source": "港交所 IPO 列表 / stock/hk_ipo/active_ap-phip_sehk.json"
       },
       "offering": {
         "status": "通过聆讯待招股",
@@ -781,7 +554,7 @@
         },
         "groupThreshold": "甲组 ≤500万 HKD；乙组 >500万 HKD",
         "_meta": {
-          "parsedAt": "2026-08-07T05:32:22.701Z",
+          "parsedAt": "2026-08-07T06:00:27.902Z",
           "phipPdfUrl": "https://www1.hkexnews.hk/app/sehk/2026/108691/documents/sehk26062901535_c.pdf",
           "phipDocType": "聆訊後資料集（第一次呈交）",
           "phipPages": null,
@@ -851,72 +624,27 @@
             "cornerstone": "phip_pdf",
             "groupThreshold": "phip_pdf"
           },
-          "mergedAt": "2026-08-07T05:32:22.701Z"
+          "mergedAt": "2026-08-07T06:00:27.902Z"
         }
       },
-      "summary": "待 AI 分析",
-      "keyRisks": [],
-      "score": 0,
-      "analyzedAt": null,
-      "analyst": "placeholder"
+      "parseStats": {
+        "textLength": 594350,
+        "cached": true,
+        "fieldsFromPhip": 11
+      }
     },
     {
-      "id": 108766,
+      "companyId": 108766,
       "name": "希音国际控股有限公司 (前稱為匯萃有限公司)",
-      "stockCode": null,
-      "postingDate": "26/07/2026",
-      "documents": {
-        "latest": [
-          {
-            "date": "26/07/2026",
-            "docType": null,
-            "fullDocLabel": "整體協調人公告－委任",
-            "multiFileLabel": null,
-            "fullDocUrl": "https://www1.hkexnews.hk/app/sehk/2026/108766/documents/sehk26072600189_c.pdf",
-            "multiFileUrl": null
-          },
-          {
-            "date": "26/07/2026",
-            "docType": "聆訊後資料集（第一次呈交）",
-            "fullDocLabel": "全文檔案",
-            "multiFileLabel": "多檔案",
-            "fullDocUrl": "https://www1.hkexnews.hk/app/sehk/2026/108766/documents/sehk26072600125_c.pdf",
-            "multiFileUrl": "https://www1.hkexnews.hk/app/sehk/2026/108766/2026072600122_c.htm"
-          }
-        ],
-        "previous": []
-      },
-      "warningStatementUrl": "https://www1.hkexnews.hk/app/sehk/2026/108766/documents/warn26072600123_c.pdf",
-      "hasPhip": true,
-      "basic": {
-        "industry": "待分析",
-        "listingType": "main",
-        "businessSummary": "待 AI 分析补充",
-        "aShareCode": null,
-        "sponsor": null,
-        "expectedListing": null,
-        "financials": null
-      },
-      "arbitrage": {
-        "type": "待分析",
-        "feasibility": "none",
-        "logic": "待补充",
-        "strategies": [],
-        "constraints": []
-      },
-      "shadowStock": {
-        "peers": [],
-        "correlation": "待补充",
-        "investmentTiming": "待补充",
-        "thematicPlay": null
-      },
-      "valuation": {
-        "verdict": "uncertain",
-        "method": "待分析",
-        "comparables": [],
-        "assumptions": [],
-        "catalysts": [],
-        "risks": []
+      "phipDoc": {
+        "companyId": 108766,
+        "name": "希音国际控股有限公司 (前稱為匯萃有限公司)",
+        "postingDate": "26/07/2026",
+        "docType": "聆訊後資料集（第一次呈交）",
+        "fullDocUrl": "https://www1.hkexnews.hk/app/sehk/2026/108766/documents/sehk26072600125_c.pdf",
+        "multiFileUrl": "https://www1.hkexnews.hk/app/sehk/2026/108766/2026072600122_c.htm",
+        "date": "26/07/2026",
+        "source": "港交所 IPO 列表 / stock/hk_ipo/active_ap-phip_sehk.json"
       },
       "offering": {
         "status": "通过聆讯待招股",
@@ -987,7 +715,7 @@
         },
         "groupThreshold": "甲组 ≤500万 HKD；乙组 >500万 HKD",
         "_meta": {
-          "parsedAt": "2026-08-07T05:32:25.072Z",
+          "parsedAt": "2026-08-07T06:00:27.912Z",
           "phipPdfUrl": "https://www1.hkexnews.hk/app/sehk/2026/108766/documents/sehk26072600125_c.pdf",
           "phipDocType": "聆訊後資料集（第一次呈交）",
           "phipPages": null,
@@ -1063,14 +791,14 @@
             "cornerstone": "phip_pdf",
             "groupThreshold": "phip_pdf"
           },
-          "mergedAt": "2026-08-07T05:32:25.072Z"
+          "mergedAt": "2026-08-07T06:00:27.912Z"
         }
       },
-      "summary": "待 AI 分析",
-      "keyRisks": [],
-      "score": 0,
-      "analyzedAt": null,
-      "analyst": "placeholder"
+      "parseStats": {
+        "textLength": 153849,
+        "cached": true,
+        "fieldsFromPhip": 12
+      }
     }
   ]
 }

@@ -49,7 +49,7 @@ function main() {
 
   console.log('\n✅ 流水线完成');
   console.log('   看板: stock/html/cn_ipo_analysis.html');
-  console.log('   数据: stock/cleaned_data/cn_ipo_analysis.json');
+  console.log('   数据: stock/cn_ipo/cn_ipo_analysis.json');
 }
 
 main();

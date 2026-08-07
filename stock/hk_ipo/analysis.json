@@ -2,7 +2,7 @@
   "meta": {
     "version": "1.0",
     "generatedAt": "2026-05-31T09:00:00.000Z",
-    "source": "scripts/hk_ipo/data/active_ap-phip_sehk.json",
+    "source": "stock/hk_ipo/active_ap-phip_sehk.json",
     "analyst": "AI 分析（基于 PHIP 聆讯后资料集及公开信息）",
     "count": 7,
     "disclaimer": "本分析仅供学习研究，不构成投资建议。数据来源于港交所披露易及公开报道，请以正式招股书为准。"
