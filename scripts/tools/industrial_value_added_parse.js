@@ -34,8 +34,21 @@ function parseYearMonthFromFilename(filename) {
   // 从文件名提取年月: 2024-08-15_2024年7月份规模以上工业增加值增长5.1%-国家统计局.xlsx
   const base = path.basename(filename);
   const afterUnderscore = base.split('_')[1] || base;
-  
-  // 匹配 "YYYY年M月份" 或 "YYYY年MM月份"
+
+  // 匹配 "YYYY年M—N月份" 累计区间，取结束月份（如 1—4月份 → 4月）
+  let rangeMatch = afterUnderscore.match(/(\d{4})年(\d+)[—-](\d+)月份?/);
+  if (rangeMatch) {
+    const year = rangeMatch[1];
+    const month1 = parseInt(rangeMatch[2], 10);
+    const month2 = parseInt(rangeMatch[3], 10);
+    if (month1 === 1 && month2 === 2) {
+      return { key: year + '-01-02', label: year + '-01~02' };
+    }
+    const monthStr = String(month2).padStart(2, '0');
+    return { key: year + '-' + monthStr, label: year + '-01~' + monthStr };
+  }
+
+  // 匹配 "YYYY年M月份" 或 "YYYY年MM月份"（单月）
   let match = afterUnderscore.match(/(\d{4})年(\d{1,2})月份?/);
   if (match) {
     const year = match[1];
@@ -45,18 +58,17 @@ function parseYearMonthFromFilename(filename) {
       label: year + '-' + month
     };
   }
-  
-  // 匹配 "YYYY年1—2月份" 合并月份
-  match = afterUnderscore.match(/(\d{4})年1[—-]2月份?/);
-  if (match) {
-    const year = match[1];
-    return {
-      key: year + '-01-02',
-      label: year + '-01~02'
-    };
-  }
-  
+
   return null;
+}
+
+/** 从表头行解析合并单元格对应的时期标签（向左查找） */
+function resolvePeriodHeader(headerRow, colIndex) {
+  for (let j = colIndex; j >= 0; j--) {
+    const h = String(headerRow[j] || '').trim();
+    if (h) return h;
+  }
+  return '';
 }
 
 function safeNum(val) {
@@ -85,9 +97,21 @@ function parseExcelFile(filepath) {
       return [];
     }
     
-    // 提取时间信息
+    // 提取时间信息（优先文件名，其次表格标题行）
     const filename = path.basename(filepath);
-    const timeInfo = parseYearMonthFromFilename(filename);
+    let timeInfo = parseYearMonthFromFilename(filename);
+    if (!timeInfo) {
+      for (let i = 0; i < Math.min(5, data.length); i++) {
+        const rowText = (data[i] || []).map(function (c) { return String(c || ''); }).join(' ');
+        const titleMatch = rowText.match(/(\d{4})年(\d{1,2})月份/);
+        if (titleMatch) {
+          const year = titleMatch[1];
+          const month = titleMatch[2].padStart(2, '0');
+          timeInfo = { key: year + '-' + month, label: year + '-' + month };
+          break;
+        }
+      }
+    }
     if (!timeInfo) {
       console.log('  ⚠️  无法从文件名提取时间');
       return [];
@@ -146,9 +170,10 @@ function parseExcelFile(filepath) {
     for (let i = 0; i < headerRow.length; i++) {
       if (i === metricColIndex) continue; // 跳过指标列本身
       
-      let mainHeader = String(headerRow[i] || '').trim();
+      const periodHeader = resolvePeriodHeader(headerRow, i);
+      let mainHeader = periodHeader;
       let cellText = mainHeader.toLowerCase();
-      
+
       // 如果有子表头，合并文本
       if (subHeaderRow) {
         const subText = String(subHeaderRow[i] || '').trim().toLowerCase();
@@ -156,12 +181,12 @@ function parseExcelFile(filepath) {
           cellText = cellText + ' ' + subText;
         }
       }
-      
-      if (!cellText) continue;
-      
-      // 判断是否为单月数据（如"9月"）还是累计数据（如"1—9月"）
-      const isMonthly = mainHeader.match(/^\d{1,2}月$/) !== null;
-      const isCumulative = mainHeader.includes('—') || mainHeader.includes('至') || mainHeader.includes('~');
+
+      if (!cellText.trim()) continue;
+
+      // 判断是否为单月数据（如"4月"）还是累计数据（如"1—4月"）
+      const isMonthly = /^\d{1,2}月$/.test(periodHeader);
+      const isCumulative = /[—\-~至]/.test(periodHeader) && /\d+月/.test(periodHeader);
       
       // 识别列类型，优先记录单月数据
       if (cellText.includes('同比')) {
