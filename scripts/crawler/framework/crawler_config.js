@@ -494,6 +494,23 @@ module.exports = {
     },
   },
 
+  /**
+   * EIA 美国 SPR 原油库存（周频，千桶）
+   * 页面：https://www.eia.gov/dnav/pet/hist/LeafHandler.ashx?n=PET&s=WCSSTUS1&f=W
+   * 脚本：scripts/crawler/oil/oil_spr_crawler.js
+   * 解析：scripts/tools/oil_spr_parse.js
+   */
+  oilSpr: {
+    leafUrl: 'https://www.eia.gov/dnav/pet/hist/LeafHandler.ashx?n=PET&s=WCSSTUS1&f=W',
+    downloadUrl: 'https://www.eia.gov/dnav/pet/hist_xls/WCSSTUS1w.xls',
+    downloadDir: 'oil',
+    fileName: 'WCSSTUS1w.xls',
+    jsonFile: 'spr_stocks.json',
+    delayBetweenRequests: 1000,
+    maxRetries: 3,
+    timeout: 30000,
+  },
+
   // 文件处理配置
   fileProcessing: {
     allowedExtensions: ['.xls', '.xlsx', '.csv'],

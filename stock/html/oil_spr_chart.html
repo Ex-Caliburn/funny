@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>美国 SPR 原油库存</title>
+  <script src="../vendor/echarts.min.js"></script>
+  <script src="chart_tooltip_helpers.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      background: #0b0f19;
+      color: #dbe0ea;
+      padding: 16px 20px;
+    }
+
+    .top-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    h2 { font-size: 18px; font-weight: 600; color: #e8edff; }
+    .subtitle { font-size: 11px; color: #475569; margin-left: auto; }
+
+    .index-info {
+      margin-bottom: 10px;
+      padding: 10px 14px;
+      background: #0f172a;
+      border: 1px solid #1f2937;
+      border-radius: 10px;
+    }
+
+    .index-info-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #e2e8f0;
+      margin-bottom: 4px;
+    }
+
+    .index-info-desc {
+      font-size: 12px;
+      line-height: 1.55;
+      color: #94a3b8;
+    }
+
+    .stat-bar {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .stat-card {
+      background: #0f172a;
+      border: 1px solid #1f2937;
+      border-radius: 10px;
+      padding: 10px 18px;
+      min-width: 130px;
+      flex: 1;
+    }
+
+    .stat-label { font-size: 11px; color: #64748b; margin-bottom: 3px; }
+    .stat-sub { font-size: 10px; color: #334155; margin-bottom: 2px; }
+    .stat-val { font-size: 22px; font-weight: 700; color: #e2e8f0; line-height: 1.2; }
+    .stat-val.sm { font-size: 15px; }
+    .stat-val.up { color: #34d399; }
+    .stat-val.dn { color: #f87171; }
+    .stat-val.warn { color: #f59e0b; }
+
+    .line-legend {
+      display: flex;
+      gap: 18px;
+      font-size: 11px;
+      color: #64748b;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    #mainChart {
+      width: 100%;
+      height: calc(100vh - 320px);
+      min-height: 420px;
+    }
+
+    .loading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 420px;
+      color: #64748b;
+      font-size: 13px;
+    }
+
+    .loading.error { color: #f87171; }
+  </style>
+</head>
+<body>
+
+<div class="top-bar">
+  <h2>🛢 美国 SPR 战略石油储备库存</h2>
+  <span class="subtitle" id="dataSubtitle">数据来源：EIA · 单位：百万桶 · 周频</span>
+</div>
+
+<div class="index-info">
+  <div class="index-info-title">Weekly U.S. Ending Stocks of Crude Oil in SPR</div>
+  <div class="index-info-desc">
+    美国战略石油储备（SPR）原油库存周度数据。左轴为库存绝对量（百万桶），右轴为历史百分位（0~100%，越低表示越接近历史低位）。
+    顶部卡片另提供环比、周变动、距历史高点回撤、52 周区间与近 4 周净变动等衍生指标。
+  </div>
+</div>
+
+<div class="stat-bar" id="statBar"><div class="loading">数据加载中…</div></div>
+
+<div class="line-legend">
+  <span>
+    <svg width="28" height="8" style="vertical-align:middle;margin-right:4px"><line x1="0" y1="4" x2="28" y2="4" stroke="#0ea5e9" stroke-width="2.5"/></svg>库存（左轴，百万桶）
+  </span>
+  <span>
+    <svg width="28" height="8" style="vertical-align:middle;margin-right:4px"><line x1="0" y1="4" x2="28" y2="4" stroke="#a78bfa" stroke-width="1.5"/></svg>历史百分位（右轴，%）
+  </span>
+</div>
+
+<div id="mainChart"><div class="loading">数据加载中…</div></div>
+
+<script>
+const DATA_FILE = '../oil/spr_stocks.json';
+const UNIT = '百万桶';
+
+/** @type {{ meta: object, data: Array<{date:string,value:number}> } | null} */
+let RAW = null;
+let mainChart = null;
+
+function fmtNum(v, digits) {
+  if (v == null) return '—';
+  return Number(v).toLocaleString(undefined, {
+    minimumFractionDigits: digits,
+    maximumFractionDigits: digits
+  });
+}
+
+function fmtPct(v) {
+  if (v == null) return '—';
+  return (v > 0 ? '+' : '') + v + '%';
+}
+
+function fmtDelta(v, digits, unit) {
+  if (v == null) return '—';
+  const sign = v > 0 ? '+' : '';
+  return sign + fmtNum(v, digits) + (unit ? ' ' + unit : '');
+}
+
+function deltaCls(v) {
+  if (v == null) return '';
+  return v > 0 ? 'up' : v < 0 ? 'dn' : '';
+}
+
+function pctColor(v) {
+  if (v == null) return '#475569';
+  return v > 0 ? '#34d399' : v < 0 ? '#f87171' : '#dbe0ea';
+}
+
+function quantile(sorted, q) {
+  if (!sorted.length) return null;
+  const pos = (sorted.length - 1) * q;
+  const base = Math.floor(pos);
+  const rest = pos - base;
+  if (sorted[base + 1] !== undefined) {
+    return sorted[base] + rest * (sorted[base + 1] - sorted[base]);
+  }
+  return sorted[base];
+}
+
+function calcPercentileRank(value, allValues) {
+  if (value == null || allValues.length < 2) return null;
+  let below = 0;
+  for (let i = 0; i < allValues.length; i++) {
+    if (allValues[i] < value) below++;
+  }
+  return +((below / (allValues.length - 1)) * 100).toFixed(1);
+}
+
+function calcMoM(data, di) {
+  if (di === 0) return null;
+  const cur = data[di].value;
+  const prev = data[di - 1].value;
+  if (prev === 0) return null;
+  return +(((cur - prev) / prev) * 100).toFixed(2);
+}
+
+/** 周变动量（百万桶） */
+function calcWeekDelta(data, di) {
+  if (di === 0) return null;
+  return +(data[di].value - data[di - 1].value).toFixed(2);
+}
+
+/** 距全历史最高点 */
+function calcFromPeak(data, di, histMax) {
+  const cur = data[di].value;
+  return {
+    peak: histMax,
+    delta: +(cur - histMax).toFixed(2),
+    pct: +(((cur - histMax) / histMax) * 100).toFixed(2)
+  };
+}
+
+/** 近 N 周净变动（百万桶） */
+function calcNetChange(data, di, weeks) {
+  if (di < weeks) return null;
+  return +(data[di].value - data[di - weeks].value).toFixed(2);
+}
+
+/** 近 52 周（含当周）高低点 */
+function calc52WeekRange(data, di) {
+  const start = Math.max(0, di - 51);
+  const slice = data.slice(start, di + 1).map((d) => d.value);
+  return {
+    min: Math.min(...slice),
+    max: Math.max(...slice)
+  };
+}
+
+function analyzeAt(data, di, histMax, histMin, histMedian, allValues) {
+  const mom = calcMoM(data, di);
+  const weekDelta = calcWeekDelta(data, di);
+  const fromPeak = calcFromPeak(data, di, histMax);
+  const net4w = calcNetChange(data, di, 4);
+  const range52 = calc52WeekRange(data, di);
+  const vsMedian = +(data[di].value - histMedian).toFixed(2);
+  const vsMedianPct = +(((data[di].value - histMedian) / histMedian) * 100).toFixed(2);
+  const percentile = calcPercentileRank(data[di].value, allValues);
+
+  return {
+    mom, weekDelta, fromPeak, net4w, range52, vsMedian, vsMedianPct, percentile,
+    histMin, histMax, histMedian
+  };
+}
+
+function makeCard(label, sub, valStr, cls) {
+  return '<div class="stat-card">'
+    + '<div class="stat-label">' + label + '</div>'
+    + '<div class="stat-sub">' + sub + '</div>'
+    + '<div class="stat-val' + (cls ? ' ' + cls : '') + '">' + valStr + '</div>'
+    + '</div>';
+}
+
+function renderStats() {
+  const data = RAW.data;
+  const allValues = data.map((d) => d.value);
+  const histMax = Math.max(...allValues);
+  const histMin = Math.min(...allValues);
+  const histMedian = quantile([...allValues].sort((a, b) => a - b), 0.5);
+  const latest = data[data.length - 1];
+  const a = analyzeAt(data, data.length - 1, histMax, histMin, histMedian, allValues);
+  const pctCls = a.percentile == null ? '' : (a.percentile <= 25 ? 'warn' : '');
+
+  document.getElementById('statBar').innerHTML =
+    makeCard('最新库存', latest.date, fmtNum(latest.value, 2) + ' ' + UNIT, '') +
+    makeCard('历史百分位', '全样本 ' + data.length + ' 周', a.percentile + '%', pctCls) +
+    makeCard('环比', '较上周变化率', fmtPct(a.mom), deltaCls(a.mom)) +
+    makeCard('周变动', '较上周绝对量', fmtDelta(a.weekDelta, 2, UNIT), deltaCls(a.weekDelta)) +
+    makeCard('较历史高点', '峰值 ' + fmtNum(histMax, 2), fmtDelta(a.fromPeak.delta, 2, UNIT) + ' (' + fmtPct(a.fromPeak.pct) + ')', 'warn') +
+    makeCard('52 周区间', '近一年高低', fmtNum(a.range52.min, 2) + ' ~ ' + fmtNum(a.range52.max, 2), 'sm') +
+    makeCard('4 周净变动', '近 4 周累计', fmtDelta(a.net4w, 2, UNIT), deltaCls(a.net4w)) +
+    makeCard('较历史中位', 'P50 ' + fmtNum(histMedian, 2), fmtDelta(a.vsMedian, 2, UNIT) + ' (' + fmtPct(a.vsMedianPct) + ')', 'sm');
+}
+
+function buildOption() {
+  const data = RAW.data;
+  const dates = data.map((d) => d.date);
+  const allValues = data.map((d) => d.value);
+  const sorted = [...allValues].sort((a, b) => a - b);
+  const histMax = Math.max(...allValues);
+  const histMedian = quantile(sorted, 0.5);
+
+  const absData = data.map((d) => d.value);
+  const pctData = data.map((d) => calcPercentileRank(d.value, allValues));
+
+  return {
+    backgroundColor: 'transparent',
+    animation: true,
+    tooltip: buildConfinedTooltip({
+      trigger: 'axis',
+      axisPointer: { type: 'cross', crossStyle: { color: '#334155' } },
+      backgroundColor: '#1e293b',
+      borderColor: '#334155',
+      textStyle: { color: '#dbe0ea', fontSize: 12 },
+      formatter(params) {
+        const byType = { abs: null, pct: null };
+        params.forEach((p) => {
+          if (p.value == null || p.value === '') return;
+          if (p.seriesName.endsWith('§pct')) byType.pct = p.value;
+          else byType.abs = p.value;
+        });
+        const label = params[0]?.axisValue ?? '';
+        const di = dates.indexOf(label);
+        if (di < 0) return label;
+
+        const a = analyzeAt(data, di, histMax, Math.min(...allValues), histMedian, allValues);
+        let html = '<div style="font-weight:600;margin-bottom:4px;color:#e2e8f0">' + label + '</div>';
+        html += '<div><span style="color:#0ea5e9">▌ </span>库存：<b>' + fmtNum(byType.abs, 2) + '</b> ' + UNIT + '</div>';
+        html += '<div><span style="color:#a78bfa">▌ </span>历史百分位：<b>' + (byType.pct != null ? byType.pct + '%' : '—') + '</b></div>';
+        html += '<div><span style="color:#f59e0b">▌ </span>环比：<span style="color:' + pctColor(a.mom) + '">' + fmtPct(a.mom) + '</span></div>';
+        html += '<div><span style="color:#64748b">▌ </span>周变动：<span style="color:' + pctColor(a.weekDelta) + '">' + fmtDelta(a.weekDelta, 2, UNIT) + '</span></div>';
+        html += '<div><span style="color:#64748b">▌ </span>较历史高点：<span style="color:' + pctColor(a.fromPeak.delta) + '">' + fmtDelta(a.fromPeak.delta, 2, UNIT) + ' (' + fmtPct(a.fromPeak.pct) + ')</span></div>';
+        html += '<div><span style="color:#64748b">▌ </span>4 周净变动：<span style="color:' + pctColor(a.net4w) + '">' + fmtDelta(a.net4w, 2, UNIT) + '</span></div>';
+        html += '<div><span style="color:#64748b">▌ </span>52 周区间：' + fmtNum(a.range52.min, 2) + ' ~ ' + fmtNum(a.range52.max, 2) + ' ' + UNIT + '</div>';
+        return html;
+      }
+    }),
+    legend: {
+      top: 4,
+      textStyle: { color: '#94a3b8', fontSize: 12 },
+      data: ['SPR库存', '历史百分位§pct'],
+      formatter: (name) => name.replace(/§.+$/, '')
+    },
+    grid: { left: 72, right: 72, top: 48, bottom: 56 },
+    xAxis: {
+      type: 'category',
+      data: dates,
+      axisLabel: {
+        color: '#64748b',
+        fontSize: 11,
+        rotate: dates.length > 80 ? 30 : 0,
+        formatter: (v) => v.slice(0, 7)
+      },
+      axisLine: { lineStyle: { color: '#1e293b' } },
+      splitLine: { show: false }
+    },
+    yAxis: [
+      {
+        type: 'value',
+        name: UNIT,
+        position: 'left',
+        scale: true,
+        nameTextStyle: { color: '#475569', fontSize: 10 },
+        axisLabel: {
+          color: '#64748b',
+          fontSize: 10,
+          formatter: (v) => v.toLocaleString()
+        },
+        splitLine: { lineStyle: { color: '#1e293b', type: 'dashed' } }
+      },
+      {
+        type: 'value',
+        name: '百分位',
+        position: 'right',
+        min: 0,
+        max: 100,
+        nameTextStyle: { color: '#475569', fontSize: 10 },
+        axisLabel: {
+          color: '#64748b',
+          fontSize: 10,
+          formatter: (v) => v + '%'
+        },
+        splitLine: { show: false },
+        axisLine: { show: true, lineStyle: { color: '#312e81' } }
+      }
+    ],
+    dataZoom: [
+      {
+        type: 'slider',
+        bottom: 8,
+        height: 20,
+        start: Math.max(0, 100 - (520 / dates.length) * 100),
+        end: 100,
+        textStyle: { color: '#64748b', fontSize: 10 },
+        handleStyle: { color: '#334155' },
+        fillerColor: 'rgba(14,165,233,0.12)',
+        borderColor: '#1f2937'
+      },
+      { type: 'inside' }
+    ],
+    series: [
+      {
+        name: 'SPR库存',
+        type: 'line',
+        yAxisIndex: 0,
+        data: absData,
+        smooth: 0.2,
+        symbol: 'none',
+        lineStyle: { color: '#0ea5e9', width: 2.5 },
+        itemStyle: { color: '#0ea5e9' },
+        connectNulls: false,
+        markLine: {
+          silent: true,
+          symbol: 'none',
+          lineStyle: { type: 'dashed', width: 1 },
+          label: { color: '#64748b', fontSize: 10 },
+          data: [
+            { yAxis: histMax, lineStyle: { color: '#ef4444' }, label: { formatter: '历史最高' } },
+            { yAxis: histMedian, lineStyle: { color: '#64748b' }, label: { formatter: '历史中位' } }
+          ]
+        }
+      },
+      {
+        name: '历史百分位§pct',
+        type: 'line',
+        yAxisIndex: 1,
+        data: pctData,
+        smooth: 0.2,
+        symbol: 'none',
+        lineStyle: { color: '#a78bfa', width: 2 },
+        itemStyle: { color: '#a78bfa' },
+        connectNulls: false
+      }
+    ]
+  };
+}
+
+function showError(msg) {
+  document.getElementById('statBar').innerHTML = '<div class="loading error">' + msg + '</div>';
+  document.getElementById('mainChart').innerHTML = '<div class="loading error">' + msg + '</div>';
+}
+
+function renderMain() {
+  const el = document.getElementById('mainChart');
+  if (!mainChart) {
+    el.innerHTML = '';
+    mainChart = echarts.init(el, 'dark');
+    window.addEventListener('resize', () => mainChart?.resize());
+  }
+  mainChart.setOption(buildOption(), true);
+}
+
+function initApp() {
+  if (RAW.meta?.dateRange) {
+    document.getElementById('dataSubtitle').textContent =
+      '数据来源：EIA · 单位：' + UNIT + ' · 周频 · '
+      + RAW.meta.dateRange.start + ' ~ ' + RAW.meta.dateRange.end;
+  }
+  renderStats();
+  renderMain();
+}
+
+fetch(DATA_FILE + '?t=' + Date.now())
+  .then((r) => {
+    if (!r.ok) throw new Error(DATA_FILE + ' HTTP ' + r.status);
+    return r.json();
+  })
+  .then((data) => {
+    RAW = data;
+    initApp();
+  })
+  .catch((err) => showError('加载失败：' + err.message));
+</script>
+</body>
+</html>

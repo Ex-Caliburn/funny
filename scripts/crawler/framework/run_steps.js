@@ -29,6 +29,7 @@ const PRESETS = {
     { label: '海关出口', command: 'npm', args: ['run', 'crawl:customs-export'] },
     { label: 'SMM金属', command: 'npm', args: ['run', 'crawl:smm'] },
     { label: '磷化工', command: 'npm', args: ['run', 'crawl:phosphorus-chemical'] },
+    { label: '美国SPR原油库存', command: 'npm', args: ['run', 'crawl:oil-spr'] },
   ],
   coal: [
     { label: '秦皇岛动力煤', command: 'node', args: ['scripts/crawler/coal/qhd_coal_crawler.js'] },
