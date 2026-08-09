@@ -93,7 +93,7 @@
     /* ── 主图（综合指数）─────────────────────────────────── */
     #mainChart {
       width: 100%;
-      height: 320px;
+      height: 360px;
     }
 
     /* ── 航线网格 ─────────────────────────────────────────── */
@@ -135,14 +135,14 @@
     }
 
     .card-chart {
-      height: 180px;
+      height: 200px;
     }
 
     .loading {
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 320px;
+      height: 360px;
       color: #64748b;
       font-size: 13px;
     }
@@ -165,6 +165,7 @@
   <div class="index-tabs">
     <button class="index-tab active" data-index="ccfi">CCFI</button>
     <button class="index-tab" data-index="scfi">SCFI</button>
+    <button class="index-tab" data-index="scfis">SCFIS</button>
     <button class="index-tab" data-index="seafi">SEAFI</button>
     <button class="index-tab" data-index="cbcfi">CBCFI</button>
   </div>
@@ -193,7 +194,7 @@
 <!-- 综合指数主图 -->
 <div id="mainChart"><div class="loading">数据加载中…</div></div>
 
-<!-- 各航线网格（仅 CCFI 显示）-->
+<!-- 各航线网格（CCFI / SCFIS 显示）-->
 <div id="routeSection" style="display:none">
   <div class="section-title" id="routeSectionTitle">各航线</div>
   <div class="route-grid" id="routeGrid"></div>
@@ -214,6 +215,12 @@ const INDEX_CONFIG = {
     primaryRoute: '综合指数',
     desc: '反映上海出口集装箱运输市场即期运价水平，是观察出口集运现货市场的核心指标，每周五发布。',
   },
+  scfis: {
+    name: 'SCFIS 上海出口集装箱结算运价指数',
+    file: '../shipping/scfis.json',
+    primaryRoute: '美西航线',
+    desc: '反映上海出口至美西、欧洲主要港口的集装箱结算运价水平，每周发布；数据自 2024-01-08 起。',
+  },
   seafi: {
     name: 'SEAFI 东南亚集装箱运价指数',
     file: '../shipping/seafi.json',
@@ -221,11 +228,24 @@ const INDEX_CONFIG = {
     desc: '反映中国至东南亚主要港口的集装箱运价变动，适用于近洋航线运价跟踪，每周五发布。',
   },
   cbcfi: {
-    name: 'CBCFI 中国沿海煤炭运价指数',
+    name: 'CCBFI 中国沿海煤炭货种运价指数',
     file: '../shipping/cbcfi.json',
-    primaryRoute: '综合指数',
-    desc: '反映中国沿海煤炭运输市场运价水平，覆盖主要沿海煤炭运输航线，每个工作日发布。',
+    primaryRoute: '煤炭货种指数',
+    desc: '反映中国沿海煤炭运输市场运价水平，覆盖主要沿海煤炭运输航线，每周发布。',
   },
+}
+
+/** CCFI 各航线（固定顺序，确保全部展示） */
+const CCFI_ROUTES = [
+  '日本航线', '欧洲航线', '美西航线', '美东航线',
+  '韩国航线', '东南亚航线', '地中海航线', '澳新航线',
+  '南非航线', '南美航线', '东西非航线', '波红航线',
+]
+
+/** 各指数子航线配置（有子航线的 Tab 在此注册） */
+const INDEX_ROUTES = {
+  ccfi: CCFI_ROUTES,
+  scfis: ['美西航线', '欧洲航线'],
 }
 
 /** CCFI 各航线中文解释 */
@@ -309,6 +329,34 @@ function getDates(key) {
   return INDICES_DATA[key].data.map(r => r.date).sort()
 }
 
+/** 某航线有值的日期（子航线专用，避免 null 占位压缩曲线） */
+function getRouteDates(key, route) {
+  return INDICES_DATA[key].data
+    .filter(r => r[route] != null)
+    .map(r => r.date)
+}
+
+function buildDataZoom(compact) {
+  const slider = {
+    type: 'slider',
+    xAxisIndex: [0],
+    start: 0,
+    end: 100,
+    textStyle: { color: '#64748b', fontSize: compact ? 9 : 10 },
+    handleStyle: { color: '#334155' },
+    fillerColor: 'rgba(14,165,233,0.12)',
+    borderColor: '#1f2937',
+  }
+  if (compact) {
+    slider.bottom = 2
+    slider.height = 14
+  } else {
+    slider.bottom = 8
+    slider.height = 20
+  }
+  return [slider, { type: 'inside', xAxisIndex: [0] }]
+}
+
 function getValue(key, route, date) {
   const rec = INDICES_DATA[key].data.find(r => r.date === date)
   if (!rec) return null
@@ -318,6 +366,15 @@ function getValue(key, route, date) {
 
 function calcMoM(key, route, di) {
   const dates = getDates(key)
+  return calcMoMForDates(key, route, dates, di)
+}
+
+function calcYoY(key, route, di) {
+  const dates = getDates(key)
+  return calcYoYForDates(key, route, dates, di)
+}
+
+function calcMoMForDates(key, route, dates, di) {
   if (di === 0) return null
   const cur  = getValue(key, route, dates[di])
   const prev = getValue(key, route, dates[di - 1])
@@ -325,8 +382,7 @@ function calcMoM(key, route, di) {
   return +((cur - prev) / prev * 100).toFixed(2)
 }
 
-function calcYoY(key, route, di) {
-  const dates  = getDates(key)
+function calcYoYForDates(key, route, dates, di) {
   const curMs  = new Date(dates[di]).getTime()
   const target = curMs - 365 * 86400000
   const win    = 45 * 86400000
@@ -355,11 +411,11 @@ function pctColor(v) {
 
 // ── 构建单条路线的 3 系列 ECharts option ──────────────────────────────────────
 function buildRouteOption(key, route, opts = {}) {
-  const { compact = false } = opts
-  const dates = getDates(key)
+  const { compact = false, dates: customDates } = opts
+  const dates = customDates || getRouteDates(key, route)
   const absData = dates.map(d => getValue(key, route, d))
-  const momData = dates.map((_, di) => calcMoM(key, route, di))
-  const yoyData = dates.map((_, di) => calcYoY(key, route, di))
+  const momData = dates.map((_, di) => calcMoMForDates(key, route, dates, di))
+  const yoyData = dates.map((_, di) => calcYoYForDates(key, route, dates, di))
   const name    = cleanName(route)
 
   return {
@@ -379,8 +435,6 @@ function buildRouteOption(key, route, opts = {}) {
           else if (p.seriesName.endsWith('§yoy')) byType.yoy = p.value
           else                                     byType.abs = p.value
         })
-        const di    = dates.indexOf(params[0]?.axisValue)
-        // 显示周信息（如果有）
         const rec   = INDICES_DATA[key].data.find(r => r.date === params[0]?.axisValue)
         const label = rec?.week ? `${rec.date}（${rec.week}）` : (params[0]?.axisValue ?? '')
         let html = `<div style="font-weight:600;margin-bottom:4px;color:#e2e8f0">${label}</div>`
@@ -393,17 +447,17 @@ function buildRouteOption(key, route, opts = {}) {
     }),
     legend: { show: false },
     grid: compact
-      ? { left: 46, right: 44, top: 8, bottom: 28 }
-      : { left: 68, right: 60, top: 16, bottom: 40 },
+      ? { left: 46, right: 44, top: 8, bottom: 36 }
+      : { left: 68, right: 60, top: 16, bottom: 56 },
     xAxis: {
       type: 'category',
       data: dates,
       axisLabel: {
         color: '#64748b',
         fontSize: compact ? 9 : 11,
-        rotate: (!compact && dates.length > 12) ? 30 : 0,
-        interval: compact ? 'auto' : 0,
-        formatter: v => v.slice(5),   // 只显示月日
+        rotate: dates.length > 24 ? 30 : 0,
+        interval: 'auto',
+        formatter: v => (dates.length > 60 ? v.slice(0, 7) : v.slice(5)),
       },
       axisLine: { lineStyle: { color: '#1e293b' } },
       splitLine: { show: false },
@@ -472,6 +526,7 @@ function buildRouteOption(key, route, opts = {}) {
         connectNulls: false,
       },
     ],
+    dataZoom: buildDataZoom(compact),
   }
 }
 
@@ -486,10 +541,11 @@ function renderMain() {
     window.addEventListener('resize', () => mainChart?.resize())
   }
   const routeField = resolvePrimaryRoute(activeIndex)
-  mainChart.setOption(buildRouteOption(activeIndex, routeField, { compact: false }), true)
+  const dates = getRouteDates(activeIndex, routeField)
+  mainChart.setOption(buildRouteOption(activeIndex, routeField, { compact: false, dates }), true)
 }
 
-// ── 航线小卡片网格（仅 CCFI）────────────────────────────────────────────────
+// ── 航线小卡片网格（CCFI / SCFIS 等含子航线的指数）────────────────────────
 function renderRouteGrid() {
   // 销毁旧小图
   miniCharts.forEach(c => c.dispose())
@@ -497,24 +553,23 @@ function renderRouteGrid() {
 
   const grid    = document.getElementById('routeGrid')
   const section = document.getElementById('routeSection')
+  const routeList = INDEX_ROUTES[activeIndex]
 
-  // 非 CCFI 不展示
-  if (activeIndex !== 'ccfi') {
+  if (!routeList) {
     section.style.display = 'none'
     return
   }
 
-  // 收集除综合指数以外的所有航线
-  const { primaryRoute, data } = INDICES_DATA.ccfi
-  const routeSet = new Set()
-  data.forEach(r => Object.keys(r).forEach(k => {
-    if (k !== 'date' && k !== 'week' && k !== primaryRoute) routeSet.add(k)
-  }))
-  const routes = [...routeSet]
+  const data = INDICES_DATA[activeIndex]?.data
+  if (!data?.length) { section.style.display = 'none'; return }
+
+  const routes = routeList.filter(route => data.some(r => r[route] != null))
 
   if (routes.length === 0) { section.style.display = 'none'; return }
 
   section.style.display = ''
+  document.getElementById('routeSectionTitle').textContent =
+    `各航线（${routes.length} 条，${getRouteDates(activeIndex, routes[0]).length} 周）`
   grid.innerHTML = ''
 
   routes.forEach(route => {
@@ -533,16 +588,14 @@ function renderRouteGrid() {
     card.appendChild(chartDiv)
     grid.appendChild(card)
 
-    // 用 requestAnimationFrame 分批渲染，避免阻塞
     requestAnimationFrame(() => {
       const c = echarts.init(chartDiv, 'dark')
-      c.setOption(buildRouteOption('ccfi', route, { compact: true }))
+      const dates = getRouteDates(activeIndex, route)
+      c.setOption(buildRouteOption(activeIndex, route, { compact: true, dates }))
       miniCharts.push(c)
     })
   })
 
-  // 监听 resize 同步小图
-  // （已有一个全局 resize → mainChart.resize，小图单独处理）
   window.addEventListener('resize', () => miniCharts.forEach(c => c.resize()))
 }
 
