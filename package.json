@@ -34,7 +34,7 @@
     "crawl:china-export:all": "node scripts/crawler/china_export/china_export_crawler.js",
     "crawl:customs-export": "node scripts/crawler/customs_export/customs_export_crawler.js --recent-months 1",
     "parse:customs-export": "node scripts/tools/customs_export_xls_to_json.js",
-    "crawl:customs-export:all": "node scripts/crawler/customs_export/customs_export_crawler.js",
+    "crawl:customs-export:all": "node scripts/crawler/customs_export/customs_export_crawler.js --recent-months 2",
     "crawl:smm": "node scripts/crawler/smm/smm_crawler.js",
     "crawl:phosphorus-chemical": "node scripts/crawler/phosphorus_chemical/phosphorus_chemical_crawler.js",
     "crawl:oil-spr": "node scripts/crawler/oil/oil_spr_crawler.js",

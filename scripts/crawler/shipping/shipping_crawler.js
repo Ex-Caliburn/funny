@@ -6,6 +6,7 @@
  * 支持指数：
  *   - CCFI 中国出口集装箱运价指数
  *   - SCFI 上海出口集装箱运价指数
+ *   - SCFIS 上海出口集装箱结算运价指数
  *   - SEAFI 东南亚集装箱运价指数
  *   - CBCFI 中国沿海煤炭运价指数（日频）
  *
@@ -18,6 +19,7 @@
  *   node scripts/crawler/shipping/shipping_crawler.js           # 爬取全部指数
  *   node scripts/crawler/shipping/shipping_crawler.js ccfi      # 只爬 CCFI
  *   node scripts/crawler/shipping/shipping_crawler.js scfi      # 只爬 SCFI
+ *   node scripts/crawler/shipping/shipping_crawler.js scfis     # 只爬 SCFIS
  *   node scripts/crawler/shipping/shipping_crawler.js seafi     # 只爬 SEAFI
  *   node scripts/crawler/shipping/shipping_crawler.js cbcfi     # 只爬 CBCFI
  */
@@ -88,7 +90,9 @@ class ShippingCrawler {
    * @returns {string}
    */
   cleanRouteName(rawName) {
-    let name = rawName.replace(/\s*\([^)]*\)\s*/g, '').trim()
+    let name = rawName.replace(/\s*\([^)]*\)\s*/g, '').replace(/（[^）]*）/g, '').trim()
+    // 中文名后直接粘连英文，如「欧洲航线Europe」
+    name = name.replace(/([^\x00-\x7F])([A-Za-z].*)$/, '$1').trim()
     const i = name.search(/\s+[A-Z]/)
     return i > 0 ? name.slice(0, i).trim() : name
   }
@@ -146,23 +150,32 @@ class ShippingCrawler {
 
     header.forEach((cell, idx) => {
       const match = cell.match(datePattern)
-      if (match) {
-        if (prevDateCol === -1) {
-          prevDateCol = idx
-          prevDate = match[1]
-        } else {
-          currDateCol = idx
-          currDate = match[1]
-        }
+      if (!match) return
+
+      if (/本期/.test(cell)) {
+        currDateCol = idx
+        currDate = match[1]
+      } else if (/上期/.test(cell)) {
+        prevDateCol = idx
+        prevDate = match[1]
+      } else if (prevDateCol === -1) {
+        prevDateCol = idx
+        prevDate = match[1]
+      } else if (currDateCol === -1) {
+        currDateCol = idx
+        currDate = match[1]
       }
     })
 
-    if (!prevDate) {
+    // SCFIS 等指数页面仅有「本期」列，无上期
+    if (!prevDate && !currDate) {
       console.warn('未能从表头解析到日期，原始表头:', header)
       return []
     }
 
-    console.log(`  解析到上期日期: ${prevDate}，列索引: ${prevDateCol}`)
+    if (prevDate) {
+      console.log(`  解析到上期日期: ${prevDate}，列索引: ${prevDateCol}`)
+    }
     if (currDate) {
       console.log(`  解析到本期日期: ${currDate}，列索引: ${currDateCol}`)
     }

@@ -128,6 +128,13 @@ module.exports = {
         compositeKey: '综合指数',
         dataFile: 'scfi.json',
       },
+      // 上海出口集装箱结算运价指数（欧洲/美西两条航线）
+      scfis: {
+        name: '上海出口集装箱结算运价指数',
+        indexType: 'scfis',
+        url: 'https://www.sse.net.cn/index/singleIndex?indexType=scfis',
+        dataFile: 'scfis.json',
+      },
       // 东南亚集装箱运价指数
       seafi: {
         name: '东南亚集装箱运价指数',
