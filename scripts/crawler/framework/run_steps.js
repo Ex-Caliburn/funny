@@ -18,22 +18,50 @@ const PROJECT_ROOT = path.join(__dirname, '../../..')
 /** @type {Record<string, Array<{ label: string, command: string, args: string[] }>>} */
 const PRESETS = {
   all2: [
-    { label: '统计局数据', command: 'node', args: ['scripts/crawler/framework/crawler_main.js', 'all', '2'] },
+    {
+      label: '统计局数据',
+      command: 'node',
+      args: ['scripts/crawler/framework/crawler_main.js', 'all', '2'],
+    },
     { label: '黄金', command: 'npm', args: ['run', 'crawl:gold'] },
-    { label: '秦皇岛动力煤', command: 'node', args: ['scripts/crawler/coal/qhd_coal_crawler.js'] },
-    { label: '山西煤炭', command: 'node', args: ['scripts/crawler/coal/shanxi_coal_crawler.js'] },
-    { label: '航运指数', command: 'node', args: ['scripts/crawler/shipping/shipping_crawler.js'] },
+    {
+      label: '秦皇岛动力煤',
+      command: 'node',
+      args: ['scripts/crawler/coal/qhd_coal_crawler.js'],
+    },
+    {
+      label: '山西煤炭',
+      command: 'node',
+      args: ['scripts/crawler/coal/shanxi_coal_crawler.js'],
+    },
+    {
+      label: '航运指数',
+      command: 'node',
+      args: ['scripts/crawler/shipping/shipping_crawler.js'],
+    },
     { label: '澳门博彩', command: 'npm', args: ['run', 'crawl:macau-gaming'] },
     { label: '铝价', command: 'npm', args: ['run', 'crawl:aluminum'] },
     { label: '中国出口', command: 'npm', args: ['run', 'crawl:china-export:all'] },
-    { label: '海关出口', command: 'npm', args: ['run', 'crawl:customs-export'] },
+    {
+      label: '海关重点商品出口',
+      command: 'npm',
+      args: ['run', 'crawl:customs-export:all'],
+    },
     { label: 'SMM金属', command: 'npm', args: ['run', 'crawl:smm'] },
     { label: '磷化工', command: 'npm', args: ['run', 'crawl:phosphorus-chemical'] },
     { label: '美国SPR原油库存', command: 'npm', args: ['run', 'crawl:oil-spr'] },
   ],
   coal: [
-    { label: '秦皇岛动力煤', command: 'node', args: ['scripts/crawler/coal/qhd_coal_crawler.js'] },
-    { label: '山西煤炭', command: 'node', args: ['scripts/crawler/coal/shanxi_coal_crawler.js'] },
+    {
+      label: '秦皇岛动力煤',
+      command: 'node',
+      args: ['scripts/crawler/coal/qhd_coal_crawler.js'],
+    },
+    {
+      label: '山西煤炭',
+      command: 'node',
+      args: ['scripts/crawler/coal/shanxi_coal_crawler.js'],
+    },
   ],
 }
 

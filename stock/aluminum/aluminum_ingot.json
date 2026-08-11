@@ -8,8 +8,22 @@
     "southwest": "西南市场",
     "central": "中原市场"
   },
-  "updatedAt": "2026-08-09",
+  "updatedAt": "2026-08-11",
   "data": [
+    {
+      "date": "2026-08-11",
+      "east": 24100,
+      "south": 24250,
+      "southwest": 24120,
+      "central": 23990
+    },
+    {
+      "date": "2026-08-10",
+      "east": 23990,
+      "south": 24150,
+      "southwest": 24010,
+      "central": 23890
+    },
     {
       "date": "2026-08-07",
       "east": 23980,
