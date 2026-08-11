@@ -72,6 +72,16 @@ function parsePeriodFromTitle(title) {
   return { year: Number(m[1]), month: Number(m[2]) };
 }
 
+/** 重点商品表为「亿元人民币」，统一换算为万元 */
+function getAmountScale(unitNote) {
+  return /亿元/.test(String(unitNote || '')) ? 10000 : 1;
+}
+
+function scaleAmount(v, scale) {
+  if (scale === 1 || v == null || typeof v !== 'number') return v;
+  return v * scale;
+}
+
 /**
  * 判断工作簿是否为人民币版本
  * @param {object} wb - xlsx workbook
@@ -164,7 +174,9 @@ function sheetToExport(rows, sheetName, sourceFile) {
 
   // 单位
   const unitCells = unitRow >= 0 ? (rows[unitRow] || []).filter(Boolean) : [];
-  const unitNote = unitCells.find((c) => /单位[∶:]/.test(String(c))) || unitCells.join('') || '';
+  const unitNoteRaw = unitCells.find((c) => /单位[∶:]/.test(String(c))) || unitCells.join('') || '';
+  const amountScale = getAmountScale(unitNoteRaw);
+  const unitNote = amountScale > 1 ? '单位：万元人民币' : String(unitNoteRaw);
 
   const period = parsePeriodFromTitle(title);
 
@@ -219,15 +231,15 @@ function sheetToExport(rows, sheetName, sourceFile) {
       unit: unit || null,
       currentMonth: {
         quantity: parseCell(row[c + 2]),
-        amount: parseCell(row[c + 3]),
+        amount: scaleAmount(parseCell(row[c + 3]), amountScale),
       },
       ytdCurrentYear: {
         quantity: parseCell(row[c + 4]),
-        amount: parseCell(row[c + 5]),
+        amount: scaleAmount(parseCell(row[c + 5]), amountScale),
       },
       ytdSamePeriodLastYear: {
         quantity: parseCell(row[c + 6]),
-        amount: parseCell(row[c + 7]),
+        amount: scaleAmount(parseCell(row[c + 7]), amountScale),
       },
       yoyYtdPercent: {
         quantity: parseCell(row[c + 8]),

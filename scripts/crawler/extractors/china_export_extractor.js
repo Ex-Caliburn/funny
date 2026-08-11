@@ -44,6 +44,7 @@ class ChinaExportExtractor extends BaseDataExtractor {
     /** 链接标题同时包含这些词才算目标 */
     this.titleKeywords = merged.titleKeywords || ['出口', '商品', '量值'];
     this.excludeKeywords = merged.excludeKeywords || [];
+    this.maxScanPages = merged.maxScanPages ?? 8;
     this.delayBetweenRequests = merged.delayBetweenRequests ?? 800;
     /** goto 后主文档事件后的固定等待（非 networkidle） */
     this.afterPageLoadMs = merged.afterPageLoadMs ?? 550;
@@ -363,6 +364,120 @@ class ChinaExportExtractor extends BaseDataExtractor {
     } finally {
       await page.close();
     }
+  }
+
+  /**
+   * 从候选链接中取最新 N 个自然月（按标题年月去重）
+   * @param {Array<{ title: string, detailUrl: string }>} candidates
+   * @param {number} monthCount
+   */
+  filterRecentMonthItems(candidates, monthCount) {
+    const withPeriod = candidates
+      .map((item) => ({
+        item,
+        period: this.parsePeriodFromTitle(this.cleanTitle(item.title)),
+      }))
+      .filter((x) => x.period)
+
+    const periodKeys = [
+      ...new Set(
+        withPeriod.map(
+          (x) => `${x.period.year}-${String(x.period.month).padStart(2, '0')}`
+        )
+      ),
+    ]
+    periodKeys.sort((a, b) => b.localeCompare(a))
+    const targetPeriods = new Set(periodKeys.slice(0, monthCount))
+
+    return withPeriod
+      .filter((x) =>
+        targetPeriods.has(`${x.period.year}-${String(x.period.month).padStart(2, '0')}`)
+      )
+      .map((x) => x.item)
+  }
+
+  /**
+   * 扫描分页列表，仅下载最新 N 个月
+   * @param {number} monthCount
+   * @param {object} [override]
+   */
+  async crawlRecentMonths(monthCount, override = {}) {
+    const start = override.startPage ?? this.pagination.startPage ?? 1
+    const maxPages = override.maxPages ?? this.maxScanPages ?? override.endPage ?? 8
+    if (override.minYear !== undefined) this.yearRange.minYear = override.minYear
+    if (override.maxYear !== undefined) this.yearRange.maxYear = override.maxYear
+
+    const allCandidates = []
+    const seenDetailUrls = new Set()
+    const files = []
+    const seenFileUrls = new Set()
+
+    try {
+      for (let page = start; page <= maxPages; page++) {
+        const listUrl = this.buildListUrl(page)
+        console.log(`\n列表页 ${page}/${maxPages}: ${listUrl}`)
+        let html
+        try {
+          html = await this.fetchHtmlViaBrowser(listUrl)
+        } catch (e) {
+          console.error(`  列表页加载失败: ${e.message}`)
+          continue
+        }
+
+        const candidates = this.collectDetailLinks(html, listUrl)
+        console.log(`  匹配到 ${candidates.length} 条候选链接`)
+        if (candidates.length === 0 && page > start && allCandidates.length > 0) break
+
+        for (const item of candidates) {
+          if (seenDetailUrls.has(item.detailUrl)) continue
+          seenDetailUrls.add(item.detailUrl)
+          allCandidates.push(item)
+        }
+
+        const filtered = this.filterRecentMonthItems(allCandidates, monthCount)
+        const periods = [
+          ...new Set(
+            filtered
+              .map((item) => {
+                const p = this.parsePeriodFromTitle(this.cleanTitle(item.title))
+                return p ? `${p.year}-${String(p.month).padStart(2, '0')}` : null
+              })
+              .filter(Boolean)
+          ),
+        ]
+        if (periods.length >= monthCount && page >= 2) break
+      }
+
+      const toDownload = this.filterRecentMonthItems(allCandidates, monthCount)
+      const periods = [
+        ...new Set(
+          toDownload
+            .map((item) => {
+              const p = this.parsePeriodFromTitle(this.cleanTitle(item.title))
+              return p ? `${p.year}-${String(p.month).padStart(2, '0')}` : null
+            })
+            .filter(Boolean)
+        ),
+      ]
+      periods.sort((a, b) => b.localeCompare(a))
+      console.log(
+        `\n最近 ${monthCount} 个月: ${periods.join(', ') || '（无匹配）'}`
+      )
+      console.log(`待下载 ${toDownload.length} 条（共扫描 ${allCandidates.length} 条）`)
+
+      for (const item of toDownload) {
+        try {
+          const r = await this.processDetailPage(item, seenFileUrls)
+          if (r && r.file) files.push(r.file)
+        } catch (e) {
+          console.warn(`  处理失败: ${e.message}`)
+        }
+      }
+    } finally {
+      await this.closeBrowser()
+    }
+
+    return { files, totalSaved: files.length }
   }
 
   /**

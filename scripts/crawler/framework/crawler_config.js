@@ -290,60 +290,68 @@ module.exports = {
    * 脚本：scripts/crawler/customs_export/customs_export_crawler.js
    */
   customsExport: {
-    /**
-     * 年份列表页模板，{path} 替换为年份路径段
-     * 2026 年用年份本身，其余年份为海关网站内部 ID（见爬虫中 YEAR_PATH_MAP）
-     */
     listUrlTemplate:
       'http://www.customs.gov.cn/customs/302249/zfxxgk/fdzdgknr/302274/302277/{path}/index.html',
     delayBetweenRequests: 1500,
     maxRetries: 3,
     timeout: 30000,
-    /** 相对于 stock/ 的下载目录 */
     downloadDirRel: 'customs_export',
-    /** 默认年份范围（闭区间）；CLI 未传参时仅当前年 */
     yearRange: {
       startYear: new Date().getFullYear(),
       endYear: new Date().getFullYear(),
     },
-    /** 链接文字需同时包含下列关键词 */
     titleKeywords: ['出口', '商品', '量值'],
-    /** 含任意排除词则跳过（过滤美元值版本及贸易方式量值表） */
     excludeKeywords: ['美元值', '美元', '贸易方式', '部分出口商品', '部分进口商品'],
   },
 
   /**
-   * 海关总署 — 出口重点商品量值表（人民币值）等 .xls 附件
-   * 列表分页采用 eportal 动态 API（共约 250 页，每页 10 条，按发布时间倒序）
+   * 海关总署 — 进口重点商品量值表（人民币值）
+   * 列表页：…/302275/9f806879-{page}.html
+   * 脚本：scripts/crawler/customs_import/customs_import_crawler.js
+   */
+  customsImport: {
+    listUrlTemplate:
+      'http://www.customs.gov.cn/customs/302249/zfxxgk/fdzdgknr/302274/302275/9f806879-{page}.html',
+    delayBetweenRequests: 800,
+    afterPageLoadMs: 2000,
+    pageGotoWaitUntil: 'load',
+    maxRetries: 3,
+    timeout: 30000,
+    downloadDirRel: 'customs_import',
+    pagination: {
+      startPage: 1,
+      endPage: 5,
+    },
+    maxScanPages: 8,
+    titleKeywords: ['进口', '重点', '商品', '量值'],
+    excludeKeywords: ['美元值', '美元', '贸易方式', '部分出口商品', '部分进口商品', '出口'],
+  },
+
+  /**
+   * 海关总署 — 出口重点商品量值表（人民币值）
+   * 列表分页：…/302275/9f806879-{page}.html（按发布时间倒序，需翻页找最新月）
    * 脚本：scripts/crawler/china_export/china_export_crawler.js
    */
   chinaExport: {
     listUrlTemplate:
-      'http://www.customs.gov.cn/eportal/ui?pageId=302275&moduleId=9f806879368d4feabb9644105dcdeba3&staticRequest=yes&currentPage={page}',
-    /** axios 下载成功/校验间隔（毫秒） */
+      'http://www.customs.gov.cn/customs/302249/zfxxgk/fdzdgknr/302274/302275/9f806879-{page}.html',
     delayBetweenRequests: 800,
-    /** page.goto 后额外等待 DOM 渲染（毫秒），过短可能拿不到链接 */
-    afterPageLoadMs: 550,
-    /** load 通常比 networkidle 快很多；站点异常时可改回 networkidle */
+    afterPageLoadMs: 2000,
     pageGotoWaitUntil: 'load',
     maxRetries: 3,
     timeout: 30000,
-    /** 相对于 stock/ 的下载目录 */
     downloadDirRel: 'china_export',
     pagination: {
       startPage: 1,
-      /** 列表按发布时间倒序，前两页通常为最近数据 */
-      endPage: 2,
+      endPage: 5,
     },
-    /** minYear/maxYear 为 null 表示 CLI 未传参时由爬虫默认为当前年；筛选依赖标题中的「YYYY年MM月」 */
+    maxScanPages: 8,
     yearRange: {
       minYear: null,
       maxYear: null,
     },
-    /** 列表链接文字需同时包含下列关键词（「出口主要商品量值表」「出口重点商品量值表」均可匹配） */
-    titleKeywords: ['出口', '商品', '量值'],
-    /** 链接文字包含下列任意词则跳过（排除美元值版本） */
-    excludeKeywords: ['美元值', '美元'],
+    titleKeywords: ['出口', '重点', '商品', '量值'],
+    excludeKeywords: ['美元值', '美元', '贸易方式', '部分出口商品', '部分进口商品', '进口'],
   },
 
   /**

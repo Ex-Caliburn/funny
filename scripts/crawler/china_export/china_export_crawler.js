@@ -1,17 +1,16 @@
 #!/usr/bin/env node
 
 /**
- * 海关总署 — 出口重点/主要商品量值表（xls）下载
+ * 海关总署 — 出口重点商品量值表（xls）下载
  *
- * 列表页（分页）：配置项 chinaExport.listUrlTemplate，{page} → 1、2、3…
+ * 列表页（分页，按发布时间倒序）：
+ *   http://www.customs.gov.cn/customs/302249/zfxxgk/fdzdgknr/302274/302275/9f806879-{page}.html
  * 保存目录：stock/china_export/
  *
- * 用法（不传页码时分页见 crawler_config.chinaExport.pagination，默认 1–2 页；默认仅抓取当前年数据）：
+ * 用法（默认仅抓取最新 1 个月）：
  *   node scripts/crawler/china_export/china_export_crawler.js
+ *   node scripts/crawler/china_export/china_export_crawler.js --recent-months 2
  *   node scripts/crawler/china_export/china_export_crawler.js --pages 1-5
- *   node scripts/crawler/china_export/china_export_crawler.js --pages 1-30
- *   node scripts/crawler/china_export/china_export_crawler.js 1-8
- *   node scripts/crawler/china_export/china_export_crawler.js 1-8 --min-year 2024 --max-year 2026
  *   node scripts/crawler/china_export/china_export_crawler.js --no-skip --no-parse
  */
 
@@ -21,13 +20,10 @@ const path = require('path')
 const { spawn } = require('child_process')
 
 const ChinaExportExtractor = require('../extractors/china_export_extractor.js')
+const crawlerConfig = require('../framework/crawler_config.js')
 
 const PARSE_SCRIPT = path.join(__dirname, '../../tools/china_export_parse.js')
 
-/**
- * 运行汇总 parse，生成 china_export_rmb.json
- * @returns {Promise<void>}
- */
 function runParseScript() {
   return new Promise((resolve, reject) => {
     console.log('\n开始同步汇总 JSON: china_export_rmb.json')
@@ -43,19 +39,26 @@ function runParseScript() {
   })
 }
 
-/**
- * @param {string[]} argv
- * @returns {{ startPage: number, endPage: number, minYear: number|null, maxYear: number|null, noSkip: boolean, noParse: boolean }}
- */
+function parsePageRange(s) {
+  const t = String(s).trim()
+  const range = t.match(/^(\d+)\s*-\s*(\d+)$/)
+  if (range) {
+    return { start: parseInt(range[1], 10), end: parseInt(range[2], 10) }
+  }
+  const n = parseInt(t, 10)
+  if (!Number.isNaN(n) && n >= 1) return { start: 1, end: n }
+  return { start: undefined, end: undefined }
+}
+
 function parseArgs(argv) {
   let startPage
   let endPage
+  let recentMonths = 1
   let minYear = null
   let maxYear = null
   let noSkip = false
   let noParse = false
 
-  const rest = []
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i]
     if (a === '--pages' && argv[i + 1]) {
@@ -66,6 +69,10 @@ function parseArgs(argv) {
       const r = parsePageRange(a.replace(/^--pages=/, ''))
       startPage = r.start
       endPage = r.end
+    } else if (a === '--recent-months' && argv[i + 1]) {
+      recentMonths = Math.max(1, Number(argv[++i]) || 1)
+    } else if (/^--recent-months=/.test(a)) {
+      recentMonths = Math.max(1, Number(a.split('=')[1]) || 1)
     } else if (a === '--min-year' && argv[i + 1]) {
       minYear = parseInt(argv[++i], 10)
     } else if (/^--min-year=/.test(a)) {
@@ -78,20 +85,19 @@ function parseArgs(argv) {
       noSkip = true
     } else if (a === '--no-parse') {
       noParse = true
-    } else if (!a.startsWith('-')) {
-      rest.push(a)
+    } else if (!a.startsWith('-') && startPage == null) {
+      const r = parsePageRange(a)
+      if (r.start != null) {
+        startPage = r.start
+        endPage = r.end
+      }
     }
-  }
-
-  if (startPage == null && rest[0]) {
-    const r = parsePageRange(rest[0])
-    startPage = r.start
-    endPage = r.end
   }
 
   return {
     startPage,
     endPage,
+    recentMonths,
     minYear: Number.isNaN(minYear) ? null : minYear,
     maxYear: Number.isNaN(maxYear) ? null : maxYear,
     noSkip,
@@ -99,63 +105,43 @@ function parseArgs(argv) {
   }
 }
 
-/**
- * @param {string} s 如 "5" 表示 1-5；"2-8" 表示 2-8
- */
-function parsePageRange(s) {
-  const t = String(s).trim()
-  const range = t.match(/^(\d+)\s*-\s*(\d+)$/)
-  if (range) {
-    return { start: parseInt(range[1], 10), end: parseInt(range[2], 10) }
-  }
-  const n = parseInt(t, 10)
-  if (!Number.isNaN(n) && n >= 1) {
-    return { start: 1, end: n }
-  }
-  return { start: undefined, end: undefined }
-}
-
 async function main() {
-  const argv = process.argv.slice(2)
-  const parsed = parseArgs(argv)
+  const parsed = parseArgs(process.argv.slice(2))
+  const cfg = crawlerConfig.chinaExport || {}
+  const downloadDir = path.join(__dirname, '../../../stock', cfg.downloadDirRel || 'china_export')
 
-  const options = {}
+  const options = { ...cfg }
   if (parsed.noSkip) options.skipExistingFiles = false
 
-  const extractor = new ChinaExportExtractor(undefined, options)
+  const extractor = new ChinaExportExtractor(downloadDir, options)
+  const usePageRange = parsed.startPage != null && parsed.endPage != null
+  const useYearRange = parsed.minYear != null || parsed.maxYear != null
 
-  const override = {}
-  if (parsed.startPage != null && parsed.endPage != null) {
-    override.startPage = parsed.startPage
-    override.endPage = parsed.endPage
-  }
-  if (parsed.minYear !== null && parsed.minYear !== undefined)
-    override.minYear = parsed.minYear
-  if (parsed.maxYear !== null && parsed.maxYear !== undefined)
-    override.maxYear = parsed.maxYear
-
-  const currentYear = new Date().getFullYear()
-  if (override.minYear === undefined && override.maxYear === undefined) {
-    override.minYear = currentYear
-    override.maxYear = currentYear
+  console.log('海关总署 — 出口重点商品量值表下载')
+  if (usePageRange) {
+    console.log('分页:', parsed.startPage, '-', parsed.endPage)
+  } else if (useYearRange) {
+    console.log('年份:', parsed.minYear ?? '不限', '-', parsed.maxYear ?? '不限')
+  } else {
+    console.log(`模式: 最近 ${parsed.recentMonths} 个月`)
   }
 
-  console.log('海关总署出口商品量值表下载')
-  const effStart = override.startPage ?? extractor.pagination.startPage
-  const effEnd = override.endPage ?? extractor.pagination.endPage
-  console.log('分页:', effStart, '-', effEnd)
+  let result
+  if (usePageRange || useYearRange) {
+    const override = {}
+    if (usePageRange) {
+      override.startPage = parsed.startPage
+      override.endPage = parsed.endPage
+    }
+    if (parsed.minYear != null) override.minYear = parsed.minYear
+    if (parsed.maxYear != null) override.maxYear = parsed.maxYear
+    result = await extractor.crawl(override)
+  } else {
+    result = await extractor.crawlRecentMonths(parsed.recentMonths)
+  }
 
-  const previewMin =
-    override.minYear !== undefined ? override.minYear : extractor.yearRange.minYear
-  const previewMax =
-    override.maxYear !== undefined ? override.maxYear : extractor.yearRange.maxYear
-  console.log('年份:', previewMin ?? '不限', '-', previewMax ?? '不限')
-
-  const result = await extractor.crawl(override)
   console.log('\n完成，保存文件数:', result.totalSaved)
-  if (result.files.length) {
-    result.files.forEach((f) => console.log(' ', f))
-  }
+  if (result.files.length) result.files.forEach((f) => console.log(' ', f))
 
   if (!parsed.noParse) {
     await runParseScript()
