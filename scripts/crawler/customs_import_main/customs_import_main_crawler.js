@@ -1,21 +1,18 @@
 #!/usr/bin/env node
 
 /**
- * 海关总署 — 出口主要商品量值表（xls）下载
+ * 海关总署 — 进口主要商品量值表（xls）下载
  *
  * 数据页面规律：切换 URL 中的年份即可获取对应年份的数据列表
  * 列表页：http://www.customs.gov.cn/customs/302249/zfxxgk/fdzdgknr/302274/302277/{year}/index.html
- * 保存目录：stock/customs_export/
+ * 保存目录：stock/customs_import_main/
  *
  * 用法（默认仅抓取当前年）：
- *   node scripts/crawler/customs_export/customs_export_crawler.js
- *   node scripts/crawler/customs_export/customs_export_crawler.js --recent-months 2   # 仅拉取最新 2 个月
- *   node scripts/crawler/customs_export/customs_export_crawler.js --years 2024-2026
- *   node scripts/crawler/customs_export/customs_export_crawler.js --years 2025
- *   node scripts/crawler/customs_export/customs_export_crawler.js --min-year 2024
- *   node scripts/crawler/customs_export/customs_export_crawler.js --min-year 2024 --max-year 2026
- *   node scripts/crawler/customs_export/customs_export_crawler.js --no-skip
- *   node scripts/crawler/customs_export/customs_export_crawler.js --no-parse   # 仅下载，不更新 customs_export_rmb.json
+ *   node scripts/crawler/customs_import_main/customs_import_main_crawler.js
+ *   node scripts/crawler/customs_import_main/customs_import_main_crawler.js --recent-months 2
+ *   node scripts/crawler/customs_import_main/customs_import_main_crawler.js --years 2024-2026
+ *   node scripts/crawler/customs_import_main/customs_import_main_crawler.js 2024-2026
+ *   node scripts/crawler/customs_import_main/customs_import_main_crawler.js --min-year 2024 --max-year 2026
  */
 
 'use strict'
@@ -54,13 +51,13 @@ const YEAR_PATH_MAP = {
 const BASE_URL =
   'http://www.customs.gov.cn/customs/302249/zfxxgk/fdzdgknr/302274/302277/{path}/index.html'
 
-const DOWNLOAD_DIR = path.join(__dirname, '../../../stock/customs_export')
-const PARSE_SCRIPT = path.join(__dirname, '../../tools/customs_export_xls_to_json.js')
+const DOWNLOAD_DIR = path.join(__dirname, '../../../stock/customs_import_main')
+const PARSE_SCRIPT = path.join(__dirname, '../../tools/customs_import_main_xls_to_json.js')
 
 /** 匹配目标链接的关键词（同时包含以下词才算命中） */
-const TITLE_KEYWORDS = ['出口', '商品', '量值']
-/** 排除词（含任意一个则跳过，过滤美元值版本及贸易方式量值表） */
-const EXCLUDE_KEYWORDS = ['美元值', '美元', '贸易方式', '部分出口商品', '部分进口商品']
+const TITLE_KEYWORDS = ['进口', '商品', '量值']
+/** 排除词（含任意一个则跳过） */
+const EXCLUDE_KEYWORDS = ['美元值', '美元', '贸易方式', '部分出口商品', '部分进口商品', '出口', '重点']
 
 const DELAY_MS = 1500
 const TIMEOUT_MS = 30000
@@ -85,7 +82,7 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
  */
 function runParseScript() {
   return new Promise((resolve, reject) => {
-    console.log('\n开始同步汇总 JSON: customs_export_rmb.json')
+    console.log('\n开始同步汇总 JSON: customs_import_main_rmb.json')
     const child = spawn('node', [PARSE_SCRIPT], {
       cwd: path.join(__dirname, '../../..'),
       stdio: 'inherit',
@@ -597,6 +594,7 @@ function parseArgs(argv) {
     endYear = t
   }
 
+  // 显式指定年份时优先于 --recent-months（npm 脚本常带 recent-months，但用户可追加 2024-2026）
   if (yearsExplicit) recentMonths = null
 
   return { startYear, endYear, skipExisting, noParse, recentMonths }
@@ -609,7 +607,7 @@ async function main() {
     fs.mkdirSync(DOWNLOAD_DIR, { recursive: true })
   }
 
-  console.log('海关总署 — 出口主要商品量值表下载')
+  console.log('海关总署 — 进口主要商品量值表下载')
   if (recentMonths) {
     console.log(`模式: 最近 ${recentMonths} 个月`)
   } else {

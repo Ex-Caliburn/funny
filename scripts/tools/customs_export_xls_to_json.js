@@ -376,14 +376,16 @@ function parseXls(filePath) {
 // ─── 批量解析整合 ─────────────────────────────────────────────────────────────
 
 /**
- * 扫描目录，解析所有 *出口主要商品量值表*.xls，整合为与 china_export_rmb.json 一致的结构
+ * 扫描目录，解析匹配的 .xls，整合为以 "YYYY-MM" 为键的对象
  * @param {string} dir
+ * @param {{ filePattern?: RegExp }} [options]
  * @returns {object} 以 "YYYY-MM" 为键的对象
  */
-function parseDir(dir) {
+function parseDir(dir, options = {}) {
+  const filePattern = options.filePattern || /出口主要商品量值表/
   const files = fs
     .readdirSync(dir)
-    .filter((f) => /\.xlsx?$/i.test(f) && /出口主要商品量值表/.test(f))
+    .filter((f) => /\.xlsx?$/i.test(f) && filePattern.test(f))
     .sort()
 
   if (files.length === 0) {

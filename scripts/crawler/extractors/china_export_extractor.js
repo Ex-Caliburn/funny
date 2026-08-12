@@ -8,7 +8,10 @@ const { isRmbFile: isRmbFileUtil } = require('../../tools/china_export_xls_to_js
 /**
  * 海关总署「出口重点/主要商品量值表」附件下载
  *
- * 列表页分页规律：…/9f806879-{page}.html（{page} = 1, 2, 3…）
+ * 列表页分页规律：
+ *   第 1 页：…/302275/index.html
+ *   第 2–5 页：…/9f806879-{page}.html
+ *   第 6 页起：/eportal/ui?pageId=302275&currentPage={page}&moduleId=…（静态 9f806879-6.html 会 404）
  *
  * WAF 机制说明：
  *   - HTML 页面（列表页/详情页）返回 412 + JS 挑战，需用真实 Chrome 访问
@@ -22,7 +25,7 @@ const REAL_CHROME_PATH =
   '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 
 /** Playwright 用户数据目录（持久 session，避免每次初始化） */
-const USER_DATA_DIR = path.join(os.tmpdir(), 'pw-customs-export-profile');
+const USER_DATA_DIR = path.join(os.tmpdir(), 'pw-china-export-profile');
 
 class ChinaExportExtractor extends BaseDataExtractor {
   /**
@@ -38,7 +41,10 @@ class ChinaExportExtractor extends BaseDataExtractor {
     super(dir, merged);
 
     this.downloadDir = dir;
+    this.listIndexUrl = merged.listIndexUrl || null;
     this.listUrlTemplate = merged.listUrlTemplate;
+    this.listEportalUrlTemplate = merged.listEportalUrlTemplate || null;
+    this.staticPageMax = merged.staticPageMax ?? 5;
     this.pagination = merged.pagination || { startPage: 1, endPage: 2 };
     this.yearRange = merged.yearRange || {};
     /** 链接标题同时包含这些词才算目标 */
@@ -102,9 +108,11 @@ class ChinaExportExtractor extends BaseDataExtractor {
     return null;
   }
 
-  /** 从标题解析年月，用于年份过滤和文件命名 */
+  /** 从标题解析年月（仅单月，如 2026年1月） */
   parsePeriodFromTitle(title) {
-    const m = (title || '').match(/(\d{4})年(\d{1,2})月/);
+    const t = title || '';
+    if (/\d{1,2}至\d{1,2}月/.test(t)) return null;
+    const m = t.match(/(\d{4})年(\d{1,2})月/);
     if (!m) return null;
     const year = Number(m[1]);
     const month = Number(m[2]);
@@ -121,7 +129,33 @@ class ChinaExportExtractor extends BaseDataExtractor {
   }
 
   buildListUrl(pageNum) {
-    return this.listUrlTemplate.replace(/\{page\}/g, String(pageNum));
+    const p = Number(pageNum);
+    if (p === 1 && this.listIndexUrl) return this.listIndexUrl;
+    if (p >= 2 && p <= this.staticPageMax && this.listUrlTemplate) {
+      return this.listUrlTemplate.replace(/\{page\}/g, String(p));
+    }
+    if (this.listEportalUrlTemplate) {
+      return this.listEportalUrlTemplate.replace(/\{page\}/g, String(p));
+    }
+    return this.listUrlTemplate.replace(/\{page\}/g, String(p));
+  }
+
+  /** 列表页 HTML 是否有效（排除 404、WAF 空页） */
+  isValidListHtml(html) {
+    const s = html || '';
+    if (s.length < 1000) return false;
+    if (/404 Not Found/i.test(s)) return false;
+    return true;
+  }
+
+  /** 候选链接中的最大数据年份，用于按年份范围提前停止翻页 */
+  maxCandidateYear(candidates) {
+    let max = null;
+    for (const item of candidates) {
+      const period = this.parsePeriodFromTitle(this.cleanTitle(item.title));
+      if (period && (max == null || period.year > max)) max = period.year;
+    }
+    return max;
   }
 
   // ─── Playwright 浏览器管理 ───────────────────────────────────────────────
@@ -144,6 +178,19 @@ class ChinaExportExtractor extends BaseDataExtractor {
       await this._browser.close().catch(() => {});
       this._browser = null;
     }
+  }
+
+  /**
+   * 获取列表页 HTML；若检测到 WAF 空页则重启浏览器重试一次
+   * @param {string} url
+   */
+  async fetchListHtml(url) {
+    let html = await this.fetchHtmlViaBrowser(url);
+    if (this.isValidListHtml(html)) return html;
+    console.warn('  列表页内容异常（可能 WAF 或 session 失效），重启浏览器重试…');
+    await this.closeBrowser();
+    html = await this.fetchHtmlViaBrowser(url);
+    return html;
   }
 
   /**
@@ -418,10 +465,15 @@ class ChinaExportExtractor extends BaseDataExtractor {
         console.log(`\n列表页 ${page}/${maxPages}: ${listUrl}`)
         let html
         try {
-          html = await this.fetchHtmlViaBrowser(listUrl)
+          html = await this.fetchListHtml(listUrl)
         } catch (e) {
           console.error(`  列表页加载失败: ${e.message}`)
           continue
+        }
+
+        if (!this.isValidListHtml(html)) {
+          console.log('  列表页无效或已到末页，停止翻页')
+          break
         }
 
         const candidates = this.collectDetailLinks(html, listUrl)
@@ -494,6 +546,8 @@ class ChinaExportExtractor extends BaseDataExtractor {
 
     const files = [];
     const seenFileUrls = new Set();
+    const seenDetailUrls = new Set();
+    const minYear = override.minYear ?? this.yearRange.minYear;
 
     try {
       for (let page = start; page <= end; page++) {
@@ -501,16 +555,33 @@ class ChinaExportExtractor extends BaseDataExtractor {
         console.log(`\n列表页 ${page}/${end}: ${listUrl}`);
         let html;
         try {
-          html = await this.fetchHtmlViaBrowser(listUrl);
+          html = await this.fetchListHtml(listUrl);
         } catch (e) {
           console.error(`  列表页加载失败: ${e.message}`);
           continue;
         }
 
+        if (!this.isValidListHtml(html)) {
+          console.log('  列表页无效或已到末页，停止翻页');
+          break;
+        }
+
         const candidates = this.collectDetailLinks(html, listUrl);
         console.log(`  匹配到 ${candidates.length} 条候选链接`);
 
+        if (
+          minYear != null &&
+          candidates.length > 0 &&
+          this.maxCandidateYear(candidates) != null &&
+          this.maxCandidateYear(candidates) < minYear
+        ) {
+          console.log(`  本页数据年份已早于 ${minYear}，停止翻页`);
+          break;
+        }
+
         for (const item of candidates) {
+          if (seenDetailUrls.has(item.detailUrl)) continue;
+          seenDetailUrls.add(item.detailUrl);
           try {
             const r = await this.processDetailPage(item, seenFileUrls);
             if (r && r.file) files.push(r.file);

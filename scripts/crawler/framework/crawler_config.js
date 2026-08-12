@@ -305,16 +305,44 @@ module.exports = {
   },
 
   /**
+   * 海关总署 — 进口主要商品量值表（静态年份目录版）
+   * 页面规律与 customsExport 相同，标题关键词改为进口
+   * 脚本：scripts/crawler/customs_import_main/customs_import_main_crawler.js
+   */
+  customsImportMain: {
+    listUrlTemplate:
+      'http://www.customs.gov.cn/customs/302249/zfxxgk/fdzdgknr/302274/302277/{path}/index.html',
+    delayBetweenRequests: 1500,
+    maxRetries: 3,
+    timeout: 30000,
+    downloadDirRel: 'customs_import_main',
+    yearRange: {
+      startYear: new Date().getFullYear(),
+      endYear: new Date().getFullYear(),
+    },
+    titleKeywords: ['进口', '商品', '量值'],
+    excludeKeywords: ['美元值', '美元', '贸易方式', '部分出口商品', '部分进口商品', '出口', '重点'],
+  },
+
+  /**
    * 海关总署 — 进口重点商品量值表（人民币值）
    * 列表页：…/302275/9f806879-{page}.html
    * 脚本：scripts/crawler/customs_import/customs_import_crawler.js
    */
   customsImport: {
+    /** 列表第 1 页（静态首页） */
+    listIndexUrl:
+      'http://www.customs.gov.cn/customs/302249/zfxxgk/fdzdgknr/302274/302275/index.html',
+    /** 列表第 2–5 页静态 URL */
     listUrlTemplate:
       'http://www.customs.gov.cn/customs/302249/zfxxgk/fdzdgknr/302274/302275/9f806879-{page}.html',
+    /** 列表第 6 页起由 eportal 动态渲染（9f806879-6.html 会 404） */
+    listEportalUrlTemplate:
+      'http://www.customs.gov.cn/eportal/ui?pageId=302275&currentPage={page}&moduleId=9f806879368d4feabb9644105dcdeba3&staticRequest=yes&aisiteDevice=pc',
+    staticPageMax: 5,
     delayBetweenRequests: 800,
-    afterPageLoadMs: 2000,
-    pageGotoWaitUntil: 'load',
+    afterPageLoadMs: 3000,
+    pageGotoWaitUntil: 'networkidle',
     maxRetries: 3,
     timeout: 30000,
     downloadDirRel: 'customs_import',
@@ -323,6 +351,8 @@ module.exports = {
       endPage: 5,
     },
     maxScanPages: 8,
+    /** 按年份范围全量爬取时的列表页上限（统计快讯共约 254 页） */
+    yearRangeEndPage: 40,
     titleKeywords: ['进口', '重点', '商品', '量值'],
     excludeKeywords: ['美元值', '美元', '贸易方式', '部分出口商品', '部分进口商品', '出口'],
   },
@@ -333,11 +363,16 @@ module.exports = {
    * 脚本：scripts/crawler/china_export/china_export_crawler.js
    */
   chinaExport: {
+    listIndexUrl:
+      'http://www.customs.gov.cn/customs/302249/zfxxgk/fdzdgknr/302274/302275/index.html',
     listUrlTemplate:
       'http://www.customs.gov.cn/customs/302249/zfxxgk/fdzdgknr/302274/302275/9f806879-{page}.html',
+    listEportalUrlTemplate:
+      'http://www.customs.gov.cn/eportal/ui?pageId=302275&currentPage={page}&moduleId=9f806879368d4feabb9644105dcdeba3&staticRequest=yes&aisiteDevice=pc',
+    staticPageMax: 5,
     delayBetweenRequests: 800,
-    afterPageLoadMs: 2000,
-    pageGotoWaitUntil: 'load',
+    afterPageLoadMs: 3000,
+    pageGotoWaitUntil: 'networkidle',
     maxRetries: 3,
     timeout: 30000,
     downloadDirRel: 'china_export',
@@ -351,7 +386,7 @@ module.exports = {
       maxYear: null,
     },
     titleKeywords: ['出口', '重点', '商品', '量值'],
-    excludeKeywords: ['美元值', '美元', '贸易方式', '部分出口商品', '部分进口商品', '进口'],
+    excludeKeywords: ['美元值', '美元', '贸易方式', '部分出口商品', '部分进口商品', '进口', '1至2月'],
   },
 
   /**

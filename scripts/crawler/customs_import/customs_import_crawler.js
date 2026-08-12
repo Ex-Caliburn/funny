@@ -3,14 +3,18 @@
 /**
  * 海关总署 — 进口重点商品量值表（xls）下载
  *
- * 列表页与出口相同（分页）：
- *   http://www.customs.gov.cn/customs/302249/zfxxgk/fdzdgknr/302274/302275/9f806879-{page}.html
+ * 列表页（分页，按发布时间倒序）：
+ *   第 1 页：…/302275/index.html
+ *   第 2–5 页：…/9f806879-{page}.html
+ *   第 6 页起：eportal 动态页（见 crawler_config.customsImport.listEportalUrlTemplate）
  * 保存目录：stock/customs_import/
  *
  * 用法（默认仅抓取最新 1 个月）：
  *   node scripts/crawler/customs_import/customs_import_crawler.js
  *   node scripts/crawler/customs_import/customs_import_crawler.js --recent-months 2
- *   node scripts/crawler/customs_import/customs_import_crawler.js --pages 1-5
+ *   node scripts/crawler/customs_import/customs_import_crawler.js --years 2024-2026
+ *   node scripts/crawler/customs_import/customs_import_crawler.js 2024-2026
+ *   node scripts/crawler/customs_import/customs_import_crawler.js --pages 1-30
  *   node scripts/crawler/customs_import/customs_import_crawler.js --no-skip --no-parse
  */
 
@@ -57,6 +61,9 @@ function parseArgs(argv) {
   let startPage
   let endPage
   let recentMonths = 1
+  let minYear = null
+  let maxYear = null
+  let yearsExplicit = false
   let noSkip = false
   let noParse = false
 
@@ -74,6 +81,45 @@ function parseArgs(argv) {
       recentMonths = Math.max(1, Number(argv[++i]) || 1)
     } else if (/^--recent-months=/.test(a)) {
       recentMonths = Math.max(1, Number(a.split('=')[1]) || 1)
+    } else if (a === '--min-year' && argv[i + 1]) {
+      minYear = parseInt(argv[++i], 10)
+    } else if (/^--min-year=/.test(a)) {
+      minYear = parseInt(a.split('=')[1], 10)
+    } else if (a === '--max-year' && argv[i + 1]) {
+      maxYear = parseInt(argv[++i], 10)
+    } else if (/^--max-year=/.test(a)) {
+      maxYear = parseInt(a.split('=')[1], 10)
+    } else if ((a === '--years' || a === '-y') && argv[i + 1]) {
+      yearsExplicit = true
+      const raw = argv[++i]
+      const m = raw.match(/^(\d{4})-(\d{4})$/)
+      if (m) {
+        minYear = Number(m[1])
+        maxYear = Number(m[2])
+      } else if (/^\d{4}$/.test(raw)) {
+        minYear = Number(raw)
+        maxYear = Number(raw)
+      }
+    } else if (/^--years=/.test(a)) {
+      yearsExplicit = true
+      const raw = a.split('=')[1]
+      const m = raw.match(/^(\d{4})-(\d{4})$/)
+      if (m) {
+        minYear = Number(m[1])
+        maxYear = Number(m[2])
+      } else if (/^\d{4}$/.test(raw)) {
+        minYear = Number(raw)
+        maxYear = Number(raw)
+      }
+    } else if (/^\d{4}-\d{4}$/.test(a)) {
+      yearsExplicit = true
+      const [s, e] = a.split('-').map(Number)
+      minYear = s
+      maxYear = e
+    } else if (/^\d{4}$/.test(a)) {
+      yearsExplicit = true
+      minYear = Number(a)
+      maxYear = Number(a)
     } else if (a === '--no-skip') {
       noSkip = true
     } else if (a === '--no-parse') {
@@ -87,7 +133,18 @@ function parseArgs(argv) {
     }
   }
 
-  return { startPage, endPage, recentMonths, noSkip, noParse }
+  if (yearsExplicit) recentMonths = null
+
+  return {
+    startPage,
+    endPage,
+    recentMonths,
+    minYear: Number.isNaN(minYear) ? null : minYear,
+    maxYear: Number.isNaN(maxYear) ? null : maxYear,
+    yearsExplicit,
+    noSkip,
+    noParse,
+  }
 }
 
 async function main() {
@@ -100,20 +157,30 @@ async function main() {
 
   const extractor = new ChinaExportExtractor(downloadDir, options)
   const usePageRange = parsed.startPage != null && parsed.endPage != null
+  const useYearRange = parsed.minYear != null || parsed.maxYear != null
 
   console.log('海关总署 — 进口重点商品量值表下载')
   if (usePageRange) {
     console.log('分页:', parsed.startPage, '-', parsed.endPage)
+  } else if (useYearRange) {
+    console.log('年份:', parsed.minYear ?? '不限', '-', parsed.maxYear ?? '不限')
   } else {
     console.log(`模式: 最近 ${parsed.recentMonths} 个月`)
   }
 
   let result
-  if (usePageRange) {
-    result = await extractor.crawl({
-      startPage: parsed.startPage,
-      endPage: parsed.endPage,
-    })
+  if (usePageRange || useYearRange) {
+    const override = {}
+    if (usePageRange) {
+      override.startPage = parsed.startPage
+      override.endPage = parsed.endPage
+    } else {
+      override.startPage = cfg.pagination?.startPage ?? 1
+      override.endPage = cfg.yearRangeEndPage ?? cfg.maxScanPages ?? 40
+    }
+    if (parsed.minYear != null) override.minYear = parsed.minYear
+    if (parsed.maxYear != null) override.maxYear = parsed.maxYear
+    result = await extractor.crawl(override)
   } else {
     result = await extractor.crawlRecentMonths(parsed.recentMonths)
   }

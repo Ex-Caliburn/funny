@@ -4,7 +4,9 @@
  * 海关总署 — 出口重点商品量值表（xls）下载
  *
  * 列表页（分页，按发布时间倒序）：
- *   http://www.customs.gov.cn/customs/302249/zfxxgk/fdzdgknr/302274/302275/9f806879-{page}.html
+ *   第 1 页：…/302275/index.html
+ *   第 2–5 页：…/9f806879-{page}.html
+ *   第 6 页起：eportal 动态页（见 crawler_config.chinaExport.listEportalUrlTemplate）
  * 保存目录：stock/china_export/
  *
  * 用法（默认仅抓取最新 1 个月）：

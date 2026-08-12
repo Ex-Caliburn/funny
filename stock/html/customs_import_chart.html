@@ -103,7 +103,7 @@
 <div class="page-header">
   <h2>进口重点商品量值（人民币）- 趋势看板</h2>
 </div>
-<div class="subtitle">数据来源：海关总署统计月报 | 金额单位：万元人民币 | 同比为官方公布当月同比</div>
+<div class="subtitle">数据来源：海关总署统计月报 | 金额单位：万元人民币 | 量值为当月（2月为1-2月累计）| 同比为累计比去年同期</div>
 
 <div class="toolbar">
   <input id="filterInput" placeholder="过滤品类名称…" />
@@ -210,9 +210,10 @@
   /* ══════════════════════════════════════════════════════
      数据转换
      说明：
-       - 同比（yoyAmt/yoyQty）：直接取 JSON 中官方提供的 yoyYtdPercent
-       - 环比（momAmt/momQty）：由相邻月数据计算
-       - 单价（unitPrice）：当月金额 / 当月数量
+       - 量值：3月起取当月(N月)；2月取 1至2月累计（JSON currentMonth）
+       - 同比（yoyAmt/yoyQty）：官方「累计比去年同期±%」
+       - 环比（momAmt/momQty）：由相邻月 currentMonth 计算
+       - 单价（unitPrice）：当期金额 / 当期数量
   ════════════════════════════════════════════════════════ */
   function buildCommodities(json) {
     var result = {};

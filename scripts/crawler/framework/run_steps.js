@@ -41,11 +41,21 @@ const PRESETS = {
     },
     { label: '澳门博彩', command: 'npm', args: ['run', 'crawl:macau-gaming'] },
     { label: '铝价', command: 'npm', args: ['run', 'crawl:aluminum'] },
-    { label: '中国出口', command: 'npm', args: ['run', 'crawl:china-export:all'] },
+    { label: '中国重点出口', command: 'npm', args: ['run', 'crawl:china-export:all'] },
     {
-      label: '海关重点商品出口',
+      label: '海关主要商品出口',
       command: 'npm',
       args: ['run', 'crawl:customs-export:all'],
+    },
+    {
+      label: '海关主要商品进口',
+      command: 'npm',
+      args: ['run', 'crawl:customs-import-main:all'],
+    },
+    {
+      label: '海关重点商品进口',
+      command: 'npm',
+      args: ['run', 'crawl:customs-import:all'],
     },
     { label: 'SMM金属', command: 'npm', args: ['run', 'crawl:smm'] },
     { label: '磷化工', command: 'npm', args: ['run', 'crawl:phosphorus-chemical'] },
