@@ -178,11 +178,7 @@
     if (ceShowOnlyFav) renderGrid();
   });
 
-  /* ── 调色板 ── */
-  var PALETTE = ['#ef4444','#3b82f6','#10b981','#f59e0b','#8b5cf6','#06b6d4','#f97316','#84cc16'];
-  /* 同比线与年份翠绿（如 #10b981）区分，不用绿色系 */
-  var COLOR_YOY = '#e879f9';
-  var COLOR_MOM = '#f59e0b';
+  /* ── 调色板（与 goods_price / retail 等一致，见 chart_tooltip_helpers.js） ── */
 
   /* ── 千分位格式化 ── */
   function fmtNum(v) {
@@ -359,7 +355,7 @@
       if (!showHist && y !== latestYear) return;
       var arr = com.years[y];
       var isLatest = (y === latestYear);
-      var color = PALETTE[idx % PALETTE.length];
+      var color = getYearLineColorByIndex(years.indexOf(y));
 
       /* 绝对值曲线（始终显示） */
       var vals = makeNullArr();
@@ -368,35 +364,20 @@
         if (v != null && valueScale !== 1) v = +(v * valueScale).toFixed(4);
         vals[monthIdx(d.month)] = v;
       });
-      series.push({
-        name: y + '年', type: 'line', yAxisIndex: 0, emphasis: { focus: 'series', lineStyle: { width: 3 }, itemStyle: { borderColor: '#fff', borderWidth: 1 } }, blur: { lineStyle: { opacity: 0.12 }, itemStyle: { opacity: 0.12 } }, data: vals,
-        smooth: true, symbol: 'circle', symbolSize: isLatest ? 5 : 4,
-        lineStyle: { color: color, width: isLatest ? 2.5 : 1.8 },
-        itemStyle: { color: color }
-      });
+      series.push(buildYearValueSeries(y, vals, color, isLatest));
 
       if (isLatest) {
         /* 同比（当月跨年对比） */
         if (showYoy) {
           var yoys = makeNullArr();
           arr.forEach(function (d) { yoys[monthIdx(d.month)] = d[yoyKey]; });
-          series.push({
-            name: '同比%', type: 'line', yAxisIndex: 1, emphasis: { focus: 'series', lineStyle: { width: 3 }, itemStyle: { borderColor: '#fff', borderWidth: 1 } }, blur: { lineStyle: { opacity: 0.12 }, itemStyle: { opacity: 0.12 } }, data: yoys,
-            smooth: true, symbol: 'diamond', symbolSize: 4,
-            lineStyle: { color: COLOR_YOY, width: 2, type: 'solid' },
-            itemStyle: { color: COLOR_YOY }
-          });
+          series.push(buildYoySeries(y, yoys));
         }
         /* 环比 */
         if (showMom) {
           var moms = makeNullArr();
           arr.forEach(function (d) { moms[monthIdx(d.month)] = d[momKey]; });
-          series.push({
-            name: '环比%', type: 'line', yAxisIndex: 1, emphasis: { focus: 'series', lineStyle: { width: 3 }, itemStyle: { borderColor: '#fff', borderWidth: 1 } }, blur: { lineStyle: { opacity: 0.12 }, itemStyle: { opacity: 0.12 } }, data: moms,
-            smooth: true, symbol: 'triangle', symbolSize: 4,
-            lineStyle: { color: COLOR_MOM, width: 2, type: 'dashed' },
-            itemStyle: { color: COLOR_MOM }
-          });
+          series.push(buildMomSeries(y, moms));
         }
       }
     });
@@ -445,7 +426,7 @@
           var s = ps[0].axisValue + '<br/>';
           ps.forEach(function (p) {
             if (p.value == null) return;
-            var isRate = p.seriesName.indexOf('%') > -1;
+            var isRate = isRateSeriesName(p.seriesName);
             s += p.marker + p.seriesName + ': ' + (typeof p.value === 'number' ? fmtNum(p.value) : p.value)
               + (isRate ? '%' : (unit ? ' ' + unit : '')) + '<br/>';
           });

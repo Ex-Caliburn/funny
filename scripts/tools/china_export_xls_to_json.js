@@ -67,7 +67,10 @@ function normalizeMonthLabel(rawLabel, month) {
  */
 function parsePeriodFromTitle(title) {
   if (!title || typeof title !== 'string') return {};
-  const m = title.match(/(\d{4})年(\d{1,2})月/);
+  // 「2024年1至2月」独立月报 → 归到 2 月（海关不单独发 1 月）
+  let m = title.match(/(\d{4})年1至(\d{1,2})月/);
+  if (m) return { year: Number(m[1]), month: Number(m[2]) };
+  m = title.match(/(\d{4})年(\d{1,2})月/);
   if (!m) return {};
   return { year: Number(m[1]), month: Number(m[2]) };
 }
@@ -147,7 +150,7 @@ function detectLayout(rows) {
   for (let i = header1Row - 1; i >= 0; i--) {
     const rowText = (rows[i] || []).filter(Boolean).join('');
     if (unitRow < 0 && /单位[∶:]/.test(rowText)) unitRow = i;
-    if (titleRow < 0 && /\d{4}年\d{1,2}月/.test(rowText)) titleRow = i;
+    if (titleRow < 0 && /\d{4}年(\d{1,2}|1至\d{1,2})月/.test(rowText)) titleRow = i;
   }
 
   const dataStart = header1Row + 2; // header1 + header2 行各占一行

@@ -55,6 +55,16 @@ function applyKeyImportMonthRules(entry) {
   const { period } = entry
   if (!period || period.month !== 2) return entry
 
+  // 「N年1至2月」独立报表：累计列已在 currentMonth，勿用 ytd 覆盖
+  const title = entry.title || ''
+  if (/1至2月/.test(title)) {
+    entry.monthLabel = normalizeMonthLabel(null, 2)
+    if (entry.columnSemantics) {
+      entry.columnSemantics.currentMonth = `当期（${entry.monthLabel}）数量/金额`
+    }
+    return entry
+  }
+
   entry.items = entry.items.map((item) => ({
     ...item,
     currentMonth: item.ytdCurrentYear
