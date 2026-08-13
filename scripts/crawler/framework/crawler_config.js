@@ -358,7 +358,25 @@ module.exports = {
   },
 
   /**
-   * 海关总署 — 出口重点商品量值表（人民币值）
+   * 海关总署 — 进出口商品国别（地区）总值表（静态年份目录版）
+   * 脚本：scripts/crawler/customs_country/customs_country_crawler.js
+   */
+  customsCountry: {
+    listUrlTemplate:
+      'http://www.customs.gov.cn/customs/302249/zfxxgk/fdzdgknr/302274/302277/{path}/index.html',
+    delayBetweenRequests: 1500,
+    maxRetries: 3,
+    timeout: 30000,
+    downloadDirRel: 'customs_country',
+    yearRange: {
+      startYear: new Date().getFullYear(),
+      endYear: new Date().getFullYear(),
+    },
+    titleKeywords: ['进出口', '国别', '总值'],
+    excludeKeywords: ['美元值', '美元', '部分国家', '特定地区', '类章', '贸易方式'],
+  },
+
+  /**
    * 列表分页：…/302275/9f806879-{page}.html（按发布时间倒序，需翻页找最新月）
    * 脚本：scripts/crawler/china_export/china_export_crawler.js
    */
