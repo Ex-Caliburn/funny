@@ -1,0 +1,237 @@
+{
+  "title": "澳门入境旅客",
+  "unit": "人次",
+  "source": "https://www.dsec.gov.mo/ts/#!/step2/KeyIndicator/zh-MO/243",
+  "months": [
+    {
+      "month": "一月",
+      "monthIndex": 1,
+      "years": {
+        "2024": {
+          "monthly": 2861609,
+          "cumulative": 2861609
+        },
+        "2025": {
+          "monthly": 3646561,
+          "cumulative": 3646561,
+          "monthlyYoy": "+27.4%",
+          "cumulativeYoy": "+27.4%"
+        },
+        "2026": {
+          "monthly": 3647328,
+          "cumulative": 3647328,
+          "monthlyYoy": "+0.0%",
+          "cumulativeYoy": "+0.0%"
+        }
+      }
+    },
+    {
+      "month": "二月",
+      "monthIndex": 2,
+      "years": {
+        "2024": {
+          "monthly": 3293564,
+          "cumulative": 6155173
+        },
+        "2025": {
+          "monthly": 3147184,
+          "cumulative": 6793745,
+          "monthlyYoy": "-4.4%",
+          "cumulativeYoy": "+10.4%"
+        },
+        "2026": {
+          "monthly": 4172940,
+          "cumulative": 7820268,
+          "monthlyYoy": "+32.6%",
+          "cumulativeYoy": "+15.1%"
+        }
+      }
+    },
+    {
+      "month": "三月",
+      "monthIndex": 3,
+      "years": {
+        "2024": {
+          "monthly": 2720584,
+          "cumulative": 8875757
+        },
+        "2025": {
+          "monthly": 3068920,
+          "cumulative": 9862665,
+          "monthlyYoy": "+12.8%",
+          "cumulativeYoy": "+11.1%"
+        },
+        "2026": {
+          "monthly": 3393636,
+          "cumulative": 11213904,
+          "monthlyYoy": "+10.6%",
+          "cumulativeYoy": "+13.7%"
+        }
+      }
+    },
+    {
+      "month": "四月",
+      "monthIndex": 4,
+      "years": {
+        "2024": {
+          "monthly": 2600717,
+          "cumulative": 11476474
+        },
+        "2025": {
+          "monthly": 3092791,
+          "cumulative": 12955456,
+          "monthlyYoy": "+18.9%",
+          "cumulativeYoy": "+12.9%"
+        },
+        "2026": {
+          "monthly": 3441396,
+          "cumulative": 14655300,
+          "monthlyYoy": "+11.3%",
+          "cumulativeYoy": "+13.1%"
+        }
+      }
+    },
+    {
+      "month": "五月",
+      "monthIndex": 5,
+      "years": {
+        "2024": {
+          "monthly": 2692191,
+          "cumulative": 14168665
+        },
+        "2025": {
+          "monthly": 3372081,
+          "cumulative": 16327537,
+          "monthlyYoy": "+25.3%",
+          "cumulativeYoy": "+15.2%"
+        },
+        "2026": {
+          "monthly": 3487994,
+          "cumulative": 18143294,
+          "monthlyYoy": "+3.4%",
+          "cumulativeYoy": "+11.1%"
+        }
+      }
+    },
+    {
+      "month": "六月",
+      "monthIndex": 6,
+      "years": {
+        "2024": {
+          "monthly": 2551318,
+          "cumulative": 16719983
+        },
+        "2025": {
+          "monthly": 2891003,
+          "cumulative": 19218540,
+          "monthlyYoy": "+13.3%",
+          "cumulativeYoy": "+14.9%"
+        },
+        "2026": {
+          "monthly": 2801152,
+          "cumulative": 20944446,
+          "monthlyYoy": "-3.1%",
+          "cumulativeYoy": "+9.0%"
+        }
+      }
+    },
+    {
+      "month": "七月",
+      "monthIndex": 7,
+      "years": {
+        "2024": {
+          "monthly": 3021189,
+          "cumulative": 19741172
+        },
+        "2025": {
+          "monthly": 3458366,
+          "cumulative": 22676906,
+          "monthlyYoy": "+14.5%",
+          "cumulativeYoy": "+14.9%"
+        }
+      }
+    },
+    {
+      "month": "八月",
+      "monthIndex": 8,
+      "years": {
+        "2024": {
+          "monthly": 3651731,
+          "cumulative": 23392903
+        },
+        "2025": {
+          "monthly": 4219034,
+          "cumulative": 26895940,
+          "monthlyYoy": "+15.5%",
+          "cumulativeYoy": "+15.0%"
+        }
+      }
+    },
+    {
+      "month": "九月",
+      "monthIndex": 9,
+      "years": {
+        "2024": {
+          "monthly": 2528011,
+          "cumulative": 25920914
+        },
+        "2025": {
+          "monthly": 2775130,
+          "cumulative": 29671070,
+          "monthlyYoy": "+9.8%",
+          "cumulativeYoy": "+14.5%"
+        }
+      }
+    },
+    {
+      "month": "十月",
+      "monthIndex": 10,
+      "years": {
+        "2024": {
+          "monthly": 3135358,
+          "cumulative": 29056272
+        },
+        "2025": {
+          "monthly": 3472477,
+          "cumulative": 33143547,
+          "monthlyYoy": "+10.8%",
+          "cumulativeYoy": "+14.1%"
+        }
+      }
+    },
+    {
+      "month": "十一月",
+      "monthIndex": 11,
+      "years": {
+        "2024": {
+          "monthly": 2832041,
+          "cumulative": 31888313
+        },
+        "2025": {
+          "monthly": 3345683,
+          "cumulative": 36489230,
+          "monthlyYoy": "+18.1%",
+          "cumulativeYoy": "+14.4%"
+        }
+      }
+    },
+    {
+      "month": "十二月",
+      "monthIndex": 12,
+      "years": {
+        "2024": {
+          "monthly": 3040337,
+          "cumulative": 34928650
+        },
+        "2025": {
+          "monthly": 3580130,
+          "cumulative": 40069360,
+          "monthlyYoy": "+17.8%",
+          "cumulativeYoy": "+14.7%"
+        }
+      }
+    }
+  ],
+  "indicatorId": 243,
+  "updatedAt": "2026-08-13T14:37:20.338Z"
+}

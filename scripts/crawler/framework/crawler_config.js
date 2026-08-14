@@ -465,6 +465,49 @@ module.exports = {
     },
   },
 
+  // 澳门统计暨普查局（DSEC）入境旅客
+  macauTourism: {
+    sourceUrl: 'https://www.dsec.gov.mo/ts/#!/step2/KeyIndicator/zh-MO/243',
+    apiUrl:
+      'https://www.dsec.gov.mo/TimeSeriesApi/App/KeyIndicatorv3/1/zh-MO/{keyIndicatorId}',
+    keyIndicatorId: 243,
+    defaultYears: [2024, 2025, 2026],
+    delayBetweenRequests: 2000,
+    maxRetries: 3,
+    timeout: 30000,
+    dataDir: 'macau_gaming',
+    dataFile: 'monthly_visitor_arrivals.json',
+    monthNames: [
+      '一月',
+      '二月',
+      '三月',
+      '四月',
+      '五月',
+      '六月',
+      '七月',
+      '八月',
+      '九月',
+      '十月',
+      '十一月',
+      '十二月',
+    ],
+  },
+
+  // 澳门统计暨普查局（DSEC）旅客人均消费（季度）
+  macauSpending: {
+    sourceUrl: 'https://www.dsec.gov.mo/ts/#!/step2/KeyIndicator/zh-MO/191',
+    apiUrl:
+      'https://www.dsec.gov.mo/TimeSeriesApi/App/KeyIndicatorv3/1/zh-MO/{keyIndicatorId}',
+    keyIndicatorId: 191,
+    defaultYears: [2024, 2025, 2026],
+    delayBetweenRequests: 2000,
+    maxRetries: 3,
+    timeout: 30000,
+    dataDir: 'macau_gaming',
+    dataFile: 'quarterly_visitor_spending.json',
+    quarterNames: ['第1季', '第2季', '第3季', '第4季'],
+  },
+
   // 澳门博彩监察协调局（DICJ）每月幸运博彩毛收入
   macauGaming: {
     // 基础 URL，{year} 替换为实际年份

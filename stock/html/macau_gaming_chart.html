@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>澳门博彩毛收入 - 趋势看板</title>
+  <title>澳门 · 博彩 & 旅游 & 消费 - 趋势看板</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -12,9 +12,27 @@
       color: #dbe0ea;
       padding: 16px 20px;
     }
-    .top-bar { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; flex-wrap: wrap; }
-    h2 { font-size: 18px; font-weight: 600; color: #e8edff; }
+    .top-bar { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; flex-wrap: wrap; }
+    h2 { font-size: 18px; font-weight: 600; color: #e8edff; white-space: nowrap; }
     .subtitle { font-size: 11px; color: #475569; margin-left: auto; }
+
+    .main-tab-bar {
+      display: inline-flex; background: #111827;
+      border: 1px solid #1f2937;
+      border-radius: 12px; padding: 4px; gap: 2px;
+      flex-shrink: 0;
+    }
+    .main-tab-btn {
+      padding: 8px 18px; border: none; border-radius: 8px;
+      background: transparent; color: #94a3b8;
+      font-size: 14px; font-weight: 600; cursor: pointer;
+      transition: all 0.18s; white-space: nowrap;
+    }
+    .main-tab-btn.active { background: #2563eb; color: #fff; box-shadow: 0 2px 10px rgba(37,99,235,0.35); }
+    .main-tab-btn:hover:not(.active) { background: #1f2937; color: #e2e8f0; }
+
+    .dataset-wrap { display: none; }
+    .dataset-wrap.active { display: block; }
 
     .tab-bar {
       display: inline-flex; background: #1e293b;
@@ -53,30 +71,111 @@
 <body>
 
 <div class="top-bar">
-  <h2>澳门 · 每月幸运博彩毛收入</h2>
-  <span class="subtitle">月度数据；单位：百万澳门元；来源：澳门博彩监察协调局（DICJ）</span>
+  <h2 id="page-title">澳门 · 每月幸运博彩毛收入</h2>
+  <div class="main-tab-bar" id="main-tab-bar" role="tablist">
+    <button type="button" class="main-tab-btn active" data-dataset="gaming">博彩毛收入</button>
+    <button type="button" class="main-tab-btn" data-dataset="tourism">入境旅客</button>
+    <button type="button" class="main-tab-btn" data-dataset="spending">人均消费</button>
+  </div>
+  <span class="subtitle" id="page-subtitle">月度数据；单位：百万澳门元；来源：澳门博彩监察协调局（DICJ）</span>
 </div>
 
-<div class="tab-bar" id="tab-bar" role="tablist">
-  <button type="button" class="tab-btn active" data-key="monthly">月度毛收入</button>
-  <button type="button" class="tab-btn" data-key="cumulative">累计毛收入</button>
+<div id="dataset-gaming" class="dataset-wrap active">
+  <div class="tab-bar" data-dataset="gaming" role="tablist">
+    <button type="button" class="tab-btn active" data-key="monthly">月度毛收入</button>
+    <button type="button" class="tab-btn" data-key="cumulative">累计毛收入</button>
+  </div>
+  <div id="panel-gaming-monthly" class="panel active">
+    <div class="stat-bar" id="stats-gaming-monthly"></div>
+    <div id="chart-gaming-monthly" class="chart-wrap"></div>
+  </div>
+  <div id="panel-gaming-cumulative" class="panel">
+    <div class="stat-bar" id="stats-gaming-cumulative"></div>
+    <div id="chart-gaming-cumulative" class="chart-wrap"></div>
+  </div>
 </div>
 
-<div id="panel-monthly" class="panel active">
-  <div class="stat-bar" id="stats-monthly"></div>
-  <div id="chart-monthly" class="chart-wrap"></div>
+<div id="dataset-tourism" class="dataset-wrap">
+  <div class="tab-bar" data-dataset="tourism" role="tablist">
+    <button type="button" class="tab-btn active" data-key="monthly">月度入境</button>
+    <button type="button" class="tab-btn" data-key="cumulative">累计入境</button>
+  </div>
+  <div id="panel-tourism-monthly" class="panel active">
+    <div class="stat-bar" id="stats-tourism-monthly"></div>
+    <div id="chart-tourism-monthly" class="chart-wrap"></div>
+  </div>
+  <div id="panel-tourism-cumulative" class="panel">
+    <div class="stat-bar" id="stats-tourism-cumulative"></div>
+    <div id="chart-tourism-cumulative" class="chart-wrap"></div>
+  </div>
 </div>
 
-<div id="panel-cumulative" class="panel">
-  <div class="stat-bar" id="stats-cumulative"></div>
-  <div id="chart-cumulative" class="chart-wrap"></div>
+<div id="dataset-spending" class="dataset-wrap">
+  <div class="tab-bar" data-dataset="spending" role="tablist">
+    <button type="button" class="tab-btn active" data-key="monthly">季度人均</button>
+    <button type="button" class="tab-btn" data-key="cumulative">累计人均</button>
+  </div>
+  <div id="panel-spending-monthly" class="panel active">
+    <div class="stat-bar" id="stats-spending-monthly"></div>
+    <div id="chart-spending-monthly" class="chart-wrap"></div>
+  </div>
+  <div id="panel-spending-cumulative" class="panel">
+    <div class="stat-bar" id="stats-spending-cumulative"></div>
+    <div id="chart-spending-cumulative" class="chart-wrap"></div>
+  </div>
 </div>
 
 <script src="../vendor/echarts.min.js"></script>
   <script src="chart_tooltip_helpers.js"></script>
 <script>
 // ── 配置 ──────────────────────────────────────────────────────────────
-var DATA_FILE = '../macau_gaming/monthly_gross_revenue.json';
+var DATASETS = {
+  gaming: {
+    title: '澳门 · 每月幸运博彩毛收入',
+    subtitle: '月度数据；单位：百万澳门元；来源：澳门博彩监察协调局（DICJ）',
+    dataFile: '../macau_gaming/monthly_gross_revenue.json',
+    unit: '百万澳门元',
+    unitShort: '百万',
+    monthlyLabel: '最新月收入',
+    cumulativeLabelPrefix: '累计',
+    periodCount: 12,
+    periodLabels: ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'],
+    periodSuffix: '月',
+    momLabel: '环比',
+    momSub: '较上月'
+  },
+  tourism: {
+    title: '澳门 · 入境旅客',
+    subtitle: '月度数据；单位：人次；来源：澳门统计暨普查局（DSEC）',
+    dataFile: '../macau_gaming/monthly_visitor_arrivals.json',
+    unit: '人次',
+    unitShort: '人次',
+    monthlyLabel: '最新月入境',
+    cumulativeLabelPrefix: '累计入境',
+    periodCount: 12,
+    periodLabels: ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'],
+    periodSuffix: '月',
+    momLabel: '环比',
+    momSub: '较上月'
+  },
+  spending: {
+    title: '澳门 · 旅客人均消费',
+    subtitle: '季度数据；单位：澳门元；来源：澳门统计暨普查局（DSEC）',
+    dataFile: '../macau_gaming/quarterly_visitor_spending.json',
+    unit: '澳门元',
+    unitShort: '澳门元',
+    monthlyLabel: '最新季度人均',
+    cumulativeLabelPrefix: '年均',
+    periodCount: 4,
+    periodLabels: ['第1季','第2季','第3季','第4季'],
+    periodSuffix: '季',
+    momLabel: '季环比',
+    momSub: '较上季'
+  }
+};
+
+var activeDataset = 'gaming';
+var activeSubTab = { gaming: 'monthly', tourism: 'monthly', spending: 'monthly' };
 
 // 与 goods_price_chart 总表一致：年份按序轮换色；同比/环比与单指标视图一致
 var YEAR_LINE_COLORS = ['#ef4444', '#3b82f6', '#10b981', '#8b5cf6', '#06b6d4'];
@@ -86,7 +185,13 @@ var MOM_COLOR = '#f59e0b';
 var MONTH_LABELS = ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
 
 var charts = {};
-var globalData = null;  // 缓存已加载数据
+var cachedData = { gaming: null, tourism: null, spending: null };
+
+function dsConfig() { return DATASETS[activeDataset]; }
+function panelKey(subKey) { return activeDataset + '-' + subKey; }
+function getPeriodLabels() { return dsConfig().periodLabels || MONTH_LABELS; }
+function getPeriodCount() { return dsConfig().periodCount || 12; }
+function getPeriods(data) { return data.months; }
 
 // ── 数据预处理 ────────────────────────────────────────────────────────
 /**
@@ -97,25 +202,25 @@ var globalData = null;  // 缓存已加载数据
  *   series[year] = [null|number, ...] 12 个月数值
  *   yoy[year]    = [null|number, ...] 12 个月同比（%数字）
  */
-function processData(months, field) {
+function processData(periods, field) {
+  var periodCount = getPeriodCount();
   var allYears = new Set();
-  months.forEach(function(m) {
+  periods.forEach(function(m) {
     Object.keys(m.years || {}).forEach(function(y) { allYears.add(y); });
   });
   var years = Array.from(allYears).sort();
 
   var series = {}, yoy = {};
   years.forEach(function(y) {
-    series[y] = new Array(12).fill(null);
-    yoy[y]    = new Array(12).fill(null);
+    series[y] = new Array(periodCount).fill(null);
+    yoy[y]    = new Array(periodCount).fill(null);
   });
 
-  months.forEach(function(m) {
+  periods.forEach(function(m) {
     var idx = m.monthIndex - 1;
     Object.keys(m.years || {}).forEach(function(y) {
       var d = m.years[y];
       series[y][idx] = d[field] != null ? d[field] : null;
-      // 同比字符串转数字，如 "+24.0%" → 24.0
       var yoyKey = field === 'monthly' ? 'monthlyYoy' : 'cumulativeYoy';
       if (d[yoyKey]) {
         var n = parseFloat(String(d[yoyKey]).replace('%', ''));
@@ -128,41 +233,55 @@ function processData(months, field) {
 }
 
 // ── 统计卡片 ──────────────────────────────────────────────────────────
-function renderStats(panelKey, months, field) {
-  var pd = processData(months, field);
+function renderStats(subKey, periods, field) {
+  var cfg = dsConfig();
+  var periodCount = getPeriodCount();
+  var pd = processData(periods, field);
   var years = pd.years;
   var latestYear = years[years.length - 1];
+  var statsId = 'stats-' + panelKey(subKey);
 
-  // 最新有数据的月份
-  var latestMonthIdx = -1;
-  for (var i = 11; i >= 0; i--) {
-    if (pd.series[latestYear][i] != null) { latestMonthIdx = i; break; }
+  var latestPeriodIdx = -1;
+  for (var i = periodCount - 1; i >= 0; i--) {
+    if (pd.series[latestYear][i] != null) { latestPeriodIdx = i; break; }
   }
-  if (latestMonthIdx < 0) return;
+  if (latestPeriodIdx < 0) return;
 
-  var latestVal = pd.series[latestYear][latestMonthIdx];
-  var latestYoy = pd.yoy[latestYear][latestMonthIdx];
+  var latestVal = pd.series[latestYear][latestPeriodIdx];
+  var latestYoy = pd.yoy[latestYear][latestPeriodIdx];
 
-  // 环比（与上月比）
   var momVal = null, momStr = '-';
-  if (latestMonthIdx > 0 && pd.series[latestYear][latestMonthIdx - 1] != null) {
-    var prevMonthVal = pd.series[latestYear][latestMonthIdx - 1];
-    momVal = +((latestVal - prevMonthVal) / prevMonthVal * 100).toFixed(1);
+  if (latestPeriodIdx > 0 && pd.series[latestYear][latestPeriodIdx - 1] != null) {
+    var prevPeriodVal = pd.series[latestYear][latestPeriodIdx - 1];
+    momVal = +((latestVal - prevPeriodVal) / prevPeriodVal * 100).toFixed(1);
     momStr = (momVal > 0 ? '+' : '') + momVal + '%';
   }
 
-  // 累计全年（截至最新月）
   var cumSum = 0;
-  for (var j = 0; j <= latestMonthIdx; j++) {
+  for (var j = 0; j <= latestPeriodIdx; j++) {
     if (pd.series[latestYear][j] != null) cumSum += pd.series[latestYear][j];
   }
+  if (cfg.periodCount === 4) {
+    var cnt = 0, sum = 0;
+    for (var c = 0; c <= latestPeriodIdx; c++) {
+      if (pd.series[latestYear][c] != null) { sum += pd.series[latestYear][c]; cnt++; }
+    }
+    cumSum = cnt > 0 ? Math.round(sum / cnt) : 0;
+  }
 
-  // 上年同期累计
   var prevYear = years.length >= 2 ? years[years.length - 2] : null;
   var prevCumSum = 0;
   if (prevYear) {
-    for (var k = 0; k <= latestMonthIdx; k++) {
-      if (pd.series[prevYear][k] != null) prevCumSum += pd.series[prevYear][k];
+    if (cfg.periodCount === 4) {
+      var pcnt = 0, psum = 0;
+      for (var pk = 0; pk <= latestPeriodIdx; pk++) {
+        if (pd.series[prevYear][pk] != null) { psum += pd.series[prevYear][pk]; pcnt++; }
+      }
+      prevCumSum = pcnt > 0 ? Math.round(psum / pcnt) : 0;
+    } else {
+      for (var k = 0; k <= latestPeriodIdx; k++) {
+        if (pd.series[prevYear][k] != null) prevCumSum += pd.series[prevYear][k];
+      }
     }
   }
   var cumYoyVal = prevCumSum > 0 ? +((cumSum - prevCumSum) / prevCumSum * 100).toFixed(1) : null;
@@ -178,20 +297,32 @@ function renderStats(panelKey, months, field) {
   }
 
   var yoyStr = latestYoy != null ? (latestYoy > 0 ? '+' : '') + latestYoy + '%' : '-';
-  var monthLabel = (latestMonthIdx + 1) + '月';
+  var periodLabel = getPeriodLabels()[latestPeriodIdx];
+  var isFullYear = latestPeriodIdx + 1 === periodCount;
+  var cumLabel = isFullYear
+    ? (cfg.periodCount === 4 ? '全年均值' : '全年累计')
+    : cfg.cumulativeLabelPrefix + '（1-' + periodLabel + '）';
 
-  document.getElementById('stats-' + panelKey).innerHTML =
-    card('最新月收入', latestYear + '年 ' + monthLabel, latestVal.toLocaleString(), null) +
-    card('环比', '较上月', momStr, momVal) +
+  if (field === 'cumulative') {
+    document.getElementById(statsId).innerHTML =
+      card(cumLabel, latestYear + '年', latestVal.toLocaleString(), null) +
+      card('累计同比', '较' + (prevYear || '-') + '年同期', yoyStr, latestYoy);
+    return;
+  }
+
+  document.getElementById(statsId).innerHTML =
+    card(cfg.monthlyLabel, latestYear + '年 ' + periodLabel, latestVal.toLocaleString(), null) +
+    card(cfg.momLabel, cfg.momSub, momStr, momVal) +
     card('同比', '较' + (prevYear || '-') + '年同期', yoyStr, latestYoy) +
-    card(latestMonthIdx + 1 === 12 ? '全年累计' : '累计（1-' + (latestMonthIdx + 1) + '月）',
-        latestYear + '年', cumSum.toLocaleString(), null) +
+    card(cumLabel, latestYear + '年', cumSum.toLocaleString(), null) +
     card('累计同比', '较' + (prevYear || '-') + '年同期', cumYoyStr, cumYoyVal);
 }
 
 // ── ECharts option ────────────────────────────────────────────────────
-function buildOption(months, field) {
-  var pd = processData(months, field);
+function buildOption(periods, field) {
+  var cfg = dsConfig();
+  var periodLabels = getPeriodLabels();
+  var pd = processData(periods, field);
   var years = pd.years;
   var latestYear = years[years.length - 1];
 
@@ -217,29 +348,31 @@ function buildOption(months, field) {
     });
   });
 
-  // 最新年份环比折线（右轴，月度）
-  var momPts = pd.series[latestYear].map(function(v, i) {
-    if (v == null || i === 0 || pd.series[latestYear][i - 1] == null) return null;
-    return +((v - pd.series[latestYear][i - 1]) / pd.series[latestYear][i - 1] * 100).toFixed(1);
-  });
-  series.push({
-    name: latestYear + '年环比%',
-    type: 'line',
-    yAxisIndex: 1,
-    data: momPts,
-    smooth: true,
-    symbol: 'triangle',
-    symbolSize: 6,
-    connectNulls: false,
-    lineStyle: { color: MOM_COLOR, width: 2, type: 'dashed' },
-    itemStyle: { color: MOM_COLOR },
-    markLine: {
-      silent: true,
-      lineStyle: { color: '#334155', type: 'solid', width: 1 },
-      data: [{ yAxis: 0 }],
-      label: { show: false }
-    }
-  });
+  // 最新年份环比折线（右轴，仅月度视图）
+  if (field === 'monthly') {
+    var momPts = pd.series[latestYear].map(function(v, i) {
+      if (v == null || i === 0 || pd.series[latestYear][i - 1] == null) return null;
+      return +((v - pd.series[latestYear][i - 1]) / pd.series[latestYear][i - 1] * 100).toFixed(1);
+    });
+    series.push({
+      name: latestYear + '年环比%',
+      type: 'line',
+      yAxisIndex: 1,
+      data: momPts,
+      smooth: true,
+      symbol: 'triangle',
+      symbolSize: 6,
+      connectNulls: false,
+      lineStyle: { color: MOM_COLOR, width: 2, type: 'dashed' },
+      itemStyle: { color: MOM_COLOR },
+      markLine: {
+        silent: true,
+        lineStyle: { color: '#334155', type: 'solid', width: 1 },
+        data: [{ yAxis: 0 }],
+        label: { show: false }
+      }
+    });
+  }
 
   // 最新年份同比折线（右轴）
   series.push({
@@ -265,14 +398,14 @@ function buildOption(months, field) {
       borderColor: '#1f2937',
       textStyle: { color: '#e2e8f0', fontSize: 12 },
       formatter: function(params) {
-        var monthIdx = params[0] && params[0].dataIndex != null ? params[0].dataIndex : -1;
-        var html = '<b>' + (monthIdx >= 0 ? MONTH_LABELS[monthIdx] : '') + '</b><br/>';
+        var periodIdx = params[0] && params[0].dataIndex != null ? params[0].dataIndex : -1;
+        var html = '<b>' + (periodIdx >= 0 ? periodLabels[periodIdx] : '') + '</b><br/>';
         params.forEach(function(p) {
           if (p.value == null) return;
           var isRate = p.seriesName.indexOf('%') > -1;
           html += (p.marker || '<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:' + p.color + ';margin-right:5px;"></span>')
             + p.seriesName + ': <b>'
-            + (isRate ? (p.value > 0 ? '+' : '') + p.value + '%' : p.value.toLocaleString() + ' 百万')
+            + (isRate ? (p.value > 0 ? '+' : '') + p.value + '%' : p.value.toLocaleString() + ' ' + cfg.unitShort)
             + '</b><br/>';
         });
         return html;
@@ -287,7 +420,7 @@ function buildOption(months, field) {
     grid: { left: 72, right: 72, top: 46, bottom: 50 },
     xAxis: {
       type: 'category',
-      data: MONTH_LABELS,
+      data: periodLabels,
       axisLabel: { color: '#9aa4b2', fontSize: 12 },
       axisLine: { lineStyle: { color: '#334155' } },
       axisTick: { show: false },
@@ -296,18 +429,26 @@ function buildOption(months, field) {
     yAxis: [
       {
         type: 'value',
-        name: '百万澳门元',
+        name: cfg.unit,
         position: 'left',
         nameTextStyle: { color: '#64748b', fontSize: 11 },
         axisLabel: {
           color: '#9aa4b2', fontSize: 11,
-          formatter: function(v) { return v >= 10000 ? (v / 10000).toFixed(1) + 'w' : v; }
+          formatter: function(v) {
+            if (activeDataset === 'tourism') {
+              return v >= 10000 ? (v / 10000).toFixed(0) + '万' : v;
+            }
+            if (activeDataset === 'spending') {
+              return v >= 1000 ? (v / 1000).toFixed(1) + 'k' : v;
+            }
+            return v >= 10000 ? (v / 10000).toFixed(1) + 'w' : v;
+          }
         },
         splitLine: { lineStyle: { color: '#1f2937' } }
       },
       {
         type: 'value',
-        name: '同比/环比%',
+        name: field === 'monthly' ? '同比/环比%' : '同比%',
         position: 'right',
         nameTextStyle: { color: '#64748b', fontSize: 11 },
         axisLabel: { color: '#9aa4b2', fontSize: 11, formatter: '{value}%' },
@@ -329,23 +470,34 @@ function buildOption(months, field) {
 }
 
 // ── 渲染面板 ──────────────────────────────────────────────────────────
-function renderPanel(key, months) {
-  var field = key === 'monthly' ? 'monthly' : 'cumulative';
-  renderStats(key, months, field);
+function renderPanel(subKey, data) {
+  var field = subKey === 'monthly' ? 'monthly' : 'cumulative';
+  var key = panelKey(subKey);
+  var periods = getPeriods(data);
+  renderStats(subKey, periods, field);
 
   var el = document.getElementById('chart-' + key);
   el.innerHTML = '';
 
   var chart = echarts.init(el, null, { renderer: 'canvas' });
-  chart.setOption(buildOption(months, field));
+  chart.setOption(buildOption(periods, field));
   charts[key] = chart;
   window.addEventListener('resize', function() { chart.resize(); });
 }
 
-// ── 加载数据 ──────────────────────────────────────────────────────────
-function loadAndRender(key) {
-  if (globalData) {
-    if (!charts[key]) renderPanel(key, globalData.months);
+function updatePageHeader() {
+  var cfg = dsConfig();
+  document.getElementById('page-title').textContent = cfg.title;
+  document.getElementById('page-subtitle').textContent = cfg.subtitle;
+}
+
+function loadAndRender(subKey) {
+  activeSubTab[activeDataset] = subKey;
+  var key = panelKey(subKey);
+  var cfg = dsConfig();
+
+  if (cachedData[activeDataset]) {
+    if (!charts[key]) renderPanel(subKey, cachedData[activeDataset]);
     else charts[key].resize();
     return;
   }
@@ -353,34 +505,57 @@ function loadAndRender(key) {
   var el = document.getElementById('chart-' + key);
   el.innerHTML = '<div class="loading">数据加载中…</div>';
 
-  fetch(DATA_FILE + '?t=' + Date.now())
+  fetch(cfg.dataFile + '?t=' + Date.now())
     .then(function(r) { return r.json(); })
     .then(function(data) {
-      globalData = data;
-      // 渲染当前激活面板
-      renderPanel(key, data.months);
+      cachedData[activeDataset] = data;
+      renderPanel(subKey, data);
     })
     .catch(function(err) {
       el.innerHTML = '<div class="loading" style="color:#ef4444;">加载失败：' + err.message + '</div>';
     });
 }
 
-// ── Tab 切换 ──────────────────────────────────────────────────────────
-document.querySelectorAll('#tab-bar .tab-btn').forEach(function(btn) {
+function switchDataset(dataset) {
+  activeDataset = dataset;
+  updatePageHeader();
+
+  document.querySelectorAll('#main-tab-bar .main-tab-btn').forEach(function(b) {
+    b.classList.toggle('active', b.dataset.dataset === dataset);
+  });
+  document.querySelectorAll('.dataset-wrap').forEach(function(w) {
+    w.classList.toggle('active', w.id === 'dataset-' + dataset);
+  });
+
+  loadAndRender(activeSubTab[dataset]);
+}
+
+function switchSubTab(dataset, subKey) {
+  var wrap = document.getElementById('dataset-' + dataset);
+  wrap.querySelectorAll('.tab-btn').forEach(function(b) {
+    b.classList.toggle('active', b.dataset.key === subKey);
+  });
+  wrap.querySelectorAll('.panel').forEach(function(p) { p.classList.remove('active'); });
+  var panel = document.getElementById('panel-' + dataset + '-' + subKey);
+  if (panel) panel.classList.add('active');
+
+  if (dataset === activeDataset) loadAndRender(subKey);
+}
+
+document.querySelectorAll('#main-tab-bar .main-tab-btn').forEach(function(btn) {
   btn.addEventListener('click', function() {
-    var key = btn.dataset.key;
-    document.querySelectorAll('#tab-bar .tab-btn').forEach(function(b) { b.classList.remove('active'); });
-    btn.classList.add('active');
-
-    document.querySelectorAll('.panel').forEach(function(p) { p.classList.remove('active'); });
-    var panel = document.getElementById('panel-' + key);
-    if (panel) panel.classList.add('active');
-
-    loadAndRender(key);
+    switchDataset(btn.dataset.dataset);
   });
 });
 
-// ── 初始加载 ──────────────────────────────────────────────────────────
+document.querySelectorAll('.tab-bar .tab-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    var dataset = btn.closest('.tab-bar').dataset.dataset;
+    switchSubTab(dataset, btn.dataset.key);
+  });
+});
+
+updatePageHeader();
 loadAndRender('monthly');
 </script>
 </body>

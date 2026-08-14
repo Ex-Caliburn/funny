@@ -1,0 +1,86 @@
+{
+  "title": "旅客人均消费",
+  "unit": "澳门元",
+  "periodType": "quarterly",
+  "source": "https://www.dsec.gov.mo/ts/#!/step2/KeyIndicator/zh-MO/191",
+  "months": [
+    {
+      "month": "第1季",
+      "monthIndex": 1,
+      "years": {
+        "2024": {
+          "monthly": 2293,
+          "cumulative": 2293
+        },
+        "2025": {
+          "monthly": 1989,
+          "cumulative": 1989,
+          "monthlyYoy": "-13.3%",
+          "cumulativeYoy": "-13.3%"
+        },
+        "2026": {
+          "monthly": 2179,
+          "cumulative": 2179,
+          "monthlyYoy": "+9.6%",
+          "cumulativeYoy": "+9.6%"
+        }
+      }
+    },
+    {
+      "month": "第2季",
+      "monthIndex": 2,
+      "years": {
+        "2024": {
+          "monthly": 2223,
+          "cumulative": 2258
+        },
+        "2025": {
+          "monthly": 1950,
+          "cumulative": 1970,
+          "monthlyYoy": "-12.3%",
+          "cumulativeYoy": "-12.8%"
+        },
+        "2026": {
+          "monthly": 2059,
+          "cumulative": 2119,
+          "monthlyYoy": "+5.6%",
+          "cumulativeYoy": "+7.6%"
+        }
+      }
+    },
+    {
+      "month": "第3季",
+      "monthIndex": 3,
+      "years": {
+        "2024": {
+          "monthly": 2002,
+          "cumulative": 2173
+        },
+        "2025": {
+          "monthly": 1950,
+          "cumulative": 1963,
+          "monthlyYoy": "-2.6%",
+          "cumulativeYoy": "-9.7%"
+        }
+      }
+    },
+    {
+      "month": "第4季",
+      "monthIndex": 4,
+      "years": {
+        "2024": {
+          "monthly": 2126,
+          "cumulative": 2161
+        },
+        "2025": {
+          "monthly": 2104,
+          "cumulative": 1998,
+          "monthlyYoy": "-1.0%",
+          "cumulativeYoy": "-7.5%"
+        }
+      }
+    }
+  ],
+  "indicatorId": 191,
+  "updatedAt": "2026-08-14T02:43:52.723Z"
+}
