@@ -57,6 +57,11 @@ const PRESETS = {
       command: 'npm',
       args: ['run', 'crawl:customs-import:all'],
     },
+    {
+      label: '海关国家贸易情况',
+      command: 'npm',
+      args: ['run', 'crawl:customs-country:all'],
+    },
     { label: 'SMM金属', command: 'npm', args: ['run', 'crawl:smm'] },
     { label: '磷化工', command: 'npm', args: ['run', 'crawl:phosphorus-chemical'] },
     { label: '美国SPR原油库存', command: 'npm', args: ['run', 'crawl:oil-spr'] },
