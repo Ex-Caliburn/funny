@@ -45,6 +45,15 @@
     .stat-val.dn { color: #22c55e; }
     /* 图表 */
     .chart-wrap { height: 66vh; }
+    .sub-tab-bar {
+      display: flex; gap: 6px; margin-bottom: 10px;
+    }
+    .sub-tab-btn {
+      padding: 4px 14px; border: 1px solid #334155; border-radius: 6px;
+      background: #0f172a; color: #94a3b8;
+      font-size: 11px; font-weight: 600; cursor: pointer;
+    }
+    .sub-tab-btn.active { background: #1e3a5f; border-color: #3b82f6; color: #93c5fd; }
     .loading { display: flex; align-items: center; justify-content: center; height: 66vh; color: #334155; font-size: 14px; }
   </style>
 </head>
@@ -64,6 +73,7 @@
     <button type="button" class="tab-btn" data-key="map_11_44">磷酸一铵（11-44）</button>
     <button type="button" class="tab-btn" data-key="map_11_61">工业磷酸一铵（11-61）</button>
     <button type="button" class="tab-btn" data-key="mcp_feed">磷酸二氢钙（饲料级）</button>
+    <button type="button" class="tab-btn" data-key="monthly_production">磷矿石产量（月度）</button>
     <button type="button" class="tab-btn compare" data-key="compare">全品种对比</button>
   </div>
 
@@ -105,6 +115,16 @@
     <div id="chart-mcp_feed" class="chart-wrap"></div>
   </div>
 
+  <!-- 磷矿石月度产量面板 -->
+  <div id="panel-monthly_production" class="panel">
+    <div class="sub-tab-bar" id="monthly-sub-tabs" role="tablist" aria-label="月度指标">
+      <button type="button" class="sub-tab-btn active" data-field="value">产量当期值</button>
+      <button type="button" class="sub-tab-btn" data-field="cumulative">产量累计值</button>
+    </div>
+    <div class="stat-bar" id="stats-monthly_production"></div>
+    <div id="chart-monthly_production" class="chart-wrap"></div>
+  </div>
+
   <!-- 全品种对比面板 -->
   <div id="panel-compare" class="panel">
     <div class="stat-bar" id="stats-compare"></div>
@@ -128,14 +148,18 @@
   ];
 
   var DATA_FILE = '../phosphorus_chemical/weekly_prices.json';
+  var MONTHLY_FILE = '../P₂O₅/monthly_production.json';
 
   var YEAR_LINE_COLORS = ['#ef4444', '#3b82f6', '#10b981', '#8b5cf6', '#06b6d4'];
   var MOM_COLOR = '#f59e0b';
   var YOY_COLOR = '#e879f9';
 
   var rawData = null;
+  var monthlyData = null;
+  var monthlyField = 'value';
   var charts  = {};
   var loaded  = {};
+  var MONTH_LABELS = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'];
 
   // ── 日期 → X 轴月份位置 ──────────────────────────────────────
   function dateToX(dateStr) {
@@ -452,6 +476,190 @@
     };
   }
 
+  // ── 月度产量：按年分组（1-12 月独立）────────────────────────
+  function processMonthlyRecords(records, valueField, yoyField) {
+    var years = [];
+    var yearSet = {};
+    records.forEach(function(r) {
+      if (!yearSet[r.year]) { yearSet[r.year] = true; years.push(r.year); }
+    });
+    years.sort(function(a, b) { return a - b; });
+
+    var series = {};
+    var yoySeries = {};
+    years.forEach(function(y) {
+      series[y] = new Array(12).fill(null);
+      yoySeries[y] = new Array(12).fill(null);
+    });
+
+    records.forEach(function(r) {
+      if (r.month < 1 || r.month > 12) return;
+      var idx = r.month - 1;
+      series[r.year][idx] = r[valueField];
+      yoySeries[r.year][idx] = r[yoyField];
+    });
+
+    return { years: years, series: series, yoySeries: yoySeries };
+  }
+
+  function renderMonthlyStats(statsId, pd, field) {
+    var latestYear = pd.years[pd.years.length - 1];
+    var prevYear = pd.years.length >= 2 ? pd.years[pd.years.length - 2] : null;
+    var yoyField = field === 'value' ? 'yoy' : 'cumYoy';
+    var valueField = field;
+    var label = field === 'value' ? '当期产量' : '累计产量';
+
+    var latestMonth = null;
+    var latestVal = null;
+    var latestYoy = null;
+    monthlyData.data.forEach(function(r) {
+      if (r.year !== latestYear || r[valueField] == null) return;
+      if (!latestMonth || r.month > latestMonth) {
+        latestMonth = r.month;
+        latestVal = r[valueField];
+        latestYoy = r[yoyField];
+      }
+    });
+
+    var yoyStr = latestYoy != null ? ((latestYoy > 0 ? '+' : '') + latestYoy + '%') : '-';
+
+    document.getElementById(statsId).innerHTML =
+      makeCard('最新数据', latestYear + '年 ' + (latestMonth || '-') + '月', latestVal != null ? latestVal + ' 万吨' : '-', null) +
+      makeCard(label + '同比', '较' + (prevYear || '-') + '年同期', yoyStr, latestYoy) +
+      makeCard('数据来源', '国家统计局', '磷矿石产量', null) +
+      makeCard('统计口径', '1-2月分月', '不做合并', null);
+  }
+
+  function buildMonthlyOption(pd, field) {
+    var years = pd.years;
+    var latestYear = years[years.length - 1];
+    var valueLabel = field === 'value' ? '当期值' : '累计值';
+    var series = [];
+
+    years.forEach(function(year, idx) {
+      var color = YEAR_LINE_COLORS[idx % YEAR_LINE_COLORS.length];
+      var isLatest = year === latestYear;
+      series.push({
+        name: year + '年' + valueLabel,
+        type: 'bar',
+        yAxisIndex: 0,
+        barGap: '8%',
+        data: pd.series[year],
+        itemStyle: {
+          color: color,
+          opacity: isLatest ? 1 : 0.5,
+          borderRadius: [2, 2, 0, 0]
+        },
+        emphasis: { focus: 'series' }
+      });
+    });
+
+    series.push({
+      name: latestYear + '年同比%',
+      type: 'bar',
+      yAxisIndex: 1,
+      barWidth: 14,
+      data: pd.yoySeries[latestYear],
+      itemStyle: {
+        color: function(params) {
+          var v = params.value;
+          if (v == null) return '#334155';
+          return v >= 0 ? '#ef4444' : '#22c55e';
+        },
+        borderRadius: [2, 2, 0, 0]
+      },
+      emphasis: { focus: 'series' }
+    });
+
+    return {
+      backgroundColor: '#0b0f19',
+      animation: true,
+      tooltip: buildConfinedTooltip({
+        trigger: 'axis',
+        axisPointer: { type: 'shadow' },
+        backgroundColor: 'rgba(15,23,42,0.95)',
+        borderColor: '#1f2937',
+        textStyle: { color: '#e2e8f0', fontSize: 12 },
+        formatter: function(params) {
+          if (!params || !params.length) return '';
+          var monthIdx = params[0].dataIndex;
+          var html = '<b>' + MONTH_LABELS[monthIdx] + '</b><br/>';
+          params.forEach(function(p) {
+            if (p.value == null) return;
+            var isRate = p.seriesName.indexOf('%') > -1;
+            html += (p.marker || '')
+              + p.seriesName + ': <b>'
+              + (isRate ? (p.value > 0 ? '+' : '') + p.value + '%' : p.value + ' 万吨')
+              + '</b><br/>';
+          });
+          return html;
+        }
+      }),
+      legend: {
+        top: 4,
+        textStyle: { color: '#cbd5e1', fontSize: 11 },
+        itemGap: 12
+      },
+      grid: { left: 72, right: 72, top: 52, bottom: 38 },
+      xAxis: {
+        type: 'category',
+        data: MONTH_LABELS,
+        axisLabel: { color: '#9aa4b2', fontSize: 11 },
+        axisLine: { lineStyle: { color: '#334155' } },
+        splitLine: { show: false }
+      },
+      yAxis: [
+        {
+          type: 'value',
+          name: '万吨',
+          position: 'left',
+          nameTextStyle: { color: '#64748b', fontSize: 11 },
+          axisLabel: { color: '#9aa4b2', fontSize: 11 },
+          splitLine: { lineStyle: { color: '#1f2937' } }
+        },
+        {
+          type: 'value',
+          name: '同比%',
+          position: 'right',
+          nameTextStyle: { color: '#64748b', fontSize: 11 },
+          axisLabel: { color: '#9aa4b2', fontSize: 11, formatter: '{value}%' },
+          splitLine: { show: false }
+        }
+      ],
+      dataZoom: [
+        { type: 'slider', bottom: 4, height: 18, start: 0, end: 100,
+          textStyle: { color: '#9aa4b2', fontSize: 10 },
+          handleStyle: { color: '#334155' },
+          fillerColor: 'rgba(59,130,246,0.1)',
+          borderColor: '#1f2937' },
+        { type: 'inside' }
+      ],
+      series: series
+    };
+  }
+
+  function initMonthlyTab() {
+    if (!monthlyData) return;
+    var yoyField = monthlyField === 'value' ? 'yoy' : 'cumYoy';
+    var pd = processMonthlyRecords(monthlyData.data, monthlyField, yoyField);
+    renderMonthlyStats('stats-monthly_production', pd, monthlyField);
+
+    var chartEl = document.getElementById('chart-monthly_production');
+    chartEl.innerHTML = '';
+    var chart = echarts.init(chartEl, null, { renderer: 'canvas' });
+    chart.setOption(buildMonthlyOption(pd, monthlyField));
+    charts['monthly_production'] = chart;
+    window.addEventListener('resize', function() { chart.resize(); });
+  }
+
+  function switchMonthlyField(field) {
+    monthlyField = field;
+    document.querySelectorAll('#monthly-sub-tabs [data-field]').forEach(function(btn) {
+      btn.classList.toggle('active', btn.dataset.field === field);
+    });
+    if (loaded['monthly_production']) initMonthlyTab();
+  }
+
   // ── 初始化单品种 tab ─────────────────────────────────────────
   function initSingleTab(key) {
     var chartEl = document.getElementById('chart-' + key);
@@ -491,12 +699,15 @@
     var panel = document.getElementById('panel-' + key);
     if (panel) panel.classList.add('active');
 
-    if (!rawData) return;
+    if (!rawData && key !== 'monthly_production') return;
+    if (key === 'monthly_production' && !monthlyData) return;
 
     if (!loaded[key]) {
       loaded[key] = true;
       if (key === 'compare') {
         initCompareTab();
+      } else if (key === 'monthly_production') {
+        initMonthlyTab();
       } else {
         initSingleTab(key);
       }
@@ -516,11 +727,21 @@
     });
   });
 
+  // ── 月度子 tab 切换 ───────────────────────────────────────────
+  document.querySelectorAll('#monthly-sub-tabs [data-field]').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      switchMonthlyField(btn.dataset.field);
+    });
+  });
+
   // ── 加载数据后初始化首个 tab ─────────────────────────────────
-  fetch(DATA_FILE + '?t=' + Date.now())
-    .then(function(r) { return r.json(); })
-    .then(function(json) {
-      rawData = json;
+  Promise.all([
+    fetch(DATA_FILE + '?t=' + Date.now()).then(function(r) { return r.json(); }),
+    fetch(MONTHLY_FILE + '?t=' + Date.now()).then(function(r) { return r.json(); })
+  ])
+    .then(function(results) {
+      rawData = results[0];
+      monthlyData = results[1];
       activateTab('phosphate_ore');
     })
     .catch(function(err) {

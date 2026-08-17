@@ -9,8 +9,16 @@
     "guizhou": "贵州地区",
     "guangxi": "广西地区"
   },
-  "updatedAt": "2026-08-15",
+  "updatedAt": "2026-08-17",
   "data": [
+    {
+      "date": "2026-08-17",
+      "shandong": 2745,
+      "henan": 2775,
+      "shanxi": 2780,
+      "guizhou": 2805,
+      "guangxi": 2670
+    },
     {
       "date": "2026-08-14",
       "shandong": 2745,

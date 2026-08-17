@@ -186,7 +186,7 @@ module.exports = {
    * 全量历史接口：zhIndexDataAll（页面内 echarts 同源使用）
    */
   ctctcShanxiCoal: {
-    baseUrl: 'https://ctctc.cn',
+    baseUrl: 'https://cj.ctctc.cn',
     indexPageUrl: 'https://cj.ctctc.cn/newjgzs/rest/jgzsfl/v3/getPriceInfo',
     historyUrl: 'https://cj.ctctc.cn/newjgzs/rest/jgzsfl/v3/zhIndexDataAll',
     delayBetweenRequests: 1500,
