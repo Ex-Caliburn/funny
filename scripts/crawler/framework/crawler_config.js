@@ -186,7 +186,7 @@ module.exports = {
    * 全量历史接口：zhIndexDataAll（页面内 echarts 同源使用）
    */
   ctctcShanxiCoal: {
-    baseUrl: 'https://cj.ctctc.cn',
+    baseUrl: 'https://ctctc.cn',
     indexPageUrl: 'https://cj.ctctc.cn/newjgzs/rest/jgzsfl/v3/getPriceInfo',
     historyUrl: 'https://cj.ctctc.cn/newjgzs/rest/jgzsfl/v3/zhIndexDataAll',
     delayBetweenRequests: 1500,
@@ -321,7 +321,15 @@ module.exports = {
       endYear: new Date().getFullYear(),
     },
     titleKeywords: ['进口', '商品', '量值'],
-    excludeKeywords: ['美元值', '美元', '贸易方式', '部分出口商品', '部分进口商品', '出口', '重点'],
+    excludeKeywords: [
+      '美元值',
+      '美元',
+      '贸易方式',
+      '部分出口商品',
+      '部分进口商品',
+      '出口',
+      '重点',
+    ],
   },
 
   /**
@@ -354,7 +362,14 @@ module.exports = {
     /** 按年份范围全量爬取时的列表页上限（统计快讯共约 254 页） */
     yearRangeEndPage: 40,
     titleKeywords: ['进口', '重点', '商品', '量值'],
-    excludeKeywords: ['美元值', '美元', '贸易方式', '部分出口商品', '部分进口商品', '出口'],
+    excludeKeywords: [
+      '美元值',
+      '美元',
+      '贸易方式',
+      '部分出口商品',
+      '部分进口商品',
+      '出口',
+    ],
   },
 
   /**
@@ -404,7 +419,15 @@ module.exports = {
       maxYear: null,
     },
     titleKeywords: ['出口', '重点', '商品', '量值'],
-    excludeKeywords: ['美元值', '美元', '贸易方式', '部分出口商品', '部分进口商品', '进口', '1至2月'],
+    excludeKeywords: [
+      '美元值',
+      '美元',
+      '贸易方式',
+      '部分出口商品',
+      '部分进口商品',
+      '进口',
+      '1至2月',
+    ],
   },
 
   /**

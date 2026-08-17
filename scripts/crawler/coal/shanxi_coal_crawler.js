@@ -39,7 +39,7 @@ async function fetchHistoryJson(url) {
           Accept: 'application/json',
           'User-Agent':
             'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
-          Referer: config.indexPageUrl || 'https://cj.ctctc.cn/',
+          Referer: config.indexPageUrl || 'https://ctctc.cn/',
         },
       })
       return res.data
@@ -119,7 +119,9 @@ async function main() {
 
     const out = path.join(dataDir, t.dataFile)
     const { count, latest } = mergeAndWrite(out, series)
-    console.log(`${t.name} (${code}) → ${t.dataFile}  共 ${count} 条  最新 ${latest.date}  ${latest.price}`)
+    console.log(
+      `${t.name} (${code}) → ${t.dataFile}  共 ${count} 条  最新 ${latest.date}  ${latest.price}`
+    )
   }
 
   console.log('\n完成。')
