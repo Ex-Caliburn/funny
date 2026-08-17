@@ -4,8 +4,8 @@
     "indicator": "磷矿石（折含五氧化二磷30％）产量当期值 (万吨)",
     "unit": "万吨",
     "frequency": "monthly",
-    "note": "1月、2月分别统计，不做 1-2 月合并",
-    "parsedAt": "2026-08-17T13:33:11.566Z",
+    "note": "1-2月合并为一期，当期值取2月累计（1-2月合计）",
+    "parsedAt": "2026-08-17T13:48:36.829Z",
     "inputFile": "月度数据.xlsx",
     "count": 67,
     "dateRange": {
@@ -27,7 +27,7 @@
       "yearMonth": "2020-02",
       "year": 2020,
       "month": 2,
-      "value": null,
+      "value": 723.7,
       "cumulative": 723.7,
       "yoy": null,
       "cumYoy": null
@@ -135,9 +135,9 @@
       "yearMonth": "2021-02",
       "year": 2021,
       "month": 2,
-      "value": null,
+      "value": 1333.8,
       "cumulative": 1333.8,
-      "yoy": null,
+      "yoy": 84.3,
       "cumYoy": 84.3
     },
     {
@@ -243,9 +243,9 @@
       "yearMonth": "2022-02",
       "year": 2022,
       "month": 2,
-      "value": null,
+      "value": 1443.3,
       "cumulative": 1443.3,
-      "yoy": null,
+      "yoy": 8.21,
       "cumYoy": 8.21
     },
     {
@@ -351,7 +351,7 @@
       "yearMonth": "2024-02",
       "year": 2024,
       "month": 2,
-      "value": null,
+      "value": 1272.7,
       "cumulative": 1272.7,
       "yoy": null,
       "cumYoy": null
@@ -459,9 +459,9 @@
       "yearMonth": "2025-02",
       "year": 2025,
       "month": 2,
-      "value": null,
+      "value": 1454.5,
       "cumulative": 1454.5,
-      "yoy": null,
+      "yoy": 14.28,
       "cumYoy": 14.28
     },
     {
@@ -567,9 +567,9 @@
       "yearMonth": "2026-02",
       "year": 2026,
       "month": 2,
-      "value": null,
+      "value": 1656.8,
       "cumulative": 1656.8,
-      "yoy": null,
+      "yoy": 13.91,
       "cumYoy": 13.91
     },
     {

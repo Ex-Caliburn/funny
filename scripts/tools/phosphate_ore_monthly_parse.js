@@ -79,7 +79,20 @@ function parsePhosphateOreMonthly(inputPath) {
   // 按 yearMonth 升序
   records.sort(function (a, b) { return a.yearMonth.localeCompare(b.yearMonth); });
 
-  // 计算同比（1月、2月分别计算，不合并）
+  // 1-2月当期值在源数据中为空，2月累计即为1-2月合计
+  const byYear = {};
+  records.forEach(function (r) {
+    if (!byYear[r.year]) byYear[r.year] = {};
+    byYear[r.year][r.month] = r;
+  });
+
+  Object.keys(byYear).forEach(function (year) {
+    const feb = byYear[year][2];
+    if (!feb || feb.value != null) return;
+    if (feb.cumulative != null) feb.value = feb.cumulative;
+  });
+
+  // 计算同比（1-2月按2月合并口径同比）
   const byKey = {};
   records.forEach(function (r) { byKey[r.yearMonth] = r; });
 
@@ -104,7 +117,7 @@ function parsePhosphateOreMonthly(inputPath) {
       indicator: indicator,
       unit: '万吨',
       frequency: 'monthly',
-      note: '1月、2月分别统计，不做 1-2 月合并',
+      note: '1-2月合并为一期，当期值取2月累计（1-2月合计）',
       parsedAt: new Date().toISOString(),
       inputFile: path.basename(inputPath),
       count: records.length,

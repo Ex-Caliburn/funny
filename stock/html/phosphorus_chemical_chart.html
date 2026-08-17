@@ -159,7 +159,8 @@
   var monthlyField = 'value';
   var charts  = {};
   var loaded  = {};
-  var MONTH_LABELS = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'];
+  var MONTH_LABELS = ['1-2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'];
+  var MONTHLY_PERIOD_COUNT = 11;
 
   // ── 日期 → X 轴月份位置 ──────────────────────────────────────
   function dateToX(dateStr) {
@@ -476,7 +477,18 @@
     };
   }
 
-  // ── 月度产量：按年分组（1-12 月独立）────────────────────────
+  // ── 月度产量：1-2月合并，3-12月独立 ─────────────────────────
+  function monthToPeriodIndex(month) {
+    if (month === 1 || month === 2) return 0;
+    if (month >= 3 && month <= 12) return month - 2;
+    return -1;
+  }
+
+  function periodLabel(month) {
+    if (month === 1 || month === 2) return '1-2月';
+    return month + '月';
+  }
+
   function processMonthlyRecords(records, valueField, yoyField) {
     var years = [];
     var yearSet = {};
@@ -488,13 +500,14 @@
     var series = {};
     var yoySeries = {};
     years.forEach(function(y) {
-      series[y] = new Array(12).fill(null);
-      yoySeries[y] = new Array(12).fill(null);
+      series[y] = new Array(MONTHLY_PERIOD_COUNT).fill(null);
+      yoySeries[y] = new Array(MONTHLY_PERIOD_COUNT).fill(null);
     });
 
     records.forEach(function(r) {
-      if (r.month < 1 || r.month > 12) return;
-      var idx = r.month - 1;
+      if (r.month === 1) return;
+      var idx = monthToPeriodIndex(r.month);
+      if (idx < 0) return;
       series[r.year][idx] = r[valueField];
       yoySeries[r.year][idx] = r[yoyField];
     });
@@ -513,7 +526,7 @@
     var latestVal = null;
     var latestYoy = null;
     monthlyData.data.forEach(function(r) {
-      if (r.year !== latestYear || r[valueField] == null) return;
+      if (r.year !== latestYear || r.month === 1 || r[valueField] == null) return;
       if (!latestMonth || r.month > latestMonth) {
         latestMonth = r.month;
         latestVal = r[valueField];
@@ -524,10 +537,10 @@
     var yoyStr = latestYoy != null ? ((latestYoy > 0 ? '+' : '') + latestYoy + '%') : '-';
 
     document.getElementById(statsId).innerHTML =
-      makeCard('最新数据', latestYear + '年 ' + (latestMonth || '-') + '月', latestVal != null ? latestVal + ' 万吨' : '-', null) +
+      makeCard('最新数据', latestYear + '年 ' + (latestMonth ? periodLabel(latestMonth) : '-'), latestVal != null ? latestVal + ' 万吨' : '-', null) +
       makeCard(label + '同比', '较' + (prevYear || '-') + '年同期', yoyStr, latestYoy) +
       makeCard('数据来源', '国家统计局', '磷矿石产量', null) +
-      makeCard('统计口径', '1-2月分月', '不做合并', null);
+      makeCard('统计口径', '1-2月合并', '统计局发布口径', null);
   }
 
   function buildMonthlyOption(pd, field) {
@@ -556,18 +569,15 @@
 
     series.push({
       name: latestYear + '年同比%',
-      type: 'bar',
+      type: 'line',
       yAxisIndex: 1,
-      barWidth: 14,
       data: pd.yoySeries[latestYear],
-      itemStyle: {
-        color: function(params) {
-          var v = params.value;
-          if (v == null) return '#334155';
-          return v >= 0 ? '#ef4444' : '#22c55e';
-        },
-        borderRadius: [2, 2, 0, 0]
-      },
+      smooth: true,
+      symbol: 'diamond',
+      symbolSize: 6,
+      connectNulls: false,
+      lineStyle: { color: YOY_COLOR, width: 2, type: 'solid' },
+      itemStyle: { color: YOY_COLOR },
       emphasis: { focus: 'series' }
     });
 
@@ -576,7 +586,7 @@
       animation: true,
       tooltip: buildConfinedTooltip({
         trigger: 'axis',
-        axisPointer: { type: 'shadow' },
+        axisPointer: { type: 'cross', crossStyle: { color: '#475569' } },
         backgroundColor: 'rgba(15,23,42,0.95)',
         borderColor: '#1f2937',
         textStyle: { color: '#e2e8f0', fontSize: 12 },
@@ -645,11 +655,14 @@
     renderMonthlyStats('stats-monthly_production', pd, monthlyField);
 
     var chartEl = document.getElementById('chart-monthly_production');
-    chartEl.innerHTML = '';
-    var chart = echarts.init(chartEl, null, { renderer: 'canvas' });
-    chart.setOption(buildMonthlyOption(pd, monthlyField));
-    charts['monthly_production'] = chart;
-    window.addEventListener('resize', function() { chart.resize(); });
+    var chart = charts['monthly_production'];
+    if (!chart) {
+      chart = echarts.init(chartEl, null, { renderer: 'canvas' });
+      charts['monthly_production'] = chart;
+      window.addEventListener('resize', function() { chart.resize(); });
+    }
+    chart.setOption(buildMonthlyOption(pd, monthlyField), true);
+    chart.resize();
   }
 
   function switchMonthlyField(field) {
