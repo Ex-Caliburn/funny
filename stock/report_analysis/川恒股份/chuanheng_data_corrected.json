@@ -4,7 +4,7 @@
     "stockCode": "002895",
     "description": "此文件包含修正后的数据，用于页面展示。手动修正的数据会被标记。",
     "dataSource": "chuanheng_data.json",
-    "lastUpdated": "2026-04-09",
+    "lastUpdated": "2026-08-18",
     "products": [
       "phosphorus"
     ],
@@ -15,6 +15,100 @@
     }
   },
   "summary": [
+    {
+      "period": "2026年上半年",
+      "year": "2026",
+      "filename": "川恒股份2026年半年度报告.pdf",
+      "phosphorus": {
+        "production": null,
+        "sales": 5,
+        "inventory": null,
+        "revenue": 40.5812844128,
+        "cost": 29.0039232383,
+        "unitPrice": null,
+        "unitCost": null,
+        "unitGrossProfit": null,
+        "grossMargin": 25.44,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "productSales": {
+        "feedGradeMCP": null,
+        "phosphoricAcid": null,
+        "map": null,
+        "phosphateRock": null
+      },
+      "productFinancials": {
+        "feedGradeMCP": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null
+        },
+        "map": {
+          "revenue": 682999733.3,
+          "cost": 448729700.07,
+          "grossMargin": 34.3
+        },
+        "phosphateRock": {
+          "revenue": 217899572.02,
+          "cost": 36981709.38,
+          "grossMargin": 83.03
+        },
+        "phosphoricAcid": {
+          "revenue": 1053100365.95,
+          "cost": 956395878.89,
+          "grossMargin": 9.18
+        }
+      }
+    },
+    {
+      "period": "2026年1-3月",
+      "year": "2026",
+      "filename": "川恒股份2026年第一季度报告.pdf",
+      "phosphorus": {
+        "production": null,
+        "sales": null,
+        "inventory": null,
+        "revenue": 18.2365401915,
+        "cost": 13.665418808,
+        "unitPrice": null,
+        "unitCost": null,
+        "unitGrossProfit": null,
+        "grossMargin": null,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "productSales": {
+        "feedGradeMCP": null,
+        "phosphoricAcid": null,
+        "map": null,
+        "phosphateRock": null
+      },
+      "productFinancials": {
+        "feedGradeMCP": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null
+        },
+        "map": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null
+        },
+        "phosphateRock": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null
+        },
+        "phosphoricAcid": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null
+        }
+      }
+    },
     {
       "period": "2025年全年",
       "year": "2025",
