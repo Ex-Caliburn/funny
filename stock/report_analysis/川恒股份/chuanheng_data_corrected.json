@@ -62,6 +62,14 @@
           "revenue": 1053100365.95,
           "cost": 956395878.89,
           "grossMargin": 9.18
+        },
+        "ironPhosphate": {
+          "revenue": 423568249.54,
+          "cost": 376369464,
+          "grossMargin": 11.14,
+          "_source": "分产品营业成本表(完整:营收/成本/毛利率)",
+          "_verified": true,
+          "_notes": "根据2026年上半年PDF分产品(营业成本)表格抓取：营收42356.82万元，成本37636.95万元，毛利率11.14%"
         }
       }
     },
@@ -109,6 +117,14 @@
           "revenue": null,
           "cost": null,
           "grossMargin": null
+        },
+        "ironPhosphate": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null,
+          "_source": "未披露",
+          "_verified": false,
+          "_notes": "单季度报告未单列磷酸铁分产品数据"
         }
       }
     },
@@ -158,6 +174,14 @@
           "revenue": 2810161088.39,
           "cost": 2311164690.34,
           "grossMargin": 17.76
+        },
+        "ironPhosphate": {
+          "revenue": 731708861.42,
+          "cost": null,
+          "grossMargin": null,
+          "_source": "营业收入构成表(仅营收,未披露成本/毛利率)",
+          "_verified": true,
+          "_notes": "根据2025年全年PDF营业收入构成(分产品)表格抓取：营收73170.89万元；成本/毛利率未达10%披露门槛，未单列"
         }
       }
     },
@@ -205,6 +229,14 @@
           "revenue": null,
           "cost": null,
           "grossMargin": null
+        },
+        "ironPhosphate": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null,
+          "_source": "未披露",
+          "_verified": false,
+          "_notes": "单季度报告未单列磷酸铁分产品数据"
         }
       }
     },
@@ -252,6 +284,14 @@
           "revenue": 954641684.47,
           "cost": 774363662.32,
           "grossMargin": 18.88
+        },
+        "ironPhosphate": {
+          "revenue": 318014513.49,
+          "cost": null,
+          "grossMargin": null,
+          "_source": "营业收入构成表(仅营收,未披露成本/毛利率)",
+          "_verified": true,
+          "_notes": "根据2025年上半年PDF营业收入构成(分产品)表格抓取：营收31801.45万元；成本/毛利率未达10%披露门槛，未单列"
         }
       }
     },
@@ -299,6 +339,14 @@
           "revenue": null,
           "cost": null,
           "grossMargin": null
+        },
+        "ironPhosphate": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null,
+          "_source": "未披露",
+          "_verified": false,
+          "_notes": "单季度报告未单列磷酸铁分产品数据"
         }
       }
     },
@@ -350,6 +398,14 @@
           "grossMargin": 21.3,
           "_corrected": true,
           "_notes": "根据2024年年度报告PDF表格数据修正"
+        },
+        "ironPhosphate": {
+          "revenue": 364780812.24,
+          "cost": null,
+          "grossMargin": null,
+          "_source": "营业收入构成表(仅营收,未披露成本/毛利率)",
+          "_verified": true,
+          "_notes": "根据2024年全年PDF营业收入构成(分产品)表格抓取：营收36478.08万元；成本/毛利率未达10%披露门槛，未单列"
         }
       }
     },
@@ -397,6 +453,14 @@
           "revenue": null,
           "cost": null,
           "grossMargin": null
+        },
+        "ironPhosphate": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null,
+          "_source": "未披露",
+          "_verified": false,
+          "_notes": "单季度报告未单列磷酸铁分产品数据"
         }
       }
     },
@@ -446,6 +510,14 @@
           "grossMargin": 28.41,
           "_corrected": true,
           "_notes": "根据2024年半年度报告PDF表格数据修正，之前错误地使用了饲料级磷酸二氢钙的数据"
+        },
+        "ironPhosphate": {
+          "revenue": 155899641.93,
+          "cost": null,
+          "grossMargin": null,
+          "_source": "营业收入构成表(仅营收,未披露成本/毛利率)",
+          "_verified": true,
+          "_notes": "根据2024年上半年PDF营业收入构成(分产品)表格抓取：营收15589.96万元；成本/毛利率未达10%披露门槛，未单列"
         }
       }
     },
@@ -493,6 +565,14 @@
           "revenue": null,
           "cost": null,
           "grossMargin": null
+        },
+        "ironPhosphate": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null,
+          "_source": "未披露",
+          "_verified": false,
+          "_notes": "单季度报告未单列磷酸铁分产品数据"
         }
       }
     },
@@ -542,6 +622,14 @@
           "revenue": 848575986.68,
           "cost": 601215742.14,
           "grossMargin": 29.15
+        },
+        "ironPhosphate": {
+          "revenue": 306556763.1,
+          "cost": null,
+          "grossMargin": null,
+          "_source": "营业收入构成表(仅营收,未披露成本/毛利率)",
+          "_verified": true,
+          "_notes": "根据2023年全年PDF营业收入构成(分产品)表格抓取：营收30655.68万元；成本/毛利率未达10%披露门槛，未单列"
         }
       }
     },
@@ -589,6 +677,14 @@
           "revenue": null,
           "cost": null,
           "grossMargin": null
+        },
+        "ironPhosphate": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null,
+          "_source": "未披露",
+          "_verified": false,
+          "_notes": "单季度报告未单列磷酸铁分产品数据"
         }
       }
     },
@@ -640,6 +736,14 @@
           "grossMargin": 30.63,
           "_corrected": true,
           "_notes": "根据2023年半年度报告PDF表格数据修正"
+        },
+        "ironPhosphate": {
+          "revenue": 131382212.69,
+          "cost": null,
+          "grossMargin": null,
+          "_source": "营业收入构成表(仅营收,未披露成本/毛利率)",
+          "_verified": true,
+          "_notes": "根据2023年上半年PDF营业收入构成(分产品)表格抓取：营收13138.22万元；成本/毛利率未达10%披露门槛，未单列"
         }
       }
     },
@@ -687,6 +791,14 @@
           "revenue": null,
           "cost": null,
           "grossMargin": null
+        },
+        "ironPhosphate": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null,
+          "_source": "未披露",
+          "_verified": false,
+          "_notes": "单季度报告未单列磷酸铁分产品数据"
         }
       }
     },
@@ -738,6 +850,14 @@
           "grossMargin": 35.52,
           "_corrected": true,
           "_notes": "根据2023年年度报告\"营业成本比上年同期增减266.31%\"倒推计算得出，毛利率已重新计算"
+        },
+        "ironPhosphate": {
+          "revenue": 1342566.39,
+          "cost": null,
+          "grossMargin": null,
+          "_source": "营业收入构成表(仅营收,未披露成本/毛利率)",
+          "_verified": true,
+          "_notes": "根据2022年全年PDF营业收入构成(分产品)表格抓取：营收134.26万元；成本/毛利率未达10%披露门槛，未单列"
         }
       }
     },
@@ -785,6 +905,14 @@
           "revenue": null,
           "cost": null,
           "grossMargin": null
+        },
+        "ironPhosphate": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null,
+          "_source": "未披露",
+          "_verified": false,
+          "_notes": "单季度报告未单列磷酸铁分产品数据"
         }
       }
     },
@@ -836,6 +964,14 @@
           "grossMargin": 38.66,
           "_corrected": true,
           "_notes": "根据2022年半年度报告PDF表格数据修正，之前错误地使用了饲料级磷酸二氢钙的数据"
+        },
+        "ironPhosphate": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null,
+          "_source": "未披露",
+          "_verified": false,
+          "_notes": "报告期未单列磷酸铁数据"
         }
       }
     },
@@ -883,6 +1019,14 @@
           "revenue": null,
           "cost": null,
           "grossMargin": null
+        },
+        "ironPhosphate": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null,
+          "_source": "未披露",
+          "_verified": false,
+          "_notes": "单季度报告未单列磷酸铁分产品数据"
         }
       }
     }

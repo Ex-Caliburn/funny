@@ -954,6 +954,11 @@
           "revenue": 1053100365.95,
           "cost": 956395878.89,
           "grossMargin": 9.18
+        },
+        "ironPhosphate": {
+          "revenue": 423568249.54,
+          "cost": 376369464,
+          "grossMargin": 11.14
         }
       }
     },
@@ -1961,6 +1966,11 @@
           "revenue": 954641684.47,
           "cost": 774363662.32,
           "grossMargin": 18.88
+        },
+        "ironPhosphate": {
+          "revenue": 318014513.49,
+          "cost": null,
+          "grossMargin": null
         }
       }
     },
@@ -3182,6 +3192,11 @@
           "revenue": 2810161088.39,
           "cost": 2311164690.34,
           "grossMargin": 17.76
+        },
+        "ironPhosphate": {
+          "revenue": 731708861.42,
+          "cost": null,
+          "grossMargin": null
         }
       }
     },
@@ -4415,6 +4430,11 @@
           "revenue": 747816169.6,
           "cost": 535325892.18,
           "grossMargin": 28.41
+        },
+        "ironPhosphate": {
+          "revenue": 155899641.93,
+          "cost": null,
+          "grossMargin": null
         }
       }
     },
@@ -5659,6 +5679,11 @@
           "revenue": 1872219740.8,
           "cost": 1473379460.32,
           "grossMargin": 21.3
+        },
+        "ironPhosphate": {
+          "revenue": 364780812.24,
+          "cost": null,
+          "grossMargin": null
         }
       }
     },
@@ -6624,6 +6649,11 @@
           "revenue": 419517651.68,
           "cost": 291014896.28,
           "grossMargin": 30.63
+        },
+        "ironPhosphate": {
+          "revenue": 131382212.69,
+          "cost": null,
+          "grossMargin": null
         }
       }
     },
@@ -7814,6 +7844,11 @@
           "revenue": 848575986.68,
           "cost": 601215742.14,
           "grossMargin": 29.15
+        },
+        "ironPhosphate": {
+          "revenue": 306556763.1,
+          "cost": null,
+          "grossMargin": null
         }
       }
     },
@@ -10115,6 +10150,11 @@
           "revenue": 254564811.2,
           "cost": 73011616.28,
           "grossMargin": null
+        },
+        "ironPhosphate": {
+          "revenue": 1342566.39,
+          "cost": null,
+          "grossMargin": null
         }
       }
     },
@@ -10502,6 +10542,11 @@
           "revenue": 1053100365.95,
           "cost": 956395878.89,
           "grossMargin": 9.18
+        },
+        "ironPhosphate": {
+          "revenue": 423568249.54,
+          "cost": 376369464,
+          "grossMargin": 11.14
         }
       }
     },
@@ -10537,6 +10582,11 @@
           "grossMargin": null
         },
         "phosphoricAcid": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null
+        },
+        "ironPhosphate": {
           "revenue": null,
           "cost": null,
           "grossMargin": null
@@ -10578,6 +10628,11 @@
           "revenue": 954641684.47,
           "cost": 774363662.32,
           "grossMargin": 18.88
+        },
+        "ironPhosphate": {
+          "revenue": 318014513.49,
+          "cost": null,
+          "grossMargin": null
         }
       }
     },
@@ -10616,6 +10671,11 @@
           "revenue": 2810161088.39,
           "cost": 2311164690.34,
           "grossMargin": 17.76
+        },
+        "ironPhosphate": {
+          "revenue": 731708861.42,
+          "cost": null,
+          "grossMargin": null
         }
       }
     },
@@ -10651,6 +10711,11 @@
           "grossMargin": null
         },
         "phosphoricAcid": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null
+        },
+        "ironPhosphate": {
           "revenue": null,
           "cost": null,
           "grossMargin": null
@@ -10692,6 +10757,11 @@
           "revenue": null,
           "cost": null,
           "grossMargin": null
+        },
+        "ironPhosphate": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null
         }
       }
     },
@@ -10730,6 +10800,11 @@
           "revenue": 747816169.6,
           "cost": 535325892.18,
           "grossMargin": 28.41
+        },
+        "ironPhosphate": {
+          "revenue": 155899641.93,
+          "cost": null,
+          "grossMargin": null
         }
       }
     },
@@ -10768,6 +10843,11 @@
           "revenue": 1872219740.8,
           "cost": 1473379460.32,
           "grossMargin": 21.3
+        },
+        "ironPhosphate": {
+          "revenue": 364780812.24,
+          "cost": null,
+          "grossMargin": null
         }
       }
     },
@@ -10803,6 +10883,11 @@
           "grossMargin": null
         },
         "phosphoricAcid": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null
+        },
+        "ironPhosphate": {
           "revenue": null,
           "cost": null,
           "grossMargin": null
@@ -10844,6 +10929,11 @@
           "revenue": null,
           "cost": null,
           "grossMargin": null
+        },
+        "ironPhosphate": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null
         }
       }
     },
@@ -10882,6 +10972,11 @@
           "revenue": 419517651.68,
           "cost": 291014896.28,
           "grossMargin": 30.63
+        },
+        "ironPhosphate": {
+          "revenue": 131382212.69,
+          "cost": null,
+          "grossMargin": null
         }
       }
     },
@@ -10920,6 +11015,11 @@
           "revenue": 848575986.68,
           "cost": 601215742.14,
           "grossMargin": 29.15
+        },
+        "ironPhosphate": {
+          "revenue": 306556763.1,
+          "cost": null,
+          "grossMargin": null
         }
       }
     },
@@ -10955,6 +11055,11 @@
           "grossMargin": null
         },
         "phosphoricAcid": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null
+        },
+        "ironPhosphate": {
           "revenue": null,
           "cost": null,
           "grossMargin": null
@@ -10996,6 +11101,11 @@
           "revenue": null,
           "cost": null,
           "grossMargin": null
+        },
+        "ironPhosphate": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null
         }
       }
     },
@@ -11034,6 +11144,11 @@
           "revenue": 169107623.49,
           "cost": 103724202.37,
           "grossMargin": 38.66
+        },
+        "ironPhosphate": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null
         }
       }
     },
@@ -11071,6 +11186,11 @@
         "phosphoricAcid": {
           "revenue": 254564811.2,
           "cost": 73011616.28,
+          "grossMargin": null
+        },
+        "ironPhosphate": {
+          "revenue": 1342566.39,
+          "cost": null,
           "grossMargin": null
         }
       }
@@ -11110,6 +11230,11 @@
           "revenue": null,
           "cost": null,
           "grossMargin": null
+        },
+        "ironPhosphate": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null
         }
       }
     },
@@ -11145,6 +11270,11 @@
           "grossMargin": null
         },
         "phosphoricAcid": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null
+        },
+        "ironPhosphate": {
           "revenue": null,
           "cost": null,
           "grossMargin": null

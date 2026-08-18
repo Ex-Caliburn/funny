@@ -503,6 +503,7 @@
                                 <th colspan="6">磷酸一铵</th>
                                 <th colspan="6">磷矿石</th>
                                 <th colspan="6">磷酸</th>
+                                <th colspan="6">磷酸铁</th>
                             </tr>
                             <tr>
                                 <th colspan="2">营收<br><span style="font-size:9px;font-weight:normal">(亿元)</span></th>
@@ -517,8 +518,17 @@
                                 <th colspan="2">营收<br><span style="font-size:9px;font-weight:normal">(亿元)</span></th>
                                 <th colspan="2">成本<br><span style="font-size:9px;font-weight:normal">(亿元)</span></th>
                                 <th colspan="2">毛利率<br><span style="font-size:9px;font-weight:normal">(%)</span></th>
+                                <th colspan="2">营收<br><span style="font-size:9px;font-weight:normal">(亿元)</span></th>
+                                <th colspan="2">成本<br><span style="font-size:9px;font-weight:normal">(亿元)</span></th>
+                                <th colspan="2">毛利率<br><span style="font-size:9px;font-weight:normal">(%)</span></th>
                             </tr>
                             <tr>
+                                <th>数值</th>
+                                <th>同比</th>
+                                <th>数值</th>
+                                <th>同比</th>
+                                <th>数值</th>
+                                <th>同比</th>
                                 <th>数值</th>
                                 <th>同比</th>
                                 <th>数值</th>
@@ -555,7 +565,8 @@
                     <div class="legend-item"><span class="legend-color negative"></span>下降</div>
                     <div class="legend-item">同比：与上一年同期相比</div>
                     <div class="legend-item">注：主表格数据来自"行业分类"表格中的"磷化工"数据（销售量、生产量、库存量），单位：万吨</div>
-                    <div class="legend-item">注：分产品财务数据来自"分产品"表格，包含四个产品：饲料级磷酸二氢钙、磷酸一铵、磷矿石、磷酸</div>
+                    <div class="legend-item">注：分产品财务数据来自"分产品"表格，包含五个产品：饲料级磷酸二氢钙、磷酸一铵、磷矿石、磷酸、磷酸铁</div>
+                    <div class="legend-item">注：磷酸铁营收来自"营业收入构成"分产品表；营业成本与毛利率仅在其占营收≥10%（达到披露门槛）的报告中单列，目前仅2026年上半年有完整三项数据</div>
                     <div class="legend-item">提示：点击表头列名可查看该数据的曲线图</div>
                 </div>
             </div>
@@ -1667,6 +1678,11 @@
                                     revenue: item.productFinancials.phosphoricAcid.revenue ? item.productFinancials.phosphoricAcid.revenue / 100000000 : null,
                                     cost: item.productFinancials.phosphoricAcid.cost ? item.productFinancials.phosphoricAcid.cost / 100000000 : null,
                                     grossMargin: item.productFinancials.phosphoricAcid.grossMargin !== null ? item.productFinancials.phosphoricAcid.grossMargin : null
+                                } : { revenue: null, cost: null, grossMargin: null },
+                                ironPhosphate: item.productFinancials && item.productFinancials.ironPhosphate ? {
+                                    revenue: item.productFinancials.ironPhosphate.revenue ? item.productFinancials.ironPhosphate.revenue / 100000000 : null,
+                                    cost: item.productFinancials.ironPhosphate.cost ? item.productFinancials.ironPhosphate.cost / 100000000 : null,
+                                    grossMargin: item.productFinancials.ironPhosphate.grossMargin !== null ? item.productFinancials.ironPhosphate.grossMargin : null
                                 } : { revenue: null, cost: null, grossMargin: null }
                             });
                         }
@@ -1761,17 +1777,33 @@
                         row.innerHTML += `<td class="value">${phosphoricAcidGrossMarginValue !== null ? phosphoricAcidGrossMarginValue.toFixed(2) + '%' : '<span class="no-data">-</span>'}</td>`;
                         row.innerHTML += `<td>${formatChange(phosphoricAcidGrossMarginYoY)}</td>`;
 
+                        // 13. 磷酸铁营收
+                        const ironPhosphateRevenueYoY = baseYoY && baseYoY.ironPhosphate && baseYoY.ironPhosphate.revenue !== null && item.ironPhosphate.revenue !== null ? calculateChange(item.ironPhosphate.revenue, baseYoY.ironPhosphate.revenue) : null;
+                        row.innerHTML += `<td class="value">${formatValue(item.ironPhosphate.revenue, '亿元')}</td>`;
+                        row.innerHTML += `<td>${formatChange(ironPhosphateRevenueYoY)}</td>`;
+
+                        // 14. 磷酸铁成本
+                        const ironPhosphateCostYoY = baseYoY && baseYoY.ironPhosphate && baseYoY.ironPhosphate.cost !== null && item.ironPhosphate.cost !== null ? calculateChange(item.ironPhosphate.cost, baseYoY.ironPhosphate.cost) : null;
+                        row.innerHTML += `<td class="value">${formatValue(item.ironPhosphate.cost, '亿元')}</td>`;
+                        row.innerHTML += `<td>${formatChange(ironPhosphateCostYoY)}</td>`;
+
+                        // 15. 磷酸铁毛利率
+                        const ironPhosphateGrossMarginYoY = baseYoY && baseYoY.ironPhosphate && baseYoY.ironPhosphate.grossMargin !== null && item.ironPhosphate.grossMargin !== null ? calculateChange(item.ironPhosphate.grossMargin, baseYoY.ironPhosphate.grossMargin) : null;
+                        const ironPhosphateGrossMarginValue = item.ironPhosphate.grossMargin !== null && !isNaN(item.ironPhosphate.grossMargin) ? item.ironPhosphate.grossMargin : null;
+                        row.innerHTML += `<td class="value">${ironPhosphateGrossMarginValue !== null ? ironPhosphateGrossMarginValue.toFixed(2) + '%' : '<span class="no-data">-</span>'}</td>`;
+                        row.innerHTML += `<td>${formatChange(ironPhosphateGrossMarginYoY)}</td>`;
+
                         tbody.appendChild(row);
                     });
 
                     if (filteredData.length === 0) {
-                        tbody.innerHTML = '<tr><td colspan="25" style="text-align:center;color:#999;">暂无分产品数据</td></tr>';
+                        tbody.innerHTML = '<tr><td colspan="31" style="text-align:center;color:#999;">暂无分产品数据</td></tr>';
                     }
                 } catch (error) {
                     console.error('加载分产品数据失败:', error);
                     const tbody = document.getElementById('productSalesTableBody');
                     if (tbody) {
-                        tbody.innerHTML = '<tr><td colspan="25" style="text-align:center;color:#999;">数据加载失败: ' + error.message + '</td></tr>';
+                        tbody.innerHTML = '<tr><td colspan="31" style="text-align:center;color:#999;">数据加载失败: ' + error.message + '</td></tr>';
                     }
                 }
             }

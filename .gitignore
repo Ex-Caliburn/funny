@@ -13,3 +13,4 @@ hk_playwright_screenshot.png
 scripts/docs/hk_debug_*.*
 uploads/
 /stock/temp
+.workbuddy/

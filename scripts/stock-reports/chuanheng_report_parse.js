@@ -518,14 +518,15 @@ function extractIndustryClassification(text, extractedData, isAnnualReport = fal
 
 /**
  * 从"分产品"表格中提取所有产品的财务数据（营收、成本、毛利率）
- * 四个产品：饲料级磷酸二氢钙、磷酸一铵、磷矿石、磷酸
+ * 五个产品：饲料级磷酸二氢钙、磷酸一铵、磷矿石、磷酸、磷酸铁
  */
 function extractAllProductFinancials(text) {
   const result = {
     feedGradeMCP: { revenue: null, cost: null, grossMargin: null },  // 饲料级磷酸二氢钙
     map: { revenue: null, cost: null, grossMargin: null },            // 磷酸一铵
     phosphateRock: { revenue: null, cost: null, grossMargin: null },  // 磷矿石
-    phosphoricAcid: { revenue: null, cost: null, grossMargin: null } // 磷酸
+    phosphoricAcid: { revenue: null, cost: null, grossMargin: null }, // 磷酸
+    ironPhosphate: { revenue: null, cost: null, grossMargin: null }   // 磷酸铁
   };
 
   // 从"分产品"表格中提取数据
@@ -590,6 +591,42 @@ function extractAllProductFinancials(text) {
         }
       }
       if (result.map.revenue) break;
+    }
+
+    // 匹配磷酸铁（参考磷酸一铵）
+    // 磷酸铁仅在其占营收≥10%（达到披露门槛）时进入"营业成本"分产品表（如2026年上半年），
+    // 此时"营业成本"表行格式为：磷酸铁 营收 成本 毛利率%（与磷酸一铵完全一致）；
+    // 其余年份仅"营业收入构成"分产品表披露营收（成本/毛利率未单列），故只取营收。
+    const ironPhosphatePattern = /(?:分产品[^\d]*)?磷酸铁(?!锂)[^\d]*([\d,，]+\.?\d*)[\s\t]+([\d,，]+\.?\d*)[\s\t]+([\d,，]+\.?\d*)\s*%/g;
+    let ironPhosphateMatch;
+    while ((ironPhosphateMatch = ironPhosphatePattern.exec(productTableSection)) !== null) {
+      const revenueValue = extractNumber(ironPhosphateMatch[1] + '元');
+      const costValue = extractNumber(ironPhosphateMatch[2] + '元');
+      const marginStr = ironPhosphateMatch[3].replace(/[,，]/g, '');
+      const marginValue = parseFloat(marginStr);
+
+      if (revenueValue && revenueValue > 10000000 && costValue && costValue > 10000000) {
+        result.ironPhosphate.revenue = revenueValue;
+        result.ironPhosphate.cost = costValue;
+        if (!isNaN(marginValue) && marginValue >= 0 && marginValue <= 100) {
+          result.ironPhosphate.grossMargin = marginValue;
+        }
+        break;
+      }
+    }
+
+    // 若"营业成本"表未单列磷酸铁（未达10%披露门槛），回退从"营业收入构成"表取营收
+    if (!result.ironPhosphate.revenue) {
+      const ironPhosphateRevenuePattern = /磷酸铁(?!锂)[^\d]*([\d,，]+\.?\d*)/g;
+      let ironPhosphateRevenueMatch;
+      while ((ironPhosphateRevenueMatch = ironPhosphateRevenuePattern.exec(productTableSection)) !== null) {
+        const revenueValue = extractNumber(ironPhosphateRevenueMatch[1] + '元');
+        // 阈值放宽到100万：磷酸铁2022年刚投产，全年营收仅约134万元，远低于磷酸一铵的1000万门槛
+        if (revenueValue && revenueValue > 1000000) {
+          result.ironPhosphate.revenue = revenueValue;
+          break;
+        }
+      }
     }
 
     // 匹配磷矿石
@@ -1082,7 +1119,7 @@ async function parsePDF(filePath) {
       }
     }
 
-    // 提取所有产品的财务数据（四个分产品：饲料级磷酸二氢钙、磷酸一铵、磷矿石、磷酸）
+    // 提取所有产品的财务数据（五个分产品：饲料级磷酸二氢钙、磷酸一铵、磷矿石、磷酸、磷酸铁）
     const allProductFinancials = extractAllProductFinancials(data.text);
     // 将四个分产品的财务数据存储到productSales中
     if (allProductFinancials.feedGradeMCP.revenue) {
@@ -1100,6 +1137,10 @@ async function parsePDF(filePath) {
     if (allProductFinancials.phosphoricAcid.revenue) {
       extractedData.productFinancials = extractedData.productFinancials || {};
       extractedData.productFinancials.phosphoricAcid = allProductFinancials.phosphoricAcid;
+    }
+    if (allProductFinancials.ironPhosphate.revenue) {
+      extractedData.productFinancials = extractedData.productFinancials || {};
+      extractedData.productFinancials.ironPhosphate = allProductFinancials.ironPhosphate;
     }
 
     return extractedData;
@@ -1430,7 +1471,8 @@ function generateSummary(allData) {
         feedGradeMCP: productFinancials.feedGradeMCP || { revenue: null, cost: null, grossMargin: null },
         map: productFinancials.map || { revenue: null, cost: null, grossMargin: null },
         phosphateRock: productFinancials.phosphateRock || { revenue: null, cost: null, grossMargin: null },
-        phosphoricAcid: productFinancials.phosphoricAcid || { revenue: null, cost: null, grossMargin: null }
+        phosphoricAcid: productFinancials.phosphoricAcid || { revenue: null, cost: null, grossMargin: null },
+        ironPhosphate: productFinancials.ironPhosphate || { revenue: null, cost: null, grossMargin: null }
       }
     });
   }
@@ -1477,7 +1519,8 @@ function emptyProductFinancials() {
     feedGradeMCP: { revenue: null, cost: null, grossMargin: null },
     map: { revenue: null, cost: null, grossMargin: null },
     phosphateRock: { revenue: null, cost: null, grossMargin: null },
-    phosphoricAcid: { revenue: null, cost: null, grossMargin: null }
+    phosphoricAcid: { revenue: null, cost: null, grossMargin: null },
+    ironPhosphate: { revenue: null, cost: null, grossMargin: null }
   };
 }
 
@@ -1571,7 +1614,7 @@ function smartMergeChuanheng(existing, incoming) {
     }
   }
 
-  const finKeys = ['feedGradeMCP', 'map', 'phosphateRock', 'phosphoricAcid'];
+  const finKeys = ['feedGradeMCP', 'map', 'phosphateRock', 'phosphoricAcid', 'ironPhosphate'];
   for (const k of finKeys) {
     const ex = existing.productFinancials[k];
     const inc = incoming.productFinancials[k];
@@ -1727,6 +1770,10 @@ async function main() {
       }
       if (item.productFinancials.phosphoricAcid && item.productFinancials.phosphoricAcid.revenue) {
         console.log(`    磷酸: 营收${(item.productFinancials.phosphoricAcid.revenue/100000000).toFixed(2)}亿元, 成本${(item.productFinancials.phosphoricAcid.cost/100000000).toFixed(2)}亿元, 毛利率${item.productFinancials.phosphoricAcid.grossMargin ? item.productFinancials.phosphoricAcid.grossMargin.toFixed(2) + '%' : '未找到'}`);
+      }
+      if (item.productFinancials.ironPhosphate && item.productFinancials.ironPhosphate.revenue) {
+        const ip = item.productFinancials.ironPhosphate;
+        console.log(`    磷酸铁: 营收${(ip.revenue/100000000).toFixed(2)}亿元, 成本${ip.cost ? (ip.cost/100000000).toFixed(2) + '亿元' : '未单列'}, 毛利率${ip.grossMargin ? ip.grossMargin.toFixed(2) + '%' : '未单列'}`);
       }
     }
   });
