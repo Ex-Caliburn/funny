@@ -41,9 +41,12 @@
       },
       "productFinancials": {
         "feedGradeMCP": {
-          "revenue": null,
-          "cost": null,
-          "grossMargin": null
+          "revenue": 1221766146.63,
+          "cost": 777833625.45,
+          "grossMargin": 36.34,
+          "_corrected": true,
+          "_verified": true,
+          "_notes": "根据2026年半年度报告PDF分产品表格手动修正：营收12.22亿元，成本7.78亿元，毛利率36.34%"
         },
         "map": {
           "revenue": 682999733.3,
