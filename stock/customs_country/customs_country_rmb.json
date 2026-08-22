@@ -162718,5 +162718,5445 @@
       }
     ],
     "footnote": "注：\n1. 东南亚国家联盟包括：文莱、缅甸、柬埔寨、印度尼西亚、老挝、马来西亚、菲律宾、新加坡、泰国、越南、东帝汶。   \n2. 欧洲联盟包括：比利时、丹麦、德国、法国、爱尔兰、意大利、卢森堡、荷兰、希腊、葡萄牙、西班牙、奥地利、芬兰、瑞典、塞浦路斯、匈牙利、马耳他、波兰、爱沙尼亚、拉脱维亚、立陶宛、斯洛文尼亚、捷克、斯洛伐克、保加利亚、罗马尼亚、克罗地亚。\n3. 亚太经济合作组织包括：文莱、中国香港、印度尼西亚、日本、马来西亚、菲律宾、新加坡、韩国、泰国、越南、中国、中国台湾、俄罗斯、智利、墨西哥、秘鲁、加拿大、美国、澳大利亚、新西兰、巴布亚新几内亚。\n4. 区域全面经济伙伴关系协定（RCEP）成员国包括：文莱、缅甸、柬埔寨、印度尼西亚、老挝、马来西亚、菲律宾、新加坡、泰国、越南、日本、韩国、中国、澳大利亚、新西兰。\n5. 共建“一带一路”国家和地区：来源“中国一带一路”网（https://www.yidaiyilu.gov.cn）所列国家和地区。"
+  },
+  "2026-07": {
+    "sourceFile": "2026-07_2026年7月进出口商品国别总值表.xls",
+    "sourceType": "xls",
+    "title": "2026年7月进出口商品国别总值表",
+    "unitNote": "单位：万元人民币",
+    "period": {
+      "year": 2026,
+      "month": 7
+    },
+    "monthLabel": "7月",
+    "columnSemantics": {
+      "tradeTotal": "进出口合计 当月/累计（7月）",
+      "export": "出口 当月/累计（7月）",
+      "import": "进口 当月/累计（7月）",
+      "ytdYoy": "累计比去年同期 ±%（进出口/出口/进口）"
+    },
+    "items": [
+      {
+        "name": "总值",
+        "level": 0,
+        "parentName": null,
+        "tradeTotal": {
+          "month": 465905405.0177,
+          "ytd": 3012745931.3321,
+          "ytdYoy": 17.3
+        },
+        "export": {
+          "month": 271251156.0682,
+          "ytd": 1743996497.2131,
+          "ytdYoy": 14
+        },
+        "import": {
+          "month": 194654248.9495,
+          "ytd": 1268749434.119,
+          "ytdYoy": 22
+        }
+      },
+      {
+        "name": "亚洲",
+        "level": 0,
+        "parentName": null,
+        "tradeTotal": {
+          "month": 251260365.5821,
+          "ytd": 1598129002.3446,
+          "ytdYoy": 20
+        },
+        "export": {
+          "month": 140440254.5922,
+          "ytd": 904427092.9611,
+          "ytdYoy": 17.8
+        },
+        "import": {
+          "month": 110820110.9899,
+          "ytd": 693701909.3835,
+          "ytdYoy": 23.2
+        }
+      },
+      {
+        "name": "阿富汗",
+        "level": 1,
+        "parentName": "亚洲",
+        "tradeTotal": {
+          "month": 132582.5704,
+          "ytd": 772271.9467,
+          "ytdYoy": 0
+        },
+        "export": {
+          "month": 127086.9815,
+          "ytd": 721977.4651,
+          "ytdYoy": -5.2
+        },
+        "import": {
+          "month": 5495.5889,
+          "ytd": 50294.4816,
+          "ytdYoy": 365.6
+        }
+      },
+      {
+        "name": "巴林",
+        "level": 1,
+        "parentName": "亚洲",
+        "tradeTotal": {
+          "month": 112509.0553,
+          "ytd": 606447.9943,
+          "ytdYoy": -14
+        },
+        "export": {
+          "month": 84522.3172,
+          "ytd": 454158.1146,
+          "ytdYoy": -28.3
+        },
+        "import": {
+          "month": 27986.7381,
+          "ytd": 152289.8797,
+          "ytdYoy": 112.5
+        }
+      },
+      {
+        "name": "孟加拉国",
+        "level": 1,
+        "parentName": "亚洲",
+        "tradeTotal": {
+          "month": 1424086.4256,
+          "ytd": 10256473.1872,
+          "ytdYoy": 5.8
+        },
+        "export": {
+          "month": 1321781.2833,
+          "ytd": 9696423.1239,
+          "ytdYoy": 5.5
+        },
+        "import": {
+          "month": 102305.1423,
+          "ytd": 560050.0633,
+          "ytdYoy": 11.1
+        }
+      },
+      {
+        "name": "不丹",
+        "level": 1,
+        "parentName": "亚洲",
+        "tradeTotal": {
+          "month": 15564.6038,
+          "ytd": 84026.8695,
+          "ytdYoy": 5.5
+        },
+        "export": {
+          "month": 15564.2847,
+          "ytd": 84022.9607,
+          "ytdYoy": 5.5
+        },
+        "import": {
+          "month": 0.3191,
+          "ytd": 3.9088,
+          "ytdYoy": 2.5
+        }
+      },
+      {
+        "name": "文莱",
+        "level": 1,
+        "parentName": "亚洲",
+        "tradeTotal": {
+          "month": 147456.7855,
+          "ytd": 1138923.424,
+          "ytdYoy": -2.9
+        },
+        "export": {
+          "month": 34807.806,
+          "ytd": 215060.2723,
+          "ytdYoy": -36.9
+        },
+        "import": {
+          "month": 112648.9795,
+          "ytd": 923863.1517,
+          "ytdYoy": 11.1
+        }
+      },
+      {
+        "name": "缅甸",
+        "level": 1,
+        "parentName": "亚洲",
+        "tradeTotal": {
+          "month": 1135654.9406,
+          "ytd": 9021507.1205,
+          "ytdYoy": 22
+        },
+        "export": {
+          "month": 612003.9636,
+          "ytd": 4956432.6035,
+          "ytdYoy": 12.7
+        },
+        "import": {
+          "month": 523650.977,
+          "ytd": 4065074.517,
+          "ytdYoy": 35.8
+        }
+      },
+      {
+        "name": "柬埔寨",
+        "level": 1,
+        "parentName": "亚洲",
+        "tradeTotal": {
+          "month": 1373232.8069,
+          "ytd": 10228545.2376,
+          "ytdYoy": 11.9
+        },
+        "export": {
+          "month": 1199388.6719,
+          "ytd": 9028306.5132,
+          "ytdYoy": 11.2
+        },
+        "import": {
+          "month": 173844.135,
+          "ytd": 1200238.7244,
+          "ytdYoy": 16.9
+        }
+      },
+      {
+        "name": "塞浦路斯",
+        "level": 1,
+        "parentName": "亚洲",
+        "tradeTotal": {
+          "month": 170242.1403,
+          "ytd": 1114974.2,
+          "ytdYoy": 79.1
+        },
+        "export": {
+          "month": 168587.3365,
+          "ytd": 1101580.9935,
+          "ytdYoy": 80.7
+        },
+        "import": {
+          "month": 1654.8038,
+          "ytd": 13393.2065,
+          "ytdYoy": 2.5
+        }
+      },
+      {
+        "name": "朝鲜",
+        "level": 1,
+        "parentName": "亚洲",
+        "tradeTotal": {
+          "month": 156218.6102,
+          "ytd": 1199303.0994,
+          "ytdYoy": 14.1
+        },
+        "export": {
+          "month": 125996.1566,
+          "ytd": 944656.1757,
+          "ytdYoy": 7.8
+        },
+        "import": {
+          "month": 30222.4536,
+          "ytd": 254646.9237,
+          "ytdYoy": 45.2
+        }
+      },
+      {
+        "name": "中国香港",
+        "level": 1,
+        "parentName": "亚洲",
+        "tradeTotal": {
+          "month": 30774389.027,
+          "ytd": 203672916.1954,
+          "ytdYoy": 48.6
+        },
+        "export": {
+          "month": 27357227.7541,
+          "ytd": 180611147.6993,
+          "ytdYoy": 42.5
+        },
+        "import": {
+          "month": 3417161.2729,
+          "ytd": 23061768.4961,
+          "ytdYoy": 124
+        }
+      },
+      {
+        "name": "印度",
+        "level": 1,
+        "parentName": "亚洲",
+        "tradeTotal": {
+          "month": 11255362.8286,
+          "ytd": 74838778.1021,
+          "ytdYoy": 18.4
+        },
+        "export": {
+          "month": 9434278.2455,
+          "ytd": 64478669.2112,
+          "ytdYoy": 16.1
+        },
+        "import": {
+          "month": 1821084.5831,
+          "ytd": 10360108.8909,
+          "ytdYoy": 34.9
+        }
+      },
+      {
+        "name": "印度尼西亚",
+        "level": 1,
+        "parentName": "亚洲",
+        "tradeTotal": {
+          "month": 11796949.9825,
+          "ytd": 82054791.5472,
+          "ytdYoy": 27.1
+        },
+        "export": {
+          "month": 5904620.2329,
+          "ytd": 39030289.28,
+          "ytdYoy": 14.2
+        },
+        "import": {
+          "month": 5892329.7496,
+          "ytd": 43024502.2672,
+          "ytdYoy": 41.5
+        }
+      },
+      {
+        "name": "伊朗",
+        "level": 1,
+        "parentName": "亚洲",
+        "tradeTotal": {
+          "month": 261741.32,
+          "ytd": 1795703.4375,
+          "ytdYoy": -58.3
+        },
+        "export": {
+          "month": 219507.1366,
+          "ytd": 1334672.2959,
+          "ytdYoy": -53.9
+        },
+        "import": {
+          "month": 42234.1834,
+          "ytd": 461031.1416,
+          "ytdYoy": -67.4
+        }
+      },
+      {
+        "name": "伊拉克",
+        "level": 1,
+        "parentName": "亚洲",
+        "tradeTotal": {
+          "month": 1000565.4375,
+          "ytd": 9277484.7125,
+          "ytdYoy": -57.6
+        },
+        "export": {
+          "month": 950029.4497,
+          "ytd": 4563332.993,
+          "ytdYoy": -38
+        },
+        "import": {
+          "month": 50535.9878,
+          "ytd": 4714151.7195,
+          "ytdYoy": -67.5
+        }
+      },
+      {
+        "name": "以色列",
+        "level": 1,
+        "parentName": "亚洲",
+        "tradeTotal": {
+          "month": 2187600.1629,
+          "ytd": 13767424.8088,
+          "ytdYoy": 4.4
+        },
+        "export": {
+          "month": 1206809.063,
+          "ytd": 6983395.3114,
+          "ytdYoy": 2.8
+        },
+        "import": {
+          "month": 980791.0999,
+          "ytd": 6784029.4974,
+          "ytdYoy": 6
+        }
+      },
+      {
+        "name": "日本",
+        "level": 1,
+        "parentName": "亚洲",
+        "tradeTotal": {
+          "month": 22868235.259,
+          "ytd": 147057743.151,
+          "ytdYoy": 14.2
+        },
+        "export": {
+          "month": 9698474.5357,
+          "ytd": 67397750.4705,
+          "ytdYoy": 4.1
+        },
+        "import": {
+          "month": 13169760.7233,
+          "ytd": 79659992.6805,
+          "ytdYoy": 24.3
+        }
+      },
+      {
+        "name": "约旦",
+        "level": 1,
+        "parentName": "亚洲",
+        "tradeTotal": {
+          "month": 644470.0747,
+          "ytd": 3554541.9225,
+          "ytdYoy": 27
+        },
+        "export": {
+          "month": 594535.0437,
+          "ytd": 3275612.8484,
+          "ytdYoy": 24.2
+        },
+        "import": {
+          "month": 49935.031,
+          "ytd": 278929.0741,
+          "ytdYoy": 71.7
+        }
+      },
+      {
+        "name": "科威特",
+        "level": 1,
+        "parentName": "亚洲",
+        "tradeTotal": {
+          "month": 938431.6809,
+          "ytd": 3907381.7705,
+          "ytdYoy": -48
+        },
+        "export": {
+          "month": 258622.3399,
+          "ytd": 1527682.9809,
+          "ytdYoy": -39.9
+        },
+        "import": {
+          "month": 679809.341,
+          "ytd": 2379698.7896,
+          "ytdYoy": -52.2
+        }
+      },
+      {
+        "name": "老挝",
+        "level": 1,
+        "parentName": "亚洲",
+        "tradeTotal": {
+          "month": 588813.8908,
+          "ytd": 4759788.1389,
+          "ytdYoy": 23.1
+        },
+        "export": {
+          "month": 260523.6942,
+          "ytd": 1839906.0045,
+          "ytdYoy": 6.7
+        },
+        "import": {
+          "month": 328290.1966,
+          "ytd": 2919882.1344,
+          "ytdYoy": 36.3
+        }
+      },
+      {
+        "name": "黎巴嫩",
+        "level": 1,
+        "parentName": "亚洲",
+        "tradeTotal": {
+          "month": 160443.6909,
+          "ytd": 1056379.4735,
+          "ytdYoy": -7.4
+        },
+        "export": {
+          "month": 151357.4224,
+          "ytd": 1004574.5586,
+          "ytdYoy": -8.7
+        },
+        "import": {
+          "month": 9086.2685,
+          "ytd": 51804.9149,
+          "ytdYoy": 25.5
+        }
+      },
+      {
+        "name": "中国澳门",
+        "level": 1,
+        "parentName": "亚洲",
+        "tradeTotal": {
+          "month": 232910.6232,
+          "ytd": 1623451.0815,
+          "ytdYoy": 4.2
+        },
+        "export": {
+          "month": 230166.914,
+          "ytd": 1590065.4442,
+          "ytdYoy": 4.5
+        },
+        "import": {
+          "month": 2743.7092,
+          "ytd": 33385.6373,
+          "ytdYoy": -7.9
+        }
+      },
+      {
+        "name": "马来西亚",
+        "level": 1,
+        "parentName": "亚洲",
+        "tradeTotal": {
+          "month": 12105292.2786,
+          "ytd": 84226318.6101,
+          "ytdYoy": 0.4
+        },
+        "export": {
+          "month": 8294866.0262,
+          "ytd": 53900675.4088,
+          "ytdYoy": 25.5
+        },
+        "import": {
+          "month": 3810426.2524,
+          "ytd": 30325643.2013,
+          "ytdYoy": -26
+        }
+      },
+      {
+        "name": "马尔代夫",
+        "level": 1,
+        "parentName": "亚洲",
+        "tradeTotal": {
+          "month": 46927.187,
+          "ytd": 326256.1156,
+          "ytdYoy": 24.9
+        },
+        "export": {
+          "month": 46924.6848,
+          "ytd": 326164.874,
+          "ytdYoy": 24.9
+        },
+        "import": {
+          "month": 2.5022,
+          "ytd": 91.2416,
+          "ytdYoy": 408
+        }
+      },
+      {
+        "name": "蒙古",
+        "level": 1,
+        "parentName": "亚洲",
+        "tradeTotal": {
+          "month": 1387349.9729,
+          "ytd": 9555278.8817,
+          "ytdYoy": 46
+        },
+        "export": {
+          "month": 252268.0973,
+          "ytd": 1665560.5161,
+          "ytdYoy": 4.2
+        },
+        "import": {
+          "month": 1135081.8756,
+          "ytd": 7889718.3656,
+          "ytdYoy": 59.5
+        }
+      },
+      {
+        "name": "尼泊尔",
+        "level": 1,
+        "parentName": "亚洲",
+        "tradeTotal": {
+          "month": 149065.3279,
+          "ytd": 999521.9798,
+          "ytdYoy": -2.9
+        },
+        "export": {
+          "month": 146990.9925,
+          "ytd": 983334.4064,
+          "ytdYoy": -3.3
+        },
+        "import": {
+          "month": 2074.3354,
+          "ytd": 16187.5734,
+          "ytdYoy": 28.6
+        }
+      },
+      {
+        "name": "阿曼",
+        "level": 1,
+        "parentName": "亚洲",
+        "tradeTotal": {
+          "month": 1117225.6016,
+          "ytd": 12144359.3308,
+          "ytdYoy": -7.9
+        },
+        "export": {
+          "month": 591761.5891,
+          "ytd": 3293390.4632,
+          "ytdYoy": 61.6
+        },
+        "import": {
+          "month": 525464.0125,
+          "ytd": 8850968.8676,
+          "ytdYoy": -20.6
+        }
+      },
+      {
+        "name": "巴基斯坦",
+        "level": 1,
+        "parentName": "亚洲",
+        "tradeTotal": {
+          "month": 1403968.9955,
+          "ytd": 11376972.3108,
+          "ytdYoy": 9.2
+        },
+        "export": {
+          "month": 1225407.0899,
+          "ytd": 9899016.0236,
+          "ytdYoy": 5.7
+        },
+        "import": {
+          "month": 178561.9056,
+          "ytd": 1477956.2872,
+          "ytdYoy": 40.5
+        }
+      },
+      {
+        "name": "巴勒斯坦",
+        "level": 1,
+        "parentName": "亚洲",
+        "tradeTotal": {
+          "month": 27115.9588,
+          "ytd": 146782.5589,
+          "ytdYoy": 61.1
+        },
+        "export": {
+          "month": 27115.8246,
+          "ytd": 146772.0624,
+          "ytdYoy": 61.1
+        },
+        "import": {
+          "month": 0.1342,
+          "ytd": 10.4965,
+          "ytdYoy": 275.1
+        }
+      },
+      {
+        "name": "菲律宾",
+        "level": 1,
+        "parentName": "亚洲",
+        "tradeTotal": {
+          "month": 5967416.9347,
+          "ytd": 36792233.5311,
+          "ytdYoy": 19.8
+        },
+        "export": {
+          "month": 4129825.9147,
+          "ytd": 27002812.5727,
+          "ytdYoy": 14.6
+        },
+        "import": {
+          "month": 1837591.02,
+          "ytd": 9789420.9584,
+          "ytdYoy": 37.1
+        }
+      },
+      {
+        "name": "卡塔尔",
+        "level": 1,
+        "parentName": "亚洲",
+        "tradeTotal": {
+          "month": 1377447.7473,
+          "ytd": 5812868.8343,
+          "ytdYoy": -43.5
+        },
+        "export": {
+          "month": 735176.9143,
+          "ytd": 2068115.1007,
+          "ytdYoy": -10.7
+        },
+        "import": {
+          "month": 642270.833,
+          "ytd": 3744753.7336,
+          "ytdYoy": -53
+        }
+      },
+      {
+        "name": "沙特阿拉伯",
+        "level": 1,
+        "parentName": "亚洲",
+        "tradeTotal": {
+          "month": 5574320.4203,
+          "ytd": 40335905.9514,
+          "ytdYoy": -11.2
+        },
+        "export": {
+          "month": 2843485.9148,
+          "ytd": 19654803.363,
+          "ytdYoy": -12.8
+        },
+        "import": {
+          "month": 2730834.5055,
+          "ytd": 20681102.5884,
+          "ytdYoy": -9.5
+        }
+      },
+      {
+        "name": "新加坡",
+        "level": 1,
+        "parentName": "亚洲",
+        "tradeTotal": {
+          "month": 10079387.0398,
+          "ytd": 59454482.1709,
+          "ytdYoy": 23.6
+        },
+        "export": {
+          "month": 7009493.3753,
+          "ytd": 39202541.2273,
+          "ytdYoy": 15.7
+        },
+        "import": {
+          "month": 3069893.6645,
+          "ytd": 20251940.9436,
+          "ytdYoy": 42.3
+        }
+      },
+      {
+        "name": "韩国",
+        "level": 1,
+        "parentName": "亚洲",
+        "tradeTotal": {
+          "month": 33500228.4886,
+          "ytd": 193637090.2434,
+          "ytdYoy": 45.9
+        },
+        "export": {
+          "month": 12348334.9776,
+          "ytd": 76573456.2166,
+          "ytdYoy": 28.2
+        },
+        "import": {
+          "month": 21151893.511,
+          "ytd": 117063634.0268,
+          "ytdYoy": 60.5
+        }
+      },
+      {
+        "name": "斯里兰卡",
+        "level": 1,
+        "parentName": "亚洲",
+        "tradeTotal": {
+          "month": 339724.0047,
+          "ytd": 2623799.5441,
+          "ytdYoy": 7.5
+        },
+        "export": {
+          "month": 318154.5782,
+          "ytd": 2440721.0536,
+          "ytdYoy": 8.8
+        },
+        "import": {
+          "month": 21569.4265,
+          "ytd": 183078.4905,
+          "ytdYoy": -6.8
+        }
+      },
+      {
+        "name": "叙利亚",
+        "level": 1,
+        "parentName": "亚洲",
+        "tradeTotal": {
+          "month": 89932.9779,
+          "ytd": 554584.9585,
+          "ytdYoy": 254.5
+        },
+        "export": {
+          "month": 89734.2851,
+          "ytd": 554092.8209,
+          "ytdYoy": 255.5
+        },
+        "import": {
+          "month": 198.6928,
+          "ytd": 492.1376,
+          "ytdYoy": -12.9
+        }
+      },
+      {
+        "name": "泰国",
+        "level": 1,
+        "parentName": "亚洲",
+        "tradeTotal": {
+          "month": 12113698.3914,
+          "ytd": 78011452.1495,
+          "ytdYoy": 21.5
+        },
+        "export": {
+          "month": 8275037.1225,
+          "ytd": 53774122.5992,
+          "ytdYoy": 26.4
+        },
+        "import": {
+          "month": 3838661.2689,
+          "ytd": 24237329.5503,
+          "ytdYoy": 11.8
+        }
+      },
+      {
+        "name": "土耳其",
+        "level": 1,
+        "parentName": "亚洲",
+        "tradeTotal": {
+          "month": 2884245.6938,
+          "ytd": 20109299.8711,
+          "ytdYoy": 7.6
+        },
+        "export": {
+          "month": 2578422.4278,
+          "ytd": 17975684.4673,
+          "ytdYoy": 6.7
+        },
+        "import": {
+          "month": 305823.266,
+          "ytd": 2133615.4038,
+          "ytdYoy": 15.9
+        }
+      },
+      {
+        "name": "阿联酋",
+        "level": 1,
+        "parentName": "亚洲",
+        "tradeTotal": {
+          "month": 4685770.2455,
+          "ytd": 29519184.1695,
+          "ytdYoy": -30.7
+        },
+        "export": {
+          "month": 2950385.1635,
+          "ytd": 20645532.8779,
+          "ytdYoy": -28.3
+        },
+        "import": {
+          "month": 1735385.082,
+          "ytd": 8873651.2916,
+          "ytdYoy": -35.7
+        }
+      },
+      {
+        "name": "也门",
+        "level": 1,
+        "parentName": "亚洲",
+        "tradeTotal": {
+          "month": 191017.6215,
+          "ytd": 1262057.501,
+          "ytdYoy": 14.2
+        },
+        "export": {
+          "month": 190557.5294,
+          "ytd": 1250925.3338,
+          "ytdYoy": 14.2
+        },
+        "import": {
+          "month": 460.0921,
+          "ytd": 11132.1672,
+          "ytdYoy": 16.8
+        }
+      },
+      {
+        "name": "越南",
+        "level": 1,
+        "parentName": "亚洲",
+        "tradeTotal": {
+          "month": 25287674.9902,
+          "ytd": 148590524.154,
+          "ytdYoy": 28.5
+        },
+        "export": {
+          "month": 15767655.9157,
+          "ytd": 96854219.6194,
+          "ytdYoy": 22.5
+        },
+        "import": {
+          "month": 9520019.0745,
+          "ytd": 51736304.5346,
+          "ytdYoy": 41.3
+        }
+      },
+      {
+        "name": "中国",
+        "level": 1,
+        "parentName": "亚洲",
+        "tradeTotal": {
+          "month": 12785590.8771,
+          "ytd": 79816947.2889,
+          "ytdYoy": 56.6
+        },
+        "export": {
+          "month": null,
+          "ytd": null,
+          "ytdYoy": null
+        },
+        "import": {
+          "month": 12785590.8771,
+          "ytd": 79816947.2889,
+          "ytdYoy": 56.6
+        }
+      },
+      {
+        "name": "中国台湾",
+        "level": 1,
+        "parentName": "亚洲",
+        "tradeTotal": {
+          "month": 25055944.7922,
+          "ytd": 153260375.3662,
+          "ytdYoy": 21.7
+        },
+        "export": {
+          "month": 7012595.1607,
+          "ytd": 42953546.7522,
+          "ytdYoy": 26.5
+        },
+        "import": {
+          "month": 18043349.6315,
+          "ytd": 110306828.614,
+          "ytdYoy": 19.9
+        }
+      },
+      {
+        "name": "东帝汶",
+        "level": 1,
+        "parentName": "亚洲",
+        "tradeTotal": {
+          "month": 15229.7832,
+          "ytd": 118690.3455,
+          "ytdYoy": -0.3
+        },
+        "export": {
+          "month": 15229.0368,
+          "ytd": 117664.6958,
+          "ytdYoy": -1
+        },
+        "import": {
+          "month": 0.7464,
+          "ytd": 1025.6497,
+          "ytdYoy": 925.7
+        }
+      },
+      {
+        "name": "哈萨克斯坦",
+        "level": 1,
+        "parentName": "亚洲",
+        "tradeTotal": {
+          "month": 3582142.7037,
+          "ytd": 22429290.0132,
+          "ytdYoy": 19.4
+        },
+        "export": {
+          "month": 2294273.8784,
+          "ytd": 12668212.5875,
+          "ytdYoy": 4.6
+        },
+        "import": {
+          "month": 1287868.8253,
+          "ytd": 9761077.4257,
+          "ytdYoy": 46.3
+        }
+      },
+      {
+        "name": "吉尔吉斯斯坦",
+        "level": 1,
+        "parentName": "亚洲",
+        "tradeTotal": {
+          "month": 1403648.057,
+          "ytd": 8119371.5781,
+          "ytdYoy": -34.8
+        },
+        "export": {
+          "month": 1368094.6106,
+          "ytd": 8031807.7578,
+          "ytdYoy": -10.6
+        },
+        "import": {
+          "month": 35553.4464,
+          "ytd": 87563.8203,
+          "ytdYoy": -97.5
+        }
+      },
+      {
+        "name": "塔吉克斯坦",
+        "level": 1,
+        "parentName": "亚洲",
+        "tradeTotal": {
+          "month": 367202.2579,
+          "ytd": 1994705.4173,
+          "ytdYoy": 12.8
+        },
+        "export": {
+          "month": 318795.0362,
+          "ytd": 1638988.2684,
+          "ytdYoy": 5.9
+        },
+        "import": {
+          "month": 48407.2217,
+          "ytd": 355717.1489,
+          "ytdYoy": 60.3
+        }
+      },
+      {
+        "name": "土库曼斯坦",
+        "level": 1,
+        "parentName": "亚洲",
+        "tradeTotal": {
+          "month": 641397.0396,
+          "ytd": 3983154.6633,
+          "ytdYoy": -4
+        },
+        "export": {
+          "month": 155258.6138,
+          "ytd": 694072.5645,
+          "ytdYoy": 20.3
+        },
+        "import": {
+          "month": 486138.4258,
+          "ytd": 3289082.0988,
+          "ytdYoy": -8
+        }
+      },
+      {
+        "name": "乌兹别克斯坦",
+        "level": 1,
+        "parentName": "亚洲",
+        "tradeTotal": {
+          "month": 1149829.6432,
+          "ytd": 7296720.4411,
+          "ytdYoy": 23.4
+        },
+        "export": {
+          "month": 1052657.7343,
+          "ytd": 6355660.0595,
+          "ytdYoy": 22
+        },
+        "import": {
+          "month": 97171.9089,
+          "ytd": 941060.3816,
+          "ytdYoy": 33.7
+        }
+      },
+      {
+        "name": "格鲁吉亚",
+        "level": 1,
+        "parentName": "亚洲",
+        "tradeTotal": {
+          "month": 192655.6158,
+          "ytd": 1441091.9641,
+          "ytdYoy": 30.9
+        },
+        "export": {
+          "month": 171070.4413,
+          "ytd": 1149676.9329,
+          "ytdYoy": 17.4
+        },
+        "import": {
+          "month": 21585.1745,
+          "ytd": 291415.0312,
+          "ytdYoy": 140.5
+        }
+      },
+      {
+        "name": "亚美尼亚",
+        "level": 1,
+        "parentName": "亚洲",
+        "tradeTotal": {
+          "month": 172176.3353,
+          "ytd": 1192920.4904,
+          "ytdYoy": 43.5
+        },
+        "export": {
+          "month": 111466.8253,
+          "ytd": 658837.9402,
+          "ytdYoy": 24.5
+        },
+        "import": {
+          "month": 60709.51,
+          "ytd": 534082.5502,
+          "ytdYoy": 76.9
+        }
+      },
+      {
+        "name": "阿塞拜疆",
+        "level": 1,
+        "parentName": "亚洲",
+        "tradeTotal": {
+          "month": 189276.6825,
+          "ytd": 1207904.3287,
+          "ytdYoy": 5.4
+        },
+        "export": {
+          "month": 163324.1985,
+          "ytd": 1106967.075,
+          "ytdYoy": -0.3
+        },
+        "import": {
+          "month": 25952.484,
+          "ytd": 100937.2537,
+          "ytdYoy": 177.7
+        }
+      },
+      {
+        "name": "亚洲其他国家(地区)",
+        "level": 1,
+        "parentName": "亚洲",
+        "tradeTotal": {
+          "month": null,
+          "ytd": 0.1607,
+          "ytdYoy": -89.9
+        },
+        "export": {
+          "month": null,
+          "ytd": null,
+          "ytdYoy": null
+        },
+        "import": {
+          "month": null,
+          "ytd": 0.1607,
+          "ytdYoy": -71
+        }
+      },
+      {
+        "name": "非洲",
+        "level": 0,
+        "parentName": null,
+        "tradeTotal": {
+          "month": 24491959.9517,
+          "ytd": 165682591.3247,
+          "ytdYoy": 18.9
+        },
+        "export": {
+          "month": 15443780.8257,
+          "ytd": 105641939.109,
+          "ytdYoy": 20.4
+        },
+        "import": {
+          "month": 9048179.126,
+          "ytd": 60040652.2157,
+          "ytdYoy": 16.4
+        }
+      },
+      {
+        "name": "阿尔及利亚",
+        "level": 1,
+        "parentName": "非洲",
+        "tradeTotal": {
+          "month": 926723.6229,
+          "ytd": 7187115.3998,
+          "ytdYoy": 21.3
+        },
+        "export": {
+          "month": 886282.6612,
+          "ytd": 6466471.3857,
+          "ytdYoy": 17
+        },
+        "import": {
+          "month": 40440.9617,
+          "ytd": 720644.0141,
+          "ytdYoy": 80.5
+        }
+      },
+      {
+        "name": "安哥拉",
+        "level": 1,
+        "parentName": "非洲",
+        "tradeTotal": {
+          "month": 1598091.0886,
+          "ytd": 9103236.3119,
+          "ytdYoy": 7.6
+        },
+        "export": {
+          "month": 316487.3752,
+          "ytd": 1953987.9507,
+          "ytdYoy": -11.2
+        },
+        "import": {
+          "month": 1281603.7134,
+          "ytd": 7149248.3612,
+          "ytdYoy": 14.3
+        }
+      },
+      {
+        "name": "贝宁",
+        "level": 1,
+        "parentName": "非洲",
+        "tradeTotal": {
+          "month": 138523.3297,
+          "ytd": 870689.9313,
+          "ytdYoy": 39.7
+        },
+        "export": {
+          "month": 136619.5775,
+          "ytd": 865889.3587,
+          "ytdYoy": 39.6
+        },
+        "import": {
+          "month": 1903.7522,
+          "ytd": 4800.5726,
+          "ytdYoy": 78.8
+        }
+      },
+      {
+        "name": "博茨瓦纳",
+        "level": 1,
+        "parentName": "非洲",
+        "tradeTotal": {
+          "month": 148473.3023,
+          "ytd": 743099.5908,
+          "ytdYoy": 74.4
+        },
+        "export": {
+          "month": 10479.4149,
+          "ytd": 101921.0945,
+          "ytdYoy": -5.1
+        },
+        "import": {
+          "month": 137993.8874,
+          "ytd": 641178.4963,
+          "ytdYoy": 101.2
+        }
+      },
+      {
+        "name": "布隆迪",
+        "level": 1,
+        "parentName": "非洲",
+        "tradeTotal": {
+          "month": 10413.327,
+          "ytd": 69511.8923,
+          "ytdYoy": 41
+        },
+        "export": {
+          "month": 8515.1503,
+          "ytd": 58509.1948,
+          "ytdYoy": 37.7
+        },
+        "import": {
+          "month": 1898.1767,
+          "ytd": 11002.6975,
+          "ytdYoy": 61.7
+        }
+      },
+      {
+        "name": "喀麦隆",
+        "level": 1,
+        "parentName": "非洲",
+        "tradeTotal": {
+          "month": 343603.284,
+          "ytd": 2080970.472,
+          "ytdYoy": 6.7
+        },
+        "export": {
+          "month": 279372.1531,
+          "ytd": 1901518.4576,
+          "ytdYoy": 6.2
+        },
+        "import": {
+          "month": 64231.1309,
+          "ytd": 179452.0144,
+          "ytdYoy": 12.7
+        }
+      },
+      {
+        "name": "加那利群岛",
+        "level": 1,
+        "parentName": "非洲",
+        "tradeTotal": {
+          "month": 237.511,
+          "ytd": 1523.4312,
+          "ytdYoy": -2.5
+        },
+        "export": {
+          "month": 237.511,
+          "ytd": 1516.3323,
+          "ytdYoy": -2.9
+        },
+        "import": {
+          "month": null,
+          "ytd": 7.0989,
+          "ytdYoy": 305.8
+        }
+      },
+      {
+        "name": "佛得角",
+        "level": 1,
+        "parentName": "非洲",
+        "tradeTotal": {
+          "month": 7169.4052,
+          "ytd": 49206.972,
+          "ytdYoy": -7.4
+        },
+        "export": {
+          "month": 7168.7524,
+          "ytd": 49204.9632,
+          "ytdYoy": -7.4
+        },
+        "import": {
+          "month": 0.6528,
+          "ytd": 2.0088,
+          "ytdYoy": 91.2
+        }
+      },
+      {
+        "name": "中非",
+        "level": 1,
+        "parentName": "非洲",
+        "tradeTotal": {
+          "month": 8551.2854,
+          "ytd": 66930.435,
+          "ytdYoy": 26.6
+        },
+        "export": {
+          "month": 6678.8127,
+          "ytd": 48623.128,
+          "ytdYoy": 27.1
+        },
+        "import": {
+          "month": 1872.4727,
+          "ytd": 18307.307,
+          "ytdYoy": 25.3
+        }
+      },
+      {
+        "name": "塞卜泰(休达)",
+        "level": 1,
+        "parentName": "非洲",
+        "tradeTotal": {
+          "month": null,
+          "ytd": 0.876,
+          "ytdYoy": -99.2
+        },
+        "export": {
+          "month": null,
+          "ytd": 0.876,
+          "ytdYoy": -99.2
+        },
+        "import": {
+          "month": null,
+          "ytd": null,
+          "ytdYoy": null
+        }
+      },
+      {
+        "name": "乍得",
+        "level": 1,
+        "parentName": "非洲",
+        "tradeTotal": {
+          "month": 201131.7485,
+          "ytd": 1152395.4388,
+          "ytdYoy": 221.8
+        },
+        "export": {
+          "month": 44298.4109,
+          "ytd": 264967.7962,
+          "ytdYoy": 34.7
+        },
+        "import": {
+          "month": 156833.3376,
+          "ytd": 887427.6426,
+          "ytdYoy": 449.9
+        }
+      },
+      {
+        "name": "科摩罗",
+        "level": 1,
+        "parentName": "非洲",
+        "tradeTotal": {
+          "month": 8424.5162,
+          "ytd": 63556.1512,
+          "ytdYoy": 25.5
+        },
+        "export": {
+          "month": 8410.6588,
+          "ytd": 63492.2439,
+          "ytdYoy": 25.6
+        },
+        "import": {
+          "month": 13.8574,
+          "ytd": 63.9073,
+          "ytdYoy": -26
+        }
+      },
+      {
+        "name": "刚果共和国",
+        "level": 1,
+        "parentName": "非洲",
+        "tradeTotal": {
+          "month": 302026.6578,
+          "ytd": 2907576.1184,
+          "ytdYoy": 8.4
+        },
+        "export": {
+          "month": 121496.5485,
+          "ytd": 751178.1775,
+          "ytdYoy": 21
+        },
+        "import": {
+          "month": 180530.1093,
+          "ytd": 2156397.9409,
+          "ytdYoy": 4.7
+        }
+      },
+      {
+        "name": "吉布提",
+        "level": 1,
+        "parentName": "非洲",
+        "tradeTotal": {
+          "month": 265962.0302,
+          "ytd": 1966278.544,
+          "ytdYoy": 32.3
+        },
+        "export": {
+          "month": 262646.4983,
+          "ytd": 1941598.4104,
+          "ytdYoy": 31.3
+        },
+        "import": {
+          "month": 3315.5319,
+          "ytd": 24680.1336,
+          "ytdYoy": 277.9
+        }
+      },
+      {
+        "name": "埃及",
+        "level": 1,
+        "parentName": "非洲",
+        "tradeTotal": {
+          "month": 1356539.3375,
+          "ytd": 9519062.1705,
+          "ytdYoy": 18.7
+        },
+        "export": {
+          "month": 1312514.0961,
+          "ytd": 9062303.9535,
+          "ytdYoy": 17.5
+        },
+        "import": {
+          "month": 44025.2414,
+          "ytd": 456758.217,
+          "ytdYoy": 49.4
+        }
+      },
+      {
+        "name": "赤道几内亚",
+        "level": 1,
+        "parentName": "非洲",
+        "tradeTotal": {
+          "month": 50903.8888,
+          "ytd": 391267.353,
+          "ytdYoy": -3.4
+        },
+        "export": {
+          "month": 8727.7372,
+          "ytd": 73394.0669,
+          "ytdYoy": 2.8
+        },
+        "import": {
+          "month": 42176.1516,
+          "ytd": 317873.2861,
+          "ytdYoy": -4.7
+        }
+      },
+      {
+        "name": "埃塞俄比亚",
+        "level": 1,
+        "parentName": "非洲",
+        "tradeTotal": {
+          "month": 295414.0049,
+          "ytd": 1926087.0307,
+          "ytdYoy": 3.8
+        },
+        "export": {
+          "month": 217472.1459,
+          "ytd": 1539900.1968,
+          "ytdYoy": 1.5
+        },
+        "import": {
+          "month": 77941.859,
+          "ytd": 386186.8339,
+          "ytdYoy": 14.2
+        }
+      },
+      {
+        "name": "加蓬",
+        "level": 1,
+        "parentName": "非洲",
+        "tradeTotal": {
+          "month": 183052.7955,
+          "ytd": 1588200.3185,
+          "ytdYoy": -8.5
+        },
+        "export": {
+          "month": 52624.0709,
+          "ytd": 327029.3514,
+          "ytdYoy": 9.8
+        },
+        "import": {
+          "month": 130428.7246,
+          "ytd": 1261170.9671,
+          "ytdYoy": -12.3
+        }
+      },
+      {
+        "name": "冈比亚",
+        "level": 1,
+        "parentName": "非洲",
+        "tradeTotal": {
+          "month": 42042.3018,
+          "ytd": 260755.3126,
+          "ytdYoy": 53.6
+        },
+        "export": {
+          "month": 28206.935,
+          "ytd": 218297.8058,
+          "ytdYoy": 42.1
+        },
+        "import": {
+          "month": 13835.3668,
+          "ytd": 42457.5068,
+          "ytdYoy": 163
+        }
+      },
+      {
+        "name": "加纳",
+        "level": 1,
+        "parentName": "非洲",
+        "tradeTotal": {
+          "month": 981922.2908,
+          "ytd": 7001717.9718,
+          "ytdYoy": 25.1
+        },
+        "export": {
+          "month": 852917.6286,
+          "ytd": 6129143.9682,
+          "ytdYoy": 30.9
+        },
+        "import": {
+          "month": 129004.6622,
+          "ytd": 872574.0036,
+          "ytdYoy": -4.7
+        }
+      },
+      {
+        "name": "几内亚",
+        "level": 1,
+        "parentName": "非洲",
+        "tradeTotal": {
+          "month": 1189060.752,
+          "ytd": 8385724.4174,
+          "ytdYoy": -0.8
+        },
+        "export": {
+          "month": 334687.6961,
+          "ytd": 2786234.9683,
+          "ytdYoy": 7
+        },
+        "import": {
+          "month": 854373.0559,
+          "ytd": 5599489.4491,
+          "ytdYoy": -4.2
+        }
+      },
+      {
+        "name": "几内亚比绍",
+        "level": 1,
+        "parentName": "非洲",
+        "tradeTotal": {
+          "month": 13045.8641,
+          "ytd": 41013.9321,
+          "ytdYoy": 75.3
+        },
+        "export": {
+          "month": 13045.8221,
+          "ytd": 41013.8369,
+          "ytdYoy": 75.3
+        },
+        "import": {
+          "month": 0.042,
+          "ytd": 0.0952,
+          "ytdYoy": -2.2
+        }
+      },
+      {
+        "name": "科特迪瓦",
+        "level": 1,
+        "parentName": "非洲",
+        "tradeTotal": {
+          "month": 519148.0077,
+          "ytd": 3890677.7211,
+          "ytdYoy": 28.7
+        },
+        "export": {
+          "month": 455437.6422,
+          "ytd": 3315638.5058,
+          "ytdYoy": 32.5
+        },
+        "import": {
+          "month": 63710.3655,
+          "ytd": 575039.2153,
+          "ytdYoy": 10.2
+        }
+      },
+      {
+        "name": "肯尼亚",
+        "level": 1,
+        "parentName": "非洲",
+        "tradeTotal": {
+          "month": 827201.3884,
+          "ytd": 4896330.4311,
+          "ytdYoy": 14.1
+        },
+        "export": {
+          "month": 811050.2254,
+          "ytd": 4812858.5247,
+          "ytdYoy": 15.1
+        },
+        "import": {
+          "month": 16151.163,
+          "ytd": 83471.9064,
+          "ytdYoy": -22.6
+        }
+      },
+      {
+        "name": "利比里亚",
+        "level": 1,
+        "parentName": "非洲",
+        "tradeTotal": {
+          "month": 1156776.6188,
+          "ytd": 8554588.7014,
+          "ytdYoy": 16.1
+        },
+        "export": {
+          "month": 1092898.9956,
+          "ytd": 8184060.2185,
+          "ytdYoy": 11.7
+        },
+        "import": {
+          "month": 63877.6232,
+          "ytd": 370528.4829,
+          "ytdYoy": 792.6
+        }
+      },
+      {
+        "name": "利比亚",
+        "level": 1,
+        "parentName": "非洲",
+        "tradeTotal": {
+          "month": 316249.697,
+          "ytd": 2016822.4766,
+          "ytdYoy": 3.2
+        },
+        "export": {
+          "month": 245282.7921,
+          "ytd": 1518217.5145,
+          "ytdYoy": -9
+        },
+        "import": {
+          "month": 70966.9049,
+          "ytd": 498604.9621,
+          "ytdYoy": 73.7
+        }
+      },
+      {
+        "name": "马达加斯加",
+        "level": 1,
+        "parentName": "非洲",
+        "tradeTotal": {
+          "month": 149134.5544,
+          "ytd": 855109.9888,
+          "ytdYoy": 18.4
+        },
+        "export": {
+          "month": 133289.7324,
+          "ytd": 734436.9889,
+          "ytdYoy": 16.7
+        },
+        "import": {
+          "month": 15844.822,
+          "ytd": 120672.9999,
+          "ytdYoy": 30.2
+        }
+      },
+      {
+        "name": "马拉维",
+        "level": 1,
+        "parentName": "非洲",
+        "tradeTotal": {
+          "month": 13864.846,
+          "ytd": 110269.0275,
+          "ytdYoy": -25.5
+        },
+        "export": {
+          "month": 13345.162,
+          "ytd": 104292.4002,
+          "ytdYoy": -25.1
+        },
+        "import": {
+          "month": 519.684,
+          "ytd": 5976.6273,
+          "ytdYoy": -30.8
+        }
+      },
+      {
+        "name": "马里",
+        "level": 1,
+        "parentName": "非洲",
+        "tradeTotal": {
+          "month": 137885.3711,
+          "ytd": 1083046.1464,
+          "ytdYoy": 90
+        },
+        "export": {
+          "month": 86801.7302,
+          "ytd": 724009.8727,
+          "ytdYoy": 34.2
+        },
+        "import": {
+          "month": 51083.6409,
+          "ytd": 359036.2737,
+          "ytdYoy": 1086.3
+        }
+      },
+      {
+        "name": "毛里塔尼亚",
+        "level": 1,
+        "parentName": "非洲",
+        "tradeTotal": {
+          "month": 191768.6267,
+          "ytd": 1147681.5593,
+          "ytdYoy": 10.8
+        },
+        "export": {
+          "month": 127762.8509,
+          "ytd": 627313.7906,
+          "ytdYoy": 27.7
+        },
+        "import": {
+          "month": 64005.7758,
+          "ytd": 520367.7687,
+          "ytdYoy": -4.4
+        }
+      },
+      {
+        "name": "毛里求斯",
+        "level": 1,
+        "parentName": "非洲",
+        "tradeTotal": {
+          "month": 90650.4825,
+          "ytd": 513378.1979,
+          "ytdYoy": 16.7
+        },
+        "export": {
+          "month": 87602.2755,
+          "ytd": 495026.4282,
+          "ytdYoy": 14.9
+        },
+        "import": {
+          "month": 3048.207,
+          "ytd": 18351.7697,
+          "ytdYoy": 101.2
+        }
+      },
+      {
+        "name": "摩洛哥",
+        "level": 1,
+        "parentName": "非洲",
+        "tradeTotal": {
+          "month": 762527.3497,
+          "ytd": 5114755.0672,
+          "ytdYoy": 19
+        },
+        "export": {
+          "month": 689216.3509,
+          "ytd": 4700586.5404,
+          "ytdYoy": 23.7
+        },
+        "import": {
+          "month": 73310.9988,
+          "ytd": 414168.5268,
+          "ytdYoy": -16.7
+        }
+      },
+      {
+        "name": "莫桑比克",
+        "level": 1,
+        "parentName": "非洲",
+        "tradeTotal": {
+          "month": 337650.6615,
+          "ytd": 2494171.8583,
+          "ytdYoy": 14.2
+        },
+        "export": {
+          "month": 282724.2834,
+          "ytd": 1969892.8791,
+          "ytdYoy": 33.5
+        },
+        "import": {
+          "month": 54926.3781,
+          "ytd": 524278.9792,
+          "ytdYoy": -26
+        }
+      },
+      {
+        "name": "纳米比亚",
+        "level": 1,
+        "parentName": "非洲",
+        "tradeTotal": {
+          "month": 109971.787,
+          "ytd": 843599.0293,
+          "ytdYoy": 12.6
+        },
+        "export": {
+          "month": 54159.4404,
+          "ytd": 323451.4461,
+          "ytdYoy": 48.8
+        },
+        "import": {
+          "month": 55812.3466,
+          "ytd": 520147.5832,
+          "ytdYoy": -2.2
+        }
+      },
+      {
+        "name": "尼日尔",
+        "level": 1,
+        "parentName": "非洲",
+        "tradeTotal": {
+          "month": 48803.403,
+          "ytd": 463802.5223,
+          "ytdYoy": -22.4
+        },
+        "export": {
+          "month": 24470.4769,
+          "ytd": 164900.3458,
+          "ytdYoy": 30.4
+        },
+        "import": {
+          "month": 24332.9261,
+          "ytd": 298902.1765,
+          "ytdYoy": -36.6
+        }
+      },
+      {
+        "name": "尼日利亚",
+        "level": 1,
+        "parentName": "非洲",
+        "tradeTotal": {
+          "month": 2120843.7252,
+          "ytd": 14170551.4951,
+          "ytdYoy": 27.3
+        },
+        "export": {
+          "month": 1834281.4058,
+          "ytd": 12344168.5861,
+          "ytdYoy": 23.7
+        },
+        "import": {
+          "month": 286562.3194,
+          "ytd": 1826382.909,
+          "ytdYoy": 58.2
+        }
+      },
+      {
+        "name": "留尼汪",
+        "level": 1,
+        "parentName": "非洲",
+        "tradeTotal": {
+          "month": 14349.9665,
+          "ytd": 98948.5478,
+          "ytdYoy": 2
+        },
+        "export": {
+          "month": 14324.379,
+          "ytd": 98911.5166,
+          "ytdYoy": 2
+        },
+        "import": {
+          "month": 25.5875,
+          "ytd": 37.0312,
+          "ytdYoy": 486.7
+        }
+      },
+      {
+        "name": "卢旺达",
+        "level": 1,
+        "parentName": "非洲",
+        "tradeTotal": {
+          "month": 91539.1104,
+          "ytd": 577514.2522,
+          "ytdYoy": 75.3
+        },
+        "export": {
+          "month": 43151.6329,
+          "ytd": 308671.4857,
+          "ytdYoy": 27.1
+        },
+        "import": {
+          "month": 48387.4775,
+          "ytd": 268842.7665,
+          "ytdYoy": 210.3
+        }
+      },
+      {
+        "name": "圣多美和普林西比",
+        "level": 1,
+        "parentName": "非洲",
+        "tradeTotal": {
+          "month": 5329.06,
+          "ytd": 39027.5016,
+          "ytdYoy": 82.3
+        },
+        "export": {
+          "month": 5327.8792,
+          "ytd": 39024.3254,
+          "ytdYoy": 82.6
+        },
+        "import": {
+          "month": 1.1808,
+          "ytd": 3.1762,
+          "ytdYoy": -89.1
+        }
+      },
+      {
+        "name": "塞内加尔",
+        "level": 1,
+        "parentName": "非洲",
+        "tradeTotal": {
+          "month": 373468.6891,
+          "ytd": 2619957.166,
+          "ytdYoy": -5.4
+        },
+        "export": {
+          "month": 353204.154,
+          "ytd": 2430269.5329,
+          "ytdYoy": 7.3
+        },
+        "import": {
+          "month": 20264.5351,
+          "ytd": 189687.6331,
+          "ytdYoy": -62.4
+        }
+      },
+      {
+        "name": "塞舌尔",
+        "level": 1,
+        "parentName": "非洲",
+        "tradeTotal": {
+          "month": 7962.2507,
+          "ytd": 53820.4929,
+          "ytdYoy": 44.2
+        },
+        "export": {
+          "month": 7929.2821,
+          "ytd": 53280.2708,
+          "ytdYoy": 47.8
+        },
+        "import": {
+          "month": 32.9686,
+          "ytd": 540.2221,
+          "ytdYoy": -57.4
+        }
+      },
+      {
+        "name": "塞拉利昂",
+        "level": 1,
+        "parentName": "非洲",
+        "tradeTotal": {
+          "month": 124827.3112,
+          "ytd": 1138644.0129,
+          "ytdYoy": 25.6
+        },
+        "export": {
+          "month": 60424.921,
+          "ytd": 497136.9464,
+          "ytdYoy": 40
+        },
+        "import": {
+          "month": 64402.3902,
+          "ytd": 641507.0665,
+          "ytdYoy": 16.4
+        }
+      },
+      {
+        "name": "索马里",
+        "level": 1,
+        "parentName": "非洲",
+        "tradeTotal": {
+          "month": 72801.4521,
+          "ytd": 400805.5374,
+          "ytdYoy": -3.5
+        },
+        "export": {
+          "month": 71940.7867,
+          "ytd": 397935.6239,
+          "ytdYoy": -4
+        },
+        "import": {
+          "month": 860.6654,
+          "ytd": 2869.9135,
+          "ytdYoy": 249.3
+        }
+      },
+      {
+        "name": "南非",
+        "level": 1,
+        "parentName": "非洲",
+        "tradeTotal": {
+          "month": 4240679.1345,
+          "ytd": 26118681.1558,
+          "ytdYoy": 21.7
+        },
+        "export": {
+          "month": 1704208.1099,
+          "ytd": 11125608.7508,
+          "ytdYoy": 26.3
+        },
+        "import": {
+          "month": 2536471.0246,
+          "ytd": 14993072.405,
+          "ytdYoy": 18.5
+        }
+      },
+      {
+        "name": "西撒哈拉",
+        "level": 1,
+        "parentName": "非洲",
+        "tradeTotal": {
+          "month": 0.0384,
+          "ytd": 104.0529,
+          "ytdYoy": 43.2
+        },
+        "export": {
+          "month": null,
+          "ytd": 103.9533,
+          "ytdYoy": 44.3
+        },
+        "import": {
+          "month": 0.0384,
+          "ytd": 0.0996,
+          "ytdYoy": -84.5
+        }
+      },
+      {
+        "name": "苏丹",
+        "level": 1,
+        "parentName": "非洲",
+        "tradeTotal": {
+          "month": 176632.0525,
+          "ytd": 1100220.7819,
+          "ytdYoy": 41.6
+        },
+        "export": {
+          "month": 172331.3538,
+          "ytd": 1075758.1846,
+          "ytdYoy": 45.4
+        },
+        "import": {
+          "month": 4300.6987,
+          "ytd": 24462.5973,
+          "ytdYoy": -33.2
+        }
+      },
+      {
+        "name": "坦桑尼亚",
+        "level": 1,
+        "parentName": "非洲",
+        "tradeTotal": {
+          "month": 773409.6151,
+          "ytd": 5269559.5739,
+          "ytdYoy": 20.9
+        },
+        "export": {
+          "month": 739315.6053,
+          "ytd": 5036134.6271,
+          "ytdYoy": 22
+        },
+        "import": {
+          "month": 34094.0098,
+          "ytd": 233424.9468,
+          "ytdYoy": 2.3
+        }
+      },
+      {
+        "name": "多哥",
+        "level": 1,
+        "parentName": "非洲",
+        "tradeTotal": {
+          "month": 284349.6282,
+          "ytd": 2100410.7443,
+          "ytdYoy": -9
+        },
+        "export": {
+          "month": 270935.7816,
+          "ytd": 1946627.7739,
+          "ytdYoy": 11.6
+        },
+        "import": {
+          "month": 13413.8466,
+          "ytd": 153782.9704,
+          "ytdYoy": -72.7
+        }
+      },
+      {
+        "name": "突尼斯",
+        "level": 1,
+        "parentName": "非洲",
+        "tradeTotal": {
+          "month": 208638.5794,
+          "ytd": 1345322.5699,
+          "ytdYoy": 16.8
+        },
+        "export": {
+          "month": 189161.9509,
+          "ytd": 1214385.9418,
+          "ytdYoy": 15.8
+        },
+        "import": {
+          "month": 19476.6285,
+          "ytd": 130936.6281,
+          "ytdYoy": 27.2
+        }
+      },
+      {
+        "name": "乌干达",
+        "level": 1,
+        "parentName": "非洲",
+        "tradeTotal": {
+          "month": 148698.4664,
+          "ytd": 924395.7986,
+          "ytdYoy": 12.1
+        },
+        "export": {
+          "month": 139671.0875,
+          "ytd": 862372.1803,
+          "ytdYoy": 12.9
+        },
+        "import": {
+          "month": 9027.3789,
+          "ytd": 62023.6183,
+          "ytdYoy": 1.8
+        }
+      },
+      {
+        "name": "布基纳法索",
+        "level": 1,
+        "parentName": "非洲",
+        "tradeTotal": {
+          "month": 87778.6368,
+          "ytd": 556646.1132,
+          "ytdYoy": 30.6
+        },
+        "export": {
+          "month": 84054.4536,
+          "ytd": 530725.9174,
+          "ytdYoy": 36.8
+        },
+        "import": {
+          "month": 3724.1832,
+          "ytd": 25920.1958,
+          "ytdYoy": -32.3
+        }
+      },
+      {
+        "name": "刚果民主共和国",
+        "level": 1,
+        "parentName": "非洲",
+        "tradeTotal": {
+          "month": 1894395.2105,
+          "ytd": 13316070.3787,
+          "ytdYoy": 22.6
+        },
+        "export": {
+          "month": 406094.2905,
+          "ytd": 3003790.1285,
+          "ytdYoy": 65.6
+        },
+        "import": {
+          "month": 1488300.92,
+          "ytd": 10312280.2502,
+          "ytdYoy": 14
+        }
+      },
+      {
+        "name": "赞比亚",
+        "level": 1,
+        "parentName": "非洲",
+        "tradeTotal": {
+          "month": 640540.4634,
+          "ytd": 4448858.1402,
+          "ytdYoy": 40.9
+        },
+        "export": {
+          "month": 140311.9949,
+          "ytd": 1036535.868,
+          "ytdYoy": 46
+        },
+        "import": {
+          "month": 500228.4685,
+          "ytd": 3412322.2722,
+          "ytdYoy": 39.4
+        }
+      },
+      {
+        "name": "津巴布韦",
+        "level": 1,
+        "parentName": "非洲",
+        "tradeTotal": {
+          "month": 274435.8375,
+          "ytd": 2636480.7166,
+          "ytdYoy": 39.4
+        },
+        "export": {
+          "month": 159420.7899,
+          "ytd": 1092940.6059,
+          "ytdYoy": 64.5
+        },
+        "import": {
+          "month": 115015.0476,
+          "ytd": 1543540.1107,
+          "ytdYoy": 25.9
+        }
+      },
+      {
+        "name": "莱索托",
+        "level": 1,
+        "parentName": "非洲",
+        "tradeTotal": {
+          "month": 4627.5116,
+          "ytd": 40651.596,
+          "ytdYoy": -34.5
+        },
+        "export": {
+          "month": 4266.7081,
+          "ytd": 30735.5028,
+          "ytdYoy": -35.6
+        },
+        "import": {
+          "month": 360.8035,
+          "ytd": 9916.0932,
+          "ytdYoy": -30.8
+        }
+      },
+      {
+        "name": "梅利利亚",
+        "level": 1,
+        "parentName": "非洲",
+        "tradeTotal": {
+          "month": 24.9347,
+          "ytd": 30.0404,
+          "ytdYoy": 457.9
+        },
+        "export": {
+          "month": 24.9347,
+          "ytd": 29.9955,
+          "ytdYoy": 550.9
+        },
+        "import": {
+          "month": null,
+          "ytd": 0.0449,
+          "ytdYoy": -94.2
+        }
+      },
+      {
+        "name": "斯威士兰",
+        "level": 1,
+        "parentName": "非洲",
+        "tradeTotal": {
+          "month": 2388.8085,
+          "ytd": 23252.443,
+          "ytdYoy": 3.7
+        },
+        "export": {
+          "month": 2352.5655,
+          "ytd": 22371.3635,
+          "ytdYoy": 21.1
+        },
+        "import": {
+          "month": 36.243,
+          "ytd": 881.0795,
+          "ytdYoy": -77.7
+        }
+      },
+      {
+        "name": "厄立特里亚",
+        "level": 1,
+        "parentName": "非洲",
+        "tradeTotal": {
+          "month": 83149.0099,
+          "ytd": 326899.2153,
+          "ytdYoy": -29.3
+        },
+        "export": {
+          "month": 16291.4944,
+          "ytd": 71072.8519,
+          "ytdYoy": -29.2
+        },
+        "import": {
+          "month": 66857.5155,
+          "ytd": 255826.3634,
+          "ytdYoy": -29.4
+        }
+      },
+      {
+        "name": "马约特",
+        "level": 1,
+        "parentName": "非洲",
+        "tradeTotal": {
+          "month": 4565.2293,
+          "ytd": 30643.427,
+          "ytdYoy": 13.7
+        },
+        "export": {
+          "month": 4564.8134,
+          "ytd": 30642.2716,
+          "ytdYoy": 13.7
+        },
+        "import": {
+          "month": 0.4159,
+          "ytd": 1.1554,
+          "ytdYoy": -44.1
+        }
+      },
+      {
+        "name": "南苏丹",
+        "level": 1,
+        "parentName": "非洲",
+        "tradeTotal": {
+          "month": 123554.2179,
+          "ytd": 984447.5227,
+          "ytdYoy": 892.9
+        },
+        "export": {
+          "month": 7233.5007,
+          "ytd": 71337.9386,
+          "ytdYoy": 70.7
+        },
+        "import": {
+          "month": 116320.7172,
+          "ytd": 913109.5841,
+          "ytdYoy": 1491.7
+        }
+      },
+      {
+        "name": "法属南方领地",
+        "level": 1,
+        "parentName": "非洲",
+        "tradeTotal": {
+          "month": null,
+          "ytd": 8.0683,
+          "ytdYoy": -91.2
+        },
+        "export": {
+          "month": null,
+          "ytd": null,
+          "ytdYoy": null
+        },
+        "import": {
+          "month": null,
+          "ytd": 8.0683,
+          "ytdYoy": 636.4
+        }
+      },
+      {
+        "name": "英属印度洋领地",
+        "level": 1,
+        "parentName": "非洲",
+        "tradeTotal": {
+          "month": null,
+          "ytd": 139.5862,
+          "ytdYoy": -42.9
+        },
+        "export": {
+          "month": null,
+          "ytd": 137.8797,
+          "ytdYoy": -43.6
+        },
+        "import": {
+          "month": null,
+          "ytd": 1.7065,
+          "ytdYoy": null
+        }
+      },
+      {
+        "name": "圣赫勒拿",
+        "level": 1,
+        "parentName": "非洲",
+        "tradeTotal": {
+          "month": 0.5783,
+          "ytd": 71.7377,
+          "ytdYoy": -60.3
+        },
+        "export": {
+          "month": 0.5742,
+          "ytd": 71.7289,
+          "ytdYoy": -59.4
+        },
+        "import": {
+          "month": 0.0041,
+          "ytd": 0.0088,
+          "ytdYoy": -99.8
+        }
+      },
+      {
+        "name": "非洲其他国家(地区)",
+        "level": 1,
+        "parentName": "非洲",
+        "tradeTotal": {
+          "month": 25.2956,
+          "ytd": 275.8577,
+          "ytdYoy": 41085.1
+        },
+        "export": {
+          "month": 24.7615,
+          "ytd": 274.3843,
+          "ytdYoy": 13065819
+        },
+        "import": {
+          "month": 0.5341,
+          "ytd": 1.4734,
+          "ytdYoy": 120.7
+        }
+      },
+      {
+        "name": "欧洲",
+        "level": 0,
+        "parentName": null,
+        "tradeTotal": {
+          "month": 88087510.6869,
+          "ytd": 589910950.6578,
+          "ytdYoy": 17.4
+        },
+        "export": {
+          "month": 56154031.3286,
+          "ytd": 359297044.3464,
+          "ytdYoy": 13.9
+        },
+        "import": {
+          "month": 31933479.3583,
+          "ytd": 230613906.3114,
+          "ytdYoy": 23.3
+        }
+      },
+      {
+        "name": "比利时",
+        "level": 1,
+        "parentName": "欧洲",
+        "tradeTotal": {
+          "month": 2896718.8731,
+          "ytd": 18426111.1114,
+          "ytdYoy": 11
+        },
+        "export": {
+          "month": 2484883.5089,
+          "ytd": 16041459.4134,
+          "ytdYoy": 14.4
+        },
+        "import": {
+          "month": 411835.3642,
+          "ytd": 2384651.698,
+          "ytdYoy": -7.3
+        }
+      },
+      {
+        "name": "丹麦",
+        "level": 1,
+        "parentName": "欧洲",
+        "tradeTotal": {
+          "month": 1195243.0574,
+          "ytd": 7309234.5425,
+          "ytdYoy": -1.2
+        },
+        "export": {
+          "month": 897775.9243,
+          "ytd": 4973153.9042,
+          "ytdYoy": 14.8
+        },
+        "import": {
+          "month": 297467.1331,
+          "ytd": 2336080.6383,
+          "ytdYoy": -23.9
+        }
+      },
+      {
+        "name": "英国",
+        "level": 1,
+        "parentName": "欧洲",
+        "tradeTotal": {
+          "month": 7147206.9516,
+          "ytd": 45144653.6365,
+          "ytdYoy": 7.1
+        },
+        "export": {
+          "month": 5968387.2662,
+          "ytd": 37699800.1338,
+          "ytdYoy": 9.8
+        },
+        "import": {
+          "month": 1178819.6854,
+          "ytd": 7444853.5027,
+          "ytdYoy": -4.7
+        }
+      },
+      {
+        "name": "德国",
+        "level": 1,
+        "parentName": "欧洲",
+        "tradeTotal": {
+          "month": 13769129.4594,
+          "ytd": 91873343.9486,
+          "ytdYoy": 7
+        },
+        "export": {
+          "month": 8375344.6539,
+          "ytd": 55156412.695,
+          "ytdYoy": 14.4
+        },
+        "import": {
+          "month": 5393784.8055,
+          "ytd": 36716931.2536,
+          "ytdYoy": -2.4
+        }
+      },
+      {
+        "name": "法国",
+        "level": 1,
+        "parentName": "欧洲",
+        "tradeTotal": {
+          "month": 5837700.1227,
+          "ytd": 37541457.6013,
+          "ytdYoy": 12
+        },
+        "export": {
+          "month": 3377348.4218,
+          "ytd": 21150738.9412,
+          "ytdYoy": 8
+        },
+        "import": {
+          "month": 2460351.7009,
+          "ytd": 16390718.6601,
+          "ytdYoy": 17.7
+        }
+      },
+      {
+        "name": "爱尔兰",
+        "level": 1,
+        "parentName": "欧洲",
+        "tradeTotal": {
+          "month": 1913505.2902,
+          "ytd": 11239865.0812,
+          "ytdYoy": 16.1
+        },
+        "export": {
+          "month": 578467.7299,
+          "ytd": 2872459.2977,
+          "ytdYoy": 23.3
+        },
+        "import": {
+          "month": 1335037.5603,
+          "ytd": 8367405.7835,
+          "ytdYoy": 13.9
+        }
+      },
+      {
+        "name": "意大利",
+        "level": 1,
+        "parentName": "欧洲",
+        "tradeTotal": {
+          "month": 5105311.9489,
+          "ytd": 34842630.2237,
+          "ytdYoy": 14.6
+        },
+        "export": {
+          "month": 3405849.7297,
+          "ytd": 23528185.0481,
+          "ytdYoy": 15.5
+        },
+        "import": {
+          "month": 1699462.2192,
+          "ytd": 11314445.1756,
+          "ytdYoy": 12.9
+        }
+      },
+      {
+        "name": "卢森堡",
+        "level": 1,
+        "parentName": "欧洲",
+        "tradeTotal": {
+          "month": 39307.6732,
+          "ytd": 431929.4509,
+          "ytdYoy": 39.1
+        },
+        "export": {
+          "month": 23027.0248,
+          "ytd": 284066.1143,
+          "ytdYoy": 70.4
+        },
+        "import": {
+          "month": 16280.6484,
+          "ytd": 147863.3366,
+          "ytdYoy": 2.9
+        }
+      },
+      {
+        "name": "荷兰",
+        "level": 1,
+        "parentName": "欧洲",
+        "tradeTotal": {
+          "month": 7568931.434,
+          "ytd": 47901313.2546,
+          "ytdYoy": 5.2
+        },
+        "export": {
+          "month": 6375876.1098,
+          "ytd": 40983280.414,
+          "ytdYoy": 6.5
+        },
+        "import": {
+          "month": 1193055.3242,
+          "ytd": 6918032.8406,
+          "ytdYoy": -1.8
+        }
+      },
+      {
+        "name": "希腊",
+        "level": 1,
+        "parentName": "欧洲",
+        "tradeTotal": {
+          "month": 610604.4077,
+          "ytd": 4271337.4346,
+          "ytdYoy": -22.6
+        },
+        "export": {
+          "month": 567794.4084,
+          "ytd": 3945554.6482,
+          "ytdYoy": -24.7
+        },
+        "import": {
+          "month": 42809.9993,
+          "ytd": 325782.7864,
+          "ytdYoy": 15.7
+        }
+      },
+      {
+        "name": "葡萄牙",
+        "level": 1,
+        "parentName": "欧洲",
+        "tradeTotal": {
+          "month": 592370.2521,
+          "ytd": 4571638.7285,
+          "ytdYoy": 13.3
+        },
+        "export": {
+          "month": 430115.3066,
+          "ytd": 3370560.9309,
+          "ytdYoy": 19.3
+        },
+        "import": {
+          "month": 162254.9455,
+          "ytd": 1201077.7976,
+          "ytdYoy": -0.8
+        }
+      },
+      {
+        "name": "西班牙",
+        "level": 1,
+        "parentName": "欧洲",
+        "tradeTotal": {
+          "month": 3822940.9336,
+          "ytd": 24948877.5513,
+          "ytdYoy": 10.6
+        },
+        "export": {
+          "month": 3118167.9337,
+          "ytd": 20576678.5662,
+          "ytdYoy": 10
+        },
+        "import": {
+          "month": 704772.9999,
+          "ytd": 4372198.9851,
+          "ytdYoy": 13.7
+        }
+      },
+      {
+        "name": "阿尔巴尼亚",
+        "level": 1,
+        "parentName": "欧洲",
+        "tradeTotal": {
+          "month": 112862.9628,
+          "ytd": 807431.3783,
+          "ytdYoy": 17.7
+        },
+        "export": {
+          "month": 89192.6956,
+          "ytd": 697248.7142,
+          "ytdYoy": 11.4
+        },
+        "import": {
+          "month": 23670.2672,
+          "ytd": 110182.6641,
+          "ytdYoy": 83.1
+        }
+      },
+      {
+        "name": "安道尔",
+        "level": 1,
+        "parentName": "欧洲",
+        "tradeTotal": {
+          "month": 150.3263,
+          "ytd": 1811.9513,
+          "ytdYoy": 41.6
+        },
+        "export": {
+          "month": 146.3952,
+          "ytd": 1782.8425,
+          "ytdYoy": 48.3
+        },
+        "import": {
+          "month": 3.9311,
+          "ytd": 29.1088,
+          "ytdYoy": -62.5
+        }
+      },
+      {
+        "name": "奥地利",
+        "level": 1,
+        "parentName": "欧洲",
+        "tradeTotal": {
+          "month": 992787.7409,
+          "ytd": 6228832.3674,
+          "ytdYoy": 26.5
+        },
+        "export": {
+          "month": 416687.5382,
+          "ytd": 2815586.5097,
+          "ytdYoy": 64.4
+        },
+        "import": {
+          "month": 576100.2027,
+          "ytd": 3413245.8577,
+          "ytdYoy": 6.3
+        }
+      },
+      {
+        "name": "保加利亚",
+        "level": 1,
+        "parentName": "欧洲",
+        "tradeTotal": {
+          "month": 351798.2611,
+          "ytd": 2443544.705,
+          "ytdYoy": 32.9
+        },
+        "export": {
+          "month": 284000.4529,
+          "ytd": 1907663.1834,
+          "ytdYoy": 33.3
+        },
+        "import": {
+          "month": 67797.8082,
+          "ytd": 535881.5216,
+          "ytdYoy": 31.4
+        }
+      },
+      {
+        "name": "芬兰",
+        "level": 1,
+        "parentName": "欧洲",
+        "tradeTotal": {
+          "month": 547578.1096,
+          "ytd": 3720917.9328,
+          "ytdYoy": 4.3
+        },
+        "export": {
+          "month": 272997.7265,
+          "ytd": 1682329.3625,
+          "ytdYoy": 10
+        },
+        "import": {
+          "month": 274580.3831,
+          "ytd": 2038588.5703,
+          "ytdYoy": 0.1
+        }
+      },
+      {
+        "name": "直布罗陀",
+        "level": 1,
+        "parentName": "欧洲",
+        "tradeTotal": {
+          "month": 101.2785,
+          "ytd": 2590.3849,
+          "ytdYoy": -79.7
+        },
+        "export": {
+          "month": 100.8747,
+          "ytd": 2589.137,
+          "ytdYoy": -79.7
+        },
+        "import": {
+          "month": 0.4038,
+          "ytd": 1.2479,
+          "ytdYoy": 7.9
+        }
+      },
+      {
+        "name": "匈牙利",
+        "level": 1,
+        "parentName": "欧洲",
+        "tradeTotal": {
+          "month": 1393416.364,
+          "ytd": 9753432.4477,
+          "ytdYoy": 21.4
+        },
+        "export": {
+          "month": 1096822.8695,
+          "ytd": 7815342.4127,
+          "ytdYoy": 24
+        },
+        "import": {
+          "month": 296593.4945,
+          "ytd": 1938090.035,
+          "ytdYoy": 11.9
+        }
+      },
+      {
+        "name": "冰岛",
+        "level": 1,
+        "parentName": "欧洲",
+        "tradeTotal": {
+          "month": 40335.765,
+          "ytd": 268695.9293,
+          "ytdYoy": 39.2
+        },
+        "export": {
+          "month": 23637.2155,
+          "ytd": 154223.6544,
+          "ytdYoy": 24.6
+        },
+        "import": {
+          "month": 16698.5495,
+          "ytd": 114472.2749,
+          "ytdYoy": 65.4
+        }
+      },
+      {
+        "name": "列支敦士登",
+        "level": 1,
+        "parentName": "欧洲",
+        "tradeTotal": {
+          "month": 18002.0309,
+          "ytd": 104129.4247,
+          "ytdYoy": 5.5
+        },
+        "export": {
+          "month": 2886.8811,
+          "ytd": 21059.0164,
+          "ytdYoy": 15.9
+        },
+        "import": {
+          "month": 15115.1498,
+          "ytd": 83070.4083,
+          "ytdYoy": 3.1
+        }
+      },
+      {
+        "name": "马耳他",
+        "level": 1,
+        "parentName": "欧洲",
+        "tradeTotal": {
+          "month": 204743.4876,
+          "ytd": 1654800.5536,
+          "ytdYoy": 7.5
+        },
+        "export": {
+          "month": 197639.8046,
+          "ytd": 1603072.3461,
+          "ytdYoy": 24.6
+        },
+        "import": {
+          "month": 7103.683,
+          "ytd": 51728.2075,
+          "ytdYoy": -79.5
+        }
+      },
+      {
+        "name": "摩纳哥",
+        "level": 1,
+        "parentName": "欧洲",
+        "tradeTotal": {
+          "month": 1321.7189,
+          "ytd": 8132.4748,
+          "ytdYoy": -88.3
+        },
+        "export": {
+          "month": 682.1037,
+          "ytd": 3703.3845,
+          "ytdYoy": -94.3
+        },
+        "import": {
+          "month": 639.6152,
+          "ytd": 4429.0903,
+          "ytdYoy": 0.1
+        }
+      },
+      {
+        "name": "挪威",
+        "level": 1,
+        "parentName": "欧洲",
+        "tradeTotal": {
+          "month": 638038.6585,
+          "ytd": 5340704.0892,
+          "ytdYoy": 23.1
+        },
+        "export": {
+          "month": 346008.1123,
+          "ytd": 3122544.5775,
+          "ytdYoy": 47
+        },
+        "import": {
+          "month": 292030.5462,
+          "ytd": 2218159.5117,
+          "ytdYoy": 0.2
+        }
+      },
+      {
+        "name": "波兰",
+        "level": 1,
+        "parentName": "欧洲",
+        "tradeTotal": {
+          "month": 3689293.9602,
+          "ytd": 23563708.0327,
+          "ytdYoy": 20.1
+        },
+        "export": {
+          "month": 3419277.1968,
+          "ytd": 21615769.536,
+          "ytdYoy": 21.4
+        },
+        "import": {
+          "month": 270016.7634,
+          "ytd": 1947938.4967,
+          "ytdYoy": 7.5
+        }
+      },
+      {
+        "name": "罗马尼亚",
+        "level": 1,
+        "parentName": "欧洲",
+        "tradeTotal": {
+          "month": 1052727.9236,
+          "ytd": 6038004.866,
+          "ytdYoy": 3.9
+        },
+        "export": {
+          "month": 834925.098,
+          "ytd": 4440179.0095,
+          "ytdYoy": 8.1
+        },
+        "import": {
+          "month": 217802.8256,
+          "ytd": 1597825.8565,
+          "ytdYoy": -6.2
+        }
+      },
+      {
+        "name": "圣马力诺",
+        "level": 1,
+        "parentName": "欧洲",
+        "tradeTotal": {
+          "month": 1360.9415,
+          "ytd": 8141.0892,
+          "ytdYoy": 7.5
+        },
+        "export": {
+          "month": 814.2811,
+          "ytd": 5824.4046,
+          "ytdYoy": 17.1
+        },
+        "import": {
+          "month": 546.6604,
+          "ytd": 2316.6846,
+          "ytdYoy": -10.8
+        }
+      },
+      {
+        "name": "瑞典",
+        "level": 1,
+        "parentName": "欧洲",
+        "tradeTotal": {
+          "month": 1219890.3791,
+          "ytd": 8655281.9266,
+          "ytdYoy": 5
+        },
+        "export": {
+          "month": 737391.7231,
+          "ytd": 4683277.3024,
+          "ytdYoy": 7.3
+        },
+        "import": {
+          "month": 482498.656,
+          "ytd": 3972004.6242,
+          "ytdYoy": 2.4
+        }
+      },
+      {
+        "name": "瑞士",
+        "level": 1,
+        "parentName": "欧洲",
+        "tradeTotal": {
+          "month": 5207370.8309,
+          "ytd": 50270797.2752,
+          "ytdYoy": 149.9
+        },
+        "export": {
+          "month": 476580.2616,
+          "ytd": 3574018.9306,
+          "ytdYoy": 3.3
+        },
+        "import": {
+          "month": 4730790.5693,
+          "ytd": 46696778.3446,
+          "ytdYoy": 180.4
+        }
+      },
+      {
+        "name": "爱沙尼亚",
+        "level": 1,
+        "parentName": "欧洲",
+        "tradeTotal": {
+          "month": 87479.5962,
+          "ytd": 731547.2458,
+          "ytdYoy": 31.8
+        },
+        "export": {
+          "month": 64538.2423,
+          "ytd": 592978.9772,
+          "ytdYoy": 45.3
+        },
+        "import": {
+          "month": 22941.3539,
+          "ytd": 138568.2686,
+          "ytdYoy": -5.5
+        }
+      },
+      {
+        "name": "拉脱维亚",
+        "level": 1,
+        "parentName": "欧洲",
+        "tradeTotal": {
+          "month": 81662.3029,
+          "ytd": 646365.2437,
+          "ytdYoy": 13.1
+        },
+        "export": {
+          "month": 62014.1232,
+          "ytd": 511659.341,
+          "ytdYoy": 16.4
+        },
+        "import": {
+          "month": 19648.1797,
+          "ytd": 134705.9027,
+          "ytdYoy": 2.3
+        }
+      },
+      {
+        "name": "立陶宛",
+        "level": 1,
+        "parentName": "欧洲",
+        "tradeTotal": {
+          "month": 155919.1514,
+          "ytd": 1136734.798,
+          "ytdYoy": 12.5
+        },
+        "export": {
+          "month": 134536.1097,
+          "ytd": 985895.9087,
+          "ytdYoy": 6.7
+        },
+        "import": {
+          "month": 21383.0417,
+          "ytd": 150838.8893,
+          "ytdYoy": 73.2
+        }
+      },
+      {
+        "name": "白俄罗斯",
+        "level": 1,
+        "parentName": "欧洲",
+        "tradeTotal": {
+          "month": 683518.4263,
+          "ytd": 4336820.4333,
+          "ytdYoy": 25.8
+        },
+        "export": {
+          "month": 563838.6561,
+          "ytd": 3466297.308,
+          "ytdYoy": 25.2
+        },
+        "import": {
+          "month": 119679.7702,
+          "ytd": 870523.1253,
+          "ytdYoy": 28.3
+        }
+      },
+      {
+        "name": "摩尔多瓦",
+        "level": 1,
+        "parentName": "欧洲",
+        "tradeTotal": {
+          "month": 48648.1351,
+          "ytd": 307375.3573,
+          "ytdYoy": 52.4
+        },
+        "export": {
+          "month": 37858.1656,
+          "ytd": 258045.4081,
+          "ytdYoy": 68.8
+        },
+        "import": {
+          "month": 10789.9695,
+          "ytd": 49329.9492,
+          "ytdYoy": 0.9
+        }
+      },
+      {
+        "name": "俄罗斯",
+        "level": 1,
+        "parentName": "欧洲",
+        "tradeTotal": {
+          "month": 17055747.5551,
+          "ytd": 109989294.0322,
+          "ytdYoy": 21.5
+        },
+        "export": {
+          "month": 8350635.5556,
+          "ytd": 50283497.1594,
+          "ytdYoy": 24.5
+        },
+        "import": {
+          "month": 8705111.9995,
+          "ytd": 59705796.8728,
+          "ytdYoy": 19.1
+        }
+      },
+      {
+        "name": "乌克兰",
+        "level": 1,
+        "parentName": "欧洲",
+        "tradeTotal": {
+          "month": 525684.9691,
+          "ytd": 3454732.7467,
+          "ytdYoy": 17.9
+        },
+        "export": {
+          "month": 431122.3955,
+          "ytd": 2451065.7911,
+          "ytdYoy": 32.7
+        },
+        "import": {
+          "month": 94562.5736,
+          "ytd": 1003666.9556,
+          "ytdYoy": -7.4
+        }
+      },
+      {
+        "name": "斯洛文尼亚",
+        "level": 1,
+        "parentName": "欧洲",
+        "tradeTotal": {
+          "month": 662319.1387,
+          "ytd": 3724011.2014,
+          "ytdYoy": 20.3
+        },
+        "export": {
+          "month": 599030.2196,
+          "ytd": 3368984.4856,
+          "ytdYoy": 18.9
+        },
+        "import": {
+          "month": 63288.9191,
+          "ytd": 355026.7158,
+          "ytdYoy": 34.5
+        }
+      },
+      {
+        "name": "克罗地亚",
+        "level": 1,
+        "parentName": "欧洲",
+        "tradeTotal": {
+          "month": 165769.0489,
+          "ytd": 1277338.875,
+          "ytdYoy": 1.6
+        },
+        "export": {
+          "month": 154307.6976,
+          "ytd": 1175845.1667,
+          "ytdYoy": 5.9
+        },
+        "import": {
+          "month": 11461.3513,
+          "ytd": 101493.7083,
+          "ytdYoy": -30.8
+        }
+      },
+      {
+        "name": "捷克",
+        "level": 1,
+        "parentName": "欧洲",
+        "tradeTotal": {
+          "month": 1539453.46,
+          "ytd": 9375756.065,
+          "ytdYoy": 2.2
+        },
+        "export": {
+          "month": 1182321.2306,
+          "ytd": 6901061.8554,
+          "ytdYoy": -1.4
+        },
+        "import": {
+          "month": 357132.2294,
+          "ytd": 2474694.2096,
+          "ytdYoy": 13.8
+        }
+      },
+      {
+        "name": "斯洛伐克",
+        "level": 1,
+        "parentName": "欧洲",
+        "tradeTotal": {
+          "month": 493803.9947,
+          "ytd": 3274412.9611,
+          "ytdYoy": -12.2
+        },
+        "export": {
+          "month": 339708.609,
+          "ytd": 2021801.611,
+          "ytdYoy": 17.8
+        },
+        "import": {
+          "month": 154095.3857,
+          "ytd": 1252611.3501,
+          "ytdYoy": -37.7
+        }
+      },
+      {
+        "name": "北马其顿",
+        "level": 1,
+        "parentName": "欧洲",
+        "tradeTotal": {
+          "month": 34957.367,
+          "ytd": 244033.9247,
+          "ytdYoy": 11.3
+        },
+        "export": {
+          "month": 29892.1809,
+          "ytd": 201130.6183,
+          "ytdYoy": 14
+        },
+        "import": {
+          "month": 5065.1861,
+          "ytd": 42903.3064,
+          "ytdYoy": 0.2
+        }
+      },
+      {
+        "name": "波斯尼亚和黑塞哥维那",
+        "level": 1,
+        "parentName": "欧洲",
+        "tradeTotal": {
+          "month": 61979.0294,
+          "ytd": 306963.4188,
+          "ytdYoy": 22
+        },
+        "export": {
+          "month": 30084.1172,
+          "ytd": 179332.4204,
+          "ytdYoy": -2.2
+        },
+        "import": {
+          "month": 31894.9122,
+          "ytd": 127630.9984,
+          "ytdYoy": 87.2
+        }
+      },
+      {
+        "name": "梵蒂冈",
+        "level": 1,
+        "parentName": "欧洲",
+        "tradeTotal": {
+          "month": 1.2048,
+          "ytd": 6.557,
+          "ytdYoy": -61.3
+        },
+        "export": {
+          "month": 1.2048,
+          "ytd": 6.2482,
+          "ytdYoy": -60.8
+        },
+        "import": {
+          "month": null,
+          "ytd": 0.3088,
+          "ytdYoy": -69.1
+        }
+      },
+      {
+        "name": "法罗群岛",
+        "level": 1,
+        "parentName": "欧洲",
+        "tradeTotal": {
+          "month": 16624.7656,
+          "ytd": 106715.8165,
+          "ytdYoy": 74.1
+        },
+        "export": {
+          "month": 32.9443,
+          "ytd": 656.3499,
+          "ytdYoy": 2.4
+        },
+        "import": {
+          "month": 16591.8213,
+          "ytd": 106059.4666,
+          "ytdYoy": 74.9
+        }
+      },
+      {
+        "name": "塞尔维亚",
+        "level": 1,
+        "parentName": "欧洲",
+        "tradeTotal": {
+          "month": 464846.4433,
+          "ytd": 3492589.7487,
+          "ytdYoy": 35.1
+        },
+        "export": {
+          "month": 333473.7653,
+          "ytd": 2041083.6747,
+          "ytdYoy": 20.6
+        },
+        "import": {
+          "month": 131372.678,
+          "ytd": 1451506.074,
+          "ytdYoy": 62.6
+        }
+      },
+      {
+        "name": "黑山",
+        "level": 1,
+        "parentName": "欧洲",
+        "tradeTotal": {
+          "month": 32824.6909,
+          "ytd": 106041.569,
+          "ytdYoy": 4.6
+        },
+        "export": {
+          "month": 32295.2321,
+          "ytd": 102307.565,
+          "ytdYoy": 32.2
+        },
+        "import": {
+          "month": 529.4588,
+          "ytd": 3734.004,
+          "ytdYoy": -84.4
+        }
+      },
+      {
+        "name": "奥兰群岛",
+        "level": 1,
+        "parentName": "欧洲",
+        "tradeTotal": {
+          "month": 0.1234,
+          "ytd": 1.7362,
+          "ytdYoy": -99.2
+        },
+        "export": {
+          "month": null,
+          "ytd": 1.5802,
+          "ytdYoy": -99.3
+        },
+        "import": {
+          "month": 0.1234,
+          "ytd": 0.156,
+          "ytdYoy": null
+        }
+      },
+      {
+        "name": "格恩西",
+        "level": 1,
+        "parentName": "欧洲",
+        "tradeTotal": {
+          "month": 12.0239,
+          "ytd": 103.501,
+          "ytdYoy": -8.2
+        },
+        "export": {
+          "month": 12.0239,
+          "ytd": 103.501,
+          "ytdYoy": -7.8
+        },
+        "import": {
+          "month": null,
+          "ytd": null,
+          "ytdYoy": null
+        }
+      },
+      {
+        "name": "马恩岛",
+        "level": 1,
+        "parentName": "欧洲",
+        "tradeTotal": {
+          "month": 5488.1345,
+          "ytd": 26598.8424,
+          "ytdYoy": -52
+        },
+        "export": {
+          "month": 5480.4222,
+          "ytd": 26576.6458,
+          "ytdYoy": -52.1
+        },
+        "import": {
+          "month": 7.7123,
+          "ytd": 22.1966,
+          "ytdYoy": 443.3
+        }
+      },
+      {
+        "name": "泽西",
+        "level": 1,
+        "parentName": "欧洲",
+        "tradeTotal": {
+          "month": 15.9214,
+          "ytd": 118.9123,
+          "ytdYoy": 102.1
+        },
+        "export": {
+          "month": 15.9012,
+          "ytd": 116.3939,
+          "ytdYoy": 97.9
+        },
+        "import": {
+          "month": 0.0202,
+          "ytd": 2.5184,
+          "ytdYoy": 25338.4
+        }
+      },
+      {
+        "name": "斯瓦尔巴群岛和扬马延岛",
+        "level": 1,
+        "parentName": "欧洲",
+        "tradeTotal": {
+          "month": null,
+          "ytd": 0.8521,
+          "ytdYoy": null
+        },
+        "export": {
+          "month": null,
+          "ytd": 0.8521,
+          "ytdYoy": null
+        },
+        "import": {
+          "month": null,
+          "ytd": null,
+          "ytdYoy": null
+        }
+      },
+      {
+        "name": "欧洲其他国家(地区)",
+        "level": 1,
+        "parentName": "欧洲",
+        "tradeTotal": {
+          "month": 4.061,
+          "ytd": 37.4258,
+          "ytdYoy": 355.9
+        },
+        "export": {
+          "month": 3.2835,
+          "ytd": 31.0537,
+          "ytdYoy": 4440
+        },
+        "import": {
+          "month": 0.7775,
+          "ytd": 6.3721,
+          "ytdYoy": -15.3
+        }
+      },
+      {
+        "name": "拉丁美洲",
+        "level": 0,
+        "parentName": null,
+        "tradeTotal": {
+          "month": 39040499.0173,
+          "ytd": 252353247.1235,
+          "ytdYoy": 15.4
+        },
+        "export": {
+          "month": 20783939.2066,
+          "ytd": 131315378.6145,
+          "ytdYoy": 8.7
+        },
+        "import": {
+          "month": 18256559.8107,
+          "ytd": 121037868.509,
+          "ytdYoy": 23.6
+        }
+      },
+      {
+        "name": "安提瓜和巴布达",
+        "level": 1,
+        "parentName": "拉丁美洲",
+        "tradeTotal": {
+          "month": 8130.3311,
+          "ytd": 80494.2014,
+          "ytdYoy": 52
+        },
+        "export": {
+          "month": 8039.9179,
+          "ytd": 79397.1473,
+          "ytdYoy": 53
+        },
+        "import": {
+          "month": 90.4132,
+          "ytd": 1097.0541,
+          "ytdYoy": 2.6
+        }
+      },
+      {
+        "name": "阿根廷",
+        "level": 1,
+        "parentName": "拉丁美洲",
+        "tradeTotal": {
+          "month": 1666951.1796,
+          "ytd": 10392967.9158,
+          "ytdYoy": 28.5
+        },
+        "export": {
+          "month": 996487.0614,
+          "ytd": 5864997.2466,
+          "ytdYoy": 0.1
+        },
+        "import": {
+          "month": 670464.1182,
+          "ytd": 4527970.6692,
+          "ytdYoy": 103.1
+        }
+      },
+      {
+        "name": "阿鲁巴",
+        "level": 1,
+        "parentName": "拉丁美洲",
+        "tradeTotal": {
+          "month": 7726.7265,
+          "ytd": 43750.931,
+          "ytdYoy": 0.8
+        },
+        "export": {
+          "month": 7726.4294,
+          "ytd": 43747.6676,
+          "ytdYoy": 0.8
+        },
+        "import": {
+          "month": 0.2971,
+          "ytd": 3.2634,
+          "ytdYoy": -47.3
+        }
+      },
+      {
+        "name": "巴哈马",
+        "level": 1,
+        "parentName": "拉丁美洲",
+        "tradeTotal": {
+          "month": 58860.754,
+          "ytd": 427754.1575,
+          "ytdYoy": 20.4
+        },
+        "export": {
+          "month": 58846.6487,
+          "ytd": 427677.6826,
+          "ytdYoy": 20.4
+        },
+        "import": {
+          "month": 14.1053,
+          "ytd": 76.4749,
+          "ytdYoy": -6.3
+        }
+      },
+      {
+        "name": "巴巴多斯",
+        "level": 1,
+        "parentName": "拉丁美洲",
+        "tradeTotal": {
+          "month": 17343.4916,
+          "ytd": 116783.3981,
+          "ytdYoy": 4.4
+        },
+        "export": {
+          "month": 16910.958,
+          "ytd": 112826.5131,
+          "ytdYoy": 5.8
+        },
+        "import": {
+          "month": 432.5336,
+          "ytd": 3956.885,
+          "ytdYoy": -24.2
+        }
+      },
+      {
+        "name": "伯利兹",
+        "level": 1,
+        "parentName": "拉丁美洲",
+        "tradeTotal": {
+          "month": 12624.676,
+          "ytd": 87271.4442,
+          "ytdYoy": 8.9
+        },
+        "export": {
+          "month": 12624.4533,
+          "ytd": 87247.9589,
+          "ytdYoy": 9.1
+        },
+        "import": {
+          "month": 0.2227,
+          "ytd": 23.4853,
+          "ytdYoy": -82
+        }
+      },
+      {
+        "name": "玻利维亚",
+        "level": 1,
+        "parentName": "拉丁美洲",
+        "tradeTotal": {
+          "month": 275640.8088,
+          "ytd": 2155403.6706,
+          "ytdYoy": 55.8
+        },
+        "export": {
+          "month": 86990.4844,
+          "ytd": 559067.5201,
+          "ytdYoy": 25.1
+        },
+        "import": {
+          "month": 188650.3244,
+          "ytd": 1596336.1505,
+          "ytdYoy": 70.5
+        }
+      },
+      {
+        "name": "巴西",
+        "level": 1,
+        "parentName": "拉丁美洲",
+        "tradeTotal": {
+          "month": 14148167.0559,
+          "ytd": 88153333.1659,
+          "ytdYoy": 21.4
+        },
+        "export": {
+          "month": 5018674.4461,
+          "ytd": 34072562.3819,
+          "ytdYoy": 17.4
+        },
+        "import": {
+          "month": 9129492.6098,
+          "ytd": 54080770.784,
+          "ytdYoy": 24.1
+        }
+      },
+      {
+        "name": "开曼群岛",
+        "level": 1,
+        "parentName": "拉丁美洲",
+        "tradeTotal": {
+          "month": 1992.7295,
+          "ytd": 48402.487,
+          "ytdYoy": 108.7
+        },
+        "export": {
+          "month": 1992.7295,
+          "ytd": 48401.0254,
+          "ytdYoy": 108.8
+        },
+        "import": {
+          "month": null,
+          "ytd": 1.4616,
+          "ytdYoy": -86.9
+        }
+      },
+      {
+        "name": "智利",
+        "level": 1,
+        "parentName": "拉丁美洲",
+        "tradeTotal": {
+          "month": 3977577.1315,
+          "ytd": 29936319.5429,
+          "ytdYoy": 8.1
+        },
+        "export": {
+          "month": 1622085.9574,
+          "ytd": 9831458.9083,
+          "ytdYoy": -4.2
+        },
+        "import": {
+          "month": 2355491.1741,
+          "ytd": 20104860.6346,
+          "ytdYoy": 15.4
+        }
+      },
+      {
+        "name": "哥伦比亚",
+        "level": 1,
+        "parentName": "拉丁美洲",
+        "tradeTotal": {
+          "month": 1924013.0345,
+          "ytd": 11318205.906,
+          "ytdYoy": 24.2
+        },
+        "export": {
+          "month": 1428426.8067,
+          "ytd": 8700173.9548,
+          "ytdYoy": 19.7
+        },
+        "import": {
+          "month": 495586.2278,
+          "ytd": 2618031.9512,
+          "ytdYoy": 42
+        }
+      },
+      {
+        "name": "多米尼克",
+        "level": 1,
+        "parentName": "拉丁美洲",
+        "tradeTotal": {
+          "month": 2688.7327,
+          "ytd": 18966.4997,
+          "ytdYoy": -16.5
+        },
+        "export": {
+          "month": 2687.5607,
+          "ytd": 18937.7088,
+          "ytdYoy": -16.6
+        },
+        "import": {
+          "month": 1.172,
+          "ytd": 28.7909,
+          "ytdYoy": 55.8
+        }
+      },
+      {
+        "name": "哥斯达黎加",
+        "level": 1,
+        "parentName": "拉丁美洲",
+        "tradeTotal": {
+          "month": 307637.1137,
+          "ytd": 1873310.5207,
+          "ytdYoy": -32.7
+        },
+        "export": {
+          "month": 247492.1946,
+          "ytd": 1462178.9221,
+          "ytdYoy": -5.2
+        },
+        "import": {
+          "month": 60144.9191,
+          "ytd": 411131.5986,
+          "ytdYoy": -66.8
+        }
+      },
+      {
+        "name": "古巴",
+        "level": 1,
+        "parentName": "拉丁美洲",
+        "tradeTotal": {
+          "month": 47461.6883,
+          "ytd": 388985.7838,
+          "ytdYoy": -28.6
+        },
+        "export": {
+          "month": 40459.3127,
+          "ytd": 287450.1485,
+          "ytdYoy": -35.2
+        },
+        "import": {
+          "month": 7002.3756,
+          "ytd": 101535.6353,
+          "ytdYoy": 0.6
+        }
+      },
+      {
+        "name": "库拉索",
+        "level": 1,
+        "parentName": "拉丁美洲",
+        "tradeTotal": {
+          "month": 7418.2364,
+          "ytd": 61935.09,
+          "ytdYoy": 8.6
+        },
+        "export": {
+          "month": 7418.2076,
+          "ytd": 61922.7939,
+          "ytdYoy": 8.9
+        },
+        "import": {
+          "month": 0.0288,
+          "ytd": 12.2961,
+          "ytdYoy": -93.1
+        }
+      },
+      {
+        "name": "多米尼加",
+        "level": 1,
+        "parentName": "拉丁美洲",
+        "tradeTotal": {
+          "month": 403944.0819,
+          "ytd": 2375598.9789,
+          "ytdYoy": 8
+        },
+        "export": {
+          "month": 371835.1,
+          "ytd": 2151874.1359,
+          "ytdYoy": 8.9
+        },
+        "import": {
+          "month": 32108.9819,
+          "ytd": 223724.843,
+          "ytdYoy": 0.5
+        }
+      },
+      {
+        "name": "厄瓜多尔",
+        "level": 1,
+        "parentName": "拉丁美洲",
+        "tradeTotal": {
+          "month": 1225342.7568,
+          "ytd": 8079957.6646,
+          "ytdYoy": 12.8
+        },
+        "export": {
+          "month": 543482.7911,
+          "ytd": 3604613.6236,
+          "ytdYoy": 20.5
+        },
+        "import": {
+          "month": 681859.9657,
+          "ytd": 4475344.041,
+          "ytdYoy": 7.2
+        }
+      },
+      {
+        "name": "法属圭亚那",
+        "level": 1,
+        "parentName": "拉丁美洲",
+        "tradeTotal": {
+          "month": 2554.0848,
+          "ytd": 17039.8514,
+          "ytdYoy": -10.2
+        },
+        "export": {
+          "month": 2554.0187,
+          "ytd": 17039.7147,
+          "ytdYoy": -10.2
+        },
+        "import": {
+          "month": 0.0661,
+          "ytd": 0.1367,
+          "ytdYoy": -85.3
+        }
+      },
+      {
+        "name": "格林纳达",
+        "level": 1,
+        "parentName": "拉丁美洲",
+        "tradeTotal": {
+          "month": 2577.7334,
+          "ytd": 15717.5121,
+          "ytdYoy": 15.7
+        },
+        "export": {
+          "month": 2576.534,
+          "ytd": 15715.8663,
+          "ytdYoy": 15.7
+        },
+        "import": {
+          "month": 1.1994,
+          "ytd": 1.6458,
+          "ytdYoy": 128.8
+        }
+      },
+      {
+        "name": "瓜德罗普",
+        "level": 1,
+        "parentName": "拉丁美洲",
+        "tradeTotal": {
+          "month": 5000.002,
+          "ytd": 27815.2782,
+          "ytdYoy": -7.1
+        },
+        "export": {
+          "month": 4999.8367,
+          "ytd": 27813.4061,
+          "ytdYoy": -7.1
+        },
+        "import": {
+          "month": 0.1653,
+          "ytd": 1.8721,
+          "ytdYoy": 61.6
+        }
+      },
+      {
+        "name": "危地马拉",
+        "level": 1,
+        "parentName": "拉丁美洲",
+        "tradeTotal": {
+          "month": 380099.5659,
+          "ytd": 2360851.6689,
+          "ytdYoy": 6.6
+        },
+        "export": {
+          "month": 367152.5051,
+          "ytd": 2284749.6632,
+          "ytdYoy": 5.7
+        },
+        "import": {
+          "month": 12947.0608,
+          "ytd": 76102.0057,
+          "ytdYoy": 41.8
+        }
+      },
+      {
+        "name": "圭亚那",
+        "level": 1,
+        "parentName": "拉丁美洲",
+        "tradeTotal": {
+          "month": 394201.3443,
+          "ytd": 1723207.3441,
+          "ytdYoy": 78
+        },
+        "export": {
+          "month": 77018.7841,
+          "ytd": 492245.4471,
+          "ytdYoy": -4
+        },
+        "import": {
+          "month": 317182.5602,
+          "ytd": 1230961.897,
+          "ytdYoy": 170.2
+        }
+      },
+      {
+        "name": "海地",
+        "level": 1,
+        "parentName": "拉丁美洲",
+        "tradeTotal": {
+          "month": 72532.8369,
+          "ytd": 372834.2472,
+          "ytdYoy": 32.6
+        },
+        "export": {
+          "month": 72372.8175,
+          "ytd": 371495.7934,
+          "ytdYoy": 33.9
+        },
+        "import": {
+          "month": 160.0194,
+          "ytd": 1338.4538,
+          "ytdYoy": -63.1
+        }
+      },
+      {
+        "name": "洪都拉斯",
+        "level": 1,
+        "parentName": "拉丁美洲",
+        "tradeTotal": {
+          "month": 166055.5508,
+          "ytd": 1032984.5496,
+          "ytdYoy": 9.6
+        },
+        "export": {
+          "month": 164530.4788,
+          "ytd": 1005496.1476,
+          "ytdYoy": 10.1
+        },
+        "import": {
+          "month": 1525.072,
+          "ytd": 27488.402,
+          "ytdYoy": -4.9
+        }
+      },
+      {
+        "name": "牙买加",
+        "level": 1,
+        "parentName": "拉丁美洲",
+        "tradeTotal": {
+          "month": 117081.9005,
+          "ytd": 644263.2153,
+          "ytdYoy": 6.9
+        },
+        "export": {
+          "month": 116893.1544,
+          "ytd": 642624.0885,
+          "ytdYoy": 11.9
+        },
+        "import": {
+          "month": 188.7461,
+          "ytd": 1639.1268,
+          "ytdYoy": -94.2
+        }
+      },
+      {
+        "name": "马提尼克",
+        "level": 1,
+        "parentName": "拉丁美洲",
+        "tradeTotal": {
+          "month": 3037.0747,
+          "ytd": 21106.009,
+          "ytdYoy": -41.4
+        },
+        "export": {
+          "month": 3037.0465,
+          "ytd": 21105.4844,
+          "ytdYoy": -41.4
+        },
+        "import": {
+          "month": 0.0282,
+          "ytd": 0.5246,
+          "ytdYoy": -80.8
+        }
+      },
+      {
+        "name": "墨西哥",
+        "level": 1,
+        "parentName": "拉丁美洲",
+        "tradeTotal": {
+          "month": 7525397.8336,
+          "ytd": 47284969.9214,
+          "ytdYoy": 3.3
+        },
+        "export": {
+          "month": 6051440.1467,
+          "ytd": 37609346.7189,
+          "ytdYoy": 2.1
+        },
+        "import": {
+          "month": 1473957.6869,
+          "ytd": 9675623.2025,
+          "ytdYoy": 8.5
+        }
+      },
+      {
+        "name": "蒙特塞拉特",
+        "level": 1,
+        "parentName": "拉丁美洲",
+        "tradeTotal": {
+          "month": 94.4222,
+          "ytd": 591.0263,
+          "ytdYoy": -34.7
+        },
+        "export": {
+          "month": 93.8216,
+          "ytd": 589.89,
+          "ytdYoy": -34.7
+        },
+        "import": {
+          "month": 0.6006,
+          "ytd": 1.1363,
+          "ytdYoy": -21.2
+        }
+      },
+      {
+        "name": "尼加拉瓜",
+        "level": 1,
+        "parentName": "拉丁美洲",
+        "tradeTotal": {
+          "month": 109995.619,
+          "ytd": 597527.8762,
+          "ytdYoy": 2.5
+        },
+        "export": {
+          "month": 107949.7703,
+          "ytd": 543481.3067,
+          "ytdYoy": 4.9
+        },
+        "import": {
+          "month": 2045.8487,
+          "ytd": 54046.5695,
+          "ytdYoy": -16.1
+        }
+      },
+      {
+        "name": "巴拿马",
+        "level": 1,
+        "parentName": "拉丁美洲",
+        "tradeTotal": {
+          "month": 952447.3245,
+          "ytd": 5541378.7917,
+          "ytdYoy": 7.5
+        },
+        "export": {
+          "month": 947189.9061,
+          "ytd": 5516741.6331,
+          "ytdYoy": 7.4
+        },
+        "import": {
+          "month": 5257.4184,
+          "ytd": 24637.1586,
+          "ytdYoy": 31.6
+        }
+      },
+      {
+        "name": "巴拉圭",
+        "level": 1,
+        "parentName": "拉丁美洲",
+        "tradeTotal": {
+          "month": 239499.2258,
+          "ytd": 1454466.6804,
+          "ytdYoy": 8.3
+        },
+        "export": {
+          "month": 236314.7215,
+          "ytd": 1437384.1456,
+          "ytdYoy": 8.7
+        },
+        "import": {
+          "month": 3184.5043,
+          "ytd": 17082.5348,
+          "ytdYoy": -16.7
+        }
+      },
+      {
+        "name": "秘鲁",
+        "level": 1,
+        "parentName": "拉丁美洲",
+        "tradeTotal": {
+          "month": 3556314.9426,
+          "ytd": 27446198.1562,
+          "ytdYoy": 34.9
+        },
+        "export": {
+          "month": 1105114.3528,
+          "ytd": 8073148.621,
+          "ytdYoy": 25.2
+        },
+        "import": {
+          "month": 2451200.5898,
+          "ytd": 19373049.5352,
+          "ytdYoy": 39.4
+        }
+      },
+      {
+        "name": "波多黎各",
+        "level": 1,
+        "parentName": "拉丁美洲",
+        "tradeTotal": {
+          "month": 134198.8461,
+          "ytd": 869557.1664,
+          "ytdYoy": 1.7
+        },
+        "export": {
+          "month": 50311.2093,
+          "ytd": 287217.9623,
+          "ytdYoy": -14.5
+        },
+        "import": {
+          "month": 83887.6368,
+          "ytd": 582339.2041,
+          "ytdYoy": 12.2
+        }
+      },
+      {
+        "name": "圣卢西亚",
+        "level": 1,
+        "parentName": "拉丁美洲",
+        "tradeTotal": {
+          "month": 3995.1435,
+          "ytd": 24417.5492,
+          "ytdYoy": 2.1
+        },
+        "export": {
+          "month": 3994.2106,
+          "ytd": 24388.8243,
+          "ytdYoy": 2.1
+        },
+        "import": {
+          "month": 0.9329,
+          "ytd": 28.7249,
+          "ytdYoy": 14.2
+        }
+      },
+      {
+        "name": "法属圣马丁",
+        "level": 1,
+        "parentName": "拉丁美洲",
+        "tradeTotal": {
+          "month": 1098.797,
+          "ytd": 5694.5581,
+          "ytdYoy": 0.8
+        },
+        "export": {
+          "month": 1098.797,
+          "ytd": 5692.2569,
+          "ytdYoy": 0.8
+        },
+        "import": {
+          "month": null,
+          "ytd": 2.3012,
+          "ytdYoy": 3902.1
+        }
+      },
+      {
+        "name": "圣文森特和格林纳丁斯",
+        "level": 1,
+        "parentName": "拉丁美洲",
+        "tradeTotal": {
+          "month": 1413.4667,
+          "ytd": 8854.2424,
+          "ytdYoy": -38.3
+        },
+        "export": {
+          "month": 1413.4667,
+          "ytd": 8854.1979,
+          "ytdYoy": -37.8
+        },
+        "import": {
+          "month": null,
+          "ytd": 0.0445,
+          "ytdYoy": -100
+        }
+      },
+      {
+        "name": "萨尔瓦多",
+        "level": 1,
+        "parentName": "拉丁美洲",
+        "tradeTotal": {
+          "month": 172301.6167,
+          "ytd": 1053748.7344,
+          "ytdYoy": 15.3
+        },
+        "export": {
+          "month": 144139.9283,
+          "ytd": 933392.9491,
+          "ytdYoy": 12.5
+        },
+        "import": {
+          "month": 28161.6884,
+          "ytd": 120355.7853,
+          "ytdYoy": 42.4
+        }
+      },
+      {
+        "name": "苏里南",
+        "level": 1,
+        "parentName": "拉丁美洲",
+        "tradeTotal": {
+          "month": 43286.8943,
+          "ytd": 270357.6745,
+          "ytdYoy": 25.3
+        },
+        "export": {
+          "month": 41574.2852,
+          "ytd": 248082.2127,
+          "ytdYoy": 25.6
+        },
+        "import": {
+          "month": 1712.6091,
+          "ytd": 22275.4618,
+          "ytdYoy": 22
+        }
+      },
+      {
+        "name": "特立尼达和多巴哥",
+        "level": 1,
+        "parentName": "拉丁美洲",
+        "tradeTotal": {
+          "month": 64661.2412,
+          "ytd": 377371.2168,
+          "ytdYoy": -58.7
+        },
+        "export": {
+          "month": 49858.2171,
+          "ytd": 256635.677,
+          "ytdYoy": -3.4
+        },
+        "import": {
+          "month": 14803.0241,
+          "ytd": 120735.5398,
+          "ytdYoy": -81.3
+        }
+      },
+      {
+        "name": "特克斯和凯科斯群岛",
+        "level": 1,
+        "parentName": "拉丁美洲",
+        "tradeTotal": {
+          "month": 2057.8608,
+          "ytd": 12342.3623,
+          "ytdYoy": 31.8
+        },
+        "export": {
+          "month": 2057.8383,
+          "ytd": 12334.5991,
+          "ytdYoy": 31.7
+        },
+        "import": {
+          "month": 0.0225,
+          "ytd": 7.7632,
+          "ytdYoy": 622.5
+        }
+      },
+      {
+        "name": "乌拉圭",
+        "level": 1,
+        "parentName": "拉丁美洲",
+        "tradeTotal": {
+          "month": 422731.3945,
+          "ytd": 2629155.0203,
+          "ytdYoy": 5.6
+        },
+        "export": {
+          "month": 238648.2958,
+          "ytd": 1552311.8994,
+          "ytdYoy": 4.7
+        },
+        "import": {
+          "month": 184083.0987,
+          "ytd": 1076843.1209,
+          "ytdYoy": 6.8
+        }
+      },
+      {
+        "name": "委内瑞拉",
+        "level": 1,
+        "parentName": "拉丁美洲",
+        "tradeTotal": {
+          "month": 552497.1709,
+          "ytd": 2895122.1596,
+          "ytdYoy": 12.3
+        },
+        "export": {
+          "month": 497640.7215,
+          "ytd": 2407197.0621,
+          "ytdYoy": 12.6
+        },
+        "import": {
+          "month": 54856.4494,
+          "ytd": 487925.0975,
+          "ytdYoy": 10.9
+        }
+      },
+      {
+        "name": "英属维尔京群岛",
+        "level": 1,
+        "parentName": "拉丁美洲",
+        "tradeTotal": {
+          "month": 8499.466,
+          "ytd": 29304.8705,
+          "ytdYoy": -38.5
+        },
+        "export": {
+          "month": 8498.4419,
+          "ytd": 29288.1234,
+          "ytdYoy": -38.5
+        },
+        "import": {
+          "month": 1.0241,
+          "ytd": 16.7471,
+          "ytdYoy": 9.2
+        }
+      },
+      {
+        "name": "圣基茨和尼维斯",
+        "level": 1,
+        "parentName": "拉丁美洲",
+        "tradeTotal": {
+          "month": 6806.1447,
+          "ytd": 16772.4461,
+          "ytdYoy": 57.3
+        },
+        "export": {
+          "month": 6747.5789,
+          "ytd": 16442.9752,
+          "ytdYoy": 57.7
+        },
+        "import": {
+          "month": 58.5658,
+          "ytd": 329.4709,
+          "ytdYoy": 36.3
+        }
+      },
+      {
+        "name": "博纳尔，圣俄斯塔休斯和萨巴",
+        "level": 1,
+        "parentName": "拉丁美洲",
+        "tradeTotal": {
+          "month": 150.8513,
+          "ytd": 1637.4454,
+          "ytdYoy": 113.2
+        },
+        "export": {
+          "month": 150.8513,
+          "ytd": 1637.3732,
+          "ytdYoy": 113.3
+        },
+        "import": {
+          "month": null,
+          "ytd": 0.0722,
+          "ytdYoy": -87.9
+        }
+      },
+      {
+        "name": "圣巴泰勒米",
+        "level": 1,
+        "parentName": "拉丁美洲",
+        "tradeTotal": {
+          "month": 130.5691,
+          "ytd": 786.6039,
+          "ytdYoy": -3.2
+        },
+        "export": {
+          "month": 128.7022,
+          "ytd": 775.4842,
+          "ytdYoy": -2.1
+        },
+        "import": {
+          "month": 1.8669,
+          "ytd": 11.1197,
+          "ytdYoy": -45.9
+        }
+      },
+      {
+        "name": "布维岛",
+        "level": 1,
+        "parentName": "拉丁美洲",
+        "tradeTotal": {
+          "month": 1.0886,
+          "ytd": 12.7906,
+          "ytdYoy": -99.7
+        },
+        "export": {
+          "month": 1.0886,
+          "ytd": 12.7906,
+          "ytdYoy": -99.7
+        },
+        "import": {
+          "month": null,
+          "ytd": null,
+          "ytdYoy": null
+        }
+      },
+      {
+        "name": "福克兰群岛（马尔维纳斯）",
+        "level": 1,
+        "parentName": "拉丁美洲",
+        "tradeTotal": {
+          "month": 0.0078,
+          "ytd": 3.7705,
+          "ytdYoy": -96.4
+        },
+        "export": {
+          "month": 0.0078,
+          "ytd": 3.7705,
+          "ytdYoy": -96.3
+        },
+        "import": {
+          "month": null,
+          "ytd": null,
+          "ytdYoy": null
+        }
+      },
+      {
+        "name": "南乔治亚岛和南桑德韦奇岛",
+        "level": 1,
+        "parentName": "拉丁美洲",
+        "tradeTotal": {
+          "month": null,
+          "ytd": 236.3545,
+          "ytdYoy": 3020.4
+        },
+        "export": {
+          "month": null,
+          "ytd": 236.2408,
+          "ytdYoy": 3018.9
+        },
+        "import": {
+          "month": null,
+          "ytd": 0.1137,
+          "ytdYoy": null
+        }
+      },
+      {
+        "name": "荷属圣马丁",
+        "level": 1,
+        "parentName": "拉丁美洲",
+        "tradeTotal": {
+          "month": 5250.2633,
+          "ytd": 47200.4583,
+          "ytdYoy": 68.7
+        },
+        "export": {
+          "month": 5250.2633,
+          "ytd": 47198.7375,
+          "ytdYoy": 68.7
+        },
+        "import": {
+          "month": null,
+          "ytd": 1.7208,
+          "ytdYoy": -49.4
+        }
+      },
+      {
+        "name": "美属维尔京群岛",
+        "level": 1,
+        "parentName": "拉丁美洲",
+        "tradeTotal": {
+          "month": 565.7938,
+          "ytd": 4735.0766,
+          "ytdYoy": 19.7
+        },
+        "export": {
+          "month": 565.789,
+          "ytd": 4734.0192,
+          "ytdYoy": 19.6
+        },
+        "import": {
+          "month": 0.0048,
+          "ytd": 1.0574,
+          "ytdYoy": 1795
+        }
+      },
+      {
+        "name": "安圭拉",
+        "level": 1,
+        "parentName": "拉丁美洲",
+        "tradeTotal": {
+          "month": 386.4217,
+          "ytd": 5346.2948,
+          "ytdYoy": 36.8
+        },
+        "export": {
+          "month": 384.57,
+          "ytd": 5231.4098,
+          "ytdYoy": 37.9
+        },
+        "import": {
+          "month": 1.8517,
+          "ytd": 114.885,
+          "ytdYoy": -0.1
+        }
+      },
+      {
+        "name": "拉丁美洲其他国家(地区)",
+        "level": 1,
+        "parentName": "拉丁美洲",
+        "tradeTotal": {
+          "month": 55.9895,
+          "ytd": 196.8422,
+          "ytdYoy": -50.8
+        },
+        "export": {
+          "month": 55.9895,
+          "ytd": 196.7833,
+          "ytdYoy": -50.7
+        },
+        "import": {
+          "month": null,
+          "ytd": 0.0589,
+          "ytdYoy": -87
+        }
+      },
+      {
+        "name": "北美洲",
+        "level": 0,
+        "parentName": null,
+        "tradeTotal": {
+          "month": 44986712.3375,
+          "ytd": 282545092.6196,
+          "ytdYoy": 0.6
+        },
+        "export": {
+          "month": 31937805.3288,
+          "ytd": 199962134.5103,
+          "ytdYoy": -0.6
+        },
+        "import": {
+          "month": 13048907.0087,
+          "ytd": 82582958.1093,
+          "ytdYoy": 3.6
+        }
+      },
+      {
+        "name": "加拿大",
+        "level": 1,
+        "parentName": "北美洲",
+        "tradeTotal": {
+          "month": 6831269.9303,
+          "ytd": 43861741.5417,
+          "ytdYoy": 14.1
+        },
+        "export": {
+          "month": 3345092.9965,
+          "ytd": 21673180.7754,
+          "ytdYoy": 5.5
+        },
+        "import": {
+          "month": 3486176.9338,
+          "ytd": 22188560.7663,
+          "ytdYoy": 24
+        }
+      },
+      {
+        "name": "美国",
+        "level": 1,
+        "parentName": "北美洲",
+        "tradeTotal": {
+          "month": 38116155.3435,
+          "ytd": 238412360.9586,
+          "ytdYoy": -1.6
+        },
+        "export": {
+          "month": 28579073.1802,
+          "ytd": 178238359.359,
+          "ytdYoy": -1.3
+        },
+        "import": {
+          "month": 9537082.1633,
+          "ytd": 60174001.5996,
+          "ytdYoy": -2.5
+        }
+      },
+      {
+        "name": "格陵兰",
+        "level": 1,
+        "parentName": "北美洲",
+        "tradeTotal": {
+          "month": 25934.4428,
+          "ytd": 222276.7061,
+          "ytdYoy": 45.5
+        },
+        "export": {
+          "month": 292.7057,
+          "ytd": 1895.6968,
+          "ytdYoy": -62.9
+        },
+        "import": {
+          "month": 25641.7371,
+          "ytd": 220381.0093,
+          "ytdYoy": 49.3
+        }
+      },
+      {
+        "name": "百慕大",
+        "level": 1,
+        "parentName": "北美洲",
+        "tradeTotal": {
+          "month": 13344.7735,
+          "ytd": 48681.8616,
+          "ytdYoy": -56.2
+        },
+        "export": {
+          "month": 13344.6732,
+          "ytd": 48680.9359,
+          "ytdYoy": -56.2
+        },
+        "import": {
+          "month": 0.1003,
+          "ytd": 0.9257,
+          "ytdYoy": -92.5
+        }
+      },
+      {
+        "name": "圣皮埃尔和密克隆",
+        "level": 1,
+        "parentName": "北美洲",
+        "tradeTotal": {
+          "month": null,
+          "ytd": 1.5835,
+          "ytdYoy": 1155.7
+        },
+        "export": {
+          "month": null,
+          "ytd": 0.9953,
+          "ytdYoy": 1234.2
+        },
+        "import": {
+          "month": null,
+          "ytd": 0.5882,
+          "ytdYoy": 1042.1
+        }
+      },
+      {
+        "name": "北美洲其他国家(地区)",
+        "level": 1,
+        "parentName": "北美洲",
+        "tradeTotal": {
+          "month": 7.8474,
+          "ytd": 29.9681,
+          "ytdYoy": -94.9
+        },
+        "export": {
+          "month": 1.7732,
+          "ytd": 16.7479,
+          "ytdYoy": -97.2
+        },
+        "import": {
+          "month": 6.0742,
+          "ytd": 13.2202,
+          "ytdYoy": 1430.6
+        }
+      },
+      {
+        "name": "大洋洲",
+        "level": 0,
+        "parentName": null,
+        "tradeTotal": {
+          "month": 17980623.5119,
+          "ytd": 123743600.5501,
+          "ytdYoy": 28.7
+        },
+        "export": {
+          "month": 6491344.7863,
+          "ytd": 43352869.8548,
+          "ytdYoy": 20
+        },
+        "import": {
+          "month": 11489278.7256,
+          "ytd": 80390730.6953,
+          "ytdYoy": 33.9
+        }
+      },
+      {
+        "name": "澳大利亚",
+        "level": 1,
+        "parentName": "大洋洲",
+        "tradeTotal": {
+          "month": 15499312.4882,
+          "ytd": 106717158.9446,
+          "ytdYoy": 30.4
+        },
+        "export": {
+          "month": 4993978.8591,
+          "ytd": 34082917.1927,
+          "ytdYoy": 16.4
+        },
+        "import": {
+          "month": 10505333.6291,
+          "ytd": 72634241.7519,
+          "ytdYoy": 38.2
+        }
+      },
+      {
+        "name": "库克群岛",
+        "level": 1,
+        "parentName": "大洋洲",
+        "tradeTotal": {
+          "month": 3259.4106,
+          "ytd": 7025.649,
+          "ytdYoy": 98
+        },
+        "export": {
+          "month": 3096.7739,
+          "ytd": 5873.9813,
+          "ytdYoy": 74.8
+        },
+        "import": {
+          "month": 162.6367,
+          "ytd": 1151.6677,
+          "ytdYoy": 510.6
+        }
+      },
+      {
+        "name": "斐济",
+        "level": 1,
+        "parentName": "大洋洲",
+        "tradeTotal": {
+          "month": 40271.1012,
+          "ytd": 310928.9476,
+          "ytdYoy": 24.6
+        },
+        "export": {
+          "month": 35362.5122,
+          "ytd": 269520.4383,
+          "ytdYoy": 20
+        },
+        "import": {
+          "month": 4908.589,
+          "ytd": 41408.5093,
+          "ytdYoy": 65.2
+        }
+      },
+      {
+        "name": "瑙鲁",
+        "level": 1,
+        "parentName": "大洋洲",
+        "tradeTotal": {
+          "month": 1818.1613,
+          "ytd": 8738.1505,
+          "ytdYoy": -76.6
+        },
+        "export": {
+          "month": 1817.9418,
+          "ytd": 8736.5683,
+          "ytdYoy": -76.6
+        },
+        "import": {
+          "month": 0.2195,
+          "ytd": 1.5822,
+          "ytdYoy": -82.3
+        }
+      },
+      {
+        "name": "新喀里多尼亚",
+        "level": 1,
+        "parentName": "大洋洲",
+        "tradeTotal": {
+          "month": 56726.8543,
+          "ytd": 502350.292,
+          "ytdYoy": 58.2
+        },
+        "export": {
+          "month": 6721.7457,
+          "ytd": 47640.4938,
+          "ytdYoy": 22.6
+        },
+        "import": {
+          "month": 50005.1086,
+          "ytd": 454709.7982,
+          "ytdYoy": 63.2
+        }
+      },
+      {
+        "name": "瓦努阿图",
+        "level": 1,
+        "parentName": "大洋洲",
+        "tradeTotal": {
+          "month": 21823.293,
+          "ytd": 134685.0623,
+          "ytdYoy": 50.6
+        },
+        "export": {
+          "month": 13075.228,
+          "ytd": 71201.2754,
+          "ytdYoy": 21.3
+        },
+        "import": {
+          "month": 8748.065,
+          "ytd": 63483.7869,
+          "ytdYoy": 106.6
+        }
+      },
+      {
+        "name": "新西兰",
+        "level": 1,
+        "parentName": "大洋洲",
+        "tradeTotal": {
+          "month": 1232752.7534,
+          "ytd": 9346308.1035,
+          "ytdYoy": 2.6
+        },
+        "export": {
+          "month": 537238.4973,
+          "ytd": 3530292.064,
+          "ytdYoy": 12.9
+        },
+        "import": {
+          "month": 695514.2561,
+          "ytd": 5816016.0395,
+          "ytdYoy": -2.8
+        }
+      },
+      {
+        "name": "诺福克岛",
+        "level": 1,
+        "parentName": "大洋洲",
+        "tradeTotal": {
+          "month": null,
+          "ytd": 0.1338,
+          "ytdYoy": -99.9
+        },
+        "export": {
+          "month": null,
+          "ytd": 0.0206,
+          "ytdYoy": -100
+        },
+        "import": {
+          "month": null,
+          "ytd": 0.1132,
+          "ytdYoy": 875.9
+        }
+      },
+      {
+        "name": "巴布亚新几内亚",
+        "level": 1,
+        "parentName": "大洋洲",
+        "tradeTotal": {
+          "month": 303615.2789,
+          "ytd": 1982075.6059,
+          "ytdYoy": 20.2
+        },
+        "export": {
+          "month": 104584.3889,
+          "ytd": 771282.0949,
+          "ytdYoy": 16.2
+        },
+        "import": {
+          "month": 199030.89,
+          "ytd": 1210793.511,
+          "ytdYoy": 22.8
+        }
+      },
+      {
+        "name": "所罗门群岛",
+        "level": 1,
+        "parentName": "大洋洲",
+        "tradeTotal": {
+          "month": 33634.3153,
+          "ytd": 307743.4188,
+          "ytdYoy": 21.6
+        },
+        "export": {
+          "month": 11060.7428,
+          "ytd": 147958.9945,
+          "ytdYoy": 36
+        },
+        "import": {
+          "month": 22573.5725,
+          "ytd": 159784.4243,
+          "ytdYoy": 10.7
+        }
+      },
+      {
+        "name": "汤加",
+        "level": 1,
+        "parentName": "大洋洲",
+        "tradeTotal": {
+          "month": 2824.8802,
+          "ytd": 19083.077,
+          "ytdYoy": -8.1
+        },
+        "export": {
+          "month": 2824.7216,
+          "ytd": 19082.4141,
+          "ytdYoy": -8.1
+        },
+        "import": {
+          "month": 0.1586,
+          "ytd": 0.6629,
+          "ytdYoy": -94.7
+        }
+      },
+      {
+        "name": "萨摩亚",
+        "level": 1,
+        "parentName": "大洋洲",
+        "tradeTotal": {
+          "month": 7386.312,
+          "ytd": 41994.6291,
+          "ytdYoy": -25.8
+        },
+        "export": {
+          "month": 7381.052,
+          "ytd": 41920.2064,
+          "ytdYoy": -25.5
+        },
+        "import": {
+          "month": 5.26,
+          "ytd": 74.4227,
+          "ytdYoy": -73
+        }
+      },
+      {
+        "name": "基里巴斯",
+        "level": 1,
+        "parentName": "大洋洲",
+        "tradeTotal": {
+          "month": 19347.6781,
+          "ytd": 55962.9972,
+          "ytdYoy": -31.9
+        },
+        "export": {
+          "month": 19347.6765,
+          "ytd": 55671.0454,
+          "ytdYoy": -32.3
+        },
+        "import": {
+          "month": 0.0016,
+          "ytd": 291.9518,
+          "ytdYoy": 253110.6
+        }
+      },
+      {
+        "name": "图瓦卢",
+        "level": 1,
+        "parentName": "大洋洲",
+        "tradeTotal": {
+          "month": 4830.7482,
+          "ytd": 23797.5899,
+          "ytdYoy": 97
+        },
+        "export": {
+          "month": 4830.7403,
+          "ytd": 23797.568,
+          "ytdYoy": 97
+        },
+        "import": {
+          "month": 0.0079,
+          "ytd": 0.0219,
+          "ytdYoy": -35
+        }
+      },
+      {
+        "name": "密克罗尼西亚联邦",
+        "level": 1,
+        "parentName": "大洋洲",
+        "tradeTotal": {
+          "month": 3664.5179,
+          "ytd": 28146.3726,
+          "ytdYoy": -27.6
+        },
+        "export": {
+          "month": 1397.7968,
+          "ytd": 24878.727,
+          "ytdYoy": -2.9
+        },
+        "import": {
+          "month": 2266.7211,
+          "ytd": 3267.6456,
+          "ytdYoy": -75.4
+        }
+      },
+      {
+        "name": "马绍尔群岛",
+        "level": 1,
+        "parentName": "大洋洲",
+        "tradeTotal": {
+          "month": 725848.3964,
+          "ytd": 4103627.1066,
+          "ytdYoy": 82.2
+        },
+        "export": {
+          "month": 725404.5855,
+          "ytd": 4101966.6367,
+          "ytdYoy": 82.3
+        },
+        "import": {
+          "month": 443.8109,
+          "ytd": 1660.4699,
+          "ytdYoy": 17.7
+        }
+      },
+      {
+        "name": "帕劳",
+        "level": 1,
+        "parentName": "大洋洲",
+        "tradeTotal": {
+          "month": 2127.266,
+          "ytd": 17517.5805,
+          "ytdYoy": -48.6
+        },
+        "export": {
+          "month": 2126.9925,
+          "ytd": 17506.7311,
+          "ytdYoy": -48.6
+        },
+        "import": {
+          "month": 0.2735,
+          "ytd": 10.8494,
+          "ytdYoy": 811.9
+        }
+      },
+      {
+        "name": "法属波利尼西亚",
+        "level": 1,
+        "parentName": "大洋洲",
+        "tradeTotal": {
+          "month": 10270.7763,
+          "ytd": 67842.602,
+          "ytdYoy": 17.1
+        },
+        "export": {
+          "month": 9987.9512,
+          "ytd": 64030.4973,
+          "ytdYoy": 15.5
+        },
+        "import": {
+          "month": 282.8251,
+          "ytd": 3812.1047,
+          "ytdYoy": 55
+        }
+      },
+      {
+        "name": "瓦利斯和富图纳",
+        "level": 1,
+        "parentName": "大洋洲",
+        "tradeTotal": {
+          "month": 116.7124,
+          "ytd": 1712.5168,
+          "ytdYoy": 38.1
+        },
+        "export": {
+          "month": 116.7124,
+          "ytd": 1712.512,
+          "ytdYoy": 38.1
+        },
+        "import": {
+          "month": null,
+          "ytd": 0.0048,
+          "ytdYoy": -77.7
+        }
+      },
+      {
+        "name": "美属萨摩亚",
+        "level": 1,
+        "parentName": "大洋洲",
+        "tradeTotal": {
+          "month": 2467.2,
+          "ytd": 12179.7042,
+          "ytdYoy": -37.2
+        },
+        "export": {
+          "month": 2467.1434,
+          "ytd": 12177.4507,
+          "ytdYoy": -37.2
+        },
+        "import": {
+          "month": 0.0566,
+          "ytd": 2.2535,
+          "ytdYoy": -85.6
+        }
+      },
+      {
+        "name": "科科斯（基林）群岛",
+        "level": 1,
+        "parentName": "大洋洲",
+        "tradeTotal": {
+          "month": 0.0198,
+          "ytd": 0.0402,
+          "ytdYoy": -99.8
+        },
+        "export": {
+          "month": null,
+          "ytd": null,
+          "ytdYoy": null
+        },
+        "import": {
+          "month": 0.0198,
+          "ytd": 0.0402,
+          "ytdYoy": -89.5
+        }
+      },
+      {
+        "name": "圣诞岛",
+        "level": 1,
+        "parentName": "大洋洲",
+        "tradeTotal": {
+          "month": 0.37,
+          "ytd": 3.6533,
+          "ytdYoy": -85.3
+        },
+        "export": {
+          "month": null,
+          "ytd": 2.6671,
+          "ytdYoy": null
+        },
+        "import": {
+          "month": 0.37,
+          "ytd": 0.9862,
+          "ytdYoy": -96
+        }
+      },
+      {
+        "name": "关岛",
+        "level": 1,
+        "parentName": "大洋洲",
+        "tradeTotal": {
+          "month": 6445.4002,
+          "ytd": 41839.683,
+          "ytdYoy": 56.5
+        },
+        "export": {
+          "month": 6445.4002,
+          "ytd": 41838.7193,
+          "ytdYoy": 56.5
+        },
+        "import": {
+          "month": null,
+          "ytd": 0.9637,
+          "ytdYoy": 105.1
+        }
+      },
+      {
+        "name": "赫德岛和麦克唐纳岛",
+        "level": 1,
+        "parentName": "大洋洲",
+        "tradeTotal": {
+          "month": null,
+          "ytd": null,
+          "ytdYoy": null
+        },
+        "export": {
+          "month": null,
+          "ytd": null,
+          "ytdYoy": null
+        },
+        "import": {
+          "month": null,
+          "ytd": null,
+          "ytdYoy": null
+        }
+      },
+      {
+        "name": "北马里亚纳群岛",
+        "level": 1,
+        "parentName": "大洋洲",
+        "tradeTotal": {
+          "month": 1236.9883,
+          "ytd": 9810.4919,
+          "ytdYoy": 30.2
+        },
+        "export": {
+          "month": 1236.8554,
+          "ytd": 9809.4235,
+          "ytdYoy": 30.3
+        },
+        "import": {
+          "month": 0.1329,
+          "ytd": 1.0684,
+          "ytdYoy": -68.8
+        }
+      },
+      {
+        "name": "纽埃",
+        "level": 1,
+        "parentName": "大洋洲",
+        "tradeTotal": {
+          "month": 263.2447,
+          "ytd": 1416.4435,
+          "ytdYoy": -51.8
+        },
+        "export": {
+          "month": 262.8633,
+          "ytd": 1415.5272,
+          "ytdYoy": -51.8
+        },
+        "import": {
+          "month": 0.3814,
+          "ytd": 0.9163,
+          "ytdYoy": 861.5
+        }
+      },
+      {
+        "name": "皮特凯恩",
+        "level": 1,
+        "parentName": "大洋洲",
+        "tradeTotal": {
+          "month": 0.0269,
+          "ytd": 0.1595,
+          "ytdYoy": 111
+        },
+        "export": {
+          "month": null,
+          "ytd": 0.0682,
+          "ytdYoy": null
+        },
+        "import": {
+          "month": 0.0269,
+          "ytd": 0.0913,
+          "ytdYoy": 20.8
+        }
+      },
+      {
+        "name": "托克劳",
+        "level": 1,
+        "parentName": "大洋洲",
+        "tradeTotal": {
+          "month": 1.4459,
+          "ytd": 16.7901,
+          "ytdYoy": 8191.4
+        },
+        "export": {
+          "month": null,
+          "ytd": 10.4217,
+          "ytdYoy": null
+        },
+        "import": {
+          "month": 1.4459,
+          "ytd": 6.3684,
+          "ytdYoy": 3044.9
+        }
+      },
+      {
+        "name": "美国本土外小岛屿",
+        "level": 1,
+        "parentName": "大洋洲",
+        "tradeTotal": {
+          "month": 577.7045,
+          "ytd": 1627.4039,
+          "ytdYoy": 10.8
+        },
+        "export": {
+          "month": 577.5981,
+          "ytd": 1625.7488,
+          "ytdYoy": 13.1
+        },
+        "import": {
+          "month": 0.1064,
+          "ytd": 1.6551,
+          "ytdYoy": -94.7
+        }
+      },
+      {
+        "name": "大洋洲其他国家(地区)",
+        "level": 1,
+        "parentName": "大洋洲",
+        "tradeTotal": {
+          "month": 0.1679,
+          "ytd": 7.4008,
+          "ytdYoy": 52.7
+        },
+        "export": {
+          "month": 0.0074,
+          "ytd": 0.3665,
+          "ytdYoy": -90.3
+        },
+        "import": {
+          "month": 0.1605,
+          "ytd": 7.0343,
+          "ytdYoy": 558.2
+        }
+      },
+      {
+        "name": "南极洲",
+        "level": 0,
+        "parentName": null,
+        "tradeTotal": {
+          "month": null,
+          "ytd": null,
+          "ytdYoy": null
+        },
+        "export": {
+          "month": null,
+          "ytd": null,
+          "ytdYoy": null
+        },
+        "import": {
+          "month": null,
+          "ytd": null,
+          "ytdYoy": null
+        }
+      },
+      {
+        "name": "国家（地区）不明",
+        "level": 0,
+        "parentName": null,
+        "tradeTotal": {
+          "month": 57733.9303,
+          "ytd": 381446.7118,
+          "ytdYoy": -25.9
+        },
+        "export": {
+          "month": null,
+          "ytd": 37.817,
+          "ytdYoy": -99.6
+        },
+        "import": {
+          "month": 57733.9303,
+          "ytd": 381408.8948,
+          "ytdYoy": -24.3
+        }
+      },
+      {
+        "name": "东南亚国家联盟",
+        "level": 0,
+        "parentName": null,
+        "tradeTotal": {
+          "month": 80610807.8242,
+          "ytd": 514397256.4293,
+          "ytdYoy": 20
+        },
+        "export": {
+          "month": 51503451.7598,
+          "ytd": 325922030.7967,
+          "ytdYoy": 20.3
+        },
+        "import": {
+          "month": 29107356.0644,
+          "ytd": 188475225.6326,
+          "ytdYoy": 19.3
+        }
+      },
+      {
+        "name": "欧洲联盟",
+        "level": 0,
+        "parentName": null,
+        "tradeTotal": {
+          "month": 56160648.5115,
+          "ytd": 366697402.3504,
+          "ytdYoy": 9.5
+        },
+        "export": {
+          "month": 39599436.7299,
+          "ytd": 256105577.9746,
+          "ytdYoy": 12.4
+        },
+        "import": {
+          "month": 16561211.7816,
+          "ytd": 110591824.3758,
+          "ytdYoy": 3.3
+        }
+      },
+      {
+        "name": "亚太经济合作组织",
+        "level": 0,
+        "parentName": null,
+        "tradeTotal": {
+          "month": 283794817.2266,
+          "ytd": 1802873277.3498,
+          "ytdYoy": 21
+        },
+        "export": {
+          "month": 160522182.7559,
+          "ytd": 1021609105.0119,
+          "ytdYoy": 17.5
+        },
+        "import": {
+          "month": 123272634.4707,
+          "ytd": 781264172.3379,
+          "ytdYoy": 25.9
+        }
+      },
+      {
+        "name": "区域全面经济伙伴关系协定（RCEP）成员国",
+        "level": 0,
+        "parentName": null,
+        "tradeTotal": {
+          "month": 153696107.0302,
+          "ytd": 971036866.5263,
+          "ytdYoy": 24.3
+        },
+        "export": {
+          "month": 79066249.5927,
+          "ytd": 507388782.0447,
+          "ytdYoy": 18.7
+        },
+        "import": {
+          "month": 74629857.4375,
+          "ytd": 463648084.4816,
+          "ytdYoy": 31.1
+        }
+      },
+      {
+        "name": "共建“一带一路”国家和地区",
+        "level": 0,
+        "parentName": null,
+        "tradeTotal": {
+          "month": 238777815.2818,
+          "ytd": 1536195027.045,
+          "ytdYoy": 15.5
+        },
+        "export": {
+          "month": 138418937.1287,
+          "ytd": 884321351.5171,
+          "ytdYoy": 14.6
+        },
+        "import": {
+          "month": 100358878.1531,
+          "ytd": 651873675.5279,
+          "ytdYoy": 16.9
+        }
+      }
+    ],
+    "footnote": "注：\n1. 东南亚国家联盟包括：文莱、缅甸、柬埔寨、印度尼西亚、老挝、马来西亚、菲律宾、新加坡、泰国、越南、东帝汶。   \n2. 欧洲联盟包括：比利时、丹麦、德国、法国、爱尔兰、意大利、卢森堡、荷兰、希腊、葡萄牙、西班牙、奥地利、芬兰、瑞典、塞浦路斯、匈牙利、马耳他、波兰、爱沙尼亚、拉脱维亚、立陶宛、斯洛文尼亚、捷克、斯洛伐克、保加利亚、罗马尼亚、克罗地亚。\n3. 亚太经济合作组织包括：文莱、中国香港、印度尼西亚、日本、马来西亚、菲律宾、新加坡、韩国、泰国、越南、中国、中国台湾、俄罗斯、智利、墨西哥、秘鲁、加拿大、美国、澳大利亚、新西兰、巴布亚新几内亚。\n4. 区域全面经济伙伴关系协定（RCEP）成员国包括：文莱、缅甸、柬埔寨、印度尼西亚、老挝、马来西亚、菲律宾、新加坡、泰国、越南、日本、韩国、中国、澳大利亚、新西兰。\n5. 共建“一带一路”国家和地区：来源“中国一带一路”网（https://www.yidaiyilu.gov.cn）所列国家和地区。"
   }
 }

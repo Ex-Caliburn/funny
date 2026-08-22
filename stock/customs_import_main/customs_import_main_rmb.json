@@ -99708,5 +99708,3431 @@
       }
     ],
     "footnote": "注：本表所列主要进口商品的海关统计商品编码范围参见本年第1期附录。"
+  },
+  "2026-07": {
+    "sourceFile": "2026-07_2026年7月进口主要商品量值表.xls",
+    "sourceType": "xls",
+    "title": "2026年7月进口主要商品量值表",
+    "unitNote": "单位：万元人民币",
+    "period": {
+      "year": 2026,
+      "month": 7
+    },
+    "monthLabel": "7月",
+    "columnSemantics": {
+      "currentMonth": "当月（7月）数量/金额",
+      "ytdCurrentYear": "当年1至7月累计数量/金额",
+      "ytdSamePeriodLastYear": null,
+      "yoyYtdPercent": "当月比去年同期 ±%（数量/金额）"
+    },
+    "items": [
+      {
+        "name": "农产品*",
+        "level": 0,
+        "parentName": null,
+        "unit": null,
+        "currentMonth": {
+          "quantity": null,
+          "amount": 13706183
+        },
+        "ytdCurrentYear": {
+          "quantity": null,
+          "amount": 90502960
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": null,
+          "amount": 2.5
+        }
+      },
+      {
+        "name": "肉类（包括杂碎）",
+        "level": 1,
+        "parentName": "农产品*",
+        "unit": "万吨",
+        "currentMonth": {
+          "quantity": 47,
+          "amount": 1414359
+        },
+        "ytdCurrentYear": {
+          "quantity": 357,
+          "amount": 10550921
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -12.4,
+          "amount": -3.9
+        }
+      },
+      {
+        "name": "牛肉及牛杂碎",
+        "level": 2,
+        "parentName": "肉类（包括杂碎）",
+        "unit": "万吨",
+        "currentMonth": {
+          "quantity": 22,
+          "amount": 983155
+        },
+        "ytdCurrentYear": {
+          "quantity": 179,
+          "amount": 7414801
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -12.7,
+          "amount": 2.6
+        }
+      },
+      {
+        "name": "牛肉",
+        "level": 3,
+        "parentName": "牛肉及牛杂碎",
+        "unit": "万吨",
+        "currentMonth": {
+          "quantity": 22,
+          "amount": 974587
+        },
+        "ytdCurrentYear": {
+          "quantity": 175,
+          "amount": 7341902
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -14,
+          "amount": 2.6
+        }
+      },
+      {
+        "name": "猪肉及猪杂碎",
+        "level": 2,
+        "parentName": "肉类（包括杂碎）",
+        "unit": "万吨",
+        "currentMonth": {
+          "quantity": 15,
+          "amount": 201105
+        },
+        "ytdCurrentYear": {
+          "quantity": 114,
+          "amount": 1524351
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -19.2,
+          "amount": -31.2
+        }
+      },
+      {
+        "name": "猪肉",
+        "level": 3,
+        "parentName": "猪肉及猪杂碎",
+        "unit": "万吨",
+        "currentMonth": {
+          "quantity": 6,
+          "amount": 84044
+        },
+        "ytdCurrentYear": {
+          "quantity": 44,
+          "amount": 615880
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -31.1,
+          "amount": -35.9
+        }
+      },
+      {
+        "name": "羊肉",
+        "level": 2,
+        "parentName": "肉类（包括杂碎）",
+        "unit": "吨",
+        "currentMonth": {
+          "quantity": 22046,
+          "amount": 76412
+        },
+        "ytdCurrentYear": {
+          "quantity": 191975,
+          "amount": 623918
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -16,
+          "amount": 2.3
+        }
+      },
+      {
+        "name": "禽肉",
+        "level": 2,
+        "parentName": "肉类（包括杂碎）",
+        "unit": "吨",
+        "currentMonth": {
+          "quantity": 28878,
+          "amount": 68489
+        },
+        "ytdCurrentYear": {
+          "quantity": 183901,
+          "amount": 412165
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": 52,
+          "amount": 65.7
+        }
+      },
+      {
+        "name": "水产品",
+        "level": 1,
+        "parentName": "农产品*",
+        "unit": "万吨",
+        "currentMonth": {
+          "quantity": 45,
+          "amount": 1321144
+        },
+        "ytdCurrentYear": {
+          "quantity": 320,
+          "amount": 9707772
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": 10.5,
+          "amount": 8.1
+        }
+      },
+      {
+        "name": "食用水产品",
+        "level": 2,
+        "parentName": "水产品",
+        "unit": "万吨",
+        "currentMonth": {
+          "quantity": 43,
+          "amount": 1312822
+        },
+        "ytdCurrentYear": {
+          "quantity": 312,
+          "amount": 9627942
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": 11.2,
+          "amount": 8.3
+        }
+      },
+      {
+        "name": "冻鱼",
+        "level": 3,
+        "parentName": "食用水产品",
+        "unit": "万吨",
+        "currentMonth": {
+          "quantity": 17,
+          "amount": 330329
+        },
+        "ytdCurrentYear": {
+          "quantity": 142,
+          "amount": 2691586
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": 22.2,
+          "amount": 28.7
+        }
+      },
+      {
+        "name": "乳品",
+        "level": 1,
+        "parentName": "农产品*",
+        "unit": "万吨",
+        "currentMonth": {
+          "quantity": 17,
+          "amount": 629197
+        },
+        "ytdCurrentYear": {
+          "quantity": 158,
+          "amount": 5311448
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -28.6,
+          "amount": -26.1
+        }
+      },
+      {
+        "name": "奶粉",
+        "level": 2,
+        "parentName": "乳品",
+        "unit": "万吨",
+        "currentMonth": {
+          "quantity": 5,
+          "amount": 350399
+        },
+        "ytdCurrentYear": {
+          "quantity": 55,
+          "amount": 2923940
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -32.2,
+          "amount": -26.5
+        }
+      },
+      {
+        "name": "粮食",
+        "level": 1,
+        "parentName": "农产品*",
+        "unit": "万吨",
+        "currentMonth": {
+          "quantity": 1523,
+          "amount": 4611846
+        },
+        "ytdCurrentYear": {
+          "quantity": 8616,
+          "amount": 25545758
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": 8.3,
+          "amount": 8.7
+        }
+      },
+      {
+        "name": "薯类",
+        "level": 2,
+        "parentName": "粮食",
+        "unit": "吨",
+        "currentMonth": {
+          "quantity": 139,
+          "amount": 42
+        },
+        "ytdCurrentYear": {
+          "quantity": 902,
+          "amount": 278
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -76.1,
+          "amount": -80.7
+        }
+      },
+      {
+        "name": "谷物及谷物粉",
+        "level": 2,
+        "parentName": "粮食",
+        "unit": "万吨",
+        "currentMonth": {
+          "quantity": 300,
+          "amount": 596584
+        },
+        "ytdCurrentYear": {
+          "quantity": 2203,
+          "amount": 4455115
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": 38.1,
+          "amount": 25.7
+        }
+      },
+      {
+        "name": "小麦及小麦粉",
+        "level": 3,
+        "parentName": "谷物及谷物粉",
+        "unit": "万吨",
+        "currentMonth": {
+          "quantity": 18,
+          "amount": 38436
+        },
+        "ytdCurrentYear": {
+          "quantity": 327,
+          "amount": 673286
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -56,
+          "amount": -58.6
+        }
+      },
+      {
+        "name": "大麦",
+        "level": 3,
+        "parentName": "谷物及谷物粉",
+        "unit": "万吨",
+        "currentMonth": {
+          "quantity": 98,
+          "amount": 183636
+        },
+        "ytdCurrentYear": {
+          "quantity": 914,
+          "amount": 1670628
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": 21.4,
+          "amount": 18.5
+        }
+      },
+      {
+        "name": "玉米及玉米粉",
+        "level": 3,
+        "parentName": "谷物及谷物粉",
+        "unit": "万吨",
+        "currentMonth": {
+          "quantity": 35,
+          "amount": 63756
+        },
+        "ytdCurrentYear": {
+          "quantity": 136,
+          "amount": 245362
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": 527.3,
+          "amount": 533.9
+        }
+      },
+      {
+        "name": "稻谷、大米及大米粉",
+        "level": 3,
+        "parentName": "谷物及谷物粉",
+        "unit": "万吨",
+        "currentMonth": {
+          "quantity": 29,
+          "amount": 78616
+        },
+        "ytdCurrentYear": {
+          "quantity": 272,
+          "amount": 802812
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -3.7,
+          "amount": -17.8
+        }
+      },
+      {
+        "name": "高粱",
+        "level": 3,
+        "parentName": "谷物及谷物粉",
+        "unit": "万吨",
+        "currentMonth": {
+          "quantity": 111,
+          "amount": 215732
+        },
+        "ytdCurrentYear": {
+          "quantity": 488,
+          "amount": 925301
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": 124.2,
+          "amount": 117.5
+        }
+      },
+      {
+        "name": "豆类",
+        "level": 2,
+        "parentName": "粮食",
+        "unit": "万吨",
+        "currentMonth": {
+          "quantity": 1223,
+          "amount": 4014274
+        },
+        "ytdCurrentYear": {
+          "quantity": 6412,
+          "amount": 21079301
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": 2.9,
+          "amount": 6.5
+        }
+      },
+      {
+        "name": "大豆",
+        "level": 3,
+        "parentName": "豆类",
+        "unit": "万吨",
+        "currentMonth": {
+          "quantity": 1177,
+          "amount": 3843949
+        },
+        "ytdCurrentYear": {
+          "quantity": 6180,
+          "amount": 20262043
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": 0.9,
+          "amount": 4.8
+        }
+      },
+      {
+        "name": "木薯及木薯淀粉",
+        "level": 1,
+        "parentName": "农产品*",
+        "unit": "万吨",
+        "currentMonth": {
+          "quantity": 32,
+          "amount": 91859
+        },
+        "ytdCurrentYear": {
+          "quantity": 443,
+          "amount": 1094057
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -65.8,
+          "amount": -48.9
+        }
+      },
+      {
+        "name": "干鲜瓜果及坚果",
+        "level": 1,
+        "parentName": "农产品*",
+        "unit": "万吨",
+        "currentMonth": {
+          "quantity": 84,
+          "amount": 1324018
+        },
+        "ytdCurrentYear": {
+          "quantity": 564,
+          "amount": 8476498
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": 2.7,
+          "amount": 5.8
+        }
+      },
+      {
+        "name": "咖啡",
+        "level": 1,
+        "parentName": "农产品*",
+        "unit": "吨",
+        "currentMonth": {
+          "quantity": 25354,
+          "amount": 133234
+        },
+        "ytdCurrentYear": {
+          "quantity": 149171,
+          "amount": 806906
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": 1.7,
+          "amount": -3.7
+        }
+      },
+      {
+        "name": "食用油",
+        "level": 1,
+        "parentName": "农产品*",
+        "unit": "万吨",
+        "currentMonth": {
+          "quantity": 90,
+          "amount": 840510
+        },
+        "ytdCurrentYear": {
+          "quantity": 614,
+          "amount": 5713968
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": 16.7,
+          "amount": 19.4
+        }
+      },
+      {
+        "name": "食用植物油",
+        "level": 2,
+        "parentName": "食用油",
+        "unit": "万吨",
+        "currentMonth": {
+          "quantity": 59,
+          "amount": 543376
+        },
+        "ytdCurrentYear": {
+          "quantity": 402,
+          "amount": 3645416
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": 10.4,
+          "amount": 13.7
+        }
+      },
+      {
+        "name": "豆油",
+        "level": 3,
+        "parentName": "食用植物油",
+        "unit": "万吨",
+        "currentMonth": {
+          "quantity": 0,
+          "amount": 2301
+        },
+        "ytdCurrentYear": {
+          "quantity": 4,
+          "amount": 32285
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -95.3,
+          "amount": -95.2
+        }
+      },
+      {
+        "name": "棕榈油",
+        "level": 3,
+        "parentName": "食用植物油",
+        "unit": "万吨",
+        "currentMonth": {
+          "quantity": 34,
+          "amount": 268667
+        },
+        "ytdCurrentYear": {
+          "quantity": 162,
+          "amount": 1258879
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": 82.1,
+          "amount": 103.9
+        }
+      },
+      {
+        "name": "菜子油及芥子油",
+        "level": 3,
+        "parentName": "食用植物油",
+        "unit": "万吨",
+        "currentMonth": {
+          "quantity": 8,
+          "amount": 62832
+        },
+        "ytdCurrentYear": {
+          "quantity": 121,
+          "amount": 968565
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -41.6,
+          "amount": -39.3
+        }
+      },
+      {
+        "name": "食糖",
+        "level": 1,
+        "parentName": "农产品*",
+        "unit": "万吨",
+        "currentMonth": {
+          "quantity": 47,
+          "amount": 119689
+        },
+        "ytdCurrentYear": {
+          "quantity": 160,
+          "amount": 440335
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -37.5,
+          "amount": -49.5
+        }
+      },
+      {
+        "name": "酒类及饮料",
+        "level": 1,
+        "parentName": "农产品*",
+        "unit": null,
+        "currentMonth": {
+          "quantity": null,
+          "amount": 415057
+        },
+        "ytdCurrentYear": {
+          "quantity": null,
+          "amount": 2399119
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": null,
+          "amount": -4.5
+        }
+      },
+      {
+        "name": "啤酒",
+        "level": 2,
+        "parentName": "酒类及饮料",
+        "unit": "万升",
+        "currentMonth": {
+          "quantity": 3951,
+          "amount": 38369
+        },
+        "ytdCurrentYear": {
+          "quantity": 23527,
+          "amount": 237535
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": 15.7,
+          "amount": 6.3
+        }
+      },
+      {
+        "name": "葡萄酒",
+        "level": 2,
+        "parentName": "酒类及饮料",
+        "unit": "万升",
+        "currentMonth": {
+          "quantity": 1844,
+          "amount": 120725
+        },
+        "ytdCurrentYear": {
+          "quantity": 12019,
+          "amount": 618124
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -13.3,
+          "amount": 0.5
+        }
+      },
+      {
+        "name": "制盐",
+        "level": 0,
+        "parentName": null,
+        "unit": "万吨",
+        "currentMonth": {
+          "quantity": 89,
+          "amount": 21640
+        },
+        "ytdCurrentYear": {
+          "quantity": 719,
+          "amount": 166351
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -12.1,
+          "amount": -23.6
+        }
+      },
+      {
+        "name": "金属矿及矿砂",
+        "level": 0,
+        "parentName": null,
+        "unit": "万吨",
+        "currentMonth": {
+          "quantity": 14292,
+          "amount": 18658103
+        },
+        "ytdCurrentYear": {
+          "quantity": 96988,
+          "amount": 131690983
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": 3.3,
+          "amount": 14.5
+        }
+      },
+      {
+        "name": "铁矿砂及其精矿",
+        "level": 1,
+        "parentName": "金属矿及矿砂",
+        "unit": "万吨",
+        "currentMonth": {
+          "quantity": 10809,
+          "amount": 7415084
+        },
+        "ytdCurrentYear": {
+          "quantity": 73684,
+          "amount": 51857900
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": 3.5,
+          "amount": 6.4
+        }
+      },
+      {
+        "name": "铜矿砂及其精矿",
+        "level": 1,
+        "parentName": "金属矿及矿砂",
+        "unit": "万吨",
+        "currentMonth": {
+          "quantity": 238,
+          "amount": 5980880
+        },
+        "ytdCurrentYear": {
+          "quantity": 1698,
+          "amount": 42983715
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -7,
+          "amount": 16.7
+        }
+      },
+      {
+        "name": "铝矿砂及其精矿",
+        "level": 1,
+        "parentName": "金属矿及矿砂",
+        "unit": "万吨",
+        "currentMonth": {
+          "quantity": 1904,
+          "amount": 833526
+        },
+        "ytdCurrentYear": {
+          "quantity": 13988,
+          "amount": 6194765
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -4.6,
+          "amount": -21.1
+        }
+      },
+      {
+        "name": "煤及褐煤",
+        "level": 0,
+        "parentName": null,
+        "unit": "万吨",
+        "currentMonth": {
+          "quantity": 4273,
+          "amount": 2968514
+        },
+        "ytdCurrentYear": {
+          "quantity": 26811,
+          "amount": 15540959
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": 20.3,
+          "amount": 74.8
+        }
+      },
+      {
+        "name": "原油",
+        "level": 0,
+        "parentName": null,
+        "unit": "万吨",
+        "currentMonth": {
+          "quantity": 3573,
+          "amount": 15521906
+        },
+        "ytdCurrentYear": {
+          "quantity": 28333,
+          "amount": 120311498
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -24.3,
+          "amount": -9.9
+        }
+      },
+      {
+        "name": "成品油",
+        "level": 0,
+        "parentName": null,
+        "unit": "万吨",
+        "currentMonth": {
+          "quantity": 248,
+          "amount": 1222027
+        },
+        "ytdCurrentYear": {
+          "quantity": 1991,
+          "amount": 9315853
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -38.5,
+          "amount": -24.4
+        }
+      },
+      {
+        "name": "石脑油",
+        "level": 1,
+        "parentName": "成品油",
+        "unit": "万吨",
+        "currentMonth": {
+          "quantity": 121,
+          "amount": 640726
+        },
+        "ytdCurrentYear": {
+          "quantity": 770,
+          "amount": 3860723
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -29,
+          "amount": -12.7
+        }
+      },
+      {
+        "name": "航空煤油",
+        "level": 1,
+        "parentName": "成品油",
+        "unit": "万吨",
+        "currentMonth": {
+          "quantity": 0,
+          "amount": 66
+        },
+        "ytdCurrentYear": {
+          "quantity": 4,
+          "amount": 19734
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": 12.2,
+          "amount": 121.8
+        }
+      },
+      {
+        "name": "燃料油",
+        "level": 1,
+        "parentName": "成品油",
+        "unit": "万吨",
+        "currentMonth": {
+          "quantity": 112,
+          "amount": 388755
+        },
+        "ytdCurrentYear": {
+          "quantity": 1043,
+          "amount": 3917366
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -42.6,
+          "amount": -39.4
+        }
+      },
+      {
+        "name": "天然气",
+        "level": 0,
+        "parentName": null,
+        "unit": "万吨",
+        "currentMonth": {
+          "quantity": 1060,
+          "amount": 3898520
+        },
+        "ytdCurrentYear": {
+          "quantity": 6798,
+          "amount": 21573536
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": 0.3,
+          "amount": 14.7
+        }
+      },
+      {
+        "name": "液化天然气",
+        "level": 1,
+        "parentName": "天然气",
+        "unit": "万吨",
+        "currentMonth": {
+          "quantity": 550,
+          "amount": 2654348
+        },
+        "ytdCurrentYear": {
+          "quantity": 3379,
+          "amount": 13343556
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": 2.4,
+          "amount": 28.9
+        }
+      },
+      {
+        "name": "气态天然气",
+        "level": 1,
+        "parentName": "天然气",
+        "unit": "万吨",
+        "currentMonth": {
+          "quantity": 510,
+          "amount": 1244173
+        },
+        "ytdCurrentYear": {
+          "quantity": 3420,
+          "amount": 8229981
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -1.8,
+          "amount": -7.2
+        }
+      },
+      {
+        "name": "多晶硅",
+        "level": 0,
+        "parentName": null,
+        "unit": "吨",
+        "currentMonth": {
+          "quantity": 791,
+          "amount": 11834
+        },
+        "ytdCurrentYear": {
+          "quantity": 8572,
+          "amount": 146540
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -32.4,
+          "amount": -50.3
+        }
+      },
+      {
+        "name": "稀土",
+        "level": 0,
+        "parentName": null,
+        "unit": "吨",
+        "currentMonth": {
+          "quantity": 9451,
+          "amount": 122560
+        },
+        "ytdCurrentYear": {
+          "quantity": 63323,
+          "amount": 929462
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -1.8,
+          "amount": 27.6
+        }
+      },
+      {
+        "name": "基本有机化学品",
+        "level": 0,
+        "parentName": null,
+        "unit": null,
+        "currentMonth": {
+          "quantity": null,
+          "amount": 2680015
+        },
+        "ytdCurrentYear": {
+          "quantity": null,
+          "amount": 19065178
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": null,
+          "amount": -3.1
+        }
+      },
+      {
+        "name": "二甲苯",
+        "level": 1,
+        "parentName": "基本有机化学品",
+        "unit": "万吨",
+        "currentMonth": {
+          "quantity": 52,
+          "amount": 380526
+        },
+        "ytdCurrentYear": {
+          "quantity": 504,
+          "amount": 3694316
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -35,
+          "amount": -21
+        }
+      },
+      {
+        "name": "乙二醇",
+        "level": 1,
+        "parentName": "基本有机化学品",
+        "unit": "万吨",
+        "currentMonth": {
+          "quantity": 27,
+          "amount": 102144
+        },
+        "ytdCurrentYear": {
+          "quantity": 285,
+          "amount": 982722
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -55.1,
+          "amount": -53.4
+        }
+      },
+      {
+        "name": "医药材及药品",
+        "level": 0,
+        "parentName": null,
+        "unit": "吨",
+        "currentMonth": {
+          "quantity": 18776,
+          "amount": 3581891
+        },
+        "ytdCurrentYear": {
+          "quantity": 147007,
+          "amount": 20463592
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -43.2,
+          "amount": 9
+        }
+      },
+      {
+        "name": "中药材",
+        "level": 1,
+        "parentName": "医药材及药品",
+        "unit": "吨",
+        "currentMonth": {
+          "quantity": 7043,
+          "amount": 19682
+        },
+        "ytdCurrentYear": {
+          "quantity": 52115,
+          "amount": 134056
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -61.6,
+          "amount": -5.2
+        }
+      },
+      {
+        "name": "医药品",
+        "level": 1,
+        "parentName": "医药材及药品",
+        "unit": "吨",
+        "currentMonth": {
+          "quantity": 11732,
+          "amount": 3562209
+        },
+        "ytdCurrentYear": {
+          "quantity": 94892,
+          "amount": 20329536
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -20.4,
+          "amount": 9.1
+        }
+      },
+      {
+        "name": "人用疫苗",
+        "level": 2,
+        "parentName": "医药品",
+        "unit": "吨",
+        "currentMonth": {
+          "quantity": 36,
+          "amount": 33910
+        },
+        "ytdCurrentYear": {
+          "quantity": 155,
+          "amount": 275745
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": 54,
+          "amount": -39.9
+        }
+      },
+      {
+        "name": "肥料",
+        "level": 0,
+        "parentName": null,
+        "unit": "万吨",
+        "currentMonth": {
+          "quantity": 140,
+          "amount": 361970
+        },
+        "ytdCurrentYear": {
+          "quantity": 1102,
+          "amount": 2860261
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": 107,
+          "amount": 103.5
+        }
+      },
+      {
+        "name": "矿物肥料及化肥",
+        "level": 1,
+        "parentName": "肥料",
+        "unit": "万吨",
+        "currentMonth": {
+          "quantity": 140,
+          "amount": 361056
+        },
+        "ytdCurrentYear": {
+          "quantity": 1101,
+          "amount": 2855223
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": 107.2,
+          "amount": 104
+        }
+      },
+      {
+        "name": "氯化钾",
+        "level": 2,
+        "parentName": "矿物肥料及化肥",
+        "unit": "万吨",
+        "currentMonth": {
+          "quantity": 127,
+          "amount": 307370
+        },
+        "ytdCurrentYear": {
+          "quantity": 1008,
+          "amount": 2460690
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": 139,
+          "amount": 161.3
+        }
+      },
+      {
+        "name": "氮磷钾三元复合肥",
+        "level": 2,
+        "parentName": "矿物肥料及化肥",
+        "unit": "万吨",
+        "currentMonth": {
+          "quantity": 11,
+          "amount": 43677
+        },
+        "ytdCurrentYear": {
+          "quantity": 67,
+          "amount": 282977
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -20.2,
+          "amount": -17.1
+        }
+      },
+      {
+        "name": "美容化妆品及洗护用品",
+        "level": 0,
+        "parentName": null,
+        "unit": "吨",
+        "currentMonth": {
+          "quantity": 27528,
+          "amount": 864763
+        },
+        "ytdCurrentYear": {
+          "quantity": 194038,
+          "amount": 6763465
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -11,
+          "amount": -9.8
+        }
+      },
+      {
+        "name": "初级形状的塑料",
+        "level": 0,
+        "parentName": null,
+        "unit": "万吨",
+        "currentMonth": {
+          "quantity": 138,
+          "amount": 1873346
+        },
+        "ytdCurrentYear": {
+          "quantity": 1206,
+          "amount": 13921530
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -38,
+          "amount": -22.3
+        }
+      },
+      {
+        "name": "塑料制品",
+        "level": 0,
+        "parentName": null,
+        "unit": null,
+        "currentMonth": {
+          "quantity": null,
+          "amount": 1035652
+        },
+        "ytdCurrentYear": {
+          "quantity": null,
+          "amount": 6987826
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": null,
+          "amount": -10.1
+        }
+      },
+      {
+        "name": "天然及合成橡胶（包括胶乳）",
+        "level": 0,
+        "parentName": null,
+        "unit": "万吨",
+        "currentMonth": {
+          "quantity": 58,
+          "amount": 871736
+        },
+        "ytdCurrentYear": {
+          "quantity": 452,
+          "amount": 6121015
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -8.6,
+          "amount": 6.9
+        }
+      },
+      {
+        "name": "皮革、毛皮及其制品",
+        "level": 0,
+        "parentName": null,
+        "unit": null,
+        "currentMonth": {
+          "quantity": null,
+          "amount": 319582
+        },
+        "ytdCurrentYear": {
+          "quantity": null,
+          "amount": 2038745
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": null,
+          "amount": 1.3
+        }
+      },
+      {
+        "name": "牛皮革及马皮革",
+        "level": 1,
+        "parentName": "皮革、毛皮及其制品",
+        "unit": "吨",
+        "currentMonth": {
+          "quantity": 41498,
+          "amount": 60630
+        },
+        "ytdCurrentYear": {
+          "quantity": 333217,
+          "amount": 453361
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": 10.7,
+          "amount": -9
+        }
+      },
+      {
+        "name": "木及其制品",
+        "level": 0,
+        "parentName": null,
+        "unit": "万吨",
+        "currentMonth": {
+          "quantity": 361,
+          "amount": 809023
+        },
+        "ytdCurrentYear": {
+          "quantity": 2444,
+          "amount": 5293490
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -0.5,
+          "amount": 2.1
+        }
+      },
+      {
+        "name": "原木",
+        "level": 1,
+        "parentName": "木及其制品",
+        "unit": "万立方米",
+        "currentMonth": {
+          "quantity": 265,
+          "amount": 311410
+        },
+        "ytdCurrentYear": {
+          "quantity": 1853,
+          "amount": 2166814
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": 6.2,
+          "amount": 12.7
+        }
+      },
+      {
+        "name": "锯材",
+        "level": 1,
+        "parentName": "木及其制品",
+        "unit": "万立方米",
+        "currentMonth": {
+          "quantity": 205,
+          "amount": 405947
+        },
+        "ytdCurrentYear": {
+          "quantity": 1271,
+          "amount": 2537662
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -4.8,
+          "amount": -2.5
+        }
+      },
+      {
+        "name": "纸浆、纸及其制品",
+        "level": 0,
+        "parentName": null,
+        "unit": "万吨",
+        "currentMonth": {
+          "quantity": 341,
+          "amount": 1427229
+        },
+        "ytdCurrentYear": {
+          "quantity": 2607,
+          "amount": 10886083
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -4.4,
+          "amount": -10.6
+        }
+      },
+      {
+        "name": "纸浆",
+        "level": 1,
+        "parentName": "纸浆、纸及其制品",
+        "unit": "万吨",
+        "currentMonth": {
+          "quantity": 273,
+          "amount": 1120125
+        },
+        "ytdCurrentYear": {
+          "quantity": 2119,
+          "amount": 8713702
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -5.1,
+          "amount": -11.6
+        }
+      },
+      {
+        "name": "纺织原料",
+        "level": 0,
+        "parentName": null,
+        "unit": "万吨",
+        "currentMonth": {
+          "quantity": 23,
+          "amount": 497521
+        },
+        "ytdCurrentYear": {
+          "quantity": 204,
+          "amount": 3647933
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": 24,
+          "amount": 43.9
+        }
+      },
+      {
+        "name": "羊毛及毛条",
+        "level": 1,
+        "parentName": "纺织原料",
+        "unit": "吨",
+        "currentMonth": {
+          "quantity": 26220,
+          "amount": 176039
+        },
+        "ytdCurrentYear": {
+          "quantity": 186432,
+          "amount": 1133816
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": 11.1,
+          "amount": 76.4
+        }
+      },
+      {
+        "name": "棉花",
+        "level": 1,
+        "parentName": "纺织原料",
+        "unit": "万吨",
+        "currentMonth": {
+          "quantity": 9,
+          "amount": 115248
+        },
+        "ytdCurrentYear": {
+          "quantity": 103,
+          "amount": 1210629
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": 71.1,
+          "amount": 58.1
+        }
+      },
+      {
+        "name": "纺织纱线、织物及其制品",
+        "level": 0,
+        "parentName": null,
+        "unit": null,
+        "currentMonth": {
+          "quantity": null,
+          "amount": 661240
+        },
+        "ytdCurrentYear": {
+          "quantity": null,
+          "amount": 4661196
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": null,
+          "amount": 11.3
+        }
+      },
+      {
+        "name": "纺织纱线",
+        "level": 1,
+        "parentName": "纺织纱线、织物及其制品",
+        "unit": null,
+        "currentMonth": {
+          "quantity": null,
+          "amount": 352094
+        },
+        "ytdCurrentYear": {
+          "quantity": null,
+          "amount": 2550780
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": null,
+          "amount": 39.4
+        }
+      },
+      {
+        "name": "棉纱线",
+        "level": 2,
+        "parentName": "纺织纱线",
+        "unit": "万吨",
+        "currentMonth": {
+          "quantity": 16,
+          "amount": 271380
+        },
+        "ytdCurrentYear": {
+          "quantity": 121,
+          "amount": 1949499
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": 53.9,
+          "amount": 64.6
+        }
+      },
+      {
+        "name": "合成纤维纱线",
+        "level": 2,
+        "parentName": "纺织纱线",
+        "unit": "吨",
+        "currentMonth": {
+          "quantity": 13419,
+          "amount": 46950
+        },
+        "ytdCurrentYear": {
+          "quantity": 101629,
+          "amount": 363889
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": 2.1,
+          "amount": -11.6
+        }
+      },
+      {
+        "name": "服装及衣着附件",
+        "level": 0,
+        "parentName": null,
+        "unit": null,
+        "currentMonth": {
+          "quantity": null,
+          "amount": 664101
+        },
+        "ytdCurrentYear": {
+          "quantity": null,
+          "amount": 4086956
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": null,
+          "amount": 1.8
+        }
+      },
+      {
+        "name": "玻璃及其制品",
+        "level": 0,
+        "parentName": null,
+        "unit": null,
+        "currentMonth": {
+          "quantity": null,
+          "amount": 375858
+        },
+        "ytdCurrentYear": {
+          "quantity": null,
+          "amount": 2685129
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": null,
+          "amount": -7.2
+        }
+      },
+      {
+        "name": "玻璃纤维及其制品",
+        "level": 1,
+        "parentName": "玻璃及其制品",
+        "unit": "吨",
+        "currentMonth": {
+          "quantity": 7920,
+          "amount": 96942
+        },
+        "ytdCurrentYear": {
+          "quantity": 60743,
+          "amount": 591751
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -11.3,
+          "amount": 50.3
+        }
+      },
+      {
+        "name": "珍珠、宝石及半宝石",
+        "level": 0,
+        "parentName": null,
+        "unit": null,
+        "currentMonth": {
+          "quantity": null,
+          "amount": 190774
+        },
+        "ytdCurrentYear": {
+          "quantity": null,
+          "amount": 1298277
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": null,
+          "amount": -29.1
+        }
+      },
+      {
+        "name": "钻石",
+        "level": 1,
+        "parentName": "珍珠、宝石及半宝石",
+        "unit": "千克",
+        "currentMonth": {
+          "quantity": 115,
+          "amount": 149018
+        },
+        "ytdCurrentYear": {
+          "quantity": 834,
+          "amount": 1010168
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": 14.1,
+          "amount": -30.6
+        }
+      },
+      {
+        "name": "钢材",
+        "level": 0,
+        "parentName": null,
+        "unit": "万吨",
+        "currentMonth": {
+          "quantity": 44,
+          "amount": 593039
+        },
+        "ytdCurrentYear": {
+          "quantity": 314,
+          "amount": 3949191
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -2.1,
+          "amount": 0.3
+        }
+      },
+      {
+        "name": "未锻轧铜及铜材",
+        "level": 0,
+        "parentName": null,
+        "unit": "万吨",
+        "currentMonth": {
+          "quantity": 42,
+          "amount": 4083464
+        },
+        "ytdCurrentYear": {
+          "quantity": 292,
+          "amount": 27109684
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -11.3,
+          "amount": 17.2
+        }
+      },
+      {
+        "name": "未锻轧铝及铝材",
+        "level": 0,
+        "parentName": null,
+        "unit": "万吨",
+        "currentMonth": {
+          "quantity": 28,
+          "amount": 703267
+        },
+        "ytdCurrentYear": {
+          "quantity": 215,
+          "amount": 5162359
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -22,
+          "amount": -3.5
+        }
+      },
+      {
+        "name": "机电产品*",
+        "level": 0,
+        "parentName": null,
+        "unit": null,
+        "currentMonth": {
+          "quantity": null,
+          "amount": 90545269
+        },
+        "ytdCurrentYear": {
+          "quantity": null,
+          "amount": 531053364
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": null,
+          "amount": 38.9
+        }
+      },
+      {
+        "name": "机械基础件",
+        "level": 1,
+        "parentName": "机电产品*",
+        "unit": null,
+        "currentMonth": {
+          "quantity": null,
+          "amount": 608172
+        },
+        "ytdCurrentYear": {
+          "quantity": null,
+          "amount": 4068353
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": null,
+          "amount": -3.5
+        }
+      },
+      {
+        "name": "农业机械",
+        "level": 1,
+        "parentName": "机电产品*",
+        "unit": null,
+        "currentMonth": {
+          "quantity": null,
+          "amount": 42986
+        },
+        "ytdCurrentYear": {
+          "quantity": null,
+          "amount": 276809
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": null,
+          "amount": 39.6
+        }
+      },
+      {
+        "name": "收获机械",
+        "level": 2,
+        "parentName": "农业机械",
+        "unit": "台",
+        "currentMonth": {
+          "quantity": 200,
+          "amount": 17646
+        },
+        "ytdCurrentYear": {
+          "quantity": 1715,
+          "amount": 144147
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": 2.6,
+          "amount": 15.2
+        }
+      },
+      {
+        "name": "拖拉机",
+        "level": 2,
+        "parentName": "农业机械",
+        "unit": "辆",
+        "currentMonth": {
+          "quantity": 26,
+          "amount": 2761
+        },
+        "ytdCurrentYear": {
+          "quantity": 385,
+          "amount": 37804
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": 13,
+          "amount": -30
+        }
+      },
+      {
+        "name": "食品加工机械",
+        "level": 1,
+        "parentName": "机电产品*",
+        "unit": "万台",
+        "currentMonth": {
+          "quantity": 1,
+          "amount": 17754
+        },
+        "ytdCurrentYear": {
+          "quantity": 5,
+          "amount": 193709
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -9.8,
+          "amount": -62.5
+        }
+      },
+      {
+        "name": "包装机械",
+        "level": 1,
+        "parentName": "机电产品*",
+        "unit": "台",
+        "currentMonth": {
+          "quantity": 2911,
+          "amount": 63483
+        },
+        "ytdCurrentYear": {
+          "quantity": 17203,
+          "amount": 372925
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": 16.8,
+          "amount": 34
+        }
+      },
+      {
+        "name": "工业机器人",
+        "level": 1,
+        "parentName": "机电产品*",
+        "unit": "台",
+        "currentMonth": {
+          "quantity": 10247,
+          "amount": 103298
+        },
+        "ytdCurrentYear": {
+          "quantity": 66399,
+          "amount": 634813
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": 20,
+          "amount": 8.2
+        }
+      },
+      {
+        "name": "印刷、装订机械及其零件",
+        "level": 1,
+        "parentName": "机电产品*",
+        "unit": null,
+        "currentMonth": {
+          "quantity": null,
+          "amount": 294079
+        },
+        "ytdCurrentYear": {
+          "quantity": null,
+          "amount": 1997305
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": null,
+          "amount": -15.8
+        }
+      },
+      {
+        "name": "打印机、复印机及一体机",
+        "level": 2,
+        "parentName": "印刷、装订机械及其零件",
+        "unit": "万台",
+        "currentMonth": {
+          "quantity": 60,
+          "amount": 111172
+        },
+        "ytdCurrentYear": {
+          "quantity": 443,
+          "amount": 755414
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -21.2,
+          "amount": -21.4
+        }
+      },
+      {
+        "name": "通用机械设备",
+        "level": 1,
+        "parentName": "机电产品*",
+        "unit": null,
+        "currentMonth": {
+          "quantity": null,
+          "amount": 1244754
+        },
+        "ytdCurrentYear": {
+          "quantity": null,
+          "amount": 8480643
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": null,
+          "amount": -6.7
+        }
+      },
+      {
+        "name": "泵",
+        "level": 2,
+        "parentName": "通用机械设备",
+        "unit": "万台",
+        "currentMonth": {
+          "quantity": 338,
+          "amount": 249595
+        },
+        "ytdCurrentYear": {
+          "quantity": 3531,
+          "amount": 1683707
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -13.3,
+          "amount": -7.1
+        }
+      },
+      {
+        "name": "压缩机",
+        "level": 2,
+        "parentName": "通用机械设备",
+        "unit": "万台",
+        "currentMonth": {
+          "quantity": 34,
+          "amount": 123641
+        },
+        "ytdCurrentYear": {
+          "quantity": 253,
+          "amount": 874849
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -21.1,
+          "amount": 9.1
+        }
+      },
+      {
+        "name": "分离设备",
+        "level": 2,
+        "parentName": "通用机械设备",
+        "unit": null,
+        "currentMonth": {
+          "quantity": null,
+          "amount": 171554
+        },
+        "ytdCurrentYear": {
+          "quantity": null,
+          "amount": 1372147
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": null,
+          "amount": -29
+        }
+      },
+      {
+        "name": "阀门及类似装置",
+        "level": 2,
+        "parentName": "通用机械设备",
+        "unit": "万套",
+        "currentMonth": {
+          "quantity": 6389,
+          "amount": 520128
+        },
+        "ytdCurrentYear": {
+          "quantity": 51900,
+          "amount": 3469109
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -24.3,
+          "amount": -5.8
+        }
+      },
+      {
+        "name": "机床",
+        "level": 1,
+        "parentName": "机电产品*",
+        "unit": "台",
+        "currentMonth": {
+          "quantity": 6441,
+          "amount": 334627
+        },
+        "ytdCurrentYear": {
+          "quantity": 40346,
+          "amount": 2250682
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": 42.3,
+          "amount": -4.9
+        }
+      },
+      {
+        "name": "数控机床",
+        "level": 2,
+        "parentName": "机床",
+        "unit": "台",
+        "currentMonth": {
+          "quantity": 2328,
+          "amount": 225831
+        },
+        "ytdCurrentYear": {
+          "quantity": 14273,
+          "amount": 1553861
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": 46.5,
+          "amount": -6.5
+        }
+      },
+      {
+        "name": "自动数据处理设备及其零部件",
+        "level": 1,
+        "parentName": "机电产品*",
+        "unit": null,
+        "currentMonth": {
+          "quantity": null,
+          "amount": 14014786
+        },
+        "ytdCurrentYear": {
+          "quantity": null,
+          "amount": 75085808
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": null,
+          "amount": 179.2
+        }
+      },
+      {
+        "name": "自动数据处理设备",
+        "level": 2,
+        "parentName": "自动数据处理设备及其零部件",
+        "unit": "万台",
+        "currentMonth": {
+          "quantity": 15,
+          "amount": 114154
+        },
+        "ytdCurrentYear": {
+          "quantity": 107,
+          "amount": 713122
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": 3.8,
+          "amount": 0.9
+        }
+      },
+      {
+        "name": "中央处理部件",
+        "level": 2,
+        "parentName": "自动数据处理设备及其零部件",
+        "unit": "万台",
+        "currentMonth": {
+          "quantity": 220,
+          "amount": 1074455
+        },
+        "ytdCurrentYear": {
+          "quantity": 1536,
+          "amount": 7823976
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -7.4,
+          "amount": -5.8
+        }
+      },
+      {
+        "name": "存储部件",
+        "level": 2,
+        "parentName": "自动数据处理设备及其零部件",
+        "unit": "万台",
+        "currentMonth": {
+          "quantity": 1612,
+          "amount": 3619694
+        },
+        "ytdCurrentYear": {
+          "quantity": 11661,
+          "amount": 18795352
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -4.6,
+          "amount": 229.7
+        }
+      },
+      {
+        "name": "自动数据处理设备的零件、附件",
+        "level": 2,
+        "parentName": "自动数据处理设备及其零部件",
+        "unit": "吨",
+        "currentMonth": {
+          "quantity": 3791,
+          "amount": 6864225
+        },
+        "ytdCurrentYear": {
+          "quantity": 25739,
+          "amount": 37842502
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -10.1,
+          "amount": 303.4
+        }
+      },
+      {
+        "name": "半导体制造设备",
+        "level": 1,
+        "parentName": "机电产品*",
+        "unit": "台",
+        "currentMonth": {
+          "quantity": 6805,
+          "amount": 2724102
+        },
+        "ytdCurrentYear": {
+          "quantity": 38548,
+          "amount": 14910669
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": 24.1,
+          "amount": -7.4
+        }
+      },
+      {
+        "name": "制造单晶柱或晶圆用的机器及装置",
+        "level": 2,
+        "parentName": "半导体制造设备",
+        "unit": "台",
+        "currentMonth": {
+          "quantity": 214,
+          "amount": 79229
+        },
+        "ytdCurrentYear": {
+          "quantity": 1379,
+          "amount": 470041
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -11.6,
+          "amount": -44.1
+        }
+      },
+      {
+        "name": "制造半导体器件或集成电路用的机器及装置",
+        "level": 2,
+        "parentName": "半导体制造设备",
+        "unit": "台",
+        "currentMonth": {
+          "quantity": 1085,
+          "amount": 2361253
+        },
+        "ytdCurrentYear": {
+          "quantity": 5955,
+          "amount": 11893964
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -4.2,
+          "amount": -1.9
+        }
+      },
+      {
+        "name": "制造平板显示器用的机器及装置",
+        "level": 2,
+        "parentName": "半导体制造设备",
+        "unit": "台",
+        "currentMonth": {
+          "quantity": 189,
+          "amount": 71892
+        },
+        "ytdCurrentYear": {
+          "quantity": 1502,
+          "amount": 991618
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": 13.9,
+          "amount": -46.2
+        }
+      },
+      {
+        "name": "电工器材",
+        "level": 1,
+        "parentName": "机电产品*",
+        "unit": null,
+        "currentMonth": {
+          "quantity": null,
+          "amount": 2552574
+        },
+        "ytdCurrentYear": {
+          "quantity": null,
+          "amount": 15761700
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": null,
+          "amount": 6.9
+        }
+      },
+      {
+        "name": "变压器",
+        "level": 2,
+        "parentName": "电工器材",
+        "unit": "万个",
+        "currentMonth": {
+          "quantity": 4853,
+          "amount": 33207
+        },
+        "ytdCurrentYear": {
+          "quantity": 33754,
+          "amount": 222044
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": 2,
+          "amount": 4.1
+        }
+      },
+      {
+        "name": "蓄电池",
+        "level": 2,
+        "parentName": "电工器材",
+        "unit": "万个",
+        "currentMonth": {
+          "quantity": 12265,
+          "amount": 181464
+        },
+        "ytdCurrentYear": {
+          "quantity": 80894,
+          "amount": 1201135
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": 31,
+          "amount": 12.6
+        }
+      },
+      {
+        "name": "锂离子蓄电池",
+        "level": 3,
+        "parentName": "蓄电池",
+        "unit": "万个",
+        "currentMonth": {
+          "quantity": 11708,
+          "amount": 169470
+        },
+        "ytdCurrentYear": {
+          "quantity": 77399,
+          "amount": 1104943
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": 30,
+          "amount": 13.5
+        }
+      },
+      {
+        "name": "电气控制装置",
+        "level": 2,
+        "parentName": "电工器材",
+        "unit": null,
+        "currentMonth": {
+          "quantity": null,
+          "amount": 1223533
+        },
+        "ytdCurrentYear": {
+          "quantity": null,
+          "amount": 7666768
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": null,
+          "amount": 3.7
+        }
+      },
+      {
+        "name": "电线及电缆",
+        "level": 2,
+        "parentName": "电工器材",
+        "unit": "万吨",
+        "currentMonth": {
+          "quantity": 1,
+          "amount": 364285
+        },
+        "ytdCurrentYear": {
+          "quantity": 8,
+          "amount": 2218308
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -7.8,
+          "amount": 29.2
+        }
+      },
+      {
+        "name": "家用电器",
+        "level": 0,
+        "parentName": null,
+        "unit": "万台",
+        "currentMonth": {
+          "quantity": 132,
+          "amount": 70972
+        },
+        "ytdCurrentYear": {
+          "quantity": 928,
+          "amount": 508485
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -5.5,
+          "amount": -20.3
+        }
+      },
+      {
+        "name": "电视机",
+        "level": 0,
+        "parentName": null,
+        "unit": "万台",
+        "currentMonth": {
+          "quantity": 0,
+          "amount": 1245
+        },
+        "ytdCurrentYear": {
+          "quantity": 25,
+          "amount": 38509
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -69.2,
+          "amount": -65.9
+        }
+      },
+      {
+        "name": "液晶电视机",
+        "level": 0,
+        "parentName": null,
+        "unit": "万台",
+        "currentMonth": {
+          "quantity": 0,
+          "amount": 478
+        },
+        "ytdCurrentYear": {
+          "quantity": 10,
+          "amount": 23555
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -77,
+          "amount": -78.6
+        }
+      },
+      {
+        "name": "音视频设备及其零件",
+        "level": 1,
+        "parentName": "液晶电视机",
+        "unit": null,
+        "currentMonth": {
+          "quantity": null,
+          "amount": 881853
+        },
+        "ytdCurrentYear": {
+          "quantity": null,
+          "amount": 6921259
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": null,
+          "amount": -10.8
+        }
+      },
+      {
+        "name": "电视摄像机，数字照相机及视频摄录一体机",
+        "level": 2,
+        "parentName": "音视频设备及其零件",
+        "unit": "万台",
+        "currentMonth": {
+          "quantity": 267,
+          "amount": 123402
+        },
+        "ytdCurrentYear": {
+          "quantity": 2003,
+          "amount": 970712
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": 3.8,
+          "amount": -24.5
+        }
+      },
+      {
+        "name": "音视频设备的零件",
+        "level": 2,
+        "parentName": "音视频设备及其零件",
+        "unit": null,
+        "currentMonth": {
+          "quantity": null,
+          "amount": 739114
+        },
+        "ytdCurrentYear": {
+          "quantity": null,
+          "amount": 5834870
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": null,
+          "amount": -8.3
+        }
+      },
+      {
+        "name": "平板显示模组",
+        "level": 1,
+        "parentName": "液晶电视机",
+        "unit": "万个",
+        "currentMonth": {
+          "quantity": 13162,
+          "amount": 1946428
+        },
+        "ytdCurrentYear": {
+          "quantity": 90920,
+          "amount": 14086728
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -7.6,
+          "amount": -8.1
+        },
+        "droppedUnits": [
+          {
+            "unit": "吨",
+            "currentMonth": {
+              "quantity": 14696,
+              "amount": 1946428
+            },
+            "ytdCurrentYear": {
+              "quantity": 106684,
+              "amount": 14086728
+            },
+            "yoyYtdPercent": {
+              "quantity": -9.6,
+              "amount": -8.1
+            }
+          }
+        ]
+      },
+      {
+        "name": "液晶平板显示模组",
+        "level": 2,
+        "parentName": "平板显示模组",
+        "unit": "万个",
+        "currentMonth": {
+          "quantity": 8826,
+          "amount": 535682
+        },
+        "ytdCurrentYear": {
+          "quantity": 61226,
+          "amount": 4101852
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -10.7,
+          "amount": -22.7
+        },
+        "droppedUnits": [
+          {
+            "unit": "吨",
+            "currentMonth": {
+              "quantity": 12666,
+              "amount": 535682
+            },
+            "ytdCurrentYear": {
+              "quantity": 93458,
+              "amount": 4101852
+            },
+            "yoyYtdPercent": {
+              "quantity": -11.6,
+              "amount": -22.7
+            }
+          }
+        ]
+      },
+      {
+        "name": "有机发光二极管（OLED）平板显示模组",
+        "level": 2,
+        "parentName": "平板显示模组",
+        "unit": "万个",
+        "currentMonth": {
+          "quantity": 3984,
+          "amount": 1332808
+        },
+        "ytdCurrentYear": {
+          "quantity": 27008,
+          "amount": 9377914
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": 0,
+          "amount": 1.8
+        },
+        "droppedUnits": [
+          {
+            "unit": "吨",
+            "currentMonth": {
+              "quantity": 1878,
+              "amount": 1332808
+            },
+            "ytdCurrentYear": {
+              "quantity": 12108,
+              "amount": 9377914
+            },
+            "yoyYtdPercent": {
+              "quantity": 9.2,
+              "amount": 1.8
+            }
+          }
+        ]
+      },
+      {
+        "name": "电子元件",
+        "level": 1,
+        "parentName": "液晶电视机",
+        "unit": null,
+        "currentMonth": {
+          "quantity": null,
+          "amount": 47014262
+        },
+        "ytdCurrentYear": {
+          "quantity": null,
+          "amount": 270818512
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": null,
+          "amount": 57.1
+        }
+      },
+      {
+        "name": "电容器",
+        "level": 2,
+        "parentName": "电子元件",
+        "unit": "亿个",
+        "currentMonth": {
+          "quantity": 2476,
+          "amount": 716816
+        },
+        "ytdCurrentYear": {
+          "quantity": 14571,
+          "amount": 3982982
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": 9.3,
+          "amount": 24
+        },
+        "droppedUnits": [
+          {
+            "unit": "吨",
+            "currentMonth": {
+              "quantity": 5343,
+              "amount": 716816
+            },
+            "ytdCurrentYear": {
+              "quantity": 33363,
+              "amount": 3982982
+            },
+            "yoyYtdPercent": {
+              "quantity": 5.7,
+              "amount": 24
+            }
+          }
+        ]
+      },
+      {
+        "name": "印刷电路",
+        "level": 2,
+        "parentName": "电子元件",
+        "unit": "亿块",
+        "currentMonth": {
+          "quantity": 26,
+          "amount": 506563
+        },
+        "ytdCurrentYear": {
+          "quantity": 162,
+          "amount": 3025775
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -10.3,
+          "amount": 3.5
+        },
+        "droppedUnits": [
+          {
+            "unit": "吨",
+            "currentMonth": {
+              "quantity": 3013,
+              "amount": 506563
+            },
+            "ytdCurrentYear": {
+              "quantity": 19436,
+              "amount": 3025775
+            },
+            "yoyYtdPercent": {
+              "quantity": 0.9,
+              "amount": 3.5
+            }
+          }
+        ]
+      },
+      {
+        "name": "二极管及类似半导体器件",
+        "level": 2,
+        "parentName": "电子元件",
+        "unit": "亿个",
+        "currentMonth": {
+          "quantity": 492,
+          "amount": 1770270
+        },
+        "ytdCurrentYear": {
+          "quantity": 2996,
+          "amount": 10733434
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": 7.8,
+          "amount": 12.3
+        },
+        "droppedUnits": [
+          {
+            "unit": "吨",
+            "currentMonth": {
+              "quantity": 6542,
+              "amount": 1770270
+            },
+            "ytdCurrentYear": {
+              "quantity": 53842,
+              "amount": 10733434
+            },
+            "yoyYtdPercent": {
+              "quantity": -8,
+              "amount": 12.3
+            }
+          }
+        ]
+      },
+      {
+        "name": "集成电路",
+        "level": 2,
+        "parentName": "电子元件",
+        "unit": "亿个",
+        "currentMonth": {
+          "quantity": 600,
+          "amount": 43490680
+        },
+        "ytdCurrentYear": {
+          "quantity": 3648,
+          "amount": 249831992
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": 8.4,
+          "amount": 62.4
+        },
+        "droppedUnits": [
+          {
+            "unit": "吨",
+            "currentMonth": {
+              "quantity": 4960,
+              "amount": 43490680
+            },
+            "ytdCurrentYear": {
+              "quantity": 32484,
+              "amount": 249831992
+            },
+            "yoyYtdPercent": {
+              "quantity": 4.4,
+              "amount": 62.4
+            }
+          }
+        ]
+      },
+      {
+        "name": "汽车(包括底盘）",
+        "level": 1,
+        "parentName": "液晶电视机",
+        "unit": "万辆",
+        "currentMonth": {
+          "quantity": 4,
+          "amount": 1447848
+        },
+        "ytdCurrentYear": {
+          "quantity": 24,
+          "amount": 8013622
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -12.8,
+          "amount": -19.7
+        }
+      },
+      {
+        "name": "乘用车",
+        "level": 2,
+        "parentName": "汽车(包括底盘）",
+        "unit": "辆",
+        "currentMonth": {
+          "quantity": 42837,
+          "amount": 1418054
+        },
+        "ytdCurrentYear": {
+          "quantity": 241532,
+          "amount": 7845613
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -12.5,
+          "amount": -19.7
+        }
+      },
+      {
+        "name": "商用车",
+        "level": 2,
+        "parentName": "汽车(包括底盘）",
+        "unit": "辆",
+        "currentMonth": {
+          "quantity": 430,
+          "amount": 29794
+        },
+        "ytdCurrentYear": {
+          "quantity": 2664,
+          "amount": 168009
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -36.1,
+          "amount": -20.9
+        }
+      },
+      {
+        "name": "货车",
+        "level": 3,
+        "parentName": "商用车",
+        "unit": "辆",
+        "currentMonth": {
+          "quantity": 231,
+          "amount": 13707
+        },
+        "ytdCurrentYear": {
+          "quantity": 1596,
+          "amount": 84280
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -28,
+          "amount": -26.6
+        }
+      },
+      {
+        "name": "专用汽车",
+        "level": 3,
+        "parentName": "商用车",
+        "unit": "辆",
+        "currentMonth": {
+          "quantity": 4,
+          "amount": 795
+        },
+        "ytdCurrentYear": {
+          "quantity": 21,
+          "amount": 7897
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": 0,
+          "amount": -56
+        }
+      },
+      {
+        "name": "汽车零配件",
+        "level": 1,
+        "parentName": "液晶电视机",
+        "unit": null,
+        "currentMonth": {
+          "quantity": null,
+          "amount": 989973
+        },
+        "ytdCurrentYear": {
+          "quantity": null,
+          "amount": 7808168
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": null,
+          "amount": -29.2
+        }
+      },
+      {
+        "name": "车用发动机",
+        "level": 2,
+        "parentName": "汽车零配件",
+        "unit": "万台",
+        "currentMonth": {
+          "quantity": 1,
+          "amount": 30344
+        },
+        "ytdCurrentYear": {
+          "quantity": 7,
+          "amount": 244636
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -10.7,
+          "amount": 3.2
+        }
+      },
+      {
+        "name": "汽车轮胎",
+        "level": 2,
+        "parentName": "汽车零配件",
+        "unit": "吨",
+        "currentMonth": {
+          "quantity": 6548,
+          "amount": 30174
+        },
+        "ytdCurrentYear": {
+          "quantity": 40057,
+          "amount": 170127
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": 11,
+          "amount": 7.1
+        }
+      },
+      {
+        "name": "飞机及其他航空器",
+        "level": 1,
+        "parentName": "液晶电视机",
+        "unit": "架",
+        "currentMonth": {
+          "quantity": 2536,
+          "amount": 529421
+        },
+        "ytdCurrentYear": {
+          "quantity": 101351,
+          "amount": 3656170
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -79.9,
+          "amount": -37
+        }
+      },
+      {
+        "name": "空载重量超过2吨的飞机",
+        "level": 2,
+        "parentName": "飞机及其他航空器",
+        "unit": "架",
+        "currentMonth": {
+          "quantity": 13,
+          "amount": 529149
+        },
+        "ytdCurrentYear": {
+          "quantity": 89,
+          "amount": 3616174
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -18.8,
+          "amount": -36.2
+        }
+      },
+      {
+        "name": "航空器零部件",
+        "level": 1,
+        "parentName": "液晶电视机",
+        "unit": null,
+        "currentMonth": {
+          "quantity": null,
+          "amount": 1457756
+        },
+        "ytdCurrentYear": {
+          "quantity": null,
+          "amount": 9131668
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": null,
+          "amount": 10.2
+        }
+      },
+      {
+        "name": "涡轮喷气发动机",
+        "level": 2,
+        "parentName": "航空器零部件",
+        "unit": "台",
+        "currentMonth": {
+          "quantity": 66,
+          "amount": 473937
+        },
+        "ytdCurrentYear": {
+          "quantity": 385,
+          "amount": 3063504
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": 3.1,
+          "amount": -10.2
+        }
+      },
+      {
+        "name": "涡轮螺桨发动机",
+        "level": 2,
+        "parentName": "航空器零部件",
+        "unit": "台",
+        "currentMonth": {
+          "quantity": 5,
+          "amount": 320
+        },
+        "ytdCurrentYear": {
+          "quantity": 20,
+          "amount": 5960
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": 0,
+          "amount": -74.3
+        }
+      },
+      {
+        "name": "船舶",
+        "level": 1,
+        "parentName": "液晶电视机",
+        "unit": "艘",
+        "currentMonth": {
+          "quantity": 88,
+          "amount": 34605
+        },
+        "ytdCurrentYear": {
+          "quantity": 3697,
+          "amount": 235182
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -30.2,
+          "amount": 630.7
+        }
+      },
+      {
+        "name": "计量检测分析自控仪器及器具",
+        "level": 1,
+        "parentName": "液晶电视机",
+        "unit": null,
+        "currentMonth": {
+          "quantity": null,
+          "amount": 2843903
+        },
+        "ytdCurrentYear": {
+          "quantity": null,
+          "amount": 16304180
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": null,
+          "amount": 10.6
+        }
+      },
+      {
+        "name": "医疗仪器及器械",
+        "level": 1,
+        "parentName": "液晶电视机",
+        "unit": null,
+        "currentMonth": {
+          "quantity": null,
+          "amount": 695534
+        },
+        "ytdCurrentYear": {
+          "quantity": null,
+          "amount": 4684786
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": null,
+          "amount": -21.5
+        }
+      },
+      {
+        "name": "钟表及其零件",
+        "level": 1,
+        "parentName": "液晶电视机",
+        "unit": null,
+        "currentMonth": {
+          "quantity": null,
+          "amount": 181715
+        },
+        "ytdCurrentYear": {
+          "quantity": null,
+          "amount": 1291508
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": null,
+          "amount": -19.4
+        }
+      },
+      {
+        "name": "手表",
+        "level": 2,
+        "parentName": "钟表及其零件",
+        "unit": "万只",
+        "currentMonth": {
+          "quantity": 75,
+          "amount": 135181
+        },
+        "ytdCurrentYear": {
+          "quantity": 537,
+          "amount": 1043565
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -6.6,
+          "amount": -27.4
+        }
+      },
+      {
+        "name": "电动手表",
+        "level": 3,
+        "parentName": "手表",
+        "unit": "万只",
+        "currentMonth": {
+          "quantity": 70,
+          "amount": 29633
+        },
+        "ytdCurrentYear": {
+          "quantity": 490,
+          "amount": 202976
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -4.1,
+          "amount": -15
+        }
+      },
+      {
+        "name": "机械手表",
+        "level": 3,
+        "parentName": "手表",
+        "unit": "万只",
+        "currentMonth": {
+          "quantity": 5,
+          "amount": 105548
+        },
+        "ytdCurrentYear": {
+          "quantity": 47,
+          "amount": 840589
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -30.4,
+          "amount": -30.2
+        }
+      },
+      {
+        "name": "高新技术产品*",
+        "level": 0,
+        "parentName": null,
+        "unit": null,
+        "currentMonth": {
+          "quantity": null,
+          "amount": 77804905
+        },
+        "ytdCurrentYear": {
+          "quantity": null,
+          "amount": 445335684
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": null,
+          "amount": 51
+        }
+      },
+      {
+        "name": "生物技术",
+        "level": 1,
+        "parentName": "高新技术产品*",
+        "unit": null,
+        "currentMonth": {
+          "quantity": null,
+          "amount": 209913
+        },
+        "ytdCurrentYear": {
+          "quantity": null,
+          "amount": 1723244
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": null,
+          "amount": -66.8
+        }
+      },
+      {
+        "name": "生命科学技术",
+        "level": 1,
+        "parentName": "高新技术产品*",
+        "unit": null,
+        "currentMonth": {
+          "quantity": null,
+          "amount": 3760118
+        },
+        "ytdCurrentYear": {
+          "quantity": null,
+          "amount": 21243435
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": null,
+          "amount": 10.8
+        }
+      },
+      {
+        "name": "光电技术",
+        "level": 1,
+        "parentName": "高新技术产品*",
+        "unit": null,
+        "currentMonth": {
+          "quantity": null,
+          "amount": 1850683
+        },
+        "ytdCurrentYear": {
+          "quantity": null,
+          "amount": 11446896
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": null,
+          "amount": 1.7
+        }
+      },
+      {
+        "name": "计算机与通信技术",
+        "level": 1,
+        "parentName": "高新技术产品*",
+        "unit": null,
+        "currentMonth": {
+          "quantity": null,
+          "amount": 17908029
+        },
+        "ytdCurrentYear": {
+          "quantity": null,
+          "amount": 98129579
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": null,
+          "amount": 116.9
+        }
+      },
+      {
+        "name": "电子技术",
+        "level": 1,
+        "parentName": "高新技术产品*",
+        "unit": null,
+        "currentMonth": {
+          "quantity": null,
+          "amount": 46767242
+        },
+        "ytdCurrentYear": {
+          "quantity": null,
+          "amount": 269704496
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": null,
+          "amount": 56.5
+        }
+      },
+      {
+        "name": "计算机集成制造技术",
+        "level": 1,
+        "parentName": "高新技术产品*",
+        "unit": null,
+        "currentMonth": {
+          "quantity": null,
+          "amount": 4413191
+        },
+        "ytdCurrentYear": {
+          "quantity": null,
+          "amount": 25294594
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": null,
+          "amount": -4.2
+        }
+      },
+      {
+        "name": "材料技术",
+        "level": 1,
+        "parentName": "高新技术产品*",
+        "unit": "吨",
+        "currentMonth": {
+          "quantity": 3972,
+          "amount": 394992
+        },
+        "ytdCurrentYear": {
+          "quantity": 21402,
+          "amount": 2472610
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": 59.5,
+          "amount": 7.7
+        }
+      },
+      {
+        "name": "航空航天技术",
+        "level": 1,
+        "parentName": "高新技术产品*",
+        "unit": null,
+        "currentMonth": {
+          "quantity": null,
+          "amount": 2298443
+        },
+        "ytdCurrentYear": {
+          "quantity": null,
+          "amount": 14465157
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": null,
+          "amount": -5.7
+        }
+      },
+      {
+        "name": "其他技术",
+        "level": 1,
+        "parentName": "高新技术产品*",
+        "unit": null,
+        "currentMonth": {
+          "quantity": null,
+          "amount": 202293
+        },
+        "ytdCurrentYear": {
+          "quantity": null,
+          "amount": 855671
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": null,
+          "amount": 47.6
+        }
+      },
+      {
+        "name": "电动汽车*",
+        "level": 0,
+        "parentName": null,
+        "unit": "辆",
+        "currentMonth": {
+          "quantity": 13964,
+          "amount": 367359
+        },
+        "ytdCurrentYear": {
+          "quantity": 51881,
+          "amount": 1541580
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": 69.8,
+          "amount": 38.3
+        }
+      },
+      {
+        "name": "电动载人汽车",
+        "level": 1,
+        "parentName": "电动汽车*",
+        "unit": "辆",
+        "currentMonth": {
+          "quantity": 13964,
+          "amount": 367359
+        },
+        "ytdCurrentYear": {
+          "quantity": 51865,
+          "amount": 1540798
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": 69.9,
+          "amount": 38.4
+        }
+      },
+      {
+        "name": "混合动力客车（10座及以上）",
+        "level": 2,
+        "parentName": "电动载人汽车",
+        "unit": "辆",
+        "currentMonth": {
+          "quantity": null,
+          "amount": null
+        },
+        "ytdCurrentYear": {
+          "quantity": null,
+          "amount": null
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": null,
+          "amount": null
+        }
+      },
+      {
+        "name": "纯电动客车（10座及以上）",
+        "level": 2,
+        "parentName": "电动载人汽车",
+        "unit": "辆",
+        "currentMonth": {
+          "quantity": null,
+          "amount": null
+        },
+        "ytdCurrentYear": {
+          "quantity": 1,
+          "amount": 254
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": null,
+          "amount": null
+        }
+      },
+      {
+        "name": "非插电式混合动力乘用车",
+        "level": 2,
+        "parentName": "电动载人汽车",
+        "unit": "辆",
+        "currentMonth": {
+          "quantity": 13687,
+          "amount": 341666
+        },
+        "ytdCurrentYear": {
+          "quantity": 48885,
+          "amount": 1284493
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": 76,
+          "amount": 44.9
+        }
+      },
+      {
+        "name": "插电式混合动力乘用车",
+        "level": 2,
+        "parentName": "电动载人汽车",
+        "unit": "辆",
+        "currentMonth": {
+          "quantity": 152,
+          "amount": 20059
+        },
+        "ytdCurrentYear": {
+          "quantity": 1274,
+          "amount": 178520
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": -53.4,
+          "amount": -17
+        }
+      },
+      {
+        "name": "纯电动乘用车",
+        "level": 2,
+        "parentName": "电动载人汽车",
+        "unit": "辆",
+        "currentMonth": {
+          "quantity": 125,
+          "amount": 5634
+        },
+        "ytdCurrentYear": {
+          "quantity": 1705,
+          "amount": 77531
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": 5.9,
+          "amount": 3.9
+        }
+      },
+      {
+        "name": "文化产品*",
+        "level": 0,
+        "parentName": null,
+        "unit": null,
+        "currentMonth": {
+          "quantity": null,
+          "amount": 823164
+        },
+        "ytdCurrentYear": {
+          "quantity": null,
+          "amount": 5794196
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": null,
+          "amount": 1.4
+        }
+      },
+      {
+        "name": "食品*",
+        "level": 0,
+        "parentName": null,
+        "unit": null,
+        "currentMonth": {
+          "quantity": null,
+          "amount": 12233019
+        },
+        "ytdCurrentYear": {
+          "quantity": null,
+          "amount": 79060415
+        },
+        "ytdSamePeriodLastYear": null,
+        "yoyYtdPercent": {
+          "quantity": null,
+          "amount": 1.1
+        }
+      }
+    ],
+    "footnote": "注：本表所列主要进口商品的海关统计商品编码范围参见本年第1期附录。"
   }
 }

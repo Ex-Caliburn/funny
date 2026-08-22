@@ -13,8 +13,20 @@
     "map_11_61": "工业磷酸一铵（11-61）",
     "mcp_feed": "磷酸二氢钙（饲料级）"
   },
-  "updatedAt": "2026-08-17",
+  "updatedAt": "2026-08-21",
   "data": [
+    {
+      "date": "2026-08-17",
+      "phosphate_ore": 975,
+      "yellow_phosphorus": 27500,
+      "phosphoric_acid_40": 4320,
+      "phosphoric_acid_52": 5356,
+      "phosphoric_acid_85i": 8100,
+      "phosphoric_acid_85f": 10350,
+      "map_11_44": 4400,
+      "mcp_feed": 6250,
+      "map_11_61": 7100
+    },
     {
       "date": "2026-08-10",
       "phosphate_ore": 975,
