@@ -4,7 +4,7 @@
     "stockCode": "601899",
     "description": "此文件包含修正后的数据，用于页面展示。手动修正的数据会被标记。",
     "dataSource": "zijin_data.json",
-    "lastUpdated": "2026-04-27",
+    "lastUpdated": "2026-08-22",
     "products": [
       "copper",
       "gold"
@@ -16,6 +16,39 @@
     }
   },
   "summary": [
+    {
+      "period": "2026年上半年",
+      "year": "2026",
+      "filename": "紫金矿业2026年半年度报告.pdf",
+      "copper": {
+        "production": 53.4,
+        "sales": 45.9796,
+        "inventory": null,
+        "revenue": 388.3706,
+        "cost": 152.67219649333333,
+        "unitPrice": 8.44658500726409,
+        "unitCost": 3.320433333333334,
+        "unitGrossProfit": 5.126151673930757,
+        "grossMargin": 60.68904379133401,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "gold": {
+        "production": 46.702,
+        "sales": 44.18,
+        "inventory": null,
+        "revenue": 444.6654,
+        "cost": 120.71080500000002,
+        "unitPrice": 1006.4857401539158,
+        "unitCost": 347.3,
+        "unitGrossProfit": 659.1857401539157,
+        "grossMargin": 72.85356472529682,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      }
+    },
     {
       "period": "2026年1-3月",
       "year": "2026",

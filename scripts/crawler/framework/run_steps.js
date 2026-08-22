@@ -65,6 +65,7 @@ const PRESETS = {
     { label: 'SMM金属', command: 'npm', args: ['run', 'crawl:smm'] },
     { label: '磷化工', command: 'npm', args: ['run', 'crawl:phosphorus-chemical'] },
     { label: '美国SPR原油库存', command: 'npm', args: ['run', 'crawl:oil-spr'] },
+    { label: '黄金储备', command: 'npm', args: ['run', 'crawl:gold-reserves'] },
   ],
   coal: [
     {

@@ -1,0 +1,536 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>各国央行黄金储备（吨）— 2000 至今 · 同比/环比</title>
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: #0b0f19; color: #e8edff; padding: 20px; min-height: 100vh;
+  }
+  .header { display: flex; align-items: center; gap: 14px; margin-bottom: 6px; flex-wrap: wrap; }
+  h2 { font-size: 20px; font-weight: 600; color: #f8fafc; }
+  .subtitle { font-size: 12px; color: #94a3b8; margin-bottom: 14px; line-height: 1.6; }
+  .note-pill { display:inline-block; background:#1e293b; color:#fbbf24; font-size:11px; padding:2px 8px; border-radius:10px; margin-left:6px; }
+
+  .tab-bar { display: inline-flex; background: #1e293b; border-radius: 10px; padding: 4px; gap: 2px; margin-bottom: 14px; flex-wrap: wrap; }
+  .tab-btn { padding: 7px 14px; border: none; border-radius: 7px; background: transparent; color: #cbd5e1; font-size: 13px; font-weight: 500; cursor: pointer; transition: all .2s; white-space:nowrap; }
+  .tab-btn.active { background: #f59e0b; color: #0b0f19; box-shadow: 0 2px 8px rgba(245,158,11,.35); }
+  .tab-btn:hover:not(.active) { background: #334155; color: #f8fafc; }
+
+  .stats-row { display: flex; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
+  .stat-card { background: #131929; border: 1px solid #334155; border-radius: 10px; padding: 12px 18px; min-width: 210px; flex: 1; }
+  .stat-label { font-size: 11px; color: #94a3b8; margin-bottom: 4px; }
+  .stat-value { font-size: 22px; font-weight: 700; color: #fbbf24; }
+  .stat-unit { font-size: 11px; color: #cbd5e1; margin-left: 2px; }
+  .stat-sub { font-size: 11px; color: #94a3b8; margin-top: 2px; }
+
+  .country-filters { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 12px; align-items: center; }
+  .country-label { font-size: 12px; color: #94a3b8; margin-right: 4px; }
+  .country-chip { padding: 4px 10px; border-radius: 18px; border: 1.5px solid; font-size: 12px; cursor: pointer; transition: all .2s; user-select: none; font-weight: 500; }
+  .country-chip.active { opacity: 1; }
+  .country-chip:not(.active) { opacity: .35; filter: grayscale(.5); }
+
+  .toggle-row { display:flex; align-items:center; gap:14px; margin-bottom:12px; flex-wrap:wrap; }
+  .chk { font-size:12px; color:#cbd5e1; display:inline-flex; align-items:center; gap:5px; cursor:pointer; }
+
+  .sel-row { display:flex; align-items:center; gap:10px; margin-bottom:12px; flex-wrap:wrap; }
+  select.bar-sel { background:#1e293b; color:#e8edff; border:1px solid #334155; border-radius:7px; padding:6px 10px; font-size:13px; cursor:pointer; }
+  select.bar-sel:focus { outline:none; border-color:#f59e0b; }
+
+  .chart-area { width: 100%; height: 500px; }
+  .bar-area { width: 100%; height: 400px; margin-top: 8px; }
+
+  .table-wrap { overflow:auto; margin-top: 14px; border-radius: 8px; border: 1px solid #334155; }
+  .scroll-box { max-height: 620px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { background: #1e293b; color: #cbd5e1; padding: 8px 12px; text-align: center; font-weight: 600; white-space: nowrap; position: sticky; top: 0; z-index: 2; }
+  td { padding: 7px 12px; text-align: center; border-bottom: 1px solid #1f2937; color: #e2e8f0; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #15203a; }
+  td.name { text-align: left; font-weight: 500; position: sticky; left: 0; background: #0b0f19; z-index: 1; }
+  th.name { position: sticky; left: 0; z-index: 3; }
+  td.cell-has { cursor: help; }
+
+  .up { color: #34d399; }
+  .down { color: #f87171; }
+  .na { color: #64748b; }
+  .rank { color:#94a3b8; font-size:11px; }
+
+  .section-title { font-size: 14px; color: #f8fafc; font-weight: 600; margin: 22px 0 8px; display:flex; align-items:center; gap:8px; }
+  .section-title::before { content:''; width:4px; height:14px; background:#f59e0b; border-radius:2px; display:inline-block; }
+
+  /* 自定义悬浮提示 */
+  #cellTip { position: fixed; z-index: 99; pointer-events: none; background: #0f172a; border: 1px solid #f59e0b;
+    border-radius: 8px; padding: 8px 11px; font-size: 12px; color: #f8fafc; box-shadow: 0 6px 20px rgba(0,0,0,.5);
+    display: none; max-width: 250px; line-height: 1.7; }
+  #cellTip .t-title { font-weight: 700; color: #fbbf24; margin-bottom: 3px; }
+  #cellTip .t-row { color: #cbd5e1; }
+
+  .loading-msg { display:flex; align-items:center; justify-content:center; height:200px; color:#94a3b8; font-size:13px; }
+  .loading-msg.error { color:#f87171; }
+  .hidden { display: none; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h2>🪙 各国央行黄金储备（吨）</h2>
+  <div class="tab-bar">
+    <button class="tab-btn active" id="btnLine">趋势曲线</button>
+    <button class="tab-btn" id="btnTable">同比/环比表</button>
+    <button class="tab-btn" id="btnBar">当年净增持</button>
+    <button class="tab-btn" id="btnBarSell">净减持</button>
+    <button class="tab-btn" id="btnChange">季度变化 Δ(吨)</button>
+  </div>
+</div>
+<div class="subtitle" id="dataSubtitle">数据来源：World Gold Council — Gold Hub
+  <span class="note-pill">季频 · 环比=季环比(QoQ)</span>
+</div>
+
+<div class="stats-row" id="statsRow"><div class="loading-msg">数据加载中…</div></div>
+
+<!-- 国家多选（仅趋势曲线使用） -->
+<div id="countryFilters" class="country-filters"></div>
+<div id="addRow" class="sel-row">
+  <span class="country-label">＋ 添加国家：</span>
+  <select class="bar-sel" id="addCountry" onchange="onAddCountry(this.value)"></select>
+  <span class="country-label" style="color:#64748b">（点击上方国家标签可取消显示，至少保留 1 个）</span>
+</div>
+
+<!-- 曲线图视图 -->
+<div id="viewLine">
+  <div id="toggleRow" class="toggle-row">
+    <label class="chk"><input type="checkbox" id="chkBase" /> 显示 2000 起全部历史（默认仅 2025 至今）</label>
+  </div>
+  <div id="lineChart" class="chart-area"><div class="loading-msg">数据加载中…</div></div>
+</div>
+
+<!-- 同比/环比表视图 -->
+<div id="viewTable" class="hidden">
+  <div class="section-title">主要持有国 — 最新季度同比 / 环比概览</div>
+  <div class="table-wrap"><table id="overviewTable"></table></div>
+
+  <div class="section-title" id="detailTitle">各国季度明细（吨，悬浮单元格看同比/环比）</div>
+  <div class="table-wrap scroll-box"><table id="detailTable"></table></div>
+</div>
+
+<!-- 当年净增持柱状图视图 -->
+<div id="viewBar" class="hidden">
+  <div class="sel-row">
+    <span class="country-label">年份：</span>
+    <select class="bar-sel" id="barYear" onchange="onBarYearChange(this.value)"></select>
+  </div>
+  <div class="section-title" id="barBuyTitle">当年净增持（吨）：正值=增持，负值=减持</div>
+  <div id="barChart" class="bar-area"><div class="loading-msg">数据加载中…</div></div>
+</div>
+
+<!-- 净减持柱状图视图 -->
+<div id="viewBarSell" class="hidden">
+  <div class="sel-row">
+    <span class="country-label">年份：</span>
+    <select class="bar-sel" id="barYearSell" onchange="onBarYearChange(this.value)"></select>
+  </div>
+  <div class="section-title" id="barSellTitle">净减持（吨）：负值=减持（取减持最多的国家）</div>
+  <div id="barChartSell" class="bar-area"><div class="loading-msg">数据加载中…</div></div>
+</div>
+
+<!-- 季度变化视图 -->
+<div id="viewChange" class="hidden">
+  <div class="sel-row">
+    <span class="country-label">选择国家/地区：</span>
+    <select class="bar-sel" id="changeCountry" onchange="renderChange()"></select>
+  </div>
+  <div class="section-title" id="changeTitle">每年黄金持有量变化（按季度，Δ吨）</div>
+  <div class="table-wrap scroll-box"><table id="changeTable"></table></div>
+</div>
+
+<div id="cellTip"></div>
+
+<script>
+const DATA_FILE = '../gold_reserves/gold_reserves_data.json';
+const PALETTE = ['#f59e0b','#60a5fa','#34d399','#f87171','#a78bfa','#fb923c','#38bdf8','#c084fc','#f472b6','#4ade80','#facc15','#22d3ee','#e879f9','#fb7185','#a3e635','#2dd4bf','#fca5a5','#818cf8','#fdba74','#86efac'];
+
+let DATA = null;
+let lineChart = null, barChart = null, barChartSell = null;
+let selected = new Set();
+let activeView = 'Line';
+let barYear = null;
+let GLOBAL_MAP = null;
+
+function fmt(v, d=2){ return v==null ? '—' : Number(v).toLocaleString(undefined,{minimumFractionDigits:d, maximumFractionDigits:d}); }
+function pct(v){ if(v==null) return {t:'—', c:'na'}; const s=v>0?'+':''; return {t:`${s}${v}%`, c: v>0?'up':v<0?'down':'na'}; }
+function deltaStr(v){ if(v==null) return {t:'—', c:'na'}; const s=v>0?'+':''; return {t:`${s}${fmt(v,2)}`, c: v>0?'up':v<0?'down':'na'}; }
+
+// ─── 初始化 ──────────────────────────────────────────────────────────────
+function initApp(){
+  if (DATA.generatedAt){
+    const d = DATA.generatedAt.slice(0,10);
+    document.getElementById('dataSubtitle').innerHTML =
+      `数据来源：World Gold Council — Gold Hub · 更新于 ${d} ` +
+      `<span class="note-pill">季频 · 环比=季环比(QoQ)</span>` +
+      `<br><span style="color:#94a3b8;font-size:11px">${DATA.note}</span>`;
+  }
+  buildGlobalMap();
+  // 年份下拉（净增持/净减持）
+  const years=[...new Set(DATA.quarters.map(q=>q.year))].sort((a,b)=>a-b);
+  const maxYear=years.at(-1); barYear=maxYear;
+  const yopts=years.map(y=>`<option value="${y}" ${y===maxYear?'selected':''}>${y} 年</option>`).join('');
+  document.getElementById('barYear').innerHTML=yopts;
+  document.getElementById('barYearSell').innerHTML=yopts;
+  // 国家下拉（季度变化）
+  const copts=DATA.countries.map(c=>`<option value="${c.name}">${c.name} (${c.iso3})</option>`).join('');
+  const sel=document.getElementById('changeCountry');
+  sel.innerHTML=`<option value="GLOBAL">🌍 全球合计</option>`+copts;
+  const def=DATA.countries.find(c=>c.iso3==='CHN');
+  sel.value = def?def.name:'GLOBAL';
+
+  renderStats();
+  DATA.topByLatest.slice(0,10).forEach(iso=>selected.add(iso));
+  renderCountryChips();
+  renderLine();
+  document.getElementById('chkBase').addEventListener('change', renderLine);
+  initCellTip();
+}
+
+// 全球合计（每季各国储备之和），用于"季度变化"的🌍选项
+function buildGlobalMap(){
+  const m={};
+  DATA.quarters.forEach(q=>{ m[q.label]={t:0}; });
+  DATA.countries.forEach(c=>{ c.series.forEach(s=>{ if(s.t!=null && m[s.label]) m[s.label].t+=s.t; }); });
+  let prev=null;
+  DATA.quarters.forEach(q=>{
+    const e=m[q.label];
+    e.dt = (prev && prev.t!=null && e.t!=null) ? +(e.t-prev.t).toFixed(2) : null;
+    prev=e;
+  });
+  GLOBAL_MAP=m;
+}
+
+function renderStats(){
+  const top = DATA.countries.slice(0,15);
+  const lastQ = DATA.quarters.at(-1).label;
+  const sumTop = top.reduce((s,c)=>s+(c.latest?.t||0),0);
+  const LQ = DATA.latestQuarter;
+  const fy = DATA.countries[0]?.featuredYear;
+  const buyers = DATA.countries.filter(c=>c.featuredNetAdd!=null).sort((a,b)=>b.featuredNetAdd-a.featuredNetAdd);
+  const topBuyer = buyers[0];
+  const chn = DATA.countries.find(c=>c.iso3==='CHN');
+  const lqNet = deltaStr(LQ.netAdd);
+  document.getElementById('statsRow').innerHTML = `
+    <div class="stat-card">
+      <div class="stat-label">前15持有国合计（${lastQ}）</div>
+      <div><span class="stat-value">${fmt(sumTop,0)}</span><span class="stat-unit">吨</span></div>
+      <div class="stat-sub">全球央行官方黄金持有量主体</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">中国最新（${chn?.latest?.label||'—'}）</div>
+      <div><span class="stat-value">${fmt(chn?.latest?.t,2)}</span><span class="stat-unit">吨</span></div>
+      <div class="stat-sub">环比 ${pct(chn?.latest?.qoq).t} · 同比 ${pct(chn?.latest?.yoy).t}</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">${LQ.label} 全球央行净增持</div>
+      <div><span class="stat-value" style="color:${lqNet.c==='down'?'#f87171':'#34d399'}">${lqNet.t}</span><span class="stat-unit">吨</span></div>
+      <div class="stat-sub">净买入 ${LQ.buyers} 国 / 净卖出 ${LQ.sellers} 国 · 最大买家 ${LQ.topBuyerName} +${fmt(LQ.topBuyerDelta,2)}t</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">${fy} 净增持最多</div>
+      <div><span class="stat-value" style="color:#34d399">${topBuyer?topBuyer.name:'—'}</span></div>
+      <div><span class="stat-unit">+${fmt(topBuyer?.featuredNetAdd,2)} 吨</span></div>
+      <div class="stat-sub">${topBuyer?topBuyer.iso3:''} ${fy} 全年</div>
+    </div>`;
+}
+
+// 国家 → 稳定配色（按 DATA.countries 全局排序取色，新增国也一致）
+function colorOf(iso){ const i = DATA.countries.findIndex(c=>c.iso3===iso); return PALETTE[(i<0?0:i)%PALETTE.length]; }
+
+function renderCountryChips(){
+  const box = document.getElementById('countryFilters');
+  // 仅渲染当前已选国家，按最新持有量排序
+  const sel = DATA.countries.filter(c=>selected.has(c.iso3))
+    .sort((a,b)=>(b.latest?.t||0)-(a.latest?.t||0));
+  box.innerHTML = `<span class="country-label">已显示国家（${sel.length}）：</span>` + sel.map(c=>{
+    const color = colorOf(c.iso3);
+    return `<span class="country-chip active" data-iso="${c.iso3}"
+      style="border-color:${color};color:${color};background:${color}18"
+      onclick="toggleCountry('${c.iso3}')" title="点击取消显示">${c.name} <span style="opacity:.6">✕</span></span>`;
+  }).join('');
+  populateAddCountry();
+}
+
+// 填充"添加国家"下拉：列出尚未选中的国家（按最新持有量排序）
+function populateAddCountry(){
+  const sel = document.getElementById('addCountry');
+  const rest = DATA.countries.filter(c=>!selected.has(c.iso3))
+    .sort((a,b)=>(b.latest?.t||0)-(a.latest?.t||0));
+  sel.innerHTML = '<option value="">— 从全部 ' + DATA.countries.length + ' 国中选择添加 —</option>'
+    + rest.map(c=>`<option value="${c.iso3}">${c.name} (${c.iso3}) · ${fmt(c.latest?.t,0)}t</option>`).join('');
+}
+
+function onAddCountry(iso){
+  if(!iso) return;
+  selected.add(iso);
+  document.getElementById('addCountry').value='';
+  renderCountryChips();
+  if (activeView==='Line') renderLine();
+}
+
+function toggleCountry(iso){
+  if (selected.has(iso)){
+    if (selected.size===1) return; // 至少保留 1 个
+    selected.delete(iso);
+  } else {
+    selected.add(iso);
+  }
+  renderCountryChips();
+  if (activeView==='Line') renderLine();
+}
+
+// ─── 趋势曲线 ──────────────────────────────────────────────────────────────
+function quarterList(){ return document.getElementById('chkBase').checked ? DATA.quarters : DATA.focusQuarters; }
+
+function renderLine(){
+  const el = document.getElementById('lineChart');
+  if (!lineChart){ el.innerHTML=''; lineChart = echarts.init(el,'dark'); window.addEventListener('resize',()=>lineChart.resize()); }
+  const qs = quarterList();
+  const labels = qs.map(q=>q.label);
+  const sel = DATA.countries.filter(c=>selected.has(c.iso3))
+    .sort((a,b)=>(b.latest?.t||0)-(a.latest?.t||0));
+
+  // 保留上一次缩放范围（切换国家/时间时不重置）；首次渲染 getOption 可能为 undefined，需保护
+  const rawOpt = lineChart ? lineChart.getOption() : null;
+  const prev = rawOpt ? rawOpt.dataZoom : null;
+  const zs = (prev && prev[0] && prev[0].start!=null) ? prev[0].start : 0;
+  const ze = (prev && prev[0] && prev[0].end!=null) ? prev[0].end : 100;
+
+  const series = sel.map(c=>{
+    const map = {}; c.series.forEach(s=>map[s.label]=s);
+    const data = labels.map(l=>{ const p=map[l]; return p?p.t:null; });
+    const color = colorOf(c.iso3);
+    return { name:c.name, type:'line', data, smooth:.3, symbol:'circle', symbolSize:6,
+      lineStyle:{color,width:2.4}, itemStyle:{color},
+      emphasis:{focus:'series'}, blur:{lineStyle:{opacity:.12},itemStyle:{opacity:.12}}, connectNulls:false };
+  });
+
+  lineChart.setOption({
+    backgroundColor:'transparent',
+    tooltip:{ trigger:'axis', axisPointer:{type:'line',lineStyle:{color:'#64748b',type:'dashed'}},
+      backgroundColor:'#1e293b', borderColor:'#334155', textStyle:{color:'#e8edff',fontSize:13},
+      formatter(params){
+        let html=`<div style="font-weight:600;margin-bottom:6px">${params[0].axisValue}</div>`;
+        params.forEach(p=>{
+          if(p.value==null) return;
+          const dot=`<span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${p.color};margin-right:6px"></span>`;
+          const c = DATA.countries.find(x=>x.name===p.seriesName);
+          const pt = c?.series.find(s=>s.label===p.axisValue);
+          const q = pct(pt?.qoq), y = pct(pt?.yoy);
+          html += `<div style="margin:3px 0">${dot}${p.seriesName}: <b>${fmt(p.value,2)} 吨</b></div>`;
+          html += `<div style="margin:1px 0 4px 16px;font-size:11px;color:#94a3b8">环比 <span class="${q.c}">${q.t}</span> · 同比 <span class="${y.c}">${y.t}</span></div>`;
+        });
+        return html;
+      } },
+    legend:{show:false},
+    grid:{ left:64, right:20, top:46, bottom:66 },
+    dataZoom:[
+      { type:'inside', start:zs, end:ze },
+      { type:'slider', start:zs, end:ze, bottom:12, height:16, borderColor:'#334155',
+        fillerColor:'rgba(245,158,11,.12)', handleStyle:{color:'#f59e0b'}, moveHandleStyle:{color:'#f59e0b'},
+        textStyle:{color:'#94a3b8',fontSize:10}, dataBackground:{lineStyle:{color:'#334155'},areaStyle:{color:'#1e293b'}},
+        labelFormatter:(v)=>{ const idx=Math.max(0,Math.min(labels.length-1,Math.round(v/100*(labels.length-1)))); return labels[idx]; } }
+    ],
+    xAxis:{ type:'category', data:labels, boundaryGap:false, axisLabel:{color:'#94a3b8',fontSize:11, hideOverlap:true}, axisLine:{lineStyle:{color:'#334155'}}, splitLine:{show:false} },
+    yAxis:{ type:'value', name:'吨', nameTextStyle:{color:'#94a3b8',fontSize:11},
+      axisLabel:{color:'#94a3b8',fontSize:11, formatter:v=>v.toLocaleString()}, splitLine:{lineStyle:{color:'#1e293b',type:'dashed'}} },
+    series
+  }, true);
+}
+
+// ─── 同比/环比概览表 ───────────────────────────────────────────────────────
+function renderOverview(){
+  const LQ = DATA.latestQuarter;
+  const fy = DATA.countries[0]?.featuredYear;
+  const rows = DATA.countries.slice(0, DATA.topN);
+  let html = `<thead><tr><th>排名</th><th>国家</th><th>最新季度</th><th>持有量(吨)</th>`
+    + `<th>环比(QoQ)</th><th>同比(YoY)</th>`
+    + `<th>${LQ.label}增量(吨)</th><th>${fy}净增持(吨)</th></tr></thead><tbody>`;
+  rows.forEach((c,i)=>{
+    const lt=c.latest; const q=pct(lt?.qoq), y=pct(lt?.yoy);
+    const inc = deltaStr(c.latestQoQdelta);
+    const na = c.featuredNetAdd==null?'—':`<span class="${c.featuredNetAdd>=0?'up':'down'}">${c.featuredNetAdd>=0?'+':''}${fmt(c.featuredNetAdd,2)}</span>`;
+    html += `<tr>
+      <td class="rank">${i+1}</td>
+      <td class="name">${c.name} <span class="rank">${c.iso3}</span></td>
+      <td>${lt?.label||'—'}</td>
+      <td>${fmt(lt?.t,2)}</td>
+      <td class="${q.c}">${q.t}</td>
+      <td class="${y.c}">${y.t}</td>
+      <td class="${inc.c}">${inc.t}</td>
+      <td>${na}</td></tr>`;
+  });
+  html += '</tbody>';
+  document.getElementById('overviewTable').innerHTML = html;
+  renderDetail();
+}
+
+// ─── 各国季度明细（吨）+ 自定义悬浮提示（全部国家）─────────────────────────────
+function renderDetail(){
+  const qs = DATA.quarters;
+  const labels = qs.map(q=>q.label);
+  const rows = DATA.countries; // 全部国家
+  document.getElementById('detailTitle').textContent =
+    `各国季度明细（吨，悬浮单元格看同比/环比）— 共 ${rows.length} 国`;
+  let html = '<thead><tr><th class="name">国家</th>' + labels.map(l=>`<th>${l}</th>`).join('') + '</tr></thead><tbody>';
+  rows.forEach(c=>{
+    const map={}; c.series.forEach(s=>map[s.label]=s);
+    html += `<tr><td class="name">${c.name} <span class="rank">${c.iso3}</span></td>`;
+    labels.forEach(l=>{
+      const p=map[l];
+      if(!p){ html += `<td class="na">—</td>`; }
+      else {
+        const q=pct(p.qoq), y=pct(p.yoy);
+        html += `<td class="cell-has" data-name="${c.name}" data-label="${l}" data-t="${fmt(p.t,2)}" data-qoq="${p.qoq==null?'—':q.t}" data-yoy="${p.yoy==null?'—':y.t}" data-qc="${q.c}" data-yc="${y.c}">${fmt(p.t,1)}</td>`;
+      }
+    });
+    html += '</tr>';
+  });
+  html += '</tbody>';
+  document.getElementById('detailTable').innerHTML = html;
+}
+
+function initCellTip(){
+  const tip = document.getElementById('cellTip');
+  const table = document.getElementById('detailTable');
+  function show(e){
+    const td = e.target.closest('td.cell-has');
+    if(!td){ tip.style.display='none'; return; }
+    tip.innerHTML = `<div class="t-title">${td.dataset.name} · ${td.dataset.label}</div>`
+      + `<div class="t-row">持有量：<b>${td.dataset.t} 吨</b></div>`
+      + `<div class="t-row">环比(QoQ)：<span class="${td.dataset.qc}">${td.dataset.qoq}</span></div>`
+      + `<div class="t-row">同比(YoY)：<span class="${td.dataset.yc}">${td.dataset.yoy}</span></div>`;
+    tip.style.display='block';
+    const pad=14; let x=e.clientX+pad, y=e.clientY+pad;
+    const r=tip.getBoundingClientRect();
+    if(x+r.width>window.innerWidth) x=e.clientX-r.width-pad;
+    if(y+r.height>window.innerHeight) y=e.clientY-r.height-pad;
+    tip.style.left=x+'px'; tip.style.top=y+'px';
+  }
+  table.addEventListener('mousemove', show);
+  table.addEventListener('mouseleave', ()=>{ tip.style.display='none'; });
+}
+
+// ─── 当年净增持 / 净减持 柱状图（按所选年份，默认 2026）────────────────────────
+function onBarYearChange(v){
+  barYear=+v;
+  const a=document.getElementById('barYear'); if(a)a.value=v;
+  const b=document.getElementById('barYearSell'); if(b)b.value=v;
+  if(activeView==='Bar') renderBar('buy');
+  else if(activeView==='BarSell') renderBar('sell');
+}
+
+function renderBar(mode){
+  const isSell = mode==='sell';
+  const elId = isSell ? 'barChartSell' : 'barChart';
+  if(!document.getElementById(elId).hasChildNodes() || document.getElementById(elId).children.length===0){
+    document.getElementById(elId).innerHTML='';
+  }
+  const inst = isSell ? (barChartSell||(barChartSell=echarts.init(document.getElementById(elId),'dark'))) : (barChart||(barChart=echarts.init(document.getElementById(elId),'dark')));
+  window.addEventListener('resize',()=>inst.resize());
+
+  let list = DATA.countries.filter(c=>c.netAddByYear && c.netAddByYear[barYear]!=null);
+  if(isSell){
+    list = list.filter(c=>c.netAddByYear[barYear]<0).sort((a,b)=>a.netAddByYear[barYear]-b.netAddByYear[barYear]).slice(0,15);
+  } else {
+    list = list.filter(c=>c.netAddByYear[barYear]>0).sort((a,b)=>b.netAddByYear[barYear]-a.netAddByYear[barYear]).slice(0,15);
+  }
+  const names = list.map(c=>c.name);
+  const vals = list.map(c=>c.netAddByYear[barYear]);
+  const note = isSell
+    ? `${barYear} 净减持（吨）：负值=减持（取减持最多的 ${list.length} 国）`
+    : `${barYear} 净增持（吨）：正值=增持（取增持最多的 ${list.length} 国）`;
+  document.getElementById(isSell?'barSellTitle':'barBuyTitle').textContent = note;
+  inst.setOption({
+    backgroundColor:'transparent',
+    tooltip:{ trigger:'axis', axisPointer:{type:'shadow'}, backgroundColor:'#1e293b', borderColor:'#334155', textStyle:{color:'#e8edff'},
+      formatter:p=>`${p[0].name}<br><b>${p[0].value>=0?'+':''}${fmt(p[0].value,2)} 吨</b>` },
+    grid:{ left:64, right:20, top:20, bottom:60 },
+    xAxis:{ type:'category', data:names, axisLabel:{color:'#94a3b8',fontSize:11, rotate:38}, axisLine:{lineStyle:{color:'#334155'}} },
+    yAxis:{ type:'value', name:'吨', nameTextStyle:{color:'#94a3b8',fontSize:11}, axisLabel:{color:'#94a3b8',fontSize:11}, splitLine:{lineStyle:{color:'#1e293b',type:'dashed'}} },
+    series:[{ type:'bar', data:vals.map(v=>({value:v, itemStyle:{color: isSell?'#f87171':(v>=0?'#34d399':'#f87171')}})), barWidth:'55%',
+      label:{show:true, position:'top', color:'#cbd5e1', fontSize:10, formatter:p=>(p.value>=0?'+':'')+fmt(p.value,1)} }]
+  }, true);
+}
+
+// ─── 季度变化 Δ(吨)（每年，按季度）──────────────────────────────────────────
+function getChangeSource(){
+  const sel=document.getElementById('changeCountry').value;
+  if(sel==='GLOBAL') return { map:GLOBAL_MAP, label:'全球合计' };
+  const c=DATA.countries.find(x=>x.name===sel);
+  if(!c) return { map:{}, label:sel };
+  const map={}; c.series.forEach(s=>map[s.label]={t:s.t,dt:s.dt});
+  return { map, label:c.name };
+}
+
+function renderChange(){
+  const src=getChangeSource();
+  const years=[...new Set(DATA.quarters.map(q=>q.year))].sort((a,b)=>a-b);
+  const qs=['Q1','Q2','Q3','Q4'];
+  document.getElementById('changeTitle').textContent=`${src.label} — 每年黄金持有量变化（按季度，Δ吨）`;
+  let html='<thead><tr><th class="name">年份</th>'+qs.map(q=>`<th>${q} Δ(吨)</th>`).join('')+'<th>年度合计 Δ(吨)</th></tr></thead><tbody>';
+  years.forEach(y=>{
+    let total=null;
+    const cells=qs.map(q=>{
+      const p=src.map[`${y}${q}`];
+      if(p && p.dt!=null){
+        total = total==null?p.dt:total+p.dt;
+        return `<td class="${p.dt>=0?'up':'down'}">${p.dt>=0?'+':''}${fmt(p.dt,2)}</td>`;
+      }
+      return `<td class="na">—</td>`;
+    });
+    const totStr = total==null?'<td class="na">—</td>':`<td class="${total>=0?'up':'down'}" style="font-weight:700">${total>=0?'+':''}${fmt(total,2)}</td>`;
+    html+=`<tr><td class="name">${y}</td>${cells.join('')}${totStr}</tr>`;
+  });
+  html+='</tbody>';
+  document.getElementById('changeTable').innerHTML=html;
+}
+
+// ─── 视图切换 ──────────────────────────────────────────────────────────────
+function switchView(view){
+  activeView=view;
+  ['btnLine','btnTable','btnBar','btnBarSell','btnChange'].forEach(b=>document.getElementById(b).classList.remove('active'));
+  document.getElementById('btn'+view).classList.add('active');
+  const showLine = view==='Line';
+  document.getElementById('viewLine').classList.toggle('hidden', !showLine);
+  document.getElementById('countryFilters').style.display = showLine?'':'none';
+  document.getElementById('addRow').style.display = showLine?'':'none';
+  document.getElementById('toggleRow').style.display = showLine?'':'none';
+  document.getElementById('viewTable').classList.toggle('hidden', view!=='Table');
+  document.getElementById('viewBar').classList.toggle('hidden', view!=='Bar');
+  document.getElementById('viewBarSell').classList.toggle('hidden', view!=='BarSell');
+  document.getElementById('viewChange').classList.toggle('hidden', view!=='Change');
+  if(view==='Line') lineChart&&lineChart.resize();
+  if(view==='Table') renderOverview();
+  if(view==='Bar') renderBar('buy');
+  if(view==='BarSell') renderBar('sell');
+  if(view==='Change') renderChange();
+}
+document.getElementById('btnLine').addEventListener('click',()=>switchView('Line'));
+document.getElementById('btnTable').addEventListener('click',()=>switchView('Table'));
+document.getElementById('btnBar').addEventListener('click',()=>switchView('Bar'));
+document.getElementById('btnBarSell').addEventListener('click',()=>switchView('BarSell'));
+document.getElementById('btnChange').addEventListener('click',()=>switchView('Change'));
+
+// ─── 加载 ────────────────────────────────────────────────────────────────────
+fetch(DATA_FILE + '?t=' + Date.now())
+  .then(r=>{ if(!r.ok) throw new Error(`${DATA_FILE} HTTP ${r.status}`); return r.json(); })
+  .then(d=>{ DATA=d; initApp(); })
+  .catch(err=>{
+    const m=`<div class="loading-msg error">加载失败：${err.message}<br>请确认 stock/gold_reserves/gold_reserves_data.json 已生成</div>`;
+    document.getElementById('statsRow').innerHTML=m;
+    document.getElementById('lineChart').innerHTML=m;
+  });
+</script>
+</body>
+</html>
