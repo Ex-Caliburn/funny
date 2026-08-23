@@ -645,6 +645,36 @@ module.exports = {
     timeout: 30000,
   },
 
+  /**
+   * 财政部国库司「财政收支情况」（月度累计，亿元）
+   * 列表页：https://gks.mof.gov.cn/tongjishuju/
+   *   第 1 页：index.htm      第 2 页起：index_{page-1}.htm
+   *   注意：页面里的 countPage=4 是过时值，实际 index_4 / index_5 / index_6 仍有内容
+   *        （index_4≈2023年1-7月+2022年末，index_6≈2021年），按 --min-year 自动停翻更可靠
+   * 详情页为纯 HTML 正文（无附件），站点无 WAF，axios 直抓即可
+   * 脚本：scripts/crawler/mof_fiscal/mof_fiscal_crawler.js
+   * 解析：scripts/tools/mof_fiscal_parse.js
+   */
+  mofFiscal: {
+    baseUrl: 'https://gks.mof.gov.cn/tongjishuju/',
+    listIndexUrl: 'https://gks.mof.gov.cn/tongjishuju/index.htm',
+    /** 第 2 页起：index_1.htm、index_2.htm …（{page} 已减 1） */
+    listUrlTemplate: 'https://gks.mof.gov.cn/tongjishuju/index_{page}.htm',
+    downloadDirRel: 'mof_fiscal',
+    jsonFile: 'mof_fiscal_data.json',
+    /** 标题须同时包含这些词 */
+    titleKeywords: ['财政收支情况'],
+    /** 标题含这些词则排除（地方口径、中央政府收支融资数据 PDF 等） */
+    excludeKeywords: ['中央政府收支', '融资数据', '债务余额'],
+    pagination: { startPage: 1, endPage: 8 },
+    maxScanPages: 10,
+    yearRange: { minYear: null, maxYear: null },
+    delayBetweenRequests: 400,
+    maxRetries: 3,
+    timeout: 30000,
+    skipExistingFiles: true,
+  },
+
   // 文件处理配置
   fileProcessing: {
     allowedExtensions: ['.xls', '.xlsx', '.csv'],

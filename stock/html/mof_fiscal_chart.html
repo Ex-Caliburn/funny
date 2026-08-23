@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>财政收支情况 - 多年份走势看板</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: #0b0f19; color: #dbe0ea;
+      padding: 18px 20px 40px;
+    }
+    .page-header { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+    .page-header h2 { margin: 0; font-size: 21px; color: #e2e8f0; font-weight: 700; }
+    .page-header .tag { font-size: 11px; color: #0b0f19; background: #3b82f6; padding: 2px 8px; border-radius: 10px; font-weight: 600; }
+    .subtitle { font-size: 12px; color: #64748b; margin: 6px 0 16px; line-height: 1.6; }
+    .subtitle b { color: #94a3b8; font-weight: 600; }
+
+    .toolbar { display: flex; align-items: center; gap: 10px; margin: 14px 0 10px; flex-wrap: wrap; }
+    .toolbar .label { font-size: 12px; color: #64748b; }
+    select#metricSelect {
+      background: #0f172a; color: #e5e7eb; border: 1px solid #334155;
+      padding: 7px 10px; border-radius: 6px; font-size: 13px; min-width: 240px; cursor: pointer;
+    }
+    .quick-btns { display: flex; gap: 6px; flex-wrap: wrap; }
+    .quick-btn {
+      background: #0f172a; color: #cbd5e1; border: 1px solid #334155;
+      padding: 6px 11px; border-radius: 6px; cursor: pointer; font-size: 12px; transition: all .15s;
+    }
+    .quick-btn:hover { border-color: #3b82f6; color: #fff; }
+    .quick-btn.on { background: #1d4ed8; border-color: #3b82f6; color: #fff; }
+
+    .view-tabs { display: flex; gap: 0; margin: 6px 0 14px; border: 1px solid #1f2937; border-radius: 8px; overflow: hidden; width: fit-content; }
+    .view-tab {
+      background: #0f172a; color: #94a3b8; border: none; padding: 9px 18px; cursor: pointer;
+      font-size: 13px; border-right: 1px solid #1f2937; transition: all .15s;
+    }
+    .view-tab:last-child { border-right: none; }
+    .view-tab:hover { color: #e2e8f0; }
+    .view-tab.on { background: #3b82f6; color: #fff; font-weight: 600; }
+
+    .toggle-btn {
+      background: #0f172a; color: #e5e7eb; border: 1px solid #334155;
+      padding: 7px 13px; border-radius: 6px; cursor: pointer; font-size: 12px; transition: all .15s;
+    }
+    .toggle-btn.on { background: #3b82f6; color: #fff; border-color: #3b82f6; }
+
+    #infoLine { font-size: 12px; color: #64748b; margin: 4px 0 10px; min-height: 16px; }
+    #infoLine b { color: #94a3b8; }
+
+    #mainChart { width: 100%; height: 560px; background: #0b0f19; border: 1px solid #1f2937; border-radius: 10px; }
+
+    .footnote { font-size: 11px; color: #475569; margin-top: 14px; line-height: 1.7; }
+    .footnote code { color: #64748b; }
+    .err-box { color:#ef4444; background:#1f0e0e; padding:12px; border-radius:8px; margin-bottom:12px; display:none; }
+  </style>
+</head>
+<body>
+
+<div class="page-header">
+  <h2>财政收支情况 · 多年份走势看板</h2>
+  <span class="tag">财政部</span>
+</div>
+<div class="subtitle">
+  数据来源：<b>财政部国库司「财政收支情况」</b>（https://gks.mof.gov.cn/tongjishuju/）&nbsp;|&nbsp; 口径：<b>亿元</b> / <b>%</b><br/>
+  财政部原文均为「年初至今累计值」；本看板派生：单月值=相邻累计差分，单月同比=去年同月单月同比，环比=同年相邻月单月环比。<b>不同年份各为一根线</b>，可切换指标与视图（累计/单月、同比/环比）。
+</div>
+
+<div class="toolbar">
+  <span class="label">指标：</span>
+  <select id="metricSelect"></select>
+  <span class="label" style="margin-left:8px;">常用：</span>
+  <span class="quick-btns" id="quickBtns"></span>
+</div>
+
+<div class="view-tabs" id="viewTabs">
+  <button class="view-tab on" data-view="cum">累计值</button>
+  <button class="view-tab" data-view="cumYoy">累计同比</button>
+  <button class="view-tab" data-view="monthly">单月值</button>
+  <button class="view-tab" data-view="monthlyYoy">单月同比</button>
+  <button class="view-tab" data-view="mom">环比</button>
+</div>
+
+<div class="toolbar">
+  <span class="label">年份范围：</span>
+  <button class="toggle-btn on" id="btnHist">显示全部年份</button>
+  <button class="toggle-btn on" id="btnZoom">数据缩放</button>
+  <span id="infoLine"></span>
+</div>
+
+<div id="errBox" class="err-box"></div>
+<div id="mainChart"></div>
+
+<div class="footnote">
+  说明：① 累计值为「1‑N 月累计」口径，故横轴为「截至某月」，而非自然月；单月值/单月同比/环比则拆回当月。&nbsp;
+  ② 2026 年截至目前仅公布至 1‑7 月，其曲线自然止于 7 月。&nbsp;
+  ③ 出口退税等部分税种个别月份原文未单列，对应点为缺失（折线断开）。&nbsp;
+  ④ 数据为脚本解析自官方原文，若与最新发布有出入请以财政部原文为准。
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<script src="chart_tooltip_helpers.js"></script>
+<script src="mof_fiscal_data.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  var errBox = document.getElementById('errBox');
+  function showErr(msg) { errBox.style.display = 'block'; errBox.textContent = '⚠ ' + msg; }
+
+  if (!window.MOF_FISCAL_DATA) { showErr('数据文件 mof_fiscal_data.js 未加载，请确认与本页面同目录。'); return; }
+  if (typeof echarts === 'undefined') { showErr('ECharts 加载失败（可能无网络），请检查 CDN。'); return; }
+
+  var DATA = window.MOF_FISCAL_DATA;
+  var METRICS = DATA.metricsMeta || [];
+  var RAW = DATA.data || {};
+
+  /* 指标索引 */
+  var METRIC_MAP = {};
+  METRICS.forEach(function (m) { METRIC_MAP[m.key] = m; });
+
+  /* 视图定义 */
+  var VIEWS = {
+    cum:        { label: '累计值',   field: 'cum',        kind: 'abs',  axisName: '亿元（累计）' },
+    cumYoy:     { label: '累计同比', field: 'cumYoy',     kind: 'rate', axisName: '%' },
+    monthly:    { label: '单月值',   field: 'monthly',     kind: 'abs',  axisName: '亿元（单月）' },
+    monthlyYoy: { label: '单月同比', field: 'monthlyYoy', kind: 'rate', axisName: '%' },
+    mom:        { label: '环比',     field: 'mom',        kind: 'rate', axisName: '%' }
+  };
+
+  /* 状态 */
+  var selectedMetric = 'gen_income';
+  var selectedView = 'cum';
+  var showHist = true;
+  var showZoom = true;
+
+  /* 常用指标快捷按钮 */
+  var QUICK = ['gen_income', 'gen_expense', 'tax_income', 'fund_income', 'fund_expense', 'land_income'];
+
+  /* ── 工具函数 ── */
+  function fmtNum(v) {
+    if (v == null || isNaN(v)) return '—';
+    return (Math.round(v * 100) / 100).toLocaleString('en-US');
+  }
+  function fmtPct(v) {
+    if (v == null || isNaN(v)) return '—';
+    var s = (Math.round(v * 100) / 100).toFixed(2);
+    return (v > 0 ? '+' : '') + s + '%';
+  }
+  function monthLabel(cm) {
+    if (cm === 12) return '1-12月（全年）';
+    return '1-' + cm + '月';
+  }
+  function getMonths(metricKey) {
+    var ym = RAW[metricKey] || {};
+    var set = {};
+    Object.keys(ym).forEach(function (y) {
+      Object.keys(ym[y]).forEach(function (cm) { set[parseInt(cm, 10)] = true; });
+    });
+    return Object.keys(set).map(Number).sort(function (a, b) { return a - b; });
+  }
+
+  /* ── 构建 option ── */
+  function buildOption() {
+    var meta = METRIC_MAP[selectedMetric];
+    var view = VIEWS[selectedView];
+    var ym = RAW[selectedMetric] || {};
+    var years = Object.keys(ym).map(Number).sort(function (a, b) { return a - b; });
+    var latestYear = years[years.length - 1];
+    var months = getMonths(selectedMetric);
+    var xData = months.map(monthLabel);
+    var isRate = view.kind === 'rate';
+
+    var series = [];
+    years.forEach(function (y) {
+      if (!showHist && y !== latestYear) return;
+      var isLatest = (y === latestYear);
+      var color = getYearLineColorByIndex(years.indexOf(y));
+      var yrData = ym[y] || {};
+      var vals = months.map(function (cm) {
+        var rec = yrData[String(cm)];
+        if (!rec) return null;
+        var v = rec[view.field];
+        return (v === undefined || v === null) ? null : v;
+      });
+      series.push(buildYearValueSeries(y, vals, color, isLatest));
+    });
+
+    /* 速率视图加 0% 参考线（加在最新年线上，避免重复绘制） */
+    if (isRate && series.length) {
+      series[series.length - 1].markLine = {
+        silent: true, symbol: 'none',
+        data: [{ yAxis: 0, lineStyle: { color: '#475569', type: 'dotted', width: 1 }, label: { show: false } }]
+      };
+    }
+
+    var unit = isRate ? '%' : ' 亿元';
+
+    var option = {
+      backgroundColor: 'transparent',
+      animation: true,
+      grid: { left: 76, right: 64, top: 48, bottom: showZoom ? 78 : 56 },
+      legend: {
+        show: true, top: 8, right: 8, type: 'scroll',
+        textStyle: { color: '#94a3b8', fontSize: 11 }, itemWidth: 18, itemHeight: 8, itemGap: 12
+      },
+      tooltip: axisTooltipStyle({
+        backgroundColor: '#1e293b', borderColor: '#334155',
+        textStyle: { color: '#dbe0ea', fontSize: 12 },
+        formatter: function (ps) {
+          if (!ps || !ps.length) return '';
+          var html = '<div style="font-weight:600;margin-bottom:5px;color:#e2e8f0">' +
+                     ps[0].axisValue + ' · ' + view.label + '</div>';
+          ps.forEach(function (p) {
+            if (p.value == null) return;
+            var valStr = isRate ? fmtPct(p.value) : fmtNum(p.value);
+            html += '<div style="margin:2px 0;">' + p.marker + p.seriesName +
+                    '：<b>' + valStr + '</b>' + unit + '</div>';
+          });
+          return html;
+        }
+      }),
+      xAxis: {
+        type: 'category', data: xData,
+        boundaryGap: false,
+        axisLabel: { color: '#64748b', fontSize: 11 },
+        axisLine: { lineStyle: { color: '#1e293b' } },
+        splitLine: { show: false }
+      },
+      yAxis: [{
+        type: 'value',
+        name: view.axisName,
+        nameTextStyle: { color: '#475569', fontSize: 11 },
+        axisLabel: {
+          color: '#64748b', fontSize: 11,
+          formatter: function (v) {
+            if (isRate) return v + '%';
+            if (Math.abs(v) >= 10000) return (v / 10000).toFixed(1) + '万亿';
+            return fmtNum(v);
+          }
+        },
+        axisLine: { lineStyle: { color: '#1e293b' } },
+        splitLine: { lineStyle: { color: '#15203a', type: 'dashed' } }
+      }],
+      dataZoom: showZoom ? [
+        { type: 'inside', xAxisIndex: 0 },
+        {
+          type: 'slider', xAxisIndex: 0, bottom: 20, height: 22,
+          borderColor: '#1e293b', textStyle: { color: '#64748b', fontSize: 10 },
+          fillerColor: 'rgba(59,130,246,.15)', handleStyle: { color: '#3b82f6' },
+          dataBackground: { lineStyle: { color: '#334155' }, areaStyle: { color: '#1e293b' } }
+        }
+      ] : [],
+      series: series
+    };
+    return option;
+  }
+
+  /* ── 渲染 ── */
+  var chart = echarts.init(document.getElementById('mainChart'), 'dark');
+  window.addEventListener('resize', function () { chart.resize(); });
+
+  function updateInfo() {
+    var meta = METRIC_MAP[selectedMetric];
+    var view = VIEWS[selectedView];
+    var ym = RAW[selectedMetric] || {};
+    var years = Object.keys(ym).map(Number).sort(function (a, b) { return a - b; });
+    var months = getMonths(selectedMetric);
+    var span = months.length ? (monthLabel(months[0]) + ' ~ ' + monthLabel(months[months.length - 1])) : '—';
+    document.getElementById('infoLine').innerHTML =
+      '当前指标：<b>' + (meta ? meta.label : '—') + '</b>（' + meta.group + '）&nbsp;|&nbsp; ' +
+      '视图：<b>' + view.label + '</b>&nbsp;|&nbsp; 覆盖年份：<b>' + years.join(' / ') + '</b>&nbsp;|&nbsp; 月份跨度：<b>' + span + '</b>';
+  }
+
+  function render() {
+    chart.setOption(buildOption(), true);
+    updateInfo();
+  }
+
+  /* ── 指标下拉（按分组） ── */
+  (function buildSelect() {
+    var sel = document.getElementById('metricSelect');
+    var groups = {};
+    METRICS.forEach(function (m) { (groups[m.group] = groups[m.group] || []).push(m); });
+    Object.keys(groups).forEach(function (g) {
+      var og = document.createElement('optgroup');
+      og.label = g;
+      groups[g].forEach(function (m) {
+        var opt = document.createElement('option');
+        opt.value = m.key; opt.textContent = m.label;
+        og.appendChild(opt);
+      });
+      sel.appendChild(og);
+    });
+    sel.value = selectedMetric;
+    sel.addEventListener('change', function () {
+      selectedMetric = sel.value;
+      syncQuick();
+      render();
+    });
+  })();
+
+  /* ── 常用快捷按钮 ── */
+  (function buildQuick() {
+    var box = document.getElementById('quickBtns');
+    QUICK.forEach(function (key) {
+      var m = METRIC_MAP[key];
+      if (!m) return;
+      var b = document.createElement('button');
+      b.className = 'quick-btn'; b.dataset.key = key; b.textContent = m.label;
+      b.addEventListener('click', function () {
+        selectedMetric = key;
+        document.getElementById('metricSelect').value = key;
+        syncQuick();
+        render();
+      });
+      box.appendChild(b);
+    });
+    syncQuick();
+  })();
+
+  function syncQuick() {
+    document.querySelectorAll('.quick-btn').forEach(function (b) {
+      b.classList.toggle('on', b.dataset.key === selectedMetric);
+    });
+  }
+
+  /* ── 视图切换 ── */
+  document.querySelectorAll('.view-tab').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.view-tab').forEach(function (b) { b.classList.remove('on'); });
+      btn.classList.add('on');
+      selectedView = btn.dataset.view;
+      render();
+    });
+  });
+
+  /* ── 开关 ── */
+  var btnHist = document.getElementById('btnHist');
+  btnHist.addEventListener('click', function () {
+    showHist = !showHist;
+    btnHist.classList.toggle('on', showHist);
+    btnHist.textContent = showHist ? '显示全部年份' : '仅最新年份';
+    render();
+  });
+  var btnZoom = document.getElementById('btnZoom');
+  btnZoom.addEventListener('click', function () {
+    showZoom = !showZoom;
+    btnZoom.classList.toggle('on', showZoom);
+    btnZoom.textContent = showZoom ? '数据缩放' : '缩放关';
+    render();
+  });
+
+  /* 初始渲染 */
+  render();
+})();
+</script>
+</body>
+</html>
