@@ -81,6 +81,8 @@
   <div class="tab-bar region-bar" id="region-bar" role="tablist" aria-label="产地">
     <button type="button" class="tab-btn active" data-region="shanxi" id="region-shanxi">山西</button>
     <button type="button" class="tab-btn" data-region="qhd" id="region-qhd">秦皇岛</button>
+    <button type="button" class="tab-btn" data-region="trade-cj" id="region-trade-cj">焦煤进口</button>
+    <button type="button" class="tab-btn" data-region="trade-wy" id="region-trade-wy">无烟煤进口</button>
   </div>
 
   <div class="sub-tab-bar visible" id="sub-bar-shanxi" role="tablist" aria-label="山西品种">
@@ -99,6 +101,12 @@
     <button type="button" class="tab-btn sub-tab-btn" data-key="qhd5500">综合 5500K</button>
     <button type="button" class="tab-btn sub-tab-btn" data-key="qhd5000">综合 5000K</button>
     <button type="button" class="tab-btn sub-tab-btn" data-key="qhd4500">综合 4500K</button>
+  </div>
+
+  <div class="sub-tab-bar" id="sub-bar-trade" role="tablist" aria-label="进出口指标">
+    <button type="button" class="tab-btn sub-tab-btn" data-key="qty">进口数量（万吨）</button>
+    <button type="button" class="tab-btn sub-tab-btn" data-key="rmb">进口金额（亿元）</button>
+    <button type="button" class="tab-btn sub-tab-btn" data-key="price">进口单价（元/吨）</button>
   </div>
 
   <div id="panel-coal5500" class="panel active">
@@ -150,6 +158,41 @@
     <div id="chart-qhd4500" class="chart-wrap"></div>
   </div>
 
+  <div id="trade-filter">
+    <span>国家/地区：</span>
+    <select id="trade-country"></select>
+    <span class="trade-filter-hint">按贸易伙伴拆分，默认全部</span>
+  </div>
+  <div id="panel-trade-cj-qty" class="panel">
+    <div class="trade-note">焦煤进口 · 炼焦煤(HS 27011210) 进口 · 数据来源：海关总署统计数据查询平台 (stats.customs.gov.cn)</div>
+    <div class="stat-bar" id="stats-panel-trade-cj-qty"></div>
+    <div id="chart-panel-trade-cj-qty" class="chart-wrap"></div>
+  </div>
+  <div id="panel-trade-cj-rmb" class="panel">
+    <div class="trade-note">焦煤进口 · 炼焦煤(HS 27011210) 进口 · 数据来源：海关总署统计数据查询平台 (stats.customs.gov.cn)</div>
+    <div class="stat-bar" id="stats-panel-trade-cj-rmb"></div>
+    <div id="chart-panel-trade-cj-rmb" class="chart-wrap"></div>
+  </div>
+  <div id="panel-trade-cj-price" class="panel">
+    <div class="trade-note">焦煤进口 · 炼焦煤(HS 27011210) 进口 · 数据来源：海关总署统计数据查询平台 (stats.customs.gov.cn)</div>
+    <div class="stat-bar" id="stats-panel-trade-cj-price"></div>
+    <div id="chart-panel-trade-cj-price" class="chart-wrap"></div>
+  </div>
+  <div id="panel-trade-wy-qty" class="panel">
+    <div class="trade-note">无烟煤进口 · 无烟煤(HS 27011100) 进口 · 数据来源：海关总署统计数据查询平台 (stats.customs.gov.cn)</div>
+    <div class="stat-bar" id="stats-panel-trade-wy-qty"></div>
+    <div id="chart-panel-trade-wy-qty" class="chart-wrap"></div>
+  </div>
+  <div id="panel-trade-wy-rmb" class="panel">
+    <div class="trade-note">无烟煤进口 · 无烟煤(HS 27011100) 进口 · 数据来源：海关总署统计数据查询平台 (stats.customs.gov.cn)</div>
+    <div class="stat-bar" id="stats-panel-trade-wy-rmb"></div>
+    <div id="chart-panel-trade-wy-rmb" class="chart-wrap"></div>
+  </div>
+  <div id="panel-trade-wy-price" class="panel">
+    <div class="trade-note">无烟煤进口 · 无烟煤(HS 27011100) 进口 · 数据来源：海关总署统计数据查询平台 (stats.customs.gov.cn)</div>
+    <div class="stat-bar" id="stats-panel-trade-wy-price"></div>
+    <div id="chart-panel-trade-wy-price" class="chart-wrap"></div>
+  </div>
   <script src="../vendor/echarts.min.js"></script>
   <script src="chart_tooltip_helpers.js"></script>
 <script>
@@ -481,7 +524,7 @@
         subShanxi.querySelectorAll('.sub-tab-btn').forEach(function(b) { b.classList.remove('active'); });
         if (subBtn) subBtn.classList.add('active');
         activateSeriesKey(firstKey);
-      } else {
+      } else if (region === 'qhd') {
         subQhd.classList.add('visible');
         subShanxi.classList.remove('visible');
         subShanxi.querySelectorAll('.sub-tab-btn').forEach(function(b) { b.classList.remove('active'); });
@@ -509,5 +552,219 @@
   // ── 初始：山西 + 山西动力煤 5500K ─────────────────────────────────
   activateSeriesKey('coal5500');
   </script>
+<style>
+  #trade-filter { display: none; align-items: center; gap: 8px; margin: 0 0 12px; font-size: 12px; color: #94a3b8; flex-wrap: wrap; }
+  #trade-filter select { background: #0f172a; color: #e2e8f0; border: 1px solid #1e293b; border-radius: 8px; padding: 6px 10px; font-size: 12px; cursor: pointer; }
+  #trade-filter select:focus { outline: none; border-color: #3b82f6; }
+  #trade-filter .trade-filter-hint { color: #475569; }
+  .trade-note { font-size: 11px; color: #64748b; margin: 2px 0 8px; }
+</style>
+<script>
+  // ===== 新增：焦煤进口 / 无烟煤进口 Tab（数据内嵌，支持按国家筛选）=====
+  var TRADE_DATA = {"generatedAt":"2026-08-24 06:02:31","commodities":{"27011100":{"label":"无烟煤进口","meta":{"commodityCode":"27011100","commodityName":"无烟煤","source":"海关总署统计数据查询平台 (stats.customs.gov.cn)","unit":"千克","valueUnit":"人民币元","years":[2025,2026],"latestYear":2026,"monthsAvailableLatest":[1,2,3,4,5,6,7],"files":["无烟煤进口_2025.csv","无烟煤进口_2026.csv"]},"series":{"qtyWanTon":{"2025":[115.25,130.17,190.84,176.34,131.01,117.12,72.9,149.35,100.96,98.91,130.66,98.1],"2026":[103.19,89.22,71.11,90.61,81.6,104.38,113.79,null,null,null,null,null]},"rmbYiYuan":{"2025":[9.936,10.749,15.152,14.23,10.291,8.68,5.148,11.759,8.737,8.32,10.958,8.339],"2026":[8.376,7.332,5.522,7.626,6.963,9.425,11.315,null,null,null,null,null]},"unitPriceYuanPerTon":{"2025":[862.2,825.8,794,807,785.5,741.1,706.2,787.3,865.5,841.2,838.6,850],"2026":[811.8,821.8,776.5,841.7,853.3,902.9,994.4,null,null,null,null,null]}},"latestYearRates":[{"month":1,"qty":103.19,"qtyYoY":-10.5,"qtyMoM":5.2,"rmb":8.376,"rmbYoY":-15.7,"rmbMoM":0.5,"price":811.8,"priceYoY":-5.8,"priceMoM":-4.5},{"month":2,"qty":89.22,"qtyYoY":-31.5,"qtyMoM":-13.5,"rmb":7.332,"rmbYoY":-31.8,"rmbMoM":-12.5,"price":821.8,"priceYoY":-0.5,"priceMoM":1.2},{"month":3,"qty":71.11,"qtyYoY":-62.7,"qtyMoM":-20.3,"rmb":5.522,"rmbYoY":-63.6,"rmbMoM":-24.7,"price":776.5,"priceYoY":-2.2,"priceMoM":-5.5},{"month":4,"qty":90.61,"qtyYoY":-48.6,"qtyMoM":27.4,"rmb":7.626,"rmbYoY":-46.4,"rmbMoM":38.1,"price":841.7,"priceYoY":4.3,"priceMoM":8.4},{"month":5,"qty":81.6,"qtyYoY":-37.7,"qtyMoM":-9.9,"rmb":6.963,"rmbYoY":-32.3,"rmbMoM":-8.7,"price":853.3,"priceYoY":8.6,"priceMoM":1.4},{"month":6,"qty":104.38,"qtyYoY":-10.9,"qtyMoM":27.9,"rmb":9.425,"rmbYoY":8.6,"rmbMoM":35.4,"price":902.9,"priceYoY":21.8,"priceMoM":5.8},{"month":7,"qty":113.79,"qtyYoY":56.1,"qtyMoM":9,"rmb":11.315,"rmbYoY":119.8,"rmbMoM":20.1,"price":994.4,"priceYoY":40.8,"priceMoM":10.1}],"countries":[{"code":"344","name":"俄罗斯","qty":15321867827},{"code":"124","name":"蒙古","qty":410778147},{"code":"119","name":"老挝","qty":113691750},{"code":"122","name":"马来西亚","qty":24000000},{"code":"146","name":"吉尔吉斯斯坦","qty":4673700}],"byCountry":{"119":{"name":"老挝","series":{"qtyWanTon":{"2025":[1.7,0.12,1.24,0.53,0.58,0.41,0.09,null,null,0.15,0.18,0.71],"2026":[1.21,0.25,1,1.42,1.3,0.77,0.73,null,null,null,null,null]},"rmbYiYuan":{"2025":[0.118,0.009,0.087,0.037,0.041,0.029,0.007,null,null,0.011,0.009,0.036],"2026":[0.061,0.014,0.051,0.073,0.067,0.039,0.038,null,null,null,null,null]},"unitPriceYuanPerTon":{"2025":[693.1,700,699.5,700,700,700,700,null,null,700,500,500],"2026":[500.7,541.3,509.6,511.5,515.8,500,518,null,null,null,null,null]}},"latestYearRates":[{"month":1,"qty":1.21,"qtyYoY":-28.7,"qtyMoM":69.8,"rmb":0.061,"rmbYoY":-48.5,"rmbMoM":70,"price":500.7,"priceYoY":-27.8,"priceMoM":0.1},{"month":2,"qty":0.25,"qtyYoY":103.5,"qtyMoM":-79,"rmb":0.014,"rmbYoY":57.4,"rmbMoM":-77.3,"price":541.3,"priceYoY":-22.7,"priceMoM":8.1},{"month":3,"qty":1,"qtyYoY":-19.9,"qtyMoM":292.2,"rmb":0.051,"rmbYoY":-41.6,"rmbMoM":269.2,"price":509.6,"priceYoY":-27.1,"priceMoM":-5.9},{"month":4,"qty":1.42,"qtyYoY":166.4,"qtyMoM":42.4,"rmb":0.073,"rmbYoY":94.6,"rmbMoM":42.9,"price":511.5,"priceYoY":-26.9,"priceMoM":0.4},{"month":5,"qty":1.3,"qtyYoY":124.1,"qtyMoM":-8.2,"rmb":0.067,"rmbYoY":65.2,"rmbMoM":-7.4,"price":515.8,"priceYoY":-26.3,"priceMoM":0.9},{"month":6,"qty":0.77,"qtyYoY":88.2,"qtyMoM":-40.8,"rmb":0.039,"rmbYoY":34.4,"rmbMoM":-42.6,"price":500,"priceYoY":-28.6,"priceMoM":-3.1},{"month":7,"qty":0.73,"qtyYoY":683.5,"qtyMoM":-5.5,"rmb":0.038,"rmbYoY":479.8,"rmbMoM":-2.1,"price":518,"priceYoY":-26,"priceMoM":3.6}]},"122":{"name":"马来西亚","series":{"qtyWanTon":{"2025":[null,null,null,null,null,null,null,null,null,null,null,null],"2026":[null,null,null,null,null,2.4,null,null,null,null,null,null]},"rmbYiYuan":{"2025":[null,null,null,null,null,null,null,null,null,null,null,null],"2026":[null,null,null,null,null,0.119,null,null,null,null,null,null]},"unitPriceYuanPerTon":{"2025":[null,null,null,null,null,null,null,null,null,null,null,null],"2026":[null,null,null,null,null,496.6,null,null,null,null,null,null]}},"latestYearRates":[{"month":1,"qty":null,"qtyYoY":null,"qtyMoM":null,"rmb":null,"rmbYoY":null,"rmbMoM":null,"price":null,"priceYoY":null,"priceMoM":null},{"month":2,"qty":null,"qtyYoY":null,"qtyMoM":null,"rmb":null,"rmbYoY":null,"rmbMoM":null,"price":null,"priceYoY":null,"priceMoM":null},{"month":3,"qty":null,"qtyYoY":null,"qtyMoM":null,"rmb":null,"rmbYoY":null,"rmbMoM":null,"price":null,"priceYoY":null,"priceMoM":null},{"month":4,"qty":null,"qtyYoY":null,"qtyMoM":null,"rmb":null,"rmbYoY":null,"rmbMoM":null,"price":null,"priceYoY":null,"priceMoM":null},{"month":5,"qty":null,"qtyYoY":null,"qtyMoM":null,"rmb":null,"rmbYoY":null,"rmbMoM":null,"price":null,"priceYoY":null,"priceMoM":null},{"month":6,"qty":2.4,"qtyYoY":null,"qtyMoM":null,"rmb":0.119,"rmbYoY":null,"rmbMoM":null,"price":496.6,"priceYoY":null,"priceMoM":null},{"month":7,"qty":null,"qtyYoY":null,"qtyMoM":null,"rmb":null,"rmbYoY":null,"rmbMoM":null,"price":null,"priceYoY":null,"priceMoM":null}]},"124":{"name":"蒙古","series":{"qtyWanTon":{"2025":[1.66,0.13,1.92,3.57,0.59,4.84,4.13,1.94,3.67,4.45,7.15,5.79],"2026":[6.42,1.63,7.67,2.66,2.89,1.79,1.16,null,null,null,null,null]},"rmbYiYuan":{"2025":[0.101,0.008,0.109,0.209,0.036,0.282,0.233,0.089,0.173,0.245,0.364,0.278],"2026":[0.297,0.075,0.316,0.124,0.138,0.079,0.042,null,null,null,null,null]},"unitPriceYuanPerTon":{"2025":[608.8,621.3,568.1,586.3,602.4,583.3,563.5,459.8,470.9,550.7,509.1,479.7],"2026":[462,460.4,411.6,465.9,477.2,441,360,null,null,null,null,null]}},"latestYearRates":[{"month":1,"qty":6.42,"qtyYoY":287,"qtyMoM":10.9,"rmb":0.297,"rmbYoY":193.7,"rmbMoM":6.8,"price":462,"priceYoY":-24.1,"priceMoM":-3.7},{"month":2,"qty":1.63,"qtyYoY":1111.9,"qtyMoM":-74.7,"rmb":0.075,"rmbYoY":798.1,"rmbMoM":-74.8,"price":460.4,"priceYoY":-25.9,"priceMoM":-0.3},{"month":3,"qty":7.67,"qtyYoY":298.8,"qtyMoM":372.2,"rmb":0.316,"rmbYoY":189,"rmbMoM":322.1,"price":411.6,"priceYoY":-27.5,"priceMoM":-10.6},{"month":4,"qty":2.66,"qtyYoY":-25.6,"qtyMoM":-65.4,"rmb":0.124,"rmbYoY":-40.9,"rmbMoM":-60.8,"price":465.9,"priceYoY":-20.5,"priceMoM":13.2},{"month":5,"qty":2.89,"qtyYoY":386.9,"qtyMoM":8.9,"rmb":0.138,"rmbYoY":285.7,"rmbMoM":11.6,"price":477.2,"priceYoY":-20.8,"priceMoM":2.4},{"month":6,"qty":1.79,"qtyYoY":-62.9,"qtyMoM":-38,"rmb":0.079,"rmbYoY":-72,"rmbMoM":-42.7,"price":441,"priceYoY":-24.4,"priceMoM":-7.6},{"month":7,"qty":1.16,"qtyYoY":-71.9,"qtyMoM":-35.3,"rmb":0.042,"rmbYoY":-82.1,"rmbMoM":-47.2,"price":360,"priceYoY":-36.1,"priceMoM":-18.4}]},"146":{"name":"吉尔吉斯斯坦","series":{"qtyWanTon":{"2025":[0.3,0.02,0.13,0.01,null,null,0.01,0.09,0.01,0.14,0.05,null],"2026":[null,null,null,null,null,null,null,null,null,null,null,null]},"rmbYiYuan":{"2025":[0.021,0.001,0.008,0.001,null,null,0.001,0.004,0.001,0.007,0.002,null],"2026":[null,null,null,null,null,null,null,null,null,null,null,null]},"unitPriceYuanPerTon":{"2025":[688.6,540.6,639.4,745.4,null,null,502.3,486.7,551.3,512.8,504.2,null],"2026":[null,null,null,null,null,null,null,null,null,null,null,null]}},"latestYearRates":[{"month":1,"qty":null,"qtyYoY":null,"qtyMoM":null,"rmb":null,"rmbYoY":null,"rmbMoM":null,"price":null,"priceYoY":null,"priceMoM":null},{"month":2,"qty":null,"qtyYoY":null,"qtyMoM":null,"rmb":null,"rmbYoY":null,"rmbMoM":null,"price":null,"priceYoY":null,"priceMoM":null},{"month":3,"qty":null,"qtyYoY":null,"qtyMoM":null,"rmb":null,"rmbYoY":null,"rmbMoM":null,"price":null,"priceYoY":null,"priceMoM":null},{"month":4,"qty":null,"qtyYoY":null,"qtyMoM":null,"rmb":null,"rmbYoY":null,"rmbMoM":null,"price":null,"priceYoY":null,"priceMoM":null},{"month":5,"qty":null,"qtyYoY":null,"qtyMoM":null,"rmb":null,"rmbYoY":null,"rmbMoM":null,"price":null,"priceYoY":null,"priceMoM":null},{"month":6,"qty":null,"qtyYoY":null,"qtyMoM":null,"rmb":null,"rmbYoY":null,"rmbMoM":null,"price":null,"priceYoY":null,"priceMoM":null},{"month":7,"qty":null,"qtyYoY":null,"qtyMoM":null,"rmb":null,"rmbYoY":null,"rmbMoM":null,"price":null,"priceYoY":null,"priceMoM":null}]},"344":{"name":"俄罗斯","series":{"qtyWanTon":{"2025":[111.59,129.89,187.55,172.22,129.83,111.87,68.66,147.33,94.59,94.16,123.29,91.6],"2026":[95.56,87.34,62.44,86.53,77.4,99.42,111.9,null,null,null,null,null]},"rmbYiYuan":{"2025":[9.697,10.731,14.948,13.983,10.214,8.369,4.908,11.666,8.101,8.057,10.582,8.025],"2026":[8.019,7.243,5.156,7.43,6.757,9.188,11.235,null,null,null,null,null]},"unitPriceYuanPerTon":{"2025":[869,826.1,797,811.9,786.7,748.1,714.9,791.8,856.4,855.6,858.3,876.1],"2026":[839.2,829.3,825.7,858.6,873,924.2,1004.1,null,null,null,null,null]}},"latestYearRates":[{"month":1,"qty":95.56,"qtyYoY":-14.4,"qtyMoM":4.3,"rmb":8.019,"rmbYoY":-17.3,"rmbMoM":-0.1,"price":839.2,"priceYoY":-3.4,"priceMoM":-4.2},{"month":2,"qty":87.34,"qtyYoY":-32.8,"qtyMoM":-8.6,"rmb":7.243,"rmbYoY":-32.5,"rmbMoM":-9.7,"price":829.3,"priceYoY":0.4,"priceMoM":-1.2},{"month":3,"qty":62.44,"qtyYoY":-66.7,"qtyMoM":-28.5,"rmb":5.156,"rmbYoY":-65.5,"rmbMoM":-28.8,"price":825.7,"priceYoY":3.6,"priceMoM":-0.4},{"month":4,"qty":86.53,"qtyYoY":-49.8,"qtyMoM":38.6,"rmb":7.43,"rmbYoY":-46.9,"rmbMoM":44.1,"price":858.6,"priceYoY":5.8,"priceMoM":4},{"month":5,"qty":77.4,"qtyYoY":-40.4,"qtyMoM":-10.6,"rmb":6.757,"rmbYoY":-33.9,"rmbMoM":-9.1,"price":873,"priceYoY":11,"priceMoM":1.7},{"month":6,"qty":99.42,"qtyYoY":-11.1,"qtyMoM":28.4,"rmb":9.188,"rmbYoY":9.8,"rmbMoM":36,"price":924.2,"priceYoY":23.5,"priceMoM":5.9},{"month":7,"qty":111.9,"qtyYoY":63,"qtyMoM":12.6,"rmb":11.235,"rmbYoY":128.9,"rmbMoM":22.3,"price":1004.1,"priceYoY":40.5,"priceMoM":8.6}]}},"summary":{"ytdLatest":{"qty":653.89,"rmb":56.559},"ytdPrev":{"qty":933.61,"rmb":74.187},"ytdYoY":{"qtyYoY":-30,"rmbYoY":-23.8},"priceLatest":865,"pricePrev":794.6,"priceYoY":8.9}},"27011210":{"label":"焦煤进口","meta":{"commodityCode":"27011210","commodityName":"炼焦煤","source":"海关总署统计数据查询平台 (stats.customs.gov.cn)","unit":"千克","valueUnit":"人民币元","years":[2025,2026],"latestYear":2026,"monthsAvailableLatest":[1,2,3,4,5,6,7],"files":["炼焦煤进口_2025.csv","炼焦煤进口_2026.csv"]},"series":{"qtyWanTon":{"2025":[999.72,887.65,863.35,889.3,738.73,908.47,960.73,1015.64,1092.36,1059.24,1073.1,1369.61],"2026":[1175.7,806.97,1242.36,1130.04,1112.98,1218.27,1361.59,null,null,null,null,null]},"rmbYiYuan":{"2025":[93.503,77.492,64.809,61.891,48.195,61.851,58.012,63.741,75.622,75.62,77.182,109.716],"2026":[86.109,58.987,88.285,76.055,85.269,95.147,125.053,null,null,null,null,null]},"unitPriceYuanPerTon":{"2025":[935.3,873,750.7,696,652.4,680.8,603.8,627.6,692.3,713.9,719.2,801.1],"2026":[732.4,731,710.6,673,766.1,781,918.4,null,null,null,null,null]}},"latestYearRates":[{"month":1,"qty":1175.7,"qtyYoY":17.6,"qtyMoM":-14.2,"rmb":86.109,"rmbYoY":-7.9,"rmbMoM":-21.5,"price":732.4,"priceYoY":-21.7,"priceMoM":-8.6},{"month":2,"qty":806.97,"qtyYoY":-9.1,"qtyMoM":-31.4,"rmb":58.987,"rmbYoY":-23.9,"rmbMoM":-31.5,"price":731,"priceYoY":-16.3,"priceMoM":-0.2},{"month":3,"qty":1242.36,"qtyYoY":43.9,"qtyMoM":54,"rmb":88.285,"rmbYoY":36.2,"rmbMoM":49.7,"price":710.6,"priceYoY":-5.3,"priceMoM":-2.8},{"month":4,"qty":1130.04,"qtyYoY":27.1,"qtyMoM":-9,"rmb":76.055,"rmbYoY":22.9,"rmbMoM":-13.9,"price":673,"priceYoY":-3.3,"priceMoM":-5.3},{"month":5,"qty":1112.98,"qtyYoY":50.7,"qtyMoM":-1.5,"rmb":85.269,"rmbYoY":76.9,"rmbMoM":12.1,"price":766.1,"priceYoY":17.4,"priceMoM":13.8},{"month":6,"qty":1218.27,"qtyYoY":34.1,"qtyMoM":9.5,"rmb":95.147,"rmbYoY":53.8,"rmbMoM":11.6,"price":781,"priceYoY":14.7,"priceMoM":1.9},{"month":7,"qty":1361.59,"qtyYoY":41.7,"qtyMoM":11.8,"rmb":125.053,"rmbYoY":115.6,"rmbMoM":31.4,"price":918.4,"priceYoY":52.1,"priceMoM":17.6}],"countries":[{"code":"124","name":"蒙古","qty":76518548621},{"code":"344","name":"俄罗斯","qty":39712690766},{"code":"601","name":"澳大利亚","qty":11079207212},{"code":"501","name":"加拿大","qty":9642735752},{"code":"502","name":"美国","qty":2904849764},{"code":"112","name":"印度尼西亚","qty":2339534470},{"code":"413","name":"哥伦比亚","qty":322916690},{"code":"609","name":"新西兰","qty":160820000},{"code":"445","name":"委内瑞拉","qty":155378664},{"code":"233","name":"莫桑比克","qty":78933420},{"code":"145","name":"哈萨克斯坦","qty":43024055}],"byCountry":{"112":{"name":"印度尼西亚","series":{"qtyWanTon":{"2025":[41.38,7.8,15.42,19.43,5.47,5.5,12.7,15.44,28.37,42.59,37.15,46.48],"2026":[22.73,11.21,7.55,5.19,16.7,27.2,35.68,null,null,null,null,null]},"rmbYiYuan":{"2025":[4.636,0.817,1.573,1.986,0.494,0.512,1.238,1.6,2.794,4.601,4.014,5.619],"2026":[2.479,1.273,0.868,0.597,2.198,3.573,4.558,null,null,null,null,null]},"unitPriceYuanPerTon":{"2025":[1120.4,1047.4,1020.7,1022.3,902.2,931.6,975.3,1036.6,984.9,1080.3,1080.5,1208.9],"2026":[1090.7,1135.9,1150.1,1150.6,1315.5,1313.7,1277.4,null,null,null,null,null]}},"latestYearRates":[{"month":1,"qty":22.73,"qtyYoY":-45.1,"qtyMoM":-51.1,"rmb":2.479,"rmbYoY":-46.5,"rmbMoM":-55.9,"price":1090.7,"priceYoY":-2.7,"priceMoM":-9.8},{"month":2,"qty":11.21,"qtyYoY":43.7,"qtyMoM":-50.7,"rmb":1.273,"rmbYoY":55.9,"rmbMoM":-48.6,"price":1135.9,"priceYoY":8.4,"priceMoM":4.1},{"month":3,"qty":7.55,"qtyYoY":-51,"qtyMoM":-32.6,"rmb":0.868,"rmbYoY":-44.8,"rmbMoM":-31.8,"price":1150.1,"priceYoY":12.7,"priceMoM":1.3},{"month":4,"qty":5.19,"qtyYoY":-73.3,"qtyMoM":-31.3,"rmb":0.597,"rmbYoY":-69.9,"rmbMoM":-31.3,"price":1150.6,"priceYoY":12.6,"priceMoM":0},{"month":5,"qty":16.7,"qtyYoY":205.3,"qtyMoM":222,"rmb":2.198,"rmbYoY":345.2,"rmbMoM":268.1,"price":1315.5,"priceYoY":45.8,"priceMoM":14.3},{"month":6,"qty":27.2,"qtyYoY":394.5,"qtyMoM":62.8,"rmb":3.573,"rmbYoY":597.4,"rmbMoM":62.6,"price":1313.7,"priceYoY":41,"priceMoM":-0.1},{"month":7,"qty":35.68,"qtyYoY":181.1,"qtyMoM":31.2,"rmb":4.558,"rmbYoY":268.2,"rmbMoM":27.6,"price":1277.4,"priceYoY":31,"priceMoM":-2.8}]},"124":{"name":"蒙古","series":{"qtyWanTon":{"2025":[327.8,316.47,442.03,483.66,434.9,470.43,497.89,601.46,600.05,536.53,624.41,671.75],"2026":[648.17,458.51,764.41,771.15,696.94,718.41,621.08,null,null,null,null,null]},"rmbYiYuan":{"2025":[23,21.052,26.918,26.587,22.017,23.802,21.356,27.268,30.42,25.801,33.304,36.447],"2026":[34.347,24.306,42.106,41.729,40.075,41.407,38.918,null,null,null,null,null]},"unitPriceYuanPerTon":{"2025":[701.7,665.2,609,549.7,506.3,506,428.9,453.4,507,480.9,533.4,542.6],"2026":[529.9,530.1,550.8,541.1,575,576.4,626.6,null,null,null,null,null]}},"latestYearRates":[{"month":1,"qty":648.17,"qtyYoY":97.7,"qtyMoM":-3.5,"rmb":34.347,"rmbYoY":49.3,"rmbMoM":-5.8,"price":529.9,"priceYoY":-24.5,"priceMoM":-2.3},{"month":2,"qty":458.51,"qtyYoY":44.9,"qtyMoM":-29.3,"rmb":24.306,"rmbYoY":15.5,"rmbMoM":-29.2,"price":530.1,"priceYoY":-20.3,"priceMoM":0},{"month":3,"qty":764.41,"qtyYoY":72.9,"qtyMoM":66.7,"rmb":42.106,"rmbYoY":56.4,"rmbMoM":73.2,"price":550.8,"priceYoY":-9.5,"priceMoM":3.9},{"month":4,"qty":771.15,"qtyYoY":59.4,"qtyMoM":0.9,"rmb":41.729,"rmbYoY":57,"rmbMoM":-0.9,"price":541.1,"priceYoY":-1.6,"priceMoM":-1.8},{"month":5,"qty":696.94,"qtyYoY":60.3,"qtyMoM":-9.6,"rmb":40.075,"rmbYoY":82,"rmbMoM":-4,"price":575,"priceYoY":13.6,"priceMoM":6.3},{"month":6,"qty":718.41,"qtyYoY":52.7,"qtyMoM":3.1,"rmb":41.407,"rmbYoY":74,"rmbMoM":3.3,"price":576.4,"priceYoY":13.9,"priceMoM":0.2},{"month":7,"qty":621.08,"qtyYoY":24.7,"qtyMoM":-13.5,"rmb":38.918,"rmbYoY":82.2,"rmbMoM":-6,"price":626.6,"priceYoY":46.1,"priceMoM":8.7}]},"145":{"name":"哈萨克斯坦","series":{"qtyWanTon":{"2025":[null,null,null,null,null,null,null,null,null,null,null,null],"2026":[null,null,null,0.28,0.15,1.09,2.78,null,null,null,null,null]},"rmbYiYuan":{"2025":[null,null,null,null,null,null,null,null,null,null,null,null],"2026":[null,null,null,0.03,0.016,0.12,0.306,null,null,null,null,null]},"unitPriceYuanPerTon":{"2025":[null,null,null,null,null,null,null,null,null,null,null,null],"2026":[null,null,null,1054.8,1054.9,1097.5,1103.3,null,null,null,null,null]}},"latestYearRates":[{"month":1,"qty":null,"qtyYoY":null,"qtyMoM":null,"rmb":null,"rmbYoY":null,"rmbMoM":null,"price":null,"priceYoY":null,"priceMoM":null},{"month":2,"qty":null,"qtyYoY":null,"qtyMoM":null,"rmb":null,"rmbYoY":null,"rmbMoM":null,"price":null,"priceYoY":null,"priceMoM":null},{"month":3,"qty":null,"qtyYoY":null,"qtyMoM":null,"rmb":null,"rmbYoY":null,"rmbMoM":null,"price":null,"priceYoY":null,"priceMoM":null},{"month":4,"qty":0.28,"qtyYoY":null,"qtyMoM":null,"rmb":0.03,"rmbYoY":null,"rmbMoM":null,"price":1054.8,"priceYoY":null,"priceMoM":null},{"month":5,"qty":0.15,"qtyYoY":null,"qtyMoM":-44.9,"rmb":0.016,"rmbYoY":null,"rmbMoM":-44.9,"price":1054.9,"priceYoY":null,"priceMoM":0},{"month":6,"qty":1.09,"qtyYoY":null,"qtyMoM":607.3,"rmb":0.12,"rmbYoY":null,"rmbMoM":635.8,"price":1097.5,"priceYoY":null,"priceMoM":4},{"month":7,"qty":2.78,"qtyYoY":null,"qtyMoM":154.1,"rmb":0.306,"rmbYoY":null,"rmbMoM":155.4,"price":1103.3,"priceYoY":null,"priceMoM":0.5}]},"233":{"name":"莫桑比克","series":{"qtyWanTon":{"2025":[7.89,0,null,null,null,null,null,null,8.17,null,null,null],"2026":[0,null,null,null,null,null,null,null,null,null,null,null]},"rmbYiYuan":{"2025":[1.024,0,null,null,null,null,null,null,0.875,null,null,null],"2026":[0,null,null,null,null,null,null,null,null,null,null,null]},"unitPriceYuanPerTon":{"2025":[1297.4,20792,null,null,null,null,null,null,1071,null,null,null],"2026":[257300,null,null,null,null,null,null,null,null,null,null,null]}},"latestYearRates":[{"month":1,"qty":0,"qtyYoY":-100,"qtyMoM":null,"rmb":0,"rmbYoY":-100,"rmbMoM":null,"price":257300,"priceYoY":19731.5,"priceMoM":null},{"month":2,"qty":null,"qtyYoY":null,"qtyMoM":null,"rmb":null,"rmbYoY":null,"rmbMoM":null,"price":null,"priceYoY":null,"priceMoM":null},{"month":3,"qty":null,"qtyYoY":null,"qtyMoM":null,"rmb":null,"rmbYoY":null,"rmbMoM":null,"price":null,"priceYoY":null,"priceMoM":null},{"month":4,"qty":null,"qtyYoY":null,"qtyMoM":null,"rmb":null,"rmbYoY":null,"rmbMoM":null,"price":null,"priceYoY":null,"priceMoM":null},{"month":5,"qty":null,"qtyYoY":null,"qtyMoM":null,"rmb":null,"rmbYoY":null,"rmbMoM":null,"price":null,"priceYoY":null,"priceMoM":null},{"month":6,"qty":null,"qtyYoY":null,"qtyMoM":null,"rmb":null,"rmbYoY":null,"rmbMoM":null,"price":null,"priceYoY":null,"priceMoM":null},{"month":7,"qty":null,"qtyYoY":null,"qtyMoM":null,"rmb":null,"rmbYoY":null,"rmbMoM":null,"price":null,"priceYoY":null,"priceMoM":null}]},"344":{"name":"俄罗斯","series":{"qtyWanTon":{"2025":[270.92,261.82,283,252.5,188.1,231.33,336.6,256.73,288.95,277.37,274.03,352.37],"2026":[319.5,230.73,337.79,268.34,252.32,316.9,421.42,null,null,null,null,null]},"rmbYiYuan":{"2025":[24.034,22.102,22.085,17.756,13.328,15.163,23.241,18.551,20.906,20.12,21.425,28.496],"2026":[25.267,18.131,27.024,22.436,22.862,29.279,39.549,null,null,null,null,null]},"unitPriceYuanPerTon":{"2025":[887.1,844.2,780.4,703.2,708.6,655.5,690.5,722.6,723.5,725.4,781.9,808.7],"2026":[790.8,785.8,800,836.1,906,923.9,938.5,null,null,null,null,null]}},"latestYearRates":[{"month":1,"qty":319.5,"qtyYoY":17.9,"qtyMoM":-9.3,"rmb":25.267,"rmbYoY":5.1,"rmbMoM":-11.3,"price":790.8,"priceYoY":-10.9,"priceMoM":-2.2},{"month":2,"qty":230.73,"qtyYoY":-11.9,"qtyMoM":-27.8,"rmb":18.131,"rmbYoY":-18,"rmbMoM":-28.2,"price":785.8,"priceYoY":-6.9,"priceMoM":-0.6},{"month":3,"qty":337.79,"qtyYoY":19.4,"qtyMoM":46.4,"rmb":27.024,"rmbYoY":22.4,"rmbMoM":49,"price":800,"priceYoY":2.5,"priceMoM":1.8},{"month":4,"qty":268.34,"qtyYoY":6.3,"qtyMoM":-20.6,"rmb":22.436,"rmbYoY":26.4,"rmbMoM":-17,"price":836.1,"priceYoY":18.9,"priceMoM":4.5},{"month":5,"qty":252.32,"qtyYoY":34.1,"qtyMoM":-6,"rmb":22.862,"rmbYoY":71.5,"rmbMoM":1.9,"price":906,"priceYoY":27.9,"priceMoM":8.4},{"month":6,"qty":316.9,"qtyYoY":37,"qtyMoM":25.6,"rmb":29.279,"rmbYoY":93.1,"rmbMoM":28.1,"price":923.9,"priceYoY":41,"priceMoM":2},{"month":7,"qty":421.42,"qtyYoY":25.2,"qtyMoM":33,"rmb":39.549,"rmbYoY":70.2,"rmbMoM":35.1,"price":938.5,"priceYoY":35.9,"priceMoM":1.6}]},"413":{"name":"哥伦比亚","series":{"qtyWanTon":{"2025":[null,5.35,null,null,null,null,null,2.57,null,null,0,0],"2026":[13.62,null,5.59,null,7.74,null,null,null,null,null,null,null]},"rmbYiYuan":{"2025":[null,0.6,null,null,null,null,null,0.295,null,null,0,0],"2026":[1.481,null,0.628,null,0.916,null,null,null,null,null,null,null]},"unitPriceYuanPerTon":{"2025":[null,1121.4,null,null,null,null,null,1150,null,null,266666.7,92170],"2026":[1087.8,null,1124.7,null,1183.4,null,null,null,null,null,null,null]}},"latestYearRates":[{"month":1,"qty":13.62,"qtyYoY":null,"qtyMoM":68082900,"rmb":1.481,"rmbYoY":null,"rmbMoM":803394.8,"price":1087.8,"priceYoY":null,"priceMoM":-98.8},{"month":2,"qty":null,"qtyYoY":null,"qtyMoM":null,"rmb":null,"rmbYoY":null,"rmbMoM":null,"price":null,"priceYoY":null,"priceMoM":null},{"month":3,"qty":5.59,"qtyYoY":null,"qtyMoM":null,"rmb":0.628,"rmbYoY":null,"rmbMoM":null,"price":1124.7,"priceYoY":null,"priceMoM":null},{"month":4,"qty":null,"qtyYoY":null,"qtyMoM":null,"rmb":null,"rmbYoY":null,"rmbMoM":null,"price":null,"priceYoY":null,"priceMoM":null},{"month":5,"qty":7.74,"qtyYoY":null,"qtyMoM":null,"rmb":0.916,"rmbYoY":null,"rmbMoM":null,"price":1183.4,"priceYoY":null,"priceMoM":null},{"month":6,"qty":null,"qtyYoY":null,"qtyMoM":null,"rmb":null,"rmbYoY":null,"rmbMoM":null,"price":null,"priceYoY":null,"priceMoM":null},{"month":7,"qty":null,"qtyYoY":null,"qtyMoM":null,"rmb":null,"rmbYoY":null,"rmbMoM":null,"price":null,"priceYoY":null,"priceMoM":null}]},"445":{"name":"委内瑞拉","series":{"qtyWanTon":{"2025":[null,null,null,null,null,null,null,null,null,null,null,null],"2026":[2.65,null,3.79,5.91,3.19,null,null,null,null,null,null,null]},"rmbYiYuan":{"2025":[null,null,null,null,null,null,null,null,null,null,null,null],"2026":[0.178,null,0.315,0.489,0.268,null,null,null,null,null,null,null]},"unitPriceYuanPerTon":{"2025":[null,null,null,null,null,null,null,null,null,null,null,null],"2026":[673.3,null,833,826.9,840.7,null,null,null,null,null,null,null]}},"latestYearRates":[{"month":1,"qty":2.65,"qtyYoY":null,"qtyMoM":null,"rmb":0.178,"rmbYoY":null,"rmbMoM":null,"price":673.3,"priceYoY":null,"priceMoM":null},{"month":2,"qty":null,"qtyYoY":null,"qtyMoM":null,"rmb":null,"rmbYoY":null,"rmbMoM":null,"price":null,"priceYoY":null,"priceMoM":null},{"month":3,"qty":3.79,"qtyYoY":null,"qtyMoM":null,"rmb":0.315,"rmbYoY":null,"rmbMoM":null,"price":833,"priceYoY":null,"priceMoM":null},{"month":4,"qty":5.91,"qtyYoY":null,"qtyMoM":56.2,"rmb":0.489,"rmbYoY":null,"rmbMoM":55.1,"price":826.9,"priceYoY":null,"priceMoM":-0.7},{"month":5,"qty":3.19,"qtyYoY":null,"qtyMoM":-46.1,"rmb":0.268,"rmbYoY":null,"rmbMoM":-45.2,"price":840.7,"priceYoY":null,"priceMoM":1.7},{"month":6,"qty":null,"qtyYoY":null,"qtyMoM":null,"rmb":null,"rmbYoY":null,"rmbMoM":null,"price":null,"priceYoY":null,"priceMoM":null},{"month":7,"qty":null,"qtyYoY":null,"qtyMoM":null,"rmb":null,"rmbYoY":null,"rmbMoM":null,"price":null,"priceYoY":null,"priceMoM":null}]},"501":{"name":"加拿大","series":{"qtyWanTon":{"2025":[94.4,115.65,82.81,81.66,62.96,98.74,70.43,102.75,109.34,98.06,52.38,109.94],"2026":[80.99,22.59,86.27,33.98,59.09,20.5,54.21,null,null,null,null,null]},"rmbYiYuan":{"2025":[13.004,14.667,10.056,9.548,7.244,10.975,7.741,11.79,13.31,12.458,7.004,14.879],"2026":[10.688,3.201,12.112,4.31,8.277,2.957,7.508,null,null,null,null,null]},"unitPriceYuanPerTon":{"2025":[1377.5,1268.2,1214.4,1169.2,1150.6,1111.5,1099.2,1147.4,1217.3,1270.5,1337,1353.3],"2026":[1319.7,1416.7,1404,1268.4,1400.9,1442.5,1385,null,null,null,null,null]}},"latestYearRates":[{"month":1,"qty":80.99,"qtyYoY":-14.2,"qtyMoM":-26.3,"rmb":10.688,"rmbYoY":-17.8,"rmbMoM":-28.2,"price":1319.7,"priceYoY":-4.2,"priceMoM":-2.5},{"month":2,"qty":22.59,"qtyYoY":-80.5,"qtyMoM":-72.1,"rmb":3.201,"rmbYoY":-78.2,"rmbMoM":-70.1,"price":1416.7,"priceYoY":11.7,"priceMoM":7.3},{"month":3,"qty":86.27,"qtyYoY":4.2,"qtyMoM":281.8,"rmb":12.112,"rmbYoY":20.5,"rmbMoM":278.4,"price":1404,"priceYoY":15.6,"priceMoM":-0.9},{"month":4,"qty":33.98,"qtyYoY":-58.4,"qtyMoM":-60.6,"rmb":4.31,"rmbYoY":-54.9,"rmbMoM":-64.4,"price":1268.4,"priceYoY":8.5,"priceMoM":-9.7},{"month":5,"qty":59.09,"qtyYoY":-6.1,"qtyMoM":73.9,"rmb":8.277,"rmbYoY":14.3,"rmbMoM":92,"price":1400.9,"priceYoY":21.7,"priceMoM":10.4},{"month":6,"qty":20.5,"qtyYoY":-79.2,"qtyMoM":-65.3,"rmb":2.957,"rmbYoY":-73.1,"rmbMoM":-64.3,"price":1442.5,"priceYoY":29.8,"priceMoM":3},{"month":7,"qty":54.21,"qtyYoY":-23,"qtyMoM":164.5,"rmb":7.508,"rmbYoY":-3,"rmbMoM":153.9,"price":1385,"priceYoY":26,"priceMoM":-4}]},"502":{"name":"美国","series":{"qtyWanTon":{"2025":[135.74,126.35,20.77,7.62,null,null,null,null,null,null,null,null],"2026":[0,0,null,null,null,0,0,null,null,null,null,null]},"rmbYiYuan":{"2025":[12.83,12.407,2.213,0.647,null,null,null,null,null,null,null,null],"2026":[0,0,null,null,null,0,0,null,null,null,null,null]},"unitPriceYuanPerTon":{"2025":[945.2,981.9,1065.2,848.6,null,null,null,null,null,null,null,null],"2026":[92611.1,118692.3,null,null,null,93750,88352.9,null,null,null,null,null]}},"latestYearRates":[{"month":1,"qty":0,"qtyYoY":-100,"qtyMoM":null,"rmb":0,"rmbYoY":-100,"rmbMoM":null,"price":92611.1,"priceYoY":9698.3,"priceMoM":null},{"month":2,"qty":0,"qtyYoY":-100,"qtyMoM":-27.8,"rmb":0,"rmbYoY":-100,"rmbMoM":-7.4,"price":118692.3,"priceYoY":11987.5,"priceMoM":28.2},{"month":3,"qty":null,"qtyYoY":null,"qtyMoM":null,"rmb":null,"rmbYoY":null,"rmbMoM":null,"price":null,"priceYoY":null,"priceMoM":null},{"month":4,"qty":null,"qtyYoY":null,"qtyMoM":null,"rmb":null,"rmbYoY":null,"rmbMoM":null,"price":null,"priceYoY":null,"priceMoM":null},{"month":5,"qty":null,"qtyYoY":null,"qtyMoM":null,"rmb":null,"rmbYoY":null,"rmbMoM":null,"price":null,"priceYoY":null,"priceMoM":null},{"month":6,"qty":0,"qtyYoY":null,"qtyMoM":null,"rmb":0,"rmbYoY":null,"rmbMoM":null,"price":93750,"priceYoY":null,"priceMoM":null},{"month":7,"qty":0,"qtyYoY":null,"qtyMoM":6.3,"rmb":0,"rmbYoY":null,"rmbMoM":0.1,"price":88352.9,"priceYoY":null,"priceMoM":-5.8}]},"601":{"name":"澳大利亚","series":{"qtyWanTon":{"2025":[121.58,54.21,16.33,37.82,47.3,102.47,43.11,36.68,57.48,104.69,85.13,178.22],"2026":[88.05,83.93,36.98,45.18,70.36,134.17,226.42,null,null,null,null,null]},"rmbYiYuan":{"2025":[14.975,5.848,1.639,4.732,5.113,11.399,4.435,4.236,7.318,12.639,11.435,23.257],"2026":[11.669,12.075,5.231,6.464,9.908,17.81,34.213,null,null,null,null,null]},"unitPriceYuanPerTon":{"2025":[1231.6,1078.7,1003.8,1251.2,1080.9,1112.4,1028.7,1154.7,1273.1,1207.3,1343.2,1305],"2026":[1325.3,1438.6,1414.6,1430.7,1408.1,1327.4,1511.1,null,null,null,null,null]}},"latestYearRates":[{"month":1,"qty":88.05,"qtyYoY":-27.6,"qtyMoM":-50.6,"rmb":11.669,"rmbYoY":-22.1,"rmbMoM":-49.8,"price":1325.3,"priceYoY":7.6,"priceMoM":1.6},{"month":2,"qty":83.93,"qtyYoY":54.8,"qtyMoM":-4.7,"rmb":12.075,"rmbYoY":106.5,"rmbMoM":3.5,"price":1438.6,"priceYoY":33.4,"priceMoM":8.6},{"month":3,"qty":36.98,"qtyYoY":126.5,"qtyMoM":-55.9,"rmb":5.231,"rmbYoY":219.2,"rmbMoM":-56.7,"price":1414.6,"priceYoY":40.9,"priceMoM":-1.7},{"month":4,"qty":45.18,"qtyYoY":19.4,"qtyMoM":22.2,"rmb":6.464,"rmbYoY":36.6,"rmbMoM":23.6,"price":1430.7,"priceYoY":14.3,"priceMoM":1.1},{"month":5,"qty":70.36,"qtyYoY":48.7,"qtyMoM":55.7,"rmb":9.908,"rmbYoY":93.8,"rmbMoM":53.3,"price":1408.1,"priceYoY":30.3,"priceMoM":-1.6},{"month":6,"qty":134.17,"qtyYoY":30.9,"qtyMoM":90.7,"rmb":17.81,"rmbYoY":56.2,"rmbMoM":79.8,"price":1327.4,"priceYoY":19.3,"priceMoM":-5.7},{"month":7,"qty":226.42,"qtyYoY":425.2,"qtyMoM":68.8,"rmb":34.213,"rmbYoY":671.4,"rmbMoM":92.1,"price":1511.1,"priceYoY":46.9,"priceMoM":13.8}]},"609":{"name":"新西兰","series":{"qtyWanTon":{"2025":[null,null,3.01,6.6,null,null,null,null,null,null,null,10.85],"2026":[null,null,null,null,6.48,null,null,null,null,null,null,null]},"rmbYiYuan":{"2025":[null,null,0.325,0.635,null,null,null,null,null,null,null,1.016],"2026":[null,null,null,null,0.75,null,null,null,null,null,null,null]},"unitPriceYuanPerTon":{"2025":[null,null,1081.1,961.5,null,null,null,null,null,null,null,936.3],"2026":[null,null,null,null,1157.9,null,null,null,null,null,null,null]}},"latestYearRates":[{"month":1,"qty":null,"qtyYoY":null,"qtyMoM":null,"rmb":null,"rmbYoY":null,"rmbMoM":null,"price":null,"priceYoY":null,"priceMoM":null},{"month":2,"qty":null,"qtyYoY":null,"qtyMoM":null,"rmb":null,"rmbYoY":null,"rmbMoM":null,"price":null,"priceYoY":null,"priceMoM":null},{"month":3,"qty":null,"qtyYoY":null,"qtyMoM":null,"rmb":null,"rmbYoY":null,"rmbMoM":null,"price":null,"priceYoY":null,"priceMoM":null},{"month":4,"qty":null,"qtyYoY":null,"qtyMoM":null,"rmb":null,"rmbYoY":null,"rmbMoM":null,"price":null,"priceYoY":null,"priceMoM":null},{"month":5,"qty":6.48,"qtyYoY":null,"qtyMoM":null,"rmb":0.75,"rmbYoY":null,"rmbMoM":null,"price":1157.9,"priceYoY":null,"priceMoM":null},{"month":6,"qty":null,"qtyYoY":null,"qtyMoM":null,"rmb":null,"rmbYoY":null,"rmbMoM":null,"price":null,"priceYoY":null,"priceMoM":null},{"month":7,"qty":null,"qtyYoY":null,"qtyMoM":null,"rmb":null,"rmbYoY":null,"rmbMoM":null,"price":null,"priceYoY":null,"priceMoM":null}]}},"summary":{"ytdLatest":{"qty":8047.92,"rmb":614.904},"ytdPrev":{"qty":6247.95,"rmb":465.753},"ytdYoY":{"qtyYoY":28.8,"rmbYoY":32},"priceLatest":764.1,"pricePrev":745.4,"priceYoY":2.5}}}};
+  var TRADE_COMMODITIES = [{"key":"cj","code":"27011210","label":"焦煤进口"},{"key":"wy","code":"27011100","label":"无烟煤进口"}];
+  var TRADE_METRICS = [{"key":"qty","title":"进口数量","unit":"万吨","seriesKey":"qtyWanTon","yoyField":"qtyYoY","momField":"qtyMoM"},{"key":"rmb","title":"进口金额","unit":"亿元","seriesKey":"rmbYiYuan","yoyField":"rmbYoY","momField":"rmbMoM"},{"key":"price","title":"进口单价","unit":"元/吨","seriesKey":"unitPriceYuanPerTon","yoyField":"priceYoY","momField":"priceMoM"}];
+  var TRADE_MONTHS = ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
+  var tradeCharts = {};
+  var state = { commodity: 'cj', country: '__all__', metric: 'qty' };
+
+  function commCode(ckey) {
+    for (var i = 0; i < TRADE_COMMODITIES.length; i++) if (TRADE_COMMODITIES[i].key === ckey) return TRADE_COMMODITIES[i].code;
+    return null;
+  }
+  function tradeMetric(mkey) {
+    for (var i = 0; i < TRADE_METRICS.length; i++) if (TRADE_METRICS[i].key === mkey) return TRADE_METRICS[i];
+    return null;
+  }
+  // 按 商品+国家 取数据：__all__ 用该商品顶层合计
+  function tradeDataFor(ckey, country) {
+    var cd = TRADE_DATA.commodities[commCode(ckey)];
+    if (!cd) return null;
+    if (country === '__all__') return { name: '全部', meta: cd.meta, series: cd.series, latestYearRates: cd.latestYearRates };
+    var b = cd.byCountry[country];
+    return b ? { name: b.name, meta: cd.meta, series: b.series, latestYearRates: b.latestYearRates } : null;
+  }
+
+  // 顶部统计卡：最新月数值 + 环比 + 同比
+  function renderTradeStats(pid, m, d) {
+    var rates = d.latestYearRates;
+    var last = null;
+    for (var i = rates.length - 1; i >= 0; i--) { if (rates[i] && rates[i][m.key] != null) { last = rates[i]; break; } }
+    function card(label, sub, valStr, numVal) {
+      var cls = (numVal !== null && numVal !== undefined) ? (numVal > 0 ? ' up' : numVal < 0 ? ' dn' : '') : '';
+      return '<div class="stat-card"><div class="stat-label">' + label + '</div><div class="stat-sub">' + sub + '</div><div class="stat-val' + cls + '">' + valStr + '</div></div>';
+    }
+    function rStr(v) { return (v === null || v === undefined) ? '-' : (v > 0 ? '+' : '') + v + '%'; }
+    var host = document.getElementById('stats-' + pid);
+    if (!last) { host.innerHTML = card(d.name + ' ' + m.title, '最新年份暂无数据', '—', null); return; }
+    host.innerHTML =
+      card(d.name + ' ' + m.title + '最新', d.meta.latestYear + '年' + last.month + '月', last[m.key] + ' ' + m.unit, null) +
+      card('环比', '较上月', rStr(last[m.momField]), last[m.momField]) +
+      card('同比', '较去年同期', rStr(last[m.yoyField]), last[m.yoyField]);
+  }
+
+  // 曲线图：不同年份不同曲线(左轴) + 最新年份同比/环比(右轴，虚线)
+  function buildTradeOption(m, d) {
+    var years = d.meta.years, ly = d.meta.latestYear;
+    var series = [];
+    years.forEach(function(year, idx) {
+      var color = YEAR_COLORS[year] || '#94a3b8';
+      var isLatest = year === ly;
+      series.push({
+        name: year + '年', type: 'line', yAxisIndex: 0,
+        emphasis: { focus: 'series', lineStyle: { width: 3 }, itemStyle: { borderColor: '#fff', borderWidth: 1 } },
+        blur: { lineStyle: { opacity: 0.12 }, itemStyle: { opacity: 0.12 } },
+        data: d.series[m.seriesKey][String(year)],
+        smooth: true, symbol: 'circle', symbolSize: isLatest ? 6 : 4, connectNulls: false,
+        lineStyle: { color: color, width: isLatest ? 2.5 : 1.5 }, itemStyle: { color: color },
+        z: isLatest ? 10 : idx + 1
+      });
+    });
+    var yoy = new Array(12).fill(null), mom = new Array(12).fill(null);
+    d.latestYearRates.forEach(function(r) { yoy[r.month - 1] = r[m.yoyField]; mom[r.month - 1] = r[m.momField]; });
+    var emph = { focus: 'series', lineStyle: { width: 3 }, itemStyle: { borderColor: '#fff', borderWidth: 1 } };
+    var blr = { lineStyle: { opacity: 0.12 }, itemStyle: { opacity: 0.12 } };
+    series.push({
+      name: ly + '年同比%', type: 'line', yAxisIndex: 1, emphasis: emph, blur: blr, data: yoy,
+      smooth: true, symbol: 'diamond', symbolSize: 6, connectNulls: false,
+      lineStyle: { color: YOY_COLOR, width: 2 }, itemStyle: { color: YOY_COLOR }
+    });
+    series.push({
+      name: ly + '年环比%', type: 'line', yAxisIndex: 1, emphasis: emph, blur: blr, data: mom,
+      smooth: true, symbol: 'triangle', symbolSize: 6, connectNulls: false,
+      lineStyle: { color: MOM_COLOR, width: 2, type: 'dashed' }, itemStyle: { color: MOM_COLOR }
+    });
+
+    return {
+      backgroundColor: '#0b0f19', animation: true,
+      tooltip: buildConfinedTooltip({
+        trigger: 'axis',
+        axisPointer: { type: 'line', snap: true, lineStyle: { color: '#475569', type: 'dashed', width: 1 } },
+        backgroundColor: 'rgba(15,23,42,0.95)', borderColor: '#1f2937',
+        textStyle: { color: '#e2e8f0', fontSize: 13 },
+        formatter: function(params) {
+          if (!params || !params.length) return '';
+          var header = '', lines = '';
+          params.forEach(function(p) {
+            if (p.value == null) return;
+            var isRate = p.seriesName.indexOf('%') > -1;
+            var v = Array.isArray(p.value) ? p.value[1] : p.value;
+            if (v == null) return;
+            if (!header) header = '<b>' + d.name + ' · ' + d.meta.latestYear + '年</b><br/>';
+            lines += (p.marker || '<span style="color:' + p.color + '">●</span> ')
+              + p.seriesName + ': <b>' + v + '</b>' + (isRate ? '%' : ' ' + m.unit) + '<br/>';
+          });
+          return header + lines;
+        }
+      }),
+      legend: { top: 4, textStyle: { color: '#cbd5e1', fontSize: 12 }, itemGap: 16 },
+      grid: { left: 72, right: 72, top: 50, bottom: 38 },
+      xAxis: {
+        type: 'category', boundaryGap: false, data: TRADE_MONTHS,
+        axisLabel: { color: '#9aa4b2', fontSize: 12 },
+        splitLine: { show: true, lineStyle: { color: '#1a2236' } },
+        axisTick: { show: false }, axisLine: { lineStyle: { color: '#334155' } }
+      },
+      yAxis: [
+        { type: 'value', name: m.unit, position: 'left',
+          nameTextStyle: { color: '#64748b', fontSize: 11 },
+          axisLabel: { color: '#9aa4b2', fontSize: 11 },
+          splitLine: { lineStyle: { color: '#1a2236' } } },
+        { type: 'value', name: '%', position: 'right',
+          nameTextStyle: { color: '#64748b', fontSize: 11 },
+          axisLabel: { color: '#9aa4b2', fontSize: 11, formatter: '{value}%' },
+          splitLine: { show: false } }
+      ],
+      dataZoom: [
+        { type: 'slider', bottom: 4, height: 18, start: 0, end: 100,
+          textStyle: { color: '#9aa4b2', fontSize: 10 },
+          handleStyle: { color: '#334155' },
+          fillerColor: 'rgba(59,130,246,0.1)', borderColor: '#1f2937' },
+        { type: 'inside' }
+      ],
+      series: series
+    };
+  }
+
+  function activateTrade() {
+    var m = tradeMetric(state.metric);
+    var d = tradeDataFor(state.commodity, state.country);
+    if (!m || !d) return;
+    var pid = 'panel-trade-' + state.commodity + '-' + state.metric;
+    var cInfo = null;
+    for (var i = 0; i < TRADE_COMMODITIES.length; i++) if (TRADE_COMMODITIES[i].key === state.commodity) cInfo = TRADE_COMMODITIES[i];
+    document.querySelectorAll('.panel').forEach(function(p) { p.classList.remove('active'); });
+    var panel = document.getElementById(pid);
+    if (panel) panel.classList.add('active');
+    var note = panel.querySelector('.trade-note');
+    if (note) note.textContent = d.name + ' · ' + (cInfo ? cInfo.label : '') + ' · ' + d.meta.commodityName + '(HS ' + (cInfo ? cInfo.code : '') + ') 进口 · 数据来源：' + d.meta.source + (state.metric === 'price' ? ' · 单价=人民币÷数量' : ' · 左轴绝对量/价，右轴最新年份月度同比/环比（%）');
+
+    var el = document.getElementById('chart-' + pid);
+    if (tradeCharts[pid]) { tradeCharts[pid].dispose(); delete tradeCharts[pid]; }
+    renderTradeStats(pid, m, d);
+    var chart = echarts.init(el, null, { renderer: 'canvas' });
+    chart.setOption(buildTradeOption(m, d));
+    tradeCharts[pid] = chart;
+    if (!el.__resizeBound) {
+      el.__resizeBound = true;
+      window.addEventListener('resize', function() { if (tradeCharts[pid]) tradeCharts[pid].resize(); });
+    }
+  }
+
+  // 一级 tab：焦煤进口 / 无烟煤进口
+  document.querySelectorAll('#region-bar [data-region^="trade-"]').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var ckey = btn.dataset.region.slice(6); // trade-xxx -> xxx
+      document.querySelectorAll('#region-bar [data-region]').forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      document.getElementById('sub-bar-shanxi').classList.remove('visible');
+      document.getElementById('sub-bar-qhd').classList.remove('visible');
+      document.getElementById('sub-bar-trade').classList.add('visible');
+      document.getElementById('trade-filter').style.display = 'flex';
+
+      state.commodity = ckey;
+      state.country = '__all__';
+      state.metric = 'qty';
+
+      // 重建国家下拉（随商品变化）
+      var cd = TRADE_DATA.commodities[commCode(ckey)];
+      var opts = '<option value="__all__">全部国家（地区）</option>';
+      (cd.countries || []).forEach(function(ct) { opts += '<option value="' + ct.code + '">' + ct.name + '</option>'; });
+      var sel = document.getElementById('trade-country');
+      sel.innerHTML = opts;
+      sel.value = '__all__';
+
+      var sub = document.getElementById('sub-bar-trade');
+      sub.querySelectorAll('.sub-tab-btn').forEach(function(b) { b.classList.remove('active'); });
+      var first = sub.querySelector('.sub-tab-btn[data-key="qty"]');
+      if (first) first.classList.add('active');
+      activateTrade();
+    });
+  });
+
+  // 切回 山西/秦皇岛 时隐藏进出口二级栏与筛选器
+  ['region-shanxi', 'region-qhd'].forEach(function(id) {
+    document.getElementById(id).addEventListener('click', function() {
+      document.getElementById('sub-bar-trade').classList.remove('visible');
+      document.getElementById('trade-filter').style.display = 'none';
+    });
+  });
+
+  // 二级：进出口指标（数量/金额/单价）
+  document.querySelectorAll('#sub-bar-trade .sub-tab-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      state.metric = btn.dataset.key;
+      document.querySelectorAll('#sub-bar-trade .sub-tab-btn').forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      activateTrade();
+    });
+  });
+
+  // 国家/地区切换（默认全部）
+  document.getElementById('trade-country').addEventListener('change', function() {
+    state.country = this.value;
+    activateTrade();
+  });
+</script>
 </body>
 </html>
