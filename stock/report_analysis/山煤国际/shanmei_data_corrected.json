@@ -4,7 +4,7 @@
     "stockCode": "600546",
     "description": "此文件包含修正后的数据，用于页面展示。手动修正的数据会被标记。",
     "dataSource": "shanmei_data.json",
-    "lastUpdated": "2026-04-28",
+    "lastUpdated": "2026-08-29",
     "products": [
       "productionCoal",
       "tradeCoal"
@@ -2262,6 +2262,115 @@
           "production": null,
           "price": null,
           "unitCost": null
+        },
+        "q3": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        },
+        "q4": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        }
+      }
+    },
+    {
+      "period": "2026年上半年",
+      "year": "2026",
+      "month": 6,
+      "filename": "山煤国际2026年半年度报告.pdf",
+      "productionCoal": {
+        "production": 1802.41,
+        "sales": 1336.72,
+        "inventory": null,
+        "revenue": 7743000000.000001,
+        "cost": null,
+        "unitPrice": 579.25,
+        "unitCost": null,
+        "unitGrossProfit": null,
+        "grossMargin": null,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "tradeCoal": {
+        "sales": 442.25,
+        "inventory": null,
+        "revenue": 2175000000,
+        "cost": null,
+        "unitPrice": 491.86,
+        "unitCost": null,
+        "grossMargin": null,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "metallurgicalCoal": {
+        "production": null,
+        "sales": null,
+        "revenue": null,
+        "cost": null,
+        "unitPrice": null,
+        "unitCost": null,
+        "grossMargin": null,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "thermalCoal": {
+        "production": null,
+        "sales": null,
+        "revenue": null,
+        "cost": null,
+        "unitPrice": null,
+        "unitCost": null,
+        "grossMargin": null,
+        "_corrected": false,
+        "_verified": false,
+        "_notes": null
+      },
+      "quarterData": {
+        "quarter": "Q2",
+        "quarterly": {
+          "revenue": 40.202243,
+          "cost": 17.219303,
+          "sales": 668.11,
+          "production": 890.24,
+          "price": 601.73,
+          "unitCost": 257.73,
+          "salesSource": "production_pdf",
+          "grossMargin": 57.17
+        },
+        "cumulative": {
+          "revenue": 77.43,
+          "cost": 35.6,
+          "sales": 1336.72,
+          "production": 1802.41
+        }
+      },
+      "quarterlyData": {
+        "q1": {
+          "revenue": null,
+          "cost": null,
+          "sales": null,
+          "production": null,
+          "price": null,
+          "unitCost": null
+        },
+        "q2": {
+          "revenue": 40.202243,
+          "cost": 17.219303,
+          "sales": 668.11,
+          "production": 890.24,
+          "price": 601.73,
+          "unitCost": 257.73
         },
         "q3": {
           "revenue": null,

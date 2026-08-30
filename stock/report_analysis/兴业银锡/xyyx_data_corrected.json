@@ -265,6 +265,46 @@
         "lastYearProduction": 8901.85,
         "_corrected": true
       }
+    },
+    {
+      "period": "2026年1-3月",
+      "year": 2026,
+      "month": 3,
+      "type": "cumulative",
+      "silver": {
+        "revenue": 14.101104,
+        "cost": null,
+        "production": 78.95,
+        "sales": 86.90,
+        "lastYearProduction": 78.95
+      },
+      "tin": {
+        "revenue": 2.340354,
+        "cost": null,
+        "production": 777.33,
+        "sales": 786.13,
+        "lastYearProduction": null
+      }
+    },
+    {
+      "period": "2026年上半年",
+      "year": 2026,
+      "month": 6,
+      "type": "cumulative",
+      "silver": {
+        "revenue": 25.1061905805,
+        "cost": 6.8628131025,
+        "production": 158.08,
+        "sales": 166.67,
+        "lastYearProduction": 131.32
+      },
+      "tin": {
+        "revenue": 8.082269069,
+        "cost": 2.2891059193000003,
+        "production": 2758.46,
+        "sales": 2650.31,
+        "lastYearProduction": 3589.82
+      }
     }
   ]
 }

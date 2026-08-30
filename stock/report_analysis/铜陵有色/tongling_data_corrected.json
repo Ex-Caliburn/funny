@@ -4,7 +4,7 @@
     "stockCode": "000630",
     "description": "此文件包含修正后的数据，用于页面展示。手动修正的数据会被标记。",
     "dataSource": "tongling_data.json",
-    "lastUpdated": "2026-04-24",
+    "lastUpdated": "2026-08-27",
     "products": [
       "copper",
       "goldByproduct",
@@ -17,6 +17,82 @@
     }
   },
   "summary": [
+    {
+      "period": "2026年上半年",
+      "year": "2026",
+      "filename": "铜陵有色2026年半年度报告.pdf",
+      "cost": 910.043472951,
+      "revenue": 974.1477136227,
+      "production": null,
+      "sales": null,
+      "inventory": null,
+      "grossMargin": 6.58,
+      "operatingProfit": 64.1,
+      "productSales": {
+        "cathodeCopper": null,
+        "copperConcentrate": null,
+        "copperMaterial": null
+      },
+      "otherProducts": {
+        "goldByproduct": {
+          "revenue": 196.3106241591,
+          "cost": 103.32616011379999,
+          "grossMargin": 47.37,
+          "operatingProfit": 92.98,
+          "_corrected": false,
+          "_verified": false
+        },
+        "chemical": {
+          "revenue": 40.282649139200004,
+          "cost": 16.5799541897,
+          "grossMargin": 58.84,
+          "operatingProfit": 23.7,
+          "_corrected": false,
+          "_verified": false
+        }
+      },
+      "_corrected": false,
+      "_verified": false,
+      "_notes": null
+    },
+    {
+      "period": "2026年1-3月",
+      "year": "2026",
+      "filename": "铜陵有色2026年第一季度报告.pdf",
+      "cost": 609.7530229509999,
+      "revenue": 646.7017382002,
+      "production": null,
+      "sales": null,
+      "inventory": null,
+      "grossMargin": 5.71,
+      "operatingProfit": 36.95,
+      "productSales": {
+        "cathodeCopper": null,
+        "copperConcentrate": null,
+        "copperMaterial": null
+      },
+      "otherProducts": {
+        "goldByproduct": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null,
+          "operatingProfit": null,
+          "_corrected": false,
+          "_verified": false
+        },
+        "chemical": {
+          "revenue": null,
+          "cost": null,
+          "grossMargin": null,
+          "operatingProfit": null,
+          "_corrected": false,
+          "_verified": false
+        }
+      },
+      "_corrected": false,
+      "_verified": false,
+      "_notes": null
+    },
     {
       "period": "2025年全年",
       "year": "2025",
