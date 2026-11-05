@@ -13,8 +13,92 @@
     "map_11_61": "工业磷酸一铵（11-61）",
     "mcp_feed": "磷酸二氢钙（饲料级）"
   },
-  "updatedAt": "2026-08-22",
+  "updatedAt": "2026-10-11",
   "data": [
+    {
+      "date": "2026-10-05",
+      "phosphate_ore": 975,
+      "yellow_phosphorus": 27600,
+      "phosphoric_acid_40": 4080,
+      "phosphoric_acid_52": 5200,
+      "phosphoric_acid_85i": 7850,
+      "phosphoric_acid_85f": 8200,
+      "map_11_44": 3875,
+      "mcp_feed": 5400,
+      "map_11_61": 6600
+    },
+    {
+      "date": "2026-09-28",
+      "phosphate_ore": 975,
+      "yellow_phosphorus": 27500,
+      "phosphoric_acid_40": 4240,
+      "phosphoric_acid_52": 5304,
+      "phosphoric_acid_85i": 7850,
+      "phosphoric_acid_85f": 8200,
+      "map_11_44": 3875,
+      "mcp_feed": 5600,
+      "map_11_61": 6600
+    },
+    {
+      "date": "2026-09-21",
+      "phosphate_ore": 975,
+      "yellow_phosphorus": 27400,
+      "phosphoric_acid_40": 4240,
+      "phosphoric_acid_52": 5304,
+      "phosphoric_acid_85i": 7850,
+      "phosphoric_acid_85f": 8900,
+      "map_11_44": 4000,
+      "mcp_feed": 5700,
+      "map_11_61": 6700
+    },
+    {
+      "date": "2026-09-14",
+      "phosphate_ore": 975,
+      "yellow_phosphorus": 27050,
+      "phosphoric_acid_40": 4240,
+      "phosphoric_acid_52": 5304,
+      "phosphoric_acid_85i": 7850,
+      "phosphoric_acid_85f": 9000,
+      "map_11_44": 4050,
+      "mcp_feed": 5700,
+      "map_11_61": 6700
+    },
+    {
+      "date": "2026-09-07",
+      "phosphate_ore": 975,
+      "yellow_phosphorus": 27150,
+      "phosphoric_acid_40": 4240,
+      "phosphoric_acid_52": 5304,
+      "phosphoric_acid_85i": 7900,
+      "phosphoric_acid_85f": 9000,
+      "map_11_44": 4250,
+      "mcp_feed": 5800,
+      "map_11_61": 7000
+    },
+    {
+      "date": "2026-08-31",
+      "phosphate_ore": 975,
+      "yellow_phosphorus": 27600,
+      "phosphoric_acid_40": 4320,
+      "phosphoric_acid_52": 5356,
+      "phosphoric_acid_85i": 8100,
+      "phosphoric_acid_85f": 10000,
+      "map_11_44": 4250,
+      "mcp_feed": 5900,
+      "map_11_61": 7000
+    },
+    {
+      "date": "2026-08-24",
+      "phosphate_ore": 975,
+      "yellow_phosphorus": 27750,
+      "phosphoric_acid_40": 4320,
+      "phosphoric_acid_52": 5356,
+      "phosphoric_acid_85i": 8100,
+      "phosphoric_acid_85f": 10000,
+      "map_11_44": 4300,
+      "mcp_feed": 6000,
+      "map_11_61": 7000
+    },
     {
       "date": "2026-08-17",
       "phosphate_ore": 975,

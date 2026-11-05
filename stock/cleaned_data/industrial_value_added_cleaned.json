@@ -196,6 +196,13 @@
         "value": null,
         "mom": null,
         "yoy": 4.5
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
+        "value": null,
+        "mom": null,
+        "yoy": 5.2
       }
     ],
     "分三大门类": [
@@ -391,6 +398,13 @@
       {
         "yearMonth": "2026-07",
         "timeLabel": "2026-07",
+        "value": null,
+        "mom": null,
+        "yoy": null
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
         "value": null,
         "mom": null,
         "yoy": null
@@ -592,6 +606,13 @@
         "value": null,
         "mom": null,
         "yoy": -4.2
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
+        "value": null,
+        "mom": null,
+        "yoy": -1.4
       }
     ],
     "制造业": [
@@ -790,6 +811,13 @@
         "value": null,
         "mom": null,
         "yoy": 5.5
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
+        "value": null,
+        "mom": null,
+        "yoy": 6.1
       }
     ],
     "高技术制造业": [
@@ -988,6 +1016,13 @@
         "value": null,
         "mom": null,
         "yoy": 16.9
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
+        "value": null,
+        "mom": null,
+        "yoy": 16.7
       }
     ],
     "电力、热力、燃气及水生产和供应业": [
@@ -1186,6 +1221,13 @@
         "value": null,
         "mom": null,
         "yoy": 5
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
+        "value": null,
+        "mom": null,
+        "yoy": 4.9
       }
     ],
     "分经济类型": [
@@ -1381,6 +1423,13 @@
       {
         "yearMonth": "2026-07",
         "timeLabel": "2026-07",
+        "value": null,
+        "mom": null,
+        "yoy": null
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
         "value": null,
         "mom": null,
         "yoy": null
@@ -1582,6 +1631,13 @@
         "value": null,
         "mom": null,
         "yoy": 1.6
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
+        "value": null,
+        "mom": null,
+        "yoy": 3
       }
     ],
     "股份制企业": [
@@ -1780,6 +1836,13 @@
         "value": null,
         "mom": null,
         "yoy": 5
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
+        "value": null,
+        "mom": null,
+        "yoy": 5.7
       }
     ],
     "外商及港澳台商投资企业": [
@@ -1987,6 +2050,13 @@
         "value": null,
         "mom": null,
         "yoy": 3.7
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
+        "value": null,
+        "mom": null,
+        "yoy": 3.7
       }
     ],
     "主要行业增加值": [
@@ -2182,6 +2252,13 @@
       {
         "yearMonth": "2026-07",
         "timeLabel": "2026-07",
+        "value": null,
+        "mom": null,
+        "yoy": null
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
         "value": null,
         "mom": null,
         "yoy": null
@@ -2383,6 +2460,13 @@
         "value": null,
         "mom": null,
         "yoy": -10.8
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
+        "value": null,
+        "mom": null,
+        "yoy": -5.6
       }
     ],
     "石油和天然气开采业": [
@@ -2581,6 +2665,13 @@
         "value": null,
         "mom": null,
         "yoy": 6.1
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
+        "value": null,
+        "mom": null,
+        "yoy": 6.2
       }
     ],
     "农副食品加工业": [
@@ -2779,6 +2870,13 @@
         "value": null,
         "mom": null,
         "yoy": 3.8
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
+        "value": null,
+        "mom": null,
+        "yoy": 4.3
       }
     ],
     "食品制造业": [
@@ -2977,6 +3075,13 @@
         "value": null,
         "mom": null,
         "yoy": 9
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
+        "value": null,
+        "mom": null,
+        "yoy": 8.8
       }
     ],
     "酒、饮料和精制茶制造业": [
@@ -3175,6 +3280,13 @@
         "value": null,
         "mom": null,
         "yoy": 2.6
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
+        "value": null,
+        "mom": null,
+        "yoy": 3
       }
     ],
     "纺织业": [
@@ -3373,6 +3485,13 @@
         "value": null,
         "mom": null,
         "yoy": 2.3
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
+        "value": null,
+        "mom": null,
+        "yoy": 3
       }
     ],
     "化学原料和化学制品制造业": [
@@ -3571,6 +3690,13 @@
         "value": null,
         "mom": null,
         "yoy": -1.2
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
+        "value": null,
+        "mom": null,
+        "yoy": 0
       }
     ],
     "医药制造业": [
@@ -3769,6 +3895,13 @@
         "value": null,
         "mom": null,
         "yoy": 2.8
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
+        "value": null,
+        "mom": null,
+        "yoy": 5.2
       }
     ],
     "橡胶和塑料制品业": [
@@ -3967,6 +4100,13 @@
         "value": null,
         "mom": null,
         "yoy": 5
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
+        "value": null,
+        "mom": null,
+        "yoy": 4.3
       }
     ],
     "非金属矿物制品业": [
@@ -4165,6 +4305,13 @@
         "value": null,
         "mom": null,
         "yoy": -3.3
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
+        "value": null,
+        "mom": null,
+        "yoy": -4.1
       }
     ],
     "黑色金属冶炼和压延加工业": [
@@ -4363,6 +4510,13 @@
         "value": null,
         "mom": null,
         "yoy": 0.3
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
+        "value": null,
+        "mom": null,
+        "yoy": 1
       }
     ],
     "有色金属冶炼和压延加工业": [
@@ -4561,6 +4715,13 @@
         "value": null,
         "mom": null,
         "yoy": -2.5
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
+        "value": null,
+        "mom": null,
+        "yoy": -4.1
       }
     ],
     "金属制品业": [
@@ -4759,6 +4920,13 @@
         "value": null,
         "mom": null,
         "yoy": 7.3
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
+        "value": null,
+        "mom": null,
+        "yoy": 8.1
       }
     ],
     "通用设备制造业": [
@@ -4957,6 +5125,13 @@
         "value": null,
         "mom": null,
         "yoy": 9.5
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
+        "value": null,
+        "mom": null,
+        "yoy": 9.8
       }
     ],
     "专用设备制造业": [
@@ -5155,6 +5330,13 @@
         "value": null,
         "mom": null,
         "yoy": 12.6
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
+        "value": null,
+        "mom": null,
+        "yoy": 11.4
       }
     ],
     "汽车制造业": [
@@ -5350,6 +5532,13 @@
       {
         "yearMonth": "2026-07",
         "timeLabel": "2026-07",
+        "value": null,
+        "mom": null,
+        "yoy": 8.7
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
         "value": null,
         "mom": null,
         "yoy": 8.7
@@ -5551,6 +5740,13 @@
         "value": null,
         "mom": null,
         "yoy": 13.6
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
+        "value": null,
+        "mom": null,
+        "yoy": 13.4
       }
     ],
     "电气机械和器材制造业": [
@@ -5749,6 +5945,13 @@
         "value": null,
         "mom": null,
         "yoy": 8.8
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
+        "value": null,
+        "mom": null,
+        "yoy": 9.9
       }
     ],
     "计算机、通信和其他电子设备制造业": [
@@ -5947,6 +6150,13 @@
         "value": null,
         "mom": null,
         "yoy": 19.1
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
+        "value": null,
+        "mom": null,
+        "yoy": 17.2
       }
     ],
     "电力、热力生产和供应业": [
@@ -6145,6 +6355,13 @@
         "value": null,
         "mom": null,
         "yoy": 5.3
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
+        "value": null,
+        "mom": null,
+        "yoy": 4.9
       }
     ],
     "规模以上工业主要产品产量": [
@@ -6340,6 +6557,13 @@
       {
         "yearMonth": "2026-07",
         "timeLabel": "2026-07",
+        "value": null,
+        "mom": null,
+        "yoy": null
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
         "value": null,
         "mom": null,
         "yoy": null
@@ -6541,6 +6765,13 @@
         "value": 26,
         "mom": -3.7,
         "yoy": 2
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
+        "value": 26,
+        "mom": 0,
+        "yoy": 5.2
       }
     ],
     "硫酸（折100％）（万吨）": [
@@ -6739,6 +6970,13 @@
         "value": 768,
         "mom": -3.03,
         "yoy": -14
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
+        "value": 798,
+        "mom": 3.91,
+        "yoy": -15.5
       }
     ],
     "烧碱（折100％）（万吨）": [
@@ -6937,6 +7175,13 @@
         "value": 362,
         "mom": -4.49,
         "yoy": -5.1
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
+        "value": 375,
+        "mom": 3.59,
+        "yoy": -2.3
       }
     ],
     "乙烯（万吨）": [
@@ -7135,6 +7380,13 @@
         "value": 348,
         "mom": 3.26,
         "yoy": 0.1
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
+        "value": 360,
+        "mom": 3.45,
+        "yoy": 3.6
       }
     ],
     "化学纤维（万吨）": [
@@ -7333,6 +7585,13 @@
         "value": 706,
         "mom": 1.73,
         "yoy": -1.7
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
+        "value": 700,
+        "mom": -0.85,
+        "yoy": -3.2
       }
     ],
     "水泥（万吨）": [
@@ -7531,6 +7790,13 @@
         "value": 12671,
         "mom": -12.15,
         "yoy": -11.6
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
+        "value": 12908,
+        "mom": 1.87,
+        "yoy": -11.7
       }
     ],
     "平板玻璃（万重量箱）": [
@@ -7729,6 +7995,13 @@
         "value": 7598,
         "mom": -0.73,
         "yoy": -3.6
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
+        "value": 7500,
+        "mom": -1.29,
+        "yoy": -7.6
       }
     ],
     "生铁（万吨）": [
@@ -7927,6 +8200,13 @@
         "value": 6835,
         "mom": -5.06,
         "yoy": -4.5
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
+        "value": 6765,
+        "mom": -1.02,
+        "yoy": -3.5
       }
     ],
     "粗钢（万吨）": [
@@ -8125,6 +8405,13 @@
         "value": 7693,
         "mom": -8.06,
         "yoy": -3.6
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
+        "value": 7461,
+        "mom": -3.02,
+        "yoy": -3.7
       }
     ],
     "钢材（万吨）": [
@@ -8323,6 +8610,13 @@
         "value": 11646,
         "mom": -7.98,
         "yoy": -4.1
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
+        "value": 11475,
+        "mom": -1.47,
+        "yoy": -5.5
       }
     ],
     "十种有色金属（万吨）": [
@@ -8521,6 +8815,13 @@
         "value": 697,
         "mom": -3.06,
         "yoy": 2.5
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
+        "value": 710,
+        "mom": 1.87,
+        "yoy": 1.6
       }
     ],
     "原铝（电解铝）（万吨）": [
@@ -8719,6 +9020,13 @@
         "value": 390,
         "mom": -2.01,
         "yoy": 3.8
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
+        "value": 398,
+        "mom": 2.05,
+        "yoy": 4.7
       }
     ],
     "金属切削机床（万台）": [
@@ -8917,6 +9225,13 @@
         "value": 8,
         "mom": -11.11,
         "yoy": 4
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
+        "value": 7,
+        "mom": -12.5,
+        "yoy": 14.1
       }
     ],
     "工业机器人（套）": [
@@ -9115,6 +9430,13 @@
         "value": 98677,
         "mom": -10.86,
         "yoy": 30.2
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
+        "value": 96174,
+        "mom": -2.54,
+        "yoy": 34.6
       }
     ],
     "汽车（万辆）": [
@@ -9313,6 +9635,13 @@
         "value": 252.9,
         "mom": -10.45,
         "yoy": -0.1
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
+        "value": 269.7,
+        "mom": 6.64,
+        "yoy": -2.7
       }
     ],
     "轿车（万辆）": [
@@ -9511,6 +9840,13 @@
         "value": 83.1,
         "mom": -7.25,
         "yoy": -17.1
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
+        "value": 85.7,
+        "mom": 3.13,
+        "yoy": -22.7
       }
     ],
     "运动型多用途乘用车（SUV）（万辆）": [
@@ -9709,6 +10045,13 @@
         "value": 123.6,
         "mom": -10.37,
         "yoy": 13.6
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
+        "value": 139.4,
+        "mom": 12.78,
+        "yoy": 17
       }
     ],
     "新能源汽车（万辆）": [
@@ -9907,6 +10250,13 @@
         "value": 155,
         "mom": -4.56,
         "yoy": 29.9
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
+        "value": 164.7,
+        "mom": 6.26,
+        "yoy": 21.9
       }
     ],
     "发电机组（发电设备）（万千瓦）": [
@@ -10105,6 +10455,13 @@
         "value": 2596,
         "mom": -36.25,
         "yoy": -13.9
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
+        "value": 2806,
+        "mom": 8.09,
+        "yoy": -10.2
       }
     ],
     "太阳能电池（光伏电池）（万千瓦）": [
@@ -10303,6 +10660,13 @@
         "value": 6579,
         "mom": -11.33,
         "yoy": -9.4
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
+        "value": 6702,
+        "mom": 1.87,
+        "yoy": -12.9
       }
     ],
     "微型计算机设备（万台）": [
@@ -10501,6 +10865,13 @@
         "value": 1955,
         "mom": -28.15,
         "yoy": -23
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
+        "value": 2075,
+        "mom": 6.14,
+        "yoy": -25.6
       }
     ],
     "移动通信手持机（万台）": [
@@ -10699,6 +11070,13 @@
         "value": 9881,
         "mom": -13.81,
         "yoy": -16.7
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
+        "value": 10207,
+        "mom": 3.3,
+        "yoy": -18
       }
     ],
     "智能手机（万台）": [
@@ -10897,6 +11275,13 @@
         "value": 7426,
         "mom": -22.91,
         "yoy": -22.9
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
+        "value": 7931,
+        "mom": 6.8,
+        "yoy": -22.3
       }
     ],
     "集成电路（亿块）": [
@@ -11095,6 +11480,13 @@
         "value": 530,
         "mom": 2.51,
         "yoy": 20.7
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
+        "value": 529,
+        "mom": -0.19,
+        "yoy": 20.6
       }
     ],
     "原煤（万吨）": [
@@ -11293,6 +11685,13 @@
         "value": 34321,
         "mom": -9.89,
         "yoy": -10.1
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
+        "value": 36182,
+        "mom": 5.42,
+        "yoy": -7.7
       }
     ],
     "焦炭（万吨）": [
@@ -11491,6 +11890,13 @@
         "value": 4135,
         "mom": -1.64,
         "yoy": -1.1
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
+        "value": 3992,
+        "mom": -3.46,
+        "yoy": -6.2
       }
     ],
     "原油（万吨）": [
@@ -11688,6 +12094,13 @@
         "timeLabel": "2026-07",
         "value": 1827,
         "mom": 0.83,
+        "yoy": 0.8
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
+        "value": 1843,
+        "mom": 0.88,
         "yoy": 0.8
       }
     ],
@@ -11887,6 +12300,13 @@
         "value": 5311,
         "mom": 3.65,
         "yoy": -15.8
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
+        "value": 5907,
+        "mom": 11.22,
+        "yoy": -6.9
       }
     ],
     "天然气（亿立方米）": [
@@ -12085,6 +12505,13 @@
         "value": 214,
         "mom": 0,
         "yoy": -0.9
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
+        "value": 214,
+        "mom": 0,
+        "yoy": 0.8
       }
     ],
     "规模以上工业发电量（亿千瓦时）": [
@@ -12283,6 +12710,13 @@
         "value": 9439,
         "mom": 14.05,
         "yoy": -0.1
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
+        "value": 9438,
+        "mom": -0.01,
+        "yoy": -0.8
       }
     ],
     "火力发电量（亿千瓦时）": [
@@ -12481,6 +12915,13 @@
         "value": 5841,
         "mom": 17.29,
         "yoy": -3.5
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
+        "value": 6020,
+        "mom": 3.06,
+        "yoy": -4.3
       }
     ],
     "水力发电量（亿千瓦时）": [
@@ -12679,6 +13120,13 @@
         "value": 1616,
         "mom": 10.91,
         "yoy": 6.7
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
+        "value": 1522,
+        "mom": -5.82,
+        "yoy": 2.8
       }
     ],
     "核能发电量（亿千瓦时）": [
@@ -12877,6 +13325,13 @@
         "value": 458,
         "mom": 7.26,
         "yoy": 6.6
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
+        "value": 467,
+        "mom": 1.97,
+        "yoy": 9.4
       }
     ],
     "风力发电量（亿千瓦时）": [
@@ -13075,6 +13530,13 @@
         "value": 820,
         "mom": 11.87,
         "yoy": 4.5
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
+        "value": 728,
+        "mom": -11.22,
+        "yoy": 7.9
       }
     ],
     "太阳能发电量（亿千瓦时）": [
@@ -13273,6 +13735,13 @@
         "value": 703,
         "mom": 3.53,
         "yoy": 5.6
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
+        "value": 700,
+        "mom": -0.43,
+        "yoy": 10.3
       }
     ],
     "产品销售率（%）": [
@@ -13471,6 +13940,13 @@
         "value": 96.9,
         "mom": 1.47,
         "yoy": -0.6
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
+        "value": 96.8,
+        "mom": -0.1,
+        "yoy": -0.1
       }
     ],
     "出口交货值（亿元）": [
@@ -13669,6 +14145,13 @@
         "value": 14133,
         "mom": -9.36,
         "yoy": 10.4
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
+        "value": 14357,
+        "mom": 1.58,
+        "yoy": 11.1
       }
     ],
     "外商及港澳台投资企业": [
@@ -13860,6 +14343,13 @@
         "value": null,
         "mom": null,
         "yoy": 2.8
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
+        "value": null,
+        "mom": null,
+        "yoy": 3.4
       }
     ],
     "服务机器人（套）": [
@@ -13981,12 +14471,19 @@
         "value": 1685797,
         "mom": -8,
         "yoy": 5.7
+      },
+      {
+        "yearMonth": "2026-08",
+        "timeLabel": "2026-08",
+        "value": 1656132,
+        "mom": -1.76,
+        "yoy": 5
       }
     ]
   },
   "meta": {
-    "totalRecords": 1977,
+    "totalRecords": 2048,
     "metricCount": 72,
-    "generatedAt": "2026-08-17T08:17:57.064Z"
+    "generatedAt": "2026-09-16T07:30:25.935Z"
   }
 }

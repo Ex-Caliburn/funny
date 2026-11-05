@@ -171,6 +171,12 @@
           "cumulative": 163052,
           "monthlyYoy": "+12.2%",
           "cumulativeYoy": "+7.2%"
+        },
+        "2026": {
+          "monthly": 21891,
+          "cumulative": 169053,
+          "monthlyYoy": "-1.2%",
+          "cumulativeYoy": "+3.7%"
         }
       }
     },
@@ -187,6 +193,12 @@
           "cumulative": 181341,
           "monthlyYoy": "+6.0%",
           "cumulativeYoy": "+7.1%"
+        },
+        "2026": {
+          "monthly": 18063,
+          "cumulative": 187116,
+          "monthlyYoy": "-1.2%",
+          "cumulativeYoy": "+3.2%"
         }
       }
     },
