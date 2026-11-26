@@ -4432,202 +4432,52 @@
     {
       "yearMonth": "2026-09",
       "category": "原煤",
-      "value": null,
-      "dailyAvg": null,
+      "value": "3.9",
+      "dailyAvg": "1284",
       "unit": "亿吨",
       "growthRate": null,
-      "yoy": null,
-      "mom": null
-    },
-    {
-      "yearMonth": "2026-10",
-      "category": "原煤",
-      "value": null,
-      "dailyAvg": null,
-      "unit": "亿吨",
-      "growthRate": null,
-      "yoy": null,
-      "mom": null
-    },
-    {
-      "yearMonth": "2026-11",
-      "category": "原煤",
-      "value": null,
-      "dailyAvg": null,
-      "unit": "亿吨",
-      "growthRate": null,
-      "yoy": null,
-      "mom": null
-    },
-    {
-      "yearMonth": "2026-12",
-      "category": "原煤",
-      "value": null,
-      "dailyAvg": null,
-      "unit": "亿吨",
-      "growthRate": null,
-      "yoy": null,
-      "mom": null
+      "yoy": -4.88,
+      "mom": 8.33
     },
     {
       "yearMonth": "2026-09",
       "category": "原油",
-      "value": null,
-      "dailyAvg": null,
+      "value": "1821",
+      "dailyAvg": "1284",
       "unit": "万吨",
       "growthRate": null,
-      "yoy": null,
-      "mom": null
-    },
-    {
-      "yearMonth": "2026-10",
-      "category": "原油",
-      "value": null,
-      "dailyAvg": null,
-      "unit": "万吨",
-      "growthRate": null,
-      "yoy": null,
-      "mom": null
-    },
-    {
-      "yearMonth": "2026-11",
-      "category": "原油",
-      "value": null,
-      "dailyAvg": null,
-      "unit": "万吨",
-      "growthRate": null,
-      "yoy": null,
-      "mom": null
-    },
-    {
-      "yearMonth": "2026-12",
-      "category": "原油",
-      "value": null,
-      "dailyAvg": null,
-      "unit": "万吨",
-      "growthRate": null,
-      "yoy": null,
-      "mom": null
+      "yoy": 2.48,
+      "mom": -1.19
     },
     {
       "yearMonth": "2026-09",
       "category": "原油加工",
-      "value": null,
-      "dailyAvg": null,
+      "value": "5748",
+      "dailyAvg": "1284",
       "unit": "万吨",
       "growthRate": null,
-      "yoy": null,
-      "mom": null
-    },
-    {
-      "yearMonth": "2026-10",
-      "category": "原油加工",
-      "value": null,
-      "dailyAvg": null,
-      "unit": "万吨",
-      "growthRate": null,
-      "yoy": null,
-      "mom": null
-    },
-    {
-      "yearMonth": "2026-11",
-      "category": "原油加工",
-      "value": null,
-      "dailyAvg": null,
-      "unit": "万吨",
-      "growthRate": null,
-      "yoy": null,
-      "mom": null
-    },
-    {
-      "yearMonth": "2026-12",
-      "category": "原油加工",
-      "value": null,
-      "dailyAvg": null,
-      "unit": "万吨",
-      "growthRate": null,
-      "yoy": null,
-      "mom": null
+      "yoy": -8.31,
+      "mom": -2.69
     },
     {
       "yearMonth": "2026-09",
       "category": "天然气",
-      "value": null,
-      "dailyAvg": null,
+      "value": "210",
+      "dailyAvg": "1284",
       "unit": "亿立方米",
       "growthRate": null,
-      "yoy": null,
-      "mom": null
-    },
-    {
-      "yearMonth": "2026-10",
-      "category": "天然气",
-      "value": null,
-      "dailyAvg": null,
-      "unit": "亿立方米",
-      "growthRate": null,
-      "yoy": null,
-      "mom": null
-    },
-    {
-      "yearMonth": "2026-11",
-      "category": "天然气",
-      "value": null,
-      "dailyAvg": null,
-      "unit": "亿立方米",
-      "growthRate": null,
-      "yoy": null,
-      "mom": null
-    },
-    {
-      "yearMonth": "2026-12",
-      "category": "天然气",
-      "value": null,
-      "dailyAvg": null,
-      "unit": "亿立方米",
-      "growthRate": null,
-      "yoy": null,
-      "mom": null
+      "yoy": -0.94,
+      "mom": -1.87
     },
     {
       "yearMonth": "2026-09",
       "category": "发电量",
-      "value": null,
-      "dailyAvg": null,
+      "value": "8294",
+      "dailyAvg": "1284",
       "unit": "亿千瓦时",
       "growthRate": null,
-      "yoy": null,
-      "mom": null
-    },
-    {
-      "yearMonth": "2026-10",
-      "category": "发电量",
-      "value": null,
-      "dailyAvg": null,
-      "unit": "亿千瓦时",
-      "growthRate": null,
-      "yoy": null,
-      "mom": null
-    },
-    {
-      "yearMonth": "2026-11",
-      "category": "发电量",
-      "value": null,
-      "dailyAvg": null,
-      "unit": "亿千瓦时",
-      "growthRate": null,
-      "yoy": null,
-      "mom": null
-    },
-    {
-      "yearMonth": "2026-12",
-      "category": "发电量",
-      "value": null,
-      "dailyAvg": null,
-      "unit": "亿千瓦时",
-      "growthRate": null,
-      "yoy": null,
-      "mom": null
+      "yoy": 0.39,
+      "mom": -12.12
     },
     {
       "yearMonth": "2026-09",
@@ -4635,39 +4485,8 @@
       "value": null,
       "dailyAvg": null,
       "unit": "亿千瓦时",
-      "growthRate": null,
-      "yoy": null,
-      "mom": null
-    },
-    {
-      "yearMonth": "2026-10",
-      "category": "发电量-火电",
-      "value": null,
-      "dailyAvg": null,
-      "unit": "亿千瓦时",
-      "growthRate": null,
-      "yoy": null,
-      "mom": null
-    },
-    {
-      "yearMonth": "2026-11",
-      "category": "发电量-火电",
-      "value": null,
-      "dailyAvg": null,
-      "unit": "亿千瓦时",
-      "growthRate": null,
-      "yoy": null,
-      "mom": null
-    },
-    {
-      "yearMonth": "2026-12",
-      "category": "发电量-火电",
-      "value": null,
-      "dailyAvg": null,
-      "unit": "亿千瓦时",
-      "growthRate": null,
-      "yoy": null,
-      "mom": null
+      "growthRate": "-1.4",
+      "yoy": -1.4
     },
     {
       "yearMonth": "2026-09",
@@ -4675,39 +4494,8 @@
       "value": null,
       "dailyAvg": null,
       "unit": "亿千瓦时",
-      "growthRate": null,
-      "yoy": null,
-      "mom": null
-    },
-    {
-      "yearMonth": "2026-10",
-      "category": "发电量-水电",
-      "value": null,
-      "dailyAvg": null,
-      "unit": "亿千瓦时",
-      "growthRate": null,
-      "yoy": null,
-      "mom": null
-    },
-    {
-      "yearMonth": "2026-11",
-      "category": "发电量-水电",
-      "value": null,
-      "dailyAvg": null,
-      "unit": "亿千瓦时",
-      "growthRate": null,
-      "yoy": null,
-      "mom": null
-    },
-    {
-      "yearMonth": "2026-12",
-      "category": "发电量-水电",
-      "value": null,
-      "dailyAvg": null,
-      "unit": "亿千瓦时",
-      "growthRate": null,
-      "yoy": null,
-      "mom": null
+      "growthRate": "-18.1",
+      "yoy": -18.1
     },
     {
       "yearMonth": "2026-09",
@@ -4715,39 +4503,8 @@
       "value": null,
       "dailyAvg": null,
       "unit": "亿千瓦时",
-      "growthRate": null,
-      "yoy": null,
-      "mom": null
-    },
-    {
-      "yearMonth": "2026-10",
-      "category": "发电量-核电",
-      "value": null,
-      "dailyAvg": null,
-      "unit": "亿千瓦时",
-      "growthRate": null,
-      "yoy": null,
-      "mom": null
-    },
-    {
-      "yearMonth": "2026-11",
-      "category": "发电量-核电",
-      "value": null,
-      "dailyAvg": null,
-      "unit": "亿千瓦时",
-      "growthRate": null,
-      "yoy": null,
-      "mom": null
-    },
-    {
-      "yearMonth": "2026-12",
-      "category": "发电量-核电",
-      "value": null,
-      "dailyAvg": null,
-      "unit": "亿千瓦时",
-      "growthRate": null,
-      "yoy": null,
-      "mom": null
+      "growthRate": "21.5",
+      "yoy": 21.5
     },
     {
       "yearMonth": "2026-09",
@@ -4755,43 +4512,281 @@
       "value": null,
       "dailyAvg": null,
       "unit": "亿千瓦时",
-      "growthRate": null,
-      "yoy": null,
-      "mom": null
-    },
-    {
-      "yearMonth": "2026-10",
-      "category": "发电量-风电",
-      "value": null,
-      "dailyAvg": null,
-      "unit": "亿千瓦时",
-      "growthRate": null,
-      "yoy": null,
-      "mom": null
-    },
-    {
-      "yearMonth": "2026-11",
-      "category": "发电量-风电",
-      "value": null,
-      "dailyAvg": null,
-      "unit": "亿千瓦时",
-      "growthRate": null,
-      "yoy": null,
-      "mom": null
-    },
-    {
-      "yearMonth": "2026-12",
-      "category": "发电量-风电",
-      "value": null,
-      "dailyAvg": null,
-      "unit": "亿千瓦时",
-      "growthRate": null,
-      "yoy": null,
-      "mom": null
+      "growthRate": "10.6",
+      "yoy": 10.6
     },
     {
       "yearMonth": "2026-09",
       "category": "发电量-太阳能发电",
+      "value": null,
+      "dailyAvg": null,
+      "unit": "亿千瓦时",
+      "growthRate": "19.5",
+      "yoy": 19.5
+    },
+    {
+      "yearMonth": "2026-10",
+      "category": "原煤",
+      "value": null,
+      "dailyAvg": null,
+      "unit": "亿吨",
+      "growthRate": null,
+      "yoy": null,
+      "mom": null
+    },
+    {
+      "yearMonth": "2026-11",
+      "category": "原煤",
+      "value": null,
+      "dailyAvg": null,
+      "unit": "亿吨",
+      "growthRate": null,
+      "yoy": null,
+      "mom": null
+    },
+    {
+      "yearMonth": "2026-12",
+      "category": "原煤",
+      "value": null,
+      "dailyAvg": null,
+      "unit": "亿吨",
+      "growthRate": null,
+      "yoy": null,
+      "mom": null
+    },
+    {
+      "yearMonth": "2026-10",
+      "category": "原油",
+      "value": null,
+      "dailyAvg": null,
+      "unit": "万吨",
+      "growthRate": null,
+      "yoy": null,
+      "mom": null
+    },
+    {
+      "yearMonth": "2026-11",
+      "category": "原油",
+      "value": null,
+      "dailyAvg": null,
+      "unit": "万吨",
+      "growthRate": null,
+      "yoy": null,
+      "mom": null
+    },
+    {
+      "yearMonth": "2026-12",
+      "category": "原油",
+      "value": null,
+      "dailyAvg": null,
+      "unit": "万吨",
+      "growthRate": null,
+      "yoy": null,
+      "mom": null
+    },
+    {
+      "yearMonth": "2026-10",
+      "category": "原油加工",
+      "value": null,
+      "dailyAvg": null,
+      "unit": "万吨",
+      "growthRate": null,
+      "yoy": null,
+      "mom": null
+    },
+    {
+      "yearMonth": "2026-11",
+      "category": "原油加工",
+      "value": null,
+      "dailyAvg": null,
+      "unit": "万吨",
+      "growthRate": null,
+      "yoy": null,
+      "mom": null
+    },
+    {
+      "yearMonth": "2026-12",
+      "category": "原油加工",
+      "value": null,
+      "dailyAvg": null,
+      "unit": "万吨",
+      "growthRate": null,
+      "yoy": null,
+      "mom": null
+    },
+    {
+      "yearMonth": "2026-10",
+      "category": "天然气",
+      "value": null,
+      "dailyAvg": null,
+      "unit": "亿立方米",
+      "growthRate": null,
+      "yoy": null,
+      "mom": null
+    },
+    {
+      "yearMonth": "2026-11",
+      "category": "天然气",
+      "value": null,
+      "dailyAvg": null,
+      "unit": "亿立方米",
+      "growthRate": null,
+      "yoy": null,
+      "mom": null
+    },
+    {
+      "yearMonth": "2026-12",
+      "category": "天然气",
+      "value": null,
+      "dailyAvg": null,
+      "unit": "亿立方米",
+      "growthRate": null,
+      "yoy": null,
+      "mom": null
+    },
+    {
+      "yearMonth": "2026-10",
+      "category": "发电量",
+      "value": null,
+      "dailyAvg": null,
+      "unit": "亿千瓦时",
+      "growthRate": null,
+      "yoy": null,
+      "mom": null
+    },
+    {
+      "yearMonth": "2026-11",
+      "category": "发电量",
+      "value": null,
+      "dailyAvg": null,
+      "unit": "亿千瓦时",
+      "growthRate": null,
+      "yoy": null,
+      "mom": null
+    },
+    {
+      "yearMonth": "2026-12",
+      "category": "发电量",
+      "value": null,
+      "dailyAvg": null,
+      "unit": "亿千瓦时",
+      "growthRate": null,
+      "yoy": null,
+      "mom": null
+    },
+    {
+      "yearMonth": "2026-10",
+      "category": "发电量-火电",
+      "value": null,
+      "dailyAvg": null,
+      "unit": "亿千瓦时",
+      "growthRate": null,
+      "yoy": null,
+      "mom": null
+    },
+    {
+      "yearMonth": "2026-11",
+      "category": "发电量-火电",
+      "value": null,
+      "dailyAvg": null,
+      "unit": "亿千瓦时",
+      "growthRate": null,
+      "yoy": null,
+      "mom": null
+    },
+    {
+      "yearMonth": "2026-12",
+      "category": "发电量-火电",
+      "value": null,
+      "dailyAvg": null,
+      "unit": "亿千瓦时",
+      "growthRate": null,
+      "yoy": null,
+      "mom": null
+    },
+    {
+      "yearMonth": "2026-10",
+      "category": "发电量-水电",
+      "value": null,
+      "dailyAvg": null,
+      "unit": "亿千瓦时",
+      "growthRate": null,
+      "yoy": null,
+      "mom": null
+    },
+    {
+      "yearMonth": "2026-11",
+      "category": "发电量-水电",
+      "value": null,
+      "dailyAvg": null,
+      "unit": "亿千瓦时",
+      "growthRate": null,
+      "yoy": null,
+      "mom": null
+    },
+    {
+      "yearMonth": "2026-12",
+      "category": "发电量-水电",
+      "value": null,
+      "dailyAvg": null,
+      "unit": "亿千瓦时",
+      "growthRate": null,
+      "yoy": null,
+      "mom": null
+    },
+    {
+      "yearMonth": "2026-10",
+      "category": "发电量-核电",
+      "value": null,
+      "dailyAvg": null,
+      "unit": "亿千瓦时",
+      "growthRate": null,
+      "yoy": null,
+      "mom": null
+    },
+    {
+      "yearMonth": "2026-11",
+      "category": "发电量-核电",
+      "value": null,
+      "dailyAvg": null,
+      "unit": "亿千瓦时",
+      "growthRate": null,
+      "yoy": null,
+      "mom": null
+    },
+    {
+      "yearMonth": "2026-12",
+      "category": "发电量-核电",
+      "value": null,
+      "dailyAvg": null,
+      "unit": "亿千瓦时",
+      "growthRate": null,
+      "yoy": null,
+      "mom": null
+    },
+    {
+      "yearMonth": "2026-10",
+      "category": "发电量-风电",
+      "value": null,
+      "dailyAvg": null,
+      "unit": "亿千瓦时",
+      "growthRate": null,
+      "yoy": null,
+      "mom": null
+    },
+    {
+      "yearMonth": "2026-11",
+      "category": "发电量-风电",
+      "value": null,
+      "dailyAvg": null,
+      "unit": "亿千瓦时",
+      "growthRate": null,
+      "yoy": null,
+      "mom": null
+    },
+    {
+      "yearMonth": "2026-12",
+      "category": "发电量-风电",
       "value": null,
       "dailyAvg": null,
       "unit": "亿千瓦时",
@@ -5263,12 +5258,12 @@
       {
         "yearMonth": "2026-09",
         "category": "原煤",
-        "value": null,
-        "dailyAvg": null,
+        "value": "3.9",
+        "dailyAvg": "1284",
         "unit": "亿吨",
         "growthRate": null,
-        "yoy": null,
-        "mom": null
+        "yoy": -4.88,
+        "mom": 8.33
       },
       {
         "yearMonth": "2026-10",
@@ -5703,12 +5698,12 @@
       {
         "yearMonth": "2026-09",
         "category": "原油",
-        "value": null,
-        "dailyAvg": null,
+        "value": "1821",
+        "dailyAvg": "1284",
         "unit": "万吨",
         "growthRate": null,
-        "yoy": null,
-        "mom": null
+        "yoy": 2.48,
+        "mom": -1.19
       },
       {
         "yearMonth": "2026-10",
@@ -6143,12 +6138,12 @@
       {
         "yearMonth": "2026-09",
         "category": "原油加工",
-        "value": null,
-        "dailyAvg": null,
+        "value": "5748",
+        "dailyAvg": "1284",
         "unit": "万吨",
         "growthRate": null,
-        "yoy": null,
-        "mom": null
+        "yoy": -8.31,
+        "mom": -2.69
       },
       {
         "yearMonth": "2026-10",
@@ -6583,12 +6578,12 @@
       {
         "yearMonth": "2026-09",
         "category": "天然气",
-        "value": null,
-        "dailyAvg": null,
+        "value": "210",
+        "dailyAvg": "1284",
         "unit": "亿立方米",
         "growthRate": null,
-        "yoy": null,
-        "mom": null
+        "yoy": -0.94,
+        "mom": -1.87
       },
       {
         "yearMonth": "2026-10",
@@ -7023,12 +7018,12 @@
       {
         "yearMonth": "2026-09",
         "category": "发电量",
-        "value": null,
-        "dailyAvg": null,
+        "value": "8294",
+        "dailyAvg": "1284",
         "unit": "亿千瓦时",
         "growthRate": null,
-        "yoy": null,
-        "mom": null
+        "yoy": 0.39,
+        "mom": -12.12
       },
       {
         "yearMonth": "2026-10",
@@ -7437,9 +7432,8 @@
         "value": null,
         "dailyAvg": null,
         "unit": "亿千瓦时",
-        "growthRate": null,
-        "yoy": null,
-        "mom": null
+        "growthRate": "-1.4",
+        "yoy": -1.4
       },
       {
         "yearMonth": "2026-10",
@@ -7848,9 +7842,8 @@
         "value": null,
         "dailyAvg": null,
         "unit": "亿千瓦时",
-        "growthRate": null,
-        "yoy": null,
-        "mom": null
+        "growthRate": "-18.1",
+        "yoy": -18.1
       },
       {
         "yearMonth": "2026-10",
@@ -8259,9 +8252,8 @@
         "value": null,
         "dailyAvg": null,
         "unit": "亿千瓦时",
-        "growthRate": null,
-        "yoy": null,
-        "mom": null
+        "growthRate": "21.5",
+        "yoy": 21.5
       },
       {
         "yearMonth": "2026-10",
@@ -8670,9 +8662,8 @@
         "value": null,
         "dailyAvg": null,
         "unit": "亿千瓦时",
-        "growthRate": null,
-        "yoy": null,
-        "mom": null
+        "growthRate": "10.6",
+        "yoy": 10.6
       },
       {
         "yearMonth": "2026-10",
@@ -9081,9 +9072,8 @@
         "value": null,
         "dailyAvg": null,
         "unit": "亿千瓦时",
-        "growthRate": null,
-        "yoy": null,
-        "mom": null
+        "growthRate": "19.5",
+        "yoy": 19.5
       },
       {
         "yearMonth": "2026-10",

@@ -9,8 +9,96 @@
     "guizhou": "贵州地区",
     "guangxi": "广西地区"
   },
-  "updatedAt": "2026-10-11",
+  "updatedAt": "2026-11-03",
   "data": [
+    {
+      "date": "2026-11-03",
+      "shandong": 2685,
+      "henan": 2725,
+      "shanxi": 2730,
+      "guizhou": 2735,
+      "guangxi": 2645
+    },
+    {
+      "date": "2026-11-02",
+      "shandong": 2685,
+      "henan": 2725,
+      "shanxi": 2730,
+      "guizhou": 2735,
+      "guangxi": 2645
+    },
+    {
+      "date": "2026-10-30",
+      "shandong": 2685,
+      "henan": 2725,
+      "shanxi": 2730,
+      "guizhou": 2735,
+      "guangxi": 2645
+    },
+    {
+      "date": "2026-10-29",
+      "shandong": 2685,
+      "henan": 2730,
+      "shanxi": 2730,
+      "guizhou": 2735,
+      "guangxi": 2645
+    },
+    {
+      "date": "2026-10-28",
+      "shandong": 2685,
+      "henan": 2730,
+      "shanxi": 2730,
+      "guizhou": 2735,
+      "guangxi": 2645
+    },
+    {
+      "date": "2026-10-27",
+      "shandong": 2685,
+      "henan": 2730,
+      "shanxi": 2730,
+      "guizhou": 2735,
+      "guangxi": 2645
+    },
+    {
+      "date": "2026-10-26",
+      "shandong": 2690,
+      "henan": 2735,
+      "shanxi": 2735,
+      "guizhou": 2745,
+      "guangxi": 2650
+    },
+    {
+      "date": "2026-10-23",
+      "shandong": 2690,
+      "henan": 2735,
+      "shanxi": 2735,
+      "guizhou": 2745,
+      "guangxi": 2650
+    },
+    {
+      "date": "2026-10-22",
+      "shandong": 2690,
+      "henan": 2735,
+      "shanxi": 2735,
+      "guizhou": 2745,
+      "guangxi": 2650
+    },
+    {
+      "date": "2026-10-21",
+      "shandong": 2690,
+      "henan": 2735,
+      "shanxi": 2735,
+      "guizhou": 2745,
+      "guangxi": 2650
+    },
+    {
+      "date": "2026-10-20",
+      "shandong": 2690,
+      "henan": 2735,
+      "shanxi": 2735,
+      "guizhou": 2745,
+      "guangxi": 2650
+    },
     {
       "date": "2026-10-09",
       "shandong": 2710,

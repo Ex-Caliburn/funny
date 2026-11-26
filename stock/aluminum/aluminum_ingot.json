@@ -8,8 +8,85 @@
     "southwest": "西南市场",
     "central": "中原市场"
   },
-  "updatedAt": "2026-10-11",
+  "updatedAt": "2026-11-03",
   "data": [
+    {
+      "date": "2026-11-03",
+      "east": 23450,
+      "south": 23530,
+      "southwest": 23430,
+      "central": 23310
+    },
+    {
+      "date": "2026-11-02",
+      "east": 23520,
+      "south": 23560,
+      "southwest": 23480,
+      "central": 23350
+    },
+    {
+      "date": "2026-10-30",
+      "east": 23780,
+      "south": 23790,
+      "southwest": 23720,
+      "central": 23590
+    },
+    {
+      "date": "2026-10-29",
+      "east": 23740,
+      "south": 23730,
+      "southwest": 23680,
+      "central": 23550
+    },
+    {
+      "date": "2026-10-28",
+      "east": 23930,
+      "south": 23910,
+      "southwest": 23860,
+      "central": 23740
+    },
+    {
+      "date": "2026-10-27",
+      "east": 23890,
+      "south": 23880,
+      "southwest": 23830,
+      "central": 23710
+    },
+    {
+      "date": "2026-10-26",
+      "east": 23970,
+      "south": 23920,
+      "southwest": 23900,
+      "central": 23790
+    },
+    {
+      "date": "2026-10-23",
+      "east": 23670,
+      "south": 23600,
+      "southwest": 23600,
+      "central": 23510
+    },
+    {
+      "date": "2026-10-22",
+      "east": 23710,
+      "south": 23620,
+      "southwest": 23640,
+      "central": 23570
+    },
+    {
+      "date": "2026-10-21",
+      "east": 23610,
+      "south": 23530,
+      "southwest": 23540,
+      "central": 23480
+    },
+    {
+      "date": "2026-10-20",
+      "east": 23530,
+      "south": 23460,
+      "southwest": 23460,
+      "central": 23400
+    },
     {
       "date": "2026-10-09",
       "east": 23650,
