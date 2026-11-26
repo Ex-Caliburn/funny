@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-13T22:28:38.851Z",
+  "updatedAt": "2026-11-17T11:47:41.306Z",
   "data": [
     {
       "metric": "采矿业",
@@ -482,6 +482,22 @@
       "label": "2026-09"
     },
     {
+      "metric": "采矿业",
+      "value": null,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 2.5,
+      "debug": {
+        "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+        "sheet": "表",
+        "row": 17,
+        "rawMetric": "采矿业",
+        "rawYoy": "2.5"
+      },
+      "yearMonth": "2026-10",
+      "label": "2026-10"
+    },
+    {
       "metric": "道路运输业",
       "value": null,
       "cumulative": null,
@@ -960,6 +976,22 @@
       },
       "yearMonth": "2026-09",
       "label": "2026-09"
+    },
+    {
+      "metric": "道路运输业",
+      "value": null,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -10.9,
+      "debug": {
+        "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+        "sheet": "表",
+        "row": 34,
+        "rawMetric": "其中：道路运输业",
+        "rawYoy": "-10.9"
+      },
+      "yearMonth": "2026-10",
+      "label": "2026-10"
     },
     {
       "metric": "第二产业",
@@ -1442,6 +1474,22 @@
       "label": "2026-09"
     },
     {
+      "metric": "第二产业",
+      "value": null,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -3.6,
+      "debug": {
+        "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+        "sheet": "表",
+        "row": 13,
+        "rawMetric": "第二产业",
+        "rawYoy": "-3.6"
+      },
+      "yearMonth": "2026-10",
+      "label": "2026-10"
+    },
+    {
       "metric": "第三产业",
       "value": null,
       "cumulative": null,
@@ -1920,6 +1968,22 @@
       },
       "yearMonth": "2026-09",
       "label": "2026-09"
+    },
+    {
+      "metric": "第三产业",
+      "value": null,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -10.9,
+      "debug": {
+        "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+        "sheet": "表",
+        "row": 14,
+        "rawMetric": "第三产业",
+        "rawYoy": "-10.9"
+      },
+      "yearMonth": "2026-10",
+      "label": "2026-10"
     },
     {
       "metric": "第一产业",
@@ -2402,6 +2466,22 @@
       "label": "2026-09"
     },
     {
+      "metric": "第一产业",
+      "value": null,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -6.1,
+      "debug": {
+        "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+        "sheet": "表",
+        "row": 12,
+        "rawMetric": "第一产业",
+        "rawYoy": "-6.1"
+      },
+      "yearMonth": "2026-10",
+      "label": "2026-10"
+    },
+    {
       "metric": "电力、热力、燃气及水生产和供应业",
       "value": null,
       "cumulative": null,
@@ -2880,6 +2960,22 @@
       },
       "yearMonth": "2026-09",
       "label": "2026-09"
+    },
+    {
+      "metric": "电力、热力、燃气及水生产和供应业",
+      "value": null,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -7.7,
+      "debug": {
+        "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+        "sheet": "表",
+        "row": 32,
+        "rawMetric": "电力、热力、燃气及水生产和供应业",
+        "rawYoy": "-7.7"
+      },
+      "yearMonth": "2026-10",
+      "label": "2026-10"
     },
     {
       "metric": "电气机械和器材制造业",
@@ -3362,6 +3458,22 @@
       "label": "2026-09"
     },
     {
+      "metric": "电气机械和器材制造业",
+      "value": null,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -0.1,
+      "debug": {
+        "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+        "sheet": "表",
+        "row": 30,
+        "rawMetric": "电气机械和器材制造业",
+        "rawYoy": "-0.1"
+      },
+      "yearMonth": "2026-10",
+      "label": "2026-10"
+    },
+    {
       "metric": "纺织业",
       "value": null,
       "cumulative": null,
@@ -3840,6 +3952,22 @@
       },
       "yearMonth": "2026-09",
       "label": "2026-09"
+    },
+    {
+      "metric": "纺织业",
+      "value": null,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 2.8,
+      "debug": {
+        "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+        "sheet": "表",
+        "row": 21,
+        "rawMetric": "纺织业",
+        "rawYoy": "2.8"
+      },
+      "yearMonth": "2026-10",
+      "label": "2026-10"
     },
     {
       "metric": "港澳台投资企业",
@@ -4322,6 +4450,22 @@
       "label": "2026-09"
     },
     {
+      "metric": "港澳台投资企业",
+      "value": null,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -8.4,
+      "debug": {
+        "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+        "sheet": "表",
+        "row": 43,
+        "rawMetric": "港澳台投资企业",
+        "rawYoy": "-8.4"
+      },
+      "yearMonth": "2026-10",
+      "label": "2026-10"
+    },
+    {
       "metric": "公共设施管理业",
       "value": null,
       "cumulative": null,
@@ -4800,6 +4944,22 @@
       },
       "yearMonth": "2026-09",
       "label": "2026-09"
+    },
+    {
+      "metric": "公共设施管理业",
+      "value": null,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -14.1,
+      "debug": {
+        "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+        "sheet": "表",
+        "row": 37,
+        "rawMetric": "公共设施管理业",
+        "rawYoy": "-14.1"
+      },
+      "yearMonth": "2026-10",
+      "label": "2026-10"
     },
     {
       "metric": "国有控股",
@@ -5282,6 +5442,22 @@
       "label": "2026-09"
     },
     {
+      "metric": "国有控股",
+      "value": null,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -4,
+      "debug": {
+        "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+        "sheet": "表",
+        "row": 5,
+        "rawMetric": "其中：国有控股",
+        "rawYoy": "-4"
+      },
+      "yearMonth": "2026-10",
+      "label": "2026-10"
+    },
+    {
       "metric": "化学原料和化学制品制造业",
       "value": null,
       "cumulative": null,
@@ -5760,6 +5936,22 @@
       },
       "yearMonth": "2026-09",
       "label": "2026-09"
+    },
+    {
+      "metric": "化学原料和化学制品制造业",
+      "value": null,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -8.4,
+      "debug": {
+        "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+        "sheet": "表",
+        "row": 22,
+        "rawMetric": "化学原料和化学制品制造业",
+        "rawYoy": "-8.4"
+      },
+      "yearMonth": "2026-10",
+      "label": "2026-10"
     },
     {
       "metric": "计算机、通信和其他电子设备制造业",
@@ -6242,6 +6434,22 @@
       "label": "2026-09"
     },
     {
+      "metric": "计算机、通信和其他电子设备制造业",
+      "value": null,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 9.9,
+      "debug": {
+        "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+        "sheet": "表",
+        "row": 31,
+        "rawMetric": "计算机、通信和其他电子设备制造业",
+        "rawYoy": "9.9"
+      },
+      "yearMonth": "2026-10",
+      "label": "2026-10"
+    },
+    {
       "metric": "建筑安装工程",
       "value": null,
       "cumulative": null,
@@ -6720,6 +6928,22 @@
       },
       "yearMonth": "2026-09",
       "label": "2026-09"
+    },
+    {
+      "metric": "建筑安装工程",
+      "value": null,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -11,
+      "debug": {
+        "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+        "sheet": "表",
+        "row": 8,
+        "rawMetric": "建筑安装工程",
+        "rawYoy": "-11"
+      },
+      "yearMonth": "2026-10",
+      "label": "2026-10"
     },
     {
       "metric": "交通运输、仓储和邮政业",
@@ -7202,6 +7426,22 @@
       "label": "2026-09"
     },
     {
+      "metric": "交通运输、仓储和邮政业",
+      "value": null,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 0.7,
+      "debug": {
+        "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+        "sheet": "表",
+        "row": 33,
+        "rawMetric": "交通运输、仓储和邮政业",
+        "rawYoy": "0.7"
+      },
+      "yearMonth": "2026-10",
+      "label": "2026-10"
+    },
+    {
       "metric": "教育",
       "value": null,
       "cumulative": null,
@@ -7680,6 +7920,22 @@
       },
       "yearMonth": "2026-09",
       "label": "2026-09"
+    },
+    {
+      "metric": "教育",
+      "value": null,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -15.7,
+      "debug": {
+        "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+        "sheet": "表",
+        "row": 38,
+        "rawMetric": "教育",
+        "rawYoy": "-15.7"
+      },
+      "yearMonth": "2026-10",
+      "label": "2026-10"
     },
     {
       "metric": "金属制品业",
@@ -8162,6 +8418,22 @@
       "label": "2026-09"
     },
     {
+      "metric": "金属制品业",
+      "value": null,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -9.9,
+      "debug": {
+        "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+        "sheet": "表",
+        "row": 25,
+        "rawMetric": "金属制品业",
+        "rawYoy": "-9.9"
+      },
+      "yearMonth": "2026-10",
+      "label": "2026-10"
+    },
+    {
       "metric": "民间投资",
       "value": null,
       "cumulative": null,
@@ -8640,6 +8912,22 @@
       },
       "yearMonth": "2026-09",
       "label": "2026-09"
+    },
+    {
+      "metric": "民间投资",
+      "value": null,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -11.4,
+      "debug": {
+        "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+        "sheet": "表",
+        "row": 6,
+        "rawMetric": "其中：民间投资",
+        "rawYoy": "-11.4"
+      },
+      "yearMonth": "2026-10",
+      "label": "2026-10"
     },
     {
       "metric": "内资企业",
@@ -9122,6 +9410,22 @@
       "label": "2026-09"
     },
     {
+      "metric": "内资企业",
+      "value": null,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -7.9,
+      "debug": {
+        "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+        "sheet": "表",
+        "row": 42,
+        "rawMetric": "其中：内资企业",
+        "rawYoy": "-7.9"
+      },
+      "yearMonth": "2026-10",
+      "label": "2026-10"
+    },
+    {
       "metric": "农副食品加工业",
       "value": null,
       "cumulative": null,
@@ -9600,6 +9904,22 @@
       },
       "yearMonth": "2026-09",
       "label": "2026-09"
+    },
+    {
+      "metric": "农副食品加工业",
+      "value": null,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -4.1,
+      "debug": {
+        "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+        "sheet": "表",
+        "row": 19,
+        "rawMetric": "其中：农副食品加工业",
+        "rawYoy": "-4.1"
+      },
+      "yearMonth": "2026-10",
+      "label": "2026-10"
     },
     {
       "metric": "农林牧渔业",
@@ -10082,6 +10402,22 @@
       "label": "2026-09"
     },
     {
+      "metric": "农林牧渔业",
+      "value": null,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -6.2,
+      "debug": {
+        "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+        "sheet": "表",
+        "row": 16,
+        "rawMetric": "农林牧渔业",
+        "rawYoy": "-6.2"
+      },
+      "yearMonth": "2026-10",
+      "label": "2026-10"
+    },
+    {
       "metric": "其他费用",
       "value": null,
       "cumulative": null,
@@ -10560,6 +10896,22 @@
       },
       "yearMonth": "2026-09",
       "label": "2026-09"
+    },
+    {
+      "metric": "其他费用",
+      "value": null,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -13.2,
+      "debug": {
+        "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+        "sheet": "表",
+        "row": 10,
+        "rawMetric": "其他费用",
+        "rawYoy": "-13.2"
+      },
+      "yearMonth": "2026-10",
+      "label": "2026-10"
     },
     {
       "metric": "汽车制造业",
@@ -11042,6 +11394,22 @@
       "label": "2026-09"
     },
     {
+      "metric": "汽车制造业",
+      "value": null,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -7.9,
+      "debug": {
+        "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+        "sheet": "表",
+        "row": 28,
+        "rawMetric": "汽车制造业",
+        "rawYoy": "-7.9"
+      },
+      "yearMonth": "2026-10",
+      "label": "2026-10"
+    },
+    {
       "metric": "全国固定资产投资",
       "value": null,
       "cumulative": null,
@@ -11520,6 +11888,22 @@
       },
       "yearMonth": "2026-09",
       "label": "2026-09"
+    },
+    {
+      "metric": "全国固定资产投资",
+      "value": null,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -8.1,
+      "debug": {
+        "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+        "sheet": "表",
+        "row": 4,
+        "rawMetric": "固定资产投资（不含农户）",
+        "rawYoy": "-8.1"
+      },
+      "yearMonth": "2026-10",
+      "label": "2026-10"
     },
     {
       "metric": "设备工器具购置",
@@ -12002,6 +12386,22 @@
       "label": "2026-09"
     },
     {
+      "metric": "设备工器具购置",
+      "value": null,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 8.9,
+      "debug": {
+        "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+        "sheet": "表",
+        "row": 9,
+        "rawMetric": "设备工器具购置",
+        "rawYoy": "8.9"
+      },
+      "yearMonth": "2026-10",
+      "label": "2026-10"
+    },
+    {
       "metric": "食品制造业",
       "value": null,
       "cumulative": null,
@@ -12480,6 +12880,22 @@
       },
       "yearMonth": "2026-09",
       "label": "2026-09"
+    },
+    {
+      "metric": "食品制造业",
+      "value": null,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -10.7,
+      "debug": {
+        "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+        "sheet": "表",
+        "row": 20,
+        "rawMetric": "食品制造业",
+        "rawYoy": "-10.7"
+      },
+      "yearMonth": "2026-10",
+      "label": "2026-10"
     },
     {
       "metric": "水利、环境和公共设施管理业",
@@ -12962,6 +13378,22 @@
       "label": "2026-09"
     },
     {
+      "metric": "水利、环境和公共设施管理业",
+      "value": null,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -14.4,
+      "debug": {
+        "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+        "sheet": "表",
+        "row": 35,
+        "rawMetric": "水利、环境和公共设施管理业",
+        "rawYoy": "-14.4"
+      },
+      "yearMonth": "2026-10",
+      "label": "2026-10"
+    },
+    {
       "metric": "水利管理业",
       "value": null,
       "cumulative": null,
@@ -13442,6 +13874,22 @@
       "label": "2026-09"
     },
     {
+      "metric": "水利管理业",
+      "value": null,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -16.7,
+      "debug": {
+        "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+        "sheet": "表",
+        "row": 36,
+        "rawMetric": "其中：水利管理业",
+        "rawYoy": "-16.7"
+      },
+      "yearMonth": "2026-10",
+      "label": "2026-10"
+    },
+    {
       "metric": "铁路、船舶、航空航天和其他运输设备制造业",
       "value": null,
       "cumulative": null,
@@ -13920,6 +14368,22 @@
       },
       "yearMonth": "2026-09",
       "label": "2026-09"
+    },
+    {
+      "metric": "铁路、船舶、航空航天和其他运输设备制造业",
+      "value": null,
+      "cumulative": null,
+      "mom": null,
+      "yoy": 14.1,
+      "debug": {
+        "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+        "sheet": "表",
+        "row": 29,
+        "rawMetric": "铁路、船舶、航空航天和其他运输设备制造业",
+        "rawYoy": "14.1"
+      },
+      "yearMonth": "2026-10",
+      "label": "2026-10"
     },
     {
       "metric": "铁路运输业",
@@ -14754,6 +15218,22 @@
       "label": "2026-09"
     },
     {
+      "metric": "通用设备制造业",
+      "value": null,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -1.2,
+      "debug": {
+        "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+        "sheet": "表",
+        "row": 26,
+        "rawMetric": "通用设备制造业",
+        "rawYoy": "-1.2"
+      },
+      "yearMonth": "2026-10",
+      "label": "2026-10"
+    },
+    {
       "metric": "外商投资企业",
       "value": null,
       "cumulative": null,
@@ -15232,6 +15712,22 @@
       },
       "yearMonth": "2026-09",
       "label": "2026-09"
+    },
+    {
+      "metric": "外商投资企业",
+      "value": null,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -6.6,
+      "debug": {
+        "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+        "sheet": "表",
+        "row": 44,
+        "rawMetric": "外商投资企业",
+        "rawYoy": "-6.6"
+      },
+      "yearMonth": "2026-10",
+      "label": "2026-10"
     },
     {
       "metric": "卫生和社会工作",
@@ -15714,6 +16210,22 @@
       "label": "2026-09"
     },
     {
+      "metric": "卫生和社会工作",
+      "value": null,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -14.1,
+      "debug": {
+        "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+        "sheet": "表",
+        "row": 39,
+        "rawMetric": "卫生和社会工作",
+        "rawYoy": "-14.1"
+      },
+      "yearMonth": "2026-10",
+      "label": "2026-10"
+    },
+    {
       "metric": "文化、体育和娱乐业",
       "value": null,
       "cumulative": null,
@@ -16192,6 +16704,22 @@
       },
       "yearMonth": "2026-09",
       "label": "2026-09"
+    },
+    {
+      "metric": "文化、体育和娱乐业",
+      "value": null,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -18.5,
+      "debug": {
+        "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+        "sheet": "表",
+        "row": 40,
+        "rawMetric": "文化、体育和娱乐业",
+        "rawYoy": "-18.5"
+      },
+      "yearMonth": "2026-10",
+      "label": "2026-10"
     },
     {
       "metric": "医药制造业",
@@ -16674,6 +17202,22 @@
       "label": "2026-09"
     },
     {
+      "metric": "医药制造业",
+      "value": null,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -9.2,
+      "debug": {
+        "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+        "sheet": "表",
+        "row": 23,
+        "rawMetric": "医药制造业",
+        "rawYoy": "-9.2"
+      },
+      "yearMonth": "2026-10",
+      "label": "2026-10"
+    },
+    {
       "metric": "有色金属冶炼和压延加工业",
       "value": null,
       "cumulative": null,
@@ -17152,6 +17696,22 @@
       },
       "yearMonth": "2026-09",
       "label": "2026-09"
+    },
+    {
+      "metric": "有色金属冶炼和压延加工业",
+      "value": null,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -4.9,
+      "debug": {
+        "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+        "sheet": "表",
+        "row": 24,
+        "rawMetric": "有色金属冶炼和压延加工业",
+        "rawYoy": "-4.9"
+      },
+      "yearMonth": "2026-10",
+      "label": "2026-10"
     },
     {
       "metric": "制造业",
@@ -17634,6 +18194,22 @@
       "label": "2026-09"
     },
     {
+      "metric": "制造业",
+      "value": null,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -2.9,
+      "debug": {
+        "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+        "sheet": "表",
+        "row": 18,
+        "rawMetric": "制造业",
+        "rawYoy": "-2.9"
+      },
+      "yearMonth": "2026-10",
+      "label": "2026-10"
+    },
+    {
       "metric": "专用设备制造业",
       "value": null,
       "cumulative": null,
@@ -18112,6 +18688,22 @@
       },
       "yearMonth": "2026-09",
       "label": "2026-09"
+    },
+    {
+      "metric": "专用设备制造业",
+      "value": null,
+      "cumulative": null,
+      "mom": null,
+      "yoy": -9,
+      "debug": {
+        "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+        "sheet": "表",
+        "row": 27,
+        "rawMetric": "专用设备制造业",
+        "rawYoy": "-9"
+      },
+      "yearMonth": "2026-10",
+      "label": "2026-10"
     }
   ],
   "metrics": {
@@ -18595,6 +19187,22 @@
         },
         "yearMonth": "2026-09",
         "label": "2026-09"
+      },
+      {
+        "metric": "全国固定资产投资",
+        "value": null,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -8.1,
+        "debug": {
+          "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+          "sheet": "表",
+          "row": 4,
+          "rawMetric": "固定资产投资（不含农户）",
+          "rawYoy": "-8.1"
+        },
+        "yearMonth": "2026-10",
+        "label": "2026-10"
       }
     ],
     "国有控股": [
@@ -19077,6 +19685,22 @@
         },
         "yearMonth": "2026-09",
         "label": "2026-09"
+      },
+      {
+        "metric": "国有控股",
+        "value": null,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -4,
+        "debug": {
+          "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+          "sheet": "表",
+          "row": 5,
+          "rawMetric": "其中：国有控股",
+          "rawYoy": "-4"
+        },
+        "yearMonth": "2026-10",
+        "label": "2026-10"
       }
     ],
     "民间投资": [
@@ -19559,6 +20183,22 @@
         },
         "yearMonth": "2026-09",
         "label": "2026-09"
+      },
+      {
+        "metric": "民间投资",
+        "value": null,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -11.4,
+        "debug": {
+          "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+          "sheet": "表",
+          "row": 6,
+          "rawMetric": "其中：民间投资",
+          "rawYoy": "-11.4"
+        },
+        "yearMonth": "2026-10",
+        "label": "2026-10"
       }
     ],
     "建筑安装工程": [
@@ -20041,6 +20681,22 @@
         },
         "yearMonth": "2026-09",
         "label": "2026-09"
+      },
+      {
+        "metric": "建筑安装工程",
+        "value": null,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -11,
+        "debug": {
+          "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+          "sheet": "表",
+          "row": 8,
+          "rawMetric": "建筑安装工程",
+          "rawYoy": "-11"
+        },
+        "yearMonth": "2026-10",
+        "label": "2026-10"
       }
     ],
     "设备工器具购置": [
@@ -20523,6 +21179,22 @@
         },
         "yearMonth": "2026-09",
         "label": "2026-09"
+      },
+      {
+        "metric": "设备工器具购置",
+        "value": null,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 8.9,
+        "debug": {
+          "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+          "sheet": "表",
+          "row": 9,
+          "rawMetric": "设备工器具购置",
+          "rawYoy": "8.9"
+        },
+        "yearMonth": "2026-10",
+        "label": "2026-10"
       }
     ],
     "其他费用": [
@@ -21005,6 +21677,22 @@
         },
         "yearMonth": "2026-09",
         "label": "2026-09"
+      },
+      {
+        "metric": "其他费用",
+        "value": null,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -13.2,
+        "debug": {
+          "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+          "sheet": "表",
+          "row": 10,
+          "rawMetric": "其他费用",
+          "rawYoy": "-13.2"
+        },
+        "yearMonth": "2026-10",
+        "label": "2026-10"
       }
     ],
     "第一产业": [
@@ -21487,6 +22175,22 @@
         },
         "yearMonth": "2026-09",
         "label": "2026-09"
+      },
+      {
+        "metric": "第一产业",
+        "value": null,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -6.1,
+        "debug": {
+          "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+          "sheet": "表",
+          "row": 12,
+          "rawMetric": "第一产业",
+          "rawYoy": "-6.1"
+        },
+        "yearMonth": "2026-10",
+        "label": "2026-10"
       }
     ],
     "第二产业": [
@@ -21969,6 +22673,22 @@
         },
         "yearMonth": "2026-09",
         "label": "2026-09"
+      },
+      {
+        "metric": "第二产业",
+        "value": null,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -3.6,
+        "debug": {
+          "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+          "sheet": "表",
+          "row": 13,
+          "rawMetric": "第二产业",
+          "rawYoy": "-3.6"
+        },
+        "yearMonth": "2026-10",
+        "label": "2026-10"
       }
     ],
     "第三产业": [
@@ -22451,6 +23171,22 @@
         },
         "yearMonth": "2026-09",
         "label": "2026-09"
+      },
+      {
+        "metric": "第三产业",
+        "value": null,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -10.9,
+        "debug": {
+          "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+          "sheet": "表",
+          "row": 14,
+          "rawMetric": "第三产业",
+          "rawYoy": "-10.9"
+        },
+        "yearMonth": "2026-10",
+        "label": "2026-10"
       }
     ],
     "农林牧渔业": [
@@ -22933,6 +23669,22 @@
         },
         "yearMonth": "2026-09",
         "label": "2026-09"
+      },
+      {
+        "metric": "农林牧渔业",
+        "value": null,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -6.2,
+        "debug": {
+          "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+          "sheet": "表",
+          "row": 16,
+          "rawMetric": "农林牧渔业",
+          "rawYoy": "-6.2"
+        },
+        "yearMonth": "2026-10",
+        "label": "2026-10"
       }
     ],
     "采矿业": [
@@ -23415,6 +24167,22 @@
         },
         "yearMonth": "2026-09",
         "label": "2026-09"
+      },
+      {
+        "metric": "采矿业",
+        "value": null,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 2.5,
+        "debug": {
+          "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+          "sheet": "表",
+          "row": 17,
+          "rawMetric": "采矿业",
+          "rawYoy": "2.5"
+        },
+        "yearMonth": "2026-10",
+        "label": "2026-10"
       }
     ],
     "制造业": [
@@ -23897,6 +24665,22 @@
         },
         "yearMonth": "2026-09",
         "label": "2026-09"
+      },
+      {
+        "metric": "制造业",
+        "value": null,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -2.9,
+        "debug": {
+          "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+          "sheet": "表",
+          "row": 18,
+          "rawMetric": "制造业",
+          "rawYoy": "-2.9"
+        },
+        "yearMonth": "2026-10",
+        "label": "2026-10"
       }
     ],
     "农副食品加工业": [
@@ -24379,6 +25163,22 @@
         },
         "yearMonth": "2026-09",
         "label": "2026-09"
+      },
+      {
+        "metric": "农副食品加工业",
+        "value": null,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -4.1,
+        "debug": {
+          "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+          "sheet": "表",
+          "row": 19,
+          "rawMetric": "其中：农副食品加工业",
+          "rawYoy": "-4.1"
+        },
+        "yearMonth": "2026-10",
+        "label": "2026-10"
       }
     ],
     "食品制造业": [
@@ -24861,6 +25661,22 @@
         },
         "yearMonth": "2026-09",
         "label": "2026-09"
+      },
+      {
+        "metric": "食品制造业",
+        "value": null,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -10.7,
+        "debug": {
+          "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+          "sheet": "表",
+          "row": 20,
+          "rawMetric": "食品制造业",
+          "rawYoy": "-10.7"
+        },
+        "yearMonth": "2026-10",
+        "label": "2026-10"
       }
     ],
     "纺织业": [
@@ -25343,6 +26159,22 @@
         },
         "yearMonth": "2026-09",
         "label": "2026-09"
+      },
+      {
+        "metric": "纺织业",
+        "value": null,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 2.8,
+        "debug": {
+          "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+          "sheet": "表",
+          "row": 21,
+          "rawMetric": "纺织业",
+          "rawYoy": "2.8"
+        },
+        "yearMonth": "2026-10",
+        "label": "2026-10"
       }
     ],
     "化学原料和化学制品制造业": [
@@ -25825,6 +26657,22 @@
         },
         "yearMonth": "2026-09",
         "label": "2026-09"
+      },
+      {
+        "metric": "化学原料和化学制品制造业",
+        "value": null,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -8.4,
+        "debug": {
+          "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+          "sheet": "表",
+          "row": 22,
+          "rawMetric": "化学原料和化学制品制造业",
+          "rawYoy": "-8.4"
+        },
+        "yearMonth": "2026-10",
+        "label": "2026-10"
       }
     ],
     "医药制造业": [
@@ -26307,6 +27155,22 @@
         },
         "yearMonth": "2026-09",
         "label": "2026-09"
+      },
+      {
+        "metric": "医药制造业",
+        "value": null,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -9.2,
+        "debug": {
+          "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+          "sheet": "表",
+          "row": 23,
+          "rawMetric": "医药制造业",
+          "rawYoy": "-9.2"
+        },
+        "yearMonth": "2026-10",
+        "label": "2026-10"
       }
     ],
     "有色金属冶炼和压延加工业": [
@@ -26789,6 +27653,22 @@
         },
         "yearMonth": "2026-09",
         "label": "2026-09"
+      },
+      {
+        "metric": "有色金属冶炼和压延加工业",
+        "value": null,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -4.9,
+        "debug": {
+          "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+          "sheet": "表",
+          "row": 24,
+          "rawMetric": "有色金属冶炼和压延加工业",
+          "rawYoy": "-4.9"
+        },
+        "yearMonth": "2026-10",
+        "label": "2026-10"
       }
     ],
     "金属制品业": [
@@ -27271,6 +28151,22 @@
         },
         "yearMonth": "2026-09",
         "label": "2026-09"
+      },
+      {
+        "metric": "金属制品业",
+        "value": null,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -9.9,
+        "debug": {
+          "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+          "sheet": "表",
+          "row": 25,
+          "rawMetric": "金属制品业",
+          "rawYoy": "-9.9"
+        },
+        "yearMonth": "2026-10",
+        "label": "2026-10"
       }
     ],
     "通用设备制造业": [
@@ -27753,6 +28649,22 @@
         },
         "yearMonth": "2026-09",
         "label": "2026-09"
+      },
+      {
+        "metric": "通用设备制造业",
+        "value": null,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -1.2,
+        "debug": {
+          "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+          "sheet": "表",
+          "row": 26,
+          "rawMetric": "通用设备制造业",
+          "rawYoy": "-1.2"
+        },
+        "yearMonth": "2026-10",
+        "label": "2026-10"
       }
     ],
     "专用设备制造业": [
@@ -28235,6 +29147,22 @@
         },
         "yearMonth": "2026-09",
         "label": "2026-09"
+      },
+      {
+        "metric": "专用设备制造业",
+        "value": null,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -9,
+        "debug": {
+          "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+          "sheet": "表",
+          "row": 27,
+          "rawMetric": "专用设备制造业",
+          "rawYoy": "-9"
+        },
+        "yearMonth": "2026-10",
+        "label": "2026-10"
       }
     ],
     "汽车制造业": [
@@ -28717,6 +29645,22 @@
         },
         "yearMonth": "2026-09",
         "label": "2026-09"
+      },
+      {
+        "metric": "汽车制造业",
+        "value": null,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -7.9,
+        "debug": {
+          "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+          "sheet": "表",
+          "row": 28,
+          "rawMetric": "汽车制造业",
+          "rawYoy": "-7.9"
+        },
+        "yearMonth": "2026-10",
+        "label": "2026-10"
       }
     ],
     "铁路、船舶、航空航天和其他运输设备制造业": [
@@ -29199,6 +30143,22 @@
         },
         "yearMonth": "2026-09",
         "label": "2026-09"
+      },
+      {
+        "metric": "铁路、船舶、航空航天和其他运输设备制造业",
+        "value": null,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 14.1,
+        "debug": {
+          "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+          "sheet": "表",
+          "row": 29,
+          "rawMetric": "铁路、船舶、航空航天和其他运输设备制造业",
+          "rawYoy": "14.1"
+        },
+        "yearMonth": "2026-10",
+        "label": "2026-10"
       }
     ],
     "电气机械和器材制造业": [
@@ -29681,6 +30641,22 @@
         },
         "yearMonth": "2026-09",
         "label": "2026-09"
+      },
+      {
+        "metric": "电气机械和器材制造业",
+        "value": null,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -0.1,
+        "debug": {
+          "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+          "sheet": "表",
+          "row": 30,
+          "rawMetric": "电气机械和器材制造业",
+          "rawYoy": "-0.1"
+        },
+        "yearMonth": "2026-10",
+        "label": "2026-10"
       }
     ],
     "计算机、通信和其他电子设备制造业": [
@@ -30163,6 +31139,22 @@
         },
         "yearMonth": "2026-09",
         "label": "2026-09"
+      },
+      {
+        "metric": "计算机、通信和其他电子设备制造业",
+        "value": null,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 9.9,
+        "debug": {
+          "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+          "sheet": "表",
+          "row": 31,
+          "rawMetric": "计算机、通信和其他电子设备制造业",
+          "rawYoy": "9.9"
+        },
+        "yearMonth": "2026-10",
+        "label": "2026-10"
       }
     ],
     "电力、热力、燃气及水生产和供应业": [
@@ -30645,6 +31637,22 @@
         },
         "yearMonth": "2026-09",
         "label": "2026-09"
+      },
+      {
+        "metric": "电力、热力、燃气及水生产和供应业",
+        "value": null,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -7.7,
+        "debug": {
+          "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+          "sheet": "表",
+          "row": 32,
+          "rawMetric": "电力、热力、燃气及水生产和供应业",
+          "rawYoy": "-7.7"
+        },
+        "yearMonth": "2026-10",
+        "label": "2026-10"
       }
     ],
     "交通运输、仓储和邮政业": [
@@ -31127,6 +32135,22 @@
         },
         "yearMonth": "2026-09",
         "label": "2026-09"
+      },
+      {
+        "metric": "交通运输、仓储和邮政业",
+        "value": null,
+        "cumulative": null,
+        "mom": null,
+        "yoy": 0.7,
+        "debug": {
+          "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+          "sheet": "表",
+          "row": 33,
+          "rawMetric": "交通运输、仓储和邮政业",
+          "rawYoy": "0.7"
+        },
+        "yearMonth": "2026-10",
+        "label": "2026-10"
       }
     ],
     "铁路运输业": [
@@ -31963,6 +32987,22 @@
         },
         "yearMonth": "2026-09",
         "label": "2026-09"
+      },
+      {
+        "metric": "道路运输业",
+        "value": null,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -10.9,
+        "debug": {
+          "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+          "sheet": "表",
+          "row": 34,
+          "rawMetric": "其中：道路运输业",
+          "rawYoy": "-10.9"
+        },
+        "yearMonth": "2026-10",
+        "label": "2026-10"
       }
     ],
     "水利、环境和公共设施管理业": [
@@ -32445,6 +33485,22 @@
         },
         "yearMonth": "2026-09",
         "label": "2026-09"
+      },
+      {
+        "metric": "水利、环境和公共设施管理业",
+        "value": null,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -14.4,
+        "debug": {
+          "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+          "sheet": "表",
+          "row": 35,
+          "rawMetric": "水利、环境和公共设施管理业",
+          "rawYoy": "-14.4"
+        },
+        "yearMonth": "2026-10",
+        "label": "2026-10"
       }
     ],
     "水利管理业": [
@@ -32927,6 +33983,22 @@
         },
         "yearMonth": "2026-09",
         "label": "2026-09"
+      },
+      {
+        "metric": "水利管理业",
+        "value": null,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -16.7,
+        "debug": {
+          "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+          "sheet": "表",
+          "row": 36,
+          "rawMetric": "其中：水利管理业",
+          "rawYoy": "-16.7"
+        },
+        "yearMonth": "2026-10",
+        "label": "2026-10"
       }
     ],
     "公共设施管理业": [
@@ -33409,6 +34481,22 @@
         },
         "yearMonth": "2026-09",
         "label": "2026-09"
+      },
+      {
+        "metric": "公共设施管理业",
+        "value": null,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -14.1,
+        "debug": {
+          "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+          "sheet": "表",
+          "row": 37,
+          "rawMetric": "公共设施管理业",
+          "rawYoy": "-14.1"
+        },
+        "yearMonth": "2026-10",
+        "label": "2026-10"
       }
     ],
     "教育": [
@@ -33891,6 +34979,22 @@
         },
         "yearMonth": "2026-09",
         "label": "2026-09"
+      },
+      {
+        "metric": "教育",
+        "value": null,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -15.7,
+        "debug": {
+          "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+          "sheet": "表",
+          "row": 38,
+          "rawMetric": "教育",
+          "rawYoy": "-15.7"
+        },
+        "yearMonth": "2026-10",
+        "label": "2026-10"
       }
     ],
     "卫生和社会工作": [
@@ -34373,6 +35477,22 @@
         },
         "yearMonth": "2026-09",
         "label": "2026-09"
+      },
+      {
+        "metric": "卫生和社会工作",
+        "value": null,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -14.1,
+        "debug": {
+          "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+          "sheet": "表",
+          "row": 39,
+          "rawMetric": "卫生和社会工作",
+          "rawYoy": "-14.1"
+        },
+        "yearMonth": "2026-10",
+        "label": "2026-10"
       }
     ],
     "文化、体育和娱乐业": [
@@ -34855,6 +35975,22 @@
         },
         "yearMonth": "2026-09",
         "label": "2026-09"
+      },
+      {
+        "metric": "文化、体育和娱乐业",
+        "value": null,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -18.5,
+        "debug": {
+          "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+          "sheet": "表",
+          "row": 40,
+          "rawMetric": "文化、体育和娱乐业",
+          "rawYoy": "-18.5"
+        },
+        "yearMonth": "2026-10",
+        "label": "2026-10"
       }
     ],
     "内资企业": [
@@ -35337,6 +36473,22 @@
         },
         "yearMonth": "2026-09",
         "label": "2026-09"
+      },
+      {
+        "metric": "内资企业",
+        "value": null,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -7.9,
+        "debug": {
+          "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+          "sheet": "表",
+          "row": 42,
+          "rawMetric": "其中：内资企业",
+          "rawYoy": "-7.9"
+        },
+        "yearMonth": "2026-10",
+        "label": "2026-10"
       }
     ],
     "港澳台投资企业": [
@@ -35819,6 +36971,22 @@
         },
         "yearMonth": "2026-09",
         "label": "2026-09"
+      },
+      {
+        "metric": "港澳台投资企业",
+        "value": null,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -8.4,
+        "debug": {
+          "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+          "sheet": "表",
+          "row": 43,
+          "rawMetric": "港澳台投资企业",
+          "rawYoy": "-8.4"
+        },
+        "yearMonth": "2026-10",
+        "label": "2026-10"
       }
     ],
     "外商投资企业": [
@@ -36301,6 +37469,22 @@
         },
         "yearMonth": "2026-09",
         "label": "2026-09"
+      },
+      {
+        "metric": "外商投资企业",
+        "value": null,
+        "cumulative": null,
+        "mom": null,
+        "yoy": -6.6,
+        "debug": {
+          "file": "2026-11-16_2026年1—10月份全国固定资产投资基本情况.xlsx",
+          "sheet": "表",
+          "row": 44,
+          "rawMetric": "外商投资企业",
+          "rawYoy": "-6.6"
+        },
+        "yearMonth": "2026-10",
+        "label": "2026-10"
       }
     ]
   }

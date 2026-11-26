@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-10T01:31:26.410Z",
+  "generatedAt": "2026-11-07T09:09:27.867Z",
   "years": {
     "2024": [
       {
@@ -170,6 +170,11 @@
         "month": 9,
         "valueUsd": 3235.17,
         "holdingsOz": 7747
+      },
+      {
+        "month": 10,
+        "valueUsd": 3064.11,
+        "holdingsOz": 7830
       }
     ]
   }
